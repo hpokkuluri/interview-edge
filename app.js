@@ -445,7 +445,7 @@ function vMock(ctx, id) {
       const pc = () => { const n = pool().length; $('#pc', ctx.el).textContent = `${n} question${n === 1 ? '' : 's'} available in this set.`; $('#start', ctx.el).disabled = !n; };
       $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const k = sg.dataset.k; cfg[k] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); store.set('ip.mockcfg', cfg); pc(); }));
       $('#cv', ctx.el).addEventListener('change', e => { cfg.voice = e.target.checked; store.set('ip.mockcfg', cfg); });
-      $('#cs', ctx.el).addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.mockcfg', cfg); });
+      const csw = $('#cs', ctx.el); if (csw) csw.addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.mockcfg', cfg); });
       $('#start', ctx.el).addEventListener('click', () => { const qs = shuffle(pool()).slice(0, cfg.n); session = { qs, at: 0, scores: [], answers: [] }; ask(); });
       pc();
     }
@@ -579,6 +579,13 @@ ${bank.map(x => '- ' + x[1]).join('\n')}
 
 Start by greeting the candidate briefly in character and asking your first question.`;
 }
+// Same interviewer brief, written as a message to paste into Claude (keeps the link a sensible length).
+function claudePrompt(p, bank, cfg) {
+  const topics = shuffle(bank).slice(0, 20);
+  return aiSystem(p, topics, cfg)
+    .replace(/^You are /, 'Please role-play a job interview with me. You are ')
+    .replace('Start by greeting the candidate briefly in character and asking your first question.', 'I am the candidate. Start now: greet me briefly in character and ask your first question. When I type END, give the feedback.');
+}
 async function callClaude(system, messages) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -606,29 +613,30 @@ function vAI(ctx, id) {
     let busy = false;
     ctx.cleanup.push(stopSpeak);
 
-    if (!S.key) {
-      wrap().innerHTML = `<div class="pos-hero"><span class="chip">${esc(p.full)}</span><h2>AI interviewer</h2><p>A live interviewer that asks one question at a time, follows up on what you say, and gives you a scored debrief at the end.</p></div>
-        <div class="notice"><b>One-time setup:</b> the AI interviewer runs on Claude using your own Anthropic API key. Paste it in Settings — it’s stored only on this device and sent only to Anthropic.<button class="btn pri wide" data-go="settings" style="margin-top:12px">${I.gear} Open Settings</button>
-        <p class="muted" style="margin:10px 0 0">Get a key at console.anthropic.com → API keys. Usage is billed to your Anthropic account.</p></div>`;
-      ctx.refresh = () => { if (S.key) go(`ai/${id}`, { replace: true }); };
-      return;
-    }
-
     function intro() {
       const seg = (name, opts) => `<div class="seg" data-k="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${String(cfg[name]) === String(v) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
       wrap().innerHTML = `<div class="pos-hero"><span class="chip">${esc(p.level)}</span><h2>AI interviewer</h2><p>${esc(p.full)} — answer by typing or speaking. It follows up like a real panel and debriefs you at the end.</p></div>
         <div class="panel"><h3>Interview setup</h3>
           <div class="field"><label>Interviewer</label>${seg('persona', Object.entries(PERSONAS).map(([k, v]) => [k, v[0]]))}</div>
           <div class="field"><label>Length</label>${seg('len', [[4, 'Short'], [6, 'Standard'], [10, 'Full loop']])}</div>
-          <div class="field"><label class="toggle"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>
-          <button class="btn pri wide" id="start" style="margin-top:12px">${I.play} Start interview</button>
-          ${conv ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
+          <a class="btn pri wide" id="claude" href="#" target="_blank" rel="noopener" style="margin-top:12px;text-decoration:none">${I.bot} Interview me in Claude</a>
+          <p class="muted" style="margin:8px 2px 0">Opens Claude with this interview ready to go — uses your Claude plan, no extra cost. If the message box is empty, just paste — the setup is already copied.</p>
+        </div>
+        <div class="panel"><h3>Or interview right here</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed per use).</p>
+          ${S.key ? `<label class="toggle" style="margin-bottom:8px"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label>` : ''}
+          ${S.key ? `<button class="btn wide" id="start">${I.play} Start in this app</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
+          ${S.key && conv ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
         </div>`;
       $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const k = sg.dataset.k; cfg[k] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); store.set('ip.aicfg', cfg); }));
-      $('#cs', ctx.el).addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.aicfg', cfg); });
-      $('#start', ctx.el).addEventListener('click', () => { conv = { cfg: Object.assign({}, cfg), msgs: [{ role: 'user', content: 'Hello — I’m ready to begin the interview.' }] }; chat(); send(null); });
+      const csw = $('#cs', ctx.el); if (csw) csw.addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.aicfg', cfg); });
+      const cl = $('#claude', ctx.el);
+      const setLink = () => { cl.href = 'https://claude.ai/new?q=' + encodeURIComponent(claudePrompt(p, bank, cfg)); };
+      setLink(); ctx.el.addEventListener('click', e => { if (e.target.closest('.seg')) setTimeout(setLink, 0); });
+      cl.addEventListener('click', () => { setLink(); try { navigator.clipboard.writeText(claudePrompt(p, bank, cfg)).catch(() => {}); } catch (e) {} toast('Opening Claude — interview setup also copied'); });
+      const st = $('#start', ctx.el); if (st) st.addEventListener('click', () => { conv = { cfg: Object.assign({}, cfg), msgs: [{ role: 'user', content: 'Hello — I’m ready to begin the interview.' }] }; chat(); send(null); });
       const rs = $('#resume', ctx.el); if (rs) rs.addEventListener('click', chat);
     }
+    ctx.refresh = () => { if (!$('#chat', ctx.el)) intro(); };   // pick up a key added in Settings
 
     function chat() {
       wrap().innerHTML = `<div class="chat" id="chat"></div>
