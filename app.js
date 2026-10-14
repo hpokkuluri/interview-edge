@@ -151,14 +151,38 @@ function dictate(textarea, btn, onChange) {
   if (btn.dataset.label) btn.querySelector('span').textContent = 'Stop';
   try { r.start(); } catch (e) { btn.classList.remove('live'); }
 }
+// Read text aloud with the device's voice.
+// iPhone/iPad Safari only allows speech that starts from a tap, and drops speech started right after cancel(),
+// so we (1) unlock speech on the first tap anywhere, and (2) wait briefly after cancelling before speaking again.
+const TTS = 'speechSynthesis' in window;
+let ttsVoice = null;
+function pickVoice() {
+  if (!TTS) return;
+  const vs = speechSynthesis.getVoices();
+  ttsVoice = vs.find(v => /^en[-_]US/i.test(v.lang) && /natural|premium|enhanced|siri|samantha|google/i.test(v.name)) || vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+}
+if (TTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+(function unlockSpeech() {
+  if (!TTS) return;
+  const unlock = () => {
+    try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } catch (e) {}
+    ['touchend', 'click', 'keydown'].forEach(t => document.removeEventListener(t, unlock, true));
+  };
+  ['touchend', 'click', 'keydown'].forEach(t => document.addEventListener(t, unlock, true));
+})();
 function speak(text) {
-  if (!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text.replace(/\*\*/g, '').replace(/^#+\s*/gm, ''));
-  u.lang = 'en-US'; u.rate = 1;
-  const v = speechSynthesis.getVoices().find(v => /en-US/i.test(v.lang) && /natural|premium|enhanced|google/i.test(v.name)) || speechSynthesis.getVoices().find(v => /en-US/i.test(v.lang));
-  if (v) u.voice = v;
-  speechSynthesis.speak(u);
+  if (!TTS || !text) return;
+  const clean = String(text).replace(/\*\*/g, '').replace(/^#+\s*/gm, '').replace(/^\s*-\s+/gm, '').replace(/\s+/g, ' ').trim();
+  const say = () => {
+    const u = new SpeechSynthesisUtterance(clean);
+    u.lang = 'en-US'; u.rate = 1;
+    if (!ttsVoice) pickVoice();
+    if (ttsVoice) u.voice = ttsVoice;
+    speechSynthesis.speak(u);
+    if (speechSynthesis.paused) speechSynthesis.resume();
+  };
+  if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(say, 150); }
+  else say();
 }
 const stopSpeak = () => { if ('speechSynthesis' in window) speechSynthesis.cancel(); };
 
@@ -407,7 +431,7 @@ function vQ(ctx, id, idxStr, mode) {
     $('#mr', ctx.el).addEventListener('click', () => { setStatus(key, 'r'); const s2 = st(key); $('#mr', ctx.el).classList.toggle('on', s2.s === 'r'); $('#mk', ctx.el).classList.remove('on'); });
     $('#prev', ctx.el).addEventListener('click', () => step(-1));
     $('#next', ctx.el).addEventListener('click', () => step(1));
-    if (voice && S.speak) setTimeout(() => speak(x[1]), 350);
+    if (voice && S.speak) speak(x[1]);
   };
   const step = d => { const ni = list[pos + d]; if (ni === undefined) return; go(`q/${id}/${ni}${voice ? '/voice' : ''}`, { replace: true, dir: d }); };
   render();
@@ -455,7 +479,7 @@ function vMock(ctx, id) {
       const n = session.at, x = bank[session.qs[n]], total = cfg.mins * 60; let left = total, revealed = false;
       const C = 2 * Math.PI * 28;
       wrap().innerHTML = `<div class="mock-top"><div class="ring" id="ring">${cfg.mins ? `<svg viewBox="0 0 66 66"><circle cx="33" cy="33" r="28" fill="none" stroke="var(--line)" stroke-width="6"/><circle id="arc" cx="33" cy="33" r="28" fill="none" stroke="var(--c)" stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg><b id="tm"></b>` : `<svg viewBox="0 0 66 66"><circle cx="33" cy="33" r="28" fill="none" stroke="var(--c)" stroke-width="6"/></svg><b>∞</b>`}</div>
-          <div style="flex:1"><div class="qn">QUESTION ${n + 1} OF ${session.qs.length} · ${esc(x[0]).toUpperCase()}</div><div class="dots">${session.qs.map((_, j) => `<i class="${j < n ? 'done' : j === n ? 'cur' : ''}"></i>`).join('')}</div></div></div>
+          <div style="flex:1;min-width:0"><div class="qn">QUESTION ${n + 1} OF ${session.qs.length} · ${esc(x[0]).toUpperCase()}</div><div class="dots">${session.qs.map((_, j) => `<i class="${j < n ? 'done' : j === n ? 'cur' : ''}"></i>`).join('')}</div></div><button class="icon-btn" id="say" aria-label="Read question aloud" style="background:var(--surface);color:var(--text-2);box-shadow:var(--shadow)">${I.speaker}</button></div>
         <h2 class="q-text">${esc(x[1])}</h2>
         ${cfg.voice ? `<div class="practice"><h4>Your answer</h4><textarea class="ans" id="mine" placeholder="Tap Speak and answer as you would in the room…"></textarea><div class="rec-row"><button class="mic" id="mic" data-label="Speak">${I.mic}<span>Speak</span></button><small id="wc"></small></div></div>` : ''}
         <div id="after"><button class="btn navy wide" id="done" style="margin-top:14px">I’ve answered — show model answer</button></div>
@@ -469,7 +493,8 @@ function vMock(ctx, id) {
       const ta = $('#mine', ctx.el);
       if (ta) { const wc = $('#wc', ctx.el); const cnt = () => { const k = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0; wc.textContent = k ? `${k} words` : ''; };
         ta.addEventListener('input', cnt); $('#mic', ctx.el).addEventListener('click', e => dictate(ta, e.currentTarget, cnt)); }
-      if (cfg.speak) setTimeout(() => speak(x[1]), 300);
+      if (cfg.speak) speak(x[1]);
+      $('#say', ctx.el).addEventListener('click', () => speak(x[1]));
       $('#done', ctx.el).addEventListener('click', reveal);
       $('#quit', ctx.el).addEventListener('click', () => { if (session.scores.length) results(); else setup(); });
       function reveal() {
@@ -482,7 +507,7 @@ function vMock(ctx, id) {
           session.scores[n] = v;
           const key = qid(id, x); const cur = st(key).s;
           if (v <= 2 && cur !== 'r') setStatus(key, 'r'); else if (v >= 4 && cur !== 'k') setStatus(key, 'k');
-          setTimeout(() => { session.at++; if (session.at < session.qs.length) { ask(); ctx.el.scrollTop = 0; } else results(); }, 300); });
+          session.at++; if (session.at < session.qs.length) { ask(); ctx.el.scrollTop = 0; } else results(); });
         $('#after', ctx.el).scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
@@ -686,6 +711,7 @@ function vSettings(ctx) {
       <div class="field">
         <label class="toggle"><span><b>Show answers right away</b><span>Off = tap to reveal, so you think first</span></span><input type="checkbox" class="sw" id="rv" ${S.reveal ? 'checked' : ''}></label>
         <label class="toggle"><span><b>Read questions aloud by default</b><span>For mock interviews and voice practice</span></span><input type="checkbox" class="sw" id="sp" ${S.speak ? 'checked' : ''}></label>
+        <button class="btn ghost wide" id="ttstest" style="margin-top:4px">${I.speaker} Test the voice</button>
       </div></div>
     <div class="panel"><h3>AI interviewer</h3><p>Uses Claude with your own Anthropic API key. The key is stored only on this device and sent only to Anthropic.</p>
       <div class="field"><label for="key">API key</label><input class="txt" id="key" type="password" autocomplete="off" placeholder="sk-ant-…" value="${esc(S.key || '')}"></div>
@@ -698,7 +724,12 @@ function vSettings(ctx) {
     <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p></div>`;
   $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; S[sg.dataset.k] = b.dataset.v; saveS(); applyTheme(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); }));
   $('#rv', ctx.el).addEventListener('change', e => { S.reveal = e.target.checked; saveS(); });
-  $('#sp', ctx.el).addEventListener('change', e => { S.speak = e.target.checked; saveS(); });
+  $('#sp', ctx.el).addEventListener('change', e => {
+    S.speak = e.target.checked; saveS();
+    ['ip.mockcfg', 'ip.aicfg'].forEach(k => { const c = store.get(k, null); if (c) { c.speak = S.speak; store.set(k, c); } });
+    if (S.speak) speak('Read aloud is on.');
+  });
+  $('#ttstest', ctx.el).addEventListener('click', () => { if (!TTS) { toast('This browser can’t read aloud.'); return; } speak('Tell me about a time you shortened the month-end close.'); toast('Playing — check your volume and silent switch'); });
   $('#model', ctx.el).addEventListener('change', e => { S.model = e.target.value; saveS(); });
   $('#save', ctx.el).addEventListener('click', () => { S.key = $('#key', ctx.el).value.trim(); saveS(); $('#kmsg', ctx.el).textContent = S.key ? 'Saved on this device.' : 'Key removed.'; });
   $('#test', ctx.el).addEventListener('click', async () => {
