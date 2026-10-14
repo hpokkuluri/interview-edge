@@ -1,0 +1,16 @@
+{
+  "name": "Interview Prep · Arahasoft",
+  "short_name": "Interview Prep",
+  "description": "Interview questions, model answers and mock interviews for Oracle ERP, SAP, Java/Engineering and IT leadership roles.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0E1B3D",
+  "theme_color": "#0E1B3D",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
