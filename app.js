@@ -1,4 +1,4 @@
-/* Interview Prep · Arahasoft — the whole app (screens, practice modes, progress).
+/* Interview Edge · Arahasoft — the whole app (screens, practice modes, progress).
    Content lives in data/catalog.js (cubes + positions) and data/q/<position>.js (questions).
    Everything a user does is saved only on their own device (localStorage). */
 'use strict';
@@ -288,7 +288,7 @@ function vHome(ctx) {
     ctx.el.innerHTML = `<div class="home">
       <div class="hero"><div class="hero-top"><div class="brand">${LOGO}<span>ARAHASOFT</span></div>
         <button class="icon-btn" data-go="settings" aria-label="Settings">${I.gear}</button></div>
-        <div class="hero-body"><h1>Interview <em>Prep</em></h1>
+        <div class="hero-body"><h1>Interview <em>Edge</em></h1><div class="tagline">by Arahasoft</div>
         <p>Questions, model answers and mock interviews for senior, director and VP roles in Oracle ERP, SAP, Java engineering and IT leadership.</p>
         <div class="stats"><div class="stat"><b>${total}</b><span>questions</span></div><div class="stat"><b>${known}</b><span>you know</span></div><div class="stat"><b>${mocks}</b><span>mock interviews</span></div></div></div></div>
       <div class="home-main"><div class="wrap">
@@ -687,7 +687,7 @@ function vSettings(ctx) {
       <div class="muted" id="kmsg" style="margin-top:8px"></div></div>
     <div class="panel"><h3>Your progress</h3><p>${Object.keys(PROG).length} questions marked · ${store.get('ip.mocks', []).length} interviews completed. Saved only in this browser.</p>
       <button class="btn ghost wide" id="reset" style="color:var(--red)">Reset all progress</button></div>
-    <p class="home-foot">Interview Prep by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p></div>`;
+    <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p></div>`;
   $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; S[sg.dataset.k] = b.dataset.v; saveS(); applyTheme(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); }));
   $('#rv', ctx.el).addEventListener('change', e => { S.reveal = e.target.checked; saveS(); });
   $('#sp', ctx.el).addEventListener('change', e => { S.speak = e.target.checked; saveS(); });
