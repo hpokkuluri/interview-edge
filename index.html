@@ -81,6 +81,23 @@ button{cursor:pointer}
 .cube-txt{display:flex;flex-direction:column;gap:6px}
 .cube .bar-p{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
 .cube .bar-p i{display:block;height:100%;background:var(--c)}
+.hsearch{display:flex;align-items:center;gap:10px;width:100%;margin-top:18px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:rgba(255,255,255,.78);border-radius:14px;padding:12px 14px;font-size:.95rem;text-align:left}
+.hsearch svg{width:18px;height:18px;flex-shrink:0}
+.fields{display:flex;flex-direction:column;gap:12px}
+.fieldcard{border:0;background:var(--surface);border-radius:22px;padding:16px;text-align:left;box-shadow:var(--shadow);display:flex;gap:14px;align-items:center;width:100%}
+.fieldcard:active{transform:scale(.99)}
+.fc-cubes{display:grid;grid-template-columns:1fr 1fr;width:84px;flex-shrink:0;gap:0}
+.fc-cubes svg{width:42px;height:42px}
+.fc-cubes svg:first-child{grid-column:1/-1;justify-self:center}
+.fc-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.fc-txt h3{margin:0;font-size:1.12rem;line-height:1.2;font-weight:800}
+.fc-txt .meta{font-size:.8rem;color:var(--text-3)}
+.fc-fams{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.fc-fams i{font-style:normal;font-size:.7rem;font-weight:700;color:var(--c);background:var(--tint);padding:2px 7px;border-radius:999px}
+.fieldcard .bar-p{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
+.fieldcard .bar-p i{display:block;height:100%;background:var(--c)}
+.esscard .pos-row svg{width:56px;height:56px;flex-shrink:0;margin:-4px 0}
+.lvl.L{background:color-mix(in srgb,var(--amber) 14%,transparent);color:var(--amber)}
 .continue{display:flex;align-items:center;gap:12px;width:100%;border:0;background:var(--surface);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);text-align:left;margin-bottom:22px}
 .continue .dot{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0}
 .continue .dot svg{width:20px;height:20px}

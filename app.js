@@ -21,9 +21,16 @@ FAMS.forEach(f => f.positions.forEach(p => {
   else POS[p.id] = Object.assign({ fam: f, role: p, full: p.title }, p);
 }));
 const bankIds = p => p.tracks ? p.tracks.map(t => t.id) : [p.id];
+const FIELDS = window.FIELDS || [];
+const ESS = window.ESSENTIALS;
+POS.common = { id: 'common', fam: ESS, role: {}, title: ESS.name, full: ESS.name, level: 'Every role', blurb: ESS.tag };
+const famById = id => FAMS.find(f => f.id === id);
+const fieldOf = f => FIELDS.find(x => x.families.includes(f.id));
+// Career levels (optional 5th element on a question). Questions without a level count for every level.
+const LEVELS = { E: 'Entry', M: 'Mid', S: 'Senior', X: 'Leadership' };
 const DIFF = { B: 'Basic', D: 'In-depth' };
 const hash = s => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); };
-const qid = (pos, item) => pos + ':' + hash(item[1]);
+const qid = (pos, item) => (item[5] || pos) + ':' + hash(item[1]);   // Essentials questions share progress across roles
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
@@ -46,16 +53,26 @@ function posProgress(pos) {
 function famProgress(f) { let k = 0, total = 0; f.positions.forEach(p => bankIds(p).forEach(id => { const x = posProgress(id); k += x.k; total += x.total; })); return { k, total }; }
 
 /* ---------------- loading question banks ---------------- */
-const loading = {};
-function loadBank(pos) {
-  if (window.QB[pos]) return Promise.resolve(window.QB[pos]);
-  if (loading[pos]) return loading[pos];
-  return loading[pos] = new Promise((res, rej) => {
-    const s = document.createElement('script'); s.src = `data/q/${pos}.js`;
-    s.onload = () => window.QB[pos] ? res(window.QB[pos]) : rej(new Error('empty'));
-    s.onerror = () => { delete loading[pos]; rej(new Error('load')); };
+const loading = {}, BANKS = {};
+function loadRaw(id) {
+  if (window.QB[id]) return Promise.resolve(window.QB[id]);
+  if (loading[id]) return loading[id];
+  return loading[id] = new Promise((res, rej) => {
+    const s = document.createElement('script'); s.src = `data/q/${id}.js`;
+    s.onload = () => window.QB[id] ? res(window.QB[id]) : rej(new Error('empty'));
+    s.onerror = () => { delete loading[id]; rej(new Error('load')); };
     document.head.appendChild(s);
   });
+}
+// A role's bank = its own questions, then the shared Interview Essentials (tagged so progress is shared).
+// Module deep dives and the Essentials bank itself are not merged.
+const mergesEssentials = id => id !== 'common' && !id.startsWith('ora-mod-');
+function loadBank(id) {
+  if (BANKS[id]) return Promise.resolve(BANKS[id]);
+  const own = loadRaw(id);
+  if (!mergesEssentials(id)) return own.then(b => BANKS[id] = b);
+  return Promise.all([own, loadRaw('common').catch(() => [])]).then(([b, c]) =>
+    BANKS[id] = b.concat(c.map(x => { const y = x.slice(); y[0] = 'Interview Essentials'; y[5] = 'common'; return y; })));
 }
 
 /* ---------------- answer formatting ----------------
@@ -106,7 +123,7 @@ function shade(hex, amt) {
 }
 const GLYPH = { oracle: 'ERP', oramod: 'MOD', sap: 'S/4', java: '{ }', itlead: 'CIO' };
 function cubeSVG(f) {
-  const c = f.color, g = GLYPH[f.id] || f.short;
+  const c = f.color, g = f.glyph || GLYPH[f.id] || f.short;
   return `<svg viewBox="0 0 100 104" aria-hidden="true">
     <polygon points="50,10 90,33 50,56 10,33" fill="${shade(c, .45)}"/>
     <polygon points="10,33 50,56 50,100 10,77" fill="${c}"/>
@@ -196,8 +213,10 @@ function bar(ctx, title, extra = '') {
 function titleOf(route) {
   const [k, a] = route.split('/');
   if (k === 'home') return 'Home';
-  if (k === 'fam') return FAMS.find(f => f.id === a).short;
-  if (k === 'pos' || k === 'q') return POS[a] ? (POS[a].track || shortTitle(POS[a].title)) : 'Back';
+  if (k === 'field') return (FIELDS.find(f => f.id === a) || {}).name || 'Back';
+  if (k === 'fam') return famById(a).short;
+  if (k === 'search') return 'Search';
+  if (k === 'pos' || k === 'q') return POS[a] ? (a === 'common' ? 'Essentials' : (POS[a].track || shortTitle(POS[a].title))) : 'Back';
   if (k === 'mock') return 'Mock';
   if (k === 'flash') return 'Flashcards';
   if (k === 'ai') return 'Interview';
@@ -210,7 +229,7 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ home: vHome, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings }[k] || vHome)(ctx, a, b);
+  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
@@ -302,27 +321,88 @@ window.addEventListener('popstate', () => popScreen());
 
 /* ================= SCREENS ================= */
 
-/* ---------- Home: the cubes ---------- */
+/* ---------- Home: fields, essentials, search ---------- */
+function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
 function vHome(ctx) {
   const render = () => {
     const total = Object.values(COUNTS).reduce((a, b) => a + b, 0);
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && POS[last];
+    const ess = posProgress('common');
     ctx.el.innerHTML = `<div class="home">
       <div class="hero"><div class="hero-top"><div class="brand">${LOGO}<span>ARAHASOFT</span></div>
         <button class="icon-btn" data-go="settings" aria-label="Settings">${I.gear}</button></div>
         <div class="hero-body"><h1>Interview <em>Edge</em></h1><div class="tagline">by Arahasoft</div>
-        <p>Questions, model answers and mock interviews for senior, director and VP roles in Oracle ERP, SAP, Java engineering and IT leadership.</p>
-        <div class="stats"><div class="stat"><b>${total}</b><span>questions</span></div><div class="stat"><b>${known}</b><span>you know</span></div><div class="stat"><b>${mocks}</b><span>mock interviews</span></div></div></div></div>
+        <p>Questions, model answers and mock interviews for technology, finance and supply chain roles — from first job to the C-suite.</p>
+        <div class="stats"><div class="stat"><b>${total.toLocaleString()}</b><span>questions</span></div><div class="stat"><b>${known}</b><span>you know</span></div><div class="stat"><b>${mocks}</b><span>mock interviews</span></div></div>
+        <button class="hsearch" data-go="search">${I.search}<span>Search all questions and roles</span></button></div></div>
       <div class="home-main"><div class="wrap">
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
-        <div class="sec-h">Choose a track</div>
-        <div class="cubes">${FAMS.map(f => { const p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<span class="cube-txt"><h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} ${f.id === 'oramod' ? 'modules' : 'roles'} · ${p.total} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
+        <div class="sec-h">Choose a field</div>
+        <div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}">
+          <span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span>
+          <span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span>
+          <span class="fc-fams">${fd.families.map(id => `<i>${esc(famById(id).name)}</i>`).join('')}</span>
+          <span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
+        <div class="sec-h" style="margin-top:22px">For every interview</div>
+        <button class="card esscard" data-go="pos/common" style="${famVars(ESS)}"><div class="pos-row">${cubeSVG(ESS)}<div style="flex:1;min-width:0"><h3>${esc(ESS.name)}</h3><p>${esc(ESS.tag)}</p></div></div>
+          <div class="pos-foot" style="padding-left:0"><span class="prog"><i class="k" style="width:${ess.total ? ess.k / ess.total * 100 : 0}%"></i></span><small>${ess.k}/${ess.total}</small></div></button>
         <p class="home-foot">Your progress stays on this device. © Arahasoft</p>
       </div></div></div>`;
   };
   render(); ctx.refresh = render;
+}
+
+/* ---------- Field: the track cubes inside a field ---------- */
+function vField(ctx, id) {
+  const fd = FIELDS.find(x => x.id === id);
+  const render = () => {
+    ctx.el.innerHTML = `${bar(ctx, fd.name)}<div class="wrap">
+      <div class="fam-head">${cubeSVG(fd)}<div><h2>${esc(fd.name)}</h2><p>${esc(fd.tag)}</p></div></div>
+      <div class="cubes">${fd.families.map(fid => { const f = famById(fid), p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<span class="cube-txt"><h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} ${f.id === 'oramod' ? 'modules' : 'roles'} · ${p.total} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
+    </div>`;
+  };
+  render(); ctx.refresh = render;
+}
+
+/* ---------- Search across every role ---------- */
+let searchAll = null;   // [{ id, i, x }] built once, from each role's own questions plus Essentials
+function buildSearchIndex() {
+  if (searchAll) return Promise.resolve(searchAll);
+  const ids = Object.keys(COUNTS);
+  return Promise.all(ids.map(id => loadRaw(id).then(b => [id, b]).catch(() => [id, []]))).then(rs => {
+    searchAll = []; const seen = new Set();
+    rs.forEach(([id, b]) => b.forEach((x, i) => { const k = id.startsWith('ora-mod-') ? null : x[1]; if (k && seen.has(id + k)) return; if (k) seen.add(id + k); searchAll.push({ id, i, x, t: (x[1] + ' ' + x[0] + ' ' + (POS[id] ? POS[id].full : '')).toLowerCase() }); }));
+    return searchAll;
+  });
+}
+const roleMatches = q => { const out = []; FAMS.forEach(f => f.positions.forEach(p => { const hay = (p.title + ' ' + p.blurb + ' ' + f.name).toLowerCase(); if (q.split(/\s+/).every(w => hay.includes(w))) out.push({ f, p }); })); return out; };
+function vSearch(ctx) {
+  ctx.el.innerHTML = `${bar(ctx, 'Search')}<div class="wrap">
+    <label class="search" style="margin-top:14px">${I.search}<input id="gs" type="search" placeholder="Try “IFRS 16”, “cycle count”, “controller”…" autocomplete="off" enterkeyhint="search"></label>
+    <div id="gres"><div class="empty">Search ${Object.values(COUNTS).reduce((a, b) => a + b, 0).toLocaleString()} questions across every role, plus role names.</div></div></div>`;
+  const inp = $('#gs', ctx.el), out = $('#gres', ctx.el);
+  setTimeout(() => inp.focus(), 350);
+  let timer;
+  const run = () => {
+    const q = inp.value.trim().toLowerCase();
+    if (q.length < 2) { out.innerHTML = '<div class="empty">Type at least two letters.</div>'; return; }
+    out.innerHTML = '<div class="empty">Searching…</div>';
+    buildSearchIndex().then(all => {
+      if (inp.value.trim().toLowerCase() !== q) return;
+      const words = q.split(/\s+/);
+      const roles = roleMatches(q).slice(0, 8);
+      const seenQ = new Set(); const hits = all.filter(h => words.every(w => h.t.includes(w)) && !seenQ.has(h.x[1]) && seenQ.add(h.x[1])).slice(0, 60);
+      out.innerHTML = (roles.length ? `<div class="sec-h" style="margin-top:14px">Roles</div><div class="list">${roles.map(({ f, p }) => { const id = p.tracks ? p.tracks[0].id : p.id;
+          return `<button class="card" data-go="pos/${id}" style="${famVars(f)}"><div class="pos-row"><span class="n">${esc((f.glyph || f.short).slice(0, 3))}</span><div style="flex:1;min-width:0"><h3>${esc(p.title)}</h3><p>${esc(f.name)}</p></div><span class="chip c">${esc(p.level)}</span></div></button>`; }).join('')}</div>` : '') +
+        `<div class="sec-h" style="margin-top:18px">Questions${hits.length === 60 ? ' (first 60)' : ''}</div>` +
+        (hits.length ? hits.map((h, j) => `<button class="qrow" data-h="${j}"><span class="qt">${esc(h.x[1])}<span class="qc">${esc(POS[h.id] ? POS[h.id].full : h.id)} · ${esc(h.x[0])}</span></span></button>`).join('') : '<div class="empty">No questions match.</div>');
+      out.onclick = e => { const b = e.target.closest('[data-h]'); if (!b) return; const h = hits[+b.dataset.h];
+        loadBank(h.id).then(() => { qList[h.id] = hits.filter(z => z.id === h.id).map(z => z.i); go(`q/${h.id}/${h.i}`); }); };
+    });
+  };
+  inp.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(run, 220); });
 }
 
 /* ---------- Family: the positions inside a cube ---------- */
@@ -345,20 +425,22 @@ function vFam(ctx, id) {
 const listState = {};   // remembers filters per position while the app is open
 function vPos(ctx, id) {
   const p = POS[id], f = p.fam;
-  const ls = listState[id] = listState[id] || { cat: 'All', stat: 'all', diff: 'all', q: '' };
+  const ls = listState[id] = listState[id] || { cat: 'All', stat: 'all', diff: 'all', lvl: 'all', q: '' };
   ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}"><div class="empty">Loading questions…</div></div>`;
   loadBank(id).then(bank => {
     const cats = ['All', ...new Set(bank.map(x => x[0]))];
     const hasDiff = bank.some(x => x[3]);
+    const lvls = Object.keys(LEVELS).filter(l => bank.some(x => x[4] === l));
     const tracks = p.role.tracks ? `<div class="trk-sw"><div class="seg" id="tsw">${p.role.tracks.map(t => `<button data-t="${t.id}" class="${t.id === id ? 'on' : ''}">${esc(t.label)}</button>`).join('')}</div></div>` : '';
-    const head = () => { const x = posProgress(id); const n = bank.length;
-      return `<div class="pos-hero"><span class="chip">${esc(p.level)}${p.track ? ' · ' + esc(p.track) : ' · ' + esc(f.name)}</span><h2>${esc(p.title)}</h2><p>${esc(p.blurb)}</p>
+    const head = () => { const n = bank.length, x = { k: 0, r: 0 }; bank.forEach(q => { const s = st(qid(id, q)).s; if (s === 'k') x.k++; else if (s === 'r') x.r++; });
+      return `<div class="pos-hero"><span class="chip">${esc(p.level)}${p.track ? ' · ' + esc(p.track) : (id === 'common' ? '' : ' · ' + esc(f.name))}</span><h2>${esc(p.title)}</h2><p>${esc(p.blurb)}</p>
         <div class="prog"><i style="background:#fff;width:${x.k / n * 100}%"></i><i style="background:var(--gold);width:${x.r / n * 100}%"></i></div>
         <div class="legend"><span>● ${x.k} known</span><span style="color:var(--gold)">● ${x.r} to review</span><span>${n - x.k - x.r} not marked</span></div></div>`; };
     const filtered = () => bank.map((x, i) => i).filter(i => {
       const x = bank[i], s = st(qid(id, x));
       if (ls.cat !== 'All' && x[0] !== ls.cat) return false;
       if (ls.diff !== 'all' && x[3] !== ls.diff) return false;
+      if (ls.lvl !== 'all' && x[4] && x[4] !== ls.lvl) return false;
       if (ls.stat === 'star' && !s.star) return false;
       if (ls.stat === 'r' && s.s !== 'r') return false;
       if (ls.stat === 'new' && s.s) return false;
@@ -369,7 +451,7 @@ function vPos(ctx, id) {
     const rows = () => { const idx = filtered(); ctx.list = idx;
       if (!idx.length) return '<div class="empty">No questions match.</div>';
       return idx.map(i => { const x = bank[i], s = st(qid(id, x));
-        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
+        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
     const statChips = [['all', 'All'], ['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']];
     ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}">
       <div id="head">${head()}</div>${tracks}
@@ -379,13 +461,15 @@ function vPos(ctx, id) {
         <button class="mode" data-go="ai/${id}"><span class="ic">${I.bot}</span><b>AI interviewer</b><span>Live follow-ups and feedback</span></button>
         <button class="mode" id="voiceq"><span class="ic">${I.mic}</span><b>Voice practice</b><span>Answer a random question out loud</span></button>
       </div>
-      ${hasDiff ? `<div class="seg" id="dc" style="margin-top:18px">${[['all', 'All levels'], ['B', 'Basic'], ['D', 'In-depth']].map(([k, l]) => `<button data-d="${k}" class="${ls.diff === k ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
+      ${lvls.length > 1 ? `<div class="sec-h" style="margin:18px 2px 8px">Career level</div><div class="seg" id="lc">${[['all', 'All']].concat(lvls.map(l => [l, LEVELS[l]])).map(([k, l]) => `<button data-l="${k}" class="${ls.lvl === k ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
+      ${hasDiff ? `<div class="seg" id="dc" style="margin-top:${lvls.length > 1 ? 10 : 18}px">${[['all', 'All'], ['B', 'Basic'], ['D', 'In-depth']].map(([k, l]) => `<button data-d="${k}" class="${ls.diff === k ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
       <label class="search">${I.search}<input id="qs" type="search" placeholder="Search ${bank.length} questions" value="${esc(ls.q)}" autocomplete="off"></label>
       <div class="chips" id="sc">${statChips.map(([k, l]) => `<button class="fchip ${ls.stat === k ? 'on' : ''}" data-st="${k}">${l}</button>`).join('')}</div>
       <div class="chips" id="cc">${cats.map(c => `<button class="fchip ${ls.cat === c ? 'on' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('')}</div>
       <div id="rows">${rows()}</div></div>`;
     const R = () => { $('#rows', ctx.el).innerHTML = rows(); };
     $('#qs', ctx.el).addEventListener('input', e => { ls.q = e.target.value.trim(); R(); });
+    const lc = $('#lc', ctx.el); if (lc) lc.addEventListener('click', e => { const b = e.target.closest('[data-l]'); if (!b) return; ls.lvl = b.dataset.l; $$('#lc button', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     if (hasDiff) $('#dc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (!b) return; ls.diff = b.dataset.d; $$('#dc button', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     const tsw = $('#tsw', ctx.el); if (tsw) tsw.addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b || b.dataset.t === id) return; go(`pos/${b.dataset.t}`, { replace: true, dir: 0 }); store.set('ip.last', b.dataset.t); });
     $('#sc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; ls.stat = b.dataset.st; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
@@ -399,7 +483,7 @@ function vPos(ctx, id) {
 /* ---------- One question with its model answer ---------- */
 const qList = {};   // the list the user is stepping through (filtered order)
 function vQ(ctx, id, idxStr, mode) {
-  const p = POS[id], f = p.fam, bank = window.QB[id], i = +idxStr, x = bank[i], key = qid(id, x);
+  const p = POS[id], f = p.fam, bank = BANKS[id], i = +idxStr, x = bank[i], key = qid(id, x);
   const list = qList[id] || bank.map((_, j) => j);
   const pos = list.indexOf(i);
   const voice = mode === 'voice';
@@ -600,13 +684,13 @@ One or two lines each: what landed, what was missing.
 Three specific things.
 
 Be candid and specific; this is practice, so honest critique is the point. Topics you can draw from (the candidate's question bank — rephrase, combine and go beyond them):
-${bank.map(x => '- ' + x[1]).join('\n')}
+${bank.filter(x => !x[5]).map(x => '- ' + x[1]).join('\n')}
 
 Start by greeting the candidate briefly in character and asking your first question.`;
 }
 // Same interviewer brief, written as a message to paste into Claude (keeps the link a sensible length).
 function claudePrompt(p, bank, cfg) {
-  const topics = shuffle(bank).slice(0, 20);
+  const topics = shuffle(bank.filter(x => !x[5])).slice(0, 20);
   return aiSystem(p, topics, cfg)
     .replace(/^You are /, 'Please role-play a job interview with me. You are ')
     .replace('Start by greeting the candidate briefly in character and asking your first question.', 'I am the candidate. Start now: greet me briefly in character and ask your first question. When I type END, give the feedback.');

@@ -7,12 +7,13 @@ vm.runInContext(fs.readFileSync(path.join(root, 'data/catalog.js'), 'utf8'), ctx
 const counts = {}, problems = [];
 const all = [];
 for (const fam of ctx.window.CATALOG) for (const p of fam.positions) (p.tracks || [p]).forEach(t => all.push(t));
+all.push({ id: 'common' });
 for (const p of all) {
   const f = path.join(root, 'data/q', p.id + '.js');
   if (!fs.existsSync(f)) { counts[p.id] = 0; problems.push(p.id + ': missing'); continue; }
   vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
   const bank = ctx.QB[p.id] || [];
-  bank.forEach((x, i) => { if (!Array.isArray(x) || x.length < 3 || x.length > 4 || x.some(v => typeof v !== 'string' || !v.trim()) || (x[3] && !/^[BD]$/.test(x[3]))) problems.push(`${p.id}[${i}] malformed`); });
+  bank.forEach((x, i) => { if (!Array.isArray(x) || x.length < 3 || x.length > 5 || x.slice(0, 3).some(v => typeof v !== 'string' || !v.trim()) || (x[3] && !/^[BD]$/.test(x[3])) || (x[4] && !/^[EMSX]$/.test(x[4]))) problems.push(`${p.id}[${i}] malformed`); });
   const seen = new Set(); bank.forEach(x => { if (seen.has(x[1])) problems.push(`${p.id}: duplicate "${x[1].slice(0, 50)}"`); seen.add(x[1]); });
   counts[p.id] = bank.length;
 }

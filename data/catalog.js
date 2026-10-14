@@ -3,7 +3,7 @@
 // To add a position: add it here, create data/q/<id>.js, add the file to FILES in sw.js and bump VERSION.
 window.CATALOG = [
   {
-    id: 'oracle', name: 'Oracle ERP', short: 'Oracle', color: '#C74634', tint: '#FBEAE7',
+    id: 'oracle', field: 'tech', name: 'Oracle ERP', short: 'Oracle', color: '#C74634', tint: '#FBEAE7',
     tag: 'Fusion Cloud & E-Business Suite — functional, architecture and leadership',
     // A position with "tracks" has a Finance and an SCM question bank; each track id is its own data/q file.
     positions: [
@@ -35,7 +35,7 @@ window.CATALOG = [
     ]
   },
   {
-    id: 'oramod', name: 'Oracle Modules', short: 'Modules', color: '#0F766E', tint: '#E3F4F1',
+    id: 'oramod', field: 'tech', name: 'Oracle Modules', short: 'Modules', color: '#0F766E', tint: '#E3F4F1',
     tag: 'Module-by-module deep dives for Finance and SCM — built for contract roles',
     // Each module bank = its own questions (src/ora-mod-*) + matching questions from the Oracle role banks (see tools/modules.js).
     positions: [
@@ -55,7 +55,7 @@ window.CATALOG = [
     ]
   },
   {
-    id: 'sap', name: 'SAP', short: 'SAP', color: '#0A6ED1', tint: '#E6F0FB',
+    id: 'sap', field: 'tech', name: 'SAP', short: 'SAP', color: '#0A6ED1', tint: '#E6F0FB',
     tag: 'S/4HANA functional, technical and program leadership',
     positions: [
       { id: 'sap-fico', title: 'SAP FICO Lead', level: 'Senior / Lead', blurb: 'Universal Journal, New GL, CO, AA, closing, S/4 Finance.' },
@@ -66,7 +66,7 @@ window.CATALOG = [
     ]
   },
   {
-    id: 'java', name: 'Java & Engineering', short: 'Java', color: '#E76F00', tint: '#FDF0E4',
+    id: 'java', field: 'tech', name: 'Java & Engineering', short: 'Java', color: '#E76F00', tint: '#FDF0E4',
     tag: 'From senior engineer to VP of Engineering',
     positions: [
       { id: 'java-senior', title: 'Senior Java Engineer', level: 'Senior', blurb: 'Core Java, concurrency, JVM, Spring Boot, data and testing.' },
@@ -77,7 +77,7 @@ window.CATALOG = [
     ]
   },
   {
-    id: 'itlead', name: 'IT Leadership', short: 'IT Lead', color: '#3B3F9E', tint: '#ECECF8',
+    id: 'itlead', field: 'tech', name: 'IT Leadership', short: 'IT Lead', color: '#3B3F9E', tint: '#ECECF8',
     tag: 'Enterprise applications, IT operations and the C-suite',
     positions: [
       { id: 'it-entapps', title: 'Director, Enterprise Applications', level: 'Director', blurb: 'ERP/CRM/HCM portfolio, support model, roadmap, SaaS governance.' },
@@ -86,6 +86,128 @@ window.CATALOG = [
       { id: 'it-cio', title: 'Chief Information Officer', level: 'C-suite', blurb: 'IT strategy, board, risk, AI, operating model, value.' },
       { id: 'it-cto', title: 'Chief Technology Officer', level: 'C-suite', blurb: 'Technology vision, architecture, product partnership, scale.' }
     ]
+  },
+  {
+    id: 'erptech', field: 'tech', name: 'ERP Technical', short: 'ERP Tech', glyph: 'DEV', color: '#6D28D9', tint: '#EFE9FB',
+    tag: 'Oracle Fusion and EBS developers, integration leads, technical architects, Apps DBAs and SAP ABAP',
+    positions: [
+      { title: 'Oracle Technical Consultant', level: '2–5 yrs', blurb: 'SQL, PL/SQL, reports, data loads and simple integrations.',
+        tracks: [
+          { id: 'et-tc-fus', label: 'Fusion', blurb: 'SQL on Fusion views, BIP, OTBI, FBDI, HDL, REST basics, OIC basics.' },
+          { id: 'et-tc-ebs', label: 'EBS', blurb: 'PL/SQL, concurrent programs, interfaces, Oracle Reports/XML Publisher, Forms basics.' } ] },
+      { title: 'Senior Oracle Technical Consultant', level: '5–10 yrs', blurb: 'Owns technical design and delivery of RICEW objects end to end.',
+        tracks: [
+          { id: 'et-stc-fus', label: 'Fusion', blurb: 'OIC, REST/SOAP, BICC, VBCS/VB Studio, ESS jobs, security, performance.' },
+          { id: 'et-stc-ebs', label: 'EBS', blurb: 'APIs, workflow, OAF, performance tuning, conversions, AME, upgrades.' } ] },
+      { id: 'et-lead', title: 'Oracle Technical Lead', level: '10–15 yrs', blurb: 'Leads a technical team: integration design, standards, reviews, delivery.' },
+      { id: 'et-arch', title: 'Oracle Technical Architect', level: '15+ yrs', blurb: 'Integration and extension architecture, OCI, security, migration from EBS.' },
+      { id: 'et-dba', title: 'Oracle EBS Apps DBA', level: 'All levels', blurb: 'EBS architecture, patching (adop), cloning, performance, upgrades, OCI.' },
+      { id: 'et-abap', title: 'SAP ABAP Developer', level: 'All levels', blurb: 'ABAP, RAP, CDS, OData, enhancements, IDocs, performance, clean core.' }
+    ]
+  },
+  {
+    id: 'qa', field: 'tech', name: 'Software Testing & QA', short: 'QA', glyph: 'QA', color: '#0E7490', tint: '#E2F3F6',
+    tag: 'Manual and automation testing, SDET, performance, ERP testing and QA leadership',
+    positions: [
+      { id: 'qa-manual', title: 'QA Analyst / Manual Tester', level: 'Entry–Mid', blurb: 'Test design, test cases, defects, SDLC/STLC, SQL, agile testing.' },
+      { id: 'qa-auto', title: 'QA Automation Engineer', level: 'Mid–Senior', blurb: 'Selenium, Playwright, API testing, frameworks, CI, flaky tests.' },
+      { id: 'qa-sdet', title: 'SDET', level: 'Senior', blurb: 'Coding, test architecture, contract tests, test data, shift-left quality.' },
+      { id: 'qa-perf', title: 'Performance Test Engineer', level: 'Mid–Senior', blurb: 'JMeter, k6, LoadRunner, workload models, bottleneck analysis.' },
+      { id: 'qa-erp', title: 'ERP / Oracle Cloud Tester', level: 'All levels', blurb: 'Business process testing, UAT, quarterly update regression, ERP automation.' },
+      { id: 'qa-lead', title: 'QA Lead / Test Manager', level: 'Lead', blurb: 'Test strategy, planning, metrics, team, release quality decisions.' },
+      { id: 'qa-dir', title: 'Director of Quality Engineering', level: 'Director', blurb: 'QE strategy, org design, tooling, quality culture, AI in testing.' }
+    ]
+  },
+  {
+    id: 'accops', field: 'fin', name: 'Accounting & Close', short: 'Accounting', glyph: 'ACC', color: '#15803D', tint: '#E6F4EA',
+    tag: 'General ledger, payables, receivables and controllership',
+    positions: [
+      { id: 'fa-acct', title: 'Staff / Senior Accountant (GL & Close)', level: 'Entry → Senior', blurb: 'Journals, accruals, reconciliations, month-end close, fixed assets.' },
+      { id: 'fa-ap', title: 'Accounts Payable', level: 'Specialist → Manager', blurb: 'Invoice processing, 3-way match, vendor management, payments, 1099.' },
+      { id: 'fa-ar', title: 'Accounts Receivable, Credit & Collections', level: 'Specialist → Manager', blurb: 'Billing, cash application, collections, credit, DSO, disputes.' },
+      { id: 'fa-ctrl', title: 'Accounting Manager / Controller', level: 'Manager → Controller', blurb: 'Close leadership, reporting, controls, audit, policies, team.' }
+    ]
+  },
+  {
+    id: 'fpa', field: 'fin', name: 'FP&A & Treasury', short: 'FP&A', glyph: 'FPA', color: '#4D7C0F', tint: '#EEF5E2',
+    tag: 'Budgeting, forecasting, analysis, cash and liquidity',
+    positions: [
+      { id: 'fa-fpa', title: 'FP&A Analyst / Manager', level: 'Analyst → Manager', blurb: 'Budgets, forecasts, variance analysis, models, business partnering.' },
+      { id: 'fa-treas', title: 'Treasury Analyst / Manager', level: 'Analyst → Manager', blurb: 'Cash positioning, forecasting, banking, FX, debt, investments.' }
+    ]
+  },
+  {
+    id: 'audit', field: 'fin', name: 'Audit, Tax & Compliance', short: 'Audit & Tax', glyph: 'AUD', color: '#9A3412', tint: '#FBEEE6',
+    tag: 'Internal audit, SOX, and corporate tax',
+    positions: [
+      { id: 'fa-audit', title: 'Internal Auditor / SOX Compliance', level: 'Staff → Manager', blurb: 'Risk-based audits, SOX controls testing, ITGCs, findings.' },
+      { id: 'fa-tax', title: 'Tax Accountant / Tax Manager', level: 'Staff → Manager', blurb: 'Income tax provision, sales and use tax, VAT, compliance, planning.' }
+    ]
+  },
+  {
+    id: 'finlead', field: 'fin', name: 'Finance Leadership', short: 'Finance Lead', glyph: 'CFO', color: '#1E3A8A', tint: '#E7ECF8',
+    tag: 'Director of Finance, VP Finance and CFO',
+    positions: [
+      { id: 'fa-dir', title: 'Director of Finance', level: 'Director', blurb: 'Business finance, planning, close oversight, team leadership.' },
+      { id: 'fa-vp', title: 'VP Finance', level: 'VP', blurb: 'Finance function strategy, capital, systems, investor and board support.' },
+      { id: 'fa-cfo', title: 'Chief Financial Officer', level: 'C-suite', blurb: 'Strategy, capital allocation, investors, risk, finance transformation.' }
+    ]
+  },
+  {
+    id: 'proc', field: 'scm', name: 'Procurement & Sourcing', short: 'Procurement', glyph: 'BUY', color: '#B45309', tint: '#FBF0E3',
+    tag: 'Buying, strategic sourcing and supplier management',
+    positions: [
+      { id: 'sc-buyer', title: 'Buyer / Procurement Specialist', level: 'Entry → Senior', blurb: 'POs, quotes, supplier follow-up, P2P, negotiation basics.' },
+      { id: 'sc-cat', title: 'Category Manager / Strategic Sourcing', level: 'Mid → Senior', blurb: 'Category strategy, RFx, negotiation, TCO, supplier risk.' }
+    ]
+  },
+  {
+    id: 'plan', field: 'scm', name: 'Planning & Inventory', short: 'Planning', glyph: 'PLN', color: '#0369A1', tint: '#E3F0F8',
+    tag: 'Demand planning, supply and materials planning, inventory control',
+    positions: [
+      { id: 'sc-demand', title: 'Demand Planner', level: 'Entry → Senior', blurb: 'Forecasting methods, accuracy, S&OP, consensus planning.' },
+      { id: 'sc-supply', title: 'Supply / Materials Planner', level: 'Entry → Senior', blurb: 'MRP, safety stock, lead times, shortages, expediting.' },
+      { id: 'sc-inv', title: 'Inventory Control Analyst / Manager', level: 'Analyst → Manager', blurb: 'Accuracy, cycle counts, ABC, E&O, valuation, KPIs.' }
+    ]
+  },
+  {
+    id: 'logi', field: 'scm', name: 'Logistics & Warehousing', short: 'Logistics', glyph: 'LOG', color: '#A16207', tint: '#F8F1DF',
+    tag: 'Warehouse operations, transportation and distribution',
+    positions: [
+      { id: 'sc-wh', title: 'Warehouse Supervisor / Manager', level: 'Supervisor → Manager', blurb: 'Receiving, picking, shipping, WMS, labor, safety, KPIs.' },
+      { id: 'sc-log', title: 'Logistics & Transportation Manager', level: 'Mid → Senior', blurb: 'Carriers, freight cost, routing, TMS, import/export, OTIF.' }
+    ]
+  },
+  {
+    id: 'mfg', field: 'scm', name: 'Manufacturing & Quality', short: 'Manufacturing', glyph: 'MFG', color: '#57534E', tint: '#F0EEEC',
+    tag: 'Production, plant leadership, quality and continuous improvement',
+    positions: [
+      { id: 'sc-prod', title: 'Production Supervisor / Plant Manager', level: 'Supervisor → Plant Mgr', blurb: 'Safety, OEE, scheduling, people, cost, lean on the floor.' },
+      { id: 'sc-qual', title: 'Quality Engineer / Quality Manager', level: 'Engineer → Manager', blurb: 'QMS, ISO 9001, CAPA, root cause, SPC, audits, supplier quality.' },
+      { id: 'sc-ci', title: 'Continuous Improvement / Lean Six Sigma', level: 'Analyst → Manager', blurb: 'Lean tools, DMAIC, kaizen, value stream mapping, sustainment.' }
+    ]
+  },
+  {
+    id: 'scmlead', field: 'scm', name: 'Supply Chain Leadership', short: 'SCM Lead', glyph: 'VP', color: '#312E81', tint: '#EAE9F6',
+    tag: 'Director and VP of Supply Chain and Operations',
+    positions: [
+      { id: 'sc-dir', title: 'Director of Supply Chain', level: 'Director', blurb: 'End-to-end supply chain performance, S&OP, network, team.' },
+      { id: 'sc-vp', title: 'VP Supply Chain / Operations', level: 'VP', blurb: 'Strategy, network design, resilience, cost, digital transformation.' }
+    ]
   }
 ];
+
+// Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
+window.FIELDS = [
+  { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'qa', 'itlead'] },
+  { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
+    families: ['accops', 'fpa', 'audit', 'finlead'] },
+  { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
+    families: ['proc', 'plan', 'logi', 'mfg', 'scmlead'] }
+];
+// Shared bank shown in every role (and on the home screen).
+window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',
+  tag: 'Questions every interview has: introduction, behavioral, salary and rate, contract roles, closing' };
+// Question banks register themselves here as they load.
 window.QB = window.QB || {};
