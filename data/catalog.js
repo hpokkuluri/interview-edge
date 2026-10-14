@@ -60,6 +60,7 @@ window.CATALOG = [
     positions: [
       { id: 'sap-fico', title: 'SAP FICO Lead', level: 'Senior / Lead', blurb: 'Universal Journal, New GL, CO, AA, closing, S/4 Finance.' },
       { id: 'sap-log', title: 'SAP MM / SD Lead', level: 'Senior / Lead', blurb: 'Procure-to-pay, order-to-cash, pricing, inventory, integration with FI.' },
+      { id: 'et-abap', title: 'SAP ABAP Developer', level: 'All levels', blurb: 'ABAP, RAP, CDS, OData, enhancements, IDocs, performance, clean core.' },
       { id: 'sap-basis', title: 'SAP Basis & Technical Architect', level: 'Principal', blurb: 'HANA, landscapes, transports, upgrades, performance, cloud.' },
       { id: 'sap-arch', title: 'SAP S/4HANA Solution Architect', level: 'Principal', blurb: 'Greenfield vs brownfield, Clean Core, BTP, Activate.' },
       { id: 'sap-dir', title: 'Director / VP, SAP Program', level: 'Director · VP', blurb: 'Transformation strategy, RISE, SI management, value delivery.' }
@@ -89,7 +90,7 @@ window.CATALOG = [
   },
   {
     id: 'erptech', field: 'tech', name: 'ERP Technical', short: 'ERP Tech', glyph: 'DEV', color: '#6D28D9', tint: '#EFE9FB',
-    tag: 'Oracle Fusion and EBS developers, integration leads, technical architects, Apps DBAs and SAP ABAP',
+    tag: 'Oracle Fusion and EBS developers, integration leads, technical architects and Apps DBAs',
     positions: [
       { title: 'Oracle Technical Consultant', level: '2–5 yrs', blurb: 'SQL, PL/SQL, reports, data loads and simple integrations.',
         tracks: [
@@ -101,8 +102,7 @@ window.CATALOG = [
           { id: 'et-stc-ebs', label: 'EBS', blurb: 'APIs, workflow, OAF, performance tuning, conversions, AME, upgrades.' } ] },
       { id: 'et-lead', title: 'Oracle Technical Lead', level: '10–15 yrs', blurb: 'Leads a technical team: integration design, standards, reviews, delivery.' },
       { id: 'et-arch', title: 'Oracle Technical Architect', level: '15+ yrs', blurb: 'Integration and extension architecture, OCI, security, migration from EBS.' },
-      { id: 'et-dba', title: 'Oracle EBS Apps DBA', level: 'All levels', blurb: 'EBS architecture, patching (adop), cloning, performance, upgrades, OCI.' },
-      { id: 'et-abap', title: 'SAP ABAP Developer', level: 'All levels', blurb: 'ABAP, RAP, CDS, OData, enhancements, IDocs, performance, clean core.' }
+      { id: 'et-dba', title: 'Oracle EBS Apps DBA', level: 'All levels', blurb: 'EBS architecture, patching (adop), cloning, performance, upgrades, OCI.' }
     ]
   },
   {

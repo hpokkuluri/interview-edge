@@ -7,7 +7,7 @@ On a phone, use *Share → Add to Home Screen* (iPhone) or *Install app* (Androi
 
 ## What's inside
 - **Home** — search across every question and role, then choose a field:
-  - *Technology* — Oracle ERP · Oracle Modules (GL with IFRS/FCCS, AP, AR, FA, CM, SLA, PO, INV, OM, Costing, PIM, Planning, AI) · ERP Technical (Oracle Fusion/EBS technical, lead, architect, DBA, SAP ABAP) · SAP · Java & Engineering · Software Testing & QA (manual, automation, SDET, performance, ERP testing, QA lead, director) · IT Leadership.
+  - *Technology* — Oracle ERP · Oracle Modules (GL with IFRS/FCCS, AP, AR, FA, CM, SLA, PO, INV, OM, Costing, PIM, Planning, AI) · ERP Technical (Oracle Fusion/EBS technical, lead, architect, Apps DBA) · SAP (incl. ABAP developer) · Java & Engineering · Software Testing & QA (manual, automation, SDET, performance, ERP testing, QA lead, director) · IT Leadership.
   - *Finance & Accounting* — staff/senior accountant, AP, AR & collections, controller, FP&A, treasury, internal audit/SOX, tax, director, VP finance, CFO.
   - *Supply Chain & Manufacturing* — buyer, category manager, demand and supply planning, inventory, warehouse, logistics, production, quality, continuous improvement, director, VP.
 - **Interview Essentials** — introduction, behavioral (STAR), salary and contract rates, closing questions. Shared by every role and also on its own card.
