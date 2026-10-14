@@ -35,6 +35,26 @@ window.CATALOG = [
     ]
   },
   {
+    id: 'oramod', name: 'Oracle Modules', short: 'Modules', color: '#0F766E', tint: '#E3F4F1',
+    tag: 'Module-by-module deep dives for Finance and SCM — built for contract roles',
+    // Each module bank = its own questions (src/ora-mod-*) + matching questions from the Oracle role banks (see tools/modules.js).
+    positions: [
+      { id: 'ora-mod-gl', title: 'General Ledger, IFRS & FCCS', level: 'Finance', blurb: 'Fusion GL, multi-ledger, close, IFRS vs US GAAP, IFRS 16/18, FCCS consolidation.' },
+      { id: 'ora-mod-ap', title: 'Payables, Payments & Expenses', level: 'Finance', blurb: 'Invoices, matching, holds, approvals, PPRs, bank formats, 1099, Expenses.' },
+      { id: 'ora-mod-ar', title: 'Receivables, Collections & Revenue', level: 'Finance', blurb: 'AutoInvoice, receipts, lockbox, collections, credit, Revenue Management.' },
+      { id: 'ora-mod-fa', title: 'Fixed Assets & Lease Accounting', level: 'Finance', blurb: 'Books, categories, depreciation, CIP, mass additions, IFRS 16 / ASC 842.' },
+      { id: 'ora-mod-cm', title: 'Cash Management & Treasury', level: 'Finance', blurb: 'Bank statements, reconciliation rules, cash positioning, bank connectivity.' },
+      { id: 'ora-mod-sla', title: 'SLA, Tax & Accounting Hub', level: 'Finance', blurb: 'Accounting rules, mapping sets, Fusion Tax, partner tax engines, FAH.' },
+      { id: 'ora-mod-po', title: 'Procurement & Sourcing', level: 'SCM', blurb: 'Requisitions, POs, agreements, approvals, catalogs, suppliers, sourcing.' },
+      { id: 'ora-mod-inv', title: 'Inventory, Receiving & Logistics', level: 'SCM', blurb: 'Orgs, transactions, lot/serial, counts, receiving, shipping, returns.' },
+      { id: 'ora-mod-om', title: 'Order Management & Pricing', level: 'SCM', blurb: 'Orchestration, GOP, holds, drop ship, pricing strategies, SFO.' },
+      { id: 'ora-mod-cst', title: 'Cost Management', level: 'SCM', blurb: 'Cost orgs and books, standard/average cost, receipt and cost accounting.' },
+      { id: 'ora-mod-pim', title: 'Product Hub / Product Management', level: 'SCM', blurb: 'Item classes, templates, NIRs, change orders, item data governance.' },
+      { id: 'ora-mod-plan', title: 'Planning, Manufacturing & Quality', level: 'SCM', blurb: 'Supply/demand planning, work orders, costing of production, inspections.' },
+      { id: 'ora-mod-ai', title: 'Redwood, AI Agent Studio & Platform', level: 'Platform', blurb: 'Redwood pages, Visual Builder Studio, AI agents, events and APIs.' }
+    ]
+  },
+  {
     id: 'sap', name: 'SAP', short: 'SAP', color: '#0A6ED1', tint: '#E6F0FB',
     tag: 'S/4HANA functional, technical and program leadership',
     positions: [

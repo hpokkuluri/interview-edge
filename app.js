@@ -104,7 +104,7 @@ function shade(hex, amt) {
   const f = v => Math.max(0, Math.min(255, Math.round(amt > 0 ? v + (255 - v) * amt : v * (1 + amt))));
   return '#' + [f(r), f(g), f(b)].map(v => v.toString(16).padStart(2, '0')).join('');
 }
-const GLYPH = { oracle: 'ERP', sap: 'S/4', java: '{ }', itlead: 'CIO' };
+const GLYPH = { oracle: 'ERP', oramod: 'MOD', sap: 'S/4', java: '{ }', itlead: 'CIO' };
 function cubeSVG(f) {
   const c = f.color, g = GLYPH[f.id] || f.short;
   return `<svg viewBox="0 0 100 104" aria-hidden="true">
@@ -294,7 +294,7 @@ function vHome(ctx) {
       <div class="home-main"><div class="wrap">
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
         <div class="sec-h">Choose a track</div>
-        <div class="cubes">${FAMS.map(f => { const p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} roles · ${p.total} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></button>`; }).join('')}</div>
+        <div class="cubes">${FAMS.map(f => { const p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<span class="cube-txt"><h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} ${f.id === 'oramod' ? 'modules' : 'roles'} · ${p.total} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
         <p class="home-foot">Your progress stays on this device. © Arahasoft</p>
       </div></div></div>`;
   };
