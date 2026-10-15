@@ -66,7 +66,7 @@ function loadRaw(id) {
 }
 // A role's bank = its own questions, then the shared Interview Essentials (tagged so progress is shared).
 // Module deep dives and the Essentials bank itself are not merged.
-const mergesEssentials = id => id !== 'common' && !id.startsWith('ora-mod-');
+const mergesEssentials = id => id !== 'common' && !id.startsWith('ora-mod-') && !id.startsWith('w-');
 function loadBank(id) {
   if (BANKS[id]) return Promise.resolve(BANKS[id]);
   const own = loadRaw(id);
@@ -78,7 +78,57 @@ function loadBank(id) {
 /* ---------------- answer formatting ----------------
    In the data files: blank-line-separated paragraphs; "- " bullets; "## Heading"; "Tip: ..." callout; **bold**. */
 function inline(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); }
+/* ---------------- My Role profile (At Work field) ----------------
+   Answers in the w-* banks use {placeholders} that are filled from the saved profile. */
+const PROFILE_FIELDS = [
+  ['title', 'Job title', 'e.g. Senior Oracle Solution Architect', 0],
+  ['team', 'Team / department', 'e.g. ERP Finance Systems, IT', 0],
+  ['manager', 'Who you report to', 'e.g. Director of Enterprise Applications', 0],
+  ['resp', 'Main responsibilities', 'e.g. own Oracle Fusion Financials and SCM roadmap, support month-end close, lead integrations', 1],
+  ['projects', 'Current projects', 'e.g. Redwood rollout for Procurement; item request approval workflow', 1],
+  ['wins', 'Recent wins (with numbers if you can)', 'e.g. cut AP invoice holds 40% by fixing blanket PO matching', 1],
+  ['challenges', 'Challenges, risks or blockers', 'e.g. thin inventory team after a resignation; slow security approvals', 1],
+  ['goals', 'Your goals', 'e.g. promotion to Associate Director; lead the AI agent program', 1],
+  ['priorities', 'What your leaders care about most', 'e.g. faster close, audit-clean, cost savings, AI adoption', 1]
+];
+let PROFILE = store.get('ip.profile', {});
+const hasProfile = () => PROFILE_FIELDS.some(([k]) => (PROFILE[k] || '').trim());
+function personalize(text) {
+  return text.replace(/\{(title|team|manager|resp|projects|wins|challenges|goals|priorities)\}/g, (m, k) => {
+    let v = (PROFILE[k] || '').trim(); if (v) { v = v.replace(/\s*\n\s*/g, '; '); if (!/^(title|team|manager)$/.test(k) && /^[A-Z][a-z]/.test(v)) v = v[0].toLowerCase() + v.slice(1); return v; }
+    const f = PROFILE_FIELDS.find(x => x[0] === k); return '[your ' + f[1].toLowerCase().replace(/ \(.*\)/, '') + ']'; });
+}
+const isWork = p => p && p.fam && p.fam.field === 'work';
+function profileText() {
+  return PROFILE_FIELDS.filter(([k]) => (PROFILE[k] || '').trim()).map(([k, l]) => `- ${l}: ${PROFILE[k].trim().replace(/\s*\n\s*/g, '; ')}`).join('\n') || '- (I have not filled in my role details yet — ask me about them first.)';
+}
+function workPrepPrompt(p) {
+  return `Help me prepare for a "${p.title}" meeting at work (${p.blurb}).
+
+About me:
+${profileText()}
+
+Please give me:
+1. The 12 questions this person is most likely to ask me, given my role — and for each, a short, confident answer in my voice using my details (outcome first, then evidence, then next step or ask).
+2. 3 questions I should ask them.
+3. A one-page brief I can glance at before the meeting: my top 3 updates, 1–2 risks with my plan, and my asks.
+4. Anything I should avoid saying.
+Keep it practical and specific to my role. Ask me for missing details if they matter.`;
+}
+function vProfile(ctx) {
+  ctx.el.innerHTML = `${bar(ctx, 'My role')}<div class="wrap">
+    <div class="pos-hero" style="--fam:#0F766E;--fam-tint:#E3F4F1"><span class="chip">Saved on this device only</span><h2>My role</h2>
+      <p>The 1:1, review and promotion answers fill in these details, and "Prepare with Claude" uses them. Leave out confidential company details.</p></div>
+    <div class="list" style="margin-top:14px">${PROFILE_FIELDS.map(([k, l, ph, big]) => `<div class="field"><label for="pf-${k}">${esc(l)}</label>${big
+      ? `<textarea class="txt" id="pf-${k}" rows="3" style="resize:vertical;min-height:84px" placeholder="${esc(ph)}">${esc(PROFILE[k] || '')}</textarea>`
+      : `<input class="txt" id="pf-${k}" type="text" placeholder="${esc(ph)}" value="${esc(PROFILE[k] || '')}">`}</div>`).join('')}</div>
+    <button class="btn pri" id="pf-save" style="margin-top:16px;width:100%">Save</button><div class="muted" id="pf-msg" style="text-align:center;margin-top:8px"></div></div>`;
+  const save = () => { PROFILE_FIELDS.forEach(([k]) => { PROFILE[k] = $('#pf-' + k, ctx.el).value; }); store.set('ip.profile', PROFILE); };
+  ctx.el.addEventListener('input', save);
+  $('#pf-save', ctx.el).addEventListener('click', () => { save(); $('#pf-msg', ctx.el).textContent = 'Saved.'; setTimeout(() => history.back(), 500); });
+}
 function fmt(text) {
+  text = personalize(text);
   const out = []; let list = null;
   const close = () => { if (list) { out.push('<ul>' + list.join('') + '</ul>'); list = null; } };
   text.split('\n').forEach(raw => {
@@ -221,6 +271,7 @@ function titleOf(route) {
   if (k === 'flash') return 'Flashcards';
   if (k === 'ai') return 'Interview';
   if (k === 'settings') return 'Settings';
+  if (k === 'profile') return 'My role';
   return 'Back';
 }
 const shortTitle = t => t.length > 18 ? t.split(/[,/]/)[0].trim().slice(0, 18) : t;
@@ -229,7 +280,7 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings }[k] || vHome)(ctx, a, b);
+  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
@@ -334,7 +385,7 @@ function vHome(ctx) {
       <div class="hero"><div class="hero-top"><div class="brand">${LOGO}<span>ARAHASOFT</span></div>
         <button class="icon-btn" data-go="settings" aria-label="Settings">${I.gear}</button></div>
         <div class="hero-body"><h1>Interview <em>Edge</em></h1><div class="tagline">by Arahasoft</div>
-        <p>Questions, model answers and mock interviews for technology, finance and supply chain roles — from first job to the C-suite.</p>
+        <p>Questions, model answers and mock interviews for technology, finance and supply chain roles — from first job to the C-suite. Plus prep for 1:1s, reviews and promotion talks at work.</p>
         <div class="stats"><div class="stat"><b>${total.toLocaleString()}</b><span>questions</span></div><div class="stat"><b>${known}</b><span>you know</span></div><div class="stat"><b>${mocks}</b><span>mock interviews</span></div></div>
         <button class="hsearch" data-go="search">${I.search}<span>Search all questions and roles</span></button></div></div>
       <div class="home-main"><div class="wrap">
@@ -411,6 +462,7 @@ function vFam(ctx, id) {
   const render = () => {
     ctx.el.innerHTML = `${bar(ctx, f.name)}<div class="wrap" style="${famVars(f)}">
       <div class="fam-head">${cubeSVG(f)}<div><h2>${esc(f.name)}</h2><p>${esc(f.tag)}</p></div></div>
+      ${f.field === 'work' ? `<button class="card" data-go="profile" style="margin-bottom:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>My role</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ') || 'Saved') + ' — tap to edit' : 'Add your role, projects and goals so answers are written for you'}</p></div><span class="chip c">${hasProfile() ? 'Saved' : 'Set up'}</span></div></button>` : ''}
       <div class="list">${f.positions.map((p, i) => {
         const prog = id => { const x = posProgress(id); const pk = x.total ? x.k / x.total * 100 : 0, pr = x.total ? x.r / x.total * 100 : 0;
           return `<span class="prog"><i class="k" style="width:${pk}%"></i><i class="r" style="width:${pr}%"></i></span><small>${x.k}/${x.total}</small>`; };
@@ -454,7 +506,8 @@ function vPos(ctx, id) {
         return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
     const statChips = [['all', 'All'], ['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']];
     ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}">
-      <div id="head">${head()}</div>${tracks}
+      <div id="head">${head()}</div>${tracks}${isWork(p) ? `<div class="card" style="margin-top:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>${hasProfile() ? 'Answers use your saved role' : 'Make the answers about you'}</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ')) : 'Add your role, projects, wins and goals.'}</p></div><button class="chip c" data-go="profile">${hasProfile() ? 'Edit' : 'Set up'}</button></div>
+        <a class="btn pri" style="margin-top:12px;text-decoration:none" target="_blank" rel="noopener" href="https://claude.ai/new?q=${encodeURIComponent(workPrepPrompt(p))}">Prepare with Claude</a></div>` : ''}
       <div class="modes">
         <button class="mode" data-go="mock/${id}"><span class="ic">${I.timer}</span><b>Mock interview</b><span>Timed, random questions, score yourself</span></button>
         <button class="mode" data-go="flash/${id}"><span class="ic">${I.cards}</span><b>Flashcards</b><span>Flip, mark known or review</span></button>
@@ -664,6 +717,7 @@ const PERSONAS = {
   exec: ['Executive', 'a C-level executive (CEO/CFO/COO) assessing leadership, business judgment and executive presence']
 };
 function aiSystem(p, bank, cfg) {
+  if (isWork(p)) return workSystem(p, bank, cfg);
   return `You are ${PERSONAS[cfg.persona][1]}, interviewing a candidate for the role "${p.full}" (${p.level}, ${p.fam.name} track). Role focus: ${p.blurb}
 
 Run a realistic interview:
@@ -688,11 +742,39 @@ ${bank.filter(x => !x[5]).map(x => '- ' + x[1]).join('\n')}
 
 Start by greeting the candidate briefly in character and asking your first question.`;
 }
+function workSystem(p, bank, cfg) {
+  const who = { 'w-mgr': 'my direct manager', 'w-skip': 'my skip-level leader (a senior director)', 'w-vp': 'a VP in my organization', 'w-newldr': 'a leader who has just joined and is meeting me for the first time',
+    'w-review': 'my manager, running my performance review', 'w-promo': 'my manager, in a conversation where I ask about promotion and pay', 'w-status': 'a senior leader who wants a status update on my work' }[p.id] || 'my manager';
+  return `You are ${who}. This is a practice "${p.title}" meeting with me, the employee. Context: ${p.blurb}
+
+About me:
+${profileText()}
+
+Play the role realistically:
+- Ask ONE question at a time, short and natural (under 60 words), the way this leader would. Use my details to make questions specific.
+- React to my answers: probe vague answers (ask for outcomes, numbers, risks, what I need), push back sometimes, and occasionally raise a realistic curveball (a missed deadline, a concern from another team, budget pressure).
+- No coaching during the meeting. Aim for about ${cfg.len} exchanges. After that, or when I say END, step out of character and give feedback.
+
+Feedback format (use these headings):
+## Overall
+How I came across (1–10) and one sentence why.
+## What landed
+## What to sharpen
+For each weak answer: a better version in my voice, using my details.
+## Say this next time
+Three crisp lines I can reuse.
+
+Questions this leader might draw on:
+${bank.map(x => '- ' + x[1]).join('\n')}
+
+Start by opening the meeting briefly in character and asking your first question.`;
+}
 // Same interviewer brief, written as a message to paste into Claude (keeps the link a sensible length).
 function claudePrompt(p, bank, cfg) {
   const topics = shuffle(bank.filter(x => !x[5])).slice(0, 20);
   return aiSystem(p, topics, cfg)
-    .replace(/^You are /, 'Please role-play a job interview with me. You are ')
+    .replace(/^You are /, isWork(p) ? 'Please role-play a work meeting with me. You are ' : 'Please role-play a job interview with me. You are ')
+    .replace('Start by opening the meeting briefly in character and asking your first question.', 'Start now: open the meeting in character and ask your first question. When I type END, give the feedback.')
     .replace('Start by greeting the candidate briefly in character and asking your first question.', 'I am the candidate. Start now: greet me briefly in character and ask your first question. When I type END, give the feedback.');
 }
 async function callClaude(system, messages) {

@@ -81,5 +81,12 @@ window.COUNTS = {
  "sc-ci": 9,
  "sc-dir": 7,
  "sc-vp": 7,
+ "w-mgr": 18,
+ "w-skip": 13,
+ "w-vp": 13,
+ "w-newldr": 9,
+ "w-review": 10,
+ "w-promo": 9,
+ "w-status": 9,
  "common": 40
 };

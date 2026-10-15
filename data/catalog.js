@@ -194,6 +194,25 @@ window.CATALOG = [
       { id: 'sc-dir', title: 'Director of Supply Chain', level: 'Director', blurb: 'End-to-end supply chain performance, S&OP, network, team.' },
       { id: 'sc-vp', title: 'VP Supply Chain / Operations', level: 'VP', blurb: 'Strategy, network design, resilience, cost, digital transformation.' }
     ]
+  },
+  {
+    id: 'w1on1', field: 'work', name: 'Manager & Leader 1:1s', short: '1:1s', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1',
+    tag: 'What your manager, skip-level and VP will ask — and how to answer from your own role',
+    positions: [
+      { id: 'w-mgr', title: '1:1 with my manager', level: 'Weekly · biweekly', blurb: 'Priorities, progress, blockers, feedback, workload, growth.' },
+      { id: 'w-skip', title: 'Skip-level with senior director', level: 'Quarterly', blurb: 'Team health, what\'s working, ideas, risks, your career — without throwing anyone under the bus.' },
+      { id: 'w-vp', title: '1:1 with a VP', level: 'Executive', blurb: 'Business impact, strategy, risks, visibility — crisp and outcome-first.' },
+      { id: 'w-newldr', title: 'First meeting with a new leader', level: 'Any level', blurb: 'Introduce yourself, your scope and value; learn their priorities.' }
+    ]
+  },
+  {
+    id: 'wcareer', field: 'work', name: 'Reviews, Promotion & Escalations', short: 'Career', glyph: 'UP', color: '#7C3AED', tint: '#F0E9FD',
+    tag: 'Performance reviews, promotion and raise talks, status updates and escalating risks',
+    positions: [
+      { id: 'w-review', title: 'Performance review', level: 'Mid-year · annual', blurb: 'Self-assessment, results, feedback, development areas, rating.' },
+      { id: 'w-promo', title: 'Promotion & raise conversation', level: 'Any level', blurb: 'Make the case with evidence, ask clearly, handle a "not yet".' },
+      { id: 'w-status', title: 'Status update & escalating a risk', level: 'Any level', blurb: 'Red/amber/green, bad news early, options and asks.' }
+    ]
   }
 ];
 
@@ -204,7 +223,9 @@ window.FIELDS = [
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
-    families: ['proc', 'plan', 'logi', 'mfg', 'scmlead'] }
+    families: ['proc', 'plan', 'logi', 'mfg', 'scmlead'] },
+  { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
+    families: ['w1on1', 'wcareer'] }
 ];
 // Shared bank shown in every role (and on the home screen).
 window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',
