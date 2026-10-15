@@ -92,11 +92,17 @@ const PROFILE_FIELDS = [
   ['priorities', 'What your leaders care about most', 'e.g. faster close, audit-clean, cost savings, AI adoption', 1]
 ];
 let PROFILE = store.get('ip.profile', {});
+// Used when a profile field is empty, so answers still read as complete sentences.
+const PROFILE_FALLBACK = { title: 'my role', team: 'my team', manager: 'my manager',
+  resp: 'the core business applications and the processes that run on them', projects: 'my two biggest initiatives this quarter',
+  wins: 'cutting our open support backlog by about a third and delivering the last release on time',
+  challenges: 'a tight timeline on our largest project and limited backup coverage on the team',
+  goals: 'growing into a larger leadership role', priorities: 'reliability, cost control and faster delivery for the business' };
 const hasProfile = () => PROFILE_FIELDS.some(([k]) => (PROFILE[k] || '').trim());
 function personalize(text) {
   return text.replace(/\{(title|team|manager|resp|projects|wins|challenges|goals|priorities)\}/g, (m, k) => {
     let v = (PROFILE[k] || '').trim(); if (v) { v = v.replace(/\s*\n\s*/g, '; '); if (!/^(title|team|manager)$/.test(k) && /^[A-Z][a-z]/.test(v)) v = v[0].toLowerCase() + v.slice(1); return v; }
-    const f = PROFILE_FIELDS.find(x => x[0] === k); return '[your ' + f[1].toLowerCase().replace(/ \(.*\)/, '') + ']'; });
+    return PROFILE_FALLBACK[k]; });
 }
 const isWork = p => p && p.fam && p.fam.field === 'work';
 function profileText() {
