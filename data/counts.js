@@ -93,5 +93,14 @@ window.COUNTS = {
  "swe-fs": 50,
  "swe-mob": 50,
  "swe-staff": 50,
+ "da-analyst": 50,
+ "da-eng": 50,
+ "da-ae": 50,
+ "da-bi": 50,
+ "da-sci": 50,
+ "da-ml": 50,
+ "da-llm": 50,
+ "da-arch": 50,
+ "da-head": 50,
  "common": 40
 };

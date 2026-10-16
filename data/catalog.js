@@ -224,13 +224,28 @@ window.CATALOG = [
       { id: 'swe-mob', title: 'Mobile Engineer (iOS / Android)', level: 'Mid → Senior', blurb: 'SwiftUI, Jetpack Compose, React Native, offline, performance, releases.' },
       { id: 'swe-staff', title: 'Staff / Principal Engineer', level: 'Staff · Principal', blurb: 'Technical strategy, cross-team architecture, influence, reliability, mentoring.' }
     ]
+  },
+  {
+    id: 'data', field: 'tech', name: 'Data & AI', short: 'Data & AI', glyph: 'AI', color: '#7C3AED', tint: '#F0E9FD',
+    tag: 'Analysts, data and analytics engineers, data scientists, ML and LLM engineers, BI, architects and data leaders',
+    positions: [
+      { id: 'da-analyst', title: 'Data Analyst', level: 'Entry → Senior', blurb: 'SQL, Excel, statistics, A/B tests, dashboards, storytelling.' },
+      { id: 'da-eng', title: 'Data Engineer', level: 'Mid → Senior', blurb: 'Pipelines, ELT, CDC, Spark, streaming, dbt, lakehouse, data quality.' },
+      { id: 'da-ae', title: 'Analytics Engineer', level: 'Mid → Senior', blurb: 'dbt, dimensional models, tests, semantic layer, metric consistency.' },
+      { id: 'da-bi', title: 'BI Developer (Power BI / Tableau)', level: 'Entry → Senior', blurb: 'Data models, DAX, RLS, performance, dashboard design, governance.' },
+      { id: 'da-sci', title: 'Data Scientist', level: 'Mid → Senior', blurb: 'ML models, statistics, experiments, causal inference, business impact.' },
+      { id: 'da-ml', title: 'Machine Learning Engineer', level: 'Mid → Senior', blurb: 'MLOps, feature stores, serving, monitoring, scaling, LLM deployment.' },
+      { id: 'da-llm', title: 'AI / LLM Engineer', level: 'Mid → Senior', blurb: 'RAG, agents, evaluation, guardrails, prompt injection, cost and latency.' },
+      { id: 'da-arch', title: 'Data Architect', level: 'Principal', blurb: 'Platform architecture, modeling, governance, MDM, security, cost.' },
+      { id: 'da-head', title: 'Head of Data & AI / CDO', level: 'Director · VP · CDO', blurb: 'Data and AI strategy, value, operating model, responsible AI, culture.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
