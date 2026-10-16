@@ -287,13 +287,24 @@ window.CATALOG = [
       { id: 'ea-d365', title: 'Dynamics 365 Consultant', level: 'Mid → Senior', blurb: 'F&O finance and SCM, Business Central, Dataverse, Power Platform.' },
       { id: 'ea-ns', title: 'NetSuite Administrator / Consultant', level: 'Mid → Senior', blurb: 'Saved searches, roles, SuiteFlow, SuiteScript, OneWorld, close.' }
     ]
+  },
+  {
+    id: 'prod', field: 'tech', name: 'Product & Delivery', short: 'Product', glyph: 'PM', color: '#7C3AED', tint: '#F1EAFD',
+    tag: 'Business analysts, product managers, Scrum Masters, TPMs and PMO leaders',
+    positions: [
+      { id: 'pd-ba', title: 'Business Analyst', level: 'Mid → Senior', blurb: 'Elicitation, user stories, process mapping, gap analysis, UAT, SQL.' },
+      { id: 'pd-pm', title: 'Product Manager / Product Owner', level: 'Mid → Senior', blurb: 'Discovery, prioritization (RICE), metrics, A/B tests, roadmap, launch.' },
+      { id: 'pd-sm', title: 'Scrum Master / Agile Coach', level: 'Mid → Senior', blurb: 'Scrum events, coaching, flow metrics, retros, SAFe, transformation.' },
+      { id: 'pd-tpm', title: 'Technical Program / Project Manager', level: 'Senior', blurb: 'Critical path, risks, dependencies, EVM, migrations, ERP programs.' },
+      { id: 'pd-pmo', title: 'PMO Director / Head of Delivery', level: 'Director', blurb: 'Portfolio prioritization, intake, capacity, governance, benefits.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',

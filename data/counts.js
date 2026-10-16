@@ -126,5 +126,10 @@ window.COUNTS = {
  "ea-wday": 50,
  "ea-d365": 50,
  "ea-ns": 50,
+ "pd-ba": 50,
+ "pd-pm": 50,
+ "pd-sm": 50,
+ "pd-tpm": 50,
+ "pd-pmo": 50,
  "common": 40
 };
