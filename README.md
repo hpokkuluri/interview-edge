@@ -1,15 +1,21 @@
 # Interview Edge
 *by Arahasoft*
 
-Interview questions, model answers and practice modes for **Technology, Finance & Accounting and Supply Chain & Manufacturing** roles — from first job to the C-suite. 81 question banks, ~2,750 questions.
+Interview questions, model answers and practice modes for roles across **10 fields** — Technology, Finance, Supply Chain, HR, Sales & Marketing, Healthcare & Life Sciences, Engineering & Construction, Banking & Insurance, Legal/Consulting/Operations — plus **At Work** practice for 1:1s, reviews and promotions. 170+ positions, 172 question banks, ~8,700 questions. Every position has at least 50 questions, and every answer follows the same shape: **Why they ask → full answer or sample answer (worked examples for technical topics) → Tip**.
 
 On a phone, use *Share → Add to Home Screen* (iPhone) or *Install app* (Android). It works offline after the first visit.
 
 ## What's inside
 - **Home** — search across every question and role, then choose a field:
-  - *Technology* — Oracle ERP · Oracle Modules (GL with IFRS/FCCS, AP, AR, FA, CM, SLA, PO, INV, OM, Costing, PIM, Planning, AI) · ERP Technical (Oracle Fusion/EBS technical, lead, architect, Apps DBA) · SAP (incl. ABAP developer) · Java & Engineering · Software Testing & QA (manual, automation, SDET, performance, ERP testing, QA lead, director) · IT Leadership.
-  - *Finance & Accounting* — staff/senior accountant, AP, AR & collections, controller, FP&A, treasury, internal audit/SOX, tax, director, VP finance, CFO.
-  - *Supply Chain & Manufacturing* — buyer, category manager, demand and supply planning, inventory, warehouse, logistics, production, quality, continuous improvement, director, VP.
+  - *Technology* — Oracle ERP · Oracle Modules · ERP Technical · SAP · Java & Engineering · Software Engineering (front end, back end, full stack, mobile, staff) · Data & AI (analyst, data/analytics engineer, BI, data scientist, ML, LLM/GenAI, architect, head of data) · Cloud & DevOps (cloud, DevOps, SRE, platform, Kubernetes, architect) · Cybersecurity (SOC analyst and manager, security/cloud security/IAM engineer, GRC, architect, CISO) · Infrastructure (sysadmin, network, DBA, solutions architect) · Enterprise Apps (Salesforce admin/dev, ServiceNow, Workday, Dynamics 365, NetSuite) · Product & Delivery (BA, PM/PO, Scrum Master, TPM, PMO) · Testing & QA · IT Leadership (director of enterprise apps, PMO, VP IT, CIO, CTO).
+  - *Finance & Accounting* — accounting and close, FP&A and treasury, audit and tax, specialists (revenue/ASC 606, cost, payroll, credit, corporate development, financial risk), leadership up to CFO.
+  - *Supply Chain & Manufacturing* — procurement, planning, inventory, logistics, manufacturing and quality, specialists (supply chain analyst, S&OP, manufacturing engineer, EHS, trade compliance, reliability), leadership.
+  - *Human Resources* — HR business partner, talent acquisition, compensation and benefits, CHRO.
+  - *Sales & Marketing* — account executive, sales director, digital/growth marketing, customer success.
+  - *Healthcare & Life Sciences* — registered nurse, nurse manager, revenue cycle, Epic analyst, CRA, regulatory affairs, GMP quality, pharmacovigilance.
+  - *Engineering & Construction* — mechanical, electrical, civil/structural, construction project manager.
+  - *Banking & Insurance* — commercial relationship manager, AML/KYC, underwriter, claims.
+  - *Legal, Consulting & Operations* — compliance manager, corporate counsel, management consultant, operations/general manager.
   - *At Work: 1:1s & Reviews* — 1:1 with manager, skip-level with senior director, 1:1 with VP, first meeting with a new leader, performance review, promotion & raise, status updates & escalations. Save **My role** (title, responsibilities, projects, wins, goals) on the device and the model answers fill it in; **Prepare with Claude** builds a tailored brief for the meeting.
 - **Interview Essentials** — introduction, behavioral (STAR), salary and contract rates, closing questions. Shared by every role and also on its own card.
 - **Oracle ERP ladder** — Functional Consultant (2–3 yrs), Senior (3–5), Lead (5–10), Senior Solution Architect (10–15), Staff (15–20) — each with **Finance** and **SCM** tracks — plus HCM Lead, Associate Director, Director, Senior Director, VP ERP Systems.
@@ -17,7 +23,7 @@ On a phone, use *Share → Add to Home Screen* (iPhone) or *Install app* (Androi
 - **Practice modes**
   - *Mock interview* — random questions against a timer, answer by voice, compare with the model answer, score yourself 1–5.
   - *Flashcards* — flip, "Got it" / "Again", decks for unmarked, review, starred.
-  - *AI interviewer* — a live interviewer (hiring manager, technical panel or executive) that asks one question at a time, follows up, and gives a scored debrief. Opens in Claude with the prompt ready (no extra cost); optionally runs in the app with your own Anthropic API key, kept only on the device.
+  - *AI interviewer* — a live interviewer (hiring manager, technical panel or executive) that asks one question at a time, follows up, and gives a scored debrief. Opens in Claude with the prompt ready (no extra cost); runs in the app with your own Anthropic API key (kept only on the device); or — once the server is deployed — with **Interview Edge minutes**: email sign-in, first 10 minutes free, then $0.99 / 10 min, $2.99 / 30 min, $5.99 / 60 min via Stripe.
   - *Voice practice* — speak answers; the browser transcribes them.
 - Progress, stars and drafts are saved only on the device. Light/dark theme.
 
@@ -32,6 +38,9 @@ On a phone, use *Share → Add to Home Screen* (iPhone) or *Install app* (Androi
 | `data/counts.js` | Generated question counts |
 | `tools/merge.js` | Joins `src` parts into `data/q`, validates, rebuilds counts |
 | `tools/build-sw.js` | Rebuilds `sw.js` (offline cache) with a new version |
+| `tools/add-family.js` | Adds a cube (and optionally a new field) to the catalog from a small JSON spec |
+| `config.js` | Runtime settings — set `api` to the paid-minutes server URL to turn that option on |
+| `worker/` | Paid AI interviewer server (Cloudflare Worker + D1 + Stripe) — see `worker/README.md` |
 | `fonts/`, `icons/`, `manifest.webmanifest`, `sw.js` | Fonts, home-screen icons, install info, offline support |
 
 ## Adding or editing questions

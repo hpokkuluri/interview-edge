@@ -783,7 +783,35 @@ function claudePrompt(p, bank, cfg) {
     .replace('Start by opening the meeting briefly in character and asking your first question.', 'Start now: open the meeting in character and ask your first question. When I type END, give the feedback.')
     .replace('Start by greeting the candidate briefly in character and asking your first question.', 'I am the candidate. Start now: greet me briefly in character and ask your first question. When I type END, give the feedback.');
 }
-async function callClaude(system, messages) {
+/* ---------- Interview Edge minutes (paid AI interviewer via our server) ---------- */
+const EDGE = window.EDGE || {};
+let ED = store.get('ip.edge', null);   // { token, email, seconds }
+const edgeOn = () => !!EDGE.api;
+const minLeft = s => { const m = Math.floor((s || 0) / 60); return m >= 1 ? m + ' min left' : (s > 0 ? 'under 1 min left' : 'no minutes left'); };
+async function edgeReq(path, payload) {
+  const r = await fetch(EDGE.api.replace(/\/$/, '') + path, {
+    method: payload ? 'POST' : 'GET',
+    headers: Object.assign({ 'content-type': 'application/json' }, ED && ED.token ? { authorization: 'Bearer ' + ED.token } : {}),
+    body: payload ? JSON.stringify(payload) : undefined
+  });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401 && ED) { ED = null; store.del('ip.edge'); }
+  if (!r.ok) { const e = new Error(j.error || 'Something went wrong — try again.'); e.status = r.status; throw e; }
+  return j;
+}
+async function edgeRefresh() { if (!edgeOn() || !ED) return; try { const j = await edgeReq('/me'); ED.seconds = j.seconds; store.set('ip.edge', ED); } catch (e) {} }
+async function edgeBuy(pack) {
+  try { const j = await edgeReq('/checkout', { pack }); location.href = j.url; }
+  catch (e) { toast(e.message); }
+}
+const newSid = () => Array.from(crypto.getRandomValues(new Uint8Array(12)), b => b.toString(16).padStart(2, '0')).join('');
+
+async function callClaude(system, messages, sid) {
+  if (sid) {   // paid minutes: our server holds the API key and meters time
+    const j = await edgeReq('/chat', { sid, system, messages });
+    ED.seconds = j.seconds; store.set('ip.edge', ED);
+    return j.text;
+  }
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'content-type': 'application/json', 'x-api-key': S.key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
@@ -810,6 +838,42 @@ function vAI(ctx, id) {
     let busy = false;
     ctx.cleanup.push(stopSpeak);
 
+    let edgeStep = 'email', edgeEmail = '';
+    function edgePanel() {
+      const packs = (EDGE.packs || []).map(k => `<button class="btn" data-pack="${k.id}"><b>${k.minutes} min</b>&nbsp;· ${esc(k.price)}</button>`).join('');
+      if (ED) return `<div class="panel"><h3>Interview here with Interview Edge minutes</h3>
+          <p>Signed in as <b>${esc(ED.email)}</b> · <span id="edbal">${minLeft(ED.seconds)}</span></p>
+          ${ED.seconds > 0 ? `<button class="btn pri wide" id="startE">${I.play} Start interview</button>` : '<p class="muted">You’re out of minutes — pick a pack to continue.</p>'}
+          ${conv && conv.sid && ED.seconds > 0 ? `<button class="btn ghost wide" id="resumeE" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
+          <div class="field" style="margin-top:12px"><label>Add minutes — no subscription</label><div class="actions" style="flex-wrap:wrap;margin:0">${packs}</div></div>
+          <button class="btn ghost" id="signout" style="margin-top:4px">Sign out</button></div>`;
+      return `<div class="panel"><h3>Interview here with Interview Edge minutes</h3>
+          <p>No API key needed. Your first ${EDGE.freeMinutes || 10} minutes are free, then packs from ${esc((EDGE.packs || [{ price: '$0.99' }])[0].price)} — no subscription.</p>
+          ${edgeStep === 'email'
+            ? `<div class="field"><label for="edmail">Email</label><input class="txt" id="edmail" type="email" autocomplete="email" placeholder="you@example.com" value="${esc(edgeEmail)}"></div><button class="btn pri wide" id="edsend">Email me a sign-in code</button>`
+            : `<div class="field"><label for="edcode">Code sent to ${esc(edgeEmail)}</label><input class="txt" id="edcode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6-digit code"></div><button class="btn pri wide" id="edverify">Sign in</button><button class="btn ghost wide" id="edback" style="margin-top:8px">Use a different email</button>`}
+          <div class="muted" id="edmsg" style="margin-top:8px"></div></div>`;
+    }
+    function wireEdge() {
+      const msg = t => { const m = $('#edmsg', ctx.el); if (m) m.textContent = t; };
+      const on = (sel, fn) => { const b = $(sel, ctx.el); if (b) b.addEventListener('click', fn); };
+      on('#edsend', async () => {
+        edgeEmail = ($('#edmail', ctx.el).value || '').trim(); if (!edgeEmail) { msg('Enter your email first.'); return; }
+        msg('Sending…');
+        try { await edgeReq('/auth/start', { email: edgeEmail }); edgeStep = 'code'; intro(); toast('Code sent — check your email'); } catch (e) { msg(e.message); }
+      });
+      on('#edverify', async () => {
+        const code = ($('#edcode', ctx.el).value || '').trim(); if (!code) { msg('Enter the code from the email.'); return; }
+        msg('Signing in…');
+        try { const j = await edgeReq('/auth/verify', { email: edgeEmail, code }); ED = { token: j.token, email: j.email, seconds: j.seconds }; store.set('ip.edge', ED); edgeStep = 'email'; intro(); toast(j.seconds > 0 ? 'Signed in — ' + minLeft(j.seconds) : 'Signed in'); } catch (e) { msg(e.message); }
+      });
+      on('#edback', () => { edgeStep = 'email'; intro(); });
+      on('#signout', () => { ED = null; store.del('ip.edge'); intro(); });
+      on('#startE', () => { conv = { cfg: Object.assign({}, cfg), sid: newSid(), msgs: [{ role: 'user', content: 'Hello — I’m ready to begin the interview.' }] }; chat(); send(null); });
+      on('#resumeE', chat);
+      $$('[data-pack]', ctx.el).forEach(b => b.addEventListener('click', () => edgeBuy(b.dataset.pack)));
+    }
+
     function intro() {
       const seg = (name, opts) => `<div class="seg" data-k="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${String(cfg[name]) === String(v) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
       wrap().innerHTML = `<div class="pos-hero"><span class="chip">${esc(p.level)}</span><h2>AI interviewer</h2><p>${esc(p.full)} — answer by typing or speaking. It follows up like a real panel and debriefs you at the end.</p></div>
@@ -819,10 +883,11 @@ function vAI(ctx, id) {
           <a class="btn pri wide" id="claude" href="#" target="_blank" rel="noopener" style="margin-top:12px;text-decoration:none">${I.bot} Interview me in Claude</a>
           <p class="muted" style="margin:8px 2px 0">Opens Claude with this interview ready to go — uses your Claude plan, no extra cost. If the message box is empty, just paste — the setup is already copied.</p>
         </div>
-        <div class="panel"><h3>Or interview right here</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed per use).</p>
-          ${S.key ? `<label class="toggle" style="margin-bottom:8px"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label>` : ''}
-          ${S.key ? `<button class="btn wide" id="start">${I.play} Start in this app</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
-          ${S.key && conv ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
+        ${edgeOn() ? edgePanel() : ''}
+        ${(S.key || edgeOn()) ? `<div class="panel"><label class="toggle" style="margin:0"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>` : ''}
+        <div class="panel"><h3>${edgeOn() ? 'Or use your own API key' : 'Or interview right here'}</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed to you by Anthropic).</p>
+          ${S.key ? `<button class="btn wide" id="start">${I.play} Start with my key</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
+          ${S.key && conv && !conv.sid ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
         </div>`;
       $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const k = sg.dataset.k; cfg[k] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); store.set('ip.aicfg', cfg); }));
       const csw = $('#cs', ctx.el); if (csw) csw.addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.aicfg', cfg); });
@@ -832,13 +897,15 @@ function vAI(ctx, id) {
       cl.addEventListener('click', () => { setLink(); try { navigator.clipboard.writeText(claudePrompt(p, bank, cfg)).catch(() => {}); } catch (e) {} toast('Opening Claude — interview setup also copied'); });
       const st = $('#start', ctx.el); if (st) st.addEventListener('click', () => { conv = { cfg: Object.assign({}, cfg), msgs: [{ role: 'user', content: 'Hello — I’m ready to begin the interview.' }] }; chat(); send(null); });
       const rs = $('#resume', ctx.el); if (rs) rs.addEventListener('click', chat);
+      if (edgeOn()) wireEdge();
     }
+    if (edgeOn() && ED) edgeRefresh().then(() => { if (!$('#chat', ctx.el)) { const b = $('#edbal', ctx.el); if (b) b.textContent = minLeft(ED && ED.seconds); } });
     ctx.refresh = () => { if (!$('#chat', ctx.el)) intro(); };   // pick up a key added in Settings
 
     function chat() {
       wrap().innerHTML = `<div class="chat" id="chat"></div>
         <div class="composer"><div class="composer-in"><button class="round mic-b" id="mic" aria-label="Speak">${I.mic}</button><textarea id="in" rows="1" placeholder="Your answer…"></textarea><button class="round" id="send" aria-label="Send">${I.send}</button></div>
-        <div class="composer-tools"><button class="btn ghost" id="fb">End &amp; get feedback</button><button class="btn ghost" id="new">New interview</button></div></div>`;
+        <div class="composer-tools"><button class="btn ghost" id="fb">End &amp; get feedback</button><button class="btn ghost" id="new">New interview</button>${conv.sid ? `<span class="muted" id="bal" style="margin-left:auto;align-self:center">${minLeft(ED && ED.seconds)}</span>` : ''}</div></div>`;
       const box = $('#chat', ctx.el), input = $('#in', ctx.el);
       box.innerHTML = `<div class="msg sys">${esc(PERSONAS[conv.cfg.persona][0])} · ${esc(p.title)}</div>` + conv.msgs.slice(1).map(m => bubble(m)).join('');
       const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(180, input.scrollHeight) + 'px'; };
@@ -854,18 +921,23 @@ function vAI(ctx, id) {
     const scrollEnd = () => requestAnimationFrame(() => { ctx.el.scrollTop = ctx.el.scrollHeight; });
     async function send(text) {
       const box = $('#chat', ctx.el); if (!box) return;
-      if (text) { conv.msgs.push({ role: 'user', content: text }); box.insertAdjacentHTML('beforeend', bubble({ role: 'user', content: text })); }
+      let mine = null;
+      if (text) { conv.msgs.push({ role: 'user', content: text }); box.insertAdjacentHTML('beforeend', bubble({ role: 'user', content: text })); mine = box.lastElementChild; }
       busy = true; $('#send', ctx.el).disabled = true;
       box.insertAdjacentHTML('beforeend', '<div class="msg ai typing" id="typing"><i></i><i></i><i></i></div>'); scrollEnd();
       try {
-        const reply = await callClaude(aiSystem(p, bank, conv.cfg), conv.msgs);
+        const reply = await callClaude(aiSystem(p, bank, conv.cfg), conv.msgs, conv.sid);
         conv.msgs.push({ role: 'assistant', content: reply }); store.set('ip.ai.' + id, conv);
+        const bl = $('#bal', ctx.el); if (bl && ED) bl.textContent = minLeft(ED.seconds);
         const t = $('#typing', ctx.el); if (t) t.outerHTML = bubble({ role: 'assistant', content: reply });
         if (conv.cfg.speak) speak(reply);
         if (/^##\s*Overall/m.test(reply)) { const h = store.get('ip.mocks', []); const m = reply.match(/(\d+(?:\.\d)?)\s*(?:\/|out of)\s*10/); h.push({ pos: id, at: Date.now(), n: conv.cfg.len, avg: m ? +m[1] / 2 : 0, ai: 1 }); store.set('ip.mocks', h.slice(-200)); }
       } catch (e) {
-        if (text) conv.msgs.pop();
-        const t = $('#typing', ctx.el); if (t) t.outerHTML = `<div class="msg err">${esc(e.message === 'Failed to fetch' ? 'Couldn’t reach the AI service — check your connection.' : e.message)}</div>`;
+        if (text) { conv.msgs.pop(); if (mine) mine.remove(); }
+        const t = $('#typing', ctx.el);
+        if (t && e.status === 402) { t.outerHTML = `<div class="msg err">You’re out of interview minutes. Your conversation is saved — add minutes to continue. <button class="btn" id="getmin" style="margin-top:8px">Add minutes</button></div>`; const g = $('#getmin', ctx.el); if (g) g.addEventListener('click', intro); }
+        else if (t && e.status === 401 && conv.sid) { t.outerHTML = `<div class="msg err">Please sign in again to continue. <button class="btn" id="getmin" style="margin-top:8px">Sign in</button></div>`; const g = $('#getmin', ctx.el); if (g) g.addEventListener('click', intro); }
+        else if (t) t.outerHTML = `<div class="msg err">${esc(e.message === 'Failed to fetch' ? 'Couldn’t reach the AI service — check your connection.' : e.message)}</div>`;
         if (text) { $('#in', ctx.el).value = text; }
       }
       busy = false; const sb = $('#send', ctx.el); if (sb) sb.disabled = false; scrollEnd();
@@ -923,5 +995,10 @@ function vSettings(ctx) {
 (function start() {
   const ctx = build('home'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
   history.replaceState({ d: 1 }, '');
+  const qp = new URLSearchParams(location.search);   // back from Stripe Checkout
+  if (qp.has('paid')) {
+    history.replaceState({ d: 1 }, '', location.pathname);
+    if (qp.get('paid') === '1') { toast('Payment received — your minutes are being added'); setTimeout(edgeRefresh, 2500); }
+  }
   if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

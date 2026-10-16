@@ -1,0 +1,28 @@
+name = "interview-edge-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "interview-edge"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"   # from: npx wrangler d1 create interview-edge
+
+[vars]
+APP_URL = "https://hpokkuluri.github.io/interview-edge/"
+ALLOWED_ORIGINS = "https://hpokkuluri.github.io"
+MODEL = "claude-sonnet-5-5"          # cheaper option: claude-haiku-5-5
+MAX_OUTPUT_TOKENS = "1500"
+PRICE_IN_PER_MTOK = "3"               # USD per million input tokens for MODEL — check current pricing
+PRICE_OUT_PER_MTOK = "15"             # USD per million output tokens for MODEL — check current pricing
+FREE_SECONDS = "600"                  # first 10 minutes free per new email
+FREE_DAILY_CAP_SECONDS = "36000"      # at most 10 hours of free minutes handed out per day (anti-abuse)
+DAILY_CAP_USD = "20"                  # hard stop on AI spend per day
+MIN_TURN_SECONDS = "15"
+MAX_TURN_SECONDS = "120"
+MAIL_FROM = "Interview Edge <login@REPLACE_WITH_YOUR_DOMAIN>"
+PRICE_10 = "price_REPLACE_10min"      # Stripe Price IDs: $0.99, $2.99, $5.99
+PRICE_30 = "price_REPLACE_30min"
+PRICE_60 = "price_REPLACE_60min"
+
+# Secrets — set with `npx wrangler secret put NAME` (never commit these):
+#   ANTHROPIC_API_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, RESEND_API_KEY, CODE_PEPPER
