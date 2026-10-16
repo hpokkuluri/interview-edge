@@ -1,54 +1,288 @@
 // fa-audit — generated from src/fa-audit-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Internal Auditor / SOX Compliance. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
+QB['fa-audit'] = [
+["Fundamentals", "What is the difference between internal and external audit?",
+`**Why they ask:** baseline understanding of your role.
+
+**Answer:** **Internal audit** is an independent function inside the company that reports to the audit committee. It covers risks and controls across finance, operations, IT and compliance, and helps management improve. **External audit** is an independent accounting firm that gives an opinion on whether the financial statements are fairly presented (and, for larger public companies, on internal control over financial reporting).
+
+Tip: Mention that external auditors may rely on internal audit's work.`, 'B', 'E'],
+
+["Fundamentals", "What are the IIA Standards?",
+`**Answer:** The Institute of Internal Auditors' Global Internal Audit Standards (updated in 2024) set requirements for independence, objectivity, proficiency, quality assurance, and how audits are planned, performed and reported. They're the professional framework for internal audit.
+
+Tip: Mention CIA certification if you have or plan it.`, 'B', 'M'],
+
+["SOX", "What is SOX 404?",
+`**Answer:** Section 404 of the Sarbanes-Oxley Act requires management to assess the effectiveness of internal control over financial reporting (ICFR) annually. 404(a) is management's assessment; 404(b) requires the external auditor's attestation for accelerated filers. It drives documentation, testing and remediation of key controls.
+
+Tip: Mention SOX 302 (CEO/CFO certifications) as related.`, 'B', 'E'],
+
+["SOX", "Walk me through a SOX testing cycle.",
+`**Answer:**
+1. **Scoping** — significant accounts, locations and processes using materiality.
+2. **Documentation** — process narratives or flowcharts, risk and control matrix.
+3. **Walkthroughs** — confirm the process and test control design.
+4. **Operating effectiveness testing** — interim and roll-forward.
+5. **Deficiency evaluation** and remediation.
+6. **Management's conclusion** and auditor coordination.
+
+Tip: Mention timeline — interim testing in Q3, roll-forward in Q4.`, 'D', 'M'],
+
+["Controls", "How do you test a control?",
+`**Answer:** Understand the control (who, what, when, how, evidence). Test **design** through a walkthrough. Test **operating effectiveness** with a sample based on frequency — e.g. annual 1, quarterly 2, monthly 2–5, weekly 5–15, daily 20–40, multiple times a day 25–60. Methods: inquiry (never alone), observation, inspection, reperformance. Document results and exceptions.
+
+Tip: Reperformance is the strongest evidence.`, 'B', 'E'],
+
+["Controls", "What is the difference between control design and operating effectiveness?",
+`**Answer:** **Design** asks whether the control, if performed as described, would prevent or detect the risk. **Operating effectiveness** asks whether it actually worked consistently throughout the period. A well-designed control that isn't performed fails; a performed control with poor design also fails.
+
+Tip: Give an example of each failure.`, 'B', 'E'],
+
+["Controls", "Preventive vs detective controls — give examples.",
+`**Answer:** **Preventive** stops errors before they happen — system approval workflows, segregation of duties, access restrictions, three-way match. **Detective** finds errors after they happen — reconciliations, management reviews, exception reports. A good process uses both.
+
+Tip: Mention automated controls are often more reliable.`, 'B', 'E'],
+
+["Controls", "What is an automated control and how is it tested?",
+`**Answer:** A control performed by the system — e.g. a three-way match tolerance or a field validation. Test it once (benchmarking) if ITGCs over change management and access are effective, because the system will perform consistently. Evidence: configuration screenshots and a test transaction.
+
+Tip: The link between automated controls and ITGCs is a classic follow-up.`, 'D', 'M'],
+
+["ITGC", "What are ITGCs and why do they matter?",
+`**Answer:** IT general controls support the reliability of systems and data:
+- **Access to programs and data** — provisioning, terminations, privileged access, periodic reviews.
+- **Program change management** — testing, approval, segregation of developers from production.
+- **Computer operations** — job scheduling, backups, incident management.
+- **Program development** — for new systems.
+If ITGCs fail, auditors can't rely on automated controls or system reports.
+
+Tip: Mention SaaS considerations — SOC 1 reports.`, 'D', 'M'],
+
+["ITGC", "What is a SOC 1 report and how do you use it?",
+`**Answer:** A report from a service organization's auditor on controls relevant to customers' financial reporting (e.g. a payroll provider or a cloud ERP). Type 2 covers operating effectiveness over a period. Use it by checking scope and period coverage, reviewing exceptions, and testing the **complementary user entity controls (CUECs)** the company is responsible for. Bridge letters cover gaps in the period.
+
+Tip: CUECs are what interviewers want to hear about.`, 'D', 'M'],
+
+["IPE", "What is IPE and why do auditors care?",
+`**Answer:** Information produced by the entity — reports or data used in controls (e.g. an aging report used in a reserve review). Auditors test that it's **complete and accurate**: the report logic is right, parameters are correct, and data wasn't altered. If a control relies on bad data, the control fails.
+
+Tip: Mention how you test IPE — reperforming report parameters, tracing totals to the GL.`, 'D', 'S'],
+
+["Deficiencies", "Explain deficiency, significant deficiency and material weakness.",
+`**Answer:**
+- **Deficiency:** a control doesn't allow timely prevention or detection of misstatements.
+- **Significant deficiency:** less severe than a material weakness but important enough for the audit committee.
+- **Material weakness:** a reasonable possibility that a material misstatement won't be prevented or detected on time — must be disclosed.
+Evaluate considering the magnitude of potential misstatement, likelihood, and compensating controls.
+
+Tip: Mention aggregation of deficiencies.`, 'D', 'M'],
+
+["Deficiencies", "A control failed in 2 of 25 samples. What do you do?",
+`**Answer:** Understand the root cause of the exceptions. Depending on the methodology, consider expanding the sample. Assess whether the exceptions resulted in a misstatement, whether compensating controls exist, and the severity of the deficiency. Communicate to the control owner and agree a remediation plan; retest after remediation.
+
+Tip: Mention discussing severity with the external auditor.`, 'D', 'M'],
+
+["Risk", "How do you build a risk-based audit plan?",
+`**Answer:** Understand strategy and objectives; interview leadership; review prior findings, incidents, regulatory changes and emerging risks (cyber, AI, third parties). Score risks by impact and likelihood, map to auditable areas, prioritize high-risk ones within available resources, and get audit committee approval. Keep flexibility for new risks during the year.
+
+Tip: Mention a dynamic or rolling audit plan.`, 'D', 'S'],
+
+["Planning", "How do you plan an individual audit engagement?",
+`**Answer:** Understand the process (documents, walkthroughs, interviews), identify key risks and controls, define objectives and scope, design test procedures, set the timeline and resources, and issue an engagement letter or kickoff memo to management.
+
+Tip: Mention a pre-audit data analysis to focus testing.`, 'B', 'M'],
+
+["Findings", "How do you write a good audit finding?",
+`**Answer:** Five parts:
+- **Condition** — what you found.
+- **Criteria** — the policy or standard it should meet.
+- **Cause** — why it happened.
+- **Effect** — the risk or impact.
+- **Recommendation** — practical fix.
+Then an agreed **management action plan** with an owner and due date.
+
+**Example:** "12 of 40 terminated users still had ERP access (condition) beyond the 3-day policy (criteria) because HR terminations weren't sent to IT (cause), risking unauthorized transactions (effect)."
+
+Tip: Showing a full example is persuasive.`, 'B', 'M'],
+
+["Findings", "How do you rate audit findings?",
+`**Answer:** By impact (financial, regulatory, reputational, operational) and likelihood — commonly high, medium, low. High findings go to the audit committee with tight remediation deadlines.
+
+Tip: Mention calibration across auditors for consistency.`, 'B', 'M'],
+
+["Findings", "Management disagrees with your finding. What do you do?",
+`**Answer:** Listen and revisit the evidence objectively — they may have information I missed. If the facts change, adjust the finding. If not, explain the risk clearly and calmly. If still unresolved, escalate per the audit charter and report management's view alongside the finding.
+
+Tip: Independence plus fairness.`, 'B', 'M'],
+
+["Follow-up", "How do you track remediation of findings?",
+`**Answer:** Maintain a findings tracker with owners and due dates, request evidence of completion, validate high-risk items through retesting, and report overdue items to the audit committee.
+
+Tip: Overdue reporting creates accountability.`, 'B', 'M'],
+
+["Fraud", "What are common red flags of fraud?",
+`**Answer:** Override of controls, unusual journal entries (round amounts, weekend postings, top-side), vendors that share employee addresses or bank accounts, unexplained inventory losses, employees refusing vacation, lifestyle beyond means, and pressure to meet targets. The **fraud triangle**: pressure, opportunity, rationalization.
+
+Tip: Mention data analytics to detect them.`, 'B', 'M'],
+
+["Fraud", "What do you do if you suspect fraud during an audit?",
+`**Answer:** Stop and don't alert the suspect. Preserve evidence. Inform the CAE (chief audit executive) and follow the fraud response plan — usually involving legal, HR and possibly investigators. Don't investigate beyond my authority.
+
+Tip: Confidentiality and process are key.`, 'D', 'M'],
+
+["Data Analytics", "How do you use data analytics in audit?",
+`**Answer:** Test full populations rather than samples: duplicate payments, segregation of duties conflicts, journal entry analysis, vendor-employee matches, access reviews, inventory movements. Tools: SQL, Python, ACL/Galvanize (Diligent), IDEA, Power BI. Continuous monitoring of key risks.
+
+**Example:** "A duplicate payment analysis on 2 years of AP found $180,000 in recoverable duplicates."
+
+Tip: A real result makes it concrete.`, 'D', 'M'],
+
+["Journal Entries", "How do you test journal entries?",
+`**Answer:** Extract all journals for the period and verify completeness against the trial balance. Filter for risk criteria: manual entries, weekend/holiday postings, round amounts, entries by unusual users, entries to rarely used accounts, entries just before or after period end. Select and test those with support and approvals.
+
+Tip: This is a core audit standard procedure — show you know it.`, 'D', 'M'],
+
+["Operational", "How do you audit an operational process, like procurement?",
+`**Answer:** Map the process (requisition to payment), identify risks — unauthorized purchases, poor supplier selection, overpayment, fraud. Test controls: approvals, competitive bids, contract compliance, three-way match, vendor master changes. Also look at efficiency: maverick spend, cycle time, savings leakage.
+
+Tip: Mention value-for-money findings, not just compliance.`, 'D', 'M'],
+
+["Compliance", "How do you audit compliance with a regulation?",
+`**Answer:** Identify the requirements, map them to company processes and owners, test that controls meet each requirement, and check evidence and monitoring. Examples: FCPA, GDPR/privacy, export controls, industry rules like FDA or HIPAA.
+
+Tip: Mention the company's specific regulatory environment.`, 'D', 'S'],
+
+["Cyber", "What would you look at in a cybersecurity audit?",
+`**Answer:** Governance and policies, asset inventory, access management and MFA, patching and vulnerability management, logging and monitoring, incident response testing, backups and recovery, third-party risk, and security awareness. Frameworks: NIST CSF, ISO 27001, CIS Controls.
+
+Tip: Mention partnering with IT audit specialists.`, 'D', 'S'],
+
+["AI", "How would you audit the use of AI in a company?",
+`**Answer:** Inventory of AI use cases, governance and approval process, data privacy and security, model accuracy and bias testing, human review over key decisions, vendor terms, and monitoring of AI outputs. Frameworks: NIST AI RMF, ISO/IEC 42001.
+
+Tip: Shows you're current.`, 'D', 'S'],
+
+["Third Party", "How do you assess third-party risk?",
+`**Answer:** Inventory critical vendors, risk-rate them (data access, financial impact, regulatory exposure), review due diligence (SOC reports, security questionnaires, financial stability), contract terms (right to audit, SLAs), and ongoing monitoring.
+
+Tip: Mention SOC 2 for security-focused vendors.`, 'D', 'S'],
+
+["COSO", "What are the five components of COSO 2013?",
+`**Answer:**
+1. **Control environment** — tone at the top, integrity, oversight.
+2. **Risk assessment**.
+3. **Control activities**.
+4. **Information and communication**.
+5. **Monitoring activities**.
+Supported by 17 principles.
+
+Tip: Mention entity-level controls tie to the control environment.`, 'B', 'E'],
+
+["Entity Level", "What are entity-level controls?",
+`**Answer:** Controls that operate across the organization — code of conduct, whistleblower hotline, board and audit committee oversight, risk assessment process, period-end financial reporting controls, and IT governance. They set the foundation for process-level controls.
+
+Tip: Mention testing tone at the top through surveys or interviews.`, 'D', 'M'],
+
+["Sampling", "How do you choose a sample?",
+`**Answer:** Random or systematic selection for unbiased results, or judgmental for targeting risk. Sample size depends on control frequency, risk and desired confidence. Document the population, how completeness was verified, and selection method.
+
+Tip: Verifying population completeness is a frequent gap.`, 'B', 'E'],
+
+["Communication", "How do you present audit results to the audit committee?",
+`**Answer:** Summary of audits completed vs plan, key findings and their ratings, themes across audits, remediation status and overdue items, and emerging risks. Concise, risk-focused, with clear asks.
+
+Tip: Themes matter more than lists.`, 'D', 'S'],
+
+["Relationships", "How do you build good relationships with auditees?",
+`**Answer:** Explain the purpose and process upfront, be respectful of their time, share preliminary observations early so there are no surprises, recognize good practices, and make recommendations practical.
+
+Tip: "No surprises" builds trust.`, 'B', 'E'],
+
+["Independence", "How do you maintain independence?",
+`**Answer:** Report functionally to the audit committee, avoid auditing areas I recently worked in or designed, don't take operational responsibility, and disclose conflicts. Advisory work is fine with safeguards, but I don't make management decisions.
+
+Tip: Mention the cooling-off period concept.`, 'B', 'M'],
+
+["Behavioral", "Tell me about a significant finding you raised.",
+`**Sample answer:** "During a P2P audit, analytics showed 14 vendors sharing bank accounts with employees. Investigation found two were legitimate (employee-owned contractors disclosed), but one was a fictitious vendor that had received $95,000. We recovered funds, tightened vendor setup controls and implemented quarterly vendor-employee matching."
+
+Tip: Method, finding, impact, fix.`, 'B', 'M'],
+
+["Behavioral", "Tell me about a time you had to deliver bad news.",
+`**Sample answer:** "I had to tell a finance director that their reconciliation control failed testing three quarters in a row, which would likely be reported as a significant deficiency. I shared the evidence privately first, explained the impact, and worked with their team on a remediation plan before the audit committee meeting."
+
+Tip: Private first, solution-focused.`, 'B', 'M'],
+
+["Behavioral", "How do you handle a tight audit deadline?",
+`**Answer:** Prioritize the highest-risk tests, request documents early, use analytics to reduce manual testing, keep management informed of timing, and escalate early if evidence is delayed.
+
+Tip: Early requests prevent most delays.`, 'B', 'E'],
+
+["Leadership", "How would you lead an internal audit team?",
+`**Answer:** Clear methodology and quality reviews, skill development (data analytics, IT audit, certifications), fair assignments and rotation, coaching on communication, and a culture of independence and curiosity.
+
+Tip: Mention guest auditors or co-sourcing for specialized areas.`, 'D', 'S'],
+
+["Leadership", "How do you add value beyond compliance?",
+`**Answer:** Focus on business risks and objectives, deliver insights on efficiency and cost savings, use data analytics for continuous monitoring, give advisory input on new systems and processes, and share themes that help management decide.
+
+Tip: Give an example of an efficiency recommendation adopted.`, 'D', 'S'],
+
+["Systems", "How do you audit an ERP implementation?",
+`**Answer:** Review governance and project risks, data conversion controls (reconciliation of migrated data), security design and segregation of duties, testing and UAT evidence, cutover and go-live readiness, and post-go-live controls. Early involvement is better than auditing after go-live.
+
+Tip: Mention role design and SoD in the new system.`, 'D', 'S'],
+
+["SoD", "How do you analyze segregation of duties conflicts in an ERP?",
+`**Answer:** Define a ruleset of conflicting functions (e.g. create vendor + pay vendor). Extract user roles and privileges, run the analysis (tools: Oracle Risk Management Cloud/Advanced Controls, SAP GRC, Fastpath), remediate conflicts by changing roles, and implement compensating controls where unavoidable (e.g. review of transactions).
+
+Tip: Mention privilege-level vs role-level analysis.`, 'D', 'S'],
+
+["Tools", "Which audit tools have you used?",
+`**Sample answer:** "AuditBoard for SOX documentation and testing workflow, ACL and SQL for analytics, Power BI for dashboards, and Excel for testing workpapers. I've also reviewed Oracle Advanced Controls SoD reports."
+
+Tip: Name what you used each for.`, 'B', 'E'],
+
+["Certifications", "Which certifications are valuable in audit?",
+`**Answer:** CIA (Certified Internal Auditor), CPA, CISA (IT audit), CFE (fraud), CRMA (risk). Choose based on focus area.
+
+Tip: Mention your plan.`, 'B', 'E'],
+
+["Scenario", "A process owner keeps missing remediation deadlines. What do you do?",
+`**Answer:** Understand the barriers (resources, priorities, complexity), offer practical help or interim controls, agree a realistic date, and escalate to their leadership and the audit committee if it continues.
+
+Tip: Supportive then escalate.`, 'D', 'M'],
+
+["Scenario", "You're auditing a process you know little about. How do you prepare?",
+`**Answer:** Read policies and prior audits, interview process owners, do walkthroughs, review industry guidance, and use analytics on the data to see how the process really works. Ask "why" until the risks are clear.
+
+Tip: Curiosity is a core audit skill.`, 'B', 'E'],
+
+["Ethics", "A senior executive asks you to soften a finding. What do you do?",
+`**Answer:** Listen to their concerns and correct any factual errors. But the rating and substance must reflect the evidence. Explain the audit committee's need for accurate information. If pressure continues, inform the CAE and audit committee.
+
+Tip: Calm and firm.`, 'B', 'M'],
+
+["Strategy", "What emerging risks should internal audit focus on now?",
+`**Answer:** Cybersecurity and ransomware, AI governance, third-party and supply chain risk, data privacy, regulatory change (e.g. climate disclosures), fraud through digital channels, and talent/culture risks.
+
+Tip: Pick those relevant to the industry.`, 'D', 'S'],
+
+["Career", "Why internal audit?",
+`**Sample answer:** "I like understanding how the whole business works and improving it. Audit gives exposure to every function and to leadership, and I want to build a strong foundation in controls and risk before moving into a broader finance or risk leadership role."
+
+Tip: Honest about the career path.`, 'B', 'E'],
+
+["Closing", "Why should we hire you?",
+`**Sample answer:** "I test efficiently, write clear findings management agrees with, and use analytics to find real issues — like the fictitious vendor I found. I understand SOX and ERP controls, which fits your environment."
+
+Tip: Proof and fit.`, 'B', 'E']
+];
+
 QB['fa-audit'] = (QB['fa-audit'] || []).concat([
-['Fundamentals', 'What is the difference between internal and external audit?',
-`- **Internal audit**: independent function within the company, reports to the audit committee; covers risks, controls, operations, compliance.
-- **External audit**: independent firm giving an opinion on the financial statements (and ICFR for public companies).`, 'B', 'E'],
+["Continuous", "What is continuous auditing or monitoring?",
+`**Answer:** Using automated analytics to test transactions and controls on an ongoing basis — e.g. daily checks for duplicate payments, SoD conflicts or unusual journals — instead of only during periodic audits. Management owns continuous monitoring; internal audit may run continuous auditing and use the results to focus audits.
 
-['SOX', 'What is SOX 404?',
-`- Management must assess and report on **internal control over financial reporting (ICFR)**.
-- For larger public companies, the external auditor also attests (404(b)).
-- Requires documented key controls, testing and deficiency evaluation.`, 'B', 'E'],
-
-['Controls', 'How do you test a control?',
-`- Understand the control (walkthrough) and test **design**.
-- Test **operating effectiveness**: select a sample per frequency (e.g. 25 for daily, 2 for quarterly), inspect evidence, reperform where possible.
-- Document results and exceptions.`, 'B', 'E'],
-
-['Deficiencies', 'Explain control deficiency, significant deficiency and material weakness.',
-`- **Deficiency**: control doesn't prevent/detect misstatements timely.
-- **Significant deficiency**: less severe than a material weakness but merits attention of those charged with governance.
-- **Material weakness**: reasonable possibility of a **material misstatement** not being prevented or detected — must be disclosed.`, 'D', 'M'],
-
-['ITGC', 'What are ITGCs?',
-`- **IT general controls** supporting application controls and reports:
-  - Access to programs and data (provisioning, reviews, privileged access).
-  - Program changes (testing, approval, segregation).
-  - Computer operations (jobs, backups, incidents).
-  - Program development.`, 'D', 'M'],
-
-['Risk', 'How do you build a risk-based audit plan?',
-`- Risk assessment across the business (interviews, prior findings, strategy changes, regulations).
-- Score likelihood and impact; prioritize high-risk areas.
-- Align with audit committee; flexibility for emerging risks.`, 'D', 'S'],
-
-['Findings', 'How do you write a good audit finding?',
-`- **Condition** (what you found), **criteria** (what it should be), **cause**, **effect/risk**, **recommendation**.
-- Agreed **management action plan** with owner and date.`, 'B', 'M'],
-
-['Fraud', 'What are red flags of fraud?',
-`- Override of controls, unusual journal entries (round amounts, weekends, top-side).
-- Vendors with no address or matching employee details.
-- Lifestyle changes, reluctance to take leave.
-- Fraud triangle: **pressure, opportunity, rationalization**.`, 'B', 'M'],
-
-['Data', 'How do you use data analytics in audit?',
-`- Full-population testing (duplicate payments, SoD conflicts, JE analysis).
-- Tools: ACL/Galvanize, IDEA, SQL, Python, Power BI.
-- Continuous monitoring of key risks.`, 'D', 'M'],
-
-['Behavioral', 'Management disagrees with your finding. How do you handle it?',
-`- Revisit evidence objectively; listen to their context.
-- Adjust if facts change; otherwise explain risk clearly.
-- Escalate per audit charter; report management's view if unresolved.`, 'B', 'M']
+Tip: Give one analytic you'd automate first.`, 'D', 'S']
 ]);
