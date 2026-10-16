@@ -372,6 +372,16 @@ window.CATALOG = [
       { id: 'en-civil', title: 'Civil / Structural Engineer', level: 'Mid → Senior', blurb: 'ASCE 7 loads, steel and concrete design, seismic, foundations, stormwater.' },
       { id: 'en-cpm', title: 'Construction Project Manager', level: 'Senior', blurb: 'Delivery methods, CPM schedules, cost, change orders, RFIs, safety, closeout.' }
     ]
+  },
+  {
+    id: 'bankins', field: 'bank', name: 'Banking & Insurance', short: 'Banking', glyph: 'BNK', color: '#1E40AF', tint: '#E5EAFB',
+    tag: 'Relationship managers, AML analysts, underwriters and claims',
+    positions: [
+      { id: 'bk-rm', title: 'Commercial Banker / Relationship Manager', level: 'Mid → Senior', blurb: 'Credit analysis, DSCR, CRE, structure, treasury, covenants, prospecting.' },
+      { id: 'bk-aml', title: 'AML / KYC Compliance Analyst', level: 'Mid → Senior', blurb: 'BSA, CDD/EDD, red flags, alerts, SARs, OFAC, beneficial ownership.' },
+      { id: 'bk-uw', title: 'Insurance Underwriter (Commercial P&C)', level: 'Mid → Senior', blurb: 'Loss ratios, COPE, pricing, loss runs, cyber, cat exposure, brokers.' },
+      { id: 'bk-claims', title: 'Claims Adjuster / Claims Manager', level: 'Mid → Manager', blurb: 'Coverage, reserves, liability, negotiation, fraud, bad faith, subrogation.' }
+    ]
   }
 ];
 
@@ -391,6 +401,8 @@ window.FIELDS = [
     families: ['hcare', 'lifesci'] },
   { id: 'eng', name: 'Engineering & Construction', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC', tag: 'Mechanical, electrical, civil/structural engineers and construction project managers',
     families: ['engcore'] },
+  { id: 'bank', name: 'Banking & Insurance', glyph: 'BNK', color: '#1E40AF', tint: '#E5EAFB', tag: 'Commercial banking, AML/KYC compliance, underwriting and claims',
+    families: ['bankins'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];

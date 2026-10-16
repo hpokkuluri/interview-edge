@@ -163,5 +163,9 @@ window.COUNTS = {
  "en-elec": 50,
  "en-civil": 50,
  "en-cpm": 50,
+ "bk-rm": 50,
+ "bk-aml": 50,
+ "bk-uw": 50,
+ "bk-claims": 50,
  "common": 40
 };
