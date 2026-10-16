@@ -116,5 +116,9 @@ window.COUNTS = {
  "sec-socmgr": 50,
  "sec-arch": 50,
  "sec-ciso": 50,
+ "inf-sys": 50,
+ "inf-net": 50,
+ "inf-dba": 50,
+ "inf-sa": 50,
  "common": 40
 };

@@ -265,13 +265,23 @@ window.CATALOG = [
       { id: 'sec-arch', title: 'Security Architect', level: 'Principal', blurb: 'Zero trust design, threat modeling, data protection, AI security.' },
       { id: 'sec-ciso', title: 'CISO / Head of Security', level: 'Executive', blurb: 'Strategy, board reporting, budget, regulation, crisis leadership.' }
     ]
+  },
+  {
+    id: 'infra', field: 'tech', name: 'Infrastructure & Architecture', short: 'Infra', glyph: 'INF', color: '#475569', tint: '#EEF1F5',
+    tag: 'Systems administrators, network engineers, DBAs and solutions architects',
+    positions: [
+      { id: 'inf-sys', title: 'Systems Administrator / Engineer', level: 'Mid → Senior', blurb: 'Linux, Windows, AD, virtualization, backups, patching, automation.' },
+      { id: 'inf-net', title: 'Network Engineer', level: 'Mid → Senior', blurb: 'Subnetting, routing, BGP/OSPF, firewalls, SD-WAN, Wi-Fi, cloud networking.' },
+      { id: 'inf-dba', title: 'Database Administrator (SQL Server / PostgreSQL)', level: 'Mid → Senior', blurb: 'Backups, HA/DR, tuning, indexes, locking, upgrades, migrations.' },
+      { id: 'inf-sa', title: 'Solutions Architect', level: 'Senior → Principal', blurb: 'Requirements, NFRs, integration, build vs buy, cost, cloud, AI designs.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
