@@ -102,5 +102,11 @@ window.COUNTS = {
  "da-llm": 50,
  "da-arch": 50,
  "da-head": 50,
+ "cl-eng": 50,
+ "cl-devops": 50,
+ "cl-sre": 50,
+ "cl-plat": 50,
+ "cl-k8s": 50,
+ "cl-arch": 50,
  "common": 40
 };

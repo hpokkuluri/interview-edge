@@ -239,13 +239,25 @@ window.CATALOG = [
       { id: 'da-arch', title: 'Data Architect', level: 'Principal', blurb: 'Platform architecture, modeling, governance, MDM, security, cost.' },
       { id: 'da-head', title: 'Head of Data & AI / CDO', level: 'Director · VP · CDO', blurb: 'Data and AI strategy, value, operating model, responsible AI, culture.' }
     ]
+  },
+  {
+    id: 'cloud', field: 'tech', name: 'Cloud & DevOps', short: 'Cloud', glyph: 'OPS', color: '#0284C7', tint: '#E3F2FA',
+    tag: 'Cloud engineers, DevOps, SRE, platform and Kubernetes engineers, cloud architects',
+    positions: [
+      { id: 'cl-eng', title: 'Cloud Engineer (AWS / Azure / GCP)', level: 'Mid → Senior', blurb: 'Networking, IAM, compute, storage, IaC, monitoring, cost, DR.' },
+      { id: 'cl-devops', title: 'DevOps Engineer', level: 'Mid → Senior', blurb: 'CI/CD, GitOps, containers, IaC, DevSecOps, incidents, DORA.' },
+      { id: 'cl-sre', title: 'Site Reliability Engineer (SRE)', level: 'Mid → Senior', blurb: 'SLOs, error budgets, incidents, observability, toil, resilience.' },
+      { id: 'cl-plat', title: 'Platform Engineer', level: 'Mid → Senior', blurb: 'Internal developer platforms, golden paths, Backstage, multi-tenancy.' },
+      { id: 'cl-k8s', title: 'Kubernetes Engineer', level: 'Mid → Senior', blurb: 'Architecture, networking, security, scaling, troubleshooting, upgrades.' },
+      { id: 'cl-arch', title: 'Cloud Architect', level: 'Principal', blurb: 'Landing zones, security, resilience, migration, FinOps, governance.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
