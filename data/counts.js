@@ -108,5 +108,13 @@ window.COUNTS = {
  "cl-plat": 50,
  "cl-k8s": 50,
  "cl-arch": 50,
+ "sec-soc": 50,
+ "sec-eng": 50,
+ "sec-cloud": 50,
+ "sec-iam": 50,
+ "sec-grc": 50,
+ "sec-socmgr": 50,
+ "sec-arch": 50,
+ "sec-ciso": 50,
  "common": 40
 };

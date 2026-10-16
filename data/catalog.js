@@ -251,13 +251,27 @@ window.CATALOG = [
       { id: 'cl-k8s', title: 'Kubernetes Engineer', level: 'Mid → Senior', blurb: 'Architecture, networking, security, scaling, troubleshooting, upgrades.' },
       { id: 'cl-arch', title: 'Cloud Architect', level: 'Principal', blurb: 'Landing zones, security, resilience, migration, FinOps, governance.' }
     ]
+  },
+  {
+    id: 'sec', field: 'tech', name: 'Cybersecurity', short: 'Security', glyph: 'SEC', color: '#B91C1C', tint: '#FBE9E9',
+    tag: 'SOC, security engineering, cloud security, IAM, GRC, architecture and CISO',
+    positions: [
+      { id: 'sec-soc', title: 'SOC Analyst', level: 'Mid', blurb: 'SIEM, triage, phishing, EDR, incident response, ATT&CK, hunting.' },
+      { id: 'sec-eng', title: 'Security Engineer', level: 'Mid → Senior', blurb: 'Zero trust, crypto, vuln management, AppSec, secrets, hardening.' },
+      { id: 'sec-cloud', title: 'Cloud Security Engineer', level: 'Senior', blurb: 'Shared responsibility, IAM, CSPM/CNAPP, guardrails, cloud incidents.' },
+      { id: 'sec-iam', title: 'IAM Engineer', level: 'Mid → Senior', blurb: 'SAML/OIDC, MFA, JML lifecycle, IGA, PAM, conditional access.' },
+      { id: 'sec-grc', title: 'GRC Analyst', level: 'Mid → Senior', blurb: 'ISO 27001, SOC 2, NIST, PCI, risk registers, audits, vendor risk.' },
+      { id: 'sec-socmgr', title: 'SOC Manager', level: 'Manager', blurb: '24x7 staffing, metrics, MDR, playbooks, detection engineering, IR.' },
+      { id: 'sec-arch', title: 'Security Architect', level: 'Principal', blurb: 'Zero trust design, threat modeling, data protection, AI security.' },
+      { id: 'sec-ciso', title: 'CISO / Head of Security', level: 'Executive', blurb: 'Strategy, board reporting, budget, regulation, crisis leadership.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
