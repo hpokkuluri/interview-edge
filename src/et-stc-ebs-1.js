@@ -1,133 +1,241 @@
-// Senior Oracle Technical Consultant (5–10 yrs) — EBS. Format: [topic, question, answer, 'B'|'D']
-QB['et-stc-ebs'] = (QB['et-stc-ebs'] || []).concat([
-['OAF', 'How do you extend an OA Framework page?',
-`- **Personalization** first (hide/show, defaults, required) via "Personalize Page".
-- **Extensions**: extend the **view object (VO)** or **controller (CO)** in JDeveloper, then **substitute** via JPX import.
-- Deploy class files to $JAVA_TOP and restart Apache/OACORE.
-- Avoid modifying seeded code; document substitutions for upgrades.`, 'D'],
+// Senior Oracle Technical Consultant — EBS (5–10 yrs). Format: [topic, question, answer, 'B'|'D']
+QB['et-stc-ebs'] = [
+["Design", "How do you design a RICEW object end to end?",
+`**Why they ask:** senior consultants own technical design.
 
-['OAF', 'What are the OA Framework components (MVC)?',
-`- **Model**: entity objects (EO), view objects (VO), application modules (AM).
-- **View**: page XML/regions and items (stored in MDS).
-- **Controller**: processRequest, processFormRequest, processFormData methods.
-- Know where logic belongs: validation in EO, queries in VO, page events in CO.`, 'D'],
+**Answer:** Understand the business requirement and process, identify the standard Oracle option first (interface, API, personalization), define data flow and mappings, error handling and logging, security, performance (volumes), restart/recovery, and deployment approach; document in an MD070 technical design; review with functional leads; build with standards; unit test with edge cases; and support SIT/UAT.
 
-['Workflow', 'How would you customize the PO approval workflow?',
-`- Prefer configuration: **approval hierarchy**, document types, **AME** (if used).
-- If needed, copy the workflow process into a custom item type or use **custom function activities** in allowed customization points.
-- Test with different amounts/hierarchies; ensure the **Workflow Background Engine** handles deferred activities.
-- Monitor stuck items and errors.`, 'D'],
+Tip: "Standard first, custom last."`, 'D'],
 
-['AME', 'What is AME and how do you configure an approval rule?',
-`- **Approvals Management Engine** defines approvals for transactions (e.g. AP invoices, requisitions, HR).
-- Components: **attributes** (e.g. invoice amount), **conditions** (amount > 10,000), **action types** (supervisory level, position, approver group), **approval groups**, **rules**.
-- Test with the AME test workbench.`, 'D'],
+["APIs", "How do you choose between interfaces and APIs?",
+`**Answer:** Open interfaces suit batch loads with built-in validation and error reporting; public APIs suit transactional, real-time processing from custom code or middleware. Check Oracle's Integration Repository (iRep) for supported APIs and interfaces.
 
-['Performance', 'How do you tune a long-running concurrent program?',
-`- **Enable trace** with binds/waits; analyze with **TKPROF**.
-- Identify top SQL by elapsed time; check plans.
-- Fix: indexes, rewrite SQL, **BULK COLLECT/FORALL**, reduce commits in loops, avoid row-by-row API calls when interfaces exist, parallelize by org/date.
-- Check **concurrent manager** queues and incompatibilities.
-- Measure before/after.`, 'D'],
+Tip: iRep is the source of truth.`, 'D'],
 
-['Performance', 'What is SQL Plan Management or hints, and when would you use them?',
-`- **Hints** force optimizer choices (INDEX, LEADING, USE_NL) — last resort, can break after upgrades.
-- **SQL Plan Baselines** (SPM) lock in good plans for critical SQL without changing code.
-- **SQL Profiles** from the Tuning Advisor.
-- Prefer fixing stats and SQL first; coordinate with DBAs.`, 'D'],
+["APIs", "How do you call Oracle APIs correctly?",
+`**Answer:** Initialize context (FND_GLOBAL.APPS_INITIALIZE, MO_GLOBAL.SET_POLICY_CONTEXT), populate record types, call with p_init_msg_list = FND_API.G_TRUE, check x_return_status (S/E/U), loop through FND_MSG_PUB messages on error, and commit/rollback appropriately.
 
-['Conversions', 'How do you design a high-volume conversion for open AR transactions?',
-`- Staging tables; validation (customers, sites, terms, accounts, periods).
-- Populate **RA_INTERFACE_LINES_ALL / DISTRIBUTIONS / SALESCREDITS**; batch source for conversion with appropriate settings (e.g. allow invoice numbering from legacy).
-- Run **AutoInvoice** in parallel by batch.
-- Error report; reconcile aging by customer.
-- Rehearse with production volumes for timing.`, 'D'],
+Tip: Show message handling.`, 'D'],
 
-['Integration', 'What integration options does EBS have?',
-`- **Open interfaces** and **public APIs** (PL/SQL).
-- **Integrated SOA Gateway (ISG)** to expose APIs as SOAP/REST services.
-- **Business events** (Workflow Business Event System) for outbound notifications.
-- **Database links**, files, **Oracle AQ**.
-- Middleware: **OIC**, SOA Suite, MuleSoft.`, 'D'],
+["Integration Repository", "What is the Oracle Integration Repository?",
+`**Answer:** A catalog within EBS of supported integration interfaces — PL/SQL APIs, open interfaces, business events, XML gateway messages and web services — with documentation. Integrated SOA Gateway can expose them as REST/SOAP services.
 
-['Integration', 'How would you integrate EBS with Oracle Fusion during a phased migration?',
-`- Identify flows (e.g. EBS POs/receipts → Fusion AP; EBS inventory accounting → Fusion GL).
-- **Extract** from EBS via APIs/views or business events; transform in **OIC**; load to Fusion via **FBDI/REST**.
-- Master data sync (suppliers, items, COA mapping).
-- Reconciliation reports both sides; temporary — plan retirement.`, 'D'],
+Tip: Supported vs unsupported APIs.`, 'D'],
 
-['Upgrades', 'What technical work is involved in an EBS 12.1 to 12.2 upgrade?',
-`- **Online patching (ADOP)** and **Edition-Based Redefinition (EBR)** — custom code must comply (no direct references to editioned objects in non-editioned contexts, use editioning views, register custom schemas).
-- Run **readiness checks** (Online Patching Readiness reports, global standards compliance checker).
-- Fix custom code violations; retest custom objects.
-- Move custom code deployment into ADOP cycles.`, 'D'],
+["Business Events", "How do you use business events in EBS?",
+`**Answer:** Subscribe to seeded events (e.g. oracle.apps.ar.hz.CustAccount.create) with a PL/SQL rule function or workflow, or raise custom events with WF_EVENT.RAISE. Subscriptions can be synchronous or deferred via the Workflow Deferred Agent Listener.
 
-['Security', 'How do you secure custom objects and data in EBS?',
-`- Register functions/menus and grant to responsibilities (not SYSADMIN).
-- Use **data security** (MOAC, security profiles, VPD where needed).
-- Avoid hard-coded passwords; use **FND_VAULT** or secure storage.
-- Review custom code for SQL injection (dynamic SQL with bind variables).`, 'D'],
+Tip: Event-driven integrations without triggers.`, 'D'],
 
-['Reports', 'How do you convert legacy Oracle Reports to BI Publisher?',
-`- Use the **Oracle Reports → BI Publisher conversion utility** to generate data templates and RTF layouts.
-- Or keep the RDF as data source (XML output) and build RTF templates.
-- Rebuild complex formatting; test totals and page breaks.
-- Prepares for future Fusion BIP skills.`, 'D'],
+["Workflow", "How do you customize an Oracle Workflow process?",
+`**Answer:** Download the item type (.wft) with Workflow Builder, copy seeded processes into custom ones where possible, add functions (PL/SQL with standard signature itemtype, itemkey, actid, funcmode, resultout), set attributes, upload, and test. Monitor with Status Monitor and wf tables.
 
-['Design', 'What goes into an MD.070 technical design?',
-`- Overview, assumptions, dependencies.
-- Objects list (tables, packages, programs, templates, AOL registrations).
-- Detailed logic (pseudo-code), error handling, logging.
-- Parameters, schedules, performance considerations.
-- Installation steps (FNDLOAD, XDOLoader, DDL scripts) and rollback.
-- Unit test plan.`, 'B'],
+Tip: Function signature knowledge.`, 'D'],
 
-['Code Quality', 'What standards do you apply in PL/SQL code reviews?',
-`- Naming conventions and package structure.
-- Exception handling with logging; no WHEN OTHERS THEN NULL.
-- Bind variables; no hard-coding (use lookups/profiles).
-- Bulk processing; commits at the right granularity.
-- Comments and version history; unit tests.`, 'B'],
+["Workflow", "How do you troubleshoot a stuck workflow?",
+`**Answer:** Check WF_ITEM_ACTIVITY_STATUSES for errored activities, workflow background process and agent listeners running, notification mailer status, and error messages; retry or rewind via Status Monitor; fix underlying data.
 
-['Troubleshooting', 'Users report workflow notifications are not being received. What do you check?',
-`- **Workflow Notification Mailer** status (running? errors?).
-- Mail server/SMTP connectivity and IMAP for responses.
-- User email addresses and notification preference (Plain text/HTML mail vs "Do not send").
-- Queue backlog (WF_NOTIFICATION_OUT), Java mailer logs.
-- Background engines and deferred activities.`, 'D'],
+Tip: Background engines often are the cause.`, 'D'],
 
-['Troubleshooting', 'Concurrent requests are stuck in Pending Standby. Why?',
-`- **Incompatibilities**: a conflicting program is running.
-- **Concurrent manager** not running or not assigned to that program (specialization rules).
-- Too few manager processes (queue full).
-- Check Administer Concurrent Managers and FND_CONCURRENT_REQUESTS status codes.`, 'D'],
+["Performance", "How do you approach performance tuning in EBS?",
+`**Answer:** Identify the slow component (concurrent program, form, OAF page), trace with binds and waits, analyze with TKPROF and execution plans (DBMS_XPLAN), check statistics, indexes and bind peeking, rewrite SQL (avoid functions on indexed columns, implicit conversions), use bulk processing, and parallelize where appropriate.
 
-['Data Fixes', 'How do you approach a data fix in production?',
-`- Prefer **standard APIs or screens** to correct data.
-- If a direct update is unavoidable: Oracle **data fix scripts** from Support or approved scripts only, backup affected rows, run in test first, get approvals, run in a controlled window, verify.
-- Document for audit (SOX).`, 'D'],
+**Example:** replacing a row-by-row cursor update with FORALL cut runtime from 3 hours to 9 minutes.
 
-['Behavioral', 'Tell me about a performance problem you solved.',
-`Example structure:
-- A month-end program took 6 hours.
-- Trace showed row-by-row API calls and a missing index on a custom table.
-- You rewrote with BULK COLLECT/FORALL and an interface import, added the index.
-- Runtime dropped to 25 minutes; close improved by half a day.`, 'B'],
+Tip: A concrete example.`, 'D'],
 
-['Behavioral', 'How do you estimate technical work (RICEW)?',
-`- Classify objects by type and complexity (simple/medium/complex).
-- Use historical effort per type; add design, testing, documentation, migration.
-- Identify risks (unclear specs, data volume, third parties).
-- Review estimates with the functional lead.`, 'B'],
+["Performance", "What is the impact of bind variables?",
+`**Answer:** Bind variables let Oracle reuse parsed SQL, reducing hard parsing and CPU; they also avoid SQL injection. Watch for bind peeking issues with skewed data — adaptive cursor sharing helps in newer versions.
 
-['Cloud', 'What do you know about running EBS on OCI?',
-`- EBS can be migrated to **OCI** (lift-and-shift) using **EBS Cloud Manager** for provisioning, cloning and backups.
-- Benefits: infrastructure flexibility, automation, Autonomous/Exadata database options.
-- Customizations stay; consider network, security, DR and licensing.`, 'D'],
+Tip: Shared pool efficiency.`, 'D'],
 
-['Migration', 'How would you prepare EBS customizations for a move to Fusion?',
-`- Inventory customizations (CEMLI/RICEW) with usage.
-- Classify: retire, replace with Fusion standard, rebuild as extension (BIP, OIC, VBS).
-- Data model mapping (EBS tables → Fusion objects/APIs).
-- Rebuild integrations on OIC; reports on BIP/OTBI.`, 'D']
-]);
+["Performance", "How do you parallelize a large data process?",
+`**Answer:** Split work by ranges or org IDs into multiple concurrent child requests (parent-child with FND_REQUEST sub-requests), use DBMS_PARALLEL_EXECUTE, or parallel DML/queries where appropriate — balancing load and avoiding locking conflicts.
+
+Tip: DBMS_PARALLEL_EXECUTE is a strong mention.`, 'D'],
+
+["OAF", "How do you extend an OAF controller safely?",
+`**Answer:** Create a custom controller class extending the seeded one, override processRequest/processFormRequest, call super first, add logic, deploy class files to $JAVA_TOP, and attach via personalization (Controller Class property). Test after patches.
+
+Tip: Super call first.`, 'D'],
+
+["OAF", "How do you substitute a View Object?",
+`**Answer:** Create a new VO extending the seeded VO in JDeveloper with additional attributes or modified query, create a substitution in the .jpx file, import it with JPXImporter, deploy files, and bounce the application tier.
+
+Tip: Mention bounce requirement.`, 'D'],
+
+["Forms", "When do you use CUSTOM.pll vs Forms Personalization?",
+`**Answer:** Forms Personalization for declarative changes (property settings, messages, simple validations, builtins). CUSTOM.pll for complex logic needing PL/SQL across events. Personalization is easier to maintain and upgrade-safe.
+
+Tip: Prefer personalization.`, 'B'],
+
+["XML Gateway", "What is XML Gateway?",
+`**Answer:** EBS component for exchanging XML documents (e.g. OAG standard, EDI-like messages) with trading partners — defining maps, trading partner setup, and inbound/outbound processing via queues.
+
+Tip: B2B integrations.`, 'D'],
+
+["EDI", "How is EDI handled with EBS?",
+`**Answer:** Through EDI translators/middleware converting X12/EDIFACT to EBS interfaces (Order Import for 850s, Payables interface for 810s, ASNs 856) or e-Commerce Gateway in older setups, plus XML Gateway.
+
+Tip: Mention common transaction sets.`, 'D'],
+
+["SOA", "How have you used Oracle SOA Suite or OIC with EBS?",
+`**Answer:** EBS adapter for calling PL/SQL APIs and subscribing to business events, file and DB adapters, BPEL orchestrations, and OIC with the EBS adapter via ISG or the on-premises connectivity agent.
+
+Tip: Connectivity agent for OIC.`, 'D'],
+
+["Security", "How do you secure custom code and data access?",
+`**Answer:** Use APPS-standard security (responsibilities, MOAC), avoid hard-coded credentials, use proxy users for integrations, apply grants via RBAC, and protect sensitive data (masking in non-prod).
+
+Tip: Masking clones.`, 'D'],
+
+["Cloning", "What should developers check after an EBS clone?",
+`**Answer:** Profile options pointing to non-prod endpoints, workflow mailer disabled or redirected, scheduled requests on hold, integration endpoints and credentials, printers, and data masking.
+
+Tip: Avoid emailing real suppliers from test.`, 'D'],
+
+["R12.2", "What coding standards apply for R12.2 online patching?",
+`**Answer:** Don't reference editioned objects incorrectly; use editioning views for custom tables (via AD_ZD_TABLE.UPGRADE); avoid DDL that breaks online patching; register custom schemas; use adop for deployment; and follow Oracle's "Developing and Deploying Customizations" guide.
+
+Tip: AD_ZD utilities.`, 'D'],
+
+["R12.2", "What happens in an adop cycle?",
+`**Answer:** prepare (create patch edition), apply (patches applied to patch edition), finalize (prepare for cutover), cutover (switch editions, short downtime), cleanup (remove obsolete objects). Users keep working on the run edition until cutover.
+
+Tip: Downtime only at cutover.`, 'D'],
+
+["SLA", "How do you customize accounting with Subledger Accounting?",
+`**Answer:** Use SLA setups — journal line types, account derivation rules, mapping sets, journal entry descriptions, and application accounting definitions — copied from seeded definitions, validated and assigned to subledger accounting methods. Avoid custom code for accounting logic.
+
+Tip: Functional-technical crossover.`, 'D'],
+
+["SLA", "How do you trace a GL journal back to the source transaction?",
+`**Answer:** GL_JE_LINES → GL_IMPORT_REFERENCES (gl_sl_link_id, gl_sl_link_table) → XLA_AE_LINES → XLA_AE_HEADERS → XLA_EVENTS → XLA_TRANSACTION_ENTITIES (source_id_int_1 = transaction ID).
+
+Tip: Classic drilldown question.`, 'D'],
+
+["Reports", "How do you design a high-volume report?",
+`**Answer:** Optimize SQL, use data templates with efficient queries, output CSV or Excel for large data, consider pre-aggregation in staging tables via a scheduled program, and schedule off-peak.
+
+Tip: Separate extraction from formatting.`, 'D'],
+
+["Conversions", "How do you design a conversion strategy?",
+`**Answer:** Inventory objects, define load sequence (setup → master data → open transactions → balances), mapping and cleansing, automated scripts with staging tables and validations, error reporting, reconciliation, mock loads with timings, and cutover plan.
+
+Tip: Staging tables with validation status.`, 'D'],
+
+["Conversions", "How do you convert open AR invoices?",
+`**Answer:** Load into RA_INTERFACE_LINES_ALL and RA_INTERFACE_DISTRIBUTIONS_ALL with batch source set to an imported source, run AutoInvoice, review RA_INTERFACE_ERRORS_ALL, reconcile totals to legacy aging, and use a clearing account for conversion offset.
+
+Tip: Conversion clearing accounts.`, 'D'],
+
+["Upgrade", "How do you assess customizations for an EBS-to-Fusion migration?",
+`**Answer:** Inventory customizations, classify (retire, replace with standard Fusion functionality, rebuild as extension/integration/report), estimate effort, and design the target with SaaS principles.
+
+Tip: Many customizations can be retired.`, 'D'],
+
+["Mentoring", "How do you review a junior developer's code?",
+`**Answer:** Check standards, error handling, performance (bulk, indexes), security, logging, and maintainability; explain improvements and why.
+
+Tip: Teaching mindset.`, 'B'],
+
+["Design", "How do you handle restartability in batch programs?",
+`**Answer:** Process in committed chunks, track processing status per record in staging tables, skip already-processed records on rerun, and log errors without stopping the whole batch.
+
+Tip: Robust design.`, 'D'],
+
+["Design", "How do you design error handling for interfaces?",
+`**Answer:** Staging tables with status and error message columns, validations before calling APIs/interfaces, error reports emailed to owners, reprocessing ability after correction, and summary counts in logs.
+
+Tip: Operational supportability.`, 'D'],
+
+["Locks", "How do you resolve locking issues in EBS?",
+`**Answer:** Identify blocking sessions (V$LOCK, V$SESSION, DBA_BLOCKERS), understand which program holds locks, avoid long transactions, commit appropriately, and schedule conflicting programs apart (incompatibilities).
+
+Tip: Concurrent program incompatibilities.`, 'D'],
+
+["Incompatibilities", "What are concurrent program incompatibilities?",
+`**Answer:** Rules preventing certain programs from running at the same time (e.g. a custom program and Create Accounting) to avoid data conflicts or locking; defined on the program as domain or global incompatibilities.
+
+Tip: Practical control.`, 'D'],
+
+["Testing", "How do you plan technical testing?",
+`**Answer:** Unit tests with edge cases, volume tests, negative tests, integration tests with connected systems, regression after patches, and documented results.
+
+Tip: Volume testing for interfaces.`, 'B'],
+
+["Patches", "How do Oracle patches affect custom code?",
+`**Answer:** Patches can change seeded objects your code depends on — APIs, views, tables, OAF pages. Review patch impact (readme, file lists), retest customizations, and maintain a customization inventory.
+
+Tip: Impact analysis.`, 'D'],
+
+["Security", "How do you implement row-level security in custom reports?",
+`**Answer:** Use secured views (MOAC-enabled), join to security tables based on the user's responsibility or security profile, or VPD policies for custom tables.
+
+Tip: Leverage standard security.`, 'D'],
+
+["Behavioral", "Tell me about a difficult performance problem you solved.",
+`**Sample answer:** "AutoInvoice was taking 5 hours for 200,000 lines. I analyzed the trace, found missing indexes on interface columns used in grouping rules and stale statistics, worked with the DBA to fix them, and split the run by batch source. Runtime fell to 45 minutes."
+
+Tip: Root cause + collaboration.`, 'B'],
+
+["Behavioral", "Tell me about leading a technical workstream.",
+`**Sample answer:** "I led five developers on 60 RICEW objects for an R12.2 upgrade — set standards, reviewed designs, tracked progress daily and delivered on schedule with a low defect rate."
+
+Tip: Leadership readiness.`, 'B'],
+
+["Behavioral", "How do you handle a disagreement with a functional consultant?",
+`**Answer:** Understand their requirement and the business need, explain technical constraints and options, and find the solution that meets the need with least customization.
+
+Tip: Collaboration.`, 'B'],
+
+["Cloud", "How would you prepare for moving from EBS to Fusion as a technical consultant?",
+`**Answer:** Learn FBDI/HDL, REST/SOAP services, OIC, BIP in Fusion, OTBI, VB Studio, and SaaS security; map EBS customizations to Fusion patterns.
+
+Tip: Show proactive learning.`, 'B'],
+
+["Hybrid", "How do you integrate EBS with Fusion during a phased migration?",
+`**Answer:** OIC with EBS adapter (via connectivity agent) and ERP Cloud adapter — e.g. EBS financials with Fusion procurement or HCM — with master data synchronization and clear system-of-record decisions.
+
+Tip: Coexistence scenarios.`, 'D'],
+
+["DBA Collaboration", "How do you work with DBAs?",
+`**Answer:** Share traces and SQL for tuning, coordinate deployments and patch windows, request statistics or index changes with justification, and follow change management.
+
+Tip: Partnership.`, 'B'],
+
+["Documentation", "What does an MD070 contain?",
+`**Answer:** Technical design document: overview, approach, objects (tables, packages, programs), logic, data mapping, error handling, security, performance and testing considerations.
+
+Tip: AIM methodology.`, 'B'],
+
+["Estimation", "How do you estimate a complex interface?",
+`**Answer:** Break down into analysis, design, staging and validation, API calls, error handling, reports, unit test and deployment; adjust by complexity and data volume; add contingency.
+
+Tip: Task breakdown.`, 'D'],
+
+["Career", "Where do you want to go next?",
+`**Answer:** Technical lead or architect, guiding EBS-to-cloud transitions and integration strategy.
+
+Tip: Leadership path.`, 'B'],
+
+["Closing", "Why should we hire you?",
+`**Sample answer:** "I deliver robust, upgrade-safe EBS solutions — APIs, interfaces, workflows, OAF and BI Publisher — tune performance, and lead junior developers. I'm also building Fusion and OIC skills for your cloud roadmap."
+
+Tip: Depth + direction.`, 'B'],
+
+["APIs", "Give examples of commonly used EBS public APIs.",
+`**Answer:** HZ_PARTY_V2PUB / HZ_CUST_ACCOUNT_V2PUB (customers), AP_SUPPLIERS_PUB / POS_VENDOR_PUB (suppliers), PO_DOCUMENT_UPDATE_GRP (PO changes), OE_ORDER_PUB.PROCESS_ORDER (sales orders), INV_ITEM_GRP / EGO_ITEM_PUB (items), GL interface for journals, AR_RECEIPT_API_PUB (receipts).
+
+Tip: Rapid recall.`, 'D'],
+
+["Order Import", "How does Order Import work?",
+`**Answer:** Load OE_HEADERS_IFACE_ALL and OE_LINES_IFACE_ALL (plus price adjustments, etc.), run Order Import concurrent program, review errors in Order Import Corrections window, then orders follow workflow.
+
+Tip: Common interface.`, 'D'],
+
+["Security", "How do you protect sensitive data like bank accounts in custom code?",
+`**Answer:** Use Oracle Payments secure storage (encryption via IBY), avoid storing in custom tables, restrict reports, and mask data in non-production.
+
+Tip: PCI/PII awareness.`, 'D']
+];

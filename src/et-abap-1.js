@@ -1,103 +1,249 @@
 // SAP ABAP Developer (all levels). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['et-abap'] = (QB['et-abap'] || []).concat([
-['ABAP Basics', 'What are the main types of ABAP programs and objects?',
-`- **Executable reports**, **module pools** (dialog), **function groups/modules**, **classes** (OO ABAP), **interfaces**, **includes**.
-- Data dictionary (SE11): **tables, structures, data elements, domains, views, search helps, lock objects**.
-- Modern: **CDS views**, **AMDP**, **RAP business objects**.`, 'B', 'E'],
+QB['et-abap'] = [
+["Fundamentals", "What is ABAP and where is it used?",
+`**Why they ask:** baseline.
 
-['ABAP Basics', 'What is the difference between transparent, pooled and cluster tables?',
-`- **Transparent**: one-to-one with a database table — standard for application data.
-- **Pooled/cluster**: legacy — multiple logical tables stored in one physical table (e.g. BSEG was a cluster table in ECC).
-- In **S/4HANA**, most pooled/cluster tables were converted to transparent tables.`, 'B', 'E'],
+**Answer:** ABAP (Advanced Business Application Programming) is SAP's language for building and extending SAP applications — reports, interfaces, enhancements, forms, and services on SAP NetWeaver/S/4HANA and SAP BTP ABAP Environment. Modern ABAP includes ABAP Objects, CDS views, and the ABAP RESTful Application Programming Model (RAP).
 
-['ABAP Basics', 'What are internal tables and their types?',
-`- In-memory tables in ABAP programs.
-- **Standard** (index access, linear search unless sorted/binary search), **sorted** (always sorted by key, binary search), **hashed** (unique key, constant-time access).
-- Choose hashed for large lookups by full key; sorted for range access; standard for sequential processing.`, 'B', 'E'],
+Tip: Mention classic vs modern ABAP.`, 'B', 'E'],
 
-['Performance', 'What are the key rules for ABAP performance?',
-`- **Push down** logic to the database (CDS, Open SQL with aggregates/joins) — especially on HANA.
-- Avoid SELECT inside loops; use **FOR ALL ENTRIES** (check non-empty) or joins.
-- Select only needed fields; use WHERE on keys/indexes.
-- Use **hashed/sorted** internal tables for lookups.
-- Use **SAT/ST05 (SQL trace)** and **SQL Monitor (SQLM)** to find hotspots.`, 'D', 'M'],
+["Fundamentals", "What are the main ABAP object types you've built?",
+`**Answer:** Reports (classical and ALV), function modules and classes, BAPIs, enhancements (user exits, BAdIs, enhancement points), interfaces (IDocs, RFC, OData), forms (Smart Forms, Adobe Forms), data dictionary objects (tables, structures, views), and CDS views and RAP business objects.
 
-['Enhancements', 'What enhancement techniques exist in SAP?',
-`- **User exits** and **customer exits** (legacy).
-- **BAdIs** (classic and new/kernel BAdIs) — object-oriented, multiple implementations.
-- **Enhancement points/sections** (implicit/explicit).
-- **Key user extensibility** and **developer extensibility** in S/4HANA (clean core).
-Prefer released BAdIs/extension points; avoid modifications.`, 'D', 'M'],
+Tip: Give examples from projects.`, 'B', 'E'],
 
-['Interfaces', 'What are IDocs and how do you troubleshoot a failed IDoc?',
-`- **IDoc**: intermediate document for asynchronous data exchange (ALE/EDI) — basic type, message type, segments.
-- Status codes show processing (e.g. 51 = application error inbound, 53 = posted).
-- Tools: **WE02/WE05** to view, **BD87** to reprocess, **WE19** to test, **WE20** partner profiles.
-- Fix data or configuration; reprocess. In S/4, **AIF** offers business-friendly monitoring.`, 'D', 'M'],
+["Data Dictionary", "What is the difference between a transparent table, structure and view?",
+`**Answer:** A **transparent table** maps 1:1 to a database table and stores data. A **structure** defines fields but stores no data (used in programs and interfaces). **Views** (database, maintenance, projection, help views — and now CDS views) combine or restrict data from tables.
 
-['Interfaces', 'What is the difference between BAPI and RFC?',
-`- **RFC**: remote function call protocol to call function modules across systems.
-- **BAPI**: standardized, released business API (RFC-enabled function module tied to a business object), e.g. BAPI_PO_CREATE1.
-- BAPIs require **BAPI_TRANSACTION_COMMIT**; check RETURN tables for errors.`, 'B', 'E'],
+Tip: Mention CDS replacing classic views.`, 'B', 'E'],
 
-['S/4HANA', 'What are CDS views and why are they important in S/4HANA?',
-`- **Core Data Services** views define semantic data models in the database (annotations, associations, access control).
-- Power **Fiori apps, analytics, OData services** and RAP.
-- Code pushdown to HANA for performance.
-- **VDM** (virtual data model): basic, composite, consumption views; released **C1** views for extensions.`, 'D', 'M'],
+["Data Dictionary", "What are domains and data elements?",
+`**Answer:** A **domain** defines technical attributes (data type, length, value range). A **data element** describes semantic meaning (field labels, documentation) and references a domain. Fields use data elements.
 
-['S/4HANA', 'What is RAP (ABAP RESTful Application Programming Model)?',
-`- Framework to build **business objects and OData services** with CDS (data model), **behavior definitions** (CRUD, actions, validations, determinations) and **behavior implementations** (ABAP classes).
-- Managed vs unmanaged scenarios; draft handling.
-- Basis for **Fiori Elements** apps and **developer extensibility** (ABAP Cloud).`, 'D', 'S'],
+Tip: Reuse and consistency.`, 'B', 'E'],
 
-['S/4HANA', 'What is ABAP Cloud and the clean core approach?',
-`- **ABAP Cloud**: development model using only **released APIs** and objects, with restricted language version — upgrade-safe.
-- Used in S/4HANA Cloud, BTP ABAP Environment, and on-stack developer extensibility in private/on-prem S/4.
-- **Clean core**: keep custom code decoupled from SAP internals; use **ATC** checks to enforce.`, 'D', 'S'],
+["Open SQL", "How do you write efficient Open SQL?",
+`**Answer:** Select only needed fields, use WHERE clauses on indexed fields, avoid SELECT inside loops (use FOR ALL ENTRIES or JOINs), use aggregate functions in the database, and check for empty driver tables before FOR ALL ENTRIES. In S/4HANA, push logic to the database (code-to-data) via CDS and AMDP.
 
-['S/4HANA', 'What custom code changes are needed when converting ECC to S/4HANA?',
-`- Run **ATC** with S/4HANA readiness checks (simplification database).
-- Fix: data model changes (e.g. MATDOC instead of MKPF/MSEG, ACDOCA, material number length 40, BP instead of customer/vendor master), removed transactions, SELECT without ORDER BY assumptions on HANA.
-- Remove unused code (use usage data from SCMON/UPL).
-- Retest.`, 'D', 'S'],
+Tip: "No SELECT in LOOP."`, 'B', 'M'],
 
-['OO ABAP', 'Explain classes, interfaces and inheritance in ABAP.',
-`- **Class**: attributes and methods with visibility (public/protected/private); static vs instance.
-- **Interface**: contract implemented by classes (polymorphism).
-- **Inheritance**: subclasses reuse and redefine methods; abstract/final classes.
-- Use for testable, modular code (unit tests with ABAP Unit, test doubles).`, 'B', 'E'],
+["Open SQL", "What's the risk with FOR ALL ENTRIES?",
+`**Answer:** If the driver internal table is empty, the WHERE condition is ignored and all records are selected. Always check \`IF itab IS NOT INITIAL\`. Also remove duplicates to reduce load.
 
-['Testing', 'How do you unit test ABAP code?',
-`- **ABAP Unit** test classes (FOR TESTING) with setup/teardown.
-- Isolate dependencies with **test doubles** (OSQL test environment, CDS test environment, interface injection).
-- Run in ATC/CI; aim at business logic.`, 'D', 'M'],
+Tip: Classic trap.`, 'B', 'M'],
 
-['Fiori', 'How do you expose data to a Fiori app?',
-`- Build a **CDS consumption view** with UI annotations, expose via **OData** (SADL/RAP service binding), and generate a **Fiori Elements** app (list report/object page).
-- Or create a custom **SAPUI5** app with OData V2/V4 services.
-- Configure Fiori launchpad tiles and roles.`, 'D', 'M'],
+["Internal Tables", "What types of internal tables exist?",
+`**Answer:** **Standard** (index access, linear search unless sorted with BINARY SEARCH), **sorted** (always sorted by key, binary search), and **hashed** (unique key, constant-time access). Choose based on access pattern.
 
-['Tools', 'Which development tools do you use for modern ABAP?',
-`- **ABAP Development Tools (ADT) in Eclipse** — required for CDS/RAP.
-- SE80/SE38 for classic objects (legacy).
-- **abapGit** for version control; **gCTS** in some landscapes.
-- ATC, SAT, ST05, SQLM for quality and performance.`, 'B', 'E'],
+Tip: Hashed for large lookups.`, 'B', 'E'],
 
-['Transport', 'How do transports work for ABAP developments?',
-`- Changes recorded in **transport requests** (workbench) in DEV.
-- Release and import to QAS/PRD via STMS following the transport route.
-- Manage dependencies and sequencing; avoid mixing unrelated changes.
-- ChaRM or Cloud ALM for controlled change management.`, 'B', 'E'],
+["Modern ABAP", "What new ABAP syntax do you use?",
+`**Answer:** Inline declarations (DATA(...)), VALUE and CORRESPONDING constructors, string templates, table expressions (itab[ key = ... ]), COND and SWITCH, FOR loops in constructors, REDUCE, and new Open SQL with host variables (@).
 
-['Leadership', 'How would you lead an ABAP team through an S/4HANA program?',
-`- Custom code **inventory and remediation factory** (ATC, usage data).
-- Standards for **clean core**: RAP/CDS, released APIs, side-by-side on BTP when appropriate.
-- Code reviews and ABAP Unit coverage for new code.
-- Training on ADT/RAP; pairing seniors with juniors.`, 'D', 'X'],
+Tip: Show readability benefits.`, 'B', 'M'],
 
-['Behavioral', 'Tell me about a performance issue you fixed in ABAP.',
-`- Report taking hours due to SELECT in loops on large tables.
-- Rewrote with CDS/joins and hashed tables; added proper WHERE conditions.
-- Runtime dropped dramatically; added SQLM monitoring.`, 'B', 'M']
-]);
+["OOP", "How do you use ABAP Objects?",
+`**Answer:** Classes and interfaces, inheritance, polymorphism, events, exception classes (CX_), and design patterns (factory, singleton). Prefer classes over function modules in new code for testability and reuse.
+
+Tip: Mention unit tests with ABAP Unit.`, 'B', 'M'],
+
+["Testing", "What is ABAP Unit?",
+`**Answer:** SAP's unit testing framework — test classes with FOR TESTING methods, assertions (CL_ABAP_UNIT_ASSERT), test doubles and dependency injection. Run from ADT or SE80; include in ATC checks.
+
+Tip: Testability through interfaces.`, 'D', 'M'],
+
+["Enhancements", "What enhancement options exist in SAP?",
+`**Answer:** User exits (older), customer exits (SMOD/CMOD), BAdIs (classic and new kernel-based), enhancement points and sections (implicit/explicit), and in S/4HANA/Cloud: key user extensibility and developer extensibility with released APIs.
+
+Tip: Prefer BAdIs and released APIs.`, 'B', 'M'],
+
+["Enhancements", "How do you find the right BAdI for a requirement?",
+`**Answer:** Search in SPRO documentation, use SE18/SE19, set a breakpoint in CL_EXITHANDLER=>GET_INSTANCE (classic BAdIs) or search for GET BADI statements, check SAP notes, and review the Business Accelerator Hub for released objects.
+
+Tip: Practical debugging approach.`, 'D', 'M'],
+
+["Interfaces", "What are IDocs and how do they work?",
+`**Answer:** Intermediate Documents for asynchronous data exchange (EDI, ALE). Components: IDoc type and segments, message type, partner profiles (WE20), ports (WE21), and process codes. Monitor with WE02/WE05, reprocess with BD87.
+
+Tip: Mention a custom IDoc extension.`, 'B', 'M'],
+
+["Interfaces", "What is a BAPI?",
+`**Answer:** A Business Application Programming Interface — a standardized, RFC-enabled function module for business objects (e.g. BAPI_SALESORDER_CREATEFROMDAT2). Use BAPI_TRANSACTION_COMMIT after successful calls and check the RETURN table.
+
+Tip: Commit handling.`, 'B', 'M'],
+
+["Interfaces", "RFC types: synchronous, asynchronous, transactional, queued?",
+`**Answer:** **sRFC** waits for the response; **aRFC** runs in parallel without waiting; **tRFC** guarantees exactly-once execution; **qRFC** adds ordered processing in queues. bgRFC is the newer background RFC framework.
+
+Tip: Mention bgRFC.`, 'D', 'M'],
+
+["OData", "How do you build an OData service?",
+`**Answer:** Classic approach with SEGW (Gateway Service Builder): define entity types and sets, generate runtime classes, implement CRUD methods in DPC_EXT, register in /IWFND/MAINT_SERVICE. Modern approach: CDS views and RAP with service definitions and bindings (OData V2/V4).
+
+Tip: RAP is the future.`, 'D', 'M'],
+
+["CDS", "What are CDS views and why are they important in S/4HANA?",
+`**Answer:** Core Data Services define semantically rich data models in the database layer with annotations for analytics, UI (Fiori Elements), OData exposure and access control (DCL). They push logic to HANA (code-to-data) and form the virtual data model of S/4HANA.
+
+Tip: Mention view entities (newer CDS syntax).`, 'D', 'M'],
+
+["CDS", "What are CDS annotations used for?",
+`**Answer:** Metadata for behavior: @UI for Fiori layouts, @Analytics for analytical queries, @ObjectModel, @AccessControl, @Semantics, @OData.publish (older). They let frameworks generate UIs and services automatically.
+
+Tip: Annotation-driven development.`, 'D', 'M'],
+
+["AMDP", "What is AMDP?",
+`**Answer:** ABAP Managed Database Procedures — methods implemented in SQLScript that run directly in HANA for complex processing, managed in the ABAP lifecycle. Use when CDS can't express logic efficiently.
+
+Tip: Use sparingly.`, 'D', 'S'],
+
+["RAP", "What is the ABAP RESTful Application Programming Model?",
+`**Answer:** SAP's modern model for building Fiori apps and APIs: CDS data model → behavior definition (create, update, delete, actions, validations, determinations) → behavior implementation in ABAP → service definition and binding (OData V4). Supports managed and unmanaged scenarios and draft handling.
+
+Tip: Key skill for S/4HANA and BTP.`, 'D', 'S'],
+
+["Clean Core", "What does clean core mean for ABAP developers?",
+`**Answer:** Keep the SAP core unmodified: use released APIs and extension points, build extensions in developer extensibility (ABAP Cloud) or side-by-side on SAP BTP, avoid modifications and direct table access to non-released objects. It eases upgrades, especially for RISE/cloud.
+
+Tip: ABAP Cloud language version.`, 'D', 'S'],
+
+["ABAP Cloud", "What is ABAP Cloud?",
+`**Answer:** The development model for cloud-ready ABAP: restricted language version using only released APIs, RAP for business objects, CDS, ADT (Eclipse) as IDE, available in SAP BTP ABAP Environment and S/4HANA Cloud/on-premise (developer extensibility).
+
+Tip: Future-proofing.`, 'D', 'S'],
+
+["Forms", "Smart Forms vs Adobe Forms?",
+`**Answer:** Smart Forms are the older SAP form tool (graphical designer, generated function module). Adobe Forms (SFP) use Adobe LiveCycle Designer and are SAP's strategic choice, with interactive PDF support; in S/4HANA, output management with Adobe forms is standard.
+
+Tip: Mention output management in S/4HANA.`, 'B', 'M'],
+
+["ALV", "How do you create an ALV report?",
+`**Answer:** Use CL_SALV_TABLE for simple ALV (factory method, display), or CL_GUI_ALV_GRID for editable grids. Add field catalog adjustments, sorting, totals, events (double-click), and layouts. In S/4HANA, consider Fiori apps instead of ALV.
+
+Tip: CL_SALV_TABLE for quick reports.`, 'B', 'E'],
+
+["Debugging", "How do you debug ABAP effectively?",
+`**Answer:** Breakpoints (session and external for RFC/HTTP calls), watchpoints, the new debugger with layers, debugging update tasks and background jobs (SM50, JDBG), and ST05/SAT for performance traces.
+
+Tip: External breakpoints for OData.`, 'B', 'M'],
+
+["Performance", "How do you analyze ABAP performance?",
+`**Answer:** ST05 SQL trace for database access, SAT runtime analysis for ABAP processing, ST12 combined trace, SQL Monitor (SQLM) for production, and ATC/Code Inspector checks.
+
+Tip: Find expensive SQL first.`, 'D', 'M'],
+
+["Transports", "How does the transport system work?",
+`**Answer:** Changes are recorded in transport requests (workbench for development objects, customizing for configuration), released from development, and imported through quality to production via STMS, following change management approvals.
+
+Tip: Mention transport dependencies.`, 'B', 'E'],
+
+["Locking", "How do you handle locking in ABAP?",
+`**Answer:** Define lock objects (SE11) which generate ENQUEUE_/DEQUEUE_ function modules; call them before updates to prevent concurrent changes. RAP handles locking through behavior definitions.
+
+Tip: Logical locks, not DB locks.`, 'D', 'M'],
+
+["Update Task", "What is an update task?",
+`**Answer:** Function modules called IN UPDATE TASK run asynchronously after COMMIT WORK in an update work process, ensuring all database changes of a logical unit of work are written together.
+
+Tip: LUW concept.`, 'D', 'M'],
+
+["Background Jobs", "How do you schedule and monitor background jobs?",
+`**Answer:** SM36 to define, SM37 to monitor, with variants for parameters; programmatically via JOB_OPEN/JOB_SUBMIT/JOB_CLOSE. In S/4HANA, application jobs via Fiori.
+
+Tip: Variants matter.`, 'B', 'E'],
+
+["Security", "How do you implement authorization checks?",
+`**Answer:** Use AUTHORITY-CHECK with authorization objects (standard or custom via SU21), check SY-SUBRC, and avoid hard-coded user checks. CDS access control (DCL) for data-level security in CDS-based apps.
+
+Tip: Security by design.`, 'B', 'M'],
+
+["Code Quality", "How do you ensure code quality?",
+`**Answer:** ABAP Test Cockpit (ATC) checks, code reviews, naming conventions, ABAP Unit tests, clean ABAP guidelines, and avoiding obsolete statements.
+
+Tip: Clean ABAP style guide.`, 'B', 'M'],
+
+["S/4HANA", "What changed for developers moving from ECC to S/4HANA?",
+`**Answer:** Simplified data model (e.g. ACDOCA universal journal, MATDOC, no aggregates like BSIS/BSAS as tables — compatibility views), HANA optimization (code-to-data), CDS and Fiori, custom code adaptation via ATC remote checks and Simplification Items, and released APIs for clean core.
+
+Tip: Custom code migration.`, 'D', 'M'],
+
+["Custom Code Migration", "How do you prepare custom code for S/4HANA conversion?",
+`**Answer:** Analyze usage (SCMON/UPL) to retire unused code, run ATC with S/4HANA readiness checks, fix simplification-related issues (changed tables, fields, data types like MATNR length), test, and adopt CDS where beneficial.
+
+Tip: Retire unused code first.`, 'D', 'S'],
+
+["Fiori", "How do ABAP developers support Fiori apps?",
+`**Answer:** Build OData services (RAP or SEGW), CDS views with UI annotations for Fiori Elements, and backend logic; UI5 developers or Fiori Elements generate the frontend.
+
+Tip: Fiori Elements reduces UI coding.`, 'D', 'M'],
+
+["BTP", "What is side-by-side extensibility on SAP BTP?",
+`**Answer:** Building extensions outside the S/4HANA core on SAP BTP (ABAP Environment, CAP with Node.js/Java), integrating via released APIs and events, keeping the core clean.
+
+Tip: Clean core strategy.`, 'D', 'S'],
+
+["Integration", "How does SAP Integration Suite relate to ABAP?",
+`**Answer:** SAP Integration Suite (Cloud Integration/CPI) handles integration flows between SAP and non-SAP systems; ABAP provides APIs, IDocs and OData services that iFlows call.
+
+Tip: Division of responsibilities.`, 'D', 'M'],
+
+["Behavioral", "Tell me about a complex development you delivered.",
+`**Sample answer:** "I built a RAP-based Fiori app for credit limit requests with validations, approval workflow integration and an OData V4 service — replacing an email process and cutting approval time from 3 days to 4 hours."
+
+Tip: Business impact.`, 'B', 'M'],
+
+["Behavioral", "Tell me about a performance issue you fixed.",
+`**Sample answer:** "A custom billing report took 40 minutes. ST05 showed SELECTs in a loop on VBRP. I replaced them with a single JOIN and a hashed internal table; runtime dropped to 90 seconds."
+
+Tip: Numbers.`, 'B', 'M'],
+
+["Behavioral", "How do you work with functional consultants?",
+`**Answer:** Clarify functional specs with examples, ask about edge cases and volumes, share technical options, and test together.
+
+Tip: Collaboration.`, 'B', 'E'],
+
+["Leadership", "How do you lead an ABAP team?",
+`**Answer:** Standards and code reviews, ATC gates, task estimation, mentoring juniors, and alignment with clean core strategy.
+
+Tip: Quality and growth.`, 'D', 'S'],
+
+["Architecture", "How do you decide between in-app and side-by-side extensions?",
+`**Answer:** In-app (developer extensibility) for tightly coupled logic needing local data and transactions; side-by-side on BTP for separate apps, external users, or loosely coupled scenarios. Both use released APIs.
+
+Tip: Coupling and lifecycle.`, 'D', 'S'],
+
+["Career", "Where are you taking your ABAP career?",
+`**Answer:** Toward modern ABAP — RAP, CDS, ABAP Cloud and BTP — and technical architecture for clean-core S/4HANA programs.
+
+Tip: Modern skills.`, 'B', 'M'],
+
+["Closing", "Why should we hire you?",
+`**Sample answer:** "I write performant, clean ABAP, I'm strong in CDS and RAP for S/4HANA, and I follow clean core principles so your upgrades stay smooth."
+
+Tip: Modern + quality.`, 'B', 'M'],
+
+["Technical", "What is SY-SUBRC?",
+`**Answer:** A system field holding the return code of the last ABAP statement — 0 usually means success; non-zero indicates failure or no data. Always check it after SELECT, READ TABLE, AUTHORITY-CHECK and function calls.
+
+Tip: Basic but essential.`, 'B', 'E'],
+
+["Technical", "What is the difference between MODIFY, UPDATE and INSERT in Open SQL?",
+`**Answer:** INSERT adds new rows (fails if key exists), UPDATE changes existing rows (fails if not found), MODIFY inserts or updates depending on whether the key exists.
+
+Tip: Quick and precise.`, 'B', 'E'],
+
+["Technical", "What are field symbols and data references?",
+`**Answer:** Field symbols (<fs>) are placeholders pointing to existing data — efficient for modifying internal table rows in loops (LOOP AT itab ASSIGNING <fs>). Data references (REF TO data) are pointers usable for dynamic programming.
+
+Tip: ASSIGNING improves performance.`, 'D', 'M'],
+
+["Technical", "What is a function group?",
+`**Answer:** A container for related function modules sharing global data and screens, created in SE37/SE80.
+
+Tip: Legacy but common.`, 'B', 'E'],
+
+["Technical", "What is the difference between SAP LUW and database LUW?",
+`**Answer:** A database LUW is a set of database changes committed together by the DB. An SAP LUW spans multiple dialog steps and is committed at COMMIT WORK, typically bundling update task function modules.
+
+Tip: Transaction consistency.`, 'D', 'M']
+];
