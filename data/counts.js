@@ -120,5 +120,11 @@ window.COUNTS = {
  "inf-net": 50,
  "inf-dba": 50,
  "inf-sa": 50,
+ "ea-sfadm": 50,
+ "ea-sfdev": 50,
+ "ea-snow": 50,
+ "ea-wday": 50,
+ "ea-d365": 50,
+ "ea-ns": 50,
  "common": 40
 };

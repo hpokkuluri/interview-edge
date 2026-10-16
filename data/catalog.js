@@ -275,13 +275,25 @@ window.CATALOG = [
       { id: 'inf-dba', title: 'Database Administrator (SQL Server / PostgreSQL)', level: 'Mid → Senior', blurb: 'Backups, HA/DR, tuning, indexes, locking, upgrades, migrations.' },
       { id: 'inf-sa', title: 'Solutions Architect', level: 'Senior → Principal', blurb: 'Requirements, NFRs, integration, build vs buy, cost, cloud, AI designs.' }
     ]
+  },
+  {
+    id: 'entapps', field: 'tech', name: 'Enterprise Apps (CRM, ITSM, HCM)', short: 'Ent Apps', glyph: 'APP', color: '#0E7490', tint: '#E2F4F7',
+    tag: 'Salesforce, ServiceNow, Workday, Dynamics 365 and NetSuite roles',
+    positions: [
+      { id: 'ea-sfadm', title: 'Salesforce Administrator', level: 'Mid → Senior', blurb: 'Security model, Flow, data, reports, Service/Sales Cloud, Agentforce.' },
+      { id: 'ea-sfdev', title: 'Salesforce Developer', level: 'Mid → Senior', blurb: 'Apex, governor limits, triggers, LWC, async, integrations, testing.' },
+      { id: 'ea-snow', title: 'ServiceNow Developer / Admin', level: 'Mid → Senior', blurb: 'Business rules, GlideRecord, ACLs, Flow Designer, CMDB, catalog.' },
+      { id: 'ea-wday', title: 'Workday HCM / Financials Consultant', level: 'Mid → Senior', blurb: 'Sup orgs, business processes, security, reports, EIB/Studio.' },
+      { id: 'ea-d365', title: 'Dynamics 365 Consultant', level: 'Mid → Senior', blurb: 'F&O finance and SCM, Business Central, Dataverse, Power Platform.' },
+      { id: 'ea-ns', title: 'NetSuite Administrator / Consultant', level: 'Mid → Senior', blurb: 'Saved searches, roles, SuiteFlow, SuiteScript, OneWorld, close.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
