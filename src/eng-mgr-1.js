@@ -1,175 +1,53 @@
 // Engineering Manager. Format: [topic, question, answer, 'B' basic | 'D' in-depth]
-QB['eng-mgr'] = (QB['eng-mgr'] || []).concat([
-['Role', 'What does a great engineering manager do?',
-`- **People**: hires well, grows engineers, gives clear feedback, builds a healthy team.
-- **Delivery**: team ships reliably with quality; removes blockers; manages scope.
-- **Technical judgment**: enough depth to guide decisions and assess risk.
-- **Partnership**: works with product, design and stakeholders on priorities.
-- **Process**: lightweight practices that help, not hinder.
-- **Culture**: psychological safety, ownership, learning.`, 'B'],
-
-['Role', 'How hands-on should an engineering manager be?',
-`- Depends on team size and stage: small teams may need some coding; larger teams need full-time management.
-- Stay **technically credible**: review designs, understand architecture, occasionally pair or fix small things.
-- **Avoid** being on the critical path for features — it blocks the team and your management duties.`, 'B'],
-
-['People', 'How do you run effective 1:1s?',
-`- **Weekly or biweekly**, owned by the engineer's agenda.
-- Topics: wellbeing, blockers, feedback (both ways), career growth, context sharing.
-- **Listen** more than talk; take notes; follow up on commitments.
-- Don't turn them into status meetings.`, 'B'],
-
-['People', 'How do you give difficult feedback?',
-`- **Timely and private**.
-- **Specific behavior** and **impact** (SBI model), not personality.
-- Ask for their perspective.
-- Agree on **next steps** and support.
-- Follow up; recognize improvement.`, 'B'],
-
-['People', 'How do you handle an underperforming engineer?',
-`- **Clarify expectations** and gaps with examples.
-- **Diagnose causes**: skills, motivation, personal issues, unclear goals, wrong role.
-- **Support plan** with measurable goals and timeline (coaching, pairing, training).
-- **Document** progress.
-- If no improvement, **formal performance plan** with HR; respectful exit if needed.
-- Protect the team's standards.`, 'B'],
-
-['People', 'How do you grow engineers\' careers?',
-`- **Career ladders** with clear expectations.
-- **Development plans** aligned to their goals.
-- **Stretch assignments**, mentoring, sponsorship.
-- **Regular career conversations** separate from performance.
-- **Promotion cases** built with evidence over time.`, 'B'],
-
-['People', 'How do you hire for your team?',
-`- **Define** the role and competencies.
-- **Structured interviews** with rubrics: coding, system design (for seniors), behavioral, collaboration.
-- **Diverse panels** and reduce bias.
-- **Candidate experience**: timely, respectful, informative.
-- **Calibrate** decisions; hire for team gaps and growth potential.
-- **Onboarding** plan ready.`, 'B'],
-
-['People', 'How do you retain top engineers?',
-`- **Meaningful work** and autonomy.
-- **Growth** opportunities and recognition.
-- **Fair compensation** — advocate with data.
-- **Good team culture** and manager relationship.
-- **Stay conversations** to catch risks early.`, 'B'],
-
-['Delivery', 'How do you ensure your team delivers predictably?',
-`- **Clear priorities** with product.
-- **Small batches** and incremental delivery.
-- **Estimates as ranges**; track throughput rather than story points obsessively.
-- **Limit WIP**; manage dependencies early.
-- **Risks surfaced** early with options.
-- **Retrospectives** to improve.`, 'B'],
-
-['Delivery', 'Your team is going to miss a committed deadline. What do you do?',
-`- **Confirm** facts and reasons.
-- **Options**: cut scope (MVP), add time, accept quality trade-offs (rarely), get help.
-- **Communicate early** to stakeholders with recommendation.
-- **Learn** — estimation, dependencies, interruptions.
-- Avoid burning the team out to hit an arbitrary date.`, 'B'],
-
-['Delivery', 'How do you balance feature work, tech debt and operational work?',
-`- **Visible allocation** (e.g. 70/20/10) agreed with product.
-- **Tie tech debt** to business outcomes (velocity, incidents).
-- **On-call/ops** load measured; reduce toil.
-- Adjust allocation based on incident trends and roadmap needs.`, 'B'],
-
-['Delivery', 'Which metrics do you use to understand team health and performance?',
-`- **DORA**: deployment frequency, lead time, change failure rate, MTTR.
-- **Flow**: cycle time, WIP, throughput.
-- **Quality**: escaped defects, incidents.
-- **Team health**: engagement surveys, on-call load, attrition.
-- Use metrics for learning, not punishment; avoid individual productivity metrics.`, 'D'],
-
-['Technical', 'How do you make technical decisions with your team?',
-`- **Empower** senior engineers/tech leads to drive decisions.
-- **Design docs/RFCs** for significant changes; reviews.
-- **Criteria** clear (requirements, constraints).
-- **Disagree and commit** after discussion.
-- Step in when risk is high or the team is stuck.`, 'B'],
-
-['Technical', 'How do you maintain quality in a fast-moving team?',
-`- **Automated testing** and CI gates.
-- **Code reviews** with standards.
-- **Observability** and alerting.
-- **Incident learning** (postmortems).
-- **Definition of done** includes tests, docs, monitoring.
-- Celebrate quality work, not just features.`, 'B'],
-
-['Operations', 'How do you run on-call sustainably?',
-`- **Fair rotation** with enough people; primary/secondary.
-- **Actionable alerts** only; reduce noise.
-- **Runbooks** for common issues.
-- **Compensation/time off** after heavy shifts.
-- **Postmortems** to eliminate recurring incidents.
-- Track on-call load as a health metric.`, 'B'],
-
-['Operations', 'Walk me through how you handle a major production incident.',
-`- **Incident commander** assigned; roles (communications, technical lead).
-- **Mitigate first** (rollback, feature flag, scale).
-- **Communicate** regularly to stakeholders.
-- **Resolve** and verify.
-- **Blameless postmortem** with action items.
-- Follow through on actions.`, 'B'],
-
-['Stakeholders', 'How do you work with product managers?',
-`- **Shared goals** and roadmap; joint planning.
-- **Engineering input** early (feasibility, tech opportunities).
-- **Clear roles**: PM owns what/why, eng owns how/when (with collaboration).
-- **Healthy tension** resolved through data and customer focus.
-- Regular syncs.`, 'B'],
-
-['Stakeholders', 'How do you say no to a stakeholder request?',
-`- Understand the **underlying need**.
-- Explain **trade-offs** (what would be delayed).
-- Offer **alternatives** or a smaller version.
-- Use **prioritization frameworks** with product.
-- Escalate to leadership for priority conflicts.`, 'B'],
-
-['Culture', 'How do you build psychological safety in a team?',
-`- **Model** vulnerability (admit mistakes).
-- **Blameless** culture for incidents.
-- **Encourage** questions and dissent; respond with curiosity.
-- **Inclusive** meetings (everyone heard).
-- **Act** on feedback.`, 'B'],
-
-['Culture', 'How do you foster ownership in your team?',
-`- **Clear areas** of ownership (services, features).
-- **Autonomy** in how they solve problems.
-- **Accountability** for outcomes, including operations ("you build it, you run it").
-- **Recognition** of initiative.
-- **Context sharing** so they can make good decisions.`, 'B'],
-
-['Behavioral', 'Tell me about a time you resolved conflict between engineers.',
-`- **Situation**: two seniors disagreed on database choice, slowing the project.
-- **Action**: had each write a short comparison against agreed criteria; facilitated a discussion; decided with the tech lead; documented the decision.
-- **Result**: moved forward; relationship preserved; introduced lightweight RFC process.`, 'B'],
-
-['Behavioral', 'Tell me about a hire you regret and what you learned.',
-`- Be honest: e.g. hired for technical brilliance despite collaboration concerns.
-- What happened, how you handled it.
-- **Learning**: structured evaluation of collaboration; trust signals from references; stronger onboarding expectations.`, 'B'],
-
-['Behavioral', 'Why do you want to be an engineering manager?',
-`- **Multiply impact** through others.
-- **Enjoy** growing people and building teams.
-- **Experience** leading informally (tech lead, mentoring).
-- **Understand** the trade-off: less coding, more people work — and you want that.`, 'B'],
-
-['Behavioral', 'How do you handle a team member who wants a promotion they\'re not ready for?',
-`- **Listen** and acknowledge ambition.
-- **Be specific** about gaps vs the next level's expectations.
-- **Create a plan** with opportunities to demonstrate those behaviors.
-- **Follow up** regularly; advocate when ready.`, 'B'],
-
-['Delivery', 'How do you plan a quarter with your team?',
-`- **Inputs**: company/product goals, customer needs, tech debt, ops load.
-- **Capacity** realistic (vacations, on-call).
-- **Prioritize** outcomes (OKRs) with product.
-- **Break down** into milestones; identify dependencies and risks.
-- **Leave buffer** for unplanned work.
-- Review mid-quarter.`, 'B']
+QB["eng-mgr"] = (QB["eng-mgr"] || []).concat([
+["Role", "What does a great engineering manager do?", "**Why they ask:** to see your view of the role — people, delivery and technical health.\n\n**Answer:**\n- **People**: hires well, grows engineers, gives clear feedback, builds a healthy team.\n- **Delivery**: team ships reliably with quality; removes blockers; manages scope.\n- **Technical judgment**: enough depth to guide decisions and assess risk.\n- **Partnership**: works with product, design and stakeholders on priorities.\n- **Process**: lightweight practices that help, not hinder.\n- **Culture**: psychological safety, ownership, learning.\n\nTip: Cover people, delivery and systems, with an example of each.", "B"],
+["Role", "How hands-on should an engineering manager be?", "**Why they ask:** the balance between coding and managing is a common tension.\n\n**Answer:**\n- Depends on team size and stage: small teams may need some coding; larger teams need full-time management.\n- Stay **technically credible**: review designs, understand architecture, occasionally pair or fix small things.\n- **Avoid** being on the critical path for features — it blocks the team and your management duties.\n\nTip: Say how you stay technical without becoming a bottleneck.", "B"],
+["People", "How do you run effective 1:1s?", "**Why they ask:** 1:1s are a manager's main tool.\n\n**Answer:**\n- **Weekly or biweekly**, owned by the engineer's agenda.\n- Topics: wellbeing, blockers, feedback (both ways), career growth, context sharing.\n- **Listen** more than talk; take notes; follow up on commitments.\n- Don't turn them into status meetings.\n\nTip: Mention that the engineer owns the agenda.", "B"],
+["People", "How do you give difficult feedback?", "**Why they ask:** feedback skill is essential.\n\n**Answer:**\n- **Timely and private**.\n- **Specific behavior** and **impact** (SBI model), not personality.\n- Ask for their perspective.\n- Agree on **next steps** and support.\n- Follow up; recognize improvement.\n\nTip: Use the SBI model: situation, behavior, impact.", "B"],
+["People", "How do you handle an underperforming engineer?", "**Why they ask:** managers must address performance fairly.\n\n**Answer:**\n- **Clarify expectations** and gaps with examples.\n- **Diagnose causes**: skills, motivation, personal issues, unclear goals, wrong role.\n- **Support plan** with measurable goals and timeline (coaching, pairing, training).\n- **Document** progress.\n- If no improvement, **formal performance plan** with HR; respectful exit if needed.\n- Protect the team's standards.\n\nTip: Diagnose first, then a documented plan.", "B"],
+["People", "How do you grow engineers' careers?", "**Why they ask:** career growth drives retention.\n\n**Answer:**\n- **Career ladders** with clear expectations.\n- **Development plans** aligned to their goals.\n- **Stretch assignments**, mentoring, sponsorship.\n- **Regular career conversations** separate from performance.\n- **Promotion cases** built with evidence over time.\n\nTip: Mention career ladders and stretch work.", "B"],
+["People", "How do you hire for your team?", "**Why they ask:** hiring builds the team.\n\n**Answer:**\n- **Define** the role and competencies.\n- **Structured interviews** with rubrics: coding, system design (for seniors), behavioral, collaboration.\n- **Diverse panels** and reduce bias.\n- **Candidate experience**: timely, respectful, informative.\n- **Calibrate** decisions; hire for team gaps and growth potential.\n- **Onboarding** plan ready.\n\nTip: Mention structured interviews.", "B"],
+["People", "How do you retain top engineers?", "**Why they ask:** retention of top engineers is critical.\n\n**Answer:**\n- **Meaningful work** and autonomy.\n- **Growth** opportunities and recognition.\n- **Fair compensation** — advocate with data.\n- **Good team culture** and manager relationship.\n- **Stay conversations** to catch risks early.\n\nTip: Mention growth, impact and recognition.", "B"],
+["Delivery", "How do you ensure your team delivers predictably?", "**Why they ask:** predictable delivery builds trust.\n\n**Answer:**\n- **Clear priorities** with product.\n- **Small batches** and incremental delivery.\n- **Estimates as ranges**; track throughput rather than story points obsessively.\n- **Limit WIP**; manage dependencies early.\n- **Risks surfaced** early with options.\n- **Retrospectives** to improve.\n\nTip: Mention small batches and visible progress.", "B"],
+["Delivery", "Your team is going to miss a committed deadline. What do you do?", "**Why they ask:** bad news handling.\n\n**Answer:**\n- **Confirm** facts and reasons.\n- **Options**: cut scope (MVP), add time, accept quality trade-offs (rarely), get help.\n- **Communicate early** to stakeholders with recommendation.\n- **Learn** — estimation, dependencies, interruptions.\n- Avoid burning the team out to hit an arbitrary date.\n\nTip: Raise early with options.", "B"],
+["Delivery", "How do you balance feature work, tech debt and operational work?", "**Why they ask:** balancing work types.\n\n**Answer:**\n- **Visible allocation** (e.g. 70/20/10) agreed with product.\n- **Tie tech debt** to business outcomes (velocity, incidents).\n- **On-call/ops** load measured; reduce toil.\n- Adjust allocation based on incident trends and roadmap needs.\n\nTip: Mention a capacity split.", "B"],
+["Delivery", "Which metrics do you use to understand team health and performance?", "**Why they ask:** metrics show health.\n\n**Answer:**\n- **DORA**: deployment frequency, lead time, change failure rate, MTTR.\n- **Flow**: cycle time, WIP, throughput.\n- **Quality**: escaped defects, incidents.\n- **Team health**: engagement surveys, on-call load, attrition.\n- Use metrics for learning, not punishment; avoid individual productivity metrics.\n\nTip: Mention DORA and team health surveys.", "D"],
+["Technical", "How do you make technical decisions with your team?", "**Why they ask:** technical decision-making.\n\n**Answer:**\n- **Empower** senior engineers/tech leads to drive decisions.\n- **Design docs/RFCs** for significant changes; reviews.\n- **Criteria** clear (requirements, constraints).\n- **Disagree and commit** after discussion.\n- Step in when risk is high or the team is stuck.\n\nTip: Mention RFCs and ADRs.", "B"],
+["Technical", "How do you maintain quality in a fast-moving team?", "**Why they ask:** quality at speed.\n\n**Answer:**\n- **Automated testing** and CI gates.\n- **Code reviews** with standards.\n- **Observability** and alerting.\n- **Incident learning** (postmortems).\n- **Definition of done** includes tests, docs, monitoring.\n- Celebrate quality work, not just features.\n\nTip: Mention automated testing and reviews.", "B"],
+["Operations", "How do you run on-call sustainably?", "**Why they ask:** on-call sustainability.\n\n**Answer:**\n- **Fair rotation** with enough people; primary/secondary.\n- **Actionable alerts** only; reduce noise.\n- **Runbooks** for common issues.\n- **Compensation/time off** after heavy shifts.\n- **Postmortems** to eliminate recurring incidents.\n- Track on-call load as a health metric.\n\nTip: Mention reducing alert noise.", "B"],
+["Operations", "Walk me through how you handle a major production incident.", "**Why they ask:** incident leadership.\n\n**Answer:**\n- **Incident commander** assigned; roles (communications, technical lead).\n- **Mitigate first** (rollback, feature flag, scale).\n- **Communicate** regularly to stakeholders.\n- **Resolve** and verify.\n- **Blameless postmortem** with action items.\n- Follow through on actions.\n\nTip: Mention incident commander and postmortems.", "B"],
+["Stakeholders", "How do you work with product managers?", "**Why they ask:** product partnership.\n\n**Answer:**\n- **Shared goals** and roadmap; joint planning.\n- **Engineering input** early (feasibility, tech opportunities).\n- **Clear roles**: PM owns what/why, eng owns how/when (with collaboration).\n- **Healthy tension** resolved through data and customer focus.\n- Regular syncs.\n\nTip: Mention shared goals.", "B"],
+["Stakeholders", "How do you say no to a stakeholder request?", "**Why they ask:** saying no well.\n\n**Answer:**\n- Understand the **underlying need**.\n- Explain **trade-offs** (what would be delayed).\n- Offer **alternatives** or a smaller version.\n- Use **prioritization frameworks** with product.\n- Escalate to leadership for priority conflicts.\n\nTip: Offer trade-offs.", "B"],
+["Culture", "How do you build psychological safety in a team?", "**Why they ask:** psychological safety.\n\n**Answer:**\n- **Model** vulnerability (admit mistakes).\n- **Blameless** culture for incidents.\n- **Encourage** questions and dissent; respond with curiosity.\n- **Inclusive** meetings (everyone heard).\n- **Act** on feedback.\n\nTip: Model vulnerability.", "B"],
+["Culture", "How do you foster ownership in your team?", "**Why they ask:** ownership culture.\n\n**Answer:**\n- **Clear areas** of ownership (services, features).\n- **Autonomy** in how they solve problems.\n- **Accountability** for outcomes, including operations (\"you build it, you run it\").\n- **Recognition** of initiative.\n- **Context sharing** so they can make good decisions.\n\nTip: Give teams end-to-end responsibility.", "B"],
+["Behavioral", "Tell me about a time you resolved conflict between engineers.", "**Why they ask:** conflict resolution.\n\n**Answer:**\n- **Situation**: two seniors disagreed on database choice, slowing the project.\n- **Action**: had each write a short comparison against agreed criteria; facilitated a discussion; decided with the tech lead; documented the decision.\n- **Result**: moved forward; relationship preserved; introduced lightweight RFC process.\n\n**Another example:**\n\"Two senior engineers disagreed on a database choice and it was slowing the team. I asked each to write a one-page proposal with trade-offs, we reviewed them together against agreed criteria, and the team chose one with a review date. Both stayed engaged and the decision held up.\"\n\nTip: Use STAR.", "B"],
+["Behavioral", "Tell me about a hire you regret and what you learned.", "**Why they ask:** learning from hiring mistakes.\n\n**Answer:**\n- Be honest: e.g. hired for technical brilliance despite collaboration concerns.\n- What happened, how you handled it.\n- **Learning**: structured evaluation of collaboration; trust signals from references; stronger onboarding expectations.\n\n**Sample answer:**\n\"I hired a strong coder who struggled with collaboration. I now include a collaborative exercise and ask behavioral questions about disagreements in every loop.\"\n\nTip: Show what changed.", "B"],
+["Behavioral", "Why do you want to be an engineering manager?", "**Why they ask:** motivation for management.\n\n**Answer:**\n- **Multiply impact** through others.\n- **Enjoy** growing people and building teams.\n- **Experience** leading informally (tech lead, mentoring).\n- **Understand** the trade-off: less coding, more people work — and you want that.\n\n**Sample answer:**\n\"I found I got more satisfaction from helping a team succeed than from my own code. As a tech lead I enjoyed mentoring and unblocking others, and I want to do that full time.\"\n\nTip: Show genuine interest in people.", "B"],
+["Behavioral", "How do you handle a team member who wants a promotion they're not ready for?", "**Why they ask:** promotion conversations.\n\n**Answer:**\n- **Listen** and acknowledge ambition.\n- **Be specific** about gaps vs the next level's expectations.\n- **Create a plan** with opportunities to demonstrate those behaviors.\n- **Follow up** regularly; advocate when ready.\n\nTip: Be honest and give a plan.", "B"],
+["Delivery", "How do you plan a quarter with your team?", "**Why they ask:** quarterly planning.\n\n**Answer:**\n- **Inputs**: company/product goals, customer needs, tech debt, ops load.\n- **Capacity** realistic (vacations, on-call).\n- **Prioritize** outcomes (OKRs) with product.\n- **Break down** into milestones; identify dependencies and risks.\n- **Leave buffer** for unplanned work.\n- Review mid-quarter.\n\nTip: Mention capacity and goals.", "B"],
+["People", "How do you onboard a new engineer effectively?", "**Why they ask:** onboarding.\n\n**Answer:**\n- **Pre-boarding**: accounts, laptop, access ready on day one.\n- **Buddy** assigned.\n- **30/60/90-day plan** with learning goals and a first small production change in week one or two.\n- **Context**: architecture overview, team norms, customers.\n- **Regular check-ins**; gather feedback to improve onboarding.\n\nTip: Mention a first-week shipped change.", "B"],
+["People", "How do you manage remote or distributed teams?", "**Why they ask:** remote management.\n\n**Answer:**\n- **Overlap hours** and async communication norms (written docs, recorded demos).\n- **Clear goals** and outcomes rather than presence.\n- **Rituals** for connection (virtual coffees, offsites).\n- **Inclusive** meeting practices across time zones.\n- **Documentation** culture.\n\nTip: Mention written communication.", "B"],
+["People", "How do you support engineer wellbeing and prevent burnout?", "**Why they ask:** burnout prevention.\n\n**Answer:**\n- **Sustainable pace**; realistic commitments.\n- **Watch signals** (overtime, irritability, disengagement).\n- **Encourage** time off; managers model it.\n- **Reduce toil** and interruptions.\n- **Talk openly** in 1:1s.\n\nTip: Mention workload monitoring.", "B"],
+["People", "How do you handle compensation conversations?", "**Why they ask:** compensation conversations.\n\n**Answer:**\n- **Know** the company bands and process.\n- **Advocate** with data (market, performance, impact).\n- **Be transparent** about how decisions are made.\n- **Don't promise** what you can't deliver.\n- Separate compensation discussion from routine feedback.\n\nTip: Be transparent about the process.", "B"],
+["Technical", "How do you evaluate the technical health of a team's systems?", "**Why they ask:** technical health.\n\n**Answer:**\n- **Incident trends** and on-call load.\n- **Deployment metrics** (DORA).\n- **Test coverage** of critical paths and flaky tests.\n- **Dependency freshness** and security vulnerabilities.\n- **Architecture** pain points from engineers.\n- **Cost** trends.\n\nTip: Mention incidents and change failure rate.", "B"],
+["Technical", "How would you approach a major refactor or rewrite request from your team?", "**Why they ask:** rewrite requests.\n\n**Answer:**\n- **Understand** the pain and business impact.\n- **Prefer incremental** refactoring (strangler) over rewrites.\n- **Business case**: velocity, reliability, cost.\n- **Plan** milestones that deliver value along the way.\n- **Agree** with product and leadership on capacity.\n\nTip: Prefer incremental approaches.", "D"],
+["Delivery", "How do you manage cross-team dependencies?", "**Why they ask:** dependencies.\n\n**Answer:**\n- **Identify early** during planning.\n- **Agree** interfaces and timelines with other teams.\n- **Track** in shared boards; regular syncs.\n- **Decouple** where possible (contracts, mocks, feature flags).\n- **Escalate** conflicts in priorities.\n\nTip: Make them visible early.", "B"],
+["Delivery", "What does agile mean to you in practice?", "**Why they ask:** agile in practice.\n\n**Answer:**\n- **Deliver value in small increments**, get feedback, adapt.\n- Lightweight ceremonies that serve the team (planning, standups, demos, retros).\n- **Customer focus** and collaboration over rigid process.\n- Continuous improvement.\n- Avoid process for its own sake.\n\nTip: Focus on outcomes, not rituals.", "B"],
+["Stakeholders", "How do you communicate engineering progress to non-technical leaders?", "**Why they ask:** communicating progress.\n\n**Answer:**\n- **Outcomes** (customer impact) over tasks.\n- **Simple status**: on track/at risk with reasons.\n- **Visuals** (roadmaps, milestones).\n- **Risks** with options.\n- Regular cadence.\n\nTip: Use business outcomes.", "B"],
+["Stakeholders", "How do you handle pressure to cut corners on quality?", "**Why they ask:** quality pressure.\n\n**Answer:**\n- **Make trade-offs explicit** (risk of incidents, rework cost).\n- **Propose** scope reduction instead of quality reduction.\n- **Agree** on any temporary debt with a payback plan.\n- **Protect** security and data integrity — non-negotiable.\n\nTip: Make risks explicit.", "B"],
+["Culture", "How do you build an inclusive team?", "**Why they ask:** inclusion.\n\n**Answer:**\n- **Diverse hiring** pipelines and structured interviews.\n- **Fair** distribution of high-visibility work.\n- **Inclusive** meetings and decision-making.\n- **Address** non-inclusive behavior promptly.\n- **Measure** engagement across groups.\n\nTip: Mention fair processes.", "B"],
+["Culture", "How do you encourage learning and innovation?", "**Why they ask:** learning culture.\n\n**Answer:**\n- **Time** for learning (e.g. hack days, learning budget).\n- **Share** knowledge (tech talks, writing).\n- **Safe experiments** with feature flags.\n- **Celebrate** learning from failures.\n\nTip: Mention time for learning.", "B"],
+["AI", "How would you introduce AI tools into your team's workflow?", "**Why they ask:** AI tools.\n\n**Answer:**\n- **Pilot** coding assistants with volunteers; measure (cycle time, quality, satisfaction).\n- **Guidelines**: security, IP, review requirements.\n- **Training** and sharing tips.\n- **Look beyond code**: test generation, documentation, incident summaries.\n- Watch for over-reliance and quality issues.\n\nTip: Mention guidelines and measurement.", "D"],
+["Behavioral", "Tell me about a project that failed and what you learned.", "**Why they ask:** learning from failure.\n\n**Answer:**\n- Honest example with your role.\n- What went wrong (scope, assumptions, dependencies).\n- How you responded.\n- Concrete changes you made afterwards.\n\n**Sample answer:**\n\"We launched a feature without enough load testing and it failed at peak traffic. We rolled back, fixed it, and I made load testing a release requirement for critical paths.\"\n\nTip: Use STAR.", "B"],
+["Behavioral", "Describe a time you had to make an unpopular decision for your team.", "**Why they ask:** unpopular decisions.\n\n**Answer:**\n- **Example**: moving the team to on-call ownership of their services.\n- **Why**: reliability and ownership.\n- **How**: involved the team in designing the rotation, fixed noisy alerts first, added compensation and runbooks.\n- **Result**: incident response improved; acceptance grew.\n\n**Another example:**\n\"I paused feature work for two sprints to fix reliability after repeated incidents. Some engineers were frustrated, but I explained the data and the goal. Incidents dropped by 70% and the team later said it was the right call.\"\n\nTip: Explain the why.", "B"],
+["Behavioral", "How do you handle a high performer who is toxic to the team?", "**Why they ask:** toxic high performers.\n\n**Answer:**\n- **Address behavior** directly with examples and impact.\n- **Clear expectations**: how results are achieved matters.\n- **Support** (coaching) with timeline.\n- **Consequences** if no change — the team's health is more important than one individual.\n\nTip: Culture over individual output.", "B"],
+["Behavioral", "How do you manage your own time as an engineering manager?", "**Why they ask:** manager time management.\n\n**Answer:**\n- **Prioritize** people and team-level impact.\n- **Block** focus time for planning and strategy.\n- **Delegate** and grow leads.\n- **Limit** meetings; prefer async updates.\n- **Weekly review** of priorities.\n\nTip: Mention priorities and delegation.", "B"],
+["Operations", "How do you reduce operational toil?", "**Why they ask:** toil reduction.\n\n**Answer:**\n- **Measure** toil (repetitive manual work).\n- **Automate** frequent tasks.\n- **Fix** root causes of recurring incidents.\n- **Self-service** for common requests.\n- Allocate capacity to toil reduction.\n\nTip: Measure and automate.", "B"],
+["Delivery", "How do you use OKRs with your team?", "**Why they ask:** OKRs.\n\n**Answer:**\n- **Objectives** aligned to company/product goals.\n- **Key results** measurable outcomes (not task lists).\n- **Team input** in setting them.\n- **Review** progress regularly; adjust.\n- Don't tie them directly to individual performance ratings.\n\nTip: Focus on outcomes.", "B"],
+["Technical", "How do you handle security vulnerabilities in your team's services?", "**Why they ask:** security vulnerabilities.\n\n**Answer:**\n- **Scanning** in CI (dependencies, containers, code).\n- **Triage** by severity and exploitability with SLAs.\n- **Patch** promptly; automate dependency updates.\n- **Learn** from incidents.\n- Work with security team.\n\nTip: Prioritize by risk.", "B"],
+["People", "How do you identify and develop a tech lead?", "**Why they ask:** tech lead development.\n\n**Answer:**\n- Look for **ownership, technical judgment, communication, helping others**.\n- Give **leadership opportunities** (lead a project, run design reviews).\n- **Coach** on influence and delegation.\n- **Clarify** the tech lead role vs manager role.\n- Provide feedback and support.\n\nTip: Give scope and coaching.", "B"],
+["Stakeholders", "How do you handle a product manager who keeps changing priorities mid-sprint?", "**Why they ask:** changing priorities.\n\n**Answer:**\n- **Understand** the reasons (customer escalations, unclear strategy).\n- **Show impact** of churn on delivery.\n- **Agree** on a process for urgent changes (with trade-offs).\n- **Improve** planning together.\n- Escalate if systemic.\n\nTip: Make the cost visible.", "B"],
+["Behavioral", "What would your team say about you as a manager?", "**Why they ask:** self-awareness.\n\n**Answer:**\n- Aim for: supportive, clear, fair, technically credible, protects the team, helps them grow.\n- Support with real feedback examples.\n- Mention an area you're improving.\n\n**Sample answer:**\n\"That I'm supportive and give clear direction, that I protect them from chaos, and that I can sometimes be too involved in details when things go wrong — which I'm working on.\"\n\nTip: Be honest.", "B"],
+["Delivery", "How do you scope an MVP with product?", "**Why they ask:** MVP scoping.\n\n**Answer:**\n- Start from the **customer problem** and success metrics.\n- **Smallest** set of functionality to learn or deliver value.\n- **Cut** nice-to-haves; keep quality/security.\n- **Instrument** to learn.\n- Plan iterations.\n\nTip: Focus on learning.", "B"],
+["People", "How do you conduct performance reviews fairly?", "**Why they ask:** fair reviews.\n\n**Answer:**\n- **Evidence** collected throughout the year.\n- **Clear criteria** from the career ladder.\n- **Peer feedback**.\n- **Calibration** across managers.\n- **Separate** growth feedback from rating rationale; no surprises.\n\nTip: Use evidence and calibration.", "B"]
 ]);

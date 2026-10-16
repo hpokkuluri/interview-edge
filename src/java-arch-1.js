@@ -1,186 +1,53 @@
 // Principal Engineer / Java Architect. Format: [topic, question, answer, 'B' basic | 'D' in-depth]
-QB['java-arch'] = (QB['java-arch'] || []).concat([
-['System Design', 'Design a URL shortener at scale.',
-`- **Requirements**: create short URL, redirect fast (read-heavy, e.g. 100:1), custom aliases, expiry, analytics.
-- **ID generation**: base62 of a unique ID (Snowflake-style or DB sequence ranges per node) or hash with collision checks.
-- **Storage**: key-value store (DynamoDB/Cassandra) keyed by short code; cache hot entries (Redis/CDN).
-- **Redirect path**: CDN/edge → cache → DB; 301 vs 302 (analytics).
-- **Analytics**: async events to Kafka → aggregation.
-- **Scale/HA**: stateless services, multi-region reads, rate limiting, abuse detection.`, 'D'],
-
-['System Design', 'Design an order management system for an e-commerce platform.',
-`- **Services**: catalog, cart, order, payment, inventory, fulfillment, notification.
-- **Order flow** as a **saga**: create order (pending) → reserve inventory → authorize payment → confirm → fulfillment; compensations on failure.
-- **Outbox pattern** for events; **idempotency** on payments.
-- **Data**: order DB per service; read models (CQRS) for order history/search.
-- **Consistency**: inventory reservation with TTL; oversell protection.
-- **Scale**: partition by order ID; queues for spikes; caching for catalog.
-- **Observability** and SLOs.`, 'D'],
-
-['System Design', 'Design a notification service that sends email, SMS and push at scale.',
-`- **API** accepts notification requests (templates, channel preferences).
-- **Queue** (Kafka/SQS) per priority; workers per channel with provider adapters.
-- **Retries** with backoff, DLQ, provider failover.
-- **Idempotency** to avoid duplicates; rate limits per user/provider.
-- **Preferences/opt-outs** and compliance (CAN-SPAM, TCPA).
-- **Tracking** delivery status via webhooks.
-- **Templating** and localization.`, 'D'],
-
-['System Design', 'How do you design for high availability and disaster recovery?',
-`- **Redundancy** at every layer (multi-AZ), no single points of failure.
-- **Stateless services**; state in replicated stores.
-- **Health checks**, auto-healing, load balancing.
-- **Data replication** (sync within region, async cross-region); define **RPO/RTO**.
-- **Graceful degradation** and fallbacks.
-- **Chaos testing** and DR drills.
-- **Multi-region active-active** only when justified (complexity, consistency).`, 'D'],
-
-['Architecture', 'Monolith vs microservices — how do you decide?',
-`- **Start modular monolith** for most new products: simpler ops, consistency, fast iteration.
-- **Microservices** when: independent scaling, team autonomy at scale, different technology needs, clear bounded contexts.
-- Costs: distributed complexity, observability, data consistency, platform overhead.
-- Use **DDD bounded contexts** to find seams; extract services when pain justifies it.`, 'B'],
-
-['Architecture', 'Explain Domain-Driven Design concepts you use in architecture.',
-`- **Bounded contexts** with their own models and language.
-- **Context mapping** (customer/supplier, anti-corruption layers).
-- **Aggregates** as consistency boundaries; reference other aggregates by ID.
-- **Domain events** for integration.
-- **Ubiquitous language** shared with business.
-Helps define service boundaries and team ownership.`, 'D'],
-
-['Architecture', 'What is event-driven architecture and what are its trade-offs?',
-`- Services publish **events** (facts) and react to others' events via brokers (Kafka).
-- **Benefits**: loose coupling, scalability, audit trails, extensibility.
-- **Trade-offs**: eventual consistency, debugging complexity, event schema evolution, duplicate/out-of-order handling.
-- Patterns: event notification, event-carried state transfer, event sourcing (selectively).
-- Governance: schema registry, versioning, ownership.`, 'D'],
-
-['Architecture', 'When would you use CQRS and event sourcing?',
-`- **CQRS**: separate write model from read models — useful when reads need different shapes/scale (search, dashboards).
-- **Event sourcing**: store state as an event log — strong audit, temporal queries, rebuilding projections. Costs: complexity, schema evolution, snapshots, eventual consistency.
-- Use selectively for domains needing audit/history (ledgers, orders); not as a default.`, 'D'],
-
-['Data', 'How do you choose between SQL and NoSQL databases?',
-`- **Relational (Postgres)**: strong consistency, transactions, complex queries, integrity — default choice.
-- **Document (MongoDB)**: flexible schemas, aggregate-oriented access.
-- **Key-value (Redis/DynamoDB)**: high-scale simple lookups.
-- **Wide-column (Cassandra)**: massive write throughput, time series.
-- **Search (Elasticsearch/OpenSearch)**: full-text.
-- **Graph** for relationship-heavy queries.
-- Choose by access patterns, consistency needs, scale, team skills.`, 'B'],
-
-['Data', 'How do you scale a relational database?',
-`- **Vertical** scaling and query optimization first.
-- **Read replicas** for read-heavy workloads.
-- **Caching**.
-- **Partitioning** (table partitions) and **sharding** (by tenant/customer) — application-aware routing.
-- **CQRS** read stores.
-- **Connection pooling** (PgBouncer).
-- Consider distributed SQL (CockroachDB, Spanner, Aurora) for global scale.`, 'D'],
-
-['Data', 'Explain the CAP theorem and how it affects design.',
-`- In a network partition, a distributed system must choose **consistency** or **availability**.
-- **CP** systems reject requests to stay consistent; **AP** systems serve possibly stale data.
-- **PACELC** adds: else (no partition), trade **latency vs consistency**.
-- Design per use case: payments need consistency; product views tolerate staleness.`, 'D'],
-
-['Reliability', 'How do you define and use SLOs?',
-`- **SLIs**: measurable indicators (availability, latency p99, error rate).
-- **SLOs**: targets (e.g. 99.9% of requests < 300 ms over 30 days).
-- **Error budgets**: allowed unreliability — if exhausted, prioritize reliability over features.
-- **Alerting** on burn rate, not raw thresholds.
-- Align SLOs with user experience and business needs.`, 'D'],
-
-['Reliability', 'How do you design resilient service-to-service communication?',
-`- **Timeouts** on every call (budget per request).
-- **Retries** with exponential backoff and jitter — only for idempotent operations.
-- **Circuit breakers** and **bulkheads** (Resilience4j).
-- **Fallbacks** and graceful degradation.
-- **Load shedding** and backpressure.
-- **Async** patterns where possible.`, 'D'],
-
-['Performance', 'How do you approach capacity planning?',
-`- **Baseline** current usage and growth.
-- **Load testing** to find limits (Gatling, k6) and bottlenecks.
-- **Model** peak loads (seasonality, events).
-- **Headroom** targets (e.g. 30–50%).
-- **Autoscaling** policies.
-- Revisit regularly.`, 'B'],
-
-['Security', 'How do you build security into the architecture?',
-`- **Threat modeling** (STRIDE) for new systems.
-- **Zero trust**: authenticate/authorize every call (mTLS, OAuth2 tokens).
-- **Least privilege** for services and data.
-- **Secrets management**; encryption in transit/at rest.
-- **Secure SDLC**: SAST/DAST, dependency scanning, SBOM.
-- **Audit logging** and monitoring.`, 'D'],
-
-['Platform', 'What is platform engineering and how do you build an internal developer platform?',
-`- Provide **golden paths**: templates, CI/CD, observability, security baked in.
-- **Self-service** infrastructure (Kubernetes, databases, queues) via portals (Backstage).
-- **Paved roads** reduce cognitive load; teams focus on business logic.
-- Measure **developer productivity** (DORA metrics, onboarding time).
-- Treat the platform as a product with users.`, 'D'],
-
-['Platform', 'How do you design CI/CD for many microservices?',
-`- **Trunk-based development** with short-lived branches.
-- **Automated pipelines**: build, unit/integration tests, security scans, contract tests, container build, deploy.
-- **Progressive delivery**: canary, blue/green, feature flags.
-- **GitOps** (Argo CD) for deployments.
-- **Rollback** automation.
-- Track DORA metrics (deploy frequency, lead time, change failure rate, MTTR).`, 'D'],
-
-['API', 'How do you manage API versioning and evolution?',
-`- Prefer **backward-compatible** changes (additive fields).
-- **Versioning** strategy for breaking changes (URI /v2 or headers) with deprecation timelines.
-- **Consumer-driven contract tests**.
-- **API gateway** for routing and policies.
-- **Schema registry** for events (Avro/Protobuf compatibility rules).`, 'B'],
-
-['Architecture', 'How do you approach migrating a legacy monolith to modern architecture?',
-`- **Strangler fig**: route new features to new services; gradually replace monolith functions.
-- **Identify seams** with DDD; start with low-risk, high-value areas.
-- **Anti-corruption layers**.
-- **Data migration** strategy (CDC, dual writes carefully).
-- **Measure** progress and value; avoid big-bang rewrites.`, 'D'],
-
-['Architecture', 'How do you document and communicate architecture?',
-`- **C4 model** diagrams (context, container, component).
-- **ADRs** for decisions.
-- **Living documentation** in repos.
-- **Architecture reviews** for significant changes.
-- Tailor communication to audience (executives vs engineers).`, 'B'],
-
-['Leadership', 'How does a Principal Engineer influence across teams?',
-`- **Technical vision** and strategy documents.
-- **Standards** and reference implementations.
-- **Mentoring** senior engineers.
-- **Reviews** of critical designs.
-- **Solving** the hardest cross-team problems hands-on.
-- **Building consensus** through writing and data.`, 'B'],
-
-['Leadership', 'How do you balance technical debt and feature delivery?',
-`- **Make debt visible** (inventory, impact on velocity/incidents).
-- **Allocate capacity** (e.g. 20%) and tie debt work to business outcomes.
-- **Pay down** debt in areas of active change.
-- **Prevent** new debt with standards and reviews.`, 'B'],
-
-['AI', 'How would you architect an LLM-powered feature in a Java system?',
-`- **Use case** and success metrics; decide build vs buy.
-- **RAG architecture**: document ingestion, chunking, embeddings, vector store (pgvector/OpenSearch), retrieval, prompt assembly, LLM call (via Spring AI or provider SDKs).
-- **Guardrails**: input/output validation, PII redaction, rate limits, cost control.
-- **Evaluation**: offline test sets, online feedback.
-- **Observability**: prompts/latency/cost tracing.
-- **Fallbacks** when the model is unavailable.`, 'D'],
-
-['Behavioral', 'Describe a system you architected and how it evolved.',
-`- **Context and requirements**, **initial design**, **key decisions**, **what changed** with scale or business, **how you adapted**, **results**, **lessons**.
-- Show judgment about trade-offs over time.`, 'B'],
-
-['Behavioral', 'Tell me about a time you were wrong about a technical decision.',
-`- Real example (e.g. chose event sourcing for a domain that didn't need it).
-- How you recognized it (complexity, slowed delivery).
-- How you corrected (simplified to CRUD + audit log).
-- Lesson (match complexity to need; reversible decisions).`, 'B']
+QB["java-arch"] = (QB["java-arch"] || []).concat([
+["System Design", "Design a URL shortener at scale.", "**Why they ask:** system design fundamentals.\n\n**Answer:**\n- **Requirements**: create short URL, redirect fast (read-heavy, e.g. 100:1), custom aliases, expiry, analytics.\n- **ID generation**: base62 of a unique ID (Snowflake-style or DB sequence ranges per node) or hash with collision checks.\n- **Storage**: key-value store (DynamoDB/Cassandra) keyed by short code; cache hot entries (Redis/CDN).\n- **Redirect path**: CDN/edge → cache → DB; 301 vs 302 (analytics).\n- **Analytics**: async events to Kafka → aggregation.\n- **Scale/HA**: stateless services, multi-region reads, rate limiting, abuse detection.\n\nTip: Mention key generation and caching.", "D"],
+["System Design", "Design an order management system for an e-commerce platform.", "**Why they ask:** complex domain design.\n\n**Answer:**\n- **Services**: catalog, cart, order, payment, inventory, fulfillment, notification.\n- **Order flow** as a **saga**: create order (pending) → reserve inventory → authorize payment → confirm → fulfillment; compensations on failure.\n- **Outbox pattern** for events; **idempotency** on payments.\n- **Data**: order DB per service; read models (CQRS) for order history/search.\n- **Consistency**: inventory reservation with TTL; oversell protection.\n- **Scale**: partition by order ID; queues for spikes; caching for catalog.\n- **Observability** and SLOs.\n\nTip: Mention state machine and events.", "D"],
+["System Design", "Design a notification service that sends email, SMS and push at scale.", "**Why they ask:** notification design.\n\n**Answer:**\n- **API** accepts notification requests (templates, channel preferences).\n- **Queue** (Kafka/SQS) per priority; workers per channel with provider adapters.\n- **Retries** with backoff, DLQ, provider failover.\n- **Idempotency** to avoid duplicates; rate limits per user/provider.\n- **Preferences/opt-outs** and compliance (CAN-SPAM, TCPA).\n- **Tracking** delivery status via webhooks.\n- **Templating** and localization.\n\nTip: Mention queues and retries.", "D"],
+["System Design", "How do you design for high availability and disaster recovery?", "**Why they ask:** HA/DR design.\n\n**Answer:**\n- **Redundancy** at every layer (multi-AZ), no single points of failure.\n- **Stateless services**; state in replicated stores.\n- **Health checks**, auto-healing, load balancing.\n- **Data replication** (sync within region, async cross-region); define **RPO/RTO**.\n- **Graceful degradation** and fallbacks.\n- **Chaos testing** and DR drills.\n- **Multi-region active-active** only when justified (complexity, consistency).\n\nTip: Mention RTO/RPO.", "D"],
+["Architecture", "Monolith vs microservices — how do you decide?", "**Why they ask:** architecture judgment.\n\n**Answer:**\n- **Start modular monolith** for most new products: simpler ops, consistency, fast iteration.\n- **Microservices** when: independent scaling, team autonomy at scale, different technology needs, clear bounded contexts.\n- Costs: distributed complexity, observability, data consistency, platform overhead.\n- Use **DDD bounded contexts** to find seams; extract services when pain justifies it.\n\nTip: Base it on team size and needs.", "B"],
+["Architecture", "Explain Domain-Driven Design concepts you use in architecture.", "**Why they ask:** DDD knowledge.\n\n**Answer:**\n- **Bounded contexts** with their own models and language.\n- **Context mapping** (customer/supplier, anti-corruption layers).\n- **Aggregates** as consistency boundaries; reference other aggregates by ID.\n- **Domain events** for integration.\n- **Ubiquitous language** shared with business.\nHelps define service boundaries and team ownership.\n\nTip: Mention bounded contexts.", "D"],
+["Architecture", "What is event-driven architecture and what are its trade-offs?", "**Why they ask:** event-driven trade-offs.\n\n**Answer:**\n- Services publish **events** (facts) and react to others' events via brokers (Kafka).\n- **Benefits**: loose coupling, scalability, audit trails, extensibility.\n- **Trade-offs**: eventual consistency, debugging complexity, event schema evolution, duplicate/out-of-order handling.\n- Patterns: event notification, event-carried state transfer, event sourcing (selectively).\n- Governance: schema registry, versioning, ownership.\n\nTip: Mention eventual consistency.", "D"],
+["Architecture", "When would you use CQRS and event sourcing?", "**Why they ask:** CQRS/ES judgment.\n\n**Answer:**\n- **CQRS**: separate write model from read models — useful when reads need different shapes/scale (search, dashboards).\n- **Event sourcing**: store state as an event log — strong audit, temporal queries, rebuilding projections. Costs: complexity, schema evolution, snapshots, eventual consistency.\n- Use selectively for domains needing audit/history (ledgers, orders); not as a default.\n\nTip: Use only when justified.", "D"],
+["Data", "How do you choose between SQL and NoSQL databases?", "**Why they ask:** database selection.\n\n**Answer:**\n- **Relational (Postgres)**: strong consistency, transactions, complex queries, integrity — default choice.\n- **Document (MongoDB)**: flexible schemas, aggregate-oriented access.\n- **Key-value (Redis/DynamoDB)**: high-scale simple lookups.\n- **Wide-column (Cassandra)**: massive write throughput, time series.\n- **Search (Elasticsearch/OpenSearch)**: full-text.\n- **Graph** for relationship-heavy queries.\n- Choose by access patterns, consistency needs, scale, team skills.\n\nTip: Base it on access patterns.", "B"],
+["Data", "How do you scale a relational database?", "**Why they ask:** database scaling.\n\n**Answer:**\n- **Vertical** scaling and query optimization first.\n- **Read replicas** for read-heavy workloads.\n- **Caching**.\n- **Partitioning** (table partitions) and **sharding** (by tenant/customer) — application-aware routing.\n- **CQRS** read stores.\n- **Connection pooling** (PgBouncer).\n- Consider distributed SQL (CockroachDB, Spanner, Aurora) for global scale.\n\nTip: Mention replicas and sharding.", "D"],
+["Data", "Explain the CAP theorem and how it affects design.", "**Why they ask:** CAP theorem.\n\n**Answer:**\n- In a network partition, a distributed system must choose **consistency** or **availability**.\n- **CP** systems reject requests to stay consistent; **AP** systems serve possibly stale data.\n- **PACELC** adds: else (no partition), trade **latency vs consistency**.\n- Design per use case: payments need consistency; product views tolerate staleness.\n\nTip: Explain with examples.", "D"],
+["Reliability", "How do you define and use SLOs?", "**Why they ask:** SLOs.\n\n**Answer:**\n- **SLIs**: measurable indicators (availability, latency p99, error rate).\n- **SLOs**: targets (e.g. 99.9% of requests < 300 ms over 30 days).\n- **Error budgets**: allowed unreliability — if exhausted, prioritize reliability over features.\n- **Alerting** on burn rate, not raw thresholds.\n- Align SLOs with user experience and business needs.\n\nTip: Mention error budgets.", "D"],
+["Reliability", "How do you design resilient service-to-service communication?", "**Why they ask:** resilience.\n\n**Answer:**\n- **Timeouts** on every call (budget per request).\n- **Retries** with exponential backoff and jitter — only for idempotent operations.\n- **Circuit breakers** and **bulkheads** (Resilience4j).\n- **Fallbacks** and graceful degradation.\n- **Load shedding** and backpressure.\n- **Async** patterns where possible.\n\nTip: Mention circuit breakers.", "D"],
+["Performance", "How do you approach capacity planning?", "**Why they ask:** capacity planning.\n\n**Answer:**\n- **Baseline** current usage and growth.\n- **Load testing** to find limits (Gatling, k6) and bottlenecks.\n- **Model** peak loads (seasonality, events).\n- **Headroom** targets (e.g. 30–50%).\n- **Autoscaling** policies.\n- Revisit regularly.\n\nTip: Mention load testing.", "B"],
+["Security", "How do you build security into the architecture?", "**Why they ask:** security architecture.\n\n**Answer:**\n- **Threat modeling** (STRIDE) for new systems.\n- **Zero trust**: authenticate/authorize every call (mTLS, OAuth2 tokens).\n- **Least privilege** for services and data.\n- **Secrets management**; encryption in transit/at rest.\n- **Secure SDLC**: SAST/DAST, dependency scanning, SBOM.\n- **Audit logging** and monitoring.\n\nTip: Mention zero trust.", "D"],
+["Platform", "What is platform engineering and how do you build an internal developer platform?", "**Why they ask:** platform engineering.\n\n**Answer:**\n- Provide **golden paths**: templates, CI/CD, observability, security baked in.\n- **Self-service** infrastructure (Kubernetes, databases, queues) via portals (Backstage).\n- **Paved roads** reduce cognitive load; teams focus on business logic.\n- Measure **developer productivity** (DORA metrics, onboarding time).\n- Treat the platform as a product with users.\n\nTip: Mention golden paths.", "D"],
+["Platform", "How do you design CI/CD for many microservices?", "**Why they ask:** CI/CD at scale.\n\n**Answer:**\n- **Trunk-based development** with short-lived branches.\n- **Automated pipelines**: build, unit/integration tests, security scans, contract tests, container build, deploy.\n- **Progressive delivery**: canary, blue/green, feature flags.\n- **GitOps** (Argo CD) for deployments.\n- **Rollback** automation.\n- Track DORA metrics (deploy frequency, lead time, change failure rate, MTTR).\n\nTip: Mention templates.", "D"],
+["API", "How do you manage API versioning and evolution?", "**Why they ask:** API evolution.\n\n**Answer:**\n- Prefer **backward-compatible** changes (additive fields).\n- **Versioning** strategy for breaking changes (URI /v2 or headers) with deprecation timelines.\n- **Consumer-driven contract tests**.\n- **API gateway** for routing and policies.\n- **Schema registry** for events (Avro/Protobuf compatibility rules).\n\nTip: Mention backward compatibility.", "B"],
+["Architecture", "How do you approach migrating a legacy monolith to modern architecture?", "**Why they ask:** legacy migration.\n\n**Answer:**\n- **Strangler fig**: route new features to new services; gradually replace monolith functions.\n- **Identify seams** with DDD; start with low-risk, high-value areas.\n- **Anti-corruption layers**.\n- **Data migration** strategy (CDC, dual writes carefully).\n- **Measure** progress and value; avoid big-bang rewrites.\n\nTip: Mention strangler pattern.", "D"],
+["Architecture", "How do you document and communicate architecture?", "**Why they ask:** architecture communication.\n\n**Answer:**\n- **C4 model** diagrams (context, container, component).\n- **ADRs** for decisions.\n- **Living documentation** in repos.\n- **Architecture reviews** for significant changes.\n- Tailor communication to audience (executives vs engineers).\n\nTip: Mention C4 and ADRs.", "B"],
+["Leadership", "How does a Principal Engineer influence across teams?", "**Why they ask:** principal influence.\n\n**Answer:**\n- **Technical vision** and strategy documents.\n- **Standards** and reference implementations.\n- **Mentoring** senior engineers.\n- **Reviews** of critical designs.\n- **Solving** the hardest cross-team problems hands-on.\n- **Building consensus** through writing and data.\n\nTip: Mention writing and mentoring.", "B"],
+["Leadership", "How do you balance technical debt and feature delivery?", "**Why they ask:** tech debt balance.\n\n**Answer:**\n- **Make debt visible** (inventory, impact on velocity/incidents).\n- **Allocate capacity** (e.g. 20%) and tie debt work to business outcomes.\n- **Pay down** debt in areas of active change.\n- **Prevent** new debt with standards and reviews.\n\nTip: Tie debt to outcomes.", "B"],
+["AI", "How would you architect an LLM-powered feature in a Java system?", "**Why they ask:** LLM architecture.\n\n**Answer:**\n- **Use case** and success metrics; decide build vs buy.\n- **RAG architecture**: document ingestion, chunking, embeddings, vector store (pgvector/OpenSearch), retrieval, prompt assembly, LLM call (via Spring AI or provider SDKs).\n- **Guardrails**: input/output validation, PII redaction, rate limits, cost control.\n- **Evaluation**: offline test sets, online feedback.\n- **Observability**: prompts/latency/cost tracing.\n- **Fallbacks** when the model is unavailable.\n\nTip: Mention RAG and evaluation.", "D"],
+["Behavioral", "Describe a system you architected and how it evolved.", "**Why they ask:** real architecture experience.\n\n**Answer:**\n- **Context and requirements**, **initial design**, **key decisions**, **what changed** with scale or business, **how you adapted**, **results**, **lessons**.\n- Show judgment about trade-offs over time.\n\n**Sample answer:**\n\"I designed an order platform that started as a modular monolith for a team of eight. As we grew to five teams and 10x volume, we extracted payments and inventory into services with event-driven integration. We kept availability above 99.95% throughout.\"\n\nTip: Show evolution.", "B"],
+["Behavioral", "Tell me about a time you were wrong about a technical decision.", "**Why they ask:** learning from mistakes.\n\n**Answer:**\n- Real example (e.g. chose event sourcing for a domain that didn't need it).\n- How you recognized it (complexity, slowed delivery).\n- How you corrected (simplified to CRUD + audit log).\n- Lesson (match complexity to need; reversible decisions).\n\n**Sample answer:**\n\"I pushed for Kafka-based event sourcing for a simple workflow. It added complexity without benefit. We simplified to a relational model with an outbox. I now ask what problem a pattern solves before adopting it.\"\n\nTip: Show what changed.", "B"],
+["System Design", "Design a real-time chat system.", "**Why they ask:** chat design.\n\n**Answer:**\n- **Connections**: WebSockets via gateway servers; connection registry (Redis) mapping users to servers.\n- **Message flow**: client → gateway → chat service → persistence (Cassandra/partitioned by conversation) → fan-out to recipients' gateways (pub/sub).\n- **Ordering** per conversation (sequence numbers).\n- **Delivery receipts**, offline storage, push notifications.\n- **Scale**: horizontal gateways, partitioned storage, presence service.\n- **Security**: E2E encryption options, authentication.\n\nTip: Mention WebSockets.", "D"],
+["System Design", "Design a rate-limited public API platform.", "**Why they ask:** API platform design.\n\n**Answer:**\n- **API gateway** (authentication, quotas, rate limits per key, routing).\n- **Distributed rate limiting** with Redis (token bucket) or gateway-native.\n- **Developer portal** with keys and documentation.\n- **Usage metering** for billing.\n- **Backends** stateless with autoscaling.\n- **Observability** per consumer.\n\nTip: Mention gateways and quotas.", "D"],
+["System Design", "Design a feed/timeline system (like a social feed).", "**Why they ask:** feed design.\n\n**Answer:**\n- **Fan-out on write** (push to followers' feeds) for normal users; **fan-out on read** for celebrities (hybrid).\n- **Feed storage** in Redis/Cassandra with recent items.\n- **Ranking** service (ML) for personalization.\n- **Pagination** with cursors.\n- **Caching** and precomputation.\n- Handle deletes/edits and privacy settings.\n\nTip: Mention fan-out trade-offs.", "D"],
+["System Design", "How would you design a distributed job scheduler?", "**Why they ask:** job scheduler design.\n\n**Answer:**\n- **Job definitions** stored in DB; **scheduler** nodes with leader election (or partitioned ownership) to avoid duplicate runs.\n- **Queue** for ready jobs; **workers** pull and execute.\n- **At-least-once** with idempotent jobs; locks/leases with expiry.\n- **Retries**, dead letters, timeouts.\n- **Observability** of job status.\n- Alternatives: Quartz clustered, Temporal for workflows.\n\nTip: Mention leader election.", "D"],
+["Data", "How do you design a data pipeline for analytics from microservices?", "**Why they ask:** data pipeline design.\n\n**Answer:**\n- **CDC** (Debezium) or **domain events** into Kafka.\n- **Stream processing** (Flink/Kafka Streams) for real-time aggregates.\n- **Lakehouse** storage (Iceberg/Delta) for analytics.\n- **Schema registry** and data contracts.\n- **Data quality** checks; lineage.\n- Separate operational and analytical workloads.\n\nTip: Mention CDC.", "D"],
+["Data", "How do you ensure data consistency between a service DB and its published events?", "**Why they ask:** dual-write problem.\n\n**Answer:**\n- **Transactional outbox**: write event to outbox table in the same transaction; relay publishes (polling or CDC).\n- Avoid dual writes (DB + Kafka) without coordination.\n- **Idempotent consumers** with dedupe.\n- **Ordering** via partition keys.\n\nTip: Mention outbox pattern.", "D"],
+["Architecture", "What is a service mesh and when is it worth it?", "**Why they ask:** service mesh judgment.\n\n**Answer:**\n- Infrastructure layer (Istio, Linkerd) handling **mTLS**, traffic management (retries, canaries), and observability via sidecars or ambient mode.\n- Worth it with many services needing consistent security and traffic policies.\n- Costs: complexity, resource overhead, learning curve.\n- Alternatives: library-based resilience + gateway.\n\nTip: Use when justified.", "D"],
+["Architecture", "Kubernetes: what do architects need to get right?", "**Why they ask:** Kubernetes fundamentals.\n\n**Answer:**\n- **Resource requests/limits** and autoscaling (HPA/KEDA).\n- **Health probes**, graceful shutdown.\n- **Config/secrets** management.\n- **Network policies**, RBAC, pod security.\n- **Multi-AZ** node pools, pod disruption budgets.\n- **Observability** stack.\n- **Cost** management.\n\nTip: Mention resource limits.", "B"],
+["Architecture", "Serverless vs containers — how do you choose?", "**Why they ask:** compute choices.\n\n**Answer:**\n- **Serverless** (Lambda/Functions): event-driven, spiky workloads, minimal ops; limits on runtime, cold starts (mitigated with SnapStart for Java), vendor coupling.\n- **Containers** (Kubernetes/ECS): long-running services, steady traffic, more control, portability.\n- Often hybrid.\n\nTip: Base it on workload patterns.", "B"],
+["Performance", "How do you make Java services start fast and use less memory?", "**Why they ask:** Java startup optimization.\n\n**Answer:**\n- **GraalVM native image** (Spring Boot 3 AOT) — fast startup, low memory; trade-offs: build time, reflection config, peak throughput.\n- **CDS / AppCDS** and **CRaC** (checkpoint/restore) for faster startup on the JVM.\n- **Lean dependencies**; lazy initialization.\n- Right-size heap; tune GC.\n\nTip: Mention CDS and native images.", "D"],
+["Reliability", "How do you run blameless postmortems and make them effective?", "**Why they ask:** postmortems.\n\n**Answer:**\n- **Timeline**, impact, root causes and contributing factors.\n- **Focus on systems**, not individuals.\n- **Action items** with owners and deadlines.\n- **Share** learnings widely.\n- **Track** completion; revisit recurring themes.\n\nTip: Mention blameless culture.", "B"],
+["Reliability", "How would you implement chaos engineering?", "**Why they ask:** chaos engineering.\n\n**Answer:**\n- Start with **hypotheses** about steady state.\n- **Small blast radius** experiments (kill instances, inject latency, fail dependencies) in staging, then production with safeguards.\n- Tools: Chaos Monkey, Gremlin, AWS FIS, Litmus.\n- **Observe**, learn, fix weaknesses.\n- Make it routine (game days).\n\nTip: Start small.", "D"],
+["Security", "How do you manage secrets and credentials in a microservices platform?", "**Why they ask:** secrets management.\n\n**Answer:**\n- **Vault/Secrets Manager**; dynamic short-lived credentials.\n- **Workload identity** (IRSA, Workload Identity) instead of static keys.\n- **Rotation** automation.\n- **No secrets** in code, images, or logs.\n- **Audit** access.\n\nTip: Mention vaults.", "B"],
+["Leadership", "How do you set technical direction for an engineering organization?", "**Why they ask:** technical direction.\n\n**Answer:**\n- **Understand** business strategy and constraints.\n- **Assess** current architecture and pain points.\n- **Write** a technical strategy (principles, target architecture, roadmap).\n- **Socialize** with engineers and leadership; incorporate feedback.\n- **Enable** through platforms and examples.\n- **Revisit** periodically.\n\nTip: Mention strategy documents.", "B"],
+["Leadership", "How do you evaluate a new technology for adoption?", "**Why they ask:** technology evaluation.\n\n**Answer:**\n- **Problem fit** and alternatives.\n- **Maturity**, community, vendor viability.\n- **Operational cost** and skills.\n- **Proof of concept** with success criteria.\n- **Adoption plan** (pilot team, guidelines).\n- **Exit strategy**.\n\nTip: Mention proofs of concept.", "B"],
+["Leadership", "How do you run an architecture review?", "**Why they ask:** architecture reviews.\n\n**Answer:**\n- **Pre-read** design doc with context, options, decision, risks.\n- **Focus** on high-impact concerns: correctness, scalability, security, operability, cost.\n- **Constructive**, time-boxed discussion.\n- **Outcomes**: approve, approve with conditions, revisit.\n- Keep reviews lightweight to avoid bottlenecks.\n\nTip: Mention lightweight process.", "B"],
+["Behavioral", "How do you handle a disagreement with an engineering director about architecture?", "**Why they ask:** disagreements.\n\n**Answer:**\n- **Understand** their goals (timeline, cost, team capacity).\n- **Present** options with data.\n- **Propose** reversible steps or experiments.\n- **Disagree and commit** once decided; document risks.\n\n**Sample answer:**\n\"I'd understand the director's concerns, bring data and options, and look for a shared goal. If we still disagree, I'd propose a time-boxed experiment and commit to the decision made.\"\n\nTip: Use data and alignment.", "B"],
+["Behavioral", "What does a great Principal Engineer do in their first 90 days?", "**Why they ask:** first 90 days.\n\n**Answer:**\n- **Learn** the systems, people and business.\n- **Listen** to pain points.\n- **Pick** a meaningful problem and deliver.\n- **Build** relationships with leads.\n- **Propose** a technical direction informed by what you learned.\n\n**Sample answer:**\n\"Meet teams and leaders, understand the architecture and pain points, pick one high-impact problem to help solve, and publish a short technical direction document by day 90.\"\n\nTip: Listen, then lead.", "B"],
+["System Design", "How would you design a payments ledger?", "**Why they ask:** ledger design.\n\n**Answer:**\n- **Double-entry** model: every transaction posts balanced debits/credits.\n- **Immutable** entries (append-only); corrections via reversal entries.\n- **Idempotency** and exactly-once semantics for external events.\n- **Consistency**: strong (single DB per ledger partition) — avoid eventual consistency for balances.\n- **Reconciliation** with external providers.\n- **Auditability** and retention.\n\nTip: Mention double-entry and immutability.", "D"],
+["System Design", "Design a search service for a product catalog.", "**Why they ask:** search design.\n\n**Answer:**\n- **Indexing pipeline** from catalog changes (CDC/events) into OpenSearch/Elasticsearch.\n- **Schema** with analyzers, synonyms, facets.\n- **Query service** with ranking, filters, personalization.\n- **Relevance tuning** and A/B tests.\n- **Scale**: shards/replicas; caching popular queries.\n- **Freshness** SLAs.\n\nTip: Mention indexing and relevance.", "D"],
+["AI", "How do you evaluate and govern AI coding assistants in an engineering org?", "**Why they ask:** AI tool governance.\n\n**Answer:**\n- **Pilot** with metrics (cycle time, defects, developer satisfaction).\n- **Policies**: IP and data protection (no secrets in prompts), licensing of generated code.\n- **Review** standards (generated code still reviewed and tested).\n- **Training** on effective use.\n- **Monitor** quality and security findings.\n\nTip: Mention policies and measurement.", "D"],
+["Behavioral", "Why do you want to be a Principal Engineer here?", "**Why they ask:** motivation.\n\n**Answer:**\n- **Interest** in their technical challenges and domain.\n- **Track record** of cross-team impact.\n- **Balance** of hands-on and strategic work.\n- **Mentoring** and culture contributions.\n\n**Sample answer:**\n\"Your platform is at the scale where architecture decisions really matter, and I enjoy helping teams make good ones. I'd like to help you scale safely.\"\n\nTip: Connect to their challenges.", "B"],
+["Architecture", "How do you approach multi-tenancy in a SaaS platform?", "**Why they ask:** multi-tenancy.\n\n**Answer:**\n- **Isolation models**: shared schema (tenant ID column), schema per tenant, database per tenant — trade-offs in cost, isolation, operations.\n- **Tenant context** propagated securely; row-level security.\n- **Noisy neighbor** controls (quotas, rate limits).\n- **Per-tenant** customization via configuration.\n- **Data residency** options for large tenants.\n\nTip: Mention isolation models.", "D"],
+["Architecture", "How do you make architecture decisions reversible?", "**Why they ask:** reversible decisions.\n\n**Answer:**\n- **Abstractions** at volatile boundaries (ports and adapters).\n- **Feature flags** and gradual rollouts.\n- **Strangler** approaches instead of big bangs.\n- **Avoid lock-in** where cheap to avoid.\n- Distinguish one-way doors (careful) from two-way doors (move fast).\n\nTip: Mention abstractions and feature flags.", "B"],
+["Behavioral", "Describe how you grew senior engineers into leaders.", "**Why they ask:** growing leaders.\n\n**Answer:**\n- Gave them **ownership** of significant designs.\n- Coached on **writing**, influence, and trade-offs.\n- **Sponsored** them for visible work.\n- Created **forums** (architecture guild) where they could lead.\n- Outcome: promotions, stronger technical bench.\n\n**Sample answer:**\n\"I gave senior engineers ownership of design reviews and cross-team initiatives with coaching. Three became staff engineers within two years.\"\n\nTip: Show results.", "B"]
 ]);
