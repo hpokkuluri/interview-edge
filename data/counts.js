@@ -137,5 +137,11 @@ window.COUNTS = {
  "fs-credit": 50,
  "fs-ib": 50,
  "fs-risk": 50,
+ "ss-analyst": 50,
+ "ss-sop": 50,
+ "ss-mfgeng": 50,
+ "ss-ehs": 50,
+ "ss-trade": 50,
+ "ss-rel": 50,
  "common": 40
 };

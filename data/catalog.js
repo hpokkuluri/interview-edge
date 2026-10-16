@@ -310,6 +310,18 @@ window.CATALOG = [
       { id: 'fs-ib', title: 'Corporate Development / Investment Analyst', level: 'Mid → Senior', blurb: 'DCF, comps, WACC, LBO, accretion/dilution, due diligence.' },
       { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' }
     ]
+  },
+  {
+    id: 'scmspec', field: 'scm', name: 'Operations Specialists', short: 'Ops Specialists', glyph: 'OPX', color: '#B45309', tint: '#FBF0E3',
+    tag: 'Supply chain analysts, S&OP, manufacturing engineers, EHS, trade compliance, reliability',
+    positions: [
+      { id: 'ss-analyst', title: 'Supply Chain Analyst', level: 'Mid', blurb: 'KPIs, safety stock, EOQ, forecast accuracy, OTIF, SQL and BI.' },
+      { id: 'ss-sop', title: 'S&OP / IBP Manager', level: 'Manager', blurb: 'Monthly cycle, consensus demand, supply review, scenarios, bias.' },
+      { id: 'ss-mfgeng', title: 'Manufacturing / Process Engineer', level: 'Mid → Senior', blurb: 'Lean, OEE, takt, SPC, Cpk, PFMEA, DMAIC, NPI, automation.' },
+      { id: 'ss-ehs', title: 'EHS Manager', level: 'Manager', blurb: 'OSHA, TRIR, hierarchy of controls, LOTO, ISO 45001/14001, culture.' },
+      { id: 'ss-trade', title: 'Trade Compliance Manager', level: 'Manager', blurb: 'HTS classification, valuation, origin, tariffs, EAR/ITAR, sanctions.' },
+      { id: 'ss-rel', title: 'Maintenance / Reliability Engineer', level: 'Mid → Senior', blurb: 'MTBF, RCM, predictive maintenance, RCA, CMMS, TPM, spares.' }
+    ]
   }
 ];
 
@@ -320,7 +332,7 @@ window.FIELDS = [
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finspec', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
-    families: ['proc', 'plan', 'logi', 'mfg', 'scmlead'] },
+    families: ['proc', 'plan', 'logi', 'mfg', 'scmspec', 'scmlead'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];
