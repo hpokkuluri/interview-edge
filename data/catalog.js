@@ -332,6 +332,16 @@ window.CATALOG = [
       { id: 'hr-comp', title: 'Compensation & Benefits Manager', level: 'Manager', blurb: 'Market pricing, ranges, merit, incentives, equity, pay equity, benefits.' },
       { id: 'hr-chro', title: 'HR Director / CHRO', level: 'Executive', blurb: 'People strategy, succession, culture, operating model, board, change.' }
     ]
+  },
+  {
+    id: 'salesmkt', field: 'sales', name: 'Sales, Marketing & Customer Success', short: 'Sales & Mkt', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1',
+    tag: 'B2B sales, sales leadership, growth marketing and customer success',
+    positions: [
+      { id: 'sm-ae', title: 'Account Executive (B2B / Enterprise)', level: 'Mid → Senior', blurb: 'MEDDICC, discovery, objections, pipeline, negotiation, closing.' },
+      { id: 'sm-sdir', title: 'Sales Manager / Director', level: 'Manager → Director', blurb: 'Hiring, coaching, forecasting, quotas, territories, comp, culture.' },
+      { id: 'sm-mkt', title: 'Digital / Growth Marketing Manager', level: 'Manager', blurb: 'Paid search/social, SEO, CAC/ROAS, attribution, testing, ABM.' },
+      { id: 'sm-csm', title: 'Customer Success Manager', level: 'Mid → Senior', blurb: 'Onboarding, health scores, churn, NRR, QBRs, renewals, expansion.' }
+    ]
   }
 ];
 
@@ -345,6 +355,8 @@ window.FIELDS = [
     families: ['proc', 'plan', 'logi', 'mfg', 'scmspec', 'scmlead'] },
   { id: 'hr', name: 'Human Resources', glyph: 'HR', color: '#9333EA', tint: '#F3E8FD', tag: 'HR business partners, talent acquisition, compensation and benefits, HR leadership',
     families: ['hrcore'] },
+  { id: 'sales', name: 'Sales & Marketing', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1', tag: 'Account executives, sales leaders, digital marketing and customer success',
+    families: ['salesmkt'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];

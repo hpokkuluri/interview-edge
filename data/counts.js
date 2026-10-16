@@ -147,5 +147,9 @@ window.COUNTS = {
  "hr-ta": 50,
  "hr-comp": 50,
  "hr-chro": 50,
+ "sm-ae": 50,
+ "sm-sdir": 50,
+ "sm-mkt": 50,
+ "sm-csm": 50,
  "common": 40
 };
