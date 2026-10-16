@@ -1,338 +1,284 @@
 // it-cto — generated from src/it-cto-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Chief Technology Officer. Format: [topic, question, answer, 'B' basic | 'D' in-depth]
 QB['it-cto'] = (QB['it-cto'] || []).concat([
-['Role', 'How do you define the CTO role?',
-`- Depends on company type:
-- **Product/tech company**: owns technology vision, architecture, engineering organization (sometimes with a VP Eng), R&D, technical brand.
-- **Enterprise**: emerging technology, architecture, innovation, sometimes product engineering — partnered with CIO for internal IT.
-- Common: **technology strategy**, **architecture**, **innovation**, **technical talent**, **external representation**.`, 'B'],
+["Role", "What does a CTO do?",
+`**Why they ask:** CTO roles differ by company — product company vs enterprise.
 
-['Strategy', 'How do you build a technology vision for a product company?',
-`- **Business and product strategy** as inputs (markets, customers, growth).
-- **Technology bets** that create advantage (platforms, data, AI).
-- **Architecture** direction (scalability, modularity, multi-tenancy).
-- **Engineering** capabilities and culture.
-- **Roadmap** of investments.
-- **Communicate** compellingly to engineers, executives, investors.`, 'B'],
+**Answer:** In a product company, the CTO owns technology vision and architecture, engineering organization and culture, delivery velocity and quality, platform scalability and reliability, security engineering, and partnership with product and the CEO on strategy. In enterprises, CTOs often focus on architecture, innovation and emerging technology alongside a CIO.
 
-['Strategy', 'How do you balance innovation and stability?',
-`- **Portfolio** approach (core, adjacent, transformational).
-- **Strong platforms** enable safe innovation.
-- **Experiments** with clear success criteria.
-- **Reliability** standards (SLOs, error budgets) as guardrails.`, 'B'],
+Tip: Clarify which kind of CTO role this is.`, 'B'],
 
-['Architecture', 'How do you make platform architecture decisions that last?',
-`- **Principles** (modularity, APIs, data ownership, security by design).
-- **Evolutionary** architecture — fitness functions, reversible decisions.
-- **Avoid** premature complexity.
-- **Architecture decision records**.
-- **Review** with senior engineers.`, 'D'],
+["Vision", "How do you set a technology vision?",
+`**Why they ask:** CTOs set direction for engineering.
 
-['Architecture', 'When would you re-architect a core product platform?',
-`- **Signals**: scaling limits, velocity collapse, reliability issues, inability to support strategy.
-- **Business case**.
-- **Incremental** approach (strangler) with milestones.
-- **Dedicated** team plus migration plan.
-- **Communicate** trade-offs to the business.`, 'D'],
+**Answer:** Start from business and product strategy, assess current architecture and team capabilities, define principles (e.g. API-first, cloud-native, secure by default), a target architecture and a phased roadmap that balances new features, scalability and technical debt.
 
-['Architecture', 'How do you approach multi-tenant SaaS architecture?',
-`- **Tenancy model** (pooled vs siloed) by tier and compliance needs.
-- **Tenant isolation** (data, compute, noisy neighbors).
-- **Scalability** and cost per tenant.
-- **Customization** via configuration/extensibility.
-- **Data residency** options.
-- **Observability** per tenant.`, 'D'],
+Tip: Connect architecture to product goals.`, 'D'],
 
-['AI', 'What is your strategy for AI in the product?',
-`- **Customer problems** where AI creates real value.
-- **Build vs buy** (foundation models via APIs, open models, fine-tuning).
-- **Data advantage** and feedback loops.
-- **AI platform**: model gateway, evaluation, guardrails, observability, cost control.
-- **Responsible AI**: safety, privacy, bias, transparency.
-- **Talent** (ML engineers, AI product managers).`, 'D'],
+["Architecture", "Monolith or microservices?",
+`**Why they ask:** a classic architecture judgment question.
 
-['AI', 'How do you evaluate LLM-based features before launch?',
-`- **Eval datasets** representing real use cases.
-- **Metrics**: accuracy/quality, hallucination rate, latency, cost, safety.
-- **Human review** and red teaming.
-- **A/B tests** and staged rollouts.
-- **Monitoring** in production with feedback.`, 'D'],
+**Answer:** Start with a well-structured modular monolith for speed and simplicity; extract services when team size, independent scaling or deployment needs justify the operational overhead of distributed systems. Decide by organizational and scaling needs, not fashion.
 
-['AI', 'How do you manage AI costs at scale?',
-`- **Model selection** by task (small models where possible).
-- **Caching**, prompt optimization, batching.
-- **Routing** between models.
-- **Usage** limits and pricing alignment.
-- **Monitor** unit economics.`, 'D'],
+Tip: Pragmatism signals experience.`, 'D'],
 
-['Engineering', 'How do you build a world-class engineering culture?',
-`- **Ownership** and autonomy.
-- **High bar** for quality and craft.
-- **Learning** and psychological safety.
-- **Customer** obsession.
-- **Leaders** who model behaviors.
-- **Hiring** for values and talent.`, 'B'],
+["Scale", "How do you scale a platform for 10x growth?",
+`**Why they ask:** growth stresses systems and teams.
 
-['Engineering', 'How do you measure engineering effectiveness?',
-`- **DORA** metrics.
-- **Developer experience** surveys.
-- **Product outcomes**.
-- **Reliability** (SLOs).
-- **Avoid** individual productivity metrics.`, 'B'],
+**Answer:** Identify bottlenecks with load testing and observability, scale stateless services horizontally, use caching and read replicas, partition data, move heavy work to asynchronous queues, use CDNs, and plan capacity. Scale the team and processes in parallel.
 
-['Engineering', 'How do you scale engineering from 50 to 500?',
-`- **Org design** with clear ownership.
-- **Leadership layers** (hire and grow).
-- **Platform** investments.
-- **Hiring** engine and onboarding.
-- **Processes** that scale (planning, architecture review).
-- **Culture** preservation.`, 'D'],
+Tip: Data layer is usually the hardest part.`, 'D'],
 
-['Security', 'How do you embed security in product development?',
-`- **Secure SDLC** with automated tooling.
-- **Threat modeling** for new features.
-- **Security champions**.
-- **Bug bounty** and pen testing.
-- **Compliance** (SOC 2, ISO) as product requirements.
-- **Incident** readiness.`, 'B'],
+["Reliability", "How do you build reliability?",
+`**Why they ask:** outages damage customers and revenue.
 
-['Data', 'How do you build a data strategy for the product?',
-`- **Data as product** — instrumentation, quality, ownership.
-- **Analytics** for product decisions.
-- **Data for AI** features.
-- **Privacy** and consent management.
-- **Platform** (lakehouse, streaming).`, 'D'],
+**Answer:** SLOs with error budgets, observability (metrics, logs, traces), automated testing and deployments, incident management with blameless postmortems, chaos testing for critical paths, and redundancy across zones.
 
-['Stakeholders', 'How do you work with the CEO and the board as CTO?',
-`- **Translate** technology into business impact.
-- **Candid** about risks and timelines.
-- **Strategic** input on product and market.
-- **Technical due diligence** support for fundraising/M&A.
-- **Regular** updates.`, 'B'],
+Tip: Error budgets balance speed and stability.`, 'D'],
 
-['Stakeholders', 'How do you partner with the CPO?',
-`- **Shared** vision and roadmap.
-- **Joint** prioritization of tech investments and features.
-- **Aligned** teams (product-engineering pods).
-- **Healthy** debate; unified decisions.`, 'B'],
+["Engineering Org", "How do you structure an engineering organization?",
+`**Why they ask:** structure drives speed.
 
-['Stakeholders', 'How do you represent technology to customers and the market?',
-`- **Customer** advisory boards and executive briefings.
-- **Thought leadership** (talks, blogs).
-- **Technical** sales support for large deals.
-- **Partner** ecosystem relationships.`, 'B'],
+**Answer:** Small cross-functional product teams aligned to business domains, platform teams providing self-service infrastructure, enabling teams for specialist skills, and clear ownership — following Team Topologies principles to minimize dependencies.
 
-['M&A', 'How do you run technical due diligence for an acquisition?',
-`- **Architecture** and scalability.
-- **Code quality** and technical debt.
-- **Security** posture and incidents.
-- **IP** and open-source license compliance.
-- **Team** quality and key people.
-- **Integration** effort and costs.`, 'D'],
+Tip: Conway's law — architecture mirrors org structure.`, 'D'],
 
-['Finance', 'How do you manage R&D spend and cloud costs?',
-`- **Investment** allocation aligned to strategy.
-- **Unit economics** (cost to serve per customer).
-- **FinOps** discipline.
-- **Capitalization** of software development with finance.
-- **ROI** tracking.`, 'D'],
+["Velocity", "How do you increase engineering velocity?",
+`**Why they ask:** CEOs want faster delivery.
 
-['Behavioral', 'Tell me about a major technology decision you got right.',
-`- Context, options, reasoning, execution, outcome with metrics.`, 'B'],
+**Answer:** Measure DORA metrics (deployment frequency, lead time, change failure rate, time to restore), remove bottlenecks (CI/CD, test automation, environments), reduce dependencies and WIP, improve developer experience and invest in platforms.
 
-['Behavioral', 'Tell me about a technology decision you got wrong.',
-`- Honest example, how you recognized it, how you corrected, lessons.`, 'B'],
+**Example:** moving to trunk-based development and automated pipelines took deployments from monthly to daily.
 
-['Behavioral', 'How do you stay technical as a CTO?',
-`- **Architecture** reviews and design discussions.
-- **Prototyping** and hands-on exploration.
-- **Reading** and conferences.
-- **Conversations** with engineers.
-- **Advisors** and peer networks.`, 'B'],
+Tip: Measure before optimizing.`, 'D'],
 
-['Behavioral', 'Why do you want to be our CTO?',
-`- **Mission** and product excitement.
-- **Technical** challenges that match your strengths.
-- **Stage** of company and your experience.
-- **Vision** for their technology.`, 'B'],
+["Technical Debt", "How do you manage technical debt?",
+`**Why they ask:** debt slows everything.
 
-['Strategy', 'How do you decide which emerging technologies to invest in?',
-`- **Customer and business** relevance.
-- **Maturity** and ecosystem.
-- **Competitive** dynamics.
-- **Small bets** to learn, scale winners.
-- **Avoid** hype cycles without clear value.`, 'B'],
+**Answer:** Make debt visible with its business impact (incidents, slow delivery), allocate a steady share of capacity (e.g. 20%), tackle debt tied to roadmap areas first, and prevent new debt with standards and reviews.
 
-['Engineering', 'How do you handle a large outage that damages customer trust?',
-`- **Immediate** response and transparent communication (status page, customer updates).
-- **Executive** ownership.
-- **Root cause** and public postmortem where appropriate.
-- **Reliability** investments.
-- **Customer** remediation (credits, follow-up).`, 'D']
+Tip: Tie debt to business outcomes so it gets funded.`, 'D'],
+
+["Build vs Buy", "How do you decide build vs buy?",
+`**Answer:** Build what differentiates your product; buy or use open source for commodity capabilities (authentication, payments, observability). Consider total cost of ownership, integration and lock-in.
+
+Tip: Focus engineering on differentiation.`, 'B'],
+
+["Security", "How do you lead security engineering?",
+`**Answer:** Secure SDLC (threat modeling, code scanning, dependency management), identity and secrets management, least privilege, infrastructure as code with policy checks, incident response, and a security champions program in teams.
+
+Tip: Make secure the easy path.`, 'D'],
+
+["AI", "How are you using AI in engineering and product?",
+`**Why they ask:** AI is reshaping software development and products.
+
+**Answer:** AI coding assistants with guidelines and measurement of productivity and quality; AI features in the product where they solve real user problems, with evaluation frameworks, cost management, privacy and safety controls; and upskilling engineers.
+
+Tip: Measure impact, don't assume it.`, 'D'],
+
+["Hiring", "How do you hire great engineers?",
+`**Answer:** Clear role definitions and leveling, structured interviews testing real-world skills, strong employer brand, fast processes, diverse sourcing, and a high bar consistently applied.
+
+Tip: Speed and candidate experience matter.`, 'B'],
+
+["Culture", "What engineering culture do you build?",
+`**Answer:** Ownership, high standards, blameless learning, collaboration with product and design, continuous improvement, and psychological safety.
+
+Tip: Culture shows in how incidents are handled.`, 'B'],
+
+["Career Ladders", "How do you design engineering career paths?",
+`**Answer:** Dual tracks for individual contributors (senior, staff, principal) and managers, with clear expectations for scope, impact and leadership at each level.
+
+Tip: Strong IC track retains top engineers.`, 'D'],
+
+["Product Partnership", "How do you work with the product leader?",
+`**Answer:** Shared goals and roadmap, joint prioritization balancing features, quality and platform investment, early technical involvement in discovery, and transparent trade-off discussions.
+
+Tip: Partnership, not order-taking.`, 'B'],
+
+["Cost", "How do you manage cloud costs?",
+`**Answer:** FinOps practices: cost visibility by team, tagging, right-sizing, reserved/committed use, autoscaling, architectural optimization, and cost as an engineering metric.
+
+Tip: Make teams see their costs.`, 'D'],
+
+["Incidents", "How do you handle a major outage?",
+`**Answer:** Incident commander process, clear roles, customer communication, fast mitigation (rollback, failover), executive updates, and a blameless postmortem with tracked action items.
+
+Tip: Restore first, analyze after.`, 'B'],
+
+["Behavioral", "Tell me about scaling a team and platform.",
+`**Sample answer:**
+"I grew engineering from 25 to 120 people while traffic grew 8x. We reorganized into domain teams, built a platform team for CI/CD and observability, and introduced SLOs. Deployment frequency rose from weekly to multiple times daily, and availability improved to 99.97%."
+
+Tip: Team and system results together.`, 'B'],
+
+["Behavioral", "Tell me about a technical decision you regret.",
+`**Sample answer:**
+"We moved to microservices too early with a small team, which slowed us down. We consolidated some services back into a modular monolith. I learned to match architecture to team size and actual scaling needs."
+
+Tip: Honest learning.`, 'D'],
+
+["Behavioral", "Tell me about pushing back on the CEO.",
+`**Sample answer:**
+"The CEO wanted a major feature in four weeks. I showed the risk to reliability and proposed a smaller first version in four weeks with full rollout in ten. We launched on time with the MVP and avoided an outage."
+
+Tip: Options, not refusals.`, 'D'],
+
+["Career", "Why do you want to be our CTO?",
+`**Answer:** Connect to their product, stage, technical challenges and mission; show you've studied their architecture and market.
+
+Tip: Specific research.`, 'B'],
+
+["Closing", "Why should we hire you?",
+`**Sample answer:**
+"I've scaled platforms and engineering teams through rapid growth while improving reliability and speed, and I partner closely with product and business leaders."
+
+Tip: Proof.`, 'B'],
+
+["Due Diligence", "What does a CTO look at in technical due diligence?",
+`**Answer:** Architecture and scalability, code quality and technical debt, security posture, infrastructure and costs, team capability and key-person risk, IP and open-source compliance.
+
+Tip: Key-person risk is often overlooked.`, 'D'],
+
+["Platform", "What makes a good internal developer platform?",
+`**Answer:** Self-service environments, golden paths for common services, CI/CD, observability, security built in, documentation, and treating developers as customers.
+
+Tip: Developer experience drives velocity.`, 'D'],
+
+["Data", "How do you build data architecture for a product company?",
+`**Answer:** Operational databases per service domain, event streaming for integration, a data platform (lakehouse) for analytics and ML, governance and privacy controls.
+
+Tip: Events decouple systems.`, 'D'],
+
+["Quality", "How do you ensure software quality at speed?",
+`**Answer:** Automated testing pyramid, code reviews, CI with quality gates, feature flags for safe releases, canary deployments and monitoring.
+
+Tip: Feature flags reduce release risk.`, 'D'],
+
+["Metrics", "Which engineering metrics do you track?",
+`**Answer:** DORA metrics, SLO attainment, incident trends, developer satisfaction, cost per transaction, and delivery against roadmap.
+
+Tip: Avoid individual productivity metrics like lines of code.`, 'B'],
+
+["Remote", "How do you lead distributed engineering teams?",
+`**Answer:** Written culture (design docs, ADRs), clear ownership, overlapping hours for collaboration, async communication, and periodic in-person gatherings.
+
+Tip: Write decisions down.`, 'B'],
+
+["Open Source", "How do you manage open-source risk?",
+`**Answer:** Dependency scanning, license compliance policies, SBOMs, update practices and contribution guidelines.
+
+Tip: SBOMs.`, 'D'],
+
+["Innovation", "How do you balance innovation with stability?",
+`**Answer:** Protect innovation time and experiments behind feature flags, maintain SLO-driven stability, and use error budgets to decide when to slow down.
+
+Tip: Error budgets.`, 'D'],
+
+["Board", "How do you communicate technology to the board?",
+`**Answer:** Business-relevant metrics (reliability, security, delivery speed, costs), risks, and investments needed — no jargon.
+
+Tip: Business language.`, 'D'],
+
+["Vendors", "How do you choose technology vendors?",
+`**Answer:** Fit with architecture, total cost, scalability, security, vendor viability and exit options — validated with proofs of concept.
+
+Tip: Exit options.`, 'B'],
+
+["Performance", "How do you handle underperforming engineering managers?",
+`**Answer:** Clear expectations, coaching, feedback from their teams, support, and timely decisions if no improvement.
+
+Tip: Managers multiply impact.`, 'B'],
+
+["Compliance", "How do you handle SOC 2 or similar compliance?",
+`**Answer:** Build controls into engineering workflows (access, change management, logging), automate evidence, and treat compliance as part of quality.
+
+Tip: Automate evidence.`, 'D'],
+
+["Scenario", "Your platform keeps having outages. What do you do?",
+`**Answer:** Stabilize with focused reliability work (pause some features), analyze incidents for patterns, add observability, fix top causes, introduce SLOs and on-call improvements.
+
+Tip: Stability sprint.`, 'D'],
+
+["Scenario", "The CEO says engineering is too slow. What do you do?",
+`**Answer:** Measure the delivery pipeline, identify bottlenecks (planning, dependencies, testing, deployment), fix them, and report improvements with DORA metrics.
+
+Tip: Data-driven response.`, 'D'],
+
+["Scenario", "A key architect resigns. What do you do?",
+`**Answer:** Ensure knowledge transfer, distribute ownership, document critical decisions, promote or hire, and reduce key-person dependencies going forward.
+
+Tip: Documentation and ownership.`, 'B'],
+
+["API", "What makes a good API strategy?",
+`**Answer:** Consistent design standards, versioning, documentation, security (OAuth), developer portals and treating APIs as products.
+
+Tip: APIs as products.`, 'D'],
+
+["Leadership", "What's your leadership philosophy?",
+`**Sample answer:** "Hire great people, give them clear context and ownership, remove obstacles, and keep a high bar for quality and learning."
+
+Tip: Authentic.`, 'B'],
+
+["Strategy", "How do you decide what not to build?",
+`**Answer:** Focus on differentiation and customer value, say no to features without clear impact, and buy commodity capabilities.
+
+Tip: Focus.`, 'B'],
+
+["Startup vs Enterprise", "How does the CTO role change from startup to scale-up?",
+`**Answer:** Startup: hands-on building and fast iteration. Scale-up: building teams, processes, architecture for scale, and leadership layers.
+
+Tip: Adapt to stage.`, 'D'],
+
+["Developer Experience", "Why does developer experience matter?",
+`**Answer:** It directly affects productivity, quality and retention — fast builds, good tools, clear docs and low friction.
+
+Tip: Measure developer satisfaction.`, 'B'],
+
+["Ethics", "How do you approach ethical technology decisions?",
+`**Answer:** Privacy by design, transparency in AI features, security, accessibility, and escalation paths for concerns.
+
+Tip: Build ethics into reviews.`, 'B'],
+
+["Questions", "What would you ask in a CTO interview?",
+`**Answer:**
+- "What are the biggest technical risks today?"
+- "How do product and engineering decide priorities?"
+- "What does the board expect from technology in two years?"
+
+Tip: Strategic and practical.`, 'B'],
+
+["Observability", "What does good observability look like?",
+`**Answer:** Correlated metrics, logs and traces, service-level dashboards, alerts tied to SLOs and user impact, and tools for fast diagnosis.
+
+Tip: Alert on user impact.`, 'D'],
+
+["Migration", "How do you modernize a legacy platform?",
+`**Answer:** Strangler pattern — incrementally replace pieces behind stable interfaces, prioritize high-value areas, maintain parallel running and data sync, and avoid big-bang rewrites.
+
+Tip: No big-bang rewrites.`, 'D'],
+
+["Team Health", "How do you measure team health?",
+`**Answer:** Engagement surveys, retention, on-call load, incident trends and qualitative feedback in skip-levels.
+
+Tip: On-call load matters.`, 'B'],
+
+["Customers", "How do engineers stay close to customers?",
+`**Answer:** Customer interviews, support rotations, usage analytics and joint discovery with product.
+
+Tip: Support rotations build empathy.`, 'B'],
+
+["Legacy", "What legacy do you want to leave as CTO?",
+`**Answer:** A scalable platform, a strong engineering culture, and leaders who can carry it forward.
+
+Tip: Lasting impact.`, 'B']
 ]);
 
 QB['it-cto'] = (QB['it-cto'] || []).concat([
-['Architecture', 'How do you think about technical debt at the CTO level?',
-`- **Debt is a tool** when taken consciously; problematic when invisible.
-- **Inventory** and measure impact (velocity, incidents).
-- **Strategic** paydown tied to business goals.
-- **Capacity** allocation.
-- **Prevent** with standards and platforms.`, 'B'],
+["ADRs", "What are architecture decision records?",
+`**Why they ask:** a sign of mature engineering practice.
 
-['Architecture', 'How do you choose a cloud provider or decide on multi-cloud?',
-`- **Services** fit (data, AI, managed services).
-- **Cost** and commercial terms.
-- **Customer** requirements (some require specific clouds).
-- **Team** skills.
-- **Multi-cloud** for customer reach or resilience only when worth the complexity.`, 'B'],
+**Answer:** Short documents capturing an architectural decision, its context, the options considered and the consequences. They make reasoning visible to future engineers and speed up onboarding.
 
-['Architecture', 'What is your approach to APIs and platform ecosystems?',
-`- **API-first** design; public APIs as products.
-- **Developer experience** (docs, SDKs, sandbox).
-- **Versioning** and stability commitments.
-- **Partner** ecosystem and marketplace.
-- **Security** and rate limiting.`, 'D'],
-
-['Architecture', 'How do you design for global scale and data residency?',
-`- **Regional** deployments (cells) with data residency.
-- **Global** control plane vs regional data planes.
-- **Latency** optimization (CDN, edge).
-- **Compliance** with local regulations.
-- **Operational** consistency across regions.`, 'D'],
-
-['Engineering', 'How do you organize teams around a platform and products?',
-`- **Product teams** owning customer-facing domains.
-- **Platform teams** providing shared capabilities as products.
-- **Clear** interfaces and ownership.
-- **Team Topologies** principles.`, 'B'],
-
-['Engineering', 'How do you attract top engineering talent?',
-`- **Hard, meaningful** problems.
-- **Strong** engineering brand (open source, talks).
-- **Great** leaders and peers.
-- **Growth** and autonomy.
-- **Competitive** compensation.`, 'B'],
-
-['Engineering', 'How do you develop technical leaders (staff/principal engineers)?',
-`- **Clear** expectations for IC leadership.
-- **Opportunities** for cross-org impact.
-- **Sponsorship** and visibility.
-- **Architecture** forums led by them.
-- **Recognition** equal to management track.`, 'B'],
-
-['Security', 'How do you respond to a major security vulnerability in your product?',
-`- **Assess** severity and exposure.
-- **Patch** quickly with coordinated release.
-- **Communicate** to customers responsibly.
-- **Check** for exploitation.
-- **Postmortem** and process improvements.`, 'D'],
-
-['Security', 'How do you approach software supply chain security?',
-`- **SBOMs** for all products.
-- **Dependency** scanning and pinning.
-- **Signed** builds and artifacts (SLSA framework).
-- **Least privilege** CI/CD.
-- **Vendor** assessments.`, 'D'],
-
-['AI', 'How do you handle responsible AI in product development?',
-`- **Principles** (fairness, transparency, privacy, safety, accountability).
-- **Risk assessments** per feature.
-- **Guardrails** and content filtering.
-- **Human oversight** where needed.
-- **Documentation** (model cards).
-- **Compliance** with regulations (EU AI Act).`, 'D'],
-
-['AI', 'Build or buy foundation models?',
-`- **Buy/API** for most use cases — fastest, best capability.
-- **Open models** for control, cost or privacy needs (self-hosted).
-- **Fine-tune** when domain specificity matters.
-- **Train from scratch** rarely — only with unique data and scale.
-- Abstract the model layer to switch providers.`, 'D'],
-
-['AI', 'How will AI change software engineering in your organization?',
-`- **AI-assisted** coding, testing, documentation, operations.
-- **Engineers** focus more on design, review and system thinking.
-- **Faster** iteration; new quality risks.
-- **Upskilling** and new roles.
-- **Measure** and adapt processes.`, 'D'],
-
-['Data', 'How do you ensure privacy in a data-driven product?',
-`- **Privacy by design** (minimization, purpose limitation).
-- **Consent** management.
-- **Anonymization/pseudonymization**.
-- **Access** controls and auditing.
-- **Compliance** (GDPR, CCPA).`, 'B'],
-
-['Stakeholders', 'How do you handle disagreements with the CEO on technical timelines?',
-`- **Data** on estimates and risks.
-- **Options** (scope trade-offs).
-- **Transparent** about uncertainty.
-- **Commit** to realistic plans.
-- **Build trust** through delivery.`, 'B'],
-
-['Stakeholders', 'How do you explain complex technical topics to non-technical executives?',
-`- **Analogies** and simple visuals.
-- **Focus** on impact (customers, revenue, risk).
-- **Avoid** jargon.
-- **Answer** "so what?"
-- **Check** understanding.`, 'B'],
-
-['Finance', 'How do you justify a large platform investment to the board?',
-`- **Strategic** necessity (scale, new markets, competitive advantage).
-- **Financials** (cost savings, revenue enablement).
-- **Risks** of not investing.
-- **Milestones** and metrics.
-- **Benchmarks**.`, 'D'],
-
-['Behavioral', 'Describe a time you had to make a difficult trade-off between speed and quality.',
-`- Situation (e.g. competitive launch), options, decision (launch with feature flags and limited scope), mitigations, outcome.`, 'B'],
-
-['Behavioral', 'How do you handle conflict between product and engineering?',
-`- **Shared** goals and metrics.
-- **Facilitate** discussion with data.
-- **Joint** decision-making forums.
-- **Address** root causes (unclear priorities, capacity).`, 'B'],
-
-['Strategy', 'How do you build a technology roadmap that investors trust?',
-`- **Clear** link to market strategy.
-- **Realistic** milestones.
-- **Track record** of delivery.
-- **Risk** awareness.
-- **Metrics** showing progress.`, 'B'],
-
-['Engineering', 'How do you set reliability standards for a SaaS product?',
-`- **SLAs** to customers backed by internal **SLOs**.
-- **Error budgets**.
-- **Incident** management and communication.
-- **Investment** in SRE and observability.
-- **Chaos** and DR testing.`, 'B'],
-
-['Engineering', 'How do you approach open source strategy?',
-`- **Consume** responsibly (license compliance, security).
-- **Contribute** back where strategic.
-- **Open-source** your own projects for brand/community when it aligns with business.
-- **Governance** (OSPO).`, 'D'],
-
-['Behavioral', 'What is your leadership philosophy as CTO?',
-`- Concise, authentic: e.g. technical excellence, customer focus, empowerment, clarity, learning culture — with examples.`, 'B'],
-
-['Strategy', 'How do you prepare the company technically for an IPO or acquisition?',
-`- **Scalable** architecture and documentation.
-- **Security** and compliance certifications.
-- **IP** cleanliness (licenses, ownership).
-- **Engineering** metrics and processes.
-- **Key person** risk mitigation.`, 'D'],
-
-['Behavioral', 'How do you build trust with engineers as a new CTO?',
-`- **Listen** first; learn the systems.
-- **Respect** past decisions' context.
-- **Remove** obstacles quickly.
-- **Be transparent** about direction.
-- **Show** technical credibility.`, 'B'],
-
-['Engineering', 'How do you decide on build systems, languages and frameworks across teams?',
-`- **Paved roads**: recommended stacks with support.
-- **Allow** exceptions with justification.
-- **Consider** talent, ecosystem, performance, maintainability.
-- **Avoid** fragmentation that hurts mobility and operations.`, 'B']
+Tip: Lightweight and kept in the repo.`, 'B']
 ]);

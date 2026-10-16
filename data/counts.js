@@ -40,7 +40,7 @@ window.COUNTS = {
  "eng-dir": 50,
  "eng-vp": 50,
  "it-entapps": 50,
- "it-pmo": 51,
+ "it-pmo": 50,
  "it-vp": 50,
  "it-cio": 50,
  "it-cto": 50,
@@ -171,5 +171,5 @@ window.COUNTS = {
  "lg-counsel": 50,
  "cs-mc": 50,
  "cs-ops": 50,
- "common": 40
+ "common": 50
 };
