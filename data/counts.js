@@ -167,5 +167,9 @@ window.COUNTS = {
  "bk-aml": 50,
  "bk-uw": 50,
  "bk-claims": 50,
+ "lg-comp": 50,
+ "lg-counsel": 50,
+ "cs-mc": 50,
+ "cs-ops": 50,
  "common": 40
 };

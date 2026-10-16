@@ -382,6 +382,22 @@ window.CATALOG = [
       { id: 'bk-uw', title: 'Insurance Underwriter (Commercial P&C)', level: 'Mid → Senior', blurb: 'Loss ratios, COPE, pricing, loss runs, cyber, cat exposure, brokers.' },
       { id: 'bk-claims', title: 'Claims Adjuster / Claims Manager', level: 'Mid → Manager', blurb: 'Coverage, reserves, liability, negotiation, fraud, bad faith, subrogation.' }
     ]
+  },
+  {
+    id: 'legal', field: 'biz', name: 'Legal & Compliance', short: 'Legal', glyph: 'LAW', color: '#7F1D1D', tint: '#F8E8E8',
+    tag: 'Compliance managers and in-house counsel',
+    positions: [
+      { id: 'lg-comp', title: 'Corporate Compliance Manager', level: 'Manager', blurb: 'DOJ program elements, FCPA, third parties, hotline, investigations.' },
+      { id: 'lg-counsel', title: 'Corporate Counsel (In-house)', level: 'Senior', blurb: 'Contracts, LoL and indemnity, employment, IP, privacy, litigation.' }
+    ]
+  },
+  {
+    id: 'consult', field: 'biz', name: 'Consulting & Operations', short: 'Consulting', glyph: 'MGT', color: '#334155', tint: '#EDF0F4',
+    tag: 'Management consultants and operations / general managers',
+    positions: [
+      { id: 'cs-mc', title: 'Management Consultant', level: 'Mid → Manager', blurb: 'Case interviews, MECE, market sizing, profitability, synthesis.' },
+      { id: 'cs-ops', title: 'Operations Manager / General Manager', level: 'Manager → Director', blurb: 'KPIs, P&L, labor planning, CI, people, crisis, capacity.' }
+    ]
   }
 ];
 
@@ -403,6 +419,8 @@ window.FIELDS = [
     families: ['engcore'] },
   { id: 'bank', name: 'Banking & Insurance', glyph: 'BNK', color: '#1E40AF', tint: '#E5EAFB', tag: 'Commercial banking, AML/KYC compliance, underwriting and claims',
     families: ['bankins'] },
+  { id: 'biz', name: 'Legal, Consulting & Operations', glyph: 'BIZ', color: '#475569', tint: '#EEF1F5', tag: 'Compliance, corporate counsel, management consulting and operations leadership',
+    families: ['legal', 'consult'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];
