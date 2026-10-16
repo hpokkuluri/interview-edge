@@ -88,5 +88,10 @@ window.COUNTS = {
  "w-review": 10,
  "w-promo": 9,
  "w-status": 9,
+ "swe-fe": 51,
+ "swe-be": 50,
+ "swe-fs": 50,
+ "swe-mob": 50,
+ "swe-staff": 50,
  "common": 40
 };

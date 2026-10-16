@@ -213,13 +213,24 @@ window.CATALOG = [
       { id: 'w-promo', title: 'Promotion & raise conversation', level: 'Any level', blurb: 'Make the case with evidence, ask clearly, handle a "not yet".' },
       { id: 'w-status', title: 'Status update & escalating a risk', level: 'Any level', blurb: 'Red/amber/green, bad news early, options and asks.' }
     ]
+  },
+  {
+    id: 'swe', field: 'tech', name: 'Software Engineering', short: 'Software', glyph: 'SWE', color: '#2563EB', tint: '#E7EEFD',
+    tag: 'Frontend, backend, full-stack, mobile and staff/principal engineers',
+    positions: [
+      { id: 'swe-fe', title: 'Frontend Engineer (React)', level: 'Mid → Senior', blurb: 'JavaScript, TypeScript, React, Next.js, performance, accessibility, testing.' },
+      { id: 'swe-be', title: 'Backend Engineer (Node / Python / .NET)', level: 'Mid → Senior', blurb: 'APIs, databases, caching, messaging, security, scalability, observability.' },
+      { id: 'swe-fs', title: 'Full-Stack Engineer', level: 'Mid → Senior', blurb: 'End-to-end features, API contracts, auth, payments, deployment, monitoring.' },
+      { id: 'swe-mob', title: 'Mobile Engineer (iOS / Android)', level: 'Mid → Senior', blurb: 'SwiftUI, Jetpack Compose, React Native, offline, performance, releases.' },
+      { id: 'swe-staff', title: 'Staff / Principal Engineer', level: 'Staff · Principal', blurb: 'Technical strategy, cross-team architecture, influence, reliability, mentoring.' }
+    ]
   }
 ];
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
