@@ -322,6 +322,16 @@ window.CATALOG = [
       { id: 'ss-trade', title: 'Trade Compliance Manager', level: 'Manager', blurb: 'HTS classification, valuation, origin, tariffs, EAR/ITAR, sanctions.' },
       { id: 'ss-rel', title: 'Maintenance / Reliability Engineer', level: 'Mid → Senior', blurb: 'MTBF, RCM, predictive maintenance, RCA, CMMS, TPM, spares.' }
     ]
+  },
+  {
+    id: 'hrcore', field: 'hr', name: 'Human Resources', short: 'HR', glyph: 'HR', color: '#9333EA', tint: '#F3E8FD',
+    tag: 'HRBP, talent acquisition, total rewards and CHRO',
+    positions: [
+      { id: 'hr-hrbp', title: 'HR Business Partner', level: 'Senior', blurb: 'Employee relations, investigations, org design, talent, retention, law.' },
+      { id: 'hr-ta', title: 'Talent Acquisition Manager', level: 'Manager', blurb: 'Intake, sourcing, structured interviews, metrics, offers, compliance.' },
+      { id: 'hr-comp', title: 'Compensation & Benefits Manager', level: 'Manager', blurb: 'Market pricing, ranges, merit, incentives, equity, pay equity, benefits.' },
+      { id: 'hr-chro', title: 'HR Director / CHRO', level: 'Executive', blurb: 'People strategy, succession, culture, operating model, board, change.' }
+    ]
   }
 ];
 
@@ -333,6 +343,8 @@ window.FIELDS = [
     families: ['accops', 'fpa', 'audit', 'finspec', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
     families: ['proc', 'plan', 'logi', 'mfg', 'scmspec', 'scmlead'] },
+  { id: 'hr', name: 'Human Resources', glyph: 'HR', color: '#9333EA', tint: '#F3E8FD', tag: 'HR business partners, talent acquisition, compensation and benefits, HR leadership',
+    families: ['hrcore'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];

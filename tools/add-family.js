@@ -17,8 +17,10 @@ for (const f of spec.families) {
 if (spec.field_def && !src.includes("{ id: '" + spec.field_def.id + "', name:")) {
   const d = spec.field_def;
   const line = "  { id: " + q(d.id) + ", name: " + q(d.name) + ", glyph: " + q(d.glyph) + ", color: " + q(d.color) + ", tint: " + q(d.tint) + ", tag: " + q(d.tag) + ",\n    families: [] }";
-  const m = src.indexOf('\n];\n', src.indexOf('window.FIELDS'));
-  src = src.slice(0, m) + ',\n' + line + src.slice(m);
+  // Keep the 'At Work' field last: insert new fields before it when present.
+  const w = src.indexOf("\n  { id: 'work', name:", src.indexOf('window.FIELDS'));
+  if (w >= 0) src = src.slice(0, w) + '\n' + line + ',' + src.slice(w);
+  else { const m = src.indexOf('\n];\n', src.indexOf('window.FIELDS')); src = src.slice(0, m) + ',\n' + line + src.slice(m); }
 }
 // Add family ids to their field's families list.
 for (const f of spec.families) {

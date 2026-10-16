@@ -143,5 +143,9 @@ window.COUNTS = {
  "ss-ehs": 50,
  "ss-trade": 50,
  "ss-rel": 50,
+ "hr-hrbp": 50,
+ "hr-ta": 50,
+ "hr-comp": 50,
+ "hr-chro": 50,
  "common": 40
 };
