@@ -131,5 +131,11 @@ window.COUNTS = {
  "pd-sm": 50,
  "pd-tpm": 50,
  "pd-pmo": 50,
+ "fs-rev": 50,
+ "fs-cost": 50,
+ "fs-pay": 50,
+ "fs-credit": 50,
+ "fs-ib": 50,
+ "fs-risk": 50,
  "common": 40
 };

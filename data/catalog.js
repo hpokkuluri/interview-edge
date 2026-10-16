@@ -298,6 +298,18 @@ window.CATALOG = [
       { id: 'pd-tpm', title: 'Technical Program / Project Manager', level: 'Senior', blurb: 'Critical path, risks, dependencies, EVM, migrations, ERP programs.' },
       { id: 'pd-pmo', title: 'PMO Director / Head of Delivery', level: 'Director', blurb: 'Portfolio prioritization, intake, capacity, governance, benefits.' }
     ]
+  },
+  {
+    id: 'finspec', field: 'fin', name: 'Finance Specialists', short: 'Specialists', glyph: 'SPC', color: '#0F766E', tint: '#E3F4F2',
+    tag: 'Revenue, cost, payroll, credit, M&A / investment and financial risk',
+    positions: [
+      { id: 'fs-rev', title: 'Revenue Accountant (ASC 606)', level: 'Mid → Senior', blurb: 'Five steps, SSP allocation, variable consideration, deferred revenue.' },
+      { id: 'fs-cost', title: 'Cost Accountant', level: 'Mid → Senior', blurb: 'Standard cost, variances, overhead, inventory reserves, margins.' },
+      { id: 'fs-pay', title: 'Payroll Manager', level: 'Manager', blurb: 'Payroll cycle, taxes, FLSA, multi-state, controls, year-end.' },
+      { id: 'fs-credit', title: 'Credit Analyst / Credit Manager', level: 'Mid → Manager', blurb: '5 Cs, ratios, limits, DSO, collections, CECL, bankruptcy.' },
+      { id: 'fs-ib', title: 'Corporate Development / Investment Analyst', level: 'Mid → Senior', blurb: 'DCF, comps, WACC, LBO, accretion/dilution, due diligence.' },
+      { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' }
+    ]
   }
 ];
 
@@ -306,7 +318,7 @@ window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
     families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
-    families: ['accops', 'fpa', 'audit', 'finlead'] },
+    families: ['accops', 'fpa', 'audit', 'finspec', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
     families: ['proc', 'plan', 'logi', 'mfg', 'scmlead'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
