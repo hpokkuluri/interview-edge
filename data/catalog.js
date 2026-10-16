@@ -362,6 +362,16 @@ window.CATALOG = [
       { id: 'ls-qa', title: 'GMP Quality Assurance', level: 'Mid → Manager', blurb: 'Deviations, CAPA, batch release, data integrity, validation, OOS, audits.' },
       { id: 'ls-pv', title: 'Pharmacovigilance / Drug Safety', level: 'Mid → Senior', blurb: 'ICSRs, seriousness, causality, timelines, MedDRA, signals, PBRER.' }
     ]
+  },
+  {
+    id: 'engcore', field: 'eng', name: 'Engineering & Construction', short: 'Engineering', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC',
+    tag: 'Mechanical, electrical, civil/structural and construction PM',
+    positions: [
+      { id: 'en-mech', title: 'Mechanical Engineer', level: 'Mid → Senior', blurb: 'Stress, fatigue, GD&T, tolerances, FEA, thermal, fluids, DFM, testing.' },
+      { id: 'en-elec', title: 'Electrical Engineer (Power / Controls)', level: 'Mid → Senior', blurb: 'Three-phase, NEC sizing, short circuit, arc flash, motors, PLCs, PID.' },
+      { id: 'en-civil', title: 'Civil / Structural Engineer', level: 'Mid → Senior', blurb: 'ASCE 7 loads, steel and concrete design, seismic, foundations, stormwater.' },
+      { id: 'en-cpm', title: 'Construction Project Manager', level: 'Senior', blurb: 'Delivery methods, CPM schedules, cost, change orders, RFIs, safety, closeout.' }
+    ]
   }
 ];
 
@@ -379,6 +389,8 @@ window.FIELDS = [
     families: ['salesmkt'] },
   { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical research, regulatory, quality and drug safety',
     families: ['hcare', 'lifesci'] },
+  { id: 'eng', name: 'Engineering & Construction', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC', tag: 'Mechanical, electrical, civil/structural engineers and construction project managers',
+    families: ['engcore'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];

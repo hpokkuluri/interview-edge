@@ -159,5 +159,9 @@ window.COUNTS = {
  "ls-ra": 50,
  "ls-qa": 50,
  "ls-pv": 50,
+ "en-mech": 50,
+ "en-elec": 50,
+ "en-civil": 50,
+ "en-cpm": 50,
  "common": 40
 };
