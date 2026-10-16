@@ -151,5 +151,13 @@ window.COUNTS = {
  "sm-sdir": 50,
  "sm-mkt": 50,
  "sm-csm": 50,
+ "hc-rn": 50,
+ "hc-nm": 50,
+ "hc-rcm": 50,
+ "hc-epic": 50,
+ "ls-cra": 50,
+ "ls-ra": 50,
+ "ls-qa": 50,
+ "ls-pv": 50,
  "common": 40
 };

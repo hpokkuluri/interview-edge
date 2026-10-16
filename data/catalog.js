@@ -342,6 +342,26 @@ window.CATALOG = [
       { id: 'sm-mkt', title: 'Digital / Growth Marketing Manager', level: 'Manager', blurb: 'Paid search/social, SEO, CAC/ROAS, attribution, testing, ABM.' },
       { id: 'sm-csm', title: 'Customer Success Manager', level: 'Mid → Senior', blurb: 'Onboarding, health scores, churn, NRR, QBRs, renewals, expansion.' }
     ]
+  },
+  {
+    id: 'hcare', field: 'health', name: 'Healthcare', short: 'Healthcare', glyph: 'RN', color: '#0891B2', tint: '#E0F4F8',
+    tag: 'Nurses, nurse leaders, revenue cycle and Epic / clinical informatics',
+    positions: [
+      { id: 'hc-rn', title: 'Registered Nurse', level: 'Mid → Senior', blurb: 'Prioritization, SBAR, safety, sepsis, delegation, patient advocacy.' },
+      { id: 'hc-nm', title: 'Nurse Manager / Director of Nursing', level: 'Manager → Director', blurb: 'Staffing, HPPD, quality, HCAHPS, retention, just culture, Joint Commission.' },
+      { id: 'hc-rcm', title: 'Revenue Cycle Manager', level: 'Manager', blurb: 'Denials, AR days, coding, prior auth, payers, compliance, collections.' },
+      { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' }
+    ]
+  },
+  {
+    id: 'lifesci', field: 'health', name: 'Pharma & Life Sciences', short: 'Life Sciences', glyph: 'RX', color: '#4F46E5', tint: '#ECEBFD',
+    tag: 'Clinical research, regulatory affairs, GMP quality and pharmacovigilance',
+    positions: [
+      { id: 'ls-cra', title: 'Clinical Research Associate / CTM', level: 'Mid → Senior', blurb: 'ICH-GCP, monitoring visits, consent, SDV, SAEs, deviations, TMF.' },
+      { id: 'ls-ra', title: 'Regulatory Affairs Specialist / Manager', level: 'Mid → Manager', blurb: 'IND/NDA/BLA, 510(k)/PMA, eCTD, labeling, change control, EU MDR.' },
+      { id: 'ls-qa', title: 'GMP Quality Assurance', level: 'Mid → Manager', blurb: 'Deviations, CAPA, batch release, data integrity, validation, OOS, audits.' },
+      { id: 'ls-pv', title: 'Pharmacovigilance / Drug Safety', level: 'Mid → Senior', blurb: 'ICSRs, seriousness, causality, timelines, MedDRA, signals, PBRER.' }
+    ]
   }
 ];
 
@@ -357,6 +377,8 @@ window.FIELDS = [
     families: ['hrcore'] },
   { id: 'sales', name: 'Sales & Marketing', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1', tag: 'Account executives, sales leaders, digital marketing and customer success',
     families: ['salesmkt'] },
+  { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical research, regulatory, quality and drug safety',
+    families: ['hcare', 'lifesci'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] }
 ];
