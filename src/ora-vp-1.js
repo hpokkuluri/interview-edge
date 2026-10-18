@@ -1,195 +1,28 @@
 // VP, ERP Systems. Format: [area, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-vp'] = (QB['ora-vp'] || []).concat([
-['Role', 'What does success look like for a VP of ERP Systems in the first year?',
-`- **Trusted executive partner** to CFO, COO, CHRO and CIO.
-- **Clear multi-year strategy** and roadmap approved and funded.
-- **Stable operations**: critical processes (close, payments, payroll, shipping) reliable.
-- **Visible business value** delivered (e.g. close days reduced, automation rates up).
-- **Strong leadership team** and talent plan.
-- **Governance and controls** clean (no significant audit findings).
-- **Cost discipline** and vendor strategy.`, 'B'],
-
-['Role', 'How do you spend your time as VP of ERP Systems?',
-`- **Strategy and business partnership** (~35%): executive meetings, roadmap, investment decisions.
-- **Leadership team and talent** (~25%): coaching, hiring leaders, culture.
-- **Program and operational oversight** (~25%): major programs, risk, critical incidents.
-- **External** (~15%): vendors, industry, innovation.
-Adjust based on the organization's stage (transformation vs steady state).`, 'B'],
-
-['Strategy', 'Present your vision for our enterprise systems in five minutes.',
-`Structure:
-- **Business context**: their strategy (growth, margins, M&A, global expansion).
-- **Problems today**: fragmented systems, manual processes, slow close, limited insight.
-- **Vision**: a modern, AI-enabled, standardized platform — Oracle Fusion as the digital core, integrated data and analytics, automation at scale, secure and compliant.
-- **Pillars**: simplify, automate, insight, scale, protect.
-- **Roadmap** in 3 horizons with value milestones.
-- **What it takes**: investment, operating model, talent, governance.
-- **How we'll measure** success.`, 'D'],
-
-['Strategy', 'How do you align enterprise systems investment with shareholder value?',
-`- Tie investments to **financial drivers**: revenue enablement, margin (cost to serve, SG&A), working capital, risk reduction.
-- **Business cases** with NPV and payback validated by finance.
-- **Portfolio balance**: run vs grow vs transform.
-- **Benefit tracking** and executive accountability.
-- Communicate value in financial terms to the CFO and board.`, 'D'],
-
-['Strategy', 'What is your approach to AI in enterprise systems at the executive level?',
-`- **Strategy**: AI as a capability across finance, supply chain, HR — not isolated pilots.
-- **Platform choices**: embedded AI in SaaS (Oracle agents) + enterprise AI platform for cross-domain needs.
-- **Value portfolio** with measurable targets (productivity, cycle time, quality).
-- **Responsible AI governance**: risk tiers, human oversight, auditability, privacy, security.
-- **Data foundations** investment.
-- **Workforce** transition and reskilling.
-- **Board-level** reporting on AI value and risk.`, 'D'],
-
-['Executive', 'How do you build and maintain a partnership with the CFO?',
-`- **Shared agenda**: close speed, controls, cost, insight, M&A readiness.
-- **Regular cadence** and informal relationship.
-- **Finance acumen**: speak P&L, balance sheet, cash.
-- **Deliver** reliably and transparently.
-- **Bring** innovation and benchmarks.
-- **Co-own** major programs (CFO as sponsor).`, 'B'],
-
-['Executive', 'How do you present to the board about a major ERP transformation?',
-`- **Why**: strategic rationale and risks of not acting.
-- **What**: scope, approach, timeline, investment.
-- **Value**: expected benefits and how measured.
-- **Risks**: top risks and mitigations (including financial reporting and operational continuity).
-- **Governance**: oversight structure.
-- **Status** (for updates): milestones, budget, risks, benefits realized.
-Short, visual, business language.`, 'D'],
-
-['Executive', 'How do you manage relationships across the C-suite with competing priorities?',
-`- **Enterprise view**: decisions based on overall value and strategy.
-- **Transparent prioritization** framework and governance (executive steering).
-- **One-on-one relationships** to understand each executive's goals.
-- **Facilitate trade-off decisions** rather than making them unilaterally.
-- **Consistency** and fairness.`, 'B'],
-
-['Operating Model', 'How would you design the enterprise systems organization for a $10B global company?',
-`- **Capability-aligned product groups**: Finance (R2R, P2P, O2C), Supply Chain (Plan, Source, Make, Deliver), People (HCM), Commercial integration.
-- **Platform groups**: integration, data & analytics, AI, security/identity, release & quality engineering.
-- **Architecture and governance** office.
-- **Business relationship** leaders per function.
-- **Global delivery** hubs and strategic partners.
-- **CoE** for Oracle standards.
-- Funding by product capacity with portfolio governance.`, 'D'],
-
-['Operating Model', 'How do you ensure business process ownership is real, not nominal?',
-`- **Executive mandate** (CFO/COO assign process owners with decision rights and KPIs).
-- **Process owners** in governance forums with real authority.
-- **Performance goals** include process outcomes.
-- **Support** them with analytics and product teams.
-- **Escalation** when decisions stall.`, 'B'],
-
-['Finance', 'How do you manage enterprise systems costs as a percentage of revenue?',
-`- **Benchmark** IT/application spend vs peers.
-- **Rationalize** portfolio and vendors.
-- **Optimize** licenses and cloud consumption.
-- **Shift** spend from run to innovation via automation.
-- **Show value** for spend through outcomes.
-- **Transparent** cost allocation to businesses.`, 'D'],
-
-['Vendors', 'What is your strategy for managing Oracle as a strategic vendor?',
-`- **Executive relationship** with Oracle leadership; joint roadmap reviews.
-- **Commercial strategy**: multi-year agreements aligned to roadmap; protections on price increases; flexibility.
-- **Influence product roadmap** through advisory boards.
-- **Performance**: SaaS SLAs, support escalations.
-- **Risk**: avoid unhealthy lock-in through data portability and integration standards.`, 'D'],
-
-['Vendors', 'How do you structure the partner ecosystem for a multi-year transformation?',
-`- **Lead SI** accountable for transformation delivery; **specialists** for niche areas; **AMS** for run.
-- **Outcome-based contracts** where possible.
-- **Joint governance** with executive sponsors.
-- **Internal leadership** of architecture and process ownership.
-- **Exit and transition** provisions.`, 'B'],
-
-['Transformation', 'What are the critical success factors for an enterprise ERP transformation?',
-`- **Executive sponsorship** and business ownership.
-- **Clear scope and principles** (standardize, adopt-not-adapt).
-- **Strong program leadership** and governance.
-- **Data readiness**.
-- **Change management** and training.
-- **Right partners** and internal talent.
-- **Realistic plan** with phased rollout.
-- **Benefit focus** beyond go-live.`, 'B'],
-
-['Transformation', 'A board member asks why ERP programs so often fail. How do you answer?',
-`- Common reasons: treated as IT projects, unclear ownership, over-customization, poor data, underestimated change, unrealistic timelines, weak governance.
-- Our approach: business-led with CFO/COO sponsorship, global template with strict design authority, data program from day one, phased rollouts, independent quality assurance, benefits tracking.
-- Share track record of similar programs you've led.`, 'D'],
-
-['Risk', 'How do you oversee enterprise systems risk at the executive level?',
-`- **Risk register** across operational, cyber, compliance, vendor, program, talent risks.
-- **Risk appetite** agreed with leadership.
-- **Key risk indicators** monitored.
-- **Integration** with enterprise risk management and internal audit.
-- **Regular reporting** to the executive risk committee.`, 'B'],
-
-['Risk', 'How do you ensure financial reporting integrity in systems you own?',
-`- **SOX** framework for ITGCs and automated controls.
-- **Change control** discipline.
-- **Access governance** and SoD.
-- **Reconciliation** controls and monitoring.
-- **Audit relationship** and timely remediation.
-- **Culture** of control ownership in IT teams.`, 'B'],
-
-['People', 'How do you attract and retain top talent in enterprise systems?',
-`- **Compelling mission** (transformation, AI, business impact).
-- **Career architecture** with technical and leadership paths.
-- **Learning** investment and certifications.
-- **Competitive pay** and flexibility.
-- **Strong leaders** and culture.
-- **Employer brand** (speaking at events, community presence).`, 'B'],
-
-['People', 'How do you build your leadership team?',
-`- **Assess** current leaders against future needs.
-- **Hire** complementary strengths (delivery, architecture, business partnership, people leadership).
-- **Clear accountabilities** and shared goals.
-- **Team operating rhythm**: weekly leadership meeting, quarterly offsites.
-- **Develop** and challenge them; build succession.`, 'B'],
-
-['People', 'How do you lead change in culture from "order taker" to "strategic partner"?',
-`- **Shift conversations** from requests to outcomes.
-- **Business relationship managers** who understand the business.
-- **Proactive roadmaps** and ideas.
-- **Data-driven** insights.
-- **Celebrate** examples of partnership.
-- **Leaders model** the behavior.`, 'B'],
-
-['M&A', 'What is your playbook for systems integration in acquisitions at the VP level?',
-`- **Involvement in due diligence**: systems, data, cyber risks, TSA needs, integration costs.
-- **Day-1 plan**: connectivity, reporting, controls, communication.
-- **Integration strategy** by deal type (absorb, keep standalone, best-of-both).
-- **Synergy targets** tied to systems consolidation.
-- **Dedicated integration management office**.
-- **Talent retention** of key IT staff.`, 'D'],
-
-['M&A', 'How do you handle a divestiture from a systems perspective?',
-`- **Separation plan**: data, applications, infrastructure, contracts, people.
-- **TSA** design: services, duration, pricing, exit milestones.
-- **Data segregation** and legal requirements.
-- **Clone vs extract** strategy.
-- **Stranded costs** reduction after separation.
-- **Governance** with legal and finance.`, 'D'],
-
-['Data', 'How do you govern enterprise data as a VP?',
-`- **Data strategy** owned jointly with business leaders.
-- **Chief data officer** or data governance council.
-- **Domain ownership** and stewards.
-- **Policies**: quality, privacy, retention, access.
-- **Platforms** for analytics and AI.
-- **Metrics** on data quality and usage.`, 'B'],
-
-['Behavioral', 'Tell me about the largest organization and budget you have led.',
-`- **Scope**: size of team (employees and partners), budget, number of systems/users, geographies.
-- **Key results** delivered.
-- **How you led at scale**: leadership team, operating rhythm, governance.
-- **Challenges** at that scale and how you handled them.`, 'B'],
-
-['Behavioral', 'Describe a strategic bet you made that didn\'t work out.',
-`- Choose a real decision (e.g. a best-of-breed tool that didn't integrate well, an aggressive timeline).
-- **What you expected** vs what happened.
-- **How you recognized** it and pivoted.
-- **Learning** and how it changed your decision-making (e.g. stronger proof-of-concepts, stage gates).`, 'B']
+QB["ora-vp"] = (QB["ora-vp"] || []).concat([
+["Role", "What does success look like for a VP of ERP Systems in the first year?", "**Why they ask:** to see your definition of success.\n\n**Answer:**\n\"By the end of year one, I'd be a trusted executive partner to the CFO, COO, CHRO and CIO. There'd be a clear multi-year strategy and roadmap, approved and funded. Operations would be stable, with close, payments, payroll and shipping reliable. Business value would be visible, like fewer close days and higher automation rates. I'd have a strong leadership team and talent plan. Governance and controls would be clean, with no significant audit findings. And costs and the vendor strategy would be under control.\"\n\nTip: Lead with stable operations and value. Strategy is credible only on that base.", "B"],
+["Role", "How do you spend your time as VP of ERP Systems?", "**Why they ask:** priorities at the top.\n\n**Answer:**\n\"Roughly 35% on strategy and business partnership: executive meetings, the roadmap and investment decisions. About 25% on the leadership team and talent: coaching, hiring leaders and culture. About 25% on program and operational oversight: major programs, risk and critical incidents. And about 15% external: vendors, industry and innovation. I adjust it to the organization's stage, transformation or steady state.\"\n\nTip: Give the percentages. It shows you've thought about it deliberately.", "B"],
+["Strategy", "Present your vision for our enterprise systems in five minutes.", "**Why they ask:** vision and communication.\n\n**Answer (structure):**\n\"I'd start with their business context: strategy for growth, margins, M&A or global expansion. Then the problems today: fragmented systems, manual processes, a slow close and limited insight. Then the vision: a modern, AI-enabled, standardized platform with Oracle Fusion as the digital core, integrated data and analytics, automation at scale, secure and compliant. Five pillars: simplify, automate, insight, scale and protect. A roadmap in three horizons with value milestones. What it takes: investment, operating model, talent and governance. And how we'll measure success.\"\n\nTip: Use their own strategy words. It shows you listened.", "D"],
+["Strategy", "How do you align enterprise systems investment with shareholder value?", "**Why they ask:** financial framing.\n\n**Answer:**\n\"I tie investments to financial drivers: revenue enablement, margin through cost to serve and SG&A, working capital, and risk reduction. Business cases include NPV and payback, validated by finance. The portfolio balances run, grow and transform. Benefits are tracked with executive accountability. And I communicate value in financial terms to the CFO and board.\"\n\nTip: Speak in NPV and working capital. It's the board's language.", "D"],
+["Strategy", "What is your approach to AI in enterprise systems at the executive level?", "**Why they ask:** AI leadership.\n\n**Answer:**\n\"AI is a capability across finance, supply chain and HR, not isolated pilots. Platform choices: embedded AI in SaaS, like Oracle agents, plus an enterprise AI platform for cross-domain needs. A value portfolio with measurable targets for productivity, cycle time and quality. Responsible AI governance: risk tiers, human oversight, auditability, privacy and security. Investment in data foundations. A plan for workforce transition and reskilling. And board-level reporting on AI value and risk.\"\n\nTip: Mention board reporting. It shows you treat AI as an enterprise risk and opportunity.", "D"],
+["Executive", "How do you build and maintain a partnership with the CFO?", "**Why they ask:** CFO partnership is central.\n\n**Answer:**\n\"A shared agenda: close speed, controls, cost, insight and M&A readiness. A regular cadence plus an informal relationship. Finance acumen: I speak P&L, balance sheet and cash. Reliable, transparent delivery. Bringing innovation and benchmarks. And co-owning major programs, with the CFO as sponsor.\"\n\nTip: Mention finance acumen. CFOs partner with people who speak their language.", "B"],
+["Executive", "How do you present to the board about a major ERP transformation?", "**Why they ask:** board communication.\n\n**Answer:**\n\"Why: the strategic rationale and the risk of not acting. What: scope, approach, timeline and investment. Value: expected benefits and how they'll be measured. Risks: the top risks and mitigations, including financial reporting and operational continuity. Governance: the oversight structure. And for updates: milestones, budget, risks and benefits realized. Short, visual and in business language.\"\n\nTip: Mention the risk of not acting. Boards weigh both sides.", "D"],
+["Executive", "How do you manage relationships across the C-suite with competing priorities?", "**Why they ask:** executive navigation.\n\n**Answer:**\n\"I take an enterprise view, deciding on overall value and strategy. I use a transparent prioritization framework and an executive steering group. I build one-on-one relationships to understand each executive's goals. I facilitate trade-off decisions rather than making them alone. And I'm consistent and fair.\"\n\nTip: Say \"facilitate, don't decide alone\". It keeps executives owning trade-offs.", "B"],
+["Operating Model", "How would you design the enterprise systems organization for a $10B global company?", "**Why they ask:** organization design at scale.\n\n**Answer:**\n\"Capability-aligned product groups: Finance with R2R, P2P and O2C; Supply Chain with plan, source, make and deliver; People with HCM; and commercial integration. Platform groups for integration, data and analytics, AI, security and identity, and release and quality engineering. An architecture and governance office. Business relationship leaders for each function. Global delivery hubs and strategic partners. An Oracle CoE for standards. And funding by product capacity with portfolio governance.\"\n\nTip: Separate product groups from platform groups. It's the modern model.", "D"],
+["Operating Model", "How do you ensure business process ownership is real, not nominal?", "**Why they ask:** a common failure point.\n\n**Answer:**\n\"An executive mandate: the CFO and COO assign process owners with decision rights and KPIs. Process owners sit in governance forums with real authority. Their performance goals include process outcomes. They're supported with analytics and product teams. And there's an escalation path when decisions stall.\"\n\nTip: Mention performance goals. Ownership is real when it's measured.", "B"],
+["Finance", "How do you manage enterprise systems costs as a percentage of revenue?", "**Why they ask:** cost discipline.\n\n**Answer:**\n\"I benchmark application spend against peers. I rationalize the portfolio and vendors. I optimize licenses and cloud consumption. I shift spend from run to innovation through automation. I show value for the spend through outcomes. And I allocate costs transparently to the businesses.\"\n\nTip: Mention shifting run to innovation. It's how you fund the future.", "D"],
+["Vendors", "What is your strategy for managing Oracle as a strategic vendor?", "**Why they ask:** vendor strategy at executive level.\n\n**Answer:**\n\"An executive relationship with Oracle leadership and joint roadmap reviews. A commercial strategy: multi-year agreements aligned to our roadmap, price increase protections and flexibility. Influence on the product roadmap through advisory boards. Performance management on SaaS SLAs and support escalations. And managing lock-in risk through data portability and integration standards.\"\n\nTip: Mention data portability. It's the practical defense against lock-in.", "D"],
+["Vendors", "How do you structure the partner ecosystem for a multi-year transformation?", "**Why they ask:** partner strategy.\n\n**Answer:**\n\"A lead SI accountable for transformation delivery, specialists for niche areas, and an AMS partner for run. Outcome-based contracts where possible. Joint governance with executive sponsors. Internal leadership of architecture and process ownership. And exit and transition provisions.\"\n\nTip: Keep architecture and process ownership internal. It protects you long term.", "B"],
+["Transformation", "What are the critical success factors for an enterprise ERP transformation?", "**Why they ask:** experience distilled.\n\n**Answer:**\n\"Executive sponsorship and business ownership. Clear scope and principles, like standardize and adopt, not adapt. Strong program leadership and governance. Data readiness. Change management and training. The right partners and internal talent. A realistic, phased plan. And a focus on benefits beyond go-live.\"\n\nTip: Mention \"adopt, not adapt\". It's the most important principle.", "B"],
+["Transformation", "A board member asks why ERP programs so often fail. How do you answer?", "**Why they ask:** board-level credibility.\n\n**Answer:**\n\"I'd say they usually fail because they're treated as IT projects, ownership is unclear, they're over-customized, data is poor, change is underestimated, timelines are unrealistic, and governance is weak. Then explain our approach: business-led with CFO and COO sponsorship, a global template with a strict design authority, a data program from day one, phased rollouts, independent quality assurance, and benefit tracking. And I'd share my track record on similar programs.\"\n\nTip: Pair each failure cause with your countermeasure. It reassures the board.", "D"],
+["Risk", "How do you oversee enterprise systems risk at the executive level?", "**Why they ask:** risk governance.\n\n**Answer:**\n\"A risk register across operational, cyber, compliance, vendor, program and talent risks. A risk appetite agreed with leadership. Key risk indicators monitored. Integration with enterprise risk management and internal audit. And regular reporting to the executive risk committee.\"\n\nTip: Mention agreed risk appetite. It defines what's acceptable.", "B"],
+["Risk", "How do you ensure financial reporting integrity in systems you own?", "**Why they ask:** SOX accountability.\n\n**Answer:**\n\"A SOX framework for IT general controls and automated controls. Change control discipline. Access governance and SoD. Reconciliation controls and monitoring. A good relationship with audit and timely remediation. And a culture where IT teams own controls.\"\n\nTip: Mention control ownership culture. Frameworks fail without it.", "B"],
+["People", "How do you attract and retain top talent in enterprise systems?", "**Why they ask:** talent strategy.\n\n**Answer:**\n\"A compelling mission: transformation, AI and business impact. A career architecture with technical and leadership paths. Investment in learning and certifications. Competitive pay and flexibility. Strong leaders and culture. And an employer brand, through speaking at events and community presence.\"\n\nTip: Mention the technical career path. Many strong people don't want to manage.", "B"],
+["People", "How do you build your leadership team?", "**Why they ask:** leadership team design.\n\n**Answer:**\n\"I assess current leaders against future needs. I hire complementary strengths: delivery, architecture, business partnership and people leadership. Accountabilities are clear with shared goals. The team has a rhythm: a weekly leadership meeting and quarterly offsites. And I develop and challenge them and build succession.\"\n\nTip: Mention complementary strengths. A team of clones has blind spots.", "B"],
+["People", "How do you lead change in culture from \"order taker\" to \"strategic partner\"?", "**Why they ask:** cultural transformation.\n\n**Answer:**\n\"I shift conversations from requests to outcomes. I put business relationship managers in place who understand the business. Teams bring proactive roadmaps and ideas. We use data-driven insights. I celebrate examples of partnership. And leaders model the behavior.\"\n\nTip: Say \"from requests to outcomes\". It's the essence of the shift.", "B"],
+["M&A", "What is your playbook for systems integration in acquisitions at the VP level?", "**Why they ask:** M&A leadership.\n\n**Answer:**\n\"I get involved in due diligence: systems, data, cyber risks, TSA needs and integration costs. A day-one plan for connectivity, reporting, controls and communication. An integration strategy by deal type: absorb, keep standalone, or best of both. Synergy targets tied to systems consolidation. A dedicated integration management office. And retention of key IT staff.\"\n\nTip: Mention due diligence involvement. Systems costs are often missed in deal models.", "D"],
+["M&A", "How do you handle a divestiture from a systems perspective?", "**Why they ask:** separation planning.\n\n**Answer:**\n\"A separation plan covering data, applications, infrastructure, contracts and people. TSA design: services, duration, pricing and exit milestones. Data segregation and legal requirements. A clone versus extract strategy. Reducing stranded costs after separation. And governance with legal and finance.\"\n\nTip: Mention stranded costs. They're the hidden cost of divestitures.", "D"],
+["Data", "How do you govern enterprise data as a VP?", "**Why they ask:** data governance at the top.\n\n**Answer:**\n\"A data strategy owned jointly with business leaders. A chief data officer or data governance council. Domain ownership and stewards. Policies for quality, privacy, retention and access. Platforms for analytics and AI. And metrics on data quality and usage.\"\n\nTip: Mention joint ownership with business. Data governance can't be IT-only.", "B"],
+["Behavioral", "Tell me about the largest organization and budget you have led.", "**Why they ask:** proof of scale.\n\n**Answer (structure, use your own facts):**\n\"Give the scope: team size with employees and partners, budget, number of systems and users, and geographies. The key results delivered. How you led at that scale: the leadership team, the operating rhythm and governance. And the challenges at that scale and how you handled them.\"\n\nTip: Lead with numbers. They anchor the conversation.", "B"],
+["Behavioral", "Describe a strategic bet you made that didn't work out.", "**Why they ask:** honesty and learning.\n\n**Answer (structure):**\n\"Choose a real decision, like a best-of-breed tool that didn't integrate well, or an aggressive timeline. Say what you expected and what actually happened. How you recognized it and pivoted. And what you learned and how it changed your decisions, like stronger proofs of concept or stage gates.\"\n\nTip: Focus on how you recognized it. Speed of correction is the skill.", "B"]
 ]);
