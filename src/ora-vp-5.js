@@ -1,27 +1,8 @@
 // Added Oct 2026: Redwood and AI Agent Studio questions for executives.
-QB['ora-vp'] = (QB['ora-vp'] || []).concat([
-['AI Agent Studio', 'How would you explain Oracle AI Agent Studio to the board?',
-`- "Oracle now lets us run **AI agents inside our ERP**, using our existing security, to handle routine work like invoice questions, exception triage and procurement requests."
-- **Value**: faster processes, lower cost per transaction, better service.
-- **Controls**: humans approve financial actions; everything is logged.
-- **Plan**: pilots → scale, with measured results and risk oversight.`, 'D'],
-['AI Agent Studio', 'What metrics would you report to the executive team on AI agents?',
-`- **Adoption**: active users, sessions.
-- **Productivity**: hours saved, cycle times, automation rates.
-- **Quality**: accuracy, escalations, incidents.
-- **Cost**: LLM/token spend vs savings.
-- **Risk**: control exceptions, audit findings.`, 'D'],
-['Redwood', 'How do you position the Redwood transition with executives?',
-`- **Mandatory** (classic pages are being retired) — plan and fund it.
-- **Opportunity**: better user productivity, foundation for AI features, simplified customizations.
-- **Risk** of delay: rushed changes, disruption at close/peak times.`, 'B'],
-['Strategy', 'How do AI agents change the ERP operating model?',
-`- From transaction processing teams to **exception and insight teams**.
-- New roles: **agent owners**, AI product managers, evaluation specialists.
-- Continuous improvement driven by agent performance data.
-- Tighter collaboration between business process owners and the ERP CoE.`, 'D'],
-['Risk', 'How do you set the risk appetite for autonomous actions by agents?',
-`- Define with CFO/audit: which actions may be **autonomous** (low value, reversible), which need **approval**, which are **prohibited**.
-- Thresholds by amount and process.
-- Review quarterly based on evidence (accuracy, incidents).`, 'D']
+QB["ora-vp"] = (QB["ora-vp"] || []).concat([
+["AI Agent Studio", "How would you explain Oracle AI Agent Studio to the board?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"I'd say: 'Oracle now lets us run AI agents inside our ERP, using our existing security, to handle routine work like invoice questions, exception triage and procurement requests.' The value is faster processes, lower cost per transaction and better service. The controls are that people approve financial actions and everything is logged. And the plan is pilots, then scale, with measured results and risk oversight.\"\n\nTip: Keep it to four sentences. Boards want clarity, not detail.", "D"],
+["AI Agent Studio", "What metrics would you report to the executive team on AI agents?", "**Why they ask:** executive reporting.\n\n**Answer:**\n\"Adoption: active users and sessions. Productivity: hours saved, cycle times and automation rates. Quality: accuracy, escalations and incidents. Cost: LLM and token spend against savings. And risk: control exceptions and audit findings.\"\n\nTip: Include cost against savings. Executives always ask about spend.", "D"],
+["Redwood", "How do you position the Redwood transition with executives?", "**Why they ask:** executive communication on a mandatory change.\n\n**Answer:**\n\"It's mandatory, because classic pages are being retired, so it needs a plan and funding. It's an opportunity: better user productivity, the foundation for AI features, and simpler customizations. And delay is a risk: rushed changes and disruption at close or peak times.\"\n\nTip: Frame it as mandatory, opportunity, risk. Three points executives remember.", "B"],
+["Strategy", "How do AI agents change the ERP operating model?", "- From transaction processing teams to **exception and insight teams**.\n- New roles: **agent owners**, AI product managers, evaluation specialists.\n- Continuous improvement driven by agent performance data.\n- Tighter collaboration between business process owners and the ERP CoE.", "D"],
+["Risk", "How do you set the risk appetite for autonomous actions by agents?", "- Define with CFO/audit: which actions may be **autonomous** (low value, reversible), which need **approval**, which are **prohibited**.\n- Thresholds by amount and process.\n- Review quarterly based on evidence (accuracy, incidents).", "D"]
 ]);

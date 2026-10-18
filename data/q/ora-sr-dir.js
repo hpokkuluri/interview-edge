@@ -1,365 +1,58 @@
 // ora-sr-dir — generated from src/ora-sr-dir-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Senior Director, ERP. Format: [area, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-sr-dir'] = (QB['ora-sr-dir'] || []).concat([
-['Role', 'How is the Senior Director role different from a Director in ERP?',
-`- **Portfolio scope**: ERP plus adjacent platforms (EPM, HCM, procurement networks, integration, analytics) — often enterprise-wide.
-- **Larger organization**: multiple directors/managers, 50–150 people incl. partners; budgets in the tens of millions.
-- **Strategy and transformation** ownership; multi-year roadmaps.
-- **Executive partnership** with CFO, COO, CHRO; board/audit committee exposure.
-- **Operating model** design (product/platform teams).
-- **Talent strategy** and leadership bench.`, 'B'],
-
-['Strategy', 'How would you develop an enterprise applications strategy for the next 3–5 years?',
-`- **Business strategy** inputs: growth, M&A, operating model (GBS), margin goals, risk.
-- **Current state**: platforms, cost, technical debt, capability gaps, satisfaction.
-- **Principles**: cloud-first, platform consolidation, standard processes, data as an asset, AI-enabled, secure by design.
-- **Target architecture** and capability map.
-- **Roadmap** with investment waves and value milestones.
-- **Operating model** and talent plan.
-- **Funding** and governance; KPIs.`, 'D'],
-
-['Strategy', 'How do you align the ERP roadmap with business strategy?',
-`- Translate **business objectives** into capabilities (e.g. "expand into 5 countries" → localizations, template rollout).
-- **Joint planning** with business leaders annually and quarterly.
-- **Value-based prioritization** with clear outcomes.
-- **Portfolio view** across programs.
-- **Track and report** benefits.`, 'B'],
-
-['Operating Model', 'Would you organize enterprise applications by product/platform teams or by project? Why?',
-`- **Product/platform model**: long-lived teams aligned to business capabilities (R2R, P2P, O2C, Plan, Hire-to-Retire) with product owners — continuous improvement, deep knowledge, accountability for outcomes.
-- **Project model**: temporary teams for large programs — good for big transformations.
-- Typical answer: **product model for run and evolve**, **program overlay** for major transformations, with shared platform teams (integration, data, security).
-- Funding moves from projects to **capacity-based** product funding.`, 'D'],
-
-['Operating Model', 'How do you design a Global Business Services–aligned enterprise applications team?',
-`- **Process ownership** in GBS (business), **platform ownership** in IT, joint governance.
-- **Shared roadmap** for automation (AI agents, workflow).
-- **Service catalog** and SLAs.
-- **Co-located or aligned** teams in GBS hubs.
-- KPIs tied to GBS outcomes (cost per transaction, quality).`, 'D'],
-
-['Finance', 'How do you manage a $30M enterprise applications budget?',
-`- **Portfolio split**: run (licenses, support, infrastructure) vs change (projects) vs innovation.
-- **Benchmark** costs (per user, per transaction) vs peers.
-- **Optimize**: license rationalization, vendor consolidation, automation, location strategy.
-- **Investment governance**: business cases, stage gates, benefits tracking.
-- **Monthly** financial reviews; **variance** management; transparent reporting to CIO/CFO.`, 'D'],
-
-['Finance', 'How do you negotiate a large Oracle renewal or expansion?',
-`- **Know your usage** and needs (current and roadmap) — avoid shelfware.
-- **Leverage timing** (Oracle fiscal year-end), competition, multi-year commitments.
-- **Bundle** needed products (EPM, FDI, OIC) with price protections and caps on increases.
-- **Contract terms**: flexibility to swap/reduce, support terms, SLAs.
-- **Procurement and legal** partnership; executive sponsorship.`, 'D'],
-
-['Vendors', 'How do you build a strategic partner ecosystem for enterprise applications?',
-`- **Tiered partners**: strategic SI for transformation, AMS partner for run, niche specialists.
-- **Clear roles** to avoid overlap and finger-pointing.
-- **Performance management** with KPIs and QBRs.
-- **Innovation** expectations (accelerators, AI).
-- **Knowledge ownership** retained internally.
-- **Competitive tension** without churn.`, 'B'],
-
-['Transformation', 'How would you lead a global ERP transformation across 30 countries?',
-`- **Executive sponsorship** (CFO/COO) and a clear **case for change**.
-- **Global template** with process owners; design authority.
-- **Phased rollout** (pilot, then waves) with a rollout factory.
-- **Data and integration** programs started early.
-- **Change management** at scale: country leads, super users, communications.
-- **Program governance**: steering committees, PMO, risk management, benefits tracking.
-- **Talent**: strong program leadership; retain key people.`, 'D'],
-
-['Transformation', 'How do you manage organizational change and resistance in a large ERP transformation?',
-`- **Leadership alignment**: leaders visibly champion the change.
-- **Stakeholder mapping** and engagement plans.
-- **Change network**: champions in each business area.
-- **Communication**: why, what, when, how it affects me.
-- **Training** role-based and timely.
-- **Address resistance** by listening, involving, adjusting where reasonable, holding firm on principles.
-- **Measure** readiness and adoption.`, 'B'],
-
-['Executive', 'How do you report to the audit committee or board on ERP risk and programs?',
-`- **Concise**: program status, top risks, controls status, cybersecurity posture, major incidents.
-- **Business language**; implications for financial reporting and operations.
-- **Mitigations** and decisions needed.
-- **Prepared** with the CFO/CIO and internal audit; no surprises.`, 'D'],
-
-['Executive', 'How do you build credibility with the C-suite?',
-`- **Deliver** on commitments.
-- **Understand** the business deeply (P&L, operations).
-- **Bring insights** (data, benchmarks, opportunities).
-- **Candor** about risks.
-- **Concise communication**.
-- **Relationships** beyond formal meetings.`, 'B'],
-
-['People', 'How do you build a leadership bench in a large organization?',
-`- **Identify** high-potentials; succession plans for key roles.
-- **Development**: stretch assignments, rotations, coaching, leadership programs.
-- **Delegate** real decisions.
-- **Feedback** and sponsorship.
-- **Diverse** pipeline.
-- **Measure**: internal promotion rate, readiness of successors.`, 'B'],
-
-['People', 'How do you shape culture in an enterprise applications organization?',
-`- **Values** made concrete: customer focus (business), ownership, quality, learning, collaboration.
-- **Leaders model** behaviors.
-- **Rituals**: demos, retrospectives, recognition.
-- **Hiring and promotion** reflect values.
-- **Address** behaviors that conflict, even from high performers.`, 'B'],
-
-['People', 'How would you restructure an organization that is siloed by technology rather than business process?',
-`- **Design** teams around end-to-end business capabilities (e.g. P2P including procurement, AP, integrations).
-- **Shared services** for platforms (integration, data, security).
-- **Transition plan**: communicate rationale, involve leaders, phase changes, support people through role changes.
-- **Measure** outcomes (cycle times, satisfaction).`, 'D'],
-
-['Risk', 'How do you approach cybersecurity for ERP and enterprise applications?',
-`- Partner with **CISO**: shared responsibility model for SaaS.
-- **Identity**: SSO, MFA, privileged access management, joiner-mover-leaver automation.
-- **Data protection**: encryption, masking, DLP.
-- **Integration security**: OAuth, secret management, least privilege.
-- **Monitoring**: logs to SIEM, anomaly detection.
-- **Third-party risk** for partners with access.
-- **Incident response** playbooks including ERP.`, 'D'],
-
-['Risk', 'How do you prepare for a major ERP outage or ransomware scenario?',
-`- **Business impact analysis**: critical processes and maximum tolerable downtime.
-- **SaaS resilience** (Oracle DR) plus your **integrations, extensions, data exports**.
-- **Manual workarounds** for payments, payroll, shipping.
-- **Backup** of critical data and configurations outside the platform.
-- **Tabletop exercises** with business and security.
-- **Communication** plans.`, 'D'],
-
-['AI', 'How would you lead an enterprise AI program for back-office processes?',
-`- **Vision**: augment teams, automate routine work, improve insight.
-- **Portfolio** of use cases across finance, procurement, supply chain, HR — scored by value and risk.
-- **Platforms**: embedded AI in Oracle first; enterprise AI platform for cross-system use.
-- **Governance**: responsible AI policy, risk tiers, human oversight, audit trails.
-- **Data foundations**.
-- **Workforce impact** planning and reskilling.
-- **Value tracking**.`, 'D'],
-
-['Data', 'How do you make enterprise data a strategic asset across ERP, HCM and SCM?',
-`- **Data strategy** with business ownership.
-- **Unified data platform** (FDI + enterprise lake) with governed models.
-- **Master data management** across domains.
-- **Data quality** and lineage.
-- **Self-service analytics** with governance.
-- **AI-readiness**: clean, accessible, secure data.`, 'B'],
-
-['M&A', 'How do you prepare enterprise applications to support frequent acquisitions?',
-`- **M&A playbook**: due diligence checklist, Day-1 requirements, integration options.
-- **Template-based** onboarding for entities, data, integrations.
-- **Dedicated integration team** or partner.
-- **Reusable assets** and timelines (e.g. 90/180 days).
-- **Synergy tracking** with finance.
-- Lessons learned after each deal.`, 'D'],
-
-['Transformation', 'How do you measure the success of a multi-year transformation?',
-`- **Business outcomes**: cost reduction, working capital, close speed, service levels.
-- **Platform outcomes**: legacy retired, stability, technical debt.
-- **Adoption** and satisfaction.
-- **Program health**: budget, schedule, scope.
-- **Benefits realization** tracked against business case with finance validation.`, 'B'],
-
-['Behavioral', 'Tell me about a time you had to make a tough call that was unpopular.',
-`- **Situation**: e.g. stopping a regional custom billing system rebuild in favor of global template.
-- **Reasoning**: cost, risk, strategic alignment.
-- **Handling**: explained rationale, listened, offered support/alternatives, executive alignment.
-- **Result**: long-term outcome (cost savings, standardization) and how relationships recovered.`, 'B'],
-
-['Behavioral', 'How do you handle a peer executive who undermines your program?',
-`- **Understand** their concerns and incentives privately.
-- **Find common goals**; involve them in decisions.
-- **Data and transparency** to address misconceptions.
-- If needed, **escalate** constructively through the sponsor with facts.
-- Keep professional; focus on outcomes.`, 'B']
+QB["ora-sr-dir"] = (QB["ora-sr-dir"] || []).concat([
+["Role", "How is the Senior Director role different from a Director in ERP?", "- **Portfolio scope**: ERP plus adjacent platforms (EPM, HCM, procurement networks, integration, analytics) — often enterprise-wide.\n- **Larger organization**: multiple directors/managers, 50–150 people incl. partners; budgets in the tens of millions.\n- **Strategy and transformation** ownership; multi-year roadmaps.\n- **Executive partnership** with CFO, COO, CHRO; board/audit committee exposure.\n- **Operating model** design (product/platform teams).\n- **Talent strategy** and leadership bench.", "B"],
+["Strategy", "How would you develop an enterprise applications strategy for the next 3–5 years?", "- **Business strategy** inputs: growth, M&A, operating model (GBS), margin goals, risk.\n- **Current state**: platforms, cost, technical debt, capability gaps, satisfaction.\n- **Principles**: cloud-first, platform consolidation, standard processes, data as an asset, AI-enabled, secure by design.\n- **Target architecture** and capability map.\n- **Roadmap** with investment waves and value milestones.\n- **Operating model** and talent plan.\n- **Funding** and governance; KPIs.", "D"],
+["Strategy", "How do you align the ERP roadmap with business strategy?", "- Translate **business objectives** into capabilities (e.g. \"expand into 5 countries\" → localizations, template rollout).\n- **Joint planning** with business leaders annually and quarterly.\n- **Value-based prioritization** with clear outcomes.\n- **Portfolio view** across programs.\n- **Track and report** benefits.", "B"],
+["Operating Model", "Would you organize enterprise applications by product/platform teams or by project? Why?", "- **Product/platform model**: long-lived teams aligned to business capabilities (R2R, P2P, O2C, Plan, Hire-to-Retire) with product owners — continuous improvement, deep knowledge, accountability for outcomes.\n- **Project model**: temporary teams for large programs — good for big transformations.\n- Typical answer: **product model for run and evolve**, **program overlay** for major transformations, with shared platform teams (integration, data, security).\n- Funding moves from projects to **capacity-based** product funding.", "D"],
+["Operating Model", "How do you design a Global Business Services–aligned enterprise applications team?", "- **Process ownership** in GBS (business), **platform ownership** in IT, joint governance.\n- **Shared roadmap** for automation (AI agents, workflow).\n- **Service catalog** and SLAs.\n- **Co-located or aligned** teams in GBS hubs.\n- KPIs tied to GBS outcomes (cost per transaction, quality).", "D"],
+["Finance", "How do you manage a $30M enterprise applications budget?", "- **Portfolio split**: run (licenses, support, infrastructure) vs change (projects) vs innovation.\n- **Benchmark** costs (per user, per transaction) vs peers.\n- **Optimize**: license rationalization, vendor consolidation, automation, location strategy.\n- **Investment governance**: business cases, stage gates, benefits tracking.\n- **Monthly** financial reviews; **variance** management; transparent reporting to CIO/CFO.", "D"],
+["Finance", "How do you negotiate a large Oracle renewal or expansion?", "- **Know your usage** and needs (current and roadmap) — avoid shelfware.\n- **Leverage timing** (Oracle fiscal year-end), competition, multi-year commitments.\n- **Bundle** needed products (EPM, FDI, OIC) with price protections and caps on increases.\n- **Contract terms**: flexibility to swap/reduce, support terms, SLAs.\n- **Procurement and legal** partnership; executive sponsorship.", "D"],
+["Vendors", "How do you build a strategic partner ecosystem for enterprise applications?", "- **Tiered partners**: strategic SI for transformation, AMS partner for run, niche specialists.\n- **Clear roles** to avoid overlap and finger-pointing.\n- **Performance management** with KPIs and QBRs.\n- **Innovation** expectations (accelerators, AI).\n- **Knowledge ownership** retained internally.\n- **Competitive tension** without churn.", "B"],
+["Transformation", "How would you lead a global ERP transformation across 30 countries?", "- **Executive sponsorship** (CFO/COO) and a clear **case for change**.\n- **Global template** with process owners; design authority.\n- **Phased rollout** (pilot, then waves) with a rollout factory.\n- **Data and integration** programs started early.\n- **Change management** at scale: country leads, super users, communications.\n- **Program governance**: steering committees, PMO, risk management, benefits tracking.\n- **Talent**: strong program leadership; retain key people.", "D"],
+["Transformation", "How do you manage organizational change and resistance in a large ERP transformation?", "- **Leadership alignment**: leaders visibly champion the change.\n- **Stakeholder mapping** and engagement plans.\n- **Change network**: champions in each business area.\n- **Communication**: why, what, when, how it affects me.\n- **Training** role-based and timely.\n- **Address resistance** by listening, involving, adjusting where reasonable, holding firm on principles.\n- **Measure** readiness and adoption.", "B"],
+["Executive", "How do you report to the audit committee or board on ERP risk and programs?", "- **Concise**: program status, top risks, controls status, cybersecurity posture, major incidents.\n- **Business language**; implications for financial reporting and operations.\n- **Mitigations** and decisions needed.\n- **Prepared** with the CFO/CIO and internal audit; no surprises.", "D"],
+["Executive", "How do you build credibility with the C-suite?", "- **Deliver** on commitments.\n- **Understand** the business deeply (P&L, operations).\n- **Bring insights** (data, benchmarks, opportunities).\n- **Candor** about risks.\n- **Concise communication**.\n- **Relationships** beyond formal meetings.", "B"],
+["People", "How do you build a leadership bench in a large organization?", "- **Identify** high-potentials; succession plans for key roles.\n- **Development**: stretch assignments, rotations, coaching, leadership programs.\n- **Delegate** real decisions.\n- **Feedback** and sponsorship.\n- **Diverse** pipeline.\n- **Measure**: internal promotion rate, readiness of successors.", "B"],
+["People", "How do you shape culture in an enterprise applications organization?", "- **Values** made concrete: customer focus (business), ownership, quality, learning, collaboration.\n- **Leaders model** behaviors.\n- **Rituals**: demos, retrospectives, recognition.\n- **Hiring and promotion** reflect values.\n- **Address** behaviors that conflict, even from high performers.", "B"],
+["People", "How would you restructure an organization that is siloed by technology rather than business process?", "- **Design** teams around end-to-end business capabilities (e.g. P2P including procurement, AP, integrations).\n- **Shared services** for platforms (integration, data, security).\n- **Transition plan**: communicate rationale, involve leaders, phase changes, support people through role changes.\n- **Measure** outcomes (cycle times, satisfaction).", "D"],
+["Risk", "How do you approach cybersecurity for ERP and enterprise applications?", "- Partner with **CISO**: shared responsibility model for SaaS.\n- **Identity**: SSO, MFA, privileged access management, joiner-mover-leaver automation.\n- **Data protection**: encryption, masking, DLP.\n- **Integration security**: OAuth, secret management, least privilege.\n- **Monitoring**: logs to SIEM, anomaly detection.\n- **Third-party risk** for partners with access.\n- **Incident response** playbooks including ERP.", "D"],
+["Risk", "How do you prepare for a major ERP outage or ransomware scenario?", "- **Business impact analysis**: critical processes and maximum tolerable downtime.\n- **SaaS resilience** (Oracle DR) plus your **integrations, extensions, data exports**.\n- **Manual workarounds** for payments, payroll, shipping.\n- **Backup** of critical data and configurations outside the platform.\n- **Tabletop exercises** with business and security.\n- **Communication** plans.", "D"],
+["AI", "How would you lead an enterprise AI program for back-office processes?", "**Why they ask:** an executive-level question.\n\n**Answer:**\n\"I'd set the vision: augment teams, automate routine work and improve insight. Build a portfolio of use cases across finance, procurement, supply chain and HR, scored by value and risk. Use embedded Oracle AI first, and an enterprise AI platform for cross-system use. Govern with a responsible AI policy, risk tiers, human oversight and audit trails. Fix data foundations. Plan the workforce impact and reskilling. And track value.\"\n\nTip: Mention workforce planning. Leaders want to see you've thought about people.", "D"],
+["Data", "How do you make enterprise data a strategic asset across ERP, HCM and SCM?", "- **Data strategy** with business ownership.\n- **Unified data platform** (FDI + enterprise lake) with governed models.\n- **Master data management** across domains.\n- **Data quality** and lineage.\n- **Self-service analytics** with governance.\n- **AI-readiness**: clean, accessible, secure data.", "B"],
+["M&A", "How do you prepare enterprise applications to support frequent acquisitions?", "- **M&A playbook**: due diligence checklist, Day-1 requirements, integration options.\n- **Template-based** onboarding for entities, data, integrations.\n- **Dedicated integration team** or partner.\n- **Reusable assets** and timelines (e.g. 90/180 days).\n- **Synergy tracking** with finance.\n- Lessons learned after each deal.", "D"],
+["Transformation", "How do you measure the success of a multi-year transformation?", "- **Business outcomes**: cost reduction, working capital, close speed, service levels.\n- **Platform outcomes**: legacy retired, stability, technical debt.\n- **Adoption** and satisfaction.\n- **Program health**: budget, schedule, scope.\n- **Benefits realization** tracked against business case with finance validation.", "B"],
+["Behavioral", "Tell me about a time you had to make a tough call that was unpopular.", "- **Situation**: e.g. stopping a regional custom billing system rebuild in favor of global template.\n- **Reasoning**: cost, risk, strategic alignment.\n- **Handling**: explained rationale, listened, offered support/alternatives, executive alignment.\n- **Result**: long-term outcome (cost savings, standardization) and how relationships recovered.", "B"],
+["Behavioral", "How do you handle a peer executive who undermines your program?", "- **Understand** their concerns and incentives privately.\n- **Find common goals**; involve them in decisions.\n- **Data and transparency** to address misconceptions.\n- If needed, **escalate** constructively through the sponsor with facts.\n- Keep professional; focus on outcomes.", "B"]
 ]);
 
-QB['ora-sr-dir'] = (QB['ora-sr-dir'] || []).concat([
-['Strategy', 'How do you decide which capabilities should be standardized globally and which can differ locally?',
-`- **Standardize**: core financial processes, controls, master data, chart of accounts, reporting, integration patterns — where consistency drives value (scale, compliance, comparability).
-- **Allow local**: statutory/tax requirements, language, local banking, legitimate market differences.
-- **Governance** decides gray areas with business cases.
-- Revisit as regulations and business evolve.`, 'B'],
-
-['Strategy', 'How would you evaluate whether to consolidate onto a single ERP vendor across the enterprise?',
-`- **Current landscape** costs, capabilities, integration complexity.
-- **Business needs** by division (some may need specialized systems).
-- **Benefits** of consolidation: lower cost, simpler data, unified processes, negotiating power.
-- **Risks**: vendor lock-in, migration cost and disruption.
-- **Phased approach** and business case.`, 'B'],
-
-['Executive', 'How do you communicate a major program delay to the CFO and CEO?',
-`- **Early**, before rumors.
-- **Facts**: what happened, root causes, impact on business and costs.
-- **Options** with trade-offs and your recommendation.
-- **Recovery plan** with milestones and leading indicators.
-- **Ownership** — no blame-shifting.
-- Follow-up with regular updates.`, 'B'],
-
-['Executive', 'How do you get executive sponsorship for a transformation?',
-`- **Business case** tied to their priorities (growth, margin, risk).
-- **Early involvement** in shaping scope.
-- **Clear sponsor role**: decisions, communications, removing blockers.
-- **Regular, concise** updates; ask for specific help.
-- **Shared wins** publicly.`, 'B'],
-
-['Operating Model', 'How do you fund enterprise applications in a product model?',
-`- **Capacity-based funding** for persistent product teams (run + evolve).
-- **Investment cases** for larger initiatives on top.
-- **Quarterly business reviews** to rebalance capacity across products by value.
-- **Transparent cost allocation** to business units (showback/chargeback).
-- **Outcome metrics** per product.`, 'D'],
-
-['Operating Model', 'What role should business process owners play?',
-`- **Accountable** for process design, policy, KPIs and adoption.
-- **Decision rights** on process changes and priorities.
-- **Partner** with product owners in IT.
-- **Participate** in testing and change management.
-- Without strong process owners, ERP becomes an IT project — a common failure cause.`, 'B'],
-
-['Vendors', 'How do you handle a strategic SI that is underperforming on a major program?',
-`- **Escalate** with data at executive level (partner leadership).
-- **Remediation plan**: team changes, added experts, revised plan with commitments.
-- **Contract levers**: holdbacks, penalties, milestone payments.
-- **Contingency**: alternative partner options, in-house capability.
-- **Decide** quickly if remediation fails — sunk cost shouldn't drive decisions.`, 'D'],
-
-['Finance', 'How would you reduce total cost of ownership of the application portfolio?',
-`- **Application rationalization**: retire, consolidate, replace (TIME model: tolerate, invest, migrate, eliminate).
-- **License optimization** and vendor consolidation.
-- **Cloud migration** for legacy on-prem apps.
-- **Automation** of support and testing.
-- **Location strategy** for support.
-- **Demand management** to avoid low-value work.`, 'D'],
-
-['Delivery', 'How do you manage a portfolio of 20 concurrent projects?',
-`- **Portfolio governance**: intake, prioritization, stage gates.
-- **Capacity planning** across shared resources.
-- **Dependency management** and integrated release calendar.
-- **Portfolio dashboard**: status, risks, value.
-- **Stop/kill** low-value or failing projects.
-- **PMO** standards without bureaucracy.`, 'B'],
-
-['Delivery', 'How do you ensure quality across many teams and partners?',
-`- **Standards** for design, testing, security, documentation.
-- **Quality gates** in delivery (design reviews, test exit criteria, CAB).
-- **Automated testing** platform shared.
-- **Metrics**: defects escaping, change failure rate.
-- **Retrospectives** and learning across teams.`, 'B'],
-
-['People', 'How do you handle a leader on your team who delivers results but has poor people practices?',
-`- **Feedback** with examples and team impact (attrition, engagement).
-- **Clear expectation**: how results are achieved matters.
-- **Coaching** support; 360 feedback.
-- **Consequences** if no change — reassignment or exit.
-- Signals to the organization what is valued.`, 'B'],
-
-['People', 'How do you ensure diversity and inclusion in your organization?',
-`- **Diverse hiring** slates and structured interviews.
-- **Inclusive culture**: everyone heard in meetings, flexible work.
-- **Fair processes** for promotion and pay; audit gaps.
-- **Mentoring/sponsorship** programs.
-- **Measure** representation and engagement by group.`, 'B'],
-
-['Risk', 'How do you manage regulatory change affecting enterprise systems (e.g. e-invoicing, privacy)?',
-`- **Regulatory watch** with tax, legal, compliance.
-- **Impact assessment** on systems and processes.
-- **Roadmap** placement with deadlines.
-- **Use vendor localizations** where available.
-- **Testing** and compliance evidence.
-- **Ownership** of each regulation by a business leader.`, 'B'],
-
-['AI', 'How do you address workforce concerns about AI replacing jobs in finance and operations?',
-`- **Transparent communication** on goals: augment and redeploy capacity to higher-value work.
-- **Involve** teams in designing AI use cases.
-- **Reskilling** programs (analysis, exception handling, AI supervision).
-- **Measure** and share outcomes honestly.
-- Work with HR on workforce planning.`, 'D'],
-
-['AI', 'What risks do you see with AI in enterprise applications and how do you mitigate them?',
-`- **Accuracy/hallucination** → human review, grounding in enterprise data, testing.
-- **Security/privacy** → data access controls, no sensitive data leakage, vendor assessments.
-- **Compliance/auditability** → logging, explainability.
-- **Bias** in HR use cases → testing and oversight.
-- **Over-reliance** → process controls.
-- **Cost** → usage monitoring.`, 'D'],
-
-['Data', 'How do you approach data privacy across ERP and HCM globally?',
-`- **Privacy by design** in processes and integrations.
-- **Data inventory** (what personal data, where, why).
-- **Retention and deletion** policies implemented in systems.
-- **Data residency** requirements.
-- **Access controls** and monitoring.
-- **DPIAs** for new processes; partner with privacy office.`, 'B'],
-
-['Transformation', 'How do you sustain benefits after a transformation program ends?',
-`- **Process ownership** and KPIs embedded in business management.
-- **Continuous improvement** teams.
-- **Governance** to prevent customization creep.
-- **Training** for new hires.
-- **Benefit tracking** for 1–2 years post-program.`, 'B'],
-
-['Behavioral', 'What is the most strategic decision you\'ve made in your career?',
-`- Choose one with **enterprise impact** (e.g. moving to a product operating model, consolidating ERPs, choosing a cloud platform).
-- Explain **context**, **options**, **reasoning**, **stakeholder alignment**, **execution**, **results**, and what you'd do differently.`, 'B'],
-
-['Behavioral', 'How do you stay strategic while operational fires demand attention?',
-`- **Strong leaders** below you who own operations.
-- **Escalation rules** — only true P1s come to you.
-- **Calendar discipline**: protected strategy time.
-- **Metrics/alerts** that tell you when to engage.
-- Use incidents as **signals** for strategic fixes.`, 'B'],
-
-['Behavioral', 'Describe how you led through a major crisis.',
-`- **Situation**: e.g. failed go-live affecting shipments or payroll; or a pandemic shift.
-- **Actions**: command structure, prioritization, communication cadence, business workarounds, team support.
-- **Outcome** and **lasting changes**.
-- Show calm, decisiveness, care for people.`, 'B'],
-
-['Strategy', 'Where is enterprise applications heading and how should we prepare?',
-`- **AI agents** taking over routine transactions; humans manage exceptions and judgment.
-- **Composable platforms**: SaaS cores with low-code extensions and integration fabrics.
-- **Real-time data** and continuous close.
-- **Product operating models**.
-- **Security and regulatory** complexity rising.
-- Prepare: clean data, standard processes, skills, governance for AI, flexible funding.`, 'B'],
-
-['Executive', 'How do you balance the interests of IT (CIO) and business (CFO/COO) when you report to one of them?',
-`- Act as an **enterprise leader**, not a partisan.
-- **Shared goals** and joint governance.
-- **Transparency** with both; no surprises.
-- Escalate genuine conflicts to the right forum.
-- Build trust through delivery.`, 'B'],
-
-['Finance', 'How do you build the case to invest in technical debt reduction to executives?',
-`- Translate debt into **business risk and cost**: outages, slow delivery, audit issues, inability to adopt new features (AI).
-- **Quantify**: incident costs, support costs, delayed value.
-- **Plan** with milestones and measurable outcomes.
-- **Bundle** with value initiatives where possible.`, 'D'],
-
-['Behavioral', 'Why this Senior Director role, and why now?',
-`- Your **experience** matches their scale and challenges.
-- **Results** at Director level (transformations, teams, value).
-- **Ready** for enterprise portfolio and executive partnership.
-- **Motivation**: their strategy/transformation and culture.
-- Show research on their business.`, 'B'],
-
-['Operating Model', 'How would you set up a Center of Excellence for Oracle across the enterprise?',
-`- **Charter**: standards, architecture, release management, knowledge, vendor management, innovation.
-- **Structure**: platform owners, architects, process experts, release/test automation, data/integration.
-- **Services** to business units and project teams.
-- **Metrics**: adoption of standards, stability, delivery speed, cost.
-- **Funding** model.`, 'B'],
-
-['Delivery', 'How would you approach a phased global rollout schedule to minimize business risk?',
-`- **Pilot** in a representative but manageable region.
-- **Avoid** fiscal year-end, peak seasons, and audits.
-- **Wave sizing** based on capacity and complexity.
-- **Stabilization periods** between waves.
-- **Lessons learned** after each wave.
-- **Business readiness** criteria per country.`, 'D']
+QB["ora-sr-dir"] = (QB["ora-sr-dir"] || []).concat([
+["Strategy", "How do you decide which capabilities should be standardized globally and which can differ locally?", "- **Standardize**: core financial processes, controls, master data, chart of accounts, reporting, integration patterns — where consistency drives value (scale, compliance, comparability).\n- **Allow local**: statutory/tax requirements, language, local banking, legitimate market differences.\n- **Governance** decides gray areas with business cases.\n- Revisit as regulations and business evolve.", "B"],
+["Strategy", "How would you evaluate whether to consolidate onto a single ERP vendor across the enterprise?", "- **Current landscape** costs, capabilities, integration complexity.\n- **Business needs** by division (some may need specialized systems).\n- **Benefits** of consolidation: lower cost, simpler data, unified processes, negotiating power.\n- **Risks**: vendor lock-in, migration cost and disruption.\n- **Phased approach** and business case.", "B"],
+["Executive", "How do you communicate a major program delay to the CFO and CEO?", "- **Early**, before rumors.\n- **Facts**: what happened, root causes, impact on business and costs.\n- **Options** with trade-offs and your recommendation.\n- **Recovery plan** with milestones and leading indicators.\n- **Ownership** — no blame-shifting.\n- Follow-up with regular updates.", "B"],
+["Executive", "How do you get executive sponsorship for a transformation?", "- **Business case** tied to their priorities (growth, margin, risk).\n- **Early involvement** in shaping scope.\n- **Clear sponsor role**: decisions, communications, removing blockers.\n- **Regular, concise** updates; ask for specific help.\n- **Shared wins** publicly.", "B"],
+["Operating Model", "How do you fund enterprise applications in a product model?", "- **Capacity-based funding** for persistent product teams (run + evolve).\n- **Investment cases** for larger initiatives on top.\n- **Quarterly business reviews** to rebalance capacity across products by value.\n- **Transparent cost allocation** to business units (showback/chargeback).\n- **Outcome metrics** per product.", "D"],
+["Operating Model", "What role should business process owners play?", "- **Accountable** for process design, policy, KPIs and adoption.\n- **Decision rights** on process changes and priorities.\n- **Partner** with product owners in IT.\n- **Participate** in testing and change management.\n- Without strong process owners, ERP becomes an IT project — a common failure cause.", "B"],
+["Vendors", "How do you handle a strategic SI that is underperforming on a major program?", "- **Escalate** with data at executive level (partner leadership).\n- **Remediation plan**: team changes, added experts, revised plan with commitments.\n- **Contract levers**: holdbacks, penalties, milestone payments.\n- **Contingency**: alternative partner options, in-house capability.\n- **Decide** quickly if remediation fails — sunk cost shouldn't drive decisions.", "D"],
+["Finance", "How would you reduce total cost of ownership of the application portfolio?", "- **Application rationalization**: retire, consolidate, replace (TIME model: tolerate, invest, migrate, eliminate).\n- **License optimization** and vendor consolidation.\n- **Cloud migration** for legacy on-prem apps.\n- **Automation** of support and testing.\n- **Location strategy** for support.\n- **Demand management** to avoid low-value work.", "D"],
+["Delivery", "How do you manage a portfolio of 20 concurrent projects?", "- **Portfolio governance**: intake, prioritization, stage gates.\n- **Capacity planning** across shared resources.\n- **Dependency management** and integrated release calendar.\n- **Portfolio dashboard**: status, risks, value.\n- **Stop/kill** low-value or failing projects.\n- **PMO** standards without bureaucracy.", "B"],
+["Delivery", "How do you ensure quality across many teams and partners?", "- **Standards** for design, testing, security, documentation.\n- **Quality gates** in delivery (design reviews, test exit criteria, CAB).\n- **Automated testing** platform shared.\n- **Metrics**: defects escaping, change failure rate.\n- **Retrospectives** and learning across teams.", "B"],
+["People", "How do you handle a leader on your team who delivers results but has poor people practices?", "- **Feedback** with examples and team impact (attrition, engagement).\n- **Clear expectation**: how results are achieved matters.\n- **Coaching** support; 360 feedback.\n- **Consequences** if no change — reassignment or exit.\n- Signals to the organization what is valued.", "B"],
+["People", "How do you ensure diversity and inclusion in your organization?", "- **Diverse hiring** slates and structured interviews.\n- **Inclusive culture**: everyone heard in meetings, flexible work.\n- **Fair processes** for promotion and pay; audit gaps.\n- **Mentoring/sponsorship** programs.\n- **Measure** representation and engagement by group.", "B"],
+["Risk", "How do you manage regulatory change affecting enterprise systems (e.g. e-invoicing, privacy)?", "- **Regulatory watch** with tax, legal, compliance.\n- **Impact assessment** on systems and processes.\n- **Roadmap** placement with deadlines.\n- **Use vendor localizations** where available.\n- **Testing** and compliance evidence.\n- **Ownership** of each regulation by a business leader.", "B"],
+["AI", "How do you address workforce concerns about AI replacing jobs in finance and operations?", "**Why they ask:** a people leadership question.\n\n**Answer:**\n\"I'd be open about the goal: augment teams and move capacity to higher-value work. I'd involve the teams in designing the use cases, because they know the work best. I'd offer reskilling in analysis, exception handling and supervising AI. I'd measure and share the results honestly. And I'd work with HR on workforce planning.\"\n\nTip: Say \"involve the teams in design\". It builds trust and better solutions.", "D"],
+["AI", "What risks do you see with AI in enterprise applications and how do you mitigate them?", "**Why they ask:** a balanced risk question.\n\n**Answer:**\n\"Accuracy and made-up answers: human review, grounding in enterprise data and testing. Security and privacy: data access controls, no leakage of sensitive data, and vendor assessments. Compliance and auditability: logging and explainability. Bias in HR use cases: testing and oversight. Over-reliance: process controls that still check the work. And cost: usage monitoring.\"\n\nTip: Pair each risk with its mitigation. It shows structured thinking.", "D"],
+["Data", "How do you approach data privacy across ERP and HCM globally?", "- **Privacy by design** in processes and integrations.\n- **Data inventory** (what personal data, where, why).\n- **Retention and deletion** policies implemented in systems.\n- **Data residency** requirements.\n- **Access controls** and monitoring.\n- **DPIAs** for new processes; partner with privacy office.", "B"],
+["Transformation", "How do you sustain benefits after a transformation program ends?", "- **Process ownership** and KPIs embedded in business management.\n- **Continuous improvement** teams.\n- **Governance** to prevent customization creep.\n- **Training** for new hires.\n- **Benefit tracking** for 1–2 years post-program.", "B"],
+["Behavioral", "What is the most strategic decision you've made in your career?", "- Choose one with **enterprise impact** (e.g. moving to a product operating model, consolidating ERPs, choosing a cloud platform).\n- Explain **context**, **options**, **reasoning**, **stakeholder alignment**, **execution**, **results**, and what you'd do differently.", "B"],
+["Behavioral", "How do you stay strategic while operational fires demand attention?", "- **Strong leaders** below you who own operations.\n- **Escalation rules** — only true P1s come to you.\n- **Calendar discipline**: protected strategy time.\n- **Metrics/alerts** that tell you when to engage.\n- Use incidents as **signals** for strategic fixes.", "B"],
+["Behavioral", "Describe how you led through a major crisis.", "- **Situation**: e.g. failed go-live affecting shipments or payroll; or a pandemic shift.\n- **Actions**: command structure, prioritization, communication cadence, business workarounds, team support.\n- **Outcome** and **lasting changes**.\n- Show calm, decisiveness, care for people.", "B"],
+["Strategy", "Where is enterprise applications heading and how should we prepare?", "- **AI agents** taking over routine transactions; humans manage exceptions and judgment.\n- **Composable platforms**: SaaS cores with low-code extensions and integration fabrics.\n- **Real-time data** and continuous close.\n- **Product operating models**.\n- **Security and regulatory** complexity rising.\n- Prepare: clean data, standard processes, skills, governance for AI, flexible funding.", "B"],
+["Executive", "How do you balance the interests of IT (CIO) and business (CFO/COO) when you report to one of them?", "- Act as an **enterprise leader**, not a partisan.\n- **Shared goals** and joint governance.\n- **Transparency** with both; no surprises.\n- Escalate genuine conflicts to the right forum.\n- Build trust through delivery.", "B"],
+["Finance", "How do you build the case to invest in technical debt reduction to executives?", "- Translate debt into **business risk and cost**: outages, slow delivery, audit issues, inability to adopt new features (AI).\n- **Quantify**: incident costs, support costs, delayed value.\n- **Plan** with milestones and measurable outcomes.\n- **Bundle** with value initiatives where possible.", "D"],
+["Behavioral", "Why this Senior Director role, and why now?", "- Your **experience** matches their scale and challenges.\n- **Results** at Director level (transformations, teams, value).\n- **Ready** for enterprise portfolio and executive partnership.\n- **Motivation**: their strategy/transformation and culture.\n- Show research on their business.", "B"],
+["Operating Model", "How would you set up a Center of Excellence for Oracle across the enterprise?", "- **Charter**: standards, architecture, release management, knowledge, vendor management, innovation.\n- **Structure**: platform owners, architects, process experts, release/test automation, data/integration.\n- **Services** to business units and project teams.\n- **Metrics**: adoption of standards, stability, delivery speed, cost.\n- **Funding** model.", "B"],
+["Delivery", "How would you approach a phased global rollout schedule to minimize business risk?", "- **Pilot** in a representative but manageable region.\n- **Avoid** fiscal year-end, peak seasons, and audits.\n- **Wave sizing** based on capacity and complexity.\n- **Stabilization periods** between waves.\n- **Lessons learned** after each wave.\n- **Business readiness** criteria per country.", "D"]
 ]);
 
 QB['ora-sr-dir'] = (QB['ora-sr-dir'] || []).concat([
@@ -372,30 +65,10 @@ QB['ora-sr-dir'] = (QB['ora-sr-dir'] || []).concat([
 ]);
 
 // Added Oct 2026: Redwood and AI Agent Studio questions for leaders.
-QB['ora-sr-dir'] = (QB['ora-sr-dir'] || []).concat([
-['AI Agent Studio', 'How would you scale AI agents across ERP, HCM and SCM portfolios?',
-`- **Enterprise agent operating model**: intake, risk tiers, standards, evaluation, monitoring, ownership.
-- **Platform choices**: Oracle AI Agent Studio for Fusion-centric agents; enterprise AI platform for cross-domain; interoperability via A2A/MCP.
-- **Value portfolio** with finance validation.
-- **Workforce plan**: reskill teams in finance, procurement, HR operations.
-- **Board/audit** reporting on AI risk and value.`, 'D'],
-['AI Agent Studio', 'How do you think about the workforce impact of agents in finance and procurement operations?',
-`- Agents take over **lookups, routine drafting and triage**; people focus on exceptions, judgment, supplier/customer relationships.
-- **Plan capacity** redeployment with HR (not just cuts).
-- **Reskill**: exception handling, data analysis, agent supervision.
-- Communicate openly to keep trust.`, 'D'],
-['Redwood', 'Why does Redwood matter strategically, beyond new screens?',
-`- It's the **foundation for Oracle's AI features** — new capabilities ship on Redwood pages first.
-- **Classic retirement** makes it mandatory; delaying increases risk and cost.
-- Chance to **simplify** customizations and improve user productivity.
-- Plan it as part of the platform roadmap, not as IT housekeeping.`, 'B'],
-['Vendors', 'How would you engage Oracle and partners on AI Agent Studio?',
-`- **Oracle**: roadmap briefings, early adopter programs, support for delivered agents.
-- **Partners**: marketplace agents (validated), implementation help for custom agents.
-- **Contracts**: clarity on any premium LLM costs and data use.
-- Keep **internal ownership** of agent design and governance.`, 'D'],
-['Strategy', 'What would a 2-year "AI-enabled ERP" roadmap look like?',
-`- **Year 1**: Redwood adoption, data cleanup, delivered agents, 3–5 pilots, governance live.
-- **Year 2**: scale proven agents, workflow automation across AP/close/procurement/OM, advanced analytics (FDI), measure productivity.
-- Continuous: quarterly release adoption, value tracking, risk reviews.`, 'D']
+QB["ora-sr-dir"] = (QB["ora-sr-dir"] || []).concat([
+["AI Agent Studio", "How would you scale AI agents across ERP, HCM and SCM portfolios?", "**Why they ask:** a scaling and operating model question.\n\n**Answer:**\n\"I'd set up an enterprise agent operating model: intake, risk tiers, standards, evaluation, monitoring and ownership. Platform choices: AI Agent Studio for Fusion-centered agents, an enterprise AI platform for cross-domain ones, connected through A2A and MCP. A value portfolio validated by finance. A workforce plan to reskill teams in finance, procurement and HR operations. And regular reporting to the board and audit on AI risk and value.\"\n\nTip: Mention finance validating the value. It keeps the numbers honest.", "D"],
+["AI Agent Studio", "How do you think about the workforce impact of agents in finance and procurement operations?", "**Why they ask:** leaders need a clear view on people impact.\n\n**Answer:**\n\"Agents take over lookups, routine drafting and triage, so people focus on exceptions, judgment, and supplier and customer relationships. I'd plan how freed capacity is redeployed with HR, not just treat it as cuts. Reskilling covers exception handling, data analysis and supervising agents. And open communication keeps trust.\"\n\nTip: Say \"redeploy, not just cut\". It's the message that keeps teams engaged.", "D"],
+["Redwood", "Why does Redwood matter strategically, beyond new screens?", "**Why they ask:** to see if you think strategically about the platform.\n\n**Answer:**\n\"Redwood is the foundation for Oracle's AI features, and new capabilities ship on Redwood pages first. Classic pages are being retired, so it's mandatory, and delaying adds risk and cost. It's also a chance to simplify customizations and improve user productivity. So I'd plan it as part of the platform roadmap, not as IT housekeeping.\"\n\nTip: Lead with \"AI ships on Redwood first\". It changes how executives see it.", "B"],
+["Vendors", "How would you engage Oracle and partners on AI Agent Studio?", "- **Oracle**: roadmap briefings, early adopter programs, support for delivered agents.\n- **Partners**: marketplace agents (validated), implementation help for custom agents.\n- **Contracts**: clarity on any premium LLM costs and data use.\n- Keep **internal ownership** of agent design and governance.", "D"],
+["Strategy", "What would a 2-year \"AI-enabled ERP\" roadmap look like?", "- **Year 1**: Redwood adoption, data cleanup, delivered agents, 3–5 pilots, governance live.\n- **Year 2**: scale proven agents, workflow automation across AP/close/procurement/OM, advanced analytics (FDI), measure productivity.\n- Continuous: quarterly release adoption, value tracking, risk reviews.", "D"]
 ]);

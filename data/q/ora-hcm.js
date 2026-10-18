@@ -194,209 +194,40 @@ Accuracy of HCM directly affects ERP approvals.`, 'B'],
 - **Infolets and dashboards**.`, 'B']
 ]);
 
-QB['ora-hcm'] = (QB['ora-hcm'] || []).concat([
-['Core HR', 'What are the main worker lifecycle actions in HCM?',
-`- **Hire** (employee, contingent worker), **rehire**.
-- **Promotion**, **transfer**, **change assignment**, **change manager**, **change location/working hours**.
-- **Salary change** (and compensation).
-- **Leave of absence** and return.
-- **Global transfer / temporary assignment** (between legal employers).
-- **Termination** (voluntary, involuntary) with reasons.
-Each **action and reason** drives approvals, payroll, benefits life events and reporting.`, 'B'],
-
-['Core HR', 'How do you handle global mobility (a worker moving to another country) in Fusion?',
-`- **Global transfer**: ends the work relationship in the source legal employer and creates one in the destination (permanent move).
-- **Global temporary assignment**: keeps home relationship; adds a host assignment for a period.
-- Consider: payroll in both countries (shadow payroll), tax equalization, benefits, documents (visas), cost allocation.
-- Localization: new legislative data group rules apply.`, 'D'],
-
-['Core HR', 'What are flexfields in HCM and when do you use them?',
-`- **Descriptive flexfields (DFF)** — extra attributes on objects (e.g. assignment, person) with contexts.
-- **Extensible flexfields (EFF)** — multiple rows/ structured extra info (e.g. licenses on person, legislative info).
-- **Key flexfields** — structured codes (job, grade, position names, people groups, costing).
-Use for client-specific data needs; deploy flexfields after changes; consider reporting (OTBI exposure) and HDL loading.`, 'B'],
-
-['Payroll', 'How do you set up a new deduction, for example a garnishment or a voluntary deduction?',
-`- **Voluntary deduction**: create an element (e.g. Pretax or Voluntary Deductions classification) via the element template; eligibility; costing; balances; payroll testing.
-- **Involuntary (garnishment)**: use seeded involuntary deduction elements (child support, tax levy, creditor debt) with **calculation cards** per worker capturing order details, limits and payee; priority rules and exemptions handled by payroll.
-- Third-party payees and payment methods for remittance.
-- Test with edge cases (insufficient net pay).`, 'D'],
-
-['Payroll', 'What are payroll flows and checklists?',
-`- **Payroll flows** sequence tasks (calculate payroll, verify, prepayments, archive, payments, costing, reports) with dependencies.
-- **Flow patterns** can be copied and customized (e.g. add custom reports or extracts).
-- **Payroll checklist** shows status of each task, owners, due dates.
-- Supports scheduling and notifications; improves control and auditability.`, 'D'],
-
-['Payroll', 'How do you handle a mid-year payroll go-live in the US?',
-`- Load **YTD balances** for each employee (gross, taxes by jurisdiction, deductions) so Fusion produces correct W-2s and limits (e.g. 401k annual limits, Social Security wage base).
-- **Balance initialization** via HDL (Initialize Balances).
-- Reconcile loaded balances to the legacy payroll register and quarterly filings.
-- Coordinate **quarterly tax filing** responsibilities for the split year.
-- Consider a quarter-start go-live to simplify.`, 'D'],
-
-['Payroll', 'What are the common causes of payroll errors and how do you prevent them?',
-`- **Late or wrong HR data** (retro changes, terminations after cutoff).
-- **Element entry errors** (duplicate bonuses).
-- **Tax setup** issues (work/resident location).
-- **Time/absence** data not approved in time.
-- Prevention: **cutoff calendars**, validation reports pre-payroll, exception reports (net pay variance > X%), dual review, automated reconciliations, good change control on payroll setup.`, 'B'],
-
-['Absence', 'How do you handle FMLA or statutory leave tracking in Fusion?',
-`- Seeded **US FMLA** plans/rules where available, or configured **absence types** with **eligibility** (12 months/1,250 hours) and **entitlement** tracking (12 weeks in a rolling period).
-- **Leave of absence** assignment status, linking to benefits (continuation) and payroll (unpaid/partial pay).
-- **Documentation** via journeys.
-- Reports for compliance and case management.`, 'D'],
-
-['Benefits', 'How do you design benefits eligibility and life events?',
-`- **Eligibility profiles** by worker attributes (employment category, location, hours, service).
-- **Life events**: temporal (new hire, age changes) and explicit (marriage, birth) — with **enrollment windows** and default enrollments.
-- **Collapsing and processing** rules for multiple events.
-- **Waiting periods** and coverage start dates.
-- Test scenarios end-to-end including carrier files and payroll deductions.`, 'D'],
-
-['Talent', 'How would you configure a performance management process?',
-`- **Performance templates** with sections (goals, competencies, overall rating), **process flows** (self-evaluation, manager evaluation, calibration, review meeting, acknowledgment).
-- **Review periods** and eligibility.
-- **Rating models** and calibration in **talent review**.
-- **Feedback** (continuous, requested) and **check-ins**.
-- Integration with compensation (ratings drive merit).
-- Communication and training for managers.`, 'D'],
-
-['Learning', 'How does Oracle Learning support compliance training?',
-`- **Courses/offerings** (online, instructor-led, blended) and **specializations**.
-- **Learning assignments** (required) by rules (job, location, new hire) with due dates and renewals.
-- **Notifications** and manager dashboards for overdue learning.
-- **Completion records** for audits (e.g. GxP training in pharma).
-- Integration with content providers (LinkedIn Learning etc.).`, 'D'],
-
-['Recruiting', 'How do you integrate background checks and onboarding into recruiting?',
-`- **Background check partners** integrated via the recruiting partner framework (screening packages triggered at a candidate phase).
-- Results return to the candidate record; selection process moves on completion.
-- **Offer acceptance** creates a **pending worker**; **onboarding journey** assigned (documents, I-9, equipment).
-- **Convert** pending worker to employee on start date.`, 'D'],
-
-['Implementation', 'How do you plan an HCM Cloud implementation and what goes first?',
-`- **Core HR** first (foundation: structures, workers, security, approvals) — everything else depends on it.
-- Then **Payroll/Absence/Time** (or payroll interface), **Benefits**, **Talent/Compensation**, **Recruiting/Learning** — often in phases.
-- **Data conversion** and **integrations** (payroll vendor, benefits carriers, IAM, ERP) planned early.
-- **Parallel payroll** testing for payroll.
-- **Change management** heavy: managers and employees use self-service.`, 'B'],
-
-['Implementation', 'How do you design HCM for multiple countries?',
-`- **Global design** for core HR, with **localizations** per country (legislative data groups, address formats, national identifiers, statutory info).
-- Country payroll: Fusion global payroll where available, or **payroll interfaces** to local providers.
-- **Data privacy**: GDPR, works council consultation (Europe), data residency.
-- **Languages** and translations.
-- **Rollout** by region with a global template.`, 'D'],
-
-['Security', 'How do you protect sensitive HCM data like SSN, salary and health information?',
-`- **Role-based access** — only specific roles see national identifiers, salary, medical info.
-- **Masking** of national IDs in UI; restrict OTBI subject areas.
-- **Audit** on sensitive data changes and access (where available).
-- **Non-production masking** after P2T refreshes.
-- **GDPR**: purpose limitation, retention policies, data subject requests.`, 'D'],
-
-['Quarterly Updates', 'How do you manage HCM quarterly updates, especially payroll?',
-`- Review **What's New** for HCM and **payroll legislative updates** (tax changes).
-- **Regression**: core HR transactions, approvals, security, payroll runs compared against prior results (automated payroll comparison).
-- **Statutory patches** (year-end) planned and tested.
-- Extracts and integrations re-tested.
-- Communication to HR users.`, 'B'],
-
-['Behavioral', 'Tell me about a difficult payroll issue you solved under time pressure.',
-`## Example (STAR)
-- **Situation:** Two hours before payroll payments transmitted, net pay variances appeared for 300 employees.
-- **Task:** As HCM lead, decide whether to proceed.
-- **Action:** Traced to a retroactive change in a benefit rate loaded that afternoon; rolled back affected workers, corrected the rate effective date, re-ran payroll for them, reconciled.
-- **Result:** Payroll paid on time; added a pre-payroll variance check and freeze window for benefit changes.`, 'B'],
-
-['Behavioral', 'How do you work with HR business partners who aren\'t technical?',
-`- Use their language — employee experience, compliance, cost.
-- **Show** processes with their scenarios (a promotion, a leave).
-- Explain the impact of data changes on payroll and approvals.
-- Give them **self-service tools** (OTBI, HSDL) with training.
-- Regular check-ins and quick feedback loops.`, 'B'],
-
-['Behavioral', 'Why do you want to lead HCM implementations?',
-`- HCM touches **every employee** — real impact on experience and trust (paying people correctly).
-- You enjoy combining **compliance**, **process design** and **people change**.
-- Examples of successful rollouts and outcomes (self-service adoption, payroll accuracy).
-- You want to own the full HCM design and grow a team.`, 'B'],
-
-['Core HR', 'What is position management and when should a company use it?',
-`- **Position management** controls headcount through positions: hires fill approved positions; FTE and headcount budgets enforced.
-- **Position hierarchy** can drive approvals and reporting.
-- **Synchronization** of assignment attributes from position (job, department, location).
-- Use when: budgeted headcount control is required (public sector, regulated industries, large enterprises).
-- Trade-off: more administration — every org change needs position updates.`, 'D'],
-
-['Payroll', 'How do you reconcile payroll to the general ledger and bank?',
-`- **Payroll register** totals vs **costing results** vs **GL journals** by account/cost center.
-- **Net pay** vs bank payment file totals and bank statement.
-- **Tax liabilities** vs tax payments/filings.
-- **Third-party payments** (deductions) vs remittances.
-- Monthly sign-off with payroll and accounting; investigate suspense costing.`, 'D'],
-
-['Integration', 'How do you handle employee data for Fusion Expenses and Procurement approvals?',
-`- **Expenses** needs: assignment cost center (default expense account), manager, bank account for reimbursement (or payroll).
-- **Procurement/Requisitions** needs: requester's BU and default charge account; approvals via supervisor hierarchy.
-- Ensure **default expense account** on assignments is populated (HDL/rules).
-- Terminated managers or missing supervisors break approvals — monitor with reports.`, 'D'],
-
-['AI', 'How is AI being used in Oracle HCM?',
-`- **Generative AI**: job descriptions, performance review summaries, goal suggestions, candidate outreach.
-- **AI agents**: HR help desk answers (policies), benefits questions, onboarding assistance.
-- **Recommendations**: skills-based job/learning recommendations, best candidates.
-- **Guardrails**: bias checks, privacy, human review for decisions (hiring, ratings).`, 'D'],
-
-['Implementation', 'What are key risks in HCM implementations?',
-`- **Payroll accuracy** — mitigate with multiple parallel runs.
-- **Data quality** (history, managers, cost centers).
-- **Security** misconfiguration exposing sensitive data.
-- **Change management** (manager self-service adoption).
-- **Integrations** with benefits carriers, payroll vendors, IAM.
-- **Works council/legal** approvals in some countries.`, 'B'],
-
-['Talent', 'How do you set up succession planning?',
-`- Identify **critical positions/roles**.
-- **Talent reviews** with performance/potential (9-box), risk of loss, impact of loss.
-- **Succession plans**: candidates with readiness levels.
-- **Development plans** for successors (learning, assignments).
-- Security: only HR and leadership see succession data.
-- Reports on bench strength.`, 'D'],
-
-['Payroll', 'What is the difference between Fusion Global Payroll and a payroll interface approach?',
-`- **Global Payroll**: Fusion calculates pay (for supported countries like US, UK, Canada, India, etc.) with statutory rules updated by Oracle.
-- **Payroll interface (Global Payroll Interface)**: Fusion is the HR source; a third-party provider (ADP, local bureau) calculates pay; Fusion sends changes via extracts and may receive results back.
-- Decide by country support, complexity, cost and in-house payroll expertise.`, 'B']
+QB["ora-hcm"] = (QB["ora-hcm"] || []).concat([
+["Core HR", "What are the main worker lifecycle actions in HCM?", "- **Hire** (employee, contingent worker), **rehire**.\n- **Promotion**, **transfer**, **change assignment**, **change manager**, **change location/working hours**.\n- **Salary change** (and compensation).\n- **Leave of absence** and return.\n- **Global transfer / temporary assignment** (between legal employers).\n- **Termination** (voluntary, involuntary) with reasons.\nEach **action and reason** drives approvals, payroll, benefits life events and reporting.", "B"],
+["Core HR", "How do you handle global mobility (a worker moving to another country) in Fusion?", "- **Global transfer**: ends the work relationship in the source legal employer and creates one in the destination (permanent move).\n- **Global temporary assignment**: keeps home relationship; adds a host assignment for a period.\n- Consider: payroll in both countries (shadow payroll), tax equalization, benefits, documents (visas), cost allocation.\n- Localization: new legislative data group rules apply.", "D"],
+["Core HR", "What are flexfields in HCM and when do you use them?", "- **Descriptive flexfields (DFF)** — extra attributes on objects (e.g. assignment, person) with contexts.\n- **Extensible flexfields (EFF)** — multiple rows/ structured extra info (e.g. licenses on person, legislative info).\n- **Key flexfields** — structured codes (job, grade, position names, people groups, costing).\nUse for client-specific data needs; deploy flexfields after changes; consider reporting (OTBI exposure) and HDL loading.", "B"],
+["Payroll", "How do you set up a new deduction, for example a garnishment or a voluntary deduction?", "- **Voluntary deduction**: create an element (e.g. Pretax or Voluntary Deductions classification) via the element template; eligibility; costing; balances; payroll testing.\n- **Involuntary (garnishment)**: use seeded involuntary deduction elements (child support, tax levy, creditor debt) with **calculation cards** per worker capturing order details, limits and payee; priority rules and exemptions handled by payroll.\n- Third-party payees and payment methods for remittance.\n- Test with edge cases (insufficient net pay).", "D"],
+["Payroll", "What are payroll flows and checklists?", "- **Payroll flows** sequence tasks (calculate payroll, verify, prepayments, archive, payments, costing, reports) with dependencies.\n- **Flow patterns** can be copied and customized (e.g. add custom reports or extracts).\n- **Payroll checklist** shows status of each task, owners, due dates.\n- Supports scheduling and notifications; improves control and auditability.", "D"],
+["Payroll", "How do you handle a mid-year payroll go-live in the US?", "- Load **YTD balances** for each employee (gross, taxes by jurisdiction, deductions) so Fusion produces correct W-2s and limits (e.g. 401k annual limits, Social Security wage base).\n- **Balance initialization** via HDL (Initialize Balances).\n- Reconcile loaded balances to the legacy payroll register and quarterly filings.\n- Coordinate **quarterly tax filing** responsibilities for the split year.\n- Consider a quarter-start go-live to simplify.", "D"],
+["Payroll", "What are the common causes of payroll errors and how do you prevent them?", "- **Late or wrong HR data** (retro changes, terminations after cutoff).\n- **Element entry errors** (duplicate bonuses).\n- **Tax setup** issues (work/resident location).\n- **Time/absence** data not approved in time.\n- Prevention: **cutoff calendars**, validation reports pre-payroll, exception reports (net pay variance > X%), dual review, automated reconciliations, good change control on payroll setup.", "B"],
+["Absence", "How do you handle FMLA or statutory leave tracking in Fusion?", "- Seeded **US FMLA** plans/rules where available, or configured **absence types** with **eligibility** (12 months/1,250 hours) and **entitlement** tracking (12 weeks in a rolling period).\n- **Leave of absence** assignment status, linking to benefits (continuation) and payroll (unpaid/partial pay).\n- **Documentation** via journeys.\n- Reports for compliance and case management.", "D"],
+["Benefits", "How do you design benefits eligibility and life events?", "- **Eligibility profiles** by worker attributes (employment category, location, hours, service).\n- **Life events**: temporal (new hire, age changes) and explicit (marriage, birth) — with **enrollment windows** and default enrollments.\n- **Collapsing and processing** rules for multiple events.\n- **Waiting periods** and coverage start dates.\n- Test scenarios end-to-end including carrier files and payroll deductions.", "D"],
+["Talent", "How would you configure a performance management process?", "- **Performance templates** with sections (goals, competencies, overall rating), **process flows** (self-evaluation, manager evaluation, calibration, review meeting, acknowledgment).\n- **Review periods** and eligibility.\n- **Rating models** and calibration in **talent review**.\n- **Feedback** (continuous, requested) and **check-ins**.\n- Integration with compensation (ratings drive merit).\n- Communication and training for managers.", "D"],
+["Learning", "How does Oracle Learning support compliance training?", "- **Courses/offerings** (online, instructor-led, blended) and **specializations**.\n- **Learning assignments** (required) by rules (job, location, new hire) with due dates and renewals.\n- **Notifications** and manager dashboards for overdue learning.\n- **Completion records** for audits (e.g. GxP training in pharma).\n- Integration with content providers (LinkedIn Learning etc.).", "D"],
+["Recruiting", "How do you integrate background checks and onboarding into recruiting?", "- **Background check partners** integrated via the recruiting partner framework (screening packages triggered at a candidate phase).\n- Results return to the candidate record; selection process moves on completion.\n- **Offer acceptance** creates a **pending worker**; **onboarding journey** assigned (documents, I-9, equipment).\n- **Convert** pending worker to employee on start date.", "D"],
+["Implementation", "How do you plan an HCM Cloud implementation and what goes first?", "- **Core HR** first (foundation: structures, workers, security, approvals) — everything else depends on it.\n- Then **Payroll/Absence/Time** (or payroll interface), **Benefits**, **Talent/Compensation**, **Recruiting/Learning** — often in phases.\n- **Data conversion** and **integrations** (payroll vendor, benefits carriers, IAM, ERP) planned early.\n- **Parallel payroll** testing for payroll.\n- **Change management** heavy: managers and employees use self-service.", "B"],
+["Implementation", "How do you design HCM for multiple countries?", "- **Global design** for core HR, with **localizations** per country (legislative data groups, address formats, national identifiers, statutory info).\n- Country payroll: Fusion global payroll where available, or **payroll interfaces** to local providers.\n- **Data privacy**: GDPR, works council consultation (Europe), data residency.\n- **Languages** and translations.\n- **Rollout** by region with a global template.", "D"],
+["Security", "How do you protect sensitive HCM data like SSN, salary and health information?", "- **Role-based access** — only specific roles see national identifiers, salary, medical info.\n- **Masking** of national IDs in UI; restrict OTBI subject areas.\n- **Audit** on sensitive data changes and access (where available).\n- **Non-production masking** after P2T refreshes.\n- **GDPR**: purpose limitation, retention policies, data subject requests.", "D"],
+["Quarterly Updates", "How do you manage HCM quarterly updates, especially payroll?", "**Why they ask:** payroll mistakes are very visible.\n\n**Answer:**\n\"I review What's New for HCM and the payroll legislative updates for tax changes. Regression covers core HR transactions, approvals, security, and payroll runs compared to prior results with automated payroll comparison. Statutory patches, like year-end, are planned and tested. Extracts and integrations are retested. And HR users get a short summary of what changed.\"\n\nTip: Mention parallel payroll comparison. It's the test that catches real errors.", "B"],
+["Behavioral", "Tell me about a difficult payroll issue you solved under time pressure.", "## Example (STAR)\n- **Situation:** Two hours before payroll payments transmitted, net pay variances appeared for 300 employees.\n- **Task:** As HCM lead, decide whether to proceed.\n- **Action:** Traced to a retroactive change in a benefit rate loaded that afternoon; rolled back affected workers, corrected the rate effective date, re-ran payroll for them, reconciled.\n- **Result:** Payroll paid on time; added a pre-payroll variance check and freeze window for benefit changes.", "B"],
+["Behavioral", "How do you work with HR business partners who aren't technical?", "- Use their language — employee experience, compliance, cost.\n- **Show** processes with their scenarios (a promotion, a leave).\n- Explain the impact of data changes on payroll and approvals.\n- Give them **self-service tools** (OTBI, HSDL) with training.\n- Regular check-ins and quick feedback loops.", "B"],
+["Behavioral", "Why do you want to lead HCM implementations?", "- HCM touches **every employee** — real impact on experience and trust (paying people correctly).\n- You enjoy combining **compliance**, **process design** and **people change**.\n- Examples of successful rollouts and outcomes (self-service adoption, payroll accuracy).\n- You want to own the full HCM design and grow a team.", "B"],
+["Core HR", "What is position management and when should a company use it?", "- **Position management** controls headcount through positions: hires fill approved positions; FTE and headcount budgets enforced.\n- **Position hierarchy** can drive approvals and reporting.\n- **Synchronization** of assignment attributes from position (job, department, location).\n- Use when: budgeted headcount control is required (public sector, regulated industries, large enterprises).\n- Trade-off: more administration — every org change needs position updates.", "D"],
+["Payroll", "How do you reconcile payroll to the general ledger and bank?", "- **Payroll register** totals vs **costing results** vs **GL journals** by account/cost center.\n- **Net pay** vs bank payment file totals and bank statement.\n- **Tax liabilities** vs tax payments/filings.\n- **Third-party payments** (deductions) vs remittances.\n- Monthly sign-off with payroll and accounting; investigate suspense costing.", "D"],
+["Integration", "How do you handle employee data for Fusion Expenses and Procurement approvals?", "- **Expenses** needs: assignment cost center (default expense account), manager, bank account for reimbursement (or payroll).\n- **Procurement/Requisitions** needs: requester's BU and default charge account; approvals via supervisor hierarchy.\n- Ensure **default expense account** on assignments is populated (HDL/rules).\n- Terminated managers or missing supervisors break approvals — monitor with reports.", "D"],
+["AI", "How is AI being used in Oracle HCM?", "**Why they ask:** HCM is an active area for AI.\n\n**Answer:**\n\"Generative AI writes job descriptions, summarizes performance reviews, suggests goals and drafts candidate outreach. AI agents answer HR help desk questions about policies and benefits and help with onboarding. Recommendations suggest jobs and learning based on skills, and the best candidates. The guardrails are bias checks, privacy, and human review for decisions like hiring and ratings.\"\n\nTip: Stress human review for hiring and ratings. It's the ethical and legal line.", "D"],
+["Implementation", "What are key risks in HCM implementations?", "- **Payroll accuracy** — mitigate with multiple parallel runs.\n- **Data quality** (history, managers, cost centers).\n- **Security** misconfiguration exposing sensitive data.\n- **Change management** (manager self-service adoption).\n- **Integrations** with benefits carriers, payroll vendors, IAM.\n- **Works council/legal** approvals in some countries.", "B"],
+["Talent", "How do you set up succession planning?", "- Identify **critical positions/roles**.\n- **Talent reviews** with performance/potential (9-box), risk of loss, impact of loss.\n- **Succession plans**: candidates with readiness levels.\n- **Development plans** for successors (learning, assignments).\n- Security: only HR and leadership see succession data.\n- Reports on bench strength.", "D"],
+["Payroll", "What is the difference between Fusion Global Payroll and a payroll interface approach?", "- **Global Payroll**: Fusion calculates pay (for supported countries like US, UK, Canada, India, etc.) with statutory rules updated by Oracle.\n- **Payroll interface (Global Payroll Interface)**: Fusion is the HR source; a third-party provider (ADP, local bureau) calculates pay; Fusion sends changes via extracts and may receive results back.\n- Decide by country support, complexity, cost and in-house payroll expertise.", "B"]
 ]);
 
 // Added Oct 2026: Redwood and AI Agent Studio questions for HCM.
-QB['ora-hcm'] = (QB['ora-hcm'] || []).concat([
-['Redwood', 'What changes for HCM users and admins with Redwood?',
-`- HCM was one of the first areas moved to **Redwood**: Person, Employment, Journeys, Goals, Performance, Learning, Recruiting pages.
-- **Transaction design**: Redwood uses **Transaction Design Studio** and **Visual Builder Studio** to control fields, sections and rules by action/role — classic Page Composer personalizations don't carry over.
-- **Approvals** and security are unchanged.
-- Plan training for managers and HR because self-service screens look different.`, 'D'],
-['Redwood', 'How would you hide or require a field on a Redwood HCM action like Promote?',
-`- Use **Transaction Design Studio** (or VBS for Redwood pages) to create a rule for the **action** (Promote), optionally by legal employer or role.
-- Set the field to **required/hidden/read-only**; add defaults.
-- Test with different users and countries; then publish.
-- Document the rule for support.`, 'D'],
-['AI Agent Studio', 'Give examples of AI agents useful in HCM.',
-`- **Policy/benefits Q&A agent** grounded on HR documents (Document tool).
-- **Employee self-service agent**: "update my address", "how many vacation days do I have?" using HCM business objects with the employee's own access.
-- **Manager assistant**: summarize team absences, upcoming reviews, drafts of performance feedback.
-- **Recruiting assistant**: draft job descriptions, summarize candidates.
-Keep humans responsible for hiring, pay and performance decisions.`, 'D'],
-['AI Agent Studio', 'What extra care do HCM agents need?',
-`- **Sensitive data** (salary, health, national IDs) — strict role-based access; agents inherit HCM security.
-- **Bias and fairness** in recruiting/performance uses — human decisions, testing for bias.
-- **Privacy/GDPR** and works council requirements in some countries.
-- **Clear disclosure** to employees that they're using an AI assistant.`, 'D'],
-['Fusion Platform', 'How do you keep HCM extracts and integrations safe during Redwood changes?',
-`- HCM Extracts, HDL and APIs are not affected by UI changes, but **new fields** added through Redwood/VBS flexfields must be added to extracts.
-- Re-test **approval notifications** and deep links.
-- Regression test payroll-related transactions after each quarterly update.`, 'B']
+QB["ora-hcm"] = (QB["ora-hcm"] || []).concat([
+["Redwood", "What changes for HCM users and admins with Redwood?", "**Why they ask:** HCM moved to Redwood early.\n\n**Answer:**\n\"HCM was one of the first areas in Redwood: person, employment, journeys, goals, performance, learning and recruiting pages. Transactions are designed with Transaction Design Studio and Visual Builder Studio, controlling fields, sections and rules by action and role; classic Page Composer personalizations don't carry over. Approvals and security stay the same. Managers and HR need training because self-service screens look different.\"\n\nTip: Mention Transaction Design Studio. It's the HCM-specific tool.", "D"],
+["Redwood", "How would you hide or require a field on a Redwood HCM action like Promote?", "**Why they ask:** a hands-on HCM configuration question.\n\n**Answer:**\n\"I use Transaction Design Studio, or VBS for Redwood pages, to create a rule for the Promote action, optionally by legal employer or role. I set the field to required, hidden or read-only, and add any defaults. Then I test with different users and countries, publish, and document the rule for support.\"\n\nTip: Mention testing across countries. Rules by legal employer often surprise people.", "D"],
+["AI Agent Studio", "Give examples of AI agents useful in HCM.", "**Why they ask:** a use case question.\n\n**Answer:**\n\"A policy and benefits Q&A agent, grounded on HR documents. An employee self-service agent: 'update my address' or 'how many vacation days do I have?', using HCM business objects with the employee's own access. A manager assistant that summarizes team absences and upcoming reviews and drafts feedback. A recruiting assistant that drafts job descriptions and summarizes candidates. Humans stay responsible for hiring, pay and performance decisions.\"\n\nTip: End with who stays responsible. It shows judgment.", "D"],
+["AI Agent Studio", "What extra care do HCM agents need?", "**Why they ask:** HCM data is the most sensitive in the ERP.\n\n**Answer:**\n\"Sensitive data, like salary, health and national IDs, needs strict role-based access, which agents inherit from HCM security. Recruiting and performance uses need bias and fairness testing, with humans making the decisions. Privacy rules like GDPR, and works council requirements in some countries, apply. And employees should be told clearly when they're using an AI assistant.\"\n\nTip: Mention works councils. It shows global HCM experience.", "D"],
+["Fusion Platform", "How do you keep HCM extracts and integrations safe during Redwood changes?", "**Why they ask:** UI changes can still affect integrations.\n\n**Answer:**\n\"HCM Extracts, HDL and APIs aren't affected by UI changes. But new fields added through Redwood or VBS flexfields need to be added to the extracts. I retest approval notifications and deep links. And payroll-related transactions get a regression test after every quarterly update.\"\n\nTip: Mention new flexfields missing from extracts. It's the real risk.", "B"]
 ]);

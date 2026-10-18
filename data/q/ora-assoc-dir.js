@@ -360,31 +360,10 @@ QB['ora-assoc-dir'] = (QB['ora-assoc-dir'] || []).concat([
 ]);
 
 // Added Oct 2026: Redwood and AI Agent Studio questions for leaders.
-QB['ora-assoc-dir'] = (QB['ora-assoc-dir'] || []).concat([
-['Redwood', 'How would you plan your team\'s work for Oracle\'s move from classic to Redwood pages?',
-`- **Inventory** affected pages and personalizations per module; estimate rebuild effort in VBS.
-- **Plan waves** by module aligned to Oracle's retirement dates, avoiding close.
-- **Assign owners**; build VBS skills in the team.
-- **Regression testing** and user training in each wave.
-- Report progress and risks to the Director and business owners.`, 'D'],
-['AI Agent Studio', 'Your CFO asks: "What should we do with Oracle AI Agent Studio?" How do you respond?',
-`- Explain briefly: Oracle's tool to use delivered agents and build our own inside Fusion, with our security.
-- Propose **2–3 pilots** with clear value (AP inquiries/holds, expense policy help, collections emails).
-- **Controls**: human approval for financial actions; audit involvement.
-- **Measure** and report in 90 days.`, 'D'],
-['AI Agent Studio', 'How would you staff and run an AI agent pilot?',
-`- Small team: a functional lead, a technical consultant (tools/APIs), a business owner, and a tester.
-- Scope one process; define success metrics.
-- Build, evaluate with real scenarios, pilot with 5–10 users.
-- Weekly review; decide scale/stop at the end.`, 'B'],
-['Delivery', 'How do you keep quarterly updates under control now that Redwood and AI features change every release?',
-`- Release **assessment** per module including Redwood pages and AI features.
-- **Automated regression** for core flows.
-- Opt-in decisions with business owners.
-- Communicate changes early to users.`, 'B'],
-['People', 'How do you develop your consultants for the Redwood/AI era?',
-`- Learning paths (AI Agent Studio, Visual Builder Studio) and certification goals.
-- Hands-on sandbox projects.
-- Rotate people into pilots.
-- Recognize new skills in reviews.`, 'B']
+QB["ora-assoc-dir"] = (QB["ora-assoc-dir"] || []).concat([
+["Redwood", "How would you plan your team's work for Oracle's move from classic to Redwood pages?", "**Why they ask:** a planning and leadership question.\n\n**Answer:**\n\"I'd inventory the affected pages and personalizations by module and estimate the VBS rebuild effort. Then plan waves by module, aligned to Oracle's retirement dates and avoiding close periods. Assign owners and build VBS skills in the team. Each wave gets regression testing and user training. And I'd report progress and risks to the director and business owners.\"\n\nTip: Mention avoiding close periods. Finance users will thank you.", "D"],
+["AI Agent Studio", "Your CFO asks: \"What should we do with Oracle AI Agent Studio?\" How do you respond?", "**Why they ask:** a leadership communication question.\n\n**Answer:**\n\"I'd explain it in one line: it's Oracle's tool for using delivered agents and building our own inside Fusion, with our existing security. Then propose two or three pilots with clear value, like AP inquiries and holds, expense policy help, and collections emails. I'd be clear on controls: human approval for financial actions and audit involved from the start. And I'd commit to measuring and reporting results in 90 days.\"\n\nTip: Keep it short and end with a 90-day commitment. CFOs want a plan, not a lecture on AI.", "D"],
+["AI Agent Studio", "How would you staff and run an AI agent pilot?", "**Why they ask:** a practical delivery question.\n\n**Answer:**\n\"A small team: a functional lead, a technical consultant for tools and APIs, a business owner, and a tester. One process in scope, with success metrics agreed up front. Build it, evaluate with real scenarios, then pilot with 5 to 10 users. Review weekly, and at the end decide to scale or stop.\"\n\nTip: Say you'd decide to scale or stop. Pilots without an end decision drift.", "B"],
+["Delivery", "How do you keep quarterly updates under control now that Redwood and AI features change every release?", "- Release **assessment** per module including Redwood pages and AI features.\n- **Automated regression** for core flows.\n- Opt-in decisions with business owners.\n- Communicate changes early to users.", "B"],
+["People", "How do you develop your consultants for the Redwood/AI era?", "- Learning paths (AI Agent Studio, Visual Builder Studio) and certification goals.\n- Hands-on sandbox projects.\n- Rotate people into pilots.\n- Recognize new skills in reviews.", "B"]
 ]);

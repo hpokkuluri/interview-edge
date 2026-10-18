@@ -1,28 +1,8 @@
 // Added Oct 2026: Redwood and AI Agent Studio questions for HCM.
-QB['ora-hcm'] = (QB['ora-hcm'] || []).concat([
-['Redwood', 'What changes for HCM users and admins with Redwood?',
-`- HCM was one of the first areas moved to **Redwood**: Person, Employment, Journeys, Goals, Performance, Learning, Recruiting pages.
-- **Transaction design**: Redwood uses **Transaction Design Studio** and **Visual Builder Studio** to control fields, sections and rules by action/role — classic Page Composer personalizations don't carry over.
-- **Approvals** and security are unchanged.
-- Plan training for managers and HR because self-service screens look different.`, 'D'],
-['Redwood', 'How would you hide or require a field on a Redwood HCM action like Promote?',
-`- Use **Transaction Design Studio** (or VBS for Redwood pages) to create a rule for the **action** (Promote), optionally by legal employer or role.
-- Set the field to **required/hidden/read-only**; add defaults.
-- Test with different users and countries; then publish.
-- Document the rule for support.`, 'D'],
-['AI Agent Studio', 'Give examples of AI agents useful in HCM.',
-`- **Policy/benefits Q&A agent** grounded on HR documents (Document tool).
-- **Employee self-service agent**: "update my address", "how many vacation days do I have?" using HCM business objects with the employee's own access.
-- **Manager assistant**: summarize team absences, upcoming reviews, drafts of performance feedback.
-- **Recruiting assistant**: draft job descriptions, summarize candidates.
-Keep humans responsible for hiring, pay and performance decisions.`, 'D'],
-['AI Agent Studio', 'What extra care do HCM agents need?',
-`- **Sensitive data** (salary, health, national IDs) — strict role-based access; agents inherit HCM security.
-- **Bias and fairness** in recruiting/performance uses — human decisions, testing for bias.
-- **Privacy/GDPR** and works council requirements in some countries.
-- **Clear disclosure** to employees that they're using an AI assistant.`, 'D'],
-['Fusion Platform', 'How do you keep HCM extracts and integrations safe during Redwood changes?',
-`- HCM Extracts, HDL and APIs are not affected by UI changes, but **new fields** added through Redwood/VBS flexfields must be added to extracts.
-- Re-test **approval notifications** and deep links.
-- Regression test payroll-related transactions after each quarterly update.`, 'B']
+QB["ora-hcm"] = (QB["ora-hcm"] || []).concat([
+["Redwood", "What changes for HCM users and admins with Redwood?", "**Why they ask:** HCM moved to Redwood early.\n\n**Answer:**\n\"HCM was one of the first areas in Redwood: person, employment, journeys, goals, performance, learning and recruiting pages. Transactions are designed with Transaction Design Studio and Visual Builder Studio, controlling fields, sections and rules by action and role; classic Page Composer personalizations don't carry over. Approvals and security stay the same. Managers and HR need training because self-service screens look different.\"\n\nTip: Mention Transaction Design Studio. It's the HCM-specific tool.", "D"],
+["Redwood", "How would you hide or require a field on a Redwood HCM action like Promote?", "**Why they ask:** a hands-on HCM configuration question.\n\n**Answer:**\n\"I use Transaction Design Studio, or VBS for Redwood pages, to create a rule for the Promote action, optionally by legal employer or role. I set the field to required, hidden or read-only, and add any defaults. Then I test with different users and countries, publish, and document the rule for support.\"\n\nTip: Mention testing across countries. Rules by legal employer often surprise people.", "D"],
+["AI Agent Studio", "Give examples of AI agents useful in HCM.", "**Why they ask:** a use case question.\n\n**Answer:**\n\"A policy and benefits Q&A agent, grounded on HR documents. An employee self-service agent: 'update my address' or 'how many vacation days do I have?', using HCM business objects with the employee's own access. A manager assistant that summarizes team absences and upcoming reviews and drafts feedback. A recruiting assistant that drafts job descriptions and summarizes candidates. Humans stay responsible for hiring, pay and performance decisions.\"\n\nTip: End with who stays responsible. It shows judgment.", "D"],
+["AI Agent Studio", "What extra care do HCM agents need?", "**Why they ask:** HCM data is the most sensitive in the ERP.\n\n**Answer:**\n\"Sensitive data, like salary, health and national IDs, needs strict role-based access, which agents inherit from HCM security. Recruiting and performance uses need bias and fairness testing, with humans making the decisions. Privacy rules like GDPR, and works council requirements in some countries, apply. And employees should be told clearly when they're using an AI assistant.\"\n\nTip: Mention works councils. It shows global HCM experience.", "D"],
+["Fusion Platform", "How do you keep HCM extracts and integrations safe during Redwood changes?", "**Why they ask:** UI changes can still affect integrations.\n\n**Answer:**\n\"HCM Extracts, HDL and APIs aren't affected by UI changes. But new fields added through Redwood or VBS flexfields need to be added to the extracts. I retest approval notifications and deep links. And payroll-related transactions get a regression test after every quarterly update.\"\n\nTip: Mention new flexfields missing from extracts. It's the real risk.", "B"]
 ]);
