@@ -1,18 +1,4 @@
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Procurement', 'How do you handle requisitions that fail automatic PO creation?',
-`- Check the requisition line in **Process Requisitions** — the reason is usually shown (no source agreement, supplier site inactive, agreement expired, price/UOM mismatch, missing procurement BU access).
-- Fix the root data: renew the agreement, add the site assignment, correct the UOM conversion.
-- Re-submit or let the buyer create the PO manually.
-- Track repeat failures in a report so the root cause (e.g. expired agreements) is fixed before it hits users.`, 'B'],
-
-['Inventory', 'What are the key inventory organization parameters you set?',
-`- **Item master org**, schedule (calendar), **default subinventory/locator controls**.
-- **Lot and serial** number generation and uniqueness.
-- **Negative balances allowed** or not.
-- **Picking and putaway** defaults (picking rule, allocation).
-- **ATP and reservations** settings.
-- **Shipping/receiving** parameters, interorg transfer defaults.
-- **Costing**: linked cost org, default accounts.
-
-Decisions like negative balances need business agreement — they affect controls and costing.`, 'D']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Procurement", "How do you handle requisitions that fail automatic PO creation?", "**Why they ask:** a practical support question.\n\n**Answer:**\n\"I check the line in Process Requisitions, where the reason is usually shown: no source agreement, inactive supplier site, expired agreement, a price or UOM mismatch, or missing procurement BU access. I fix the data: renew the agreement, add the site assignment, or correct the UOM conversion. Then resubmit, or let the buyer create the PO by hand. And I track repeat failures in a report, so causes like expiring agreements are fixed before users hit them.\"\n\nTip: Mention tracking expiring agreements ahead of time. Prevention beats fixing.", "B"],
+["Inventory", "What are the key inventory organization parameters you set?", "**Why they ask:** these parameters shape how the org behaves.\n\n**Answer:**\n\"The item master org and calendar, and default locator control. Lot and serial number generation and uniqueness. Whether negative balances are allowed. Picking and putaway defaults. ATP and reservation settings. Shipping, receiving and interorg transfer defaults. And costing: the linked cost org and default accounts. Decisions like negative balances need business agreement, because they affect controls and costing.\"\n\nTip: Highlight the negative balances decision. It's the one that causes later problems.", "D"]
 ]);

@@ -1,9 +1,3 @@
-QB['ora-lead-scm'] = (QB['ora-lead-scm'] || []).concat([
-['Receiving', 'How would you speed up receiving at a busy distribution center?',
-`- Require **ASNs** from top suppliers so receipts are pre-populated.
-- **Barcode/mobile receiving** with LPN or lot scanning.
-- **Direct delivery** routing for low-risk items; inspection only where needed.
-- **Receiving tolerances** that auto-accept small differences.
-- **Dock scheduling** to level the workload.
-- Measure dock-to-stock time and receipt backlog daily.`, 'B']
+QB["ora-lead-scm"] = (QB["ora-lead-scm"] || []).concat([
+["Receiving", "How would you speed up receiving at a busy distribution center?", "**Why they ask:** a practical operations question.\n\n**Answer:**\n\"I'd require ASNs from the top suppliers so receipts are pre-filled. Barcode and mobile receiving, scanning LPNs or lots. Direct delivery routing for low-risk items, with inspection only where needed. Receiving tolerances that accept small differences automatically. Dock scheduling to level the workload. And measure dock-to-stock time and receipt backlog every day.\"\n\nTip: Mention dock-to-stock time. It's the KPI receiving managers use.", "B"]
 ]);

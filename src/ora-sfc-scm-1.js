@@ -1,183 +1,27 @@
 // Oracle Senior Functional Consultant (3–5 yrs) — SCM. Format: [module, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Supply Chain Orchestration', 'What is Supply Chain Financial Orchestration (SFO) and when do you need it?',
-`SFO handles the **financial side of supply chain flows that cross legal entities or business units** — e.g. a US company buys goods that are received by its Mexican warehouse, or a sales BU sells goods shipped from another entity's warehouse.
-
-- **Financial orchestration flows** (procurement or shipment flows) define the chain of entities, **transfer pricing rules** and **documentation** (intercompany AR/AP invoices).
-- Physical movement happens once; SFO creates the **logical** intercompany transactions and accounting in each entity.
-- Common for global companies with central procurement or sales entities.
-
-Tip: Mention an example flow you configured and how you tested the intercompany invoices.`, 'D'],
-
-['Order Management', 'How do you design orchestration processes for different order types?',
-`- Group fulfillment patterns: **standard ship**, **drop ship**, **back-to-back**, **configured items (ATO)**, **services/subscriptions**, **returns**.
-- Create an orchestration process per pattern (or copy seeded ones) with steps, task types and **change management** rules.
-- **Process assignment rules** route lines by order type, item type, BU or source.
-- Set **planning/lead times** per step for jeopardy calculation.
-- Test change scenarios: quantity change after scheduling, cancel after pick, change ship-to after release.`, 'D'],
-
-['Order Management', 'What is Global Order Promising (GOP) and how do sourcing rules affect it?',
-`GOP checks **availability** and promises a date for order lines.
-- Considers on-hand, supply (POs, work orders, transfers), lead times and allocations.
-- **Sourcing rules and assignment sets** tell GOP which warehouses (and suppliers) can fulfill — with ranks and percentages.
-- Supports **ATP** (available to promise) and **CTP** (capable to promise — checks component and resource availability for make items).
-- Data is collected from the transaction system into the planning data repository — **data collections** must run regularly.
-
-Tip: A common issue: GOP can't schedule because collections didn't run or sourcing isn't assigned.`, 'D'],
-
-['Order Management', 'How do you handle changes to a sales order that is already in fulfillment?',
-`- Fusion OM uses **change management** in the orchestration process: each step defines whether a change is allowed and what **compensation** pattern runs (e.g. cancel the reservation and reschedule, update the shipment line, or reject the change).
-- Changes from source systems come as **revisions**; OM compares and applies them.
-- After **ship confirm**, changes are blocked; you use returns or credit memos instead.
-- Constraints (processing constraints) can block specific changes by role or status.`, 'D'],
-
-['Order Management', 'What are processing constraints?',
-`Rules that **prevent changes or actions** on orders based on conditions — e.g. "cannot change the ship-to address once the line is pick-released", or "only order administrators can change price after booking".
-- Defined on entities (order header, line) and attributes, with conditions (status) and roles.
-- Prevent data corruption mid-fulfillment and enforce controls.
-- Seeded constraints exist; you add custom ones for business rules.`, 'D'],
-
-['Pricing', 'How would you set up customer-specific pricing with volume discounts?',
-`- Create a **price list** with base prices.
-- Create a **discount list** with **tiered** (volume) adjustments — e.g. 1–99 units 0%, 100–499 5%, 500+ 10%.
-- Build a **pricing strategy** combining the price list and discount list.
-- Create a **pricing segment** for the customer (or customer class) and **assign the strategy** to that segment.
-- Test with orders at each tier and check the price breakdown on the order line.`, 'D'],
-
-['Procurement', 'How do blanket agreements with price breaks work?',
-`- Create a **blanket purchase agreement** with items, prices and **price breaks** (by quantity, ship-to org, or dates).
-- Requisitions and POs that reference the agreement get the right price automatically.
-- **Cumulative** price breaks consider total quantity released so far; **non-cumulative** look at each release.
-- Agreement **amount limits** and **effective dates** control usage.
-- Enable **automatic sourcing** so requisitions pick up the agreement.`, 'D'],
-
-['Procurement', 'How do you configure supplier-managed price changes through the supplier portal?',
-`- Enable suppliers to request **agreement changes** via the **Supplier Portal** (change orders on agreements).
-- Changes go through **approval** by the buyer (and rules by % change).
-- Supplier must be registered with portal access and the right roles.
-- Once approved, the new prices apply to new orders from the effective date.
-- Audit trail kept on the agreement revision history.`, 'D'],
-
-['Procurement', 'What are the key Procurement setups you configure for a new procurement BU?',
-`- **Business unit** with Procurement and Requisitioning functions and **service provider** relationships.
-- **Procurement agents** and their access.
-- **Common options** (default currency, line types, document numbering).
-- **Configure procurement business function** (default ship-to, buyer assignment, receipt/invoice options).
-- **Document styles**, **approvals**, **catalogs and content zones**.
-- **Supplier site assignments** for the BU.
-- **Purchasing categories** and **buyer assignment rules**.`, 'B'],
-
-['Procurement', 'How does supplier acknowledgment of purchase orders work?',
-`- On the PO, set **acknowledgment required** (document, schedule-level) with a due date.
-- Supplier acknowledges (accept/reject, propose changes) in the **Supplier Portal** or via B2B.
-- Buyer reviews proposed changes and accepts/rejects them, creating a change order.
-- Monitor pending acknowledgments with OTBI/infolets.
-
-Useful for long-lead or critical items where you need the supplier's committed dates.`, 'D'],
-
-['B2B', 'How do you exchange POs and invoices electronically with suppliers in Fusion?',
-`- **Collaboration Messaging Framework (CMK)** — Fusion's B2B layer.
-- Supports **OAGIS** XML and **cXML**; EDI (X12 850/855/856/810) usually via a **B2B service provider** or OIC + an EDI translator.
-- Setup: trading partners, **collaboration documents**, delivery methods, and **supplier/customer associations**.
-- Messages: outbound PO, inbound PO acknowledgment, inbound ASN, inbound invoice.
-- Monitor in the **Collaboration Messaging History**.`, 'D'],
-
-['Receiving', 'What is an ASN and how is it used in receiving?',
-`An **Advance Shipment Notice** tells you what a supplier has shipped (items, quantities, lots/serials, expected date) before it arrives.
-- Created by the supplier in the portal or via B2B (EDI 856).
-- Receivers **receive against the ASN** — faster and more accurate.
-- **ASBN** (advance shipment and billing notice) can also create the invoice.
-- Can be required on the PO (ASN reference required) to force suppliers to send them.`, 'B'],
-
-['Receiving', 'How does receipt accounting create accruals and how do you clear old accruals?',
-`- On delivery to inventory or expense (accrue at receipt), Receipt Accounting books **Dr Inventory/Expense, Cr Receipt Accrual**.
-- When the invoice is matched in AP, AP books **Dr Accrual, Cr Liability**; differences go to IPV/variance accounts.
-- Use **Accrual Reconciliation** in Receipt Accounting (Review Receipt Accounting Distributions, accrual balances report) to find accruals with no invoice or mismatches.
-- **Write off** with approval or **clear** after investigation (e.g. PO should be closed).
-- Close POs regularly to stop accruals building up.`, 'D'],
-
-['Inventory', 'What is consigned inventory and how is it handled in Fusion?',
-`**Supplier consignment**: the supplier owns the inventory sitting in your warehouse until you consume it.
-- A **consignment agreement** (BPA with consignment terms) with the supplier.
-- Receipts go into inventory as **consigned** (owned by the supplier) — no liability.
-- When you **consume** it (issue, transfer, or after aging), ownership transfers: a **consumption advice** is created and AP invoices the supplier (or pay-on-use).
-- On-hand shows both owned and consigned quantities.
-
-Customer consignment (your stock at a customer site) is the reverse.`, 'D'],
-
-['Inventory', 'How do you set up and use transfer orders in Fusion?',
-`- **Transfer orders** move inventory between orgs with a full order flow: request → approve → ship → receive.
-- Created from **transfer requests**, planning, min-max, or the internal material transfer UI.
-- Sourced by **sourcing rules**; shipping network and **transfer pricing** (cost or price list) defined.
-- Can create intercompany accounting via SFO if orgs belong to different legal entities.
-- Track status from the Transfer Orders work area.`, 'D'],
-
-['Inventory', 'How do you configure cycle counting with approvals and tolerances?',
-`- Create the **cycle count** for an org with subinventories, classes (ABC) and frequency.
-- **Count tolerances**: quantity % and value thresholds — within tolerance post automatically, otherwise **recount** or **approve**.
-- **Approval required**: always, never, or only if out of tolerance.
-- **Count sequences** generated by schedules; counters enter counts (mobile/web).
-- **Adjustments** post with an account (cycle count adjustment account) and create cost accounting.`, 'D'],
-
-['Inventory', 'What is the difference between available to transact, available to reserve and on-hand?',
-`- **On-hand** — total physical quantity in the location.
-- **Available to reserve** — on-hand minus existing reservations (and some statuses).
-- **Available to transact** — what you can actually move or issue now — excludes quantities that are reserved, in non-transactable subinventories, or with restrictive **material status** (e.g. lot on hold).
-
-Material status (at subinventory, locator, lot, serial) controls which transactions are allowed — e.g. a quarantine status blocks shipping.`, 'B'],
-
-['Costing', 'What are cost organizations, cost books and valuation units in Fusion Cost Management?',
-`- **Cost organization** — a group of inventory orgs that share costing (e.g. a plant and its satellite warehouses).
-- **Cost book** — a set of costing policies; primary book for financial reporting, plus optional others (e.g. for management or local GAAP).
-- **Valuation structure / valuation unit** — the level at which costs are kept (e.g. by cost org, by cost org + subinventory, or by lot).
-- **Cost profiles** assign the cost method (standard, average, FIFO) to items via **item cost profiles** and defaults.
-
-These replace EBS's per-org cost method.`, 'D'],
-
-['Costing', 'How do you troubleshoot an inventory transaction that hasn\'t been costed?',
-`- Check **Transfer Transactions from Inventory to Costing** ran and succeeded.
-- Look at **Review Cost Accounting Processes** / **Cost Processor errors**: missing cost, missing item cost profile, missing valuation unit, period closed in costing.
-- Check the **cost accounting distributions** for errors in Create Cost Accounting (SLA account errors).
-- Fix the root cause (e.g. define the missing standard cost), then re-run the cost processor.
-- Make sure the cost period is open.`, 'D'],
-
-['Costing', 'How do landed costs work in Fusion?',
-`**Landed Cost Management** adds freight, duties, insurance and other charges to the item cost:
-- Define **charge references** and **allocation basis** (quantity, weight, value, volume).
-- Estimate charges on the PO (via **landed cost charge templates**) and/or use actuals from **trade operations** and AP invoices.
-- Charges are allocated to receipt lines and included in inventory valuation (and COGS when sold).
-- Variances between estimated and actual charges are adjusted.
-
-Improves margin accuracy for imported goods.`, 'D'],
-
-['Product Hub', 'What is a New Item Request (NIR) and how is it configured?',
-`A **New Item Request** is a governed workflow for creating items.
-- Item classes are configured for **NIR**: which **entities** (attributes, structures, AML) are required and the **workflow steps** (definition, approval) with assignees.
-- Requester submits the NIR; **definition steps** route to teams to fill their attributes (e.g. costing, planning, purchasing).
-- **Approval steps** approve; once approved, the item is created/released.
-- Rules (validation rules) enforce data quality; **notifications** keep people informed.
-
-Benefit: clean item data and auditability instead of free-for-all item creation.`, 'D'],
-
-['Product Hub', 'What are change orders in Product Hub?',
-`Change orders control **changes to existing items or structures** (attributes, BOM components, revisions).
-- Created with affected items and proposed changes.
-- Route through **workflow** (review, approval), similar to NIRs.
-- On approval, changes are **implemented** (optionally with a new revision and effective date).
-- Keeps an audit trail of what changed, who approved and when — important in regulated industries (pharma, medical devices).`, 'D'],
-
-['Quality', 'How does Oracle Quality Management support inspections?',
-`- **Inspection plans** define characteristics to check (e.g. dimension, pH), sampling, and acceptance criteria.
-- Triggered at **receiving**, **work order operations**, or **inventory** (ad-hoc).
-- Inspection results are recorded; failures can trigger **issues**, **nonconformances** and **corrective actions**.
-- Rejected material moves to a quarantine status/subinventory.
-
-Integrated with Receiving (inspection routing) and Manufacturing.`, 'D'],
-
-['Planning', 'Describe how Supply Planning generates planned orders.',
-`- **Data collections** bring on-hand, POs, work orders, sales orders, forecasts, item and BOM data into the planning repository.
-- A **supply plan** runs with plan options (horizon, organizations, demand schedules, constraints).
-- It nets demand against supply, explodes BOMs, applies **lead times**, **order modifiers** (min, max, fixed lot multiple) and **sourcing rules**.
-- Creates **planned orders** (buy, make, transfer) and **recommendations** (reschedule in/out, cancel).
-- Planners review in the Supply Planning work area and **release** planned orders to execution (requisitions, work orders, transfer orders).`, 'D']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Supply Chain Orchestration", "What is Supply Chain Financial Orchestration (SFO) and when do you need it?", "SFO handles the **financial side of supply chain flows that cross legal entities or business units** — e.g. a US company buys goods that are received by its Mexican warehouse, or a sales BU sells goods shipped from another entity's warehouse.\n\n- **Financial orchestration flows** (procurement or shipment flows) define the chain of entities, **transfer pricing rules** and **documentation** (intercompany AR/AP invoices).\n- Physical movement happens once; SFO creates the **logical** intercompany transactions and accounting in each entity.\n- Common for global companies with central procurement or sales entities.\n\nTip: Mention an example flow you configured and how you tested the intercompany invoices.", "D"],
+["Order Management", "How do you design orchestration processes for different order types?", "- Group fulfillment patterns: **standard ship**, **drop ship**, **back-to-back**, **configured items (ATO)**, **services/subscriptions**, **returns**.\n- Create an orchestration process per pattern (or copy seeded ones) with steps, task types and **change management** rules.\n- **Process assignment rules** route lines by order type, item type, BU or source.\n- Set **planning/lead times** per step for jeopardy calculation.\n- Test change scenarios: quantity change after scheduling, cancel after pick, change ship-to after release.", "D"],
+["Order Management", "What is Global Order Promising (GOP) and how do sourcing rules affect it?", "GOP checks **availability** and promises a date for order lines.\n- Considers on-hand, supply (POs, work orders, transfers), lead times and allocations.\n- **Sourcing rules and assignment sets** tell GOP which warehouses (and suppliers) can fulfill — with ranks and percentages.\n- Supports **ATP** (available to promise) and **CTP** (capable to promise — checks component and resource availability for make items).\n- Data is collected from the transaction system into the planning data repository — **data collections** must run regularly.\n\nTip: A common issue: GOP can't schedule because collections didn't run or sourcing isn't assigned.", "D"],
+["Order Management", "How do you handle changes to a sales order that is already in fulfillment?", "- Fusion OM uses **change management** in the orchestration process: each step defines whether a change is allowed and what **compensation** pattern runs (e.g. cancel the reservation and reschedule, update the shipment line, or reject the change).\n- Changes from source systems come as **revisions**; OM compares and applies them.\n- After **ship confirm**, changes are blocked; you use returns or credit memos instead.\n- Constraints (processing constraints) can block specific changes by role or status.", "D"],
+["Order Management", "What are processing constraints?", "Rules that **prevent changes or actions** on orders based on conditions — e.g. \"cannot change the ship-to address once the line is pick-released\", or \"only order administrators can change price after booking\".\n- Defined on entities (order header, line) and attributes, with conditions (status) and roles.\n- Prevent data corruption mid-fulfillment and enforce controls.\n- Seeded constraints exist; you add custom ones for business rules.", "D"],
+["Pricing", "How would you set up customer-specific pricing with volume discounts?", "- Create a **price list** with base prices.\n- Create a **discount list** with **tiered** (volume) adjustments — e.g. 1–99 units 0%, 100–499 5%, 500+ 10%.\n- Build a **pricing strategy** combining the price list and discount list.\n- Create a **pricing segment** for the customer (or customer class) and **assign the strategy** to that segment.\n- Test with orders at each tier and check the price breakdown on the order line.", "D"],
+["Procurement", "How do blanket agreements with price breaks work?", "**Why they ask:** price breaks are a common agreement feature.\n\n**Answer:**\n\"I create a blanket agreement with items, prices and price breaks, by quantity, ship-to organization or dates. Requisitions and POs that reference the agreement get the right price automatically. Cumulative price breaks look at the total quantity released so far; non-cumulative look at each release on its own. For example, $10 each for the first 1,000 units, $9 after that, cumulative. Amount limits and effective dates control how the agreement is used, and automatic sourcing makes requisitions pick it up.\"\n\nTip: Give the cumulative example with numbers. It's the part people get wrong.", "D"],
+["Procurement", "How do you configure supplier-managed price changes through the supplier portal?", "**Why they ask:** supplier self-service saves buyers time.\n\n**Answer:**\n\"I let suppliers request agreement changes through the Supplier Portal as change orders on the agreement. Each change goes for approval by the buyer, and rules can add more approval if the price change is above a percentage. The supplier needs portal access with the right roles. Once approved, the new prices apply to new orders from the effective date, and the agreement revision history keeps the audit trail.\"\n\nTip: Mention the percentage-based approval. It's the control that makes buyers comfortable.", "D"],
+["Procurement", "What are the key Procurement setups you configure for a new procurement BU?", "**Why they ask:** a setup checklist question.\n\n**Answer:**\n\"I create the business unit with the procurement and requisitioning functions, and the service provider relationships. Then procurement agents and their access. Then common options, like default currency, line types and document numbering. Then the procurement business function: default ship-to, buyer assignment, receipt and invoice options. Then document styles, approvals, catalogs and content zones. Then supplier site assignments for the BU. And purchasing categories with buyer assignment rules.\"\n\nTip: Present it in build order. It shows you've done it more than once.", "B"],
+["Procurement", "How does supplier acknowledgment of purchase orders work?", "**Why they ask:** acknowledgments confirm supplier commitment on critical orders.\n\n**Answer:**\n\"On the PO, I set acknowledgment required, at document or schedule level, with a due date. The supplier accepts, rejects or proposes changes in the Supplier Portal or through B2B. The buyer reviews any proposed changes and accepts or rejects them, which creates a change order. Pending acknowledgments are monitored with OTBI or infolets. I use it for long-lead or critical items, where we need the supplier's committed dates.\"\n\nTip: Say when you'd use it. Not every PO needs one.", "D"],
+["B2B", "How do you exchange POs and invoices electronically with suppliers in Fusion?", "**Why they ask:** B2B integration is common with large suppliers.\n\n**Answer:**\n\"Fusion's B2B layer is the Collaboration Messaging Framework. It supports OAGIS XML and cXML. EDI, like X12 850, 855, 856 and 810, usually goes through a B2B service provider or OIC with an EDI translator. Setup includes trading partners, collaboration documents, delivery methods, and supplier associations. The messages are outbound POs, inbound PO acknowledgments, inbound ASNs and inbound invoices. I monitor them in Collaboration Messaging History.\"\n\nTip: Name the EDI transaction numbers. It shows you've worked with real EDI.", "D"],
+["Receiving", "What is an ASN and how is it used in receiving?", "**Why they ask:** a basic inbound question.\n\n**Answer:**\n\"An Advance Shipment Notice tells us what a supplier has shipped, items, quantities, lots or serials, and expected date, before it arrives. The supplier creates it in the portal or sends it by B2B, as EDI 856. Receivers receive against the ASN, which is faster and more accurate. An ASBN, advance shipment and billing notice, can also create the invoice. And the PO can require an ASN reference, forcing suppliers to send them.\"\n\nTip: Mention requiring ASNs on the PO. It's how you get suppliers to comply.", "B"],
+["Receiving", "How does receipt accounting create accruals and how do you clear old accruals?", "**Why they ask:** stale accruals are a common audit finding.\n\n**Answer:**\n\"With accrue at receipt, delivery to inventory or expense books Dr Inventory or Expense, Cr Receipt Accrual. When AP matches the invoice, AP books Dr Accrual, Cr Liability, and differences go to variance accounts. To find problems, I use Accrual Reconciliation in Receipt Accounting and the accrual balances report, which show accruals with no invoice or mismatches. After investigation, I write them off with approval or clear them, often because the PO should have been closed. And I close POs regularly so accruals don't build up.\"\n\nTip: Say \"close POs regularly\". It's the prevention step.", "D"],
+["Inventory", "What is consigned inventory and how is it handled in Fusion?", "**Why they ask:** consignment changes ownership and accounting.\n\n**Answer:**\n\"With supplier consignment, the supplier owns stock sitting in our warehouse until we use it. There's a consignment agreement, a blanket agreement with consignment terms. Receipts go into inventory as consigned, so there's no liability. When we consume it, by issue, transfer or after an aging period, ownership transfers: a consumption advice is created and the supplier is paid through AP or pay-on-use. On-hand shows both owned and consigned quantities. Customer consignment is the reverse: our stock at a customer's site.\"\n\nTip: Explain when ownership transfers. It's the heart of consignment.", "D"],
+["Inventory", "How do you set up and use transfer orders in Fusion?", "**Why they ask:** transfer orders are the Fusion way to move stock between orgs.\n\n**Answer:**\n\"Transfer orders move inventory between orgs with a full flow: request, approve, ship, receive. They're created from transfer requests, planning, min-max or the internal material transfer page. Sourcing rules pick the source, and the shipping network and transfer pricing, at cost or a price list, are defined. If the orgs are in different legal entities, supply chain financial orchestration creates intercompany accounting. I track status in the Transfer Orders work area.\"\n\nTip: Mention financial orchestration for cross-entity transfers.", "D"],
+["Inventory", "How do you configure cycle counting with approvals and tolerances?", "**Why they ask:** a hands-on setup question.\n\n**Answer:**\n\"I create the cycle count for an org with subinventories, ABC classes and frequency. I set count tolerances, a quantity percentage and value thresholds. Counts within tolerance post automatically; outside, they need a recount or approval. Approval can be always, never, or only out of tolerance. Count sequences are generated by schedule, and counters enter counts on mobile or web. Adjustments post to a cycle count adjustment account and create cost accounting.\"\n\nTip: Give example tolerances, like 2% for A items and 5% for C.", "D"],
+["Inventory", "What is the difference between available to transact, available to reserve and on-hand?", "**Why they ask:** a classic support question.\n\n**Answer:**\n\"On-hand is the total physical quantity. Available to reserve is on-hand minus existing reservations and some statuses. Available to transact is what you can actually move or issue right now, excluding reserved quantities, stock in non-transactable subinventories, and stock with a restrictive material status, like a lot on hold. Material status, at subinventory, locator, lot or serial, decides which transactions are allowed, so a quarantine status blocks shipping.\"\n\nTip: Use a quarantined lot as the example. It explains why on-hand isn't always usable.", "B"],
+["Costing", "What are cost organizations, cost books and valuation units in Fusion Cost Management?", "- **Cost organization** — a group of inventory orgs that share costing (e.g. a plant and its satellite warehouses).\n- **Cost book** — a set of costing policies; primary book for financial reporting, plus optional others (e.g. for management or local GAAP).\n- **Valuation structure / valuation unit** — the level at which costs are kept (e.g. by cost org, by cost org + subinventory, or by lot).\n- **Cost profiles** assign the cost method (standard, average, FIFO) to items via **item cost profiles** and defaults.\n\nThese replace EBS's per-org cost method.", "D"],
+["Costing", "How do you troubleshoot an inventory transaction that hasn't been costed?", "- Check **Transfer Transactions from Inventory to Costing** ran and succeeded.\n- Look at **Review Cost Accounting Processes** / **Cost Processor errors**: missing cost, missing item cost profile, missing valuation unit, period closed in costing.\n- Check the **cost accounting distributions** for errors in Create Cost Accounting (SLA account errors).\n- Fix the root cause (e.g. define the missing standard cost), then re-run the cost processor.\n- Make sure the cost period is open.", "D"],
+["Costing", "How do landed costs work in Fusion?", "**Landed Cost Management** adds freight, duties, insurance and other charges to the item cost:\n- Define **charge references** and **allocation basis** (quantity, weight, value, volume).\n- Estimate charges on the PO (via **landed cost charge templates**) and/or use actuals from **trade operations** and AP invoices.\n- Charges are allocated to receipt lines and included in inventory valuation (and COGS when sold).\n- Variances between estimated and actual charges are adjusted.\n\nImproves margin accuracy for imported goods.", "D"],
+["Product Hub", "What is a New Item Request (NIR) and how is it configured?", "A **New Item Request** is a governed workflow for creating items.\n- Item classes are configured for **NIR**: which **entities** (attributes, structures, AML) are required and the **workflow steps** (definition, approval) with assignees.\n- Requester submits the NIR; **definition steps** route to teams to fill their attributes (e.g. costing, planning, purchasing).\n- **Approval steps** approve; once approved, the item is created/released.\n- Rules (validation rules) enforce data quality; **notifications** keep people informed.\n\nBenefit: clean item data and auditability instead of free-for-all item creation.", "D"],
+["Product Hub", "What are change orders in Product Hub?", "Change orders control **changes to existing items or structures** (attributes, BOM components, revisions).\n- Created with affected items and proposed changes.\n- Route through **workflow** (review, approval), similar to NIRs.\n- On approval, changes are **implemented** (optionally with a new revision and effective date).\n- Keeps an audit trail of what changed, who approved and when — important in regulated industries (pharma, medical devices).", "D"],
+["Quality", "How does Oracle Quality Management support inspections?", "- **Inspection plans** define characteristics to check (e.g. dimension, pH), sampling, and acceptance criteria.\n- Triggered at **receiving**, **work order operations**, or **inventory** (ad-hoc).\n- Inspection results are recorded; failures can trigger **issues**, **nonconformances** and **corrective actions**.\n- Rejected material moves to a quarantine status/subinventory.\n\nIntegrated with Receiving (inspection routing) and Manufacturing.", "D"],
+["Planning", "Describe how Supply Planning generates planned orders.", "- **Data collections** bring on-hand, POs, work orders, sales orders, forecasts, item and BOM data into the planning repository.\n- A **supply plan** runs with plan options (horizon, organizations, demand schedules, constraints).\n- It nets demand against supply, explodes BOMs, applies **lead times**, **order modifiers** (min, max, fixed lot multiple) and **sourcing rules**.\n- Creates **planned orders** (buy, make, transfer) and **recommendations** (reschedule in/out, cancel).\n- Planners review in the Supply Planning work area and **release** planned orders to execution (requisitions, work orders, transfer orders).", "D"]
 ]);

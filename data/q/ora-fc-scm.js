@@ -1,483 +1,76 @@
 // ora-fc-scm — generated from src/ora-fc-scm-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Oracle Functional Consultant (2–3 yrs) — SCM. Format: [module, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-fc-scm'] = (QB['ora-fc-scm'] || []).concat([
-['SCM Basics', 'What modules make up Oracle Fusion SCM?',
-`- **Product Management / Product Hub** — items and item structures.
-- **Procurement** — Purchasing, Self Service Procurement, Sourcing, Supplier Portal, Supplier Qualification.
-- **Inventory Management** — organizations, subinventories, transactions, counts.
-- **Order Management** — sales orders and orchestration; **Global Order Promising**.
-- **Logistics** — Shipping, Receiving, Transportation.
-- **Cost Management** — item cost, receipt accounting, cost accounting.
-- **Manufacturing** — work definitions, work orders.
-- **Supply Chain Planning** — demand, supply, replenishment.
-
-Tip: Say which ones you've worked on and to what depth.`, 'B'],
-
-['Inventory', 'What is the difference between an inventory organization, a subinventory and a locator?',
-`- **Inventory organization** — a plant, warehouse or distribution center that holds items and inventory (has its own item attributes, costing and calendar).
-- **Subinventory** — a physical or logical area within the org (e.g. Stores, FG, Staging, MRB). Can be tracked (quantity on hand) or expense.
-- **Locator** — a specific bin/shelf inside a subinventory, e.g. Row.Rack.Bin.
-
-Hierarchy: Organization → Subinventory → Locator.`, 'B'],
-
-['Inventory', 'What is an item master organization and why do items exist in it?',
-`- Items are created once in the **item master organization** (in Fusion, it's the master org in Product Hub) and then **assigned** to the inventory orgs that use them.
-- **Master-level attributes** must be the same everywhere (e.g. description, primary UOM).
-- **Org-level attributes** can differ by org (e.g. planner, min-max levels, lead times).
-- This avoids duplicate items and keeps definitions consistent.
-
-In Fusion the master org is set up in Product Hub, and **item classes** and **templates** default attributes.`, 'B'],
-
-['Inventory', 'What are the main inventory transaction types?',
-`- **Receipts** — from purchase orders or transfers.
-- **Issues** — to work orders, accounts (miscellaneous issue), sales orders (shipping).
-- **Subinventory transfers** — moving stock within an org.
-- **Interorganization transfers** — between orgs (direct or in-transit).
-- **Miscellaneous receipt/issue** — adjustments to an account.
-- **Cycle count and physical inventory adjustments.**
-
-Each has a transaction type, source type and action, and creates cost accounting.`, 'B'],
-
-['Inventory', 'What is lot and serial control?',
-`- **Lot control** tracks a batch of items with the same properties (e.g. made together, same expiry date). Common in pharma and food. Lots can carry expiration dates, grades, status.
-- **Serial control** tracks each individual unit with a unique number (e.g. equipment).
-- Serial control can be at **receipt**, **predefined**, or **at sales order issue**.
-- Both give full traceability: where a lot/serial came from and where it went (genealogy).
-
-Control is set on the item and can't easily be changed once transactions exist.`, 'B'],
-
-['Inventory', 'What is the difference between cycle counting and physical inventory?',
-`- **Cycle counting** — counting a small set of items regularly (often by **ABC classification**: A items counted more often). Keeps records accurate without shutting down operations.
-- **Physical inventory** — counting everything at once (often at year end), usually freezing transactions during the count.
-
-## Cycle count process
-- Define the cycle count, classes and frequency.
-- Generate count schedules and count sequences.
-- Enter counts; **recounts** for out-of-tolerance results.
-- **Approve** adjustments (tolerances drive approval); adjustments post to inventory and accounting.`, 'B'],
-
-['Inventory', 'How does min-max planning work?',
-`- Set **minimum** and **maximum** quantities for an item in an org (or subinventory).
-- The min-max report/process checks on-hand plus on-order. If it falls below the **min**, it suggests (or creates) a replenishment order to bring it up to the **max**.
-- Replenishment can be a requisition (purchase), a transfer from another org, or a work order.
-- Fixed lot multiples and minimum order quantities adjust the suggested quantity.
-
-It's simple and works well for stable-demand items like spare parts and consumables.`, 'B'],
-
-['Inventory', 'What is a reservation?',
-`A reservation **holds on-hand quantity** for a specific demand (e.g. a sales order or work order) so no one else can use it.
-- Can be at the org, subinventory, lot, locator or serial level.
-- Reduces **available to reserve / available to transact** quantities.
-- Created manually or automatically (e.g. during scheduling).
-
-Tip: Difference — **on-hand** = physically there; **available** = on-hand minus reservations and other holds.`, 'D'],
-
-['Procurement', 'Explain the Procure-to-Pay flow and the main documents.',
-`- **Requisition** — internal request (Self Service Procurement), approved.
-- **Purchase order** — created from the requisition (manually or automatically), approved and sent to the supplier.
-- **Receipt** — goods/services received (Receiving), optionally inspected and delivered to inventory or expense.
-- **Invoice** — matched in AP to PO and receipt.
-- **Payment** — AP payment run.
-
-Accounting: receipt → Dr Inventory/Expense, Cr Accrual; invoice → Dr Accrual, Cr AP Liability; payment → Dr Liability, Cr Cash.`, 'B'],
-
-['Procurement', 'What types of purchase orders are there?',
-`- **Standard PO** — one-time purchase with specific items, quantities, prices and dates.
-- **Blanket Purchase Agreement (BPA)** — agreed prices for items over a period, without fixed quantities. You release orders against it.
-- **Contract Purchase Agreement (CPA)** — agreed terms with a supplier but no specific items; standard POs reference it.
-- **Planned PO** (EBS) — committed quantities with tentative dates; scheduled releases.
-
-In Fusion: Standard PO, Blanket Agreement and Contract Agreement.`, 'B'],
-
-['Procurement', 'How does a requisition get converted into a purchase order automatically?',
-`In Fusion:
-- The requisition line references an **agreement** (BPA) or catalog item with an agreed price and supplier.
-- Requisition is approved.
-- **Automated buyer processing** (configured in Procurement setup) creates the PO automatically if: the line has a valid source agreement, the supplier site is active, and the agreement allows automatic ordering.
-- The PO goes through approval (or is auto-approved within limits) and is communicated to the supplier.
-
-Lines without a source go to the **buyer's Process Requisitions** work area for manual conversion.`, 'B'],
-
-['Procurement', 'How are purchasing approvals configured in Fusion?',
-`- Approvals use **BPM** rules via **Manage Requisition/Purchasing Document Approvals**.
-- Rules can be based on: amount, category, cost center, project, supervisor hierarchy, position or job level, or approval groups.
-- Example: requisitions under $5,000 → supervisor; over $5,000 → supervisor then department head; IT categories → IT approver.
-- Test rules thoroughly with different amounts and categories; check for "no approver found" errors.`, 'B'],
-
-['Procurement', 'What is a procurement catalog?',
-`Catalogs let requesters shop like an online store in Self Service Procurement.
-- **Local catalog** — items and prices loaded into Fusion (from BPAs or catalog uploads).
-- **Punchout catalog** — the user goes to the supplier's website, picks items, and returns a cart.
-- **Informational catalog** — instructions or links (e.g. "how to order business cards").
-- **Content zones** control which users see which catalogs.
-- **Smart forms** for non-catalog requests with guided fields.`, 'D'],
-
-['Procurement', 'How do you onboard a new supplier in Oracle Fusion?',
-`- **Supplier registration** — the supplier registers through the supplier portal or is entered by procurement.
-- **Approval** of the registration (rules).
-- Create the **supplier**: tax ID, addresses, **sites** per procurement BU, **site assignments** to client BUs, bank account (with verification), contacts, payment terms/method.
-- **Supplier qualification** questionnaires if needed (e.g. diversity, compliance).
-- Control who can change bank details (a common fraud risk).`, 'B'],
-
-['Receiving', 'What are the receipt routings?',
-`- **Direct delivery** — receive and deliver in one step to the final destination.
-- **Standard receipt** — receive first (to a receiving location), then deliver in a separate step.
-- **Inspection required** — receive, inspect (accept/reject), then deliver.
-
-Routing defaults from the PO schedule, item, supplier or receiving options. The choice affects when inventory becomes available and when accrual accounting happens.`, 'B'],
-
-['Receiving', 'How do you return goods to a supplier?',
-`- Create a **return to supplier** transaction against the receipt (Receiving → Returns).
-- Inventory is reduced; receipt accounting reverses the accrual.
-- If already invoiced, AP needs a **debit memo** (can be automatic with RTS-based debit memos if enabled on the supplier site).
-- Use **RMA numbers** from the supplier and track the return shipment.
-- Corrections (vs returns) fix data entry errors on a receipt rather than physically sending goods back.`, 'B'],
-
-['Order Management', 'Explain the Order-to-Cash flow from the SCM side.',
-`- **Sales order** created (manually, via import, or from a CPQ/CRM system).
-- **Orchestration** process starts — order is validated, priced, and **scheduled** (Global Order Promising checks availability).
-- **Reserve** inventory, then **pick release** creates pick tasks/move orders.
-- **Pick confirm** and **pack**.
-- **Ship confirm** — inventory is issued, the order line is fulfilled.
-- **Billing** — lines are sent to Receivables (AutoInvoice) for invoicing.
-- **Revenue and COGS** recognized; receipts applied in AR.`, 'B'],
-
-['Order Management', 'What is order orchestration in Fusion Order Management?',
-`Orchestration is the process engine that drives each order line through fulfillment.
-- **Orchestration processes** define steps (schedule, reserve, ship, invoice) and their order.
-- **Fulfillment lines** are assigned to a process via process assignment rules (e.g. by order type or item).
-- Steps call **fulfillment systems** (Shipping, Receiving, Manufacturing, a 3PL) through connectors.
-- Supports **jeopardy** (lateness warnings), **change management** (what to do if the order changes mid-process) and **holds**.
-
-EBS equivalent: Order Management workflows.`, 'D'],
-
-['Order Management', 'What are holds in Order Management and how are they applied?',
-`Holds stop an order or line from progressing.
-- **Credit check hold** — customer exceeds credit limit.
-- **Manual holds** — e.g. pricing review, export compliance.
-- **Hold definitions** specify where the hold stops the process (e.g. before shipping or before invoicing).
-- Applied manually or automatically by rules; released by authorized users with a reason.
-
-Tip: Mention you checked who can release holds — it's a control point.`, 'B'],
-
-['Order Management', 'How does pricing work for sales orders in Fusion?',
-`Fusion uses **Pricing Administration**:
-- **Price lists** — base price per item and UOM.
-- **Discount lists** — percentage or amount discounts.
-- **Pricing strategies** combine price lists and discounts and are assigned to customers or segments via **pricing segments** and **strategy assignment rules**.
-- **Pricing algorithms** calculate the final price; **charges** (e.g. freight) can be added.
-- **Shipping charges** and **cost-plus** pricing are possible.
-
-EBS uses Advanced Pricing modifiers and qualifiers.`, 'D'],
-
-['Shipping', 'What is pick release and what happens during it?',
-`Pick release selects order lines that are ready to ship and creates **pick tasks/move orders**.
-- Uses **release rules**: order, customer, ship date, warehouse, shipment priority.
-- **Picking rules** decide where to pick from (e.g. FIFO, FEFO by lot expiry).
-- It can auto-allocate and auto-pick-confirm.
-- After picking, items move to staging; then pack and **ship confirm** creates the shipment and issues inventory.`, 'B'],
-
-['Costing', 'What costing methods does Oracle support?',
-`Fusion Cost Management supports:
-- **Standard cost** — a fixed cost per item; differences go to variance accounts (e.g. purchase price variance).
-- **Perpetual average cost** — cost updates with each receipt.
-- **Actual cost (FIFO/LIFO)** — cost layers consumed in order.
-
-EBS: Standard, Average, FIFO, LIFO, plus Periodic Average/Incremental LIFO.
-
-Cost method is set by **cost organization and cost book** in Fusion (by inventory org in EBS).`, 'B'],
-
-['Costing', 'What is the difference between Receipt Accounting and Cost Accounting in Fusion?',
-`- **Receipt Accounting** creates the accounting for receipts, deliveries and returns, and manages **accruals** (receipt accrual, period-end accrual for expense items). It also handles accrual clearing and write-offs.
-- **Cost Accounting** costs **inventory transactions** (issues, transfers, shipments, production) using the cost method, creating entries like Dr COGS / Cr Inventory.
-- Both run their own **Create Accounting** processes and transfer to GL.
-
-Tip: Mention that you schedule Transfer Transactions to Costing and Create Cost Accounting regularly.`, 'D']
+QB["ora-fc-scm"] = (QB["ora-fc-scm"] || []).concat([
+["SCM Basics", "What modules make up Oracle Fusion SCM?", "**Why they ask:** a warm-up question.\n\n**Answer:**\n\"Product Hub for items and structures. Procurement: purchasing, self-service procurement, sourcing, supplier portal and qualification. Inventory Management for orgs, transactions and counts. Order Management with Global Order Promising. Logistics: shipping, receiving and transportation. Cost Management for item cost, receipt accounting and cost accounting. Manufacturing for work definitions and work orders. And Supply Chain Planning for demand, supply and replenishment.\"\n\nTip: Then say which ones you've worked on and how deeply. That's what they really want to know.", "B"],
+["Inventory", "What is the difference between an inventory organization, a subinventory and a locator?", "**Why they ask:** a basic structure question.\n\n**Answer:**\n\"An inventory organization is a plant, warehouse or DC that holds items and inventory, with its own item attributes, costing and calendar. A subinventory is an area inside it, physical or logical, like Stores, Finished Goods, Staging or MRB, and it can be quantity-tracked or expense. A locator is a specific bin or shelf inside a subinventory, like Row 3, Rack 2, Bin 5. So the hierarchy is organization, then subinventory, then locator.\"\n\nTip: Give a locator example. It makes the hierarchy easy to see.", "B"],
+["Inventory", "What is an item master organization and why do items exist in it?", "**Why they ask:** item master design avoids duplicate items.\n\n**Answer:**\n\"Items are created once in the item master organization, which in Fusion is the master org in Product Hub, and then assigned to the inventory orgs that use them. Master-level attributes, like description and primary UOM, must be the same everywhere. Org-level attributes, like planner, min-max levels and lead times, can differ by org. That avoids duplicate items and keeps definitions consistent. Item classes and templates default attributes when items are created.\"\n\nTip: Give one master and one org-level attribute. It shows you know the split.", "B"],
+["Inventory", "What are the main inventory transaction types?", "**Why they ask:** a basic inventory question.\n\n**Answer:**\n\"Receipts from purchase orders or transfers. Issues to work orders, accounts or sales orders. Subinventory transfers within an org. Interorganization transfers between orgs, direct or in-transit. Miscellaneous receipts and issues, adjusting against an account. And cycle count and physical inventory adjustments. Each has a transaction type, source type and action, and each creates cost accounting.\"\n\nTip: Mention that each creates accounting. It shows you see the finance side.", "B"],
+["Inventory", "What is lot and serial control?", "**Why they ask:** traceability is critical in regulated industries.\n\n**Answer:**\n\"Lot control tracks a batch of items with the same properties, like made together or with the same expiry date. It's standard in pharma and food, and lots can carry expiry dates, grades and status. Serial control tracks each unit with its own number, like equipment. Serial numbers can be assigned at receipt, predefined, or at sales order issue. Both give full traceability, called genealogy: where a lot or serial came from and where it went. Control is set on the item and is hard to change once transactions exist, so it has to be decided before go-live.\"\n\nTip: Stress deciding before go-live. Changing it later is very painful.", "B"],
+["Inventory", "What is the difference between cycle counting and physical inventory?", "**Why they ask:** a basic accuracy question.\n\n**Answer:**\n\"Cycle counting counts a small set of items regularly, often by ABC class, with A items counted most often. It keeps records accurate without stopping operations. A physical inventory counts everything at once, often at year end, usually freezing transactions. The cycle count process is: define the count with classes and frequency, generate schedules and count sequences, enter counts, recount anything out of tolerance, and approve adjustments, which post to inventory and accounting.\"\n\nTip: Say cycle counting avoids shutting down. That's why companies prefer it.", "B"],
+["Inventory", "How does min-max planning work?", "**Why they ask:** a simple, common replenishment method.\n\n**Answer:**\n\"I set a minimum and maximum for an item in an org or subinventory. The min-max process checks on-hand plus on-order, and if it's below the minimum, it suggests or creates a replenishment order to bring it up to the maximum. Replenishment can be a purchase requisition, a transfer from another org, or a work order. Fixed lot multiples and minimum order quantities adjust the quantity. For example, min 50, max 200, on-hand plus on-order of 40, so it orders 160. It works well for stable-demand items like spare parts and consumables.\"\n\nTip: Do the calculation out loud. It proves you understand it.", "B"],
+["Inventory", "What is a reservation?", "**Why they ask:** reservations explain \"why can't I ship this, it's on-hand?\"\n\n**Answer:**\n\"A reservation holds on-hand quantity for a specific demand, like a sales order or work order, so nothing else can use it. It can be at org, subinventory, lot, locator or serial level. It reduces available to reserve and available to transact. Reservations are created manually or automatically, for example during scheduling. The key difference: on-hand is what's physically there; available is on-hand minus reservations and other holds.\"\n\nTip: End with on-hand vs available. It's the confusion users bring to support.", "D"],
+["Procurement", "Explain the Procure-to-Pay flow and the main documents.", "**Why they ask:** a warm-up question for every procurement or AP role.\n\n**Answer:**\n\"An employee raises a requisition in Self Service Procurement and it's approved. A purchase order is created from it, manually or automatically, approved and sent to the supplier. When the goods or services arrive, they're received, optionally inspected, and delivered to inventory or expense. The supplier's invoice is matched in AP to the PO and receipt. Then AP pays it in a payment run.\"\n\nAccounting:\n- Receipt: Dr Inventory or Expense, Cr Accrual.\n- Invoice: Dr Accrual, Cr AP Liability.\n- Payment: Dr Liability, Cr Cash.\n\nTip: Give the three journal entries. It shows you understand procurement from finance's side.", "B"],
+["Procurement", "What types of purchase orders are there?", "**Why they ask:** a basic procurement question.\n\n**Answer:**\n\"A standard PO is a one-time purchase with specific items, quantities, prices and dates. A blanket purchase agreement sets prices for items over a period, without fixed quantities, and orders are released against it. A contract purchase agreement sets terms with a supplier but no items, and standard POs reference it. EBS also has a planned PO, with committed quantities and tentative dates, released on a schedule. In Fusion, the three types are standard PO, blanket agreement and contract agreement.\"\n\nTip: Note the EBS vs Fusion difference. It shows you know both.", "B"],
+["Procurement", "How does a requisition get converted into a purchase order automatically?", "**Why they ask:** touchless POs are a key procurement goal.\n\n**Answer:**\n\"The requisition line has to reference a blanket agreement or catalog item with an agreed price and supplier. Once the requisition is approved, automated buyer processing creates the PO, as long as the line has a valid source agreement, the supplier site is active, and the agreement allows automatic ordering. The PO is then approved, or auto-approved within limits, and sent to the supplier. Lines without a source go to the buyer's Process Requisitions work area to be converted by hand.\"\n\nTip: List the three conditions. They're also the three reasons auto-creation fails.", "B"],
+["Procurement", "How are purchasing approvals configured in Fusion?", "**Why they ask:** approvals are the most common source of procurement complaints.\n\n**Answer:**\n\"Approvals are BPM rules, set in Manage Requisition Approvals and Manage Purchasing Document Approvals. Rules can use amount, category, cost center, project, the supervisor hierarchy, position or job level, or approval groups. For example: requisitions under $5,000 go to the supervisor; over $5,000 to the supervisor and then the department head; IT categories also go to an IT approver. I test the rules with different amounts and categories, and I always check there's a fallback so no document hits 'no approver found'.\"\n\nTip: Give a sample rule set with amounts. It makes the answer concrete.", "B"],
+["Procurement", "What is a procurement catalog?", "**Why they ask:** catalogs drive compliance and automation.\n\n**Answer:**\n\"Catalogs let employees shop like an online store in Self Service Procurement. A local catalog has items and prices loaded into Fusion, from agreements or uploads. A punchout catalog takes the user to the supplier's website to pick items and bring back a cart. An informational catalog gives instructions or links, like how to order business cards. Content zones control which users see which catalogs. And smart forms handle non-catalog requests with guided fields.\"\n\nTip: Explain content zones. They're how you show the right catalog to the right people.", "D"],
+["Procurement", "How do you onboard a new supplier in Oracle Fusion?", "**Why they ask:** supplier onboarding is both a process and a control.\n\n**Answer:**\n\"The supplier registers through the supplier portal, or procurement enters them. The registration goes for approval. Then the supplier record is created: tax ID, addresses, sites per procurement BU, site assignments to the business units that will use them, bank account with verification, contacts, payment terms and method. If needed, qualification questionnaires cover things like diversity or compliance. And I restrict who can change bank details, because that's a common fraud risk.\"\n\nTip: Mention site assignments. Missing ones are the top reason new suppliers can't be used.", "B"],
+["Receiving", "What are the receipt routings?", "**Why they ask:** routing affects when stock is available and when accruals happen.\n\n**Answer:**\n\"Direct delivery receives and delivers in one step to the final destination. Standard receipt receives first to a receiving location, then delivers in a separate step. Inspection required receives, inspects to accept or reject, then delivers. The routing defaults from the PO schedule, item, supplier or receiving options. The choice affects when inventory becomes available and, with accrue at receipt, when the accrual is booked.\"\n\nTip: Mention the accrual timing. It shows you see the accounting impact.", "B"],
+["Receiving", "How do you return goods to a supplier?", "**Why they ask:** returns touch receiving, inventory and AP.\n\n**Answer:**\n\"I create a return to supplier transaction against the original receipt. Inventory goes down and receipt accounting reverses the accrual. If the invoice was already received, AP needs a debit memo, which can be created automatically if RTS debit memos are enabled on the supplier site. I record the supplier's RMA number and track the return shipment. A correction is different: it fixes a data entry mistake on a receipt, without sending goods back.\"\n\nTip: Separate returns from corrections. It's a common mix-up.", "B"],
+["Order Management", "Explain the Order-to-Cash flow from the SCM side.", "- **Sales order** created (manually, via import, or from a CPQ/CRM system).\n- **Orchestration** process starts — order is validated, priced, and **scheduled** (Global Order Promising checks availability).\n- **Reserve** inventory, then **pick release** creates pick tasks/move orders.\n- **Pick confirm** and **pack**.\n- **Ship confirm** — inventory is issued, the order line is fulfilled.\n- **Billing** — lines are sent to Receivables (AutoInvoice) for invoicing.\n- **Revenue and COGS** recognized; receipts applied in AR.", "B"],
+["Order Management", "What is order orchestration in Fusion Order Management?", "Orchestration is the process engine that drives each order line through fulfillment.\n- **Orchestration processes** define steps (schedule, reserve, ship, invoice) and their order.\n- **Fulfillment lines** are assigned to a process via process assignment rules (e.g. by order type or item).\n- Steps call **fulfillment systems** (Shipping, Receiving, Manufacturing, a 3PL) through connectors.\n- Supports **jeopardy** (lateness warnings), **change management** (what to do if the order changes mid-process) and **holds**.\n\nEBS equivalent: Order Management workflows.", "D"],
+["Order Management", "What are holds in Order Management and how are they applied?", "Holds stop an order or line from progressing.\n- **Credit check hold** — customer exceeds credit limit.\n- **Manual holds** — e.g. pricing review, export compliance.\n- **Hold definitions** specify where the hold stops the process (e.g. before shipping or before invoicing).\n- Applied manually or automatically by rules; released by authorized users with a reason.\n\nTip: Mention you checked who can release holds — it's a control point.", "B"],
+["Order Management", "How does pricing work for sales orders in Fusion?", "Fusion uses **Pricing Administration**:\n- **Price lists** — base price per item and UOM.\n- **Discount lists** — percentage or amount discounts.\n- **Pricing strategies** combine price lists and discounts and are assigned to customers or segments via **pricing segments** and **strategy assignment rules**.\n- **Pricing algorithms** calculate the final price; **charges** (e.g. freight) can be added.\n- **Shipping charges** and **cost-plus** pricing are possible.\n\nEBS uses Advanced Pricing modifiers and qualifiers.", "D"],
+["Shipping", "What is pick release and what happens during it?", "**Why they ask:** pick release is the start of outbound fulfillment.\n\n**Answer:**\n\"Pick release selects order lines ready to ship and creates pick tasks or move orders. Release rules choose which lines by order, customer, ship date, warehouse or priority. Picking rules decide where to pick from, like FIFO or FEFO by lot expiry. It can allocate and pick confirm automatically. After picking, items go to staging, then they're packed and ship confirmed, which issues inventory.\"\n\nTip: Mention FEFO picking rules. It's the practical example for regulated goods.", "B"],
+["Costing", "What costing methods does Oracle support?", "Fusion Cost Management supports:\n- **Standard cost** — a fixed cost per item; differences go to variance accounts (e.g. purchase price variance).\n- **Perpetual average cost** — cost updates with each receipt.\n- **Actual cost (FIFO/LIFO)** — cost layers consumed in order.\n\nEBS: Standard, Average, FIFO, LIFO, plus Periodic Average/Incremental LIFO.\n\nCost method is set by **cost organization and cost book** in Fusion (by inventory org in EBS).", "B"],
+["Costing", "What is the difference between Receipt Accounting and Cost Accounting in Fusion?", "- **Receipt Accounting** creates the accounting for receipts, deliveries and returns, and manages **accruals** (receipt accrual, period-end accrual for expense items). It also handles accrual clearing and write-offs.\n- **Cost Accounting** costs **inventory transactions** (issues, transfers, shipments, production) using the cost method, creating entries like Dr COGS / Cr Inventory.\n- Both run their own **Create Accounting** processes and transfer to GL.\n\nTip: Mention that you schedule Transfer Transactions to Costing and Create Cost Accounting regularly.", "D"]
 ]);
 
-QB['ora-fc-scm'] = (QB['ora-fc-scm'] || []).concat([
-['Costing', 'What is purchase price variance (PPV)?',
-`Under **standard costing**, inventory is valued at standard cost. When you buy at a different price:
-- **PPV = (PO price − standard cost) × quantity received.**
-- Example: standard $10, PO price $11, 100 units → $100 unfavorable PPV.
-- Accounting at receipt/delivery: Dr Inventory $1,000 (standard), Dr PPV $100, Cr Accrual $1,100.
-- Invoice price variance (IPV) captures differences between invoice and PO price.
-
-PPV is watched closely by procurement and finance to measure buying performance.`, 'B'],
-
-['Costing', 'How does a standard cost update work?',
-`- Create a **new cost scenario** with new standard costs (often yearly or quarterly).
-- **Roll up** costs for manufactured items (material + resources + overhead).
-- Review and **publish** the scenario.
-- On publish, Oracle revalues on-hand inventory at the new cost and posts the difference to a **standard cost adjustment / revaluation** account.
-
-Tip: Mention you run a "what-if" report first so finance sees the revaluation impact before publishing.`, 'D'],
-
-['Product Hub', 'What are item classes and item templates?',
-`- **Item class** (Fusion Product Hub) — a hierarchy that groups items (e.g. Raw Materials > Chemicals). Classes define **item numbering**, **attribute groups** (extensible flexfields), **templates**, **new item request** rules and data security. Child classes inherit from parents.
-- **Item template** — a set of default attribute values (e.g. "Purchased Item": purchasable, stockable, transactable, costing enabled). Applied when creating items to keep attributes consistent.
-
-EBS uses item templates and categories; Fusion adds item classes on top.`, 'B'],
-
-['Product Hub', 'What is an item category and how is it used?',
-`Categories group items for a business purpose. Each **catalog** (category set) serves one function:
-- **Purchasing catalog** — drives buyer assignment, approvals and spend reporting.
-- **Inventory catalog** — reporting and planning.
-- **Costing/GL catalog** — drives accounts via SLA rules.
-
-An item can belong to several catalogs (one category per catalog unless multiple assignment is allowed). Many setups (e.g. approvals by category) depend on them, so design catalogs early.`, 'B'],
-
-['Product Hub', 'What are item status codes and lifecycle phases?',
-`- **Item status** (e.g. Active, Inactive, Prototype, Obsolete) controls key functional attributes — whether the item can be purchased, stocked, transacted, ordered or used in BOMs.
-- **Lifecycle phases** (Design, Prototype, Production, Obsolete) track where the item is in its life; changing phase can change status.
-- Changing status is how you stop an item from being ordered without deleting it.`, 'D'],
-
-['Manufacturing', 'What is a bill of materials (BOM) and a routing / work definition?',
-`- **BOM / item structure** — the list of components and quantities needed to make an item.
-- **Routing (EBS) / Work definition (Fusion)** — the operations and resources (machines, labor) and their sequence, with component issues assigned to operations.
-- Together they drive **work orders**, **cost rollups** and **planning**.
-
-Fusion item structures live in Product Hub; work definitions in Manufacturing.`, 'B'],
-
-['Manufacturing', 'Describe the work order lifecycle in Fusion Manufacturing.',
-`- **Create** the work order (manually, from planning, or for a sales order).
-- **Release** it — components can be picked.
-- **Issue components** (manually, push, or backflush/assembly pull).
-- **Report operations and resources** as work is done.
-- **Complete** the assembly into inventory (and report scrap if any).
-- **Close** the work order — variances are calculated by Cost Management.
-
-Statuses: Unreleased → Released → Completed → Closed (On Hold / Canceled possible).`, 'D'],
-
-['Planning', 'What is the difference between MRP and min-max planning?',
-`- **Min-max** looks only at on-hand and on-order against fixed min/max levels — no forecasts, no BOM explosion.
-- **MRP** (in Fusion Supply Chain Planning) uses **demand** (forecasts, sales orders), **supply** (on-hand, POs, work orders), **BOMs** and **lead times** to calculate what to make or buy and when. It explodes demand through the BOM to components.
-
-Use min-max for simple, stable items; MRP for manufactured items and variable demand.`, 'D'],
-
-['Inventory', 'What is an interorganization transfer and how is it set up?',
-`Moving inventory between two inventory orgs.
-- **Shipping networks** define the from/to orgs, transfer type (**direct** or **in-transit**), intransit accounts and whether receipt is required.
-- **Direct** — moves instantly.
-- **In-transit** — shipped, sits in transit, then received at the destination.
-- Can use **transfer orders** (Fusion) for a full ship/receive flow with transfer pricing.
-- Cost: transfer price and freight can create intercompany accounting if orgs are in different legal entities.`, 'D'],
-
-['Inventory', 'How do you investigate an on-hand quantity that doesn\'t match the physical count?',
-`- Check **pending/unprocessed transactions** (interface errors, pending transactions, unprocessed receipts or shipments).
-- Review **transaction history** for the item/subinventory/locator — look for wrong subinventory, unit of measure mistakes, or lot/serial errors.
-- Check **reservations** and staged quantities (picked but not shipped).
-- Recount to confirm.
-- Fix with an **adjustment** (with approval) and identify the root cause (training, process, scanning).`, 'B'],
-
-['Procurement', 'What is sourcing (RFQ/auction) in Oracle Procurement?',
-`**Oracle Sourcing** creates negotiations to get competitive bids:
-- **RFI** — request for information.
-- **RFQ** — request for quotes.
-- **Auction** — suppliers see rankings and rebid.
-- Steps: create the negotiation (lines, requirements, terms), invite suppliers, collect responses, **score and analyze**, **award**, and create a **PO or agreement** from the award.
-
-It improves pricing and creates an audit trail for supplier selection.`, 'B'],
-
-['Procurement', 'What happens when you need to change an approved purchase order?',
-`- Create a **change order** (Fusion) — the PO opens a new revision.
-- Changes like price, quantity or dates may need **re-approval** (based on rules).
-- The revised PO is communicated to the supplier.
-- Some changes are blocked after receipt or invoicing (e.g. you can't reduce quantity below received).
-- **Cancel** or **close** POs when no longer needed (Closed for Receiving, Closed for Invoicing, Finally Closed).`, 'B'],
-
-['Procurement', 'What are the PO close statuses?',
-`- **Open** — normal.
-- **Closed for receiving** — can still be invoiced (e.g. received within tolerance).
-- **Closed for invoicing** — can still be received.
-- **Closed** — both received and invoiced; can be reopened.
-- **Finally closed** — permanent; releases encumbrance; cannot be reopened.
-- **Canceled** — nothing more can happen on it.
-
-Receipt and invoice close tolerances drive automatic closure.`, 'D'],
-
-['Receiving', 'What is the difference between receipt tolerance and invoice tolerance?',
-`- **Receipt tolerances** (quantity, date) control how much over/under or how early/late you can receive vs the PO — with actions like warning or reject.
-- **Invoice tolerances** (price, quantity, amount) in AP control how much an invoice can differ from PO/receipt before a **matching hold** is placed.
-
-They work together: tight receipt tolerance prevents over-receiving; invoice tolerance prevents overpaying.`, 'B'],
-
-['Shipping', 'What documents are produced during shipping?',
-`- **Pick slip** — what to pick and where.
-- **Packing slip** — what's in the shipment, for the customer.
-- **Bill of lading (BOL)** — contract with the carrier.
-- **Commercial invoice** — for international shipments/customs.
-- **Labels** (shipping, carton).
-- **ASN** (advance shipment notice) — electronic notice to the customer.
-
-They're produced using document sets at pick release or ship confirm.`, 'B'],
-
-['Order Management', 'What is drop shipment?',
-`The supplier ships directly to your customer — the goods never enter your warehouse.
-- A sales order line with **drop ship** source type creates a **requisition/PO** to the supplier.
-- The supplier ships to the customer; you record a **logical receipt** (and logical shipment) when they confirm.
-- AP pays the supplier invoice; AR invoices the customer.
-- Inventory is not physically touched, but accounting still flows through receipt and cost.`, 'D'],
-
-['Order Management', 'What is back-to-back ordering?',
-`A sales order line triggers a **dedicated purchase (or work order)** for that customer, and the supply is **reserved** to the order when it arrives.
-- Received into your warehouse (unlike drop ship), then shipped to the customer.
-- Used for items you don't stock but want to control/inspect.
-- The reservation ensures the incoming supply isn't used for other orders.`, 'D'],
-
-['Order Management', 'How do returns (RMA) work in Order Management?',
-`- Create a **return order** (RMA) referencing the original sales order where possible — keeps price and lot/serial info.
-- Customer ships back; **receive** the return in Receiving (with inspection if needed).
-- Inventory increases (or goes to a reject/MRB subinventory).
-- A **credit memo** is created in AR through invoicing of the return line.
-- Return reasons are tracked for analysis.`, 'B'],
-
-['Integration', 'How does SCM integrate with Financials?',
-`- **Procurement → AP**: POs and receipts are matched to invoices.
-- **Receiving → GL**: receipt accrual accounting via Receipt Accounting.
-- **Inventory/Costing → GL**: inventory valuation, COGS and variances via Cost Accounting.
-- **Order Management → AR**: shipped lines invoiced through AutoInvoice.
-- **Assets**: capital POs can create mass additions from AP.
-- **Projects**: project-related POs and costs.
-
-A good SCM consultant understands the accounting each step creates.`, 'B'],
-
-['Data Loads', 'How would you load items or on-hand balances into Fusion?',
-`- **Items**: Item import via **FBDI** (Item Import template) or **Product Hub spreadsheet / import maps**; can load attributes, categories and org assignments.
-- **On-hand balances**: **Inventory Transaction Import** FBDI with miscellaneous receipts (with lots/serials and locators) at cost.
-- **Open POs**: Purchase Order Import FBDI.
-- Always load **in sequence** (items → orgs → costs → on-hand) and reconcile quantities and values with the legacy system.`, 'B'],
-
-['Testing', 'How would you test a full P2P cycle after a configuration change?',
-`- Create a requisition with the affected item/category, check approval routing.
-- Convert to PO; confirm defaults (supplier site, terms, accounts).
-- Receive (with the right routing and tolerances).
-- Match invoice in AP; check holds.
-- Run Create Accounting for receiving and AP; verify GL entries.
-- Test negative cases (over-receipt, wrong price) and a return.
-
-Tip: Interviewers like that you check the accounting, not just the screens.`, 'B'],
-
-['Behavioral', 'Tell me about a time you supported users during a go-live.',
-`## Example (STAR)
-- **Situation:** First week after a Fusion SCM go-live; warehouse users struggled with pick release and shipping.
-- **Task:** I was the on-site support for Inventory and Shipping.
-- **Action:** I sat with users on the floor, logged every issue, fixed quick ones (printer setup, a wrong picking rule), created two one-page job aids, and held a 15-minute daily huddle.
-- **Result:** Tickets dropped from ~40/day to under 10 by the end of the second week, and shipments met the daily target.
-
-Tip: Numbers and job aids make the answer concrete.`, 'B'],
-
-['Behavioral', 'How do you prioritize when several users need help at once?',
-`- **Business impact first** — anything stopping shipping, receiving, or payment comes first.
-- Then **number of users affected**, then deadlines (e.g. month-end).
-- Acknowledge everyone quickly so they know it's in the queue.
-- Escalate to my lead if two critical issues collide.
-- Track everything in the ticket tool so nothing is lost.`, 'B'],
-
-['SCM Basics', 'What is the difference between an inventory organization and a business unit in Fusion SCM?',
-`- **Business unit** — performs business functions like procurement, requisitioning, order fulfillment and billing; has its own setups and data security.
-- **Inventory organization** — a physical location that holds and transacts inventory.
-- An inventory org is tied to a **profit center BU** (and legal entity) for accounting. A procurement BU can serve many requisitioning BUs and inventory orgs.
-
-Getting these relationships right is key in the enterprise structure design.`, 'D'],
-
-['Procurement', 'What is a Procurement agent and why does it matter?',
-`**Procurement agents** are buyers set up with access to specific **procurement BUs** and actions (manage requisitions, POs, agreements, suppliers, sourcing).
-- Defined in **Manage Procurement Agents**.
-- Controls which documents a buyer can see and act on (own documents vs all documents in the BU).
-- Without an agent setup, a user with the buyer role still can't create POs in that BU — a common support issue.`, 'D']
+QB["ora-fc-scm"] = (QB["ora-fc-scm"] || []).concat([
+["Costing", "What is purchase price variance (PPV)?", "Under **standard costing**, inventory is valued at standard cost. When you buy at a different price:\n- **PPV = (PO price − standard cost) × quantity received.**\n- Example: standard $10, PO price $11, 100 units → $100 unfavorable PPV.\n- Accounting at receipt/delivery: Dr Inventory $1,000 (standard), Dr PPV $100, Cr Accrual $1,100.\n- Invoice price variance (IPV) captures differences between invoice and PO price.\n\nPPV is watched closely by procurement and finance to measure buying performance.", "B"],
+["Costing", "How does a standard cost update work?", "- Create a **new cost scenario** with new standard costs (often yearly or quarterly).\n- **Roll up** costs for manufactured items (material + resources + overhead).\n- Review and **publish** the scenario.\n- On publish, Oracle revalues on-hand inventory at the new cost and posts the difference to a **standard cost adjustment / revaluation** account.\n\nTip: Mention you run a \"what-if\" report first so finance sees the revaluation impact before publishing.", "D"],
+["Product Hub", "What are item classes and item templates?", "- **Item class** (Fusion Product Hub) — a hierarchy that groups items (e.g. Raw Materials > Chemicals). Classes define **item numbering**, **attribute groups** (extensible flexfields), **templates**, **new item request** rules and data security. Child classes inherit from parents.\n- **Item template** — a set of default attribute values (e.g. \"Purchased Item\": purchasable, stockable, transactable, costing enabled). Applied when creating items to keep attributes consistent.\n\nEBS uses item templates and categories; Fusion adds item classes on top.", "B"],
+["Product Hub", "What is an item category and how is it used?", "Categories group items for a business purpose. Each **catalog** (category set) serves one function:\n- **Purchasing catalog** — drives buyer assignment, approvals and spend reporting.\n- **Inventory catalog** — reporting and planning.\n- **Costing/GL catalog** — drives accounts via SLA rules.\n\nAn item can belong to several catalogs (one category per catalog unless multiple assignment is allowed). Many setups (e.g. approvals by category) depend on them, so design catalogs early.", "B"],
+["Product Hub", "What are item status codes and lifecycle phases?", "- **Item status** (e.g. Active, Inactive, Prototype, Obsolete) controls key functional attributes — whether the item can be purchased, stocked, transacted, ordered or used in BOMs.\n- **Lifecycle phases** (Design, Prototype, Production, Obsolete) track where the item is in its life; changing phase can change status.\n- Changing status is how you stop an item from being ordered without deleting it.", "D"],
+["Manufacturing", "What is a bill of materials (BOM) and a routing / work definition?", "- **BOM / item structure** — the list of components and quantities needed to make an item.\n- **Routing (EBS) / Work definition (Fusion)** — the operations and resources (machines, labor) and their sequence, with component issues assigned to operations.\n- Together they drive **work orders**, **cost rollups** and **planning**.\n\nFusion item structures live in Product Hub; work definitions in Manufacturing.", "B"],
+["Manufacturing", "Describe the work order lifecycle in Fusion Manufacturing.", "- **Create** the work order (manually, from planning, or for a sales order).\n- **Release** it — components can be picked.\n- **Issue components** (manually, push, or backflush/assembly pull).\n- **Report operations and resources** as work is done.\n- **Complete** the assembly into inventory (and report scrap if any).\n- **Close** the work order — variances are calculated by Cost Management.\n\nStatuses: Unreleased → Released → Completed → Closed (On Hold / Canceled possible).", "D"],
+["Planning", "What is the difference between MRP and min-max planning?", "- **Min-max** looks only at on-hand and on-order against fixed min/max levels — no forecasts, no BOM explosion.\n- **MRP** (in Fusion Supply Chain Planning) uses **demand** (forecasts, sales orders), **supply** (on-hand, POs, work orders), **BOMs** and **lead times** to calculate what to make or buy and when. It explodes demand through the BOM to components.\n\nUse min-max for simple, stable items; MRP for manufactured items and variable demand.", "D"],
+["Inventory", "What is an interorganization transfer and how is it set up?", "**Why they ask:** transfers between orgs need setup and accounting.\n\n**Answer:**\n\"It moves inventory between two inventory orgs. A shipping network defines the from and to orgs, the transfer type, direct or in-transit, the in-transit accounts and whether a receipt is required. Direct moves instantly. In-transit ships, sits in transit, and is received at the destination. In Fusion, transfer orders give a full ship and receive flow with transfer pricing. If the orgs are in different legal entities, transfer price and freight create intercompany accounting.\"\n\nTip: Mention transfer orders as the Fusion way. It shows current knowledge.", "D"],
+["Inventory", "How do you investigate an on-hand quantity that doesn't match the physical count?", "**Why they ask:** a daily warehouse problem.\n\n**Answer:**\n\"First I check for pending or unprocessed transactions: interface errors, pending receipts or shipments. Then I review transaction history for the item, subinventory and locator, looking for wrong subinventory, UOM mistakes, or lot and serial errors. Then reservations and staged quantities, picked but not shipped. Then I recount to confirm. Finally I fix it with an approved adjustment and find the root cause, like training, process or scanning.\"\n\nTip: Start with pending transactions. They explain most differences.", "B"],
+["Procurement", "What is sourcing (RFQ/auction) in Oracle Procurement?", "**Why they ask:** a basic sourcing question.\n\n**Answer:**\n\"Oracle Sourcing creates negotiations to get competitive bids. An RFI asks for information, an RFQ asks for quotes, and an auction lets suppliers see where they rank and bid again. The steps are: create the negotiation with lines, requirements and terms; invite suppliers; collect responses; score and analyze; award; and create a PO or agreement from the award. It gets better prices and gives an audit trail for why a supplier was chosen.\"\n\nTip: Mention the audit trail. It's often as important as the savings.", "B"],
+["Procurement", "What happens when you need to change an approved purchase order?", "**Why they ask:** PO changes are frequent and have rules.\n\n**Answer:**\n\"In Fusion I create a change order, which opens a new revision of the PO. Changes to price, quantity or dates may need approval again, depending on the rules. The revised PO is sent to the supplier. Some changes are blocked after receipt or invoicing, for example I can't reduce quantity below what's been received. When the PO isn't needed anymore, I cancel it or close it: closed for receiving, closed for invoicing, or finally closed.\"\n\nTip: Mention what's blocked after receipt. It shows real experience.", "B"],
+["Procurement", "What are the PO close statuses?", "**Why they ask:** close statuses affect matching and accruals.\n\n**Answer:**\n\"Open is normal. Closed for receiving means no more receipts but it can still be invoiced. Closed for invoicing means no more invoices but it can still be received. Closed means both are done, and it can be reopened. Finally closed is permanent, releases any encumbrance, and can't be reopened. Canceled means nothing more can happen. Receipt and invoice close tolerances close POs automatically, for example when 95% has been received.\"\n\nTip: Warn that finally closed can't be undone. It's the status people regret using.", "D"],
+["Receiving", "What is the difference between receipt tolerance and invoice tolerance?", "**Why they ask:** they work together to prevent overpaying.\n\n**Answer:**\n\"Receipt tolerances, on quantity and dates, control how much over or under, or how early or late, you can receive against a PO, with actions like warning or reject. Invoice tolerances in AP, on price, quantity and amount, control how far an invoice can differ from the PO and receipt before a matching hold is placed. Tight receipt tolerance stops over-receiving; invoice tolerance stops overpaying.\"\n\nTip: Explain how they work together. That's the insight they want.", "B"],
+["Shipping", "What documents are produced during shipping?", "**Why they ask:** a basic shipping question.\n\n**Answer:**\n\"The pick slip, saying what to pick and where. The packing slip, listing what's in the shipment for the customer. The bill of lading, the contract with the carrier. The commercial invoice for international shipments and customs. Shipping and carton labels. And the ASN, the electronic notice to the customer. They're produced through document sets at pick release or ship confirm.\"\n\nTip: Mention document sets. It's how they're configured.", "B"],
+["Order Management", "What is drop shipment?", "The supplier ships directly to your customer — the goods never enter your warehouse.\n- A sales order line with **drop ship** source type creates a **requisition/PO** to the supplier.\n- The supplier ships to the customer; you record a **logical receipt** (and logical shipment) when they confirm.\n- AP pays the supplier invoice; AR invoices the customer.\n- Inventory is not physically touched, but accounting still flows through receipt and cost.", "D"],
+["Order Management", "What is back-to-back ordering?", "A sales order line triggers a **dedicated purchase (or work order)** for that customer, and the supply is **reserved** to the order when it arrives.\n- Received into your warehouse (unlike drop ship), then shipped to the customer.\n- Used for items you don't stock but want to control/inspect.\n- The reservation ensures the incoming supply isn't used for other orders.", "D"],
+["Order Management", "How do returns (RMA) work in Order Management?", "- Create a **return order** (RMA) referencing the original sales order where possible — keeps price and lot/serial info.\n- Customer ships back; **receive** the return in Receiving (with inspection if needed).\n- Inventory increases (or goes to a reject/MRB subinventory).\n- A **credit memo** is created in AR through invoicing of the return line.\n- Return reasons are tracked for analysis.", "B"],
+["Integration", "How does SCM integrate with Financials?", "- **Procurement → AP**: POs and receipts are matched to invoices.\n- **Receiving → GL**: receipt accrual accounting via Receipt Accounting.\n- **Inventory/Costing → GL**: inventory valuation, COGS and variances via Cost Accounting.\n- **Order Management → AR**: shipped lines invoiced through AutoInvoice.\n- **Assets**: capital POs can create mass additions from AP.\n- **Projects**: project-related POs and costs.\n\nA good SCM consultant understands the accounting each step creates.", "B"],
+["Data Loads", "How would you load items or on-hand balances into Fusion?", "- **Items**: Item import via **FBDI** (Item Import template) or **Product Hub spreadsheet / import maps**; can load attributes, categories and org assignments.\n- **On-hand balances**: **Inventory Transaction Import** FBDI with miscellaneous receipts (with lots/serials and locators) at cost.\n- **Open POs**: Purchase Order Import FBDI.\n- Always load **in sequence** (items → orgs → costs → on-hand) and reconcile quantities and values with the legacy system.", "B"],
+["Testing", "How would you test a full P2P cycle after a configuration change?", "- Create a requisition with the affected item/category, check approval routing.\n- Convert to PO; confirm defaults (supplier site, terms, accounts).\n- Receive (with the right routing and tolerances).\n- Match invoice in AP; check holds.\n- Run Create Accounting for receiving and AP; verify GL entries.\n- Test negative cases (over-receipt, wrong price) and a return.\n\nTip: Interviewers like that you check the accounting, not just the screens.", "B"],
+["Behavioral", "Tell me about a time you supported users during a go-live.", "## Example (STAR)\n- **Situation:** First week after a Fusion SCM go-live; warehouse users struggled with pick release and shipping.\n- **Task:** I was the on-site support for Inventory and Shipping.\n- **Action:** I sat with users on the floor, logged every issue, fixed quick ones (printer setup, a wrong picking rule), created two one-page job aids, and held a 15-minute daily huddle.\n- **Result:** Tickets dropped from ~40/day to under 10 by the end of the second week, and shipments met the daily target.\n\nTip: Numbers and job aids make the answer concrete.", "B"],
+["Behavioral", "How do you prioritize when several users need help at once?", "- **Business impact first** — anything stopping shipping, receiving, or payment comes first.\n- Then **number of users affected**, then deadlines (e.g. month-end).\n- Acknowledge everyone quickly so they know it's in the queue.\n- Escalate to my lead if two critical issues collide.\n- Track everything in the ticket tool so nothing is lost.", "B"],
+["SCM Basics", "What is the difference between an inventory organization and a business unit in Fusion SCM?", "**Why they ask:** enterprise structure design depends on it.\n\n**Answer:**\n\"A business unit performs business functions like procurement, requisitioning, order fulfillment and billing, with its own setups and data security. An inventory organization is a physical location that holds and transacts inventory. Each inventory org is tied to a profit center BU and a legal entity for accounting. A procurement BU can serve many requisitioning BUs and inventory orgs. Getting these relationships right is central to the structure design.\"\n\nTip: Say the BU is about functions, the org is about place. It's a clean way to remember it.", "D"],
+["Procurement", "What is a Procurement agent and why does it matter?", "**Why they ask:** a classic support question.\n\n**Answer:**\n\"A procurement agent is a buyer set up with access to specific procurement BUs and actions, like managing requisitions, POs, agreements, suppliers and sourcing. It's set in Manage Procurement Agents and controls which documents a buyer can see and act on, their own or everyone's in the BU. The common support ticket is a user with the buyer role who still can't create POs, and the answer is almost always that they aren't set up as a procurement agent.\"\n\nTip: Tell the support ticket story. It's exactly why they ask.", "D"]
 ]);
 
-QB['ora-fc-scm'] = (QB['ora-fc-scm'] || []).concat([
-['Inventory', 'What is ABC classification and how is it used?',
-`ABC analysis ranks items by value (usually annual usage value = quantity × cost):
-- **A items** — roughly 10–20% of items, ~70–80% of value. Counted most often, tightest control.
-- **B items** — middle.
-- **C items** — many items, little value. Counted least often.
-
-In Oracle you **compile an ABC analysis** for an org, assign classes, and use them in **cycle count** frequency and planning policies.`, 'B'],
-
-['Procurement', 'What is the difference between a requisitioning BU, procurement BU and sold-to legal entity?',
-`- **Requisitioning BU** — where the requester works; owns the requisition and the expense/charge accounts.
-- **Procurement BU** — the purchasing team that creates and manages the PO and supplier relationship; can serve many requisitioning BUs.
-- **Sold-to legal entity** — the legal entity that is financially liable for the purchase (and appears on the PO).
-- The **bill-to BU** processes the invoice in AP.
-
-This model supports centralized procurement for many BUs in Fusion.`, 'D']
+QB["ora-fc-scm"] = (QB["ora-fc-scm"] || []).concat([
+["Inventory", "What is ABC classification and how is it used?", "**Why they ask:** ABC drives counting and planning priorities.\n\n**Answer:**\n\"ABC ranks items by value, usually annual usage value, quantity times cost. A items are roughly 10–20% of items but 70–80% of value; they're counted most often and controlled most tightly. B items are in the middle. C items are many items with little value, counted least. In Oracle I compile an ABC analysis for the org, assign classes, and use them in cycle count frequency and planning policies.\"\n\nTip: Give the percentages. They show you know the principle.", "B"],
+["Procurement", "What is the difference between a requisitioning BU, procurement BU and sold-to legal entity?", "**Why they ask:** this model is how Fusion supports central procurement.\n\n**Answer:**\n\"The requisitioning BU is where the requester works; it owns the requisition and the charge accounts. The procurement BU is the purchasing team that creates and manages the PO and the supplier relationship, and it can serve many requisitioning BUs. The sold-to legal entity is the one financially liable for the purchase, and it appears on the PO. The bill-to BU is where AP processes the invoice. So a central procurement team in one BU can buy for ten operating BUs, with each one still paying its own bills.\"\n\nTip: Give the central procurement example. It shows why the model exists.", "D"]
 ]);
 
 // Added Oct 2026: more functional, Fusion platform, Redwood and AI Agent Studio questions.
-QB['ora-fc-scm'] = (QB['ora-fc-scm'] || []).concat([
-['Redwood', 'What is Oracle Redwood and what changes for SCM users?',
-`**Redwood** is Oracle's new user experience for Fusion Applications, replacing the older ADF-based "classic" pages module by module.
-- Cleaner, guided pages (e.g. Redwood **requisitions**, **purchase orders**, **receipts**, **inventory transactions**, **Product Management** item pages).
-- Better search and mobile use; AI help such as summaries and suggestions.
-- Classic personalizations don't carry over; Redwood pages are extended with **Visual Builder Studio**.
-- Users need short training because screens and navigation change.`, 'B'],
-
-['Redwood', 'How would you prepare warehouse users for a switch to Redwood receiving or inventory pages?',
-`- Enable the Redwood page in **test** first; run receiving/transfer scenarios.
-- Note differences: field locations, scanning flow, defaults.
-- Rebuild any needed personalizations with Visual Builder Studio.
-- Create a **one-page job aid** with screenshots; train super users first.
-- Switch production at a quiet time (not month-end or a peak shipping day) with floor support.`, 'B'],
-
-['Redwood', 'What is Visual Builder Studio used for in Redwood?',
-`**Visual Builder Studio (VBS)** is how you extend and adjust Redwood pages:
-- Show/hide or reorder fields, make fields required or read-only, set defaults.
-- Add **rules** (e.g. show a field only for a certain item type).
-- Add custom fields (flexfields) to the page.
-- Changes are made in a workspace, previewed, then **published** — usually by an admin or technical consultant.
-Classic **Page Composer** is for classic pages only.`, 'B'],
-
-['AI Agent Studio', 'What is Oracle AI Agent Studio?',
-`It's the place in Fusion Applications to **use, adjust and build AI agents**.
-- Oracle provides **ready-made agents and templates** for common tasks (procurement, order and supplier questions, policy questions).
-- Agents use **tools** to read or act on Fusion data (business objects), documents, email and other systems.
-- Agents follow **Fusion security** — they only see and do what the user's roles allow.
-- Admins can test agents, choose the AI model, and monitor usage.`, 'B'],
-
-['AI Agent Studio', 'Give an SCM example where an AI agent helps users.',
-`- **Requisition assistant**: an employee says "I need 5 laptops for new hires" — the agent finds the catalog item, fills the requisition and submits for approval.
-- **Order status agent**: customer service asks "Where is order 5521?" — the agent checks the order, shipment and tracking and answers.
-- **Supplier quote agent**: reads an emailed supplier quote and drafts the requisition or PO lines for a buyer to review.
-People approve purchases and commitments; the agent removes lookups and typing.`, 'B'],
-
-['AI Agent Studio', 'What does "the agent follows Fusion security" mean in practice?',
-`- The agent runs with the **identity and roles** of the person using it (or a defined service role).
-- If a buyer can only see POs for their BU, the agent only sees those too.
-- Actions like creating a requisition go through the **same approvals** as when a person does it.
-- This keeps data access and controls (SOX, SoD) intact.`, 'D'],
-
-['Inventory', 'What is the difference between a subinventory transfer and an interorganization transfer?',
-`- **Subinventory transfer**: moves stock **within the same inventory org** (e.g. Stores → Staging). No change of owner or cost org; usually no accounting impact unless subinventories are valued differently.
-- **Interorganization transfer**: moves stock **between orgs** (e.g. plant → DC). Needs a shipping network; may be direct or in-transit; creates accounting and possibly intercompany entries.`, 'B'],
-
-['Inventory', 'What is a miscellaneous transaction and when is it used?',
-`- A **miscellaneous receipt or issue** adjusts on-hand against an **account** rather than a document (PO/SO).
-- Uses: initial stock load, write-offs, samples, corrections, scrap.
-- Usually restricted by role and sometimes needs approval, because it changes inventory value directly.`, 'B'],
-
-['Procurement', 'What is the difference between a requisition, a purchase order and an agreement?',
-`- **Requisition** — an internal request to buy; needs approval.
-- **Purchase order** — the legal order to the supplier with quantities, prices and dates.
-- **Agreement** (blanket or contract) — negotiated terms/prices for a period; POs are created against it.`, 'B'],
-
-['Order Management', 'What are the main sales order statuses you see in Fusion?',
-`- **Draft** → **Processing** (submitted; orchestration running) → **Awaiting Shipping/Billing** at line level → **Shipped** → **Billed** → **Closed**.
-- Lines can also be **On Hold**, **Backordered** or **Canceled**.
-- Fulfillment line status tells you exactly which step a line is at.`, 'B'],
-
-['Receiving', 'How do you correct a receipt entered with the wrong quantity?',
-`- Use a **receipt correction** (not a return): increase or decrease the quantity received/delivered.
-- If the goods were already delivered to inventory, correct the delivery too.
-- If invoiced, check the AP impact (quantity holds or debit memo).
-- Returns are only for goods physically sent back to the supplier.`, 'B'],
-
-['Costing', 'Why might an item\'s cost show as zero in Fusion and what do you check?',
-`- No **standard cost** defined (standard costing) or no receipts yet (average costing).
-- **Item cost profile** missing or wrong.
-- Cost processor hasn't run, or transactions are **uncosted** due to errors.
-- Wrong cost org/book or valuation unit.
-Fix the setup, run the cost processor, and review the item's cost history.`, 'D']
+QB["ora-fc-scm"] = (QB["ora-fc-scm"] || []).concat([
+["Redwood", "What is Oracle Redwood and what changes for SCM users?", "**Redwood** is Oracle's new user experience for Fusion Applications, replacing the older ADF-based \"classic\" pages module by module.\n- Cleaner, guided pages (e.g. Redwood **requisitions**, **purchase orders**, **receipts**, **inventory transactions**, **Product Management** item pages).\n- Better search and mobile use; AI help such as summaries and suggestions.\n- Classic personalizations don't carry over; Redwood pages are extended with **Visual Builder Studio**.\n- Users need short training because screens and navigation change.", "B"],
+["Redwood", "How would you prepare warehouse users for a switch to Redwood receiving or inventory pages?", "- Enable the Redwood page in **test** first; run receiving/transfer scenarios.\n- Note differences: field locations, scanning flow, defaults.\n- Rebuild any needed personalizations with Visual Builder Studio.\n- Create a **one-page job aid** with screenshots; train super users first.\n- Switch production at a quiet time (not month-end or a peak shipping day) with floor support.", "B"],
+["Redwood", "What is Visual Builder Studio used for in Redwood?", "**Visual Builder Studio (VBS)** is how you extend and adjust Redwood pages:\n- Show/hide or reorder fields, make fields required or read-only, set defaults.\n- Add **rules** (e.g. show a field only for a certain item type).\n- Add custom fields (flexfields) to the page.\n- Changes are made in a workspace, previewed, then **published** — usually by an admin or technical consultant.\nClassic **Page Composer** is for classic pages only.", "B"],
+["AI Agent Studio", "What is Oracle AI Agent Studio?", "It's the place in Fusion Applications to **use, adjust and build AI agents**.\n- Oracle provides **ready-made agents and templates** for common tasks (procurement, order and supplier questions, policy questions).\n- Agents use **tools** to read or act on Fusion data (business objects), documents, email and other systems.\n- Agents follow **Fusion security** — they only see and do what the user's roles allow.\n- Admins can test agents, choose the AI model, and monitor usage.", "B"],
+["AI Agent Studio", "Give an SCM example where an AI agent helps users.", "- **Requisition assistant**: an employee says \"I need 5 laptops for new hires\" — the agent finds the catalog item, fills the requisition and submits for approval.\n- **Order status agent**: customer service asks \"Where is order 5521?\" — the agent checks the order, shipment and tracking and answers.\n- **Supplier quote agent**: reads an emailed supplier quote and drafts the requisition or PO lines for a buyer to review.\nPeople approve purchases and commitments; the agent removes lookups and typing.", "B"],
+["AI Agent Studio", "What does \"the agent follows Fusion security\" mean in practice?", "- The agent runs with the **identity and roles** of the person using it (or a defined service role).\n- If a buyer can only see POs for their BU, the agent only sees those too.\n- Actions like creating a requisition go through the **same approvals** as when a person does it.\n- This keeps data access and controls (SOX, SoD) intact.", "D"],
+["Inventory", "What is the difference between a subinventory transfer and an interorganization transfer?", "**Why they ask:** a basic transaction question.\n\n**Answer:**\n\"A subinventory transfer moves stock within the same org, like Stores to Staging. There's no change of owner or cost org, and usually no accounting unless the subinventories are valued differently. An interorganization transfer moves stock between orgs, like plant to DC. It needs a shipping network, can be direct or in-transit, and creates accounting, possibly intercompany.\"\n\nTip: Mention the accounting difference. It's the key point.", "B"],
+["Inventory", "What is a miscellaneous transaction and when is it used?", "**Why they ask:** misc transactions change inventory value directly, so they need control.\n\n**Answer:**\n\"A miscellaneous receipt or issue adjusts on-hand against an account instead of a document like a PO or sales order. It's used for initial stock loads, write-offs, samples, corrections and scrap. Because it changes inventory value directly, it's usually limited by role and sometimes needs approval.\"\n\nTip: Mention the control. That's why interviewers ask.", "B"],
+["Procurement", "What is the difference between a requisition, a purchase order and an agreement?", "**Why they ask:** a basic procurement question.\n\n**Answer:**\n\"A requisition is an internal request to buy something, and it needs approval. A purchase order is the legal order to the supplier, with quantities, prices and dates. An agreement, blanket or contract, sets negotiated terms or prices for a period, and POs are created against it.\"\n\nTip: Keep it short. Basic questions get the best impression from clear, quick answers.", "B"],
+["Order Management", "What are the main sales order statuses you see in Fusion?", "- **Draft** → **Processing** (submitted; orchestration running) → **Awaiting Shipping/Billing** at line level → **Shipped** → **Billed** → **Closed**.\n- Lines can also be **On Hold**, **Backordered** or **Canceled**.\n- Fulfillment line status tells you exactly which step a line is at.", "B"],
+["Receiving", "How do you correct a receipt entered with the wrong quantity?", "**Why they ask:** a common receiving mistake.\n\n**Answer:**\n\"I use a receipt correction, not a return, to increase or decrease the quantity received or delivered. If the goods were already delivered to inventory, I correct the delivery too. If it's been invoiced, I check the AP impact, like a quantity hold or a debit memo. Returns are only for goods that physically go back to the supplier.\"\n\nTip: Separate corrections from returns clearly.", "B"],
+["Costing", "Why might an item's cost show as zero in Fusion and what do you check?", "- No **standard cost** defined (standard costing) or no receipts yet (average costing).\n- **Item cost profile** missing or wrong.\n- Cost processor hasn't run, or transactions are **uncosted** due to errors.\n- Wrong cost org/book or valuation unit.\nFix the setup, run the cost processor, and review the item's cost history.", "D"]
 ]);

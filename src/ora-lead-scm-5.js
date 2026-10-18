@@ -1,79 +1,14 @@
 // Added Oct 2026: more functional, Fusion platform, Redwood and AI Agent Studio questions.
-QB['ora-lead-scm'] = (QB['ora-lead-scm'] || []).concat([
-['Redwood', 'How do you lead a Redwood transition across Procurement, Inventory and Order Management?',
-`- **Roadmap** from Oracle's readiness schedule: which SCM pages move when, and when classic pages are retired.
-- **Impact by persona**: requesters, buyers, receivers, warehouse staff, order administrators.
-- **Personalizations** inventory → rebuild in **Visual Builder Studio** only where valuable.
-- **Testing** of end-to-end flows plus mobile/scanning use on the floor.
-- **Training** on the floor with super users; avoid peak periods.
-- **Hypercare** after each switch.`, 'D'],
-
-['Redwood', 'What new capabilities in Redwood SCM pages would you highlight to the business?',
-`- **Guided buying** and smarter search in requisitions.
-- **Redwood purchase order and agreement** pages with clearer status and actions.
-- **Redwood receiving/inventory** pages that are easier on tablets and mobile.
-- **Product Management** NIR and change orders with better collaboration.
-- **AI assistance**: summaries, suggested values, generated descriptions.
-- Fewer clicks for common tasks.`, 'B'],
-
-['AI Agent Studio', 'Design an AI agent workflow for supplier delivery delays.',
-`- **Trigger**: scheduled daily or on supplier ASN/acknowledgment changes.
-- **Business Object tools**: find PO schedules at risk (past promised date, no ASN), check affected sales/work orders.
-- **Agent node**: assess impact and draft a supplier follow-up email and an internal summary.
-- **Human approval node**: buyer reviews/edits and sends (Email tool).
-- **Updates**: buyer records new promise dates; planners see impact.
-- **Measure**: on-time delivery, expedites, buyer time.`, 'D'],
-
-['AI Agent Studio', 'How would you use an AI agent with Product Management (item data)?',
-`- **Item creation assistant**: proposes item class, attributes and description from a request or supplier spec sheet (Document tool).
-- **Data quality agent**: finds duplicates or missing attributes and suggests fixes.
-- **NIR helper**: summarizes pending NIRs and what's blocking them.
-- Keep **approvals** in the NIR workflow; agents propose, people approve.`, 'D'],
-
-['AI Agent Studio', 'What risks do AI agents bring to supply chain processes and how do you manage them?',
-`- **Wrong actions** (ordering wrong items/quantities) → draft-only, human approval before commitments.
-- **Data exposure** → Fusion security inheritance, least-privilege tools.
-- **Hallucinated answers** to customers → ground answers in business objects; evaluation sets; show sources/deep links.
-- **Cost** → monitor token usage for premium LLMs.
-- **Change** → train users to review outputs critically.`, 'D'],
-
-['Procurement', 'How would you improve requisition-to-PO cycle time in Fusion?',
-`- Catalog and agreement coverage for top categories → **automatic PO creation**.
-- **Smart forms** for common non-catalog requests.
-- Simpler **approval rules**.
-- **AI requisition assistant** for requesters.
-- Measure and review weekly by category and BU.`, 'D'],
-
-['Order Management', 'How would you design order hold management with AI assistance?',
-`- **Holds** applied by rules (credit, pricing, compliance).
-- **Agent** summarizes each held order: reason, customer history, recommended action.
-- Credit analysts/order admins decide and release (human in the loop).
-- Track hold duration and reasons; fix recurring root causes.`, 'D'],
-
-['Inventory', 'How would you reduce cycle count adjustments at a DC?',
-`- Analyze adjustments by item, locator, user and reason.
-- Fix root causes: receiving delays, picking errors, UOM confusion, unrecorded scrap.
-- **Scanning** and locator control.
-- Tighten tolerances for A items; recount before approval.
-- Weekly review with warehouse leads.`, 'D'],
-
-['Costing', 'How do you explain a large purchase price variance to the business?',
-`- Break PPV down by **item, supplier, category** and period.
-- Causes: price increases, spot buys off-contract, outdated standards, currency movements, freight in price.
-- Actions: update standards, negotiate agreements, enforce catalog buying.
-- Present with trend charts and the top 10 drivers.`, 'D'],
-
-['Product Hub', 'How would you design NIR workflows for a regulated company?',
-`- Item classes with **required attributes** for regulated items (lot/shelf life, quality, storage).
-- **Definition steps** for engineering, quality, procurement, planning, costing.
-- **Approval steps** with electronic signatures where required.
-- **Change orders** for any later change; audit trail.
-- SLAs and dashboards for NIR cycle time.`, 'D'],
-
-['Leadership', 'How do you prepare your SCM team for Oracle\'s AI roadmap?',
-`- Oracle **learning paths** for AI Agent Studio; hands-on sandbox builds.
-- Identify 3 pilot use cases with business owners.
-- Pair functional and technical people.
-- Share results and lessons in team sessions.
-- Add AI skills to career plans.`, 'B']
+QB["ora-lead-scm"] = (QB["ora-lead-scm"] || []).concat([
+["Redwood", "How do you lead a Redwood transition across Procurement, Inventory and Order Management?", "- **Roadmap** from Oracle's readiness schedule: which SCM pages move when, and when classic pages are retired.\n- **Impact by persona**: requesters, buyers, receivers, warehouse staff, order administrators.\n- **Personalizations** inventory → rebuild in **Visual Builder Studio** only where valuable.\n- **Testing** of end-to-end flows plus mobile/scanning use on the floor.\n- **Training** on the floor with super users; avoid peak periods.\n- **Hypercare** after each switch.", "D"],
+["Redwood", "What new capabilities in Redwood SCM pages would you highlight to the business?", "- **Guided buying** and smarter search in requisitions.\n- **Redwood purchase order and agreement** pages with clearer status and actions.\n- **Redwood receiving/inventory** pages that are easier on tablets and mobile.\n- **Product Management** NIR and change orders with better collaboration.\n- **AI assistance**: summaries, suggested values, generated descriptions.\n- Fewer clicks for common tasks.", "B"],
+["AI Agent Studio", "Design an AI agent workflow for supplier delivery delays.", "- **Trigger**: scheduled daily or on supplier ASN/acknowledgment changes.\n- **Business Object tools**: find PO schedules at risk (past promised date, no ASN), check affected sales/work orders.\n- **Agent node**: assess impact and draft a supplier follow-up email and an internal summary.\n- **Human approval node**: buyer reviews/edits and sends (Email tool).\n- **Updates**: buyer records new promise dates; planners see impact.\n- **Measure**: on-time delivery, expedites, buyer time.", "D"],
+["AI Agent Studio", "How would you use an AI agent with Product Management (item data)?", "- **Item creation assistant**: proposes item class, attributes and description from a request or supplier spec sheet (Document tool).\n- **Data quality agent**: finds duplicates or missing attributes and suggests fixes.\n- **NIR helper**: summarizes pending NIRs and what's blocking them.\n- Keep **approvals** in the NIR workflow; agents propose, people approve.", "D"],
+["AI Agent Studio", "What risks do AI agents bring to supply chain processes and how do you manage them?", "- **Wrong actions** (ordering wrong items/quantities) → draft-only, human approval before commitments.\n- **Data exposure** → Fusion security inheritance, least-privilege tools.\n- **Hallucinated answers** to customers → ground answers in business objects; evaluation sets; show sources/deep links.\n- **Cost** → monitor token usage for premium LLMs.\n- **Change** → train users to review outputs critically.", "D"],
+["Procurement", "How would you improve requisition-to-PO cycle time in Fusion?", "**Why they ask:** a practical improvement question.\n\n**Answer:**\n\"The biggest lever is catalog and agreement coverage for the top categories, so POs are created automatically. Then smart forms for common non-catalog requests, so buyers get complete information the first time. Then simpler approval rules. Then the AI requisition assistant to help requesters. And I'd measure cycle time weekly by category and BU, so we can see where it's still slow.\"\n\nTip: Start with automatic PO creation. It's the change that saves the most days.", "D"],
+["Order Management", "How would you design order hold management with AI assistance?", "- **Holds** applied by rules (credit, pricing, compliance).\n- **Agent** summarizes each held order: reason, customer history, recommended action.\n- Credit analysts/order admins decide and release (human in the loop).\n- Track hold duration and reasons; fix recurring root causes.", "D"],
+["Inventory", "How would you reduce cycle count adjustments at a DC?", "**Why they ask:** adjustments signal process problems.\n\n**Answer:**\n\"I analyze adjustments by item, locator, user and reason. Then fix root causes: receiving delays, picking errors, UOM confusion, unrecorded scrap. I add scanning and locator control. I tighten tolerances for A items and require a recount before approval. And I review adjustments weekly with warehouse leads.\"\n\nTip: Say \"analyze by user\". It often shows a training issue quickly.", "D"],
+["Costing", "How do you explain a large purchase price variance to the business?", "- Break PPV down by **item, supplier, category** and period.\n- Causes: price increases, spot buys off-contract, outdated standards, currency movements, freight in price.\n- Actions: update standards, negotiate agreements, enforce catalog buying.\n- Present with trend charts and the top 10 drivers.", "D"],
+["Product Hub", "How would you design NIR workflows for a regulated company?", "- Item classes with **required attributes** for regulated items (lot/shelf life, quality, storage).\n- **Definition steps** for engineering, quality, procurement, planning, costing.\n- **Approval steps** with electronic signatures where required.\n- **Change orders** for any later change; audit trail.\n- SLAs and dashboards for NIR cycle time.", "D"],
+["Leadership", "How do you prepare your SCM team for Oracle's AI roadmap?", "- Oracle **learning paths** for AI Agent Studio; hands-on sandbox builds.\n- Identify 3 pilot use cases with business owners.\n- Pair functional and technical people.\n- Share results and lessons in team sessions.\n- Add AI skills to career plans.", "B"]
 ]);

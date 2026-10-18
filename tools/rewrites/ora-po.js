@@ -1,0 +1,337 @@
+// Rewritten Oracle Procurement answers (Why they ask → Answer → Tip). Apply with rewrite.js (prefix ora-).
+module.exports = {
+
+'What are document styles in Fusion Procurement?':
+`**Why they ask:** a setup detail that shows whether you've configured Procurement for real buyers.
+
+**Answer:**
+"A document style controls which features show on a purchase order or agreement, like price breaks, consignment, progress payments or configured items, and what the document is called, like 'Service PO'. The point is to keep the buyer's screen simple for each type of purchase. For example, a services style can hide inventory fields and turn on progress payments. The buyer picks the style when creating the document."
+
+Tip: Give one example of a style you created. It shows hands-on setup.`,
+
+'How are purchasing categories and the purchasing catalog used?':
+`**Why they ask:** categories drive almost everything in procurement, from approvals to spend reporting.
+
+**Answer:**
+"Categories in the purchasing catalog classify items and spend. They drive buyer assignment, approval rules, default expense accounts, sourcing rules and spend reporting. Even non-catalog requests need a category, so every purchase is classified. I design the category set with the procurement team, often based on UNSPSC, and keep it at a level category managers actually use, usually two or three levels deep."
+
+Tip: List what categories drive. It shows why getting them right matters.`,
+
+'How are charge accounts derived on requisitions?':
+`**Why they ask:** wrong charge accounts mean wrong P&L and lots of rework in AP.
+
+**Answer:**
+"In Fusion the account is built from the requester's default expense account on their HCM assignment, then adjusted by procurement account rules, for example by item category or project details. If the line has a project, project costing drives the account. SLA can override it again at accounting time. Requesters can change the account if their setup allows, and cross-validation rules check the result. Most account problems I've fixed came from missing default accounts on HR assignments, so I check that data before go-live."
+
+Tip: Mention HR assignment data. It's the most common cause of bad charge accounts.`,
+
+'What is the difference between "inventory" and "expense" destination types?':
+`**Why they ask:** destination type drives receiving and accounting.
+
+**Answer:**
+"Expense means the goods or services are charged to an expense account or project when received or invoiced, like office supplies. Inventory means the goods go into a subinventory and are valued by costing, like raw materials. Drop ship means they go straight to a customer. The destination type decides how receiving works, which accounts are used, and how accruals happen."
+
+Tip: Give an example for each. It makes the difference obvious.`,
+
+'How does a contract purchase agreement differ from a blanket agreement in usage?':
+`**Why they ask:** choosing the wrong agreement type limits automation.
+
+**Answer:**
+"A blanket agreement has specific items and prices, sometimes with price breaks, and purchase orders reference its lines, so requisitions can turn into POs automatically. A contract agreement has only terms, no items; POs reference it to inherit the terms and track spend against it. Both have amount limits and effective dates. So for a supplier we buy the same 200 items from, I'd use a blanket; for a services firm where each job is different but the terms are fixed, a contract agreement."
+
+Tip: Give a use case for each. That's what the question is really asking.`,
+
+'How do you troubleshoot a purchase order stuck "pending approval"?':
+`**Why they ask:** a daily support issue.
+
+**Answer:**
+"I start with the approval history on the PO to see who it's waiting on. If the approver is inactive, terminated or missing from the hierarchy, I reassign it and fix the HCM data. If no BPM rule matched, there's no fallback approver set up, so I add one. If the workflow errored, I resubmit it or use Manage Approval Transactions. Then I fix the cause: a rule gap or bad HCM data, so the next PO doesn't get stuck the same way."
+
+Tip: Always end with the root cause. It shows you don't just push the PO through.`,
+
+'What are supplier profile change requests?':
+`**Why they ask:** supplier bank changes are a major fraud risk.
+
+**Answer:**
+"Suppliers can update their own profile, like addresses, contacts and bank accounts, through the Supplier Portal. Each change creates a change request that routes for approval by internal reviewers before it takes effect. That's critical for fraud control, because a fake request to change bank details is one of the most common payment frauds. I'd make bank changes go to finance for approval, with a callback to a known supplier contact."
+
+Tip: Mention the callback. It's the control that actually stops fraud.`,
+
+'How do you score and award a negotiation?':
+`**Why they ask:** sourcing roles need to show they can run a fair, auditable award.
+
+**Answer:**
+"I set up requirements, meaning questions, with scoring and weights, covering both price and non-price factors like quality, delivery and service. Suppliers respond, and scores are entered manually or calculated automatically. I compare responses side by side. Then I award by line or by the whole negotiation, and split awards are possible. The award recommendation goes for approval, and once approved, I create a PO or agreement straight from the award."
+
+Tip: Mention non-price factors. Lowest price isn't always the right award.`,
+
+'How would you improve spend visibility in Fusion?':
+`**Why they ask:** spend visibility is one of procurement's main goals.
+
+**Answer:**
+"First, consistent categories on every purchase. Second, AI spend classification for spend that comes through invoices without a PO, so it still gets a category. Third, reporting in OTBI or Fusion Data Intelligence: spend by supplier, category and BU, and contract compliance. And dashboards built for category managers, so they see their own categories without asking for a report."
+
+Tip: Mention spend without POs. It's where visibility is usually missing.`,
+
+'What should a procurement contractor highlight in an interview?':
+`**Why they ask:** to see how you'll sell your value.
+
+**Answer:**
+"I'd highlight end-to-end procure-to-pay knowledge, including receiving and AP matching; approval design and troubleshooting; catalogs and agreements that increase automation; supplier onboarding controls; and integration with finance, like accruals, encumbrance and matching. And I'd bring numbers, like 'we raised touchless POs from 30% to 65%' or 'cut requisition-to-PO time from 5 days to 2'."
+
+Tip: Bring at least two numbers. They're what the hiring manager remembers.`,
+
+'How would you architect source-to-pay for a large enterprise on Fusion?':
+`**Why they ask:** a senior architecture question across the whole process.
+
+**Answer:**
+"I'd design it as a chain. Supplier life cycle first: registration, qualification, risk screening and performance. Then sourcing events and contracts with a clause library. Then catalogs and agreements, with guided buying in Self Service Procurement so employees buy on contract. Approvals by budget owner and category. Receiving and acceptance for both goods and services. AP automation with e-invoicing, document recognition and matching. Spend analytics and savings tracking. And integrations to supplier networks, risk providers and e-signature."
+
+Tip: Present it as a chain from supplier to payment. It's easy to follow and shows you see the whole thing.`,
+
+'How do you design procurement for services (contractors, SOWs) in Oracle?':
+`**Why they ask:** services are harder to buy and receive than goods.
+
+**Answer:**
+"I use fixed-price service lines and rate-based lines, and complex work for construction and projects, which supports progress payments and retainage. Receipts for services are by amount or quantity, entered by the requester who confirms the work was done. For contingent workers, many companies use a vendor management system like Fieldglass or Beeline, integrated with Fusion for POs and invoices. Approvals go to the project or cost center owner. Matching can be 2-way, or 3-way with service acceptance as the receipt."
+
+Tip: Mention who confirms the service. Service receipts are where control often breaks down.`,
+
+'Explain the Procure-to-Pay flow and the main documents.':
+`**Why they ask:** a warm-up question for every procurement or AP role.
+
+**Answer:**
+"An employee raises a requisition in Self Service Procurement and it's approved. A purchase order is created from it, manually or automatically, approved and sent to the supplier. When the goods or services arrive, they're received, optionally inspected, and delivered to inventory or expense. The supplier's invoice is matched in AP to the PO and receipt. Then AP pays it in a payment run."
+
+Accounting:
+- Receipt: Dr Inventory or Expense, Cr Accrual.
+- Invoice: Dr Accrual, Cr AP Liability.
+- Payment: Dr Liability, Cr Cash.
+
+Tip: Give the three journal entries. It shows you understand procurement from finance's side.`,
+
+'What types of purchase orders are there?':
+`**Why they ask:** a basic procurement question.
+
+**Answer:**
+"A standard PO is a one-time purchase with specific items, quantities, prices and dates. A blanket purchase agreement sets prices for items over a period, without fixed quantities, and orders are released against it. A contract purchase agreement sets terms with a supplier but no items, and standard POs reference it. EBS also has a planned PO, with committed quantities and tentative dates, released on a schedule. In Fusion, the three types are standard PO, blanket agreement and contract agreement."
+
+Tip: Note the EBS vs Fusion difference. It shows you know both.`,
+
+'How does a requisition get converted into a purchase order automatically?':
+`**Why they ask:** touchless POs are a key procurement goal.
+
+**Answer:**
+"The requisition line has to reference a blanket agreement or catalog item with an agreed price and supplier. Once the requisition is approved, automated buyer processing creates the PO, as long as the line has a valid source agreement, the supplier site is active, and the agreement allows automatic ordering. The PO is then approved, or auto-approved within limits, and sent to the supplier. Lines without a source go to the buyer's Process Requisitions work area to be converted by hand."
+
+Tip: List the three conditions. They're also the three reasons auto-creation fails.`,
+
+'How are purchasing approvals configured in Fusion?':
+`**Why they ask:** approvals are the most common source of procurement complaints.
+
+**Answer:**
+"Approvals are BPM rules, set in Manage Requisition Approvals and Manage Purchasing Document Approvals. Rules can use amount, category, cost center, project, the supervisor hierarchy, position or job level, or approval groups. For example: requisitions under $5,000 go to the supervisor; over $5,000 to the supervisor and then the department head; IT categories also go to an IT approver. I test the rules with different amounts and categories, and I always check there's a fallback so no document hits 'no approver found'."
+
+Tip: Give a sample rule set with amounts. It makes the answer concrete.`,
+
+'What is a procurement catalog?':
+`**Why they ask:** catalogs drive compliance and automation.
+
+**Answer:**
+"Catalogs let employees shop like an online store in Self Service Procurement. A local catalog has items and prices loaded into Fusion, from agreements or uploads. A punchout catalog takes the user to the supplier's website to pick items and bring back a cart. An informational catalog gives instructions or links, like how to order business cards. Content zones control which users see which catalogs. And smart forms handle non-catalog requests with guided fields."
+
+Tip: Explain content zones. They're how you show the right catalog to the right people.`,
+
+'How do you onboard a new supplier in Oracle Fusion?':
+`**Why they ask:** supplier onboarding is both a process and a control.
+
+**Answer:**
+"The supplier registers through the supplier portal, or procurement enters them. The registration goes for approval. Then the supplier record is created: tax ID, addresses, sites per procurement BU, site assignments to the business units that will use them, bank account with verification, contacts, payment terms and method. If needed, qualification questionnaires cover things like diversity or compliance. And I restrict who can change bank details, because that's a common fraud risk."
+
+Tip: Mention site assignments. Missing ones are the top reason new suppliers can't be used.`,
+
+'What is sourcing (RFQ/auction) in Oracle Procurement?':
+`**Why they ask:** a basic sourcing question.
+
+**Answer:**
+"Oracle Sourcing creates negotiations to get competitive bids. An RFI asks for information, an RFQ asks for quotes, and an auction lets suppliers see where they rank and bid again. The steps are: create the negotiation with lines, requirements and terms; invite suppliers; collect responses; score and analyze; award; and create a PO or agreement from the award. It gets better prices and gives an audit trail for why a supplier was chosen."
+
+Tip: Mention the audit trail. It's often as important as the savings.`,
+
+'What happens when you need to change an approved purchase order?':
+`**Why they ask:** PO changes are frequent and have rules.
+
+**Answer:**
+"In Fusion I create a change order, which opens a new revision of the PO. Changes to price, quantity or dates may need approval again, depending on the rules. The revised PO is sent to the supplier. Some changes are blocked after receipt or invoicing, for example I can't reduce quantity below what's been received. When the PO isn't needed anymore, I cancel it or close it: closed for receiving, closed for invoicing, or finally closed."
+
+Tip: Mention what's blocked after receipt. It shows real experience.`,
+
+'What are the PO close statuses?':
+`**Why they ask:** close statuses affect matching and accruals.
+
+**Answer:**
+"Open is normal. Closed for receiving means no more receipts but it can still be invoiced. Closed for invoicing means no more invoices but it can still be received. Closed means both are done, and it can be reopened. Finally closed is permanent, releases any encumbrance, and can't be reopened. Canceled means nothing more can happen. Receipt and invoice close tolerances close POs automatically, for example when 95% has been received."
+
+Tip: Warn that finally closed can't be undone. It's the status people regret using.`,
+
+'What is a Procurement agent and why does it matter?':
+`**Why they ask:** a classic support question.
+
+**Answer:**
+"A procurement agent is a buyer set up with access to specific procurement BUs and actions, like managing requisitions, POs, agreements, suppliers and sourcing. It's set in Manage Procurement Agents and controls which documents a buyer can see and act on, their own or everyone's in the BU. The common support ticket is a user with the buyer role who still can't create POs, and the answer is almost always that they aren't set up as a procurement agent."
+
+Tip: Tell the support ticket story. It's exactly why they ask.`,
+
+'What is the difference between a requisitioning BU, procurement BU and sold-to legal entity?':
+`**Why they ask:** this model is how Fusion supports central procurement.
+
+**Answer:**
+"The requisitioning BU is where the requester works; it owns the requisition and the charge accounts. The procurement BU is the purchasing team that creates and manages the PO and the supplier relationship, and it can serve many requisitioning BUs. The sold-to legal entity is the one financially liable for the purchase, and it appears on the PO. The bill-to BU is where AP processes the invoice. So a central procurement team in one BU can buy for ten operating BUs, with each one still paying its own bills."
+
+Tip: Give the central procurement example. It shows why the model exists.`,
+
+'What is the difference between a requisition, a purchase order and an agreement?':
+`**Why they ask:** a basic procurement question.
+
+**Answer:**
+"A requisition is an internal request to buy something, and it needs approval. A purchase order is the legal order to the supplier, with quantities, prices and dates. An agreement, blanket or contract, sets negotiated terms or prices for a period, and POs are created against it."
+
+Tip: Keep it short. Basic questions get the best impression from clear, quick answers.`,
+
+'How do you fix invoice matching problems on blanket POs with many receipts?':
+`**Why they ask:** a real problem in high-volume procurement. They want a fix with its impacts.
+
+**Answer:**
+"The symptom is AP staff having to pick specific receipts, often old ones, and invoices going on hold. One fix is changing the invoice match option on the agreement or PO schedules from Receipt to Purchase Order. It's still 3-way matching, because the total received quantity is still checked, but AP matches at the PO level instead of picking receipts. I'd update the document style and agreement defaults so new releases default correctly, and consider a mass update for open POs. Then check the impacts: price variance by receipt, accrual clearing and reports. Receivers need to receive promptly so totals are right. And I'd pilot with a few high-volume suppliers first."
+
+Tip: Explain that it's still 3-way matching. That answers the auditor's first worry.`,
+
+'What KPIs would you set up for procurement?':
+`**Why they ask:** to see if you measure procurement by outcomes.
+
+**Answer:**
+"Spend under management, or the percentage on contract. PO cycle time from requisition to PO. Touchless PO percentage. Savings against a baseline. Supplier performance, on-time delivery and quality rejects. Maverick spend. And buyer productivity. I'd build them in OTBI or Fusion Data Intelligence dashboards, and take a baseline before go-live so we can show improvement."
+
+Tip: Mention the baseline. Without it, nobody can prove the project worked.`,
+
+'How would you roll out Self Service Procurement to all employees?':
+`**Why they ask:** a change management question as much as a system one.
+
+**Answer:**
+"Catalogs first, covering the top categories by spend, through local and punchout catalogs. Smart forms for common non-catalog requests like services and IT. Simple approval rules based on the HR hierarchy and amount. Short training videos, in-app guidance, and a super user in each department. A pilot with a few departments, measuring catalog adoption and approval times. Clear communication on 'how to buy'. And then tracking catalog spend percentage and requisition cycle time."
+
+Tip: Say "catalogs first". Without them, employees don't see the benefit.`,
+
+'How would you design supplier onboarding with risk and compliance checks?':
+`**Why they ask:** supplier risk is a growing priority.
+
+**Answer:**
+"Suppliers register through the portal with required documents, like W-9 or W-8, insurance and certifications. Supplier Qualification questionnaires cover financial, ESG, cyber and sanctions risk. Third-party screening, like sanctions lists and D&B scores, comes in through integration. Approval involves procurement, finance for bank verification, and compliance. Bank accounts are verified with a callback to prevent fraud. And there's periodic requalification, with alerts when certificates expire."
+
+Tip: Name the three approvers. It shows you know onboarding is cross-functional.`,
+
+'How do you manage contracts in Oracle Procurement?':
+`**Why they ask:** contracts are where procurement savings are protected.
+
+**Answer:**
+"Procurement Contracts handles authoring with a clause library, templates and review of deviations from standard clauses. Contracts link to agreements and POs, so the terms flow onto purchase documents. Approval workflow brings in legal for non-standard clauses. Deliverables, the obligations in the contract, are tracked with reminders. There's a repository with alerts for renewals and expirations. And it can integrate with e-signature."
+
+Tip: Mention deviation review. It's what legal teams value most.`,
+
+'How would you improve requisition-to-PO cycle time in Fusion?':
+`**Why they ask:** a practical improvement question.
+
+**Answer:**
+"The biggest lever is catalog and agreement coverage for the top categories, so POs are created automatically. Then smart forms for common non-catalog requests, so buyers get complete information the first time. Then simpler approval rules. Then the AI requisition assistant to help requesters. And I'd measure cycle time weekly by category and BU, so we can see where it's still slow."
+
+Tip: Start with automatic PO creation. It's the change that saves the most days.`,
+
+'How do blanket agreements with price breaks work?':
+`**Why they ask:** price breaks are a common agreement feature.
+
+**Answer:**
+"I create a blanket agreement with items, prices and price breaks, by quantity, ship-to organization or dates. Requisitions and POs that reference the agreement get the right price automatically. Cumulative price breaks look at the total quantity released so far; non-cumulative look at each release on its own. For example, $10 each for the first 1,000 units, $9 after that, cumulative. Amount limits and effective dates control how the agreement is used, and automatic sourcing makes requisitions pick it up."
+
+Tip: Give the cumulative example with numbers. It's the part people get wrong.`,
+
+'How do you configure supplier-managed price changes through the supplier portal?':
+`**Why they ask:** supplier self-service saves buyers time.
+
+**Answer:**
+"I let suppliers request agreement changes through the Supplier Portal as change orders on the agreement. Each change goes for approval by the buyer, and rules can add more approval if the price change is above a percentage. The supplier needs portal access with the right roles. Once approved, the new prices apply to new orders from the effective date, and the agreement revision history keeps the audit trail."
+
+Tip: Mention the percentage-based approval. It's the control that makes buyers comfortable.`,
+
+'What are the key Procurement setups you configure for a new procurement BU?':
+`**Why they ask:** a setup checklist question.
+
+**Answer:**
+"I create the business unit with the procurement and requisitioning functions, and the service provider relationships. Then procurement agents and their access. Then common options, like default currency, line types and document numbering. Then the procurement business function: default ship-to, buyer assignment, receipt and invoice options. Then document styles, approvals, catalogs and content zones. Then supplier site assignments for the BU. And purchasing categories with buyer assignment rules."
+
+Tip: Present it in build order. It shows you've done it more than once.`,
+
+'How does supplier acknowledgment of purchase orders work?':
+`**Why they ask:** acknowledgments confirm supplier commitment on critical orders.
+
+**Answer:**
+"On the PO, I set acknowledgment required, at document or schedule level, with a due date. The supplier accepts, rejects or proposes changes in the Supplier Portal or through B2B. The buyer reviews any proposed changes and accepts or rejects them, which creates a change order. Pending acknowledgments are monitored with OTBI or infolets. I use it for long-lead or critical items, where we need the supplier's committed dates."
+
+Tip: Say when you'd use it. Not every PO needs one.`,
+
+'How do you exchange POs and invoices electronically with suppliers in Fusion?':
+`**Why they ask:** B2B integration is common with large suppliers.
+
+**Answer:**
+"Fusion's B2B layer is the Collaboration Messaging Framework. It supports OAGIS XML and cXML. EDI, like X12 850, 855, 856 and 810, usually goes through a B2B service provider or OIC with an EDI translator. Setup includes trading partners, collaboration documents, delivery methods, and supplier associations. The messages are outbound POs, inbound PO acknowledgments, inbound ASNs and inbound invoices. I monitor them in Collaboration Messaging History."
+
+Tip: Name the EDI transaction numbers. It shows you've worked with real EDI.`,
+
+'What is spend authorization or sourcing compliance and why does it matter?':
+`**Why they ask:** off-contract spending wastes money.
+
+**Answer:**
+"It makes sure purchases go through approved suppliers and agreements. The approved supplier list and sourcing rules point requisitions to contracted suppliers. Catalog-first buying in Self Service Procurement steers employees to contract items. Non-catalog requests route for extra approval. And reports show off-contract, or maverick, spend. The benefits are better prices, fewer suppliers to manage, and policy compliance."
+
+Tip: Give a typical maverick spend number, like 15–20% before a program and under 5% after.`,
+
+'How does Supplier Qualification Management work?':
+`**Why they ask:** supplier qualification is part of risk management.
+
+**Answer:**
+"I set up questions and questionnaires, for example about certifications, insurance, ESG or diversity. Qualifications and assessments are scored evaluations of a supplier for a business relationship. Initiatives send questionnaires to many suppliers at once. Results feed eligibility, for example only qualified suppliers can be awarded in sourcing. And certificate expiry is tracked so a supplier doesn't stay qualified on an expired document."
+
+Tip: Mention the link to sourcing eligibility. It shows qualification has teeth.`,
+
+'How do you handle requisitions that fail automatic PO creation?':
+`**Why they ask:** a practical support question.
+
+**Answer:**
+"I check the line in Process Requisitions, where the reason is usually shown: no source agreement, inactive supplier site, expired agreement, a price or UOM mismatch, or missing procurement BU access. I fix the data: renew the agreement, add the site assignment, or correct the UOM conversion. Then resubmit, or let the buyer create the PO by hand. And I track repeat failures in a report, so causes like expiring agreements are fixed before users hit them."
+
+Tip: Mention tracking expiring agreements ahead of time. Prevention beats fixing.`,
+
+'How do you set up buyer assignment rules?':
+`**Why they ask:** a setup question about routing work.
+
+**Answer:**
+"First the buyers are set up as procurement agents. Then buyer assignment rules route requisition lines to buyers by category, BU, requester location or amount. For example, all IT categories go to the IT buyer, and anything over $100,000 goes to a senior buyer. Lines with no match go to a default buyer. I review workload balance from time to time, because one buyer can end up with half the lines."
+
+Tip: Give a rule example. It makes the setup easy to picture.`,
+
+'What are line types and why do they matter?':
+`**Why they ask:** wrong line types cause AP matching problems.
+
+**Answer:**
+"Goods lines are quantity times price, received in units. Fixed-price service lines are amount-based and received by amount. Rate-based lines, like temp labor, are rate times hours. The line type decides how receiving works, whether matching is by quantity or amount, and the accounting. Using a goods line for a service is a classic mistake that leaves AP unable to match the invoice."
+
+Tip: Give the classic mistake. It's what the question is probing for.`,
+
+'How would you transform procurement with digital tools on Oracle?':
+`**Why they ask:** a leadership question about vision.
+
+**Answer:**
+"I'd start with guided buying, catalogs and smart forms, to increase compliance. Then sourcing automation and contract life cycle management. Supplier risk and ESG built into onboarding and monitoring. Touchless P2P with automatic POs and e-invoicing. AI agents for supplier questions, contract analysis and preparing for negotiations. Spend analytics with automatic classification. And I'd measure it with spend under management, savings and cycle times."
+
+Tip: Tie each tool to a KPI. Leaders fund transformations that show results.`,
+
+};

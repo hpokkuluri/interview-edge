@@ -1,48 +1,11 @@
 // Oracle Modules — Inventory, Receiving & Logistics. Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-inv'] = (QB['ora-mod-inv'] || []).concat([
-['Setup', 'What is the difference between locator control options?',
-`- **No locator control**, **prespecified** (locators must exist), **dynamic entry** (created on the fly), **item level** (follow item attribute).
-- Set at org, subinventory or item level (most restrictive wins depending on settings).
-- Prespecified is common for controlled warehouses.`, 'D'],
-
-['Transactions', 'What is a move order and when is it used?',
-`- A **request to move material** within an org: replenishment, material issue requests, pick wave (sales order picking), work order component picking.
-- Approval possible; allocation to source locators; transaction on completion.`, 'D'],
-
-['Transactions', 'What are transaction reasons and why use them?',
-`- Codes explaining **why** a transaction happened (damage, count correction, sample, scrap).
-- Used for reporting, approvals, and root-cause analysis of adjustments.`, 'B'],
-
-['Counts', 'What is a physical inventory and its key steps in Fusion?',
-`- **Define** physical inventory (subinventories, freeze options).
-- **Take snapshot** of on-hand.
-- **Generate tags**, **count**, enter tag counts.
-- **Review and approve** adjustments (tolerances).
-- **Post adjustments**; reconcile value with finance.`, 'B'],
-
-['Receiving', 'What is the Receiving inbound flow with ASNs and inspection?',
-`- Supplier sends **ASN**; receipts created against ASN lines (expected receipts).
-- **Inspection** routing → accept/reject (quality integration).
-- **Put away/delivery** to subinventory/locator.
-- Exceptions: over/under receipts (tolerances), damaged goods returns.`, 'B'],
-
-['Shipping', 'What happens at ship confirm?',
-`- Deliveries are **confirmed** as shipped (quantities, lots/serials, carrier, tracking).
-- **Inventory issued** (sales order issue) → cost accounting (COGS/deferred COGS).
-- **Order lines updated** (shipped), triggering **billing** in orchestration.
-- Documents produced (BOL, packing slip, ASN to customer).
-- Backorders created for short shipments.`, 'D'],
-
-['Logistics', 'How do you handle in-transit inventory between orgs?',
-`- **In-transit shipping network**: shipment from source org creates in-transit inventory (owned by sender or receiver based on FOB/ownership settings).
-- Receipt at destination completes the transfer.
-- Accounting via in-transit accounts; intercompany if legal entities differ.
-- Monitor aging in-transit.`, 'D'],
-
-['Interview', 'What should an inventory contractor be ready to discuss?',
-`- Org/subinventory/locator design and lot/serial control decisions.
-- Cycle count and accuracy programs.
-- Receiving, shipping and transfer flows and their accounting.
-- Data conversion of on-hand with lots/serials.
-- A real troubleshooting story (negative on-hand, uncosted transactions, stuck move orders).`, 'B']
+QB["ora-mod-inv"] = (QB["ora-mod-inv"] || []).concat([
+["Setup", "What is the difference between locator control options?", "**Why they ask:** locator control decides how disciplined the warehouse can be.\n\n**Answer:**\n\"There are four options. No locator control means stock is tracked only to the subinventory. Prespecified means locators must exist before they can be used. Dynamic entry means users can create a locator on the fly while transacting. Item level means it follows the item's own setting. It can be set at the organization, subinventory or item level. For a controlled warehouse I use prespecified, because dynamic entry quickly fills the system with typos like A-01-1 and A-1-01 that are the same bin.\"\n\nTip: Give the typo example. It explains why prespecified is the safe choice.", "D"],
+["Transactions", "What is a move order and when is it used?", "**Why they ask:** move orders sit behind picking and replenishment.\n\n**Answer:**\n\"A move order is a request to move material within an organization. It's used for replenishment, for example topping up a forward pick area; for material issue requests to a department; for pick waves when picking sales orders; and for picking components for work orders. It can need approval, then it's allocated to source locators, and the transaction happens when the move is confirmed.\"\n\nTip: Mention that pick release creates move orders. It links the concept to shipping.", "D"],
+["Transactions", "What are transaction reasons and why use them?", "**Why they ask:** reasons turn adjustments into data you can act on.\n\n**Answer:**\n\"Transaction reasons are codes that explain why a transaction happened, like damage, count correction, sample or scrap. They're used for reporting, for approvals, and for root-cause analysis. For example, if most write-offs at one warehouse are 'damaged in handling', the fix is in the warehouse, not the system.\"\n\nTip: Give an example of a reason code leading to a fix. That's the value.", "B"],
+["Counts", "What is a physical inventory and its key steps in Fusion?", "**Why they ask:** a year-end task with audit visibility.\n\n**Answer:**\n\"I define the physical inventory with the subinventories in scope and whether transactions are frozen. Then I take a snapshot of on-hand. Then generate tags, count, and enter the tag counts. Adjustments are reviewed and approved, with tolerances deciding what needs approval. Then I post the adjustments and reconcile the value change with finance.\"\n\nTip: End with the finance reconciliation. Auditors focus on the value change.", "B"],
+["Receiving", "What is the Receiving inbound flow with ASNs and inspection?", "**Why they ask:** inbound flow affects speed and quality.\n\n**Answer:**\n\"The supplier sends an ASN, so we know what's coming and receipts are created against its lines. If the item needs inspection, it goes to inspection and is accepted or rejected, often with Quality integration. Accepted goods are put away or delivered to a subinventory and locator. Exceptions include over- or under-receipts within tolerances, and returning damaged goods to the supplier.\"\n\nTip: Say receiving against an ASN is faster and more accurate. That's why it's worth pushing suppliers to send them.", "B"],
+["Shipping", "What happens at ship confirm?", "**Why they ask:** ship confirm triggers inventory, costing and billing.\n\n**Answer:**\n\"At ship confirm, the delivery is confirmed as shipped, with quantities, lots or serials, carrier and tracking number. Inventory is issued, which drives cost accounting for COGS or deferred COGS. The order lines are updated to shipped, which triggers billing through orchestration. Documents are produced, like the bill of lading, packing slip and an ASN to the customer. Any short shipment creates a backorder.\"\n\nTip: Say it triggers billing. It shows you see the link to finance.", "D"],
+["Logistics", "How do you handle in-transit inventory between orgs?", "**Why they ask:** in-transit stock is easy to lose track of.\n\n**Answer:**\n\"With an in-transit shipping network, a shipment from the source org puts the stock in transit, owned by the sender or receiver depending on the FOB or ownership setting. Receipt at the destination completes the transfer. Accounting goes through in-transit accounts, and if the orgs belong to different legal entities, intercompany entries too. I monitor in-transit aging, because a shipment that sits in transit for 60 days usually means a missed receipt.\"\n\nTip: Mention aging. It's how you catch missed receipts.", "D"],
+["Interview", "What should an inventory contractor be ready to discuss?", "**Why they ask:** a preparation question.\n\n**Answer:**\n\"I'd be ready to talk about org, subinventory and locator design, and lot and serial control decisions; cycle counting and accuracy programs; receiving, shipping and transfer flows with their accounting; converting on-hand with lots and serials; and one real troubleshooting story, like negative on-hand, uncosted transactions, or stuck move orders, with how I fixed it.\"\n\nTip: Prepare the troubleshooting story in STAR form. It's often asked directly.", "B"]
 ]);

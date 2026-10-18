@@ -1,476 +1,76 @@
 // ora-sfc-scm — generated from src/ora-sfc-scm-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Oracle Senior Functional Consultant (3–5 yrs) — SCM. Format: [module, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Supply Chain Orchestration', 'What is Supply Chain Financial Orchestration (SFO) and when do you need it?',
-`SFO handles the **financial side of supply chain flows that cross legal entities or business units** — e.g. a US company buys goods that are received by its Mexican warehouse, or a sales BU sells goods shipped from another entity's warehouse.
-
-- **Financial orchestration flows** (procurement or shipment flows) define the chain of entities, **transfer pricing rules** and **documentation** (intercompany AR/AP invoices).
-- Physical movement happens once; SFO creates the **logical** intercompany transactions and accounting in each entity.
-- Common for global companies with central procurement or sales entities.
-
-Tip: Mention an example flow you configured and how you tested the intercompany invoices.`, 'D'],
-
-['Order Management', 'How do you design orchestration processes for different order types?',
-`- Group fulfillment patterns: **standard ship**, **drop ship**, **back-to-back**, **configured items (ATO)**, **services/subscriptions**, **returns**.
-- Create an orchestration process per pattern (or copy seeded ones) with steps, task types and **change management** rules.
-- **Process assignment rules** route lines by order type, item type, BU or source.
-- Set **planning/lead times** per step for jeopardy calculation.
-- Test change scenarios: quantity change after scheduling, cancel after pick, change ship-to after release.`, 'D'],
-
-['Order Management', 'What is Global Order Promising (GOP) and how do sourcing rules affect it?',
-`GOP checks **availability** and promises a date for order lines.
-- Considers on-hand, supply (POs, work orders, transfers), lead times and allocations.
-- **Sourcing rules and assignment sets** tell GOP which warehouses (and suppliers) can fulfill — with ranks and percentages.
-- Supports **ATP** (available to promise) and **CTP** (capable to promise — checks component and resource availability for make items).
-- Data is collected from the transaction system into the planning data repository — **data collections** must run regularly.
-
-Tip: A common issue: GOP can't schedule because collections didn't run or sourcing isn't assigned.`, 'D'],
-
-['Order Management', 'How do you handle changes to a sales order that is already in fulfillment?',
-`- Fusion OM uses **change management** in the orchestration process: each step defines whether a change is allowed and what **compensation** pattern runs (e.g. cancel the reservation and reschedule, update the shipment line, or reject the change).
-- Changes from source systems come as **revisions**; OM compares and applies them.
-- After **ship confirm**, changes are blocked; you use returns or credit memos instead.
-- Constraints (processing constraints) can block specific changes by role or status.`, 'D'],
-
-['Order Management', 'What are processing constraints?',
-`Rules that **prevent changes or actions** on orders based on conditions — e.g. "cannot change the ship-to address once the line is pick-released", or "only order administrators can change price after booking".
-- Defined on entities (order header, line) and attributes, with conditions (status) and roles.
-- Prevent data corruption mid-fulfillment and enforce controls.
-- Seeded constraints exist; you add custom ones for business rules.`, 'D'],
-
-['Pricing', 'How would you set up customer-specific pricing with volume discounts?',
-`- Create a **price list** with base prices.
-- Create a **discount list** with **tiered** (volume) adjustments — e.g. 1–99 units 0%, 100–499 5%, 500+ 10%.
-- Build a **pricing strategy** combining the price list and discount list.
-- Create a **pricing segment** for the customer (or customer class) and **assign the strategy** to that segment.
-- Test with orders at each tier and check the price breakdown on the order line.`, 'D'],
-
-['Procurement', 'How do blanket agreements with price breaks work?',
-`- Create a **blanket purchase agreement** with items, prices and **price breaks** (by quantity, ship-to org, or dates).
-- Requisitions and POs that reference the agreement get the right price automatically.
-- **Cumulative** price breaks consider total quantity released so far; **non-cumulative** look at each release.
-- Agreement **amount limits** and **effective dates** control usage.
-- Enable **automatic sourcing** so requisitions pick up the agreement.`, 'D'],
-
-['Procurement', 'How do you configure supplier-managed price changes through the supplier portal?',
-`- Enable suppliers to request **agreement changes** via the **Supplier Portal** (change orders on agreements).
-- Changes go through **approval** by the buyer (and rules by % change).
-- Supplier must be registered with portal access and the right roles.
-- Once approved, the new prices apply to new orders from the effective date.
-- Audit trail kept on the agreement revision history.`, 'D'],
-
-['Procurement', 'What are the key Procurement setups you configure for a new procurement BU?',
-`- **Business unit** with Procurement and Requisitioning functions and **service provider** relationships.
-- **Procurement agents** and their access.
-- **Common options** (default currency, line types, document numbering).
-- **Configure procurement business function** (default ship-to, buyer assignment, receipt/invoice options).
-- **Document styles**, **approvals**, **catalogs and content zones**.
-- **Supplier site assignments** for the BU.
-- **Purchasing categories** and **buyer assignment rules**.`, 'B'],
-
-['Procurement', 'How does supplier acknowledgment of purchase orders work?',
-`- On the PO, set **acknowledgment required** (document, schedule-level) with a due date.
-- Supplier acknowledges (accept/reject, propose changes) in the **Supplier Portal** or via B2B.
-- Buyer reviews proposed changes and accepts/rejects them, creating a change order.
-- Monitor pending acknowledgments with OTBI/infolets.
-
-Useful for long-lead or critical items where you need the supplier's committed dates.`, 'D'],
-
-['B2B', 'How do you exchange POs and invoices electronically with suppliers in Fusion?',
-`- **Collaboration Messaging Framework (CMK)** — Fusion's B2B layer.
-- Supports **OAGIS** XML and **cXML**; EDI (X12 850/855/856/810) usually via a **B2B service provider** or OIC + an EDI translator.
-- Setup: trading partners, **collaboration documents**, delivery methods, and **supplier/customer associations**.
-- Messages: outbound PO, inbound PO acknowledgment, inbound ASN, inbound invoice.
-- Monitor in the **Collaboration Messaging History**.`, 'D'],
-
-['Receiving', 'What is an ASN and how is it used in receiving?',
-`An **Advance Shipment Notice** tells you what a supplier has shipped (items, quantities, lots/serials, expected date) before it arrives.
-- Created by the supplier in the portal or via B2B (EDI 856).
-- Receivers **receive against the ASN** — faster and more accurate.
-- **ASBN** (advance shipment and billing notice) can also create the invoice.
-- Can be required on the PO (ASN reference required) to force suppliers to send them.`, 'B'],
-
-['Receiving', 'How does receipt accounting create accruals and how do you clear old accruals?',
-`- On delivery to inventory or expense (accrue at receipt), Receipt Accounting books **Dr Inventory/Expense, Cr Receipt Accrual**.
-- When the invoice is matched in AP, AP books **Dr Accrual, Cr Liability**; differences go to IPV/variance accounts.
-- Use **Accrual Reconciliation** in Receipt Accounting (Review Receipt Accounting Distributions, accrual balances report) to find accruals with no invoice or mismatches.
-- **Write off** with approval or **clear** after investigation (e.g. PO should be closed).
-- Close POs regularly to stop accruals building up.`, 'D'],
-
-['Inventory', 'What is consigned inventory and how is it handled in Fusion?',
-`**Supplier consignment**: the supplier owns the inventory sitting in your warehouse until you consume it.
-- A **consignment agreement** (BPA with consignment terms) with the supplier.
-- Receipts go into inventory as **consigned** (owned by the supplier) — no liability.
-- When you **consume** it (issue, transfer, or after aging), ownership transfers: a **consumption advice** is created and AP invoices the supplier (or pay-on-use).
-- On-hand shows both owned and consigned quantities.
-
-Customer consignment (your stock at a customer site) is the reverse.`, 'D'],
-
-['Inventory', 'How do you set up and use transfer orders in Fusion?',
-`- **Transfer orders** move inventory between orgs with a full order flow: request → approve → ship → receive.
-- Created from **transfer requests**, planning, min-max, or the internal material transfer UI.
-- Sourced by **sourcing rules**; shipping network and **transfer pricing** (cost or price list) defined.
-- Can create intercompany accounting via SFO if orgs belong to different legal entities.
-- Track status from the Transfer Orders work area.`, 'D'],
-
-['Inventory', 'How do you configure cycle counting with approvals and tolerances?',
-`- Create the **cycle count** for an org with subinventories, classes (ABC) and frequency.
-- **Count tolerances**: quantity % and value thresholds — within tolerance post automatically, otherwise **recount** or **approve**.
-- **Approval required**: always, never, or only if out of tolerance.
-- **Count sequences** generated by schedules; counters enter counts (mobile/web).
-- **Adjustments** post with an account (cycle count adjustment account) and create cost accounting.`, 'D'],
-
-['Inventory', 'What is the difference between available to transact, available to reserve and on-hand?',
-`- **On-hand** — total physical quantity in the location.
-- **Available to reserve** — on-hand minus existing reservations (and some statuses).
-- **Available to transact** — what you can actually move or issue now — excludes quantities that are reserved, in non-transactable subinventories, or with restrictive **material status** (e.g. lot on hold).
-
-Material status (at subinventory, locator, lot, serial) controls which transactions are allowed — e.g. a quarantine status blocks shipping.`, 'B'],
-
-['Costing', 'What are cost organizations, cost books and valuation units in Fusion Cost Management?',
-`- **Cost organization** — a group of inventory orgs that share costing (e.g. a plant and its satellite warehouses).
-- **Cost book** — a set of costing policies; primary book for financial reporting, plus optional others (e.g. for management or local GAAP).
-- **Valuation structure / valuation unit** — the level at which costs are kept (e.g. by cost org, by cost org + subinventory, or by lot).
-- **Cost profiles** assign the cost method (standard, average, FIFO) to items via **item cost profiles** and defaults.
-
-These replace EBS's per-org cost method.`, 'D'],
-
-['Costing', 'How do you troubleshoot an inventory transaction that hasn\'t been costed?',
-`- Check **Transfer Transactions from Inventory to Costing** ran and succeeded.
-- Look at **Review Cost Accounting Processes** / **Cost Processor errors**: missing cost, missing item cost profile, missing valuation unit, period closed in costing.
-- Check the **cost accounting distributions** for errors in Create Cost Accounting (SLA account errors).
-- Fix the root cause (e.g. define the missing standard cost), then re-run the cost processor.
-- Make sure the cost period is open.`, 'D'],
-
-['Costing', 'How do landed costs work in Fusion?',
-`**Landed Cost Management** adds freight, duties, insurance and other charges to the item cost:
-- Define **charge references** and **allocation basis** (quantity, weight, value, volume).
-- Estimate charges on the PO (via **landed cost charge templates**) and/or use actuals from **trade operations** and AP invoices.
-- Charges are allocated to receipt lines and included in inventory valuation (and COGS when sold).
-- Variances between estimated and actual charges are adjusted.
-
-Improves margin accuracy for imported goods.`, 'D'],
-
-['Product Hub', 'What is a New Item Request (NIR) and how is it configured?',
-`A **New Item Request** is a governed workflow for creating items.
-- Item classes are configured for **NIR**: which **entities** (attributes, structures, AML) are required and the **workflow steps** (definition, approval) with assignees.
-- Requester submits the NIR; **definition steps** route to teams to fill their attributes (e.g. costing, planning, purchasing).
-- **Approval steps** approve; once approved, the item is created/released.
-- Rules (validation rules) enforce data quality; **notifications** keep people informed.
-
-Benefit: clean item data and auditability instead of free-for-all item creation.`, 'D'],
-
-['Product Hub', 'What are change orders in Product Hub?',
-`Change orders control **changes to existing items or structures** (attributes, BOM components, revisions).
-- Created with affected items and proposed changes.
-- Route through **workflow** (review, approval), similar to NIRs.
-- On approval, changes are **implemented** (optionally with a new revision and effective date).
-- Keeps an audit trail of what changed, who approved and when — important in regulated industries (pharma, medical devices).`, 'D'],
-
-['Quality', 'How does Oracle Quality Management support inspections?',
-`- **Inspection plans** define characteristics to check (e.g. dimension, pH), sampling, and acceptance criteria.
-- Triggered at **receiving**, **work order operations**, or **inventory** (ad-hoc).
-- Inspection results are recorded; failures can trigger **issues**, **nonconformances** and **corrective actions**.
-- Rejected material moves to a quarantine status/subinventory.
-
-Integrated with Receiving (inspection routing) and Manufacturing.`, 'D'],
-
-['Planning', 'Describe how Supply Planning generates planned orders.',
-`- **Data collections** bring on-hand, POs, work orders, sales orders, forecasts, item and BOM data into the planning repository.
-- A **supply plan** runs with plan options (horizon, organizations, demand schedules, constraints).
-- It nets demand against supply, explodes BOMs, applies **lead times**, **order modifiers** (min, max, fixed lot multiple) and **sourcing rules**.
-- Creates **planned orders** (buy, make, transfer) and **recommendations** (reschedule in/out, cancel).
-- Planners review in the Supply Planning work area and **release** planned orders to execution (requisitions, work orders, transfer orders).`, 'D']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Supply Chain Orchestration", "What is Supply Chain Financial Orchestration (SFO) and when do you need it?", "SFO handles the **financial side of supply chain flows that cross legal entities or business units** — e.g. a US company buys goods that are received by its Mexican warehouse, or a sales BU sells goods shipped from another entity's warehouse.\n\n- **Financial orchestration flows** (procurement or shipment flows) define the chain of entities, **transfer pricing rules** and **documentation** (intercompany AR/AP invoices).\n- Physical movement happens once; SFO creates the **logical** intercompany transactions and accounting in each entity.\n- Common for global companies with central procurement or sales entities.\n\nTip: Mention an example flow you configured and how you tested the intercompany invoices.", "D"],
+["Order Management", "How do you design orchestration processes for different order types?", "- Group fulfillment patterns: **standard ship**, **drop ship**, **back-to-back**, **configured items (ATO)**, **services/subscriptions**, **returns**.\n- Create an orchestration process per pattern (or copy seeded ones) with steps, task types and **change management** rules.\n- **Process assignment rules** route lines by order type, item type, BU or source.\n- Set **planning/lead times** per step for jeopardy calculation.\n- Test change scenarios: quantity change after scheduling, cancel after pick, change ship-to after release.", "D"],
+["Order Management", "What is Global Order Promising (GOP) and how do sourcing rules affect it?", "GOP checks **availability** and promises a date for order lines.\n- Considers on-hand, supply (POs, work orders, transfers), lead times and allocations.\n- **Sourcing rules and assignment sets** tell GOP which warehouses (and suppliers) can fulfill — with ranks and percentages.\n- Supports **ATP** (available to promise) and **CTP** (capable to promise — checks component and resource availability for make items).\n- Data is collected from the transaction system into the planning data repository — **data collections** must run regularly.\n\nTip: A common issue: GOP can't schedule because collections didn't run or sourcing isn't assigned.", "D"],
+["Order Management", "How do you handle changes to a sales order that is already in fulfillment?", "- Fusion OM uses **change management** in the orchestration process: each step defines whether a change is allowed and what **compensation** pattern runs (e.g. cancel the reservation and reschedule, update the shipment line, or reject the change).\n- Changes from source systems come as **revisions**; OM compares and applies them.\n- After **ship confirm**, changes are blocked; you use returns or credit memos instead.\n- Constraints (processing constraints) can block specific changes by role or status.", "D"],
+["Order Management", "What are processing constraints?", "Rules that **prevent changes or actions** on orders based on conditions — e.g. \"cannot change the ship-to address once the line is pick-released\", or \"only order administrators can change price after booking\".\n- Defined on entities (order header, line) and attributes, with conditions (status) and roles.\n- Prevent data corruption mid-fulfillment and enforce controls.\n- Seeded constraints exist; you add custom ones for business rules.", "D"],
+["Pricing", "How would you set up customer-specific pricing with volume discounts?", "- Create a **price list** with base prices.\n- Create a **discount list** with **tiered** (volume) adjustments — e.g. 1–99 units 0%, 100–499 5%, 500+ 10%.\n- Build a **pricing strategy** combining the price list and discount list.\n- Create a **pricing segment** for the customer (or customer class) and **assign the strategy** to that segment.\n- Test with orders at each tier and check the price breakdown on the order line.", "D"],
+["Procurement", "How do blanket agreements with price breaks work?", "**Why they ask:** price breaks are a common agreement feature.\n\n**Answer:**\n\"I create a blanket agreement with items, prices and price breaks, by quantity, ship-to organization or dates. Requisitions and POs that reference the agreement get the right price automatically. Cumulative price breaks look at the total quantity released so far; non-cumulative look at each release on its own. For example, $10 each for the first 1,000 units, $9 after that, cumulative. Amount limits and effective dates control how the agreement is used, and automatic sourcing makes requisitions pick it up.\"\n\nTip: Give the cumulative example with numbers. It's the part people get wrong.", "D"],
+["Procurement", "How do you configure supplier-managed price changes through the supplier portal?", "**Why they ask:** supplier self-service saves buyers time.\n\n**Answer:**\n\"I let suppliers request agreement changes through the Supplier Portal as change orders on the agreement. Each change goes for approval by the buyer, and rules can add more approval if the price change is above a percentage. The supplier needs portal access with the right roles. Once approved, the new prices apply to new orders from the effective date, and the agreement revision history keeps the audit trail.\"\n\nTip: Mention the percentage-based approval. It's the control that makes buyers comfortable.", "D"],
+["Procurement", "What are the key Procurement setups you configure for a new procurement BU?", "**Why they ask:** a setup checklist question.\n\n**Answer:**\n\"I create the business unit with the procurement and requisitioning functions, and the service provider relationships. Then procurement agents and their access. Then common options, like default currency, line types and document numbering. Then the procurement business function: default ship-to, buyer assignment, receipt and invoice options. Then document styles, approvals, catalogs and content zones. Then supplier site assignments for the BU. And purchasing categories with buyer assignment rules.\"\n\nTip: Present it in build order. It shows you've done it more than once.", "B"],
+["Procurement", "How does supplier acknowledgment of purchase orders work?", "**Why they ask:** acknowledgments confirm supplier commitment on critical orders.\n\n**Answer:**\n\"On the PO, I set acknowledgment required, at document or schedule level, with a due date. The supplier accepts, rejects or proposes changes in the Supplier Portal or through B2B. The buyer reviews any proposed changes and accepts or rejects them, which creates a change order. Pending acknowledgments are monitored with OTBI or infolets. I use it for long-lead or critical items, where we need the supplier's committed dates.\"\n\nTip: Say when you'd use it. Not every PO needs one.", "D"],
+["B2B", "How do you exchange POs and invoices electronically with suppliers in Fusion?", "**Why they ask:** B2B integration is common with large suppliers.\n\n**Answer:**\n\"Fusion's B2B layer is the Collaboration Messaging Framework. It supports OAGIS XML and cXML. EDI, like X12 850, 855, 856 and 810, usually goes through a B2B service provider or OIC with an EDI translator. Setup includes trading partners, collaboration documents, delivery methods, and supplier associations. The messages are outbound POs, inbound PO acknowledgments, inbound ASNs and inbound invoices. I monitor them in Collaboration Messaging History.\"\n\nTip: Name the EDI transaction numbers. It shows you've worked with real EDI.", "D"],
+["Receiving", "What is an ASN and how is it used in receiving?", "**Why they ask:** a basic inbound question.\n\n**Answer:**\n\"An Advance Shipment Notice tells us what a supplier has shipped, items, quantities, lots or serials, and expected date, before it arrives. The supplier creates it in the portal or sends it by B2B, as EDI 856. Receivers receive against the ASN, which is faster and more accurate. An ASBN, advance shipment and billing notice, can also create the invoice. And the PO can require an ASN reference, forcing suppliers to send them.\"\n\nTip: Mention requiring ASNs on the PO. It's how you get suppliers to comply.", "B"],
+["Receiving", "How does receipt accounting create accruals and how do you clear old accruals?", "**Why they ask:** stale accruals are a common audit finding.\n\n**Answer:**\n\"With accrue at receipt, delivery to inventory or expense books Dr Inventory or Expense, Cr Receipt Accrual. When AP matches the invoice, AP books Dr Accrual, Cr Liability, and differences go to variance accounts. To find problems, I use Accrual Reconciliation in Receipt Accounting and the accrual balances report, which show accruals with no invoice or mismatches. After investigation, I write them off with approval or clear them, often because the PO should have been closed. And I close POs regularly so accruals don't build up.\"\n\nTip: Say \"close POs regularly\". It's the prevention step.", "D"],
+["Inventory", "What is consigned inventory and how is it handled in Fusion?", "**Why they ask:** consignment changes ownership and accounting.\n\n**Answer:**\n\"With supplier consignment, the supplier owns stock sitting in our warehouse until we use it. There's a consignment agreement, a blanket agreement with consignment terms. Receipts go into inventory as consigned, so there's no liability. When we consume it, by issue, transfer or after an aging period, ownership transfers: a consumption advice is created and the supplier is paid through AP or pay-on-use. On-hand shows both owned and consigned quantities. Customer consignment is the reverse: our stock at a customer's site.\"\n\nTip: Explain when ownership transfers. It's the heart of consignment.", "D"],
+["Inventory", "How do you set up and use transfer orders in Fusion?", "**Why they ask:** transfer orders are the Fusion way to move stock between orgs.\n\n**Answer:**\n\"Transfer orders move inventory between orgs with a full flow: request, approve, ship, receive. They're created from transfer requests, planning, min-max or the internal material transfer page. Sourcing rules pick the source, and the shipping network and transfer pricing, at cost or a price list, are defined. If the orgs are in different legal entities, supply chain financial orchestration creates intercompany accounting. I track status in the Transfer Orders work area.\"\n\nTip: Mention financial orchestration for cross-entity transfers.", "D"],
+["Inventory", "How do you configure cycle counting with approvals and tolerances?", "**Why they ask:** a hands-on setup question.\n\n**Answer:**\n\"I create the cycle count for an org with subinventories, ABC classes and frequency. I set count tolerances, a quantity percentage and value thresholds. Counts within tolerance post automatically; outside, they need a recount or approval. Approval can be always, never, or only out of tolerance. Count sequences are generated by schedule, and counters enter counts on mobile or web. Adjustments post to a cycle count adjustment account and create cost accounting.\"\n\nTip: Give example tolerances, like 2% for A items and 5% for C.", "D"],
+["Inventory", "What is the difference between available to transact, available to reserve and on-hand?", "**Why they ask:** a classic support question.\n\n**Answer:**\n\"On-hand is the total physical quantity. Available to reserve is on-hand minus existing reservations and some statuses. Available to transact is what you can actually move or issue right now, excluding reserved quantities, stock in non-transactable subinventories, and stock with a restrictive material status, like a lot on hold. Material status, at subinventory, locator, lot or serial, decides which transactions are allowed, so a quarantine status blocks shipping.\"\n\nTip: Use a quarantined lot as the example. It explains why on-hand isn't always usable.", "B"],
+["Costing", "What are cost organizations, cost books and valuation units in Fusion Cost Management?", "- **Cost organization** — a group of inventory orgs that share costing (e.g. a plant and its satellite warehouses).\n- **Cost book** — a set of costing policies; primary book for financial reporting, plus optional others (e.g. for management or local GAAP).\n- **Valuation structure / valuation unit** — the level at which costs are kept (e.g. by cost org, by cost org + subinventory, or by lot).\n- **Cost profiles** assign the cost method (standard, average, FIFO) to items via **item cost profiles** and defaults.\n\nThese replace EBS's per-org cost method.", "D"],
+["Costing", "How do you troubleshoot an inventory transaction that hasn't been costed?", "- Check **Transfer Transactions from Inventory to Costing** ran and succeeded.\n- Look at **Review Cost Accounting Processes** / **Cost Processor errors**: missing cost, missing item cost profile, missing valuation unit, period closed in costing.\n- Check the **cost accounting distributions** for errors in Create Cost Accounting (SLA account errors).\n- Fix the root cause (e.g. define the missing standard cost), then re-run the cost processor.\n- Make sure the cost period is open.", "D"],
+["Costing", "How do landed costs work in Fusion?", "**Landed Cost Management** adds freight, duties, insurance and other charges to the item cost:\n- Define **charge references** and **allocation basis** (quantity, weight, value, volume).\n- Estimate charges on the PO (via **landed cost charge templates**) and/or use actuals from **trade operations** and AP invoices.\n- Charges are allocated to receipt lines and included in inventory valuation (and COGS when sold).\n- Variances between estimated and actual charges are adjusted.\n\nImproves margin accuracy for imported goods.", "D"],
+["Product Hub", "What is a New Item Request (NIR) and how is it configured?", "A **New Item Request** is a governed workflow for creating items.\n- Item classes are configured for **NIR**: which **entities** (attributes, structures, AML) are required and the **workflow steps** (definition, approval) with assignees.\n- Requester submits the NIR; **definition steps** route to teams to fill their attributes (e.g. costing, planning, purchasing).\n- **Approval steps** approve; once approved, the item is created/released.\n- Rules (validation rules) enforce data quality; **notifications** keep people informed.\n\nBenefit: clean item data and auditability instead of free-for-all item creation.", "D"],
+["Product Hub", "What are change orders in Product Hub?", "Change orders control **changes to existing items or structures** (attributes, BOM components, revisions).\n- Created with affected items and proposed changes.\n- Route through **workflow** (review, approval), similar to NIRs.\n- On approval, changes are **implemented** (optionally with a new revision and effective date).\n- Keeps an audit trail of what changed, who approved and when — important in regulated industries (pharma, medical devices).", "D"],
+["Quality", "How does Oracle Quality Management support inspections?", "- **Inspection plans** define characteristics to check (e.g. dimension, pH), sampling, and acceptance criteria.\n- Triggered at **receiving**, **work order operations**, or **inventory** (ad-hoc).\n- Inspection results are recorded; failures can trigger **issues**, **nonconformances** and **corrective actions**.\n- Rejected material moves to a quarantine status/subinventory.\n\nIntegrated with Receiving (inspection routing) and Manufacturing.", "D"],
+["Planning", "Describe how Supply Planning generates planned orders.", "- **Data collections** bring on-hand, POs, work orders, sales orders, forecasts, item and BOM data into the planning repository.\n- A **supply plan** runs with plan options (horizon, organizations, demand schedules, constraints).\n- It nets demand against supply, explodes BOMs, applies **lead times**, **order modifiers** (min, max, fixed lot multiple) and **sourcing rules**.\n- Creates **planned orders** (buy, make, transfer) and **recommendations** (reschedule in/out, cancel).\n- Planners review in the Supply Planning work area and **release** planned orders to execution (requisitions, work orders, transfer orders).", "D"]
 ]);
 
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Planning', 'What are sourcing rules, bills of distribution and assignment sets?',
-`- **Sourcing rule** — for an org (or item), where supply comes from: buy from supplier X (60%) and Y (40%), or transfer from org A. Ranks give priority.
-- **Bill of distribution** — sourcing across multiple orgs (global source chains).
-- **Assignment set** — assigns sourcing rules at different levels: global, org, category, item, item-org. The most specific level wins.
-
-Used by Planning, GOP, min-max and automatic requisition sourcing.`, 'D'],
-
-['Planning', 'What is the difference between a forecast and a demand plan?',
-`- A **forecast** is a prediction of future demand for items (from history, statistical models or input).
-- A **demand plan** (Demand Management) manages forecasts across levels (product family, region, customer), blends statistical forecasts with sales input and **consensus**, and measures **forecast accuracy**.
-- The approved demand plan feeds the **supply plan** as demand.
-
-Good answer: mention forecast consumption (sales orders consume the forecast to avoid double counting).`, 'D'],
-
-['Shipping', 'How do you configure shipping for a new warehouse?',
-`- **Shipping parameters** for the org (pick release defaults, staging subinventory, auto-pack, ship confirm rules).
-- **Picking rules** (FIFO/FEFO, locator order).
-- **Release rules and release sequence rules.**
-- **Document sets** (pick slips, packing slips, BOL) and printers.
-- **Carriers and ship methods**, freight terms, shipping costs.
-- **Shipping exceptions** and their actions.
-- Test pick → pack → ship confirm → invoicing.`, 'D'],
-
-['Shipping', 'What are shipping exceptions?',
-`Exceptions flag problems during shipping — e.g. **short pick**, damaged goods, missing documents.
-- Defined with a severity (error, warning, info) and handling.
-- Can be logged manually or automatically.
-- Errors block ship confirm until resolved.
-- Reports help track recurring warehouse problems.`, 'B'],
-
-['Logistics', 'What does Oracle Transportation Management (OTM) add to Fusion SCM?',
-`OTM handles **transportation planning and execution**:
-- Load building and **route optimization**.
-- **Carrier selection** and **rate management**.
-- **Tendering** to carriers and tracking.
-- **Freight payment and audit**.
-- Integrates with Fusion Shipping (shipments go to OTM; planned shipments come back).
-
-Useful for high-volume shippers to reduce freight cost.`, 'D'],
-
-['Logistics', 'What is Warehouse Management (WMS) and how is it different from standard Inventory?',
-`- Standard Inventory tracks quantities by org/subinventory/locator.
-- **WMS** adds **task-based** warehouse operations: directed putaway, wave picking, **LPNs** (license plate numbers), cartonization, cross-docking, labor management, mobile RF devices.
-- Fusion now has **Warehouse Management** built on Inventory, and many companies use specialized WMS (Manhattan, Blue Yonder) integrated via APIs.
-
-LPN = a container ID (pallet/case) you transact as a unit.`, 'D'],
-
-['Manufacturing', 'What is backflushing?',
-`**Backflushing** automatically issues components when an operation or assembly is reported complete, instead of issuing them manually beforehand.
-- **Supply type** on the component: Push (manual issue), **Assembly Pull** (at completion), **Operation Pull** (at operation completion), Bulk, Phantom.
-- Reduces transactions for high-volume, low-value components.
-- Risk: inaccurate on-hand if actual usage differs (scrap) — needs good BOM accuracy and scrap reporting.`, 'D'],
-
-['Manufacturing', 'How is work order cost calculated and how are variances recognized?',
-`- **Standard cost**: assembly valued at standard; actual material, resource and overhead charged to the work order. At **close**, variances are calculated: material usage, resource efficiency, rate variances.
-- **Actual/average cost**: assembly cost = actual costs charged.
-- Accounting: Dr WIP for issues and resources; Cr WIP / Dr Inventory at completion; variances to variance accounts at close.
-
-Closing work orders on time is key for clean month-end costing.`, 'D'],
-
-['Integration', 'What accounting does a sales order shipment create, and where?',
-`- At **ship confirm**: Cost Management creates **Dr COGS (or Deferred COGS), Cr Inventory** at the item cost.
-- At **invoicing** in AR: **Dr Receivable, Cr Revenue (or Deferred Revenue), Cr Tax**.
-- If revenue is deferred (e.g. acceptance clause), **COGS is deferred too** and recognized in line with revenue (COGS matching to revenue recognition).
-- SLA creates accounting in each subledger; transfer to GL.`, 'D'],
-
-['Integration', 'How do you integrate a third-party logistics (3PL) provider with Fusion?',
-`- **Outbound**: shipment requests (from OM/pick release) sent to the 3PL — via OIC, B2B messaging or file.
-- **Inbound**: ship confirmations (with tracking, lots/serials) back to Fusion via REST/SOAP shipment confirmation services; receipts via receiving APIs.
-- Inventory sync: periodic on-hand snapshots to reconcile.
-- Error handling and monitoring dashboards; idempotency for retries.
-- Often modeled as an external warehouse org with **Fulfillment** connectors in OM.`, 'D'],
-
-['Integration', 'What is Oracle Integration Cloud (OIC) and how is it used with SCM?',
-`OIC is Oracle's integration platform:
-- **Adapters**: Fusion ERP Cloud adapter (REST/SOAP, business events, FBDI), FTP, database, REST, EDI.
-- **Business events** (e.g. "Purchase Order Approved") trigger integrations in real time.
-- **Scheduled integrations** for batch (e.g. nightly item sync).
-- **Process automation** and **B2B** capabilities.
-
-Typical SCM uses: PO to suppliers, ASN/receipts from 3PLs, item sync to PLM/MES, orders from e-commerce.`, 'B'],
-
-['Reporting', 'What OTBI subject areas would you use for procurement spend analysis?',
-`- **Procurement – Spend Real Time** — invoice-based spend by supplier, category, BU.
-- **Purchasing – Purchase Orders Real Time** — PO amounts, status, buyer.
-- **Procurement – Requisitions Real Time** — requisition cycle times.
-- **Supplier Performance**, **Agreements** subject areas.
-- Combine with categories and cost centers for slice-and-dice.
-
-Also the prebuilt **Procurement dashboards** and **Spend Classification** (AI-based categorization).`, 'D'],
-
-['Security', 'How is SCM data security set up in Fusion?',
-`- **Job roles** (Buyer, Warehouse Manager, Order Manager) carry function privileges.
-- **Data access**: by **BU** (procurement, requisitioning, order management), by **inventory organization** (Manage Data Access for Users / inventory org access), by **cost organization** for costing.
-- **Procurement agents** add document-level access.
-- **Item data security** in Product Hub by item class and roles.
-- Test with real user accounts; avoid giving superuser roles to business users.`, 'D'],
-
-['Data Migration', 'What is your approach to converting open sales orders and POs?',
-`- **Cutover strategy**: convert only **open lines** (not shipped/received); closed history stays in legacy or a data archive.
-- **POs**: load via Purchase Order Import FBDI with the **remaining quantity**, original PO number in a reference field; approval bypass for converted docs.
-- **Sales orders**: load via order import (FBDI or REST) with original order references, pricing frozen to legacy prices.
-- **Open receipts / RNI**: decide accrual treatment with finance.
-- Reconcile quantities and values; business signs off after each mock.`, 'D'],
-
-['Testing', 'How do you plan system integration testing (SIT) for an SCM implementation?',
-`- Build **end-to-end scenarios** covering P2P, O2C, plan-to-produce, returns and intercompany flows — across modules and integrations.
-- Include **finance**: verify accounting for each step.
-- Use converted data from a mock load.
-- Assign testers by role; track defects in a tool with severity and owners.
-- Run **regression cycles** after fixes.
-- Exit criteria: no open critical/high defects, key scenarios passed and signed.`, 'B'],
-
-['Behavioral', 'Tell me about a time you improved a supply chain process using Oracle.',
-`## Example (STAR)
-- **Situation:** Buyers spent hours each week converting requisitions to POs manually.
-- **Task:** I owned procurement configuration.
-- **Action:** I analyzed 6 months of requisitions; 70% were repeat items from 15 suppliers. I set up blanket agreements with those suppliers, loaded catalogs and enabled automatic PO creation.
-- **Result:** About 65% of requisitions became POs without buyer touch; buyers moved to sourcing work; PO cycle time dropped from 3 days to same-day.
-
-Tip: Quote the before/after metric.`, 'B'],
-
-['Behavioral', 'How do you work with the finance team on SCM topics?',
-`- Involve finance early on **costing method, accrual and variance accounts**, intercompany flows and inventory valuation.
-- Walk them through accounting for each SCM transaction in CRPs.
-- Agree month-end responsibilities (accrual review, cost close, inventory reconciliation).
-- Build shared reports (inventory valuation to GL reconciliation).
-- Speak their language — debits/credits, not just screens.`, 'B'],
-
-['Behavioral', 'Describe a situation where a go-live didn\'t go as planned.',
-`## Example (STAR)
-- **Situation:** At go-live, pick release created tasks for the wrong subinventory, and the warehouse couldn't ship.
-- **Task:** I owned shipping configuration.
-- **Action:** I quickly found the picking rule was using a test subinventory that had been converted with stock. I corrected the rule, re-released the orders, and moved stock with the warehouse lead. Then I added a cutover checklist item to validate picking rules against production data.
-- **Result:** Shipping resumed within four hours; we met the day's shipments with overtime.
-
-What matters: calm triage, root cause, prevention.`, 'B'],
-
-['Order Management', 'How do configured (ATO) items flow through Order Management?',
-`- **Assemble-to-order (ATO)** model items are configured by the customer (via **Configurator**) at order entry.
-- The selected options create a **configured item** (unique item/BOM) when the order is scheduled.
-- A **work order** (or supply from a supplier for buy ATO) is created and reserved to the order.
-- After completion, it ships like a normal item.
-- Pricing comes from model + options.
-
-PTO (pick-to-order) kits are picked from stock rather than built.`, 'D'],
-
-['Procurement', 'What is spend authorization or sourcing compliance and why does it matter?',
-`It ensures purchases go through **approved suppliers and agreements**:
-- **Approved Supplier List (ASL)** and **sourcing rules** point requisitions to contracted suppliers.
-- Catalog-first buying through Self Service Procurement.
-- **Non-catalog requests** route for extra approval.
-- Reports on off-contract spend ("maverick spend").
-
-Benefits: better prices, fewer suppliers to manage, compliance with policies.`, 'B'],
-
-['Procurement', 'How does Supplier Qualification Management work?',
-`- **Questions** and **questionnaires** (e.g. certifications, insurance, ESG, diversity).
-- **Qualifications** and **assessments** — scored evaluations of a supplier for a business relationship.
-- **Initiatives** send questionnaires to many suppliers at once.
-- Results feed supplier eligibility (e.g. only qualified suppliers can be awarded in sourcing).
-- Expiry tracking for certificates.`, 'D'],
-
-['Inventory', 'How do you handle lot expiry and FEFO in Oracle?',
-`- Enable **lot control** with **shelf life** (days) on the item; lots get an expiration date at receipt.
-- **Picking rules** with **FEFO** (first expired, first out) allocate the nearest-expiring lots first.
-- **Material status** can block expired lots from being shipped.
-- Reports/alerts for lots near expiry; lot **grade** and **retest dates** for pharma.
-- Expired lots: move to a quarantine subinventory or scrap with approval.`, 'D'],
-
-['SCM Basics', 'What setups must exist before you can create an inventory organization in Fusion?',
-`- **Location** (address).
-- **Legal entity** and **business unit** (profit center BU).
-- **Item master organization**.
-- **Calendar** (workday calendar for scheduling).
-- **Cost organization** relationship (for costing).
-- **Ledger** association via legal entity/BU.
-
-Then: inventory org parameters, subinventories, locators, shipping/receiving parameters, and cost setups.`, 'B'],
-
-['Quarterly Updates', 'How do you approach quarterly update testing for SCM?',
-`- Review **What's New** for Procurement, Inventory, OM, Costing, Product Hub.
-- Run an **automated regression** pack for P2P, O2C, transfers, cost close and key integrations (OIC, B2B).
-- Check custom reports (BIP/OTBI), Visual Builder extensions and **REST API** changes.
-- Test opt-in features in a sandbox before enabling.
-- Plan a quick smoke test after the PROD update weekend.`, 'B']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Planning", "What are sourcing rules, bills of distribution and assignment sets?", "- **Sourcing rule** — for an org (or item), where supply comes from: buy from supplier X (60%) and Y (40%), or transfer from org A. Ranks give priority.\n- **Bill of distribution** — sourcing across multiple orgs (global source chains).\n- **Assignment set** — assigns sourcing rules at different levels: global, org, category, item, item-org. The most specific level wins.\n\nUsed by Planning, GOP, min-max and automatic requisition sourcing.", "D"],
+["Planning", "What is the difference between a forecast and a demand plan?", "- A **forecast** is a prediction of future demand for items (from history, statistical models or input).\n- A **demand plan** (Demand Management) manages forecasts across levels (product family, region, customer), blends statistical forecasts with sales input and **consensus**, and measures **forecast accuracy**.\n- The approved demand plan feeds the **supply plan** as demand.\n\nGood answer: mention forecast consumption (sales orders consume the forecast to avoid double counting).", "D"],
+["Shipping", "How do you configure shipping for a new warehouse?", "**Why they ask:** a setup checklist question.\n\n**Answer:**\n\"I set shipping parameters for the org: pick release defaults, staging subinventory, auto-pack and ship confirm rules. Picking rules, like FIFO or FEFO and locator order. Release rules and release sequence rules. Document sets, pick slips, packing slips and BOL, with printers. Carriers and ship methods, freight terms and costs. Shipping exceptions and their actions. Then I test the full flow: pick, pack, ship confirm, and invoicing.\"\n\nTip: End with testing through to invoicing. It shows you check the whole chain.", "D"],
+["Shipping", "What are shipping exceptions?", "**Why they ask:** a basic shipping question.\n\n**Answer:**\n\"Shipping exceptions flag problems during shipping, like a short pick, damaged goods or missing documents. Each has a severity, error, warning or information, and a handling rule. They're logged manually or automatically. Errors block ship confirm until resolved. Reports show recurring warehouse problems.\"\n\nTip: Mention that errors block ship confirm. That's the control.", "B"],
+["Logistics", "What does Oracle Transportation Management (OTM) add to Fusion SCM?", "**Why they ask:** OTM is common in high-volume shippers.\n\n**Answer:**\n\"OTM handles transportation planning and execution: load building and route optimization, carrier selection and rate management, tendering to carriers and tracking, and freight payment and audit. It integrates with Fusion Shipping: shipments go to OTM, and planned shipments come back. For high-volume shippers, the main value is lower freight cost.\"\n\nTip: Lead with freight cost reduction. That's the business case.", "D"],
+["Logistics", "What is Warehouse Management (WMS) and how is it different from standard Inventory?", "**Why they ask:** to see if you know when inventory isn't enough.\n\n**Answer:**\n\"Standard Inventory tracks quantities by org, subinventory and locator. WMS adds task-based warehouse operations: directed putaway, wave picking, LPNs, cartonization, cross-docking, labor management and mobile RF. Fusion now has Warehouse Management built on Inventory, and many companies use specialist WMS like Manhattan or Blue Yonder integrated by APIs. An LPN is a container ID, like a pallet or case, that you transact as one unit.\"\n\nTip: Explain LPN in one line. It's often a follow-up question.", "D"],
+["Manufacturing", "What is backflushing?", "**Backflushing** automatically issues components when an operation or assembly is reported complete, instead of issuing them manually beforehand.\n- **Supply type** on the component: Push (manual issue), **Assembly Pull** (at completion), **Operation Pull** (at operation completion), Bulk, Phantom.\n- Reduces transactions for high-volume, low-value components.\n- Risk: inaccurate on-hand if actual usage differs (scrap) — needs good BOM accuracy and scrap reporting.", "D"],
+["Manufacturing", "How is work order cost calculated and how are variances recognized?", "- **Standard cost**: assembly valued at standard; actual material, resource and overhead charged to the work order. At **close**, variances are calculated: material usage, resource efficiency, rate variances.\n- **Actual/average cost**: assembly cost = actual costs charged.\n- Accounting: Dr WIP for issues and resources; Cr WIP / Dr Inventory at completion; variances to variance accounts at close.\n\nClosing work orders on time is key for clean month-end costing.", "D"],
+["Integration", "What accounting does a sales order shipment create, and where?", "- At **ship confirm**: Cost Management creates **Dr COGS (or Deferred COGS), Cr Inventory** at the item cost.\n- At **invoicing** in AR: **Dr Receivable, Cr Revenue (or Deferred Revenue), Cr Tax**.\n- If revenue is deferred (e.g. acceptance clause), **COGS is deferred too** and recognized in line with revenue (COGS matching to revenue recognition).\n- SLA creates accounting in each subledger; transfer to GL.", "D"],
+["Integration", "How do you integrate a third-party logistics (3PL) provider with Fusion?", "- **Outbound**: shipment requests (from OM/pick release) sent to the 3PL — via OIC, B2B messaging or file.\n- **Inbound**: ship confirmations (with tracking, lots/serials) back to Fusion via REST/SOAP shipment confirmation services; receipts via receiving APIs.\n- Inventory sync: periodic on-hand snapshots to reconcile.\n- Error handling and monitoring dashboards; idempotency for retries.\n- Often modeled as an external warehouse org with **Fulfillment** connectors in OM.", "D"],
+["Integration", "What is Oracle Integration Cloud (OIC) and how is it used with SCM?", "OIC is Oracle's integration platform:\n- **Adapters**: Fusion ERP Cloud adapter (REST/SOAP, business events, FBDI), FTP, database, REST, EDI.\n- **Business events** (e.g. \"Purchase Order Approved\") trigger integrations in real time.\n- **Scheduled integrations** for batch (e.g. nightly item sync).\n- **Process automation** and **B2B** capabilities.\n\nTypical SCM uses: PO to suppliers, ASN/receipts from 3PLs, item sync to PLM/MES, orders from e-commerce.", "B"],
+["Reporting", "What OTBI subject areas would you use for procurement spend analysis?", "- **Procurement – Spend Real Time** — invoice-based spend by supplier, category, BU.\n- **Purchasing – Purchase Orders Real Time** — PO amounts, status, buyer.\n- **Procurement – Requisitions Real Time** — requisition cycle times.\n- **Supplier Performance**, **Agreements** subject areas.\n- Combine with categories and cost centers for slice-and-dice.\n\nAlso the prebuilt **Procurement dashboards** and **Spend Classification** (AI-based categorization).", "D"],
+["Security", "How is SCM data security set up in Fusion?", "- **Job roles** (Buyer, Warehouse Manager, Order Manager) carry function privileges.\n- **Data access**: by **BU** (procurement, requisitioning, order management), by **inventory organization** (Manage Data Access for Users / inventory org access), by **cost organization** for costing.\n- **Procurement agents** add document-level access.\n- **Item data security** in Product Hub by item class and roles.\n- Test with real user accounts; avoid giving superuser roles to business users.", "D"],
+["Data Migration", "What is your approach to converting open sales orders and POs?", "- **Cutover strategy**: convert only **open lines** (not shipped/received); closed history stays in legacy or a data archive.\n- **POs**: load via Purchase Order Import FBDI with the **remaining quantity**, original PO number in a reference field; approval bypass for converted docs.\n- **Sales orders**: load via order import (FBDI or REST) with original order references, pricing frozen to legacy prices.\n- **Open receipts / RNI**: decide accrual treatment with finance.\n- Reconcile quantities and values; business signs off after each mock.", "D"],
+["Testing", "How do you plan system integration testing (SIT) for an SCM implementation?", "- Build **end-to-end scenarios** covering P2P, O2C, plan-to-produce, returns and intercompany flows — across modules and integrations.\n- Include **finance**: verify accounting for each step.\n- Use converted data from a mock load.\n- Assign testers by role; track defects in a tool with severity and owners.\n- Run **regression cycles** after fixes.\n- Exit criteria: no open critical/high defects, key scenarios passed and signed.", "B"],
+["Behavioral", "Tell me about a time you improved a supply chain process using Oracle.", "## Example (STAR)\n- **Situation:** Buyers spent hours each week converting requisitions to POs manually.\n- **Task:** I owned procurement configuration.\n- **Action:** I analyzed 6 months of requisitions; 70% were repeat items from 15 suppliers. I set up blanket agreements with those suppliers, loaded catalogs and enabled automatic PO creation.\n- **Result:** About 65% of requisitions became POs without buyer touch; buyers moved to sourcing work; PO cycle time dropped from 3 days to same-day.\n\nTip: Quote the before/after metric.", "B"],
+["Behavioral", "How do you work with the finance team on SCM topics?", "- Involve finance early on **costing method, accrual and variance accounts**, intercompany flows and inventory valuation.\n- Walk them through accounting for each SCM transaction in CRPs.\n- Agree month-end responsibilities (accrual review, cost close, inventory reconciliation).\n- Build shared reports (inventory valuation to GL reconciliation).\n- Speak their language — debits/credits, not just screens.", "B"],
+["Behavioral", "Describe a situation where a go-live didn't go as planned.", "## Example (STAR)\n- **Situation:** At go-live, pick release created tasks for the wrong subinventory, and the warehouse couldn't ship.\n- **Task:** I owned shipping configuration.\n- **Action:** I quickly found the picking rule was using a test subinventory that had been converted with stock. I corrected the rule, re-released the orders, and moved stock with the warehouse lead. Then I added a cutover checklist item to validate picking rules against production data.\n- **Result:** Shipping resumed within four hours; we met the day's shipments with overtime.\n\nWhat matters: calm triage, root cause, prevention.", "B"],
+["Order Management", "How do configured (ATO) items flow through Order Management?", "- **Assemble-to-order (ATO)** model items are configured by the customer (via **Configurator**) at order entry.\n- The selected options create a **configured item** (unique item/BOM) when the order is scheduled.\n- A **work order** (or supply from a supplier for buy ATO) is created and reserved to the order.\n- After completion, it ships like a normal item.\n- Pricing comes from model + options.\n\nPTO (pick-to-order) kits are picked from stock rather than built.", "D"],
+["Procurement", "What is spend authorization or sourcing compliance and why does it matter?", "**Why they ask:** off-contract spending wastes money.\n\n**Answer:**\n\"It makes sure purchases go through approved suppliers and agreements. The approved supplier list and sourcing rules point requisitions to contracted suppliers. Catalog-first buying in Self Service Procurement steers employees to contract items. Non-catalog requests route for extra approval. And reports show off-contract, or maverick, spend. The benefits are better prices, fewer suppliers to manage, and policy compliance.\"\n\nTip: Give a typical maverick spend number, like 15–20% before a program and under 5% after.", "B"],
+["Procurement", "How does Supplier Qualification Management work?", "**Why they ask:** supplier qualification is part of risk management.\n\n**Answer:**\n\"I set up questions and questionnaires, for example about certifications, insurance, ESG or diversity. Qualifications and assessments are scored evaluations of a supplier for a business relationship. Initiatives send questionnaires to many suppliers at once. Results feed eligibility, for example only qualified suppliers can be awarded in sourcing. And certificate expiry is tracked so a supplier doesn't stay qualified on an expired document.\"\n\nTip: Mention the link to sourcing eligibility. It shows qualification has teeth.", "D"],
+["Inventory", "How do you handle lot expiry and FEFO in Oracle?", "**Why they ask:** expiry control is essential in pharma and food.\n\n**Answer:**\n\"I enable lot control with shelf life days on the item, so each lot gets an expiry date at receipt. Picking rules with FEFO, first expired first out, allocate the nearest-expiring lots first. Material status can block expired lots from shipping. Reports or alerts flag lots near expiry, and pharma also uses lot grade and retest dates. Expired lots move to a quarantine subinventory or are scrapped with approval.\"\n\nTip: Mention alerts before expiry. Selling or using stock before it expires is the real goal.", "D"],
+["SCM Basics", "What setups must exist before you can create an inventory organization in Fusion?", "**Why they ask:** a dependency question.\n\n**Answer:**\n\"I need the location address, the legal entity and the profit center business unit, the item master organization, a workday calendar for scheduling, the cost organization relationship, and the ledger, through the legal entity and BU. Then I set the inventory org parameters, subinventories, locators, shipping and receiving parameters, and cost setups.\"\n\nTip: Present it as prerequisites, then org setup. It shows you understand dependencies.", "B"],
+["Quarterly Updates", "How do you approach quarterly update testing for SCM?", "- Review **What's New** for Procurement, Inventory, OM, Costing, Product Hub.\n- Run an **automated regression** pack for P2P, O2C, transfers, cost close and key integrations (OIC, B2B).\n- Check custom reports (BIP/OTBI), Visual Builder extensions and **REST API** changes.\n- Test opt-in features in a sandbox before enabling.\n- Plan a quick smoke test after the PROD update weekend.", "B"]
 ]);
 
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Procurement', 'How do you handle requisitions that fail automatic PO creation?',
-`- Check the requisition line in **Process Requisitions** — the reason is usually shown (no source agreement, supplier site inactive, agreement expired, price/UOM mismatch, missing procurement BU access).
-- Fix the root data: renew the agreement, add the site assignment, correct the UOM conversion.
-- Re-submit or let the buyer create the PO manually.
-- Track repeat failures in a report so the root cause (e.g. expired agreements) is fixed before it hits users.`, 'B'],
-
-['Inventory', 'What are the key inventory organization parameters you set?',
-`- **Item master org**, schedule (calendar), **default subinventory/locator controls**.
-- **Lot and serial** number generation and uniqueness.
-- **Negative balances allowed** or not.
-- **Picking and putaway** defaults (picking rule, allocation).
-- **ATP and reservations** settings.
-- **Shipping/receiving** parameters, interorg transfer defaults.
-- **Costing**: linked cost org, default accounts.
-
-Decisions like negative balances need business agreement — they affect controls and costing.`, 'D']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Procurement", "How do you handle requisitions that fail automatic PO creation?", "**Why they ask:** a practical support question.\n\n**Answer:**\n\"I check the line in Process Requisitions, where the reason is usually shown: no source agreement, inactive supplier site, expired agreement, a price or UOM mismatch, or missing procurement BU access. I fix the data: renew the agreement, add the site assignment, or correct the UOM conversion. Then resubmit, or let the buyer create the PO by hand. And I track repeat failures in a report, so causes like expiring agreements are fixed before users hit them.\"\n\nTip: Mention tracking expiring agreements ahead of time. Prevention beats fixing.", "B"],
+["Inventory", "What are the key inventory organization parameters you set?", "**Why they ask:** these parameters shape how the org behaves.\n\n**Answer:**\n\"The item master org and calendar, and default locator control. Lot and serial number generation and uniqueness. Whether negative balances are allowed. Picking and putaway defaults. ATP and reservation settings. Shipping, receiving and interorg transfer defaults. And costing: the linked cost org and default accounts. Decisions like negative balances need business agreement, because they affect controls and costing.\"\n\nTip: Highlight the negative balances decision. It's the one that causes later problems.", "D"]
 ]);
 
 // Added Oct 2026: more functional, Fusion platform, Redwood and AI Agent Studio questions.
-QB['ora-sfc-scm'] = (QB['ora-sfc-scm'] || []).concat([
-['Redwood', 'How do you roll out Redwood pages for Procurement and Inventory?',
-`- List the **classic pages in use** and which now have Redwood versions (requisitions, POs, receipts, transfers, item pages).
-- Find **personalizations** on classic pages (helper tools list them); decide which to rebuild in **Visual Builder Studio**.
-- Enable Redwood in **test** (profile options / opt-ins), run P2P and inventory scenarios, check reports, notifications and deep links.
-- Train buyers, requesters and warehouse users with short role-based guides.
-- Switch by area, away from month-end and peak shipping; watch tickets closely for two weeks.`, 'D'],
-
-['Redwood', 'How would you add a rule on the Redwood requisition page — for example, require a justification above $5,000?',
-`- In **Visual Builder Studio**, open the requisition page extension in a workspace.
-- Use the justification field (or add a flexfield).
-- Add a **rule**: required when requisition amount > 5,000 (or by category).
-- Preview with test data, then **publish** after testing in the test pod.
-- Consider whether this belongs in **approval rules** instead (who approves) vs page validation (what must be entered).`, 'D'],
-
-['Redwood', 'What is the Redwood Product Management experience and how does it affect item creation?',
-`- Redwood pages for **items, item classes, New Item Requests and change orders** in Product Management (Product Hub).
-- Guided item creation by item class with templates and required attributes.
-- **NIR workflows** with definition and approval steps assigned to teams.
-- Better search and AI assistance (e.g. generated descriptions).
-- Extend pages through Visual Builder Studio; existing classic personalizations must be rebuilt.`, 'D'],
-
-['AI Agent Studio', 'How would you build an agent that turns supplier quote emails into requisitions?',
-`- **Trigger**: an **Email trigger** or inbound mailbox in an agent workflow.
-- **Read**: a **Document tool** / file processing to extract supplier, items, quantities, prices from the PDF.
-- **Match**: **Business Object tool** to find the supplier, catalog items or agreements.
-- **Act**: create a **draft requisition** (Business Object tool) — not submit.
-- **Human approval node**: buyer reviews and submits.
-- **Notify**: Email tool with a **Deep Link** to the draft.
-- Test with real quotes; monitor errors and accuracy.`, 'D'],
-
-['AI Agent Studio', 'What is the difference between a workflow agent and a hierarchical (supervisor) agent?',
-`- **Workflow agent**: a defined sequence of **nodes** (business object, code, email trigger, human approval, agent nodes). Predictable and auditable — best for business-critical processes.
-- **Hierarchical/supervisor**: a supervisor agent decides which specialist agents to call — more flexible, less predictable.
-- Oracle has been moving toward **workflows**, with agent nodes inside them for steps that need judgment.
-- Choose workflows when the steps are known and controls matter.`, 'D'],
-
-['AI Agent Studio', 'How do you control what an SCM agent is allowed to do?',
-`- **Security**: agent uses the user's roles/data access (identity propagation) — no extra access.
-- **Tools**: give only the tools needed; read-only where possible.
-- **Instructions**: clear boundaries ("never submit a PO; create drafts only").
-- **Human approval nodes** before commitments.
-- **Monitoring**: traces and dashboards; review exceptions.
-- **Evaluations** with "must refuse" test cases.`, 'D'],
-
-['Procurement', 'How do you set up buyer assignment rules?',
-`- Define **Manage Procurement Agents** for buyers.
-- **Buyer assignment rules** route requisition lines to buyers by **category**, BU, requester location, or amount.
-- Lines without a match go to a default buyer.
-- Review workload balance periodically.`, 'B'],
-
-['Procurement', 'What are line types and why do they matter?',
-`- **Goods** — quantity × price, received in units.
-- **Services/fixed price** — amount-based, received by amount.
-- **Rate-based** (temp labor) — rate × hours.
-- Line type drives receiving, matching (quantity vs amount) and accounting. Wrong line type = matching problems in AP.`, 'D'],
-
-['Inventory', 'How do you handle negative on-hand in an org that allows negative balances?',
-`- It usually means issues were recorded before receipts (timing) or a receipt was missed.
-- Find the item/locations negative, check pending receipts and transfers, process them.
-- Costing: negative quantities can cause cost adjustments later — monitor.
-- Consider disallowing negative balances once processes are stable.`, 'D'],
-
-['Order Management', 'How do you troubleshoot a sales order line that won\'t schedule?',
-`- Check **GOP**: is there supply? Are sourcing rules/assignment sets correct for the ship-to and item?
-- **Data collections** recently run?
-- Item enabled in the warehouse and for shipping? Customer/ship-to valid?
-- Holds on the order?
-- Orchestration process assignment and step errors.`, 'D'],
-
-['Costing', 'How do you reconcile receipt accruals at month end?',
-`- Run **accrual reconciliation** / review receipt accounting distributions for open accruals.
-- Investigate old accruals: missing invoices, wrong POs, quantity differences.
-- **Close** POs that are complete; **write off** with approval where justified.
-- Make sure Create Receipt Accounting and transfers ran before review.`, 'D'],
-
-['Product Hub', 'How do you troubleshoot an NIR stuck in approval?',
-`- Open the NIR and check the **workflow step**: who is assigned, any errors.
-- Check the **approver/participant** setup on the item class workflow (inactive users, missing roles).
-- Check required attributes not completed in definition steps.
-- Reassign or update participants; for systemic issues, fix the item class workflow configuration.`, 'D']
+QB["ora-sfc-scm"] = (QB["ora-sfc-scm"] || []).concat([
+["Redwood", "How do you roll out Redwood pages for Procurement and Inventory?", "- List the **classic pages in use** and which now have Redwood versions (requisitions, POs, receipts, transfers, item pages).\n- Find **personalizations** on classic pages (helper tools list them); decide which to rebuild in **Visual Builder Studio**.\n- Enable Redwood in **test** (profile options / opt-ins), run P2P and inventory scenarios, check reports, notifications and deep links.\n- Train buyers, requesters and warehouse users with short role-based guides.\n- Switch by area, away from month-end and peak shipping; watch tickets closely for two weeks.", "D"],
+["Redwood", "How would you add a rule on the Redwood requisition page — for example, require a justification above $5,000?", "- In **Visual Builder Studio**, open the requisition page extension in a workspace.\n- Use the justification field (or add a flexfield).\n- Add a **rule**: required when requisition amount > 5,000 (or by category).\n- Preview with test data, then **publish** after testing in the test pod.\n- Consider whether this belongs in **approval rules** instead (who approves) vs page validation (what must be entered).", "D"],
+["Redwood", "What is the Redwood Product Management experience and how does it affect item creation?", "- Redwood pages for **items, item classes, New Item Requests and change orders** in Product Management (Product Hub).\n- Guided item creation by item class with templates and required attributes.\n- **NIR workflows** with definition and approval steps assigned to teams.\n- Better search and AI assistance (e.g. generated descriptions).\n- Extend pages through Visual Builder Studio; existing classic personalizations must be rebuilt.", "D"],
+["AI Agent Studio", "How would you build an agent that turns supplier quote emails into requisitions?", "- **Trigger**: an **Email trigger** or inbound mailbox in an agent workflow.\n- **Read**: a **Document tool** / file processing to extract supplier, items, quantities, prices from the PDF.\n- **Match**: **Business Object tool** to find the supplier, catalog items or agreements.\n- **Act**: create a **draft requisition** (Business Object tool) — not submit.\n- **Human approval node**: buyer reviews and submits.\n- **Notify**: Email tool with a **Deep Link** to the draft.\n- Test with real quotes; monitor errors and accuracy.", "D"],
+["AI Agent Studio", "What is the difference between a workflow agent and a hierarchical (supervisor) agent?", "- **Workflow agent**: a defined sequence of **nodes** (business object, code, email trigger, human approval, agent nodes). Predictable and auditable — best for business-critical processes.\n- **Hierarchical/supervisor**: a supervisor agent decides which specialist agents to call — more flexible, less predictable.\n- Oracle has been moving toward **workflows**, with agent nodes inside them for steps that need judgment.\n- Choose workflows when the steps are known and controls matter.", "D"],
+["AI Agent Studio", "How do you control what an SCM agent is allowed to do?", "- **Security**: agent uses the user's roles/data access (identity propagation) — no extra access.\n- **Tools**: give only the tools needed; read-only where possible.\n- **Instructions**: clear boundaries (\"never submit a PO; create drafts only\").\n- **Human approval nodes** before commitments.\n- **Monitoring**: traces and dashboards; review exceptions.\n- **Evaluations** with \"must refuse\" test cases.", "D"],
+["Procurement", "How do you set up buyer assignment rules?", "**Why they ask:** a setup question about routing work.\n\n**Answer:**\n\"First the buyers are set up as procurement agents. Then buyer assignment rules route requisition lines to buyers by category, BU, requester location or amount. For example, all IT categories go to the IT buyer, and anything over $100,000 goes to a senior buyer. Lines with no match go to a default buyer. I review workload balance from time to time, because one buyer can end up with half the lines.\"\n\nTip: Give a rule example. It makes the setup easy to picture.", "B"],
+["Procurement", "What are line types and why do they matter?", "**Why they ask:** wrong line types cause AP matching problems.\n\n**Answer:**\n\"Goods lines are quantity times price, received in units. Fixed-price service lines are amount-based and received by amount. Rate-based lines, like temp labor, are rate times hours. The line type decides how receiving works, whether matching is by quantity or amount, and the accounting. Using a goods line for a service is a classic mistake that leaves AP unable to match the invoice.\"\n\nTip: Give the classic mistake. It's what the question is probing for.", "D"],
+["Inventory", "How do you handle negative on-hand in an org that allows negative balances?", "**Why they ask:** negative on-hand causes costing problems.\n\n**Answer:**\n\"Negative on-hand usually means issues were recorded before receipts, a timing problem, or a receipt was missed. I find the items and locations that are negative, check for pending receipts and transfers, and process them. In costing, negative quantities can cause cost adjustments later, so I monitor them. Once processes are stable, I'd recommend turning off negative balances.\"\n\nTip: Recommend turning it off once stable. It shows control thinking.", "D"],
+["Order Management", "How do you troubleshoot a sales order line that won't schedule?", "- Check **GOP**: is there supply? Are sourcing rules/assignment sets correct for the ship-to and item?\n- **Data collections** recently run?\n- Item enabled in the warehouse and for shipping? Customer/ship-to valid?\n- Holds on the order?\n- Orchestration process assignment and step errors.", "D"],
+["Costing", "How do you reconcile receipt accruals at month end?", "- Run **accrual reconciliation** / review receipt accounting distributions for open accruals.\n- Investigate old accruals: missing invoices, wrong POs, quantity differences.\n- **Close** POs that are complete; **write off** with approval where justified.\n- Make sure Create Receipt Accounting and transfers ran before review.", "D"],
+["Product Hub", "How do you troubleshoot an NIR stuck in approval?", "- Open the NIR and check the **workflow step**: who is assigned, any errors.\n- Check the **approver/participant** setup on the item class workflow (inactive users, missing roles).\n- Check required attributes not completed in definition steps.\n- Reassign or update participants; for systemic issues, fix the item class workflow configuration.", "D"]
 ]);

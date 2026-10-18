@@ -1,17 +1,4 @@
-QB['ora-fc-scm'] = (QB['ora-fc-scm'] || []).concat([
-['Inventory', 'What is ABC classification and how is it used?',
-`ABC analysis ranks items by value (usually annual usage value = quantity × cost):
-- **A items** — roughly 10–20% of items, ~70–80% of value. Counted most often, tightest control.
-- **B items** — middle.
-- **C items** — many items, little value. Counted least often.
-
-In Oracle you **compile an ABC analysis** for an org, assign classes, and use them in **cycle count** frequency and planning policies.`, 'B'],
-
-['Procurement', 'What is the difference between a requisitioning BU, procurement BU and sold-to legal entity?',
-`- **Requisitioning BU** — where the requester works; owns the requisition and the expense/charge accounts.
-- **Procurement BU** — the purchasing team that creates and manages the PO and supplier relationship; can serve many requisitioning BUs.
-- **Sold-to legal entity** — the legal entity that is financially liable for the purchase (and appears on the PO).
-- The **bill-to BU** processes the invoice in AP.
-
-This model supports centralized procurement for many BUs in Fusion.`, 'D']
+QB["ora-fc-scm"] = (QB["ora-fc-scm"] || []).concat([
+["Inventory", "What is ABC classification and how is it used?", "**Why they ask:** ABC drives counting and planning priorities.\n\n**Answer:**\n\"ABC ranks items by value, usually annual usage value, quantity times cost. A items are roughly 10–20% of items but 70–80% of value; they're counted most often and controlled most tightly. B items are in the middle. C items are many items with little value, counted least. In Oracle I compile an ABC analysis for the org, assign classes, and use them in cycle count frequency and planning policies.\"\n\nTip: Give the percentages. They show you know the principle.", "B"],
+["Procurement", "What is the difference between a requisitioning BU, procurement BU and sold-to legal entity?", "**Why they ask:** this model is how Fusion supports central procurement.\n\n**Answer:**\n\"The requisitioning BU is where the requester works; it owns the requisition and the charge accounts. The procurement BU is the purchasing team that creates and manages the PO and the supplier relationship, and it can serve many requisitioning BUs. The sold-to legal entity is the one financially liable for the purchase, and it appears on the PO. The bill-to BU is where AP processes the invoice. So a central procurement team in one BU can buy for ten operating BUs, with each one still paying its own bills.\"\n\nTip: Give the central procurement example. It shows why the model exists.", "D"]
 ]);

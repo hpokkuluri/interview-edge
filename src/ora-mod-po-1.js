@@ -1,60 +1,13 @@
 // Oracle Modules — Procurement & Sourcing. Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-po'] = (QB['ora-mod-po'] || []).concat([
-['Setup', 'What are document styles in Fusion Procurement?',
-`- **Document styles** control which features appear on POs/agreements (e.g. price breaks, consignment, progress payments, configured items) and display names (e.g. "Service PO").
-- Simplify the buyer UI for specific purchase types.
-- Assigned when creating documents.`, 'D'],
-
-['Setup', 'How are purchasing categories and the purchasing catalog used?',
-`- **Purchasing catalog** categories classify items and spend.
-- Drive **buyer assignment**, **approval rules**, **expense account defaults**, **sourcing rules**, **spend reporting**.
-- Non-catalog requests also require a category.
-- Design categories with procurement (often UNSPSC-based).`, 'B'],
-
-['Requisitions', 'How are charge accounts derived on requisitions?',
-`- **Account Generator** in Fusion uses **Manage Account Rules** (procurement account rules) or defaults: requester's default expense account (HCM assignment), item/category rules, project details.
-- SLA can further override accounts at accounting time.
-- Requesters can change accounts if allowed; validated by cross-validation rules.`, 'D'],
-
-['Requisitions', 'What is the difference between "inventory" and "expense" destination types?',
-`- **Expense**: goods/services charged to an expense account (or project) on receipt/invoice.
-- **Inventory**: goods received into a subinventory; valued by costing; charged to inventory.
-- **Drop ship**: shipped to a customer.
-- Destination type drives receiving routing, accounting and accruals.`, 'B'],
-
-['Agreements', 'How does a contract purchase agreement differ from a blanket agreement in usage?',
-`- **Blanket**: specific items/prices; releases (POs) reference agreement lines; price breaks.
-- **Contract agreement**: terms only (no items); POs reference the contract to inherit terms and track spend.
-- Both have amount limits and effective dates.`, 'B'],
-
-['Approvals', 'How do you troubleshoot a purchase order stuck "pending approval"?',
-`- Check **approval history** and current approver in the PO.
-- Approver inactive/terminated or missing in hierarchy → reassign or fix HCM data.
-- **BPM rules** with no matching rule → fallback missing.
-- Workflow errors → resubmit or use **Manage Approval Transactions**.
-- Fix root cause (rule gaps, HCM data).`, 'D'],
-
-['Suppliers', 'What are supplier profile change requests?',
-`- Suppliers update their profile (addresses, contacts, **bank accounts**) through the **Supplier Portal**.
-- Changes create **change requests** that route for **approval** (internal reviewers).
-- Critical for bank-detail fraud controls.`, 'D'],
-
-['Sourcing', 'How do you score and award a negotiation?',
-`- Define **requirements** (questions) with **scoring** and weights; price and non-price factors.
-- Collect responses; **score** manually or automatically; **compare** responses (side by side).
-- **Award** by line or whole negotiation (split awards possible); create **PO or agreement** from the award.
-- Approval of the award recommendation.`, 'D'],
-
-['Spend', 'How would you improve spend visibility in Fusion?',
-`- Consistent **categories**; **spend classification** (AI) for invoice-based spend without POs.
-- OTBI/FDI procurement subject areas: spend by supplier/category/BU, contract compliance.
-- Dashboards for category managers.`, 'B'],
-
-['Interview', 'What should a procurement contractor highlight in an interview?',
-`- **End-to-end P2P** knowledge including receiving and AP matching.
-- **Approval design** experience and troubleshooting.
-- **Catalogs/agreements** that improve automation.
-- **Supplier onboarding** controls.
-- **Integration** with Finance (accruals, encumbrance, matching).
-- Quantified improvements (PO cycle time, touchless %).`, 'B']
+QB["ora-mod-po"] = (QB["ora-mod-po"] || []).concat([
+["Setup", "What are document styles in Fusion Procurement?", "**Why they ask:** a setup detail that shows whether you've configured Procurement for real buyers.\n\n**Answer:**\n\"A document style controls which features show on a purchase order or agreement, like price breaks, consignment, progress payments or configured items, and what the document is called, like 'Service PO'. The point is to keep the buyer's screen simple for each type of purchase. For example, a services style can hide inventory fields and turn on progress payments. The buyer picks the style when creating the document.\"\n\nTip: Give one example of a style you created. It shows hands-on setup.", "D"],
+["Setup", "How are purchasing categories and the purchasing catalog used?", "**Why they ask:** categories drive almost everything in procurement, from approvals to spend reporting.\n\n**Answer:**\n\"Categories in the purchasing catalog classify items and spend. They drive buyer assignment, approval rules, default expense accounts, sourcing rules and spend reporting. Even non-catalog requests need a category, so every purchase is classified. I design the category set with the procurement team, often based on UNSPSC, and keep it at a level category managers actually use, usually two or three levels deep.\"\n\nTip: List what categories drive. It shows why getting them right matters.", "B"],
+["Requisitions", "How are charge accounts derived on requisitions?", "**Why they ask:** wrong charge accounts mean wrong P&L and lots of rework in AP.\n\n**Answer:**\n\"In Fusion the account is built from the requester's default expense account on their HCM assignment, then adjusted by procurement account rules, for example by item category or project details. If the line has a project, project costing drives the account. SLA can override it again at accounting time. Requesters can change the account if their setup allows, and cross-validation rules check the result. Most account problems I've fixed came from missing default accounts on HR assignments, so I check that data before go-live.\"\n\nTip: Mention HR assignment data. It's the most common cause of bad charge accounts.", "D"],
+["Requisitions", "What is the difference between \"inventory\" and \"expense\" destination types?", "**Why they ask:** destination type drives receiving and accounting.\n\n**Answer:**\n\"Expense means the goods or services are charged to an expense account or project when received or invoiced, like office supplies. Inventory means the goods go into a subinventory and are valued by costing, like raw materials. Drop ship means they go straight to a customer. The destination type decides how receiving works, which accounts are used, and how accruals happen.\"\n\nTip: Give an example for each. It makes the difference obvious.", "B"],
+["Agreements", "How does a contract purchase agreement differ from a blanket agreement in usage?", "**Why they ask:** choosing the wrong agreement type limits automation.\n\n**Answer:**\n\"A blanket agreement has specific items and prices, sometimes with price breaks, and purchase orders reference its lines, so requisitions can turn into POs automatically. A contract agreement has only terms, no items; POs reference it to inherit the terms and track spend against it. Both have amount limits and effective dates. So for a supplier we buy the same 200 items from, I'd use a blanket; for a services firm where each job is different but the terms are fixed, a contract agreement.\"\n\nTip: Give a use case for each. That's what the question is really asking.", "B"],
+["Approvals", "How do you troubleshoot a purchase order stuck \"pending approval\"?", "**Why they ask:** a daily support issue.\n\n**Answer:**\n\"I start with the approval history on the PO to see who it's waiting on. If the approver is inactive, terminated or missing from the hierarchy, I reassign it and fix the HCM data. If no BPM rule matched, there's no fallback approver set up, so I add one. If the workflow errored, I resubmit it or use Manage Approval Transactions. Then I fix the cause: a rule gap or bad HCM data, so the next PO doesn't get stuck the same way.\"\n\nTip: Always end with the root cause. It shows you don't just push the PO through.", "D"],
+["Suppliers", "What are supplier profile change requests?", "**Why they ask:** supplier bank changes are a major fraud risk.\n\n**Answer:**\n\"Suppliers can update their own profile, like addresses, contacts and bank accounts, through the Supplier Portal. Each change creates a change request that routes for approval by internal reviewers before it takes effect. That's critical for fraud control, because a fake request to change bank details is one of the most common payment frauds. I'd make bank changes go to finance for approval, with a callback to a known supplier contact.\"\n\nTip: Mention the callback. It's the control that actually stops fraud.", "D"],
+["Sourcing", "How do you score and award a negotiation?", "**Why they ask:** sourcing roles need to show they can run a fair, auditable award.\n\n**Answer:**\n\"I set up requirements, meaning questions, with scoring and weights, covering both price and non-price factors like quality, delivery and service. Suppliers respond, and scores are entered manually or calculated automatically. I compare responses side by side. Then I award by line or by the whole negotiation, and split awards are possible. The award recommendation goes for approval, and once approved, I create a PO or agreement straight from the award.\"\n\nTip: Mention non-price factors. Lowest price isn't always the right award.", "D"],
+["Spend", "How would you improve spend visibility in Fusion?", "**Why they ask:** spend visibility is one of procurement's main goals.\n\n**Answer:**\n\"First, consistent categories on every purchase. Second, AI spend classification for spend that comes through invoices without a PO, so it still gets a category. Third, reporting in OTBI or Fusion Data Intelligence: spend by supplier, category and BU, and contract compliance. And dashboards built for category managers, so they see their own categories without asking for a report.\"\n\nTip: Mention spend without POs. It's where visibility is usually missing.", "B"],
+["Interview", "What should a procurement contractor highlight in an interview?", "**Why they ask:** to see how you'll sell your value.\n\n**Answer:**\n\"I'd highlight end-to-end procure-to-pay knowledge, including receiving and AP matching; approval design and troubleshooting; catalogs and agreements that increase automation; supplier onboarding controls; and integration with finance, like accruals, encumbrance and matching. And I'd bring numbers, like 'we raised touchless POs from 30% to 65%' or 'cut requisition-to-PO time from 5 days to 2'.\"\n\nTip: Bring at least two numbers. They're what the hiring manager remembers.", "B"]
 ]);

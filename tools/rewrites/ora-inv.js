@@ -1,0 +1,460 @@
+// Rewritten Oracle Inventory, Receiving, Shipping and Logistics answers (Why they ask → Answer → Tip). Apply with rewrite.js (prefix ora-).
+module.exports = {
+
+'What is the difference between locator control options?':
+`**Why they ask:** locator control decides how disciplined the warehouse can be.
+
+**Answer:**
+"There are four options. No locator control means stock is tracked only to the subinventory. Prespecified means locators must exist before they can be used. Dynamic entry means users can create a locator on the fly while transacting. Item level means it follows the item's own setting. It can be set at the organization, subinventory or item level. For a controlled warehouse I use prespecified, because dynamic entry quickly fills the system with typos like A-01-1 and A-1-01 that are the same bin."
+
+Tip: Give the typo example. It explains why prespecified is the safe choice.`,
+
+'What is a move order and when is it used?':
+`**Why they ask:** move orders sit behind picking and replenishment.
+
+**Answer:**
+"A move order is a request to move material within an organization. It's used for replenishment, for example topping up a forward pick area; for material issue requests to a department; for pick waves when picking sales orders; and for picking components for work orders. It can need approval, then it's allocated to source locators, and the transaction happens when the move is confirmed."
+
+Tip: Mention that pick release creates move orders. It links the concept to shipping.`,
+
+'What are transaction reasons and why use them?':
+`**Why they ask:** reasons turn adjustments into data you can act on.
+
+**Answer:**
+"Transaction reasons are codes that explain why a transaction happened, like damage, count correction, sample or scrap. They're used for reporting, for approvals, and for root-cause analysis. For example, if most write-offs at one warehouse are 'damaged in handling', the fix is in the warehouse, not the system."
+
+Tip: Give an example of a reason code leading to a fix. That's the value.`,
+
+'What is a physical inventory and its key steps in Fusion?':
+`**Why they ask:** a year-end task with audit visibility.
+
+**Answer:**
+"I define the physical inventory with the subinventories in scope and whether transactions are frozen. Then I take a snapshot of on-hand. Then generate tags, count, and enter the tag counts. Adjustments are reviewed and approved, with tolerances deciding what needs approval. Then I post the adjustments and reconcile the value change with finance."
+
+Tip: End with the finance reconciliation. Auditors focus on the value change.`,
+
+'What is the Receiving inbound flow with ASNs and inspection?':
+`**Why they ask:** inbound flow affects speed and quality.
+
+**Answer:**
+"The supplier sends an ASN, so we know what's coming and receipts are created against its lines. If the item needs inspection, it goes to inspection and is accepted or rejected, often with Quality integration. Accepted goods are put away or delivered to a subinventory and locator. Exceptions include over- or under-receipts within tolerances, and returning damaged goods to the supplier."
+
+Tip: Say receiving against an ASN is faster and more accurate. That's why it's worth pushing suppliers to send them.`,
+
+'What happens at ship confirm?':
+`**Why they ask:** ship confirm triggers inventory, costing and billing.
+
+**Answer:**
+"At ship confirm, the delivery is confirmed as shipped, with quantities, lots or serials, carrier and tracking number. Inventory is issued, which drives cost accounting for COGS or deferred COGS. The order lines are updated to shipped, which triggers billing through orchestration. Documents are produced, like the bill of lading, packing slip and an ASN to the customer. Any short shipment creates a backorder."
+
+Tip: Say it triggers billing. It shows you see the link to finance.`,
+
+'How do you handle in-transit inventory between orgs?':
+`**Why they ask:** in-transit stock is easy to lose track of.
+
+**Answer:**
+"With an in-transit shipping network, a shipment from the source org puts the stock in transit, owned by the sender or receiver depending on the FOB or ownership setting. Receipt at the destination completes the transfer. Accounting goes through in-transit accounts, and if the orgs belong to different legal entities, intercompany entries too. I monitor in-transit aging, because a shipment that sits in transit for 60 days usually means a missed receipt."
+
+Tip: Mention aging. It's how you catch missed receipts.`,
+
+'What should an inventory contractor be ready to discuss?':
+`**Why they ask:** a preparation question.
+
+**Answer:**
+"I'd be ready to talk about org, subinventory and locator design, and lot and serial control decisions; cycle counting and accuracy programs; receiving, shipping and transfer flows with their accounting; converting on-hand with lots and serials; and one real troubleshooting story, like negative on-hand, uncosted transactions, or stuck move orders, with how I fixed it."
+
+Tip: Prepare the troubleshooting story in STAR form. It's often asked directly.`,
+
+'How would you architect transportation and global trade with Oracle?':
+`**Why they ask:** a senior logistics design question.
+
+**Answer:**
+"OTM handles transportation planning, tendering, carrier rates and freight settlement. GTM handles trade compliance: restricted party screening, classification like HTS and ECCN, licenses, customs filings and duty management. Fusion Order Management and Shipping integrate natively with both. Carriers connect by EDI or APIs, and customs brokers too. Landed cost management feeds the duties and freight into costing. And shipment tracking feeds visibility to customers."
+
+Tip: Separate OTM and GTM clearly. They're often confused.`,
+
+'How would you design inventory visibility across Oracle and non-Oracle locations?':
+`**Why they ask:** most companies have stock outside their ERP, at 3PLs or stores.
+
+**Answer:**
+"Fusion holds on-hand for the orgs it manages. External locations, like 3PLs, consignment sites and stores, send snapshots or transactions into Fusion as external orgs, or into a visibility layer. Global Order Promising collects supply from all sources so promises are realistic. Control tower dashboards show availability and aging. And I'd agree the latency, like hourly or daily, plus a reconciliation process with each external location."
+
+Tip: Mention agreeing latency. Everyone assumes real time until it isn't.`,
+
+'How would you design an inventory optimization approach?':
+`**Why they ask:** inventory optimization frees cash.
+
+**Answer:**
+"I'd segment items by value and variability, ABC and XYZ, and set service level targets by segment. Safety stock is calculated statistically from demand and lead-time variability. Order quantities balance holding cost against ordering cost. For a network of DCs, I'd think multi-echelon, deciding where buffers should sit. I'd monitor excess and obsolete stock with disposition rules. The tools can be Fusion Replenishment Planning or a specialist optimization tool."
+
+Tip: Start with segmentation. One safety stock rule for every item is the usual mistake.`,
+
+'How would you architect reverse logistics at scale?':
+`**Why they ask:** returns are costly, especially in e-commerce.
+
+**Answer:**
+"I'd set return authorization policies by product and customer, with an online return portal. Returns are routed to the right place: a DC, repair center or back to the supplier. Inspection and disposition rules decide whether to restock, refurbish, recycle, scrap or return to vendor. Credit timing rules say whether credit is given at authorization, receipt or inspection. Refurbishment runs through work orders with serial tracking. And analytics on return reasons and cost drive fixes upstream."
+
+Tip: Mention credit timing. It's a business decision with real cash impact.`,
+
+'What is cross-docking and how would you support it?':
+`**Why they ask:** cross-docking needs tight data and timing.
+
+**Answer:**
+"Cross-docking moves goods from inbound receiving straight to outbound shipping with little or no storage. It needs visibility of incoming supply through ASNs and of outgoing demand. Planned cross-dock is known at receipt; opportunistic cross-dock is decided by the warehouse system. It's supported in Fusion Warehouse Management or a specialist WMS. The benefits are faster flow and lower storage cost, but it only works with accurate ASNs and tight timing."
+
+Tip: Say it depends on ASN accuracy. That's the honest constraint.`,
+
+'What modules make up Oracle Fusion SCM?':
+`**Why they ask:** a warm-up question.
+
+**Answer:**
+"Product Hub for items and structures. Procurement: purchasing, self-service procurement, sourcing, supplier portal and qualification. Inventory Management for orgs, transactions and counts. Order Management with Global Order Promising. Logistics: shipping, receiving and transportation. Cost Management for item cost, receipt accounting and cost accounting. Manufacturing for work definitions and work orders. And Supply Chain Planning for demand, supply and replenishment."
+
+Tip: Then say which ones you've worked on and how deeply. That's what they really want to know.`,
+
+'What is the difference between an inventory organization, a subinventory and a locator?':
+`**Why they ask:** a basic structure question.
+
+**Answer:**
+"An inventory organization is a plant, warehouse or DC that holds items and inventory, with its own item attributes, costing and calendar. A subinventory is an area inside it, physical or logical, like Stores, Finished Goods, Staging or MRB, and it can be quantity-tracked or expense. A locator is a specific bin or shelf inside a subinventory, like Row 3, Rack 2, Bin 5. So the hierarchy is organization, then subinventory, then locator."
+
+Tip: Give a locator example. It makes the hierarchy easy to see.`,
+
+'What is an item master organization and why do items exist in it?':
+`**Why they ask:** item master design avoids duplicate items.
+
+**Answer:**
+"Items are created once in the item master organization, which in Fusion is the master org in Product Hub, and then assigned to the inventory orgs that use them. Master-level attributes, like description and primary UOM, must be the same everywhere. Org-level attributes, like planner, min-max levels and lead times, can differ by org. That avoids duplicate items and keeps definitions consistent. Item classes and templates default attributes when items are created."
+
+Tip: Give one master and one org-level attribute. It shows you know the split.`,
+
+'What are the main inventory transaction types?':
+`**Why they ask:** a basic inventory question.
+
+**Answer:**
+"Receipts from purchase orders or transfers. Issues to work orders, accounts or sales orders. Subinventory transfers within an org. Interorganization transfers between orgs, direct or in-transit. Miscellaneous receipts and issues, adjusting against an account. And cycle count and physical inventory adjustments. Each has a transaction type, source type and action, and each creates cost accounting."
+
+Tip: Mention that each creates accounting. It shows you see the finance side.`,
+
+'What is lot and serial control?':
+`**Why they ask:** traceability is critical in regulated industries.
+
+**Answer:**
+"Lot control tracks a batch of items with the same properties, like made together or with the same expiry date. It's standard in pharma and food, and lots can carry expiry dates, grades and status. Serial control tracks each unit with its own number, like equipment. Serial numbers can be assigned at receipt, predefined, or at sales order issue. Both give full traceability, called genealogy: where a lot or serial came from and where it went. Control is set on the item and is hard to change once transactions exist, so it has to be decided before go-live."
+
+Tip: Stress deciding before go-live. Changing it later is very painful.`,
+
+'What is the difference between cycle counting and physical inventory?':
+`**Why they ask:** a basic accuracy question.
+
+**Answer:**
+"Cycle counting counts a small set of items regularly, often by ABC class, with A items counted most often. It keeps records accurate without stopping operations. A physical inventory counts everything at once, often at year end, usually freezing transactions. The cycle count process is: define the count with classes and frequency, generate schedules and count sequences, enter counts, recount anything out of tolerance, and approve adjustments, which post to inventory and accounting."
+
+Tip: Say cycle counting avoids shutting down. That's why companies prefer it.`,
+
+'How does min-max planning work?':
+`**Why they ask:** a simple, common replenishment method.
+
+**Answer:**
+"I set a minimum and maximum for an item in an org or subinventory. The min-max process checks on-hand plus on-order, and if it's below the minimum, it suggests or creates a replenishment order to bring it up to the maximum. Replenishment can be a purchase requisition, a transfer from another org, or a work order. Fixed lot multiples and minimum order quantities adjust the quantity. For example, min 50, max 200, on-hand plus on-order of 40, so it orders 160. It works well for stable-demand items like spare parts and consumables."
+
+Tip: Do the calculation out loud. It proves you understand it.`,
+
+'What is a reservation?':
+`**Why they ask:** reservations explain "why can't I ship this, it's on-hand?"
+
+**Answer:**
+"A reservation holds on-hand quantity for a specific demand, like a sales order or work order, so nothing else can use it. It can be at org, subinventory, lot, locator or serial level. It reduces available to reserve and available to transact. Reservations are created manually or automatically, for example during scheduling. The key difference: on-hand is what's physically there; available is on-hand minus reservations and other holds."
+
+Tip: End with on-hand vs available. It's the confusion users bring to support.`,
+
+'What are the receipt routings?':
+`**Why they ask:** routing affects when stock is available and when accruals happen.
+
+**Answer:**
+"Direct delivery receives and delivers in one step to the final destination. Standard receipt receives first to a receiving location, then delivers in a separate step. Inspection required receives, inspects to accept or reject, then delivers. The routing defaults from the PO schedule, item, supplier or receiving options. The choice affects when inventory becomes available and, with accrue at receipt, when the accrual is booked."
+
+Tip: Mention the accrual timing. It shows you see the accounting impact.`,
+
+'How do you return goods to a supplier?':
+`**Why they ask:** returns touch receiving, inventory and AP.
+
+**Answer:**
+"I create a return to supplier transaction against the original receipt. Inventory goes down and receipt accounting reverses the accrual. If the invoice was already received, AP needs a debit memo, which can be created automatically if RTS debit memos are enabled on the supplier site. I record the supplier's RMA number and track the return shipment. A correction is different: it fixes a data entry mistake on a receipt, without sending goods back."
+
+Tip: Separate returns from corrections. It's a common mix-up.`,
+
+'What is pick release and what happens during it?':
+`**Why they ask:** pick release is the start of outbound fulfillment.
+
+**Answer:**
+"Pick release selects order lines ready to ship and creates pick tasks or move orders. Release rules choose which lines by order, customer, ship date, warehouse or priority. Picking rules decide where to pick from, like FIFO or FEFO by lot expiry. It can allocate and pick confirm automatically. After picking, items go to staging, then they're packed and ship confirmed, which issues inventory."
+
+Tip: Mention FEFO picking rules. It's the practical example for regulated goods.`,
+
+'What is an interorganization transfer and how is it set up?':
+`**Why they ask:** transfers between orgs need setup and accounting.
+
+**Answer:**
+"It moves inventory between two inventory orgs. A shipping network defines the from and to orgs, the transfer type, direct or in-transit, the in-transit accounts and whether a receipt is required. Direct moves instantly. In-transit ships, sits in transit, and is received at the destination. In Fusion, transfer orders give a full ship and receive flow with transfer pricing. If the orgs are in different legal entities, transfer price and freight create intercompany accounting."
+
+Tip: Mention transfer orders as the Fusion way. It shows current knowledge.`,
+
+"How do you investigate an on-hand quantity that doesn't match the physical count?":
+`**Why they ask:** a daily warehouse problem.
+
+**Answer:**
+"First I check for pending or unprocessed transactions: interface errors, pending receipts or shipments. Then I review transaction history for the item, subinventory and locator, looking for wrong subinventory, UOM mistakes, or lot and serial errors. Then reservations and staged quantities, picked but not shipped. Then I recount to confirm. Finally I fix it with an approved adjustment and find the root cause, like training, process or scanning."
+
+Tip: Start with pending transactions. They explain most differences.`,
+
+'What is the difference between receipt tolerance and invoice tolerance?':
+`**Why they ask:** they work together to prevent overpaying.
+
+**Answer:**
+"Receipt tolerances, on quantity and dates, control how much over or under, or how early or late, you can receive against a PO, with actions like warning or reject. Invoice tolerances in AP, on price, quantity and amount, control how far an invoice can differ from the PO and receipt before a matching hold is placed. Tight receipt tolerance stops over-receiving; invoice tolerance stops overpaying."
+
+Tip: Explain how they work together. That's the insight they want.`,
+
+'What documents are produced during shipping?':
+`**Why they ask:** a basic shipping question.
+
+**Answer:**
+"The pick slip, saying what to pick and where. The packing slip, listing what's in the shipment for the customer. The bill of lading, the contract with the carrier. The commercial invoice for international shipments and customs. Shipping and carton labels. And the ASN, the electronic notice to the customer. They're produced through document sets at pick release or ship confirm."
+
+Tip: Mention document sets. It's how they're configured.`,
+
+'What is the difference between an inventory organization and a business unit in Fusion SCM?':
+`**Why they ask:** enterprise structure design depends on it.
+
+**Answer:**
+"A business unit performs business functions like procurement, requisitioning, order fulfillment and billing, with its own setups and data security. An inventory organization is a physical location that holds and transacts inventory. Each inventory org is tied to a profit center BU and a legal entity for accounting. A procurement BU can serve many requisitioning BUs and inventory orgs. Getting these relationships right is central to the structure design."
+
+Tip: Say the BU is about functions, the org is about place. It's a clean way to remember it.`,
+
+'What is ABC classification and how is it used?':
+`**Why they ask:** ABC drives counting and planning priorities.
+
+**Answer:**
+"ABC ranks items by value, usually annual usage value, quantity times cost. A items are roughly 10–20% of items but 70–80% of value; they're counted most often and controlled most tightly. B items are in the middle. C items are many items with little value, counted least. In Oracle I compile an ABC analysis for the org, assign classes, and use them in cycle count frequency and planning policies."
+
+Tip: Give the percentages. They show you know the principle.`,
+
+'What is the difference between a subinventory transfer and an interorganization transfer?':
+`**Why they ask:** a basic transaction question.
+
+**Answer:**
+"A subinventory transfer moves stock within the same org, like Stores to Staging. There's no change of owner or cost org, and usually no accounting unless the subinventories are valued differently. An interorganization transfer moves stock between orgs, like plant to DC. It needs a shipping network, can be direct or in-transit, and creates accounting, possibly intercompany."
+
+Tip: Mention the accounting difference. It's the key point.`,
+
+'What is a miscellaneous transaction and when is it used?':
+`**Why they ask:** misc transactions change inventory value directly, so they need control.
+
+**Answer:**
+"A miscellaneous receipt or issue adjusts on-hand against an account instead of a document like a PO or sales order. It's used for initial stock loads, write-offs, samples, corrections and scrap. Because it changes inventory value directly, it's usually limited by role and sometimes needs approval."
+
+Tip: Mention the control. That's why interviewers ask.`,
+
+'How do you correct a receipt entered with the wrong quantity?':
+`**Why they ask:** a common receiving mistake.
+
+**Answer:**
+"I use a receipt correction, not a return, to increase or decrease the quantity received or delivered. If the goods were already delivered to inventory, I correct the delivery too. If it's been invoiced, I check the AP impact, like a quantity hold or a debit memo. Returns are only for goods that physically go back to the supplier."
+
+Tip: Separate corrections from returns clearly.`,
+
+'How would you run an inventory accuracy improvement program?':
+`**Why they ask:** accuracy affects planning, customer service and audit.
+
+**Answer:**
+"I measure record accuracy by count and value variance by location. I set up ABC cycle counting with tolerances and root-cause codes. I fix process causes: receiving delays, unrecorded issues, wrong locators and UOM mistakes. I move to scanning and mobile transactions instead of paper. I use locator control and material status to stop misplacement. And I review adjustments weekly with warehouse leads. A typical target is 98% or better for A items."
+
+Tip: Give the target. It shows you've run one.`,
+
+'How would you design lot and serial control for a pharmaceutical company?':
+`**Why they ask:** pharma has strict traceability and regulatory requirements.
+
+**Answer:**
+"Lot control on all APIs, raw materials and finished goods. Serial control at saleable units where DSCSA or EU FMD serialization applies, often in a dedicated serialization system integrated with Oracle. Lot attributes include expiry, retest date, manufacturer lot, grade and origin. Material status moves from quarantine to approved or released to rejected, and QA release controls availability. Picking is FEFO. Genealogy supports recalls from raw material lot to customer shipment. And GxP: a validated system, audit trails, and electronic signatures under 21 CFR Part 11 for key transactions."
+
+Tip: Mention material status and QA release. It's the core of pharma inventory control.`,
+
+'How do you plan the inventory cutover for a warehouse go-live?':
+`**Why they ask:** a bad cutover means a warehouse that can't ship.
+
+**Answer:**
+"I freeze legacy transactions, stopping receiving and shipping or logging them by hand. Then a physical count or a validated cycle-count snapshot by item, lot, serial and locator. On-hand is loaded with costs from finance and reconciled for quantity and value to legacy and GL. Open POs, sales orders and transfers are converted after on-hand. Manual transactions from the freeze are caught up after go-live. And shipping and receiving restart with support on the floor. I plan it around low-volume days and tell customers and suppliers in advance."
+
+Tip: Mention telling customers and suppliers. Cutover affects them too.`,
+
+'How would you design a returns (RMA) process with inspection and refurbishment?':
+`**Why they ask:** returns design touches OM, inventory, manufacturing and AR.
+
+**Answer:**
+"Return orders reference the original order, and return reasons drive the flow. Returns are received into a returns subinventory with inspection routing. Disposition is restock if good, refurbish through a repair work order, scrap, or return to vendor. Credit is created in AR once received and inspected, or immediately for trusted customers. Returned items are valued at original cost or a refurbishment cost. And analytics on return reasons help fix root causes."
+
+Tip: Mention credit timing for trusted customers. It shows business awareness.`,
+
+'When would you recommend a WMS over standard Fusion Inventory?':
+`**Why they ask:** a judgment question about tools.
+
+**Answer:**
+"When a DC has high volume, many lines a day, and complex picking like waves, zones and cartonization. When operations are LPN-based, with cross-docking and directed putaway. When they need labor management and automation like conveyors or robots. And when mobile RF is used everywhere. Fusion Warehouse Management now covers many of these natively, and for very large or automated DCs, a specialist WMS like Manhattan or Blue Yonder. The decision comes down to volume, complexity, automation and integration cost."
+
+Tip: End with the decision criteria. It shows judgment rather than preference.`,
+
+'How do you set up material status control for quarantine and QA release?':
+`**Why they ask:** a regulated-industry control.
+
+**Answer:**
+"I define statuses like Quarantine, Approved, Rejected and Hold, each with allowed transactions. For example, Quarantine blocks shipping and issue to production but allows transfer to the QA lab. Default statuses are set at subinventory, locator, lot or serial level. QA changes the status after inspection, with an electronic signature in regulated environments. Picking and ATP respect the status. And I report on quarantined material with aging."
+
+Tip: Give the allowed transactions for Quarantine. It makes the setup concrete.`,
+
+'How would you speed up receiving at a busy distribution center?':
+`**Why they ask:** a practical operations question.
+
+**Answer:**
+"I'd require ASNs from the top suppliers so receipts are pre-filled. Barcode and mobile receiving, scanning LPNs or lots. Direct delivery routing for low-risk items, with inspection only where needed. Receiving tolerances that accept small differences automatically. Dock scheduling to level the workload. And measure dock-to-stock time and receipt backlog every day."
+
+Tip: Mention dock-to-stock time. It's the KPI receiving managers use.`,
+
+'How would you reduce cycle count adjustments at a DC?':
+`**Why they ask:** adjustments signal process problems.
+
+**Answer:**
+"I analyze adjustments by item, locator, user and reason. Then fix root causes: receiving delays, picking errors, UOM confusion, unrecorded scrap. I add scanning and locator control. I tighten tolerances for A items and require a recount before approval. And I review adjustments weekly with warehouse leads."
+
+Tip: Say "analyze by user". It often shows a training issue quickly.`,
+
+'What is an ASN and how is it used in receiving?':
+`**Why they ask:** a basic inbound question.
+
+**Answer:**
+"An Advance Shipment Notice tells us what a supplier has shipped, items, quantities, lots or serials, and expected date, before it arrives. The supplier creates it in the portal or sends it by B2B, as EDI 856. Receivers receive against the ASN, which is faster and more accurate. An ASBN, advance shipment and billing notice, can also create the invoice. And the PO can require an ASN reference, forcing suppliers to send them."
+
+Tip: Mention requiring ASNs on the PO. It's how you get suppliers to comply.`,
+
+'How does receipt accounting create accruals and how do you clear old accruals?':
+`**Why they ask:** stale accruals are a common audit finding.
+
+**Answer:**
+"With accrue at receipt, delivery to inventory or expense books Dr Inventory or Expense, Cr Receipt Accrual. When AP matches the invoice, AP books Dr Accrual, Cr Liability, and differences go to variance accounts. To find problems, I use Accrual Reconciliation in Receipt Accounting and the accrual balances report, which show accruals with no invoice or mismatches. After investigation, I write them off with approval or clear them, often because the PO should have been closed. And I close POs regularly so accruals don't build up."
+
+Tip: Say "close POs regularly". It's the prevention step.`,
+
+'What is consigned inventory and how is it handled in Fusion?':
+`**Why they ask:** consignment changes ownership and accounting.
+
+**Answer:**
+"With supplier consignment, the supplier owns stock sitting in our warehouse until we use it. There's a consignment agreement, a blanket agreement with consignment terms. Receipts go into inventory as consigned, so there's no liability. When we consume it, by issue, transfer or after an aging period, ownership transfers: a consumption advice is created and the supplier is paid through AP or pay-on-use. On-hand shows both owned and consigned quantities. Customer consignment is the reverse: our stock at a customer's site."
+
+Tip: Explain when ownership transfers. It's the heart of consignment.`,
+
+'How do you set up and use transfer orders in Fusion?':
+`**Why they ask:** transfer orders are the Fusion way to move stock between orgs.
+
+**Answer:**
+"Transfer orders move inventory between orgs with a full flow: request, approve, ship, receive. They're created from transfer requests, planning, min-max or the internal material transfer page. Sourcing rules pick the source, and the shipping network and transfer pricing, at cost or a price list, are defined. If the orgs are in different legal entities, supply chain financial orchestration creates intercompany accounting. I track status in the Transfer Orders work area."
+
+Tip: Mention financial orchestration for cross-entity transfers.`,
+
+'How do you configure cycle counting with approvals and tolerances?':
+`**Why they ask:** a hands-on setup question.
+
+**Answer:**
+"I create the cycle count for an org with subinventories, ABC classes and frequency. I set count tolerances, a quantity percentage and value thresholds. Counts within tolerance post automatically; outside, they need a recount or approval. Approval can be always, never, or only out of tolerance. Count sequences are generated by schedule, and counters enter counts on mobile or web. Adjustments post to a cycle count adjustment account and create cost accounting."
+
+Tip: Give example tolerances, like 2% for A items and 5% for C.`,
+
+'What is the difference between available to transact, available to reserve and on-hand?':
+`**Why they ask:** a classic support question.
+
+**Answer:**
+"On-hand is the total physical quantity. Available to reserve is on-hand minus existing reservations and some statuses. Available to transact is what you can actually move or issue right now, excluding reserved quantities, stock in non-transactable subinventories, and stock with a restrictive material status, like a lot on hold. Material status, at subinventory, locator, lot or serial, decides which transactions are allowed, so a quarantine status blocks shipping."
+
+Tip: Use a quarantined lot as the example. It explains why on-hand isn't always usable.`,
+
+'How do you configure shipping for a new warehouse?':
+`**Why they ask:** a setup checklist question.
+
+**Answer:**
+"I set shipping parameters for the org: pick release defaults, staging subinventory, auto-pack and ship confirm rules. Picking rules, like FIFO or FEFO and locator order. Release rules and release sequence rules. Document sets, pick slips, packing slips and BOL, with printers. Carriers and ship methods, freight terms and costs. Shipping exceptions and their actions. Then I test the full flow: pick, pack, ship confirm, and invoicing."
+
+Tip: End with testing through to invoicing. It shows you check the whole chain.`,
+
+'What are shipping exceptions?':
+`**Why they ask:** a basic shipping question.
+
+**Answer:**
+"Shipping exceptions flag problems during shipping, like a short pick, damaged goods or missing documents. Each has a severity, error, warning or information, and a handling rule. They're logged manually or automatically. Errors block ship confirm until resolved. Reports show recurring warehouse problems."
+
+Tip: Mention that errors block ship confirm. That's the control.`,
+
+'What does Oracle Transportation Management (OTM) add to Fusion SCM?':
+`**Why they ask:** OTM is common in high-volume shippers.
+
+**Answer:**
+"OTM handles transportation planning and execution: load building and route optimization, carrier selection and rate management, tendering to carriers and tracking, and freight payment and audit. It integrates with Fusion Shipping: shipments go to OTM, and planned shipments come back. For high-volume shippers, the main value is lower freight cost."
+
+Tip: Lead with freight cost reduction. That's the business case.`,
+
+'What is Warehouse Management (WMS) and how is it different from standard Inventory?':
+`**Why they ask:** to see if you know when inventory isn't enough.
+
+**Answer:**
+"Standard Inventory tracks quantities by org, subinventory and locator. WMS adds task-based warehouse operations: directed putaway, wave picking, LPNs, cartonization, cross-docking, labor management and mobile RF. Fusion now has Warehouse Management built on Inventory, and many companies use specialist WMS like Manhattan or Blue Yonder integrated by APIs. An LPN is a container ID, like a pallet or case, that you transact as one unit."
+
+Tip: Explain LPN in one line. It's often a follow-up question.`,
+
+'How do you handle lot expiry and FEFO in Oracle?':
+`**Why they ask:** expiry control is essential in pharma and food.
+
+**Answer:**
+"I enable lot control with shelf life days on the item, so each lot gets an expiry date at receipt. Picking rules with FEFO, first expired first out, allocate the nearest-expiring lots first. Material status can block expired lots from shipping. Reports or alerts flag lots near expiry, and pharma also uses lot grade and retest dates. Expired lots move to a quarantine subinventory or are scrapped with approval."
+
+Tip: Mention alerts before expiry. Selling or using stock before it expires is the real goal.`,
+
+'What setups must exist before you can create an inventory organization in Fusion?':
+`**Why they ask:** a dependency question.
+
+**Answer:**
+"I need the location address, the legal entity and the profit center business unit, the item master organization, a workday calendar for scheduling, the cost organization relationship, and the ledger, through the legal entity and BU. Then I set the inventory org parameters, subinventories, locators, shipping and receiving parameters, and cost setups."
+
+Tip: Present it as prerequisites, then org setup. It shows you understand dependencies.`,
+
+'What are the key inventory organization parameters you set?':
+`**Why they ask:** these parameters shape how the org behaves.
+
+**Answer:**
+"The item master org and calendar, and default locator control. Lot and serial number generation and uniqueness. Whether negative balances are allowed. Picking and putaway defaults. ATP and reservation settings. Shipping, receiving and interorg transfer defaults. And costing: the linked cost org and default accounts. Decisions like negative balances need business agreement, because they affect controls and costing."
+
+Tip: Highlight the negative balances decision. It's the one that causes later problems.`,
+
+'How do you handle negative on-hand in an org that allows negative balances?':
+`**Why they ask:** negative on-hand causes costing problems.
+
+**Answer:**
+"Negative on-hand usually means issues were recorded before receipts, a timing problem, or a receipt was missed. I find the items and locations that are negative, check for pending receipts and transfers, and process them. In costing, negative quantities can cause cost adjustments later, so I monitor them. Once processes are stable, I'd recommend turning off negative balances."
+
+Tip: Recommend turning it off once stable. It shows control thinking.`,
+
+'How would you reduce excess and obsolete inventory using the platform?':
+`**Why they ask:** E&O ties up cash and causes write-offs.
+
+**Answer:**
+"First visibility: aging, days of supply and slow movers by item and location. Then root causes: forecast bias, minimum order quantities and lot sizes, and life-cycle changes nobody communicated. Then planning policies: adjust safety stock and order modifiers, and plan phase-outs for end-of-life items. Then disposition workflows: rebalance across DCs, sell, return to vendor or scrap. A reserve policy agreed with finance. And KPIs with a monthly review."
+
+Tip: Mention forecast bias. It's the most common cause.`,
+
+'How do you approach freight cost reduction through systems?':
+`**Why they ask:** freight is a big, visible cost.
+
+**Answer:**
+"First visibility of freight cost by lane, carrier, mode and customer. Then TMS optimization: load consolidation, mode selection and routing. Carrier procurement using rate analytics. Freight audit and pay to catch billing errors, which often recovers a few percent alone. Order policies, like minimum order quantities and set delivery days. And network design studies for the bigger structural savings."
+
+Tip: Mention freight audit. It's the quickest win.`,
+
+};

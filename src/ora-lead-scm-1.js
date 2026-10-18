@@ -1,211 +1,27 @@
 // Oracle Lead Functional Consultant (5–10 yrs) — SCM. Format: [module, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-lead-scm'] = (QB['ora-lead-scm'] || []).concat([
-['Workstream Leadership', 'How do you lead the SCM workstream on a Fusion implementation?',
-`- Own **scope and plan** for Procurement, Inventory, OM, Costing, Product Hub, Manufacturing/Planning as in scope.
-- Act as **design authority**: end-to-end flows (P2P, O2C, plan-to-produce, returns, intercompany) consistent across modules and with Finance.
-- Lead **CRPs**, decisions log, gap resolutions with the operations leaders.
-- Manage the **team**: assign modules, review configuration and designs, coach.
-- Coordinate with **Finance** (costing, accruals), **integrations** (3PL, MES, e-commerce) and **data** (items, suppliers, on-hand).
-- Drive testing, cutover and hypercare readiness for warehouses and plants.`, 'B'],
-
-['Design', 'How would you design inventory organizations for a company with plants, DCs and third-party warehouses?',
-`- One **inventory org per physical site** that has distinct costing, planning or legal ownership: each plant, each DC.
-- **3PL warehouses**: separate inventory orgs (often with simplified setups) integrated via ship/receipt messages.
-- **Subinventories** for stock types within a site (raw, WIP staging, FG, quarantine, returns).
-- **Cost organizations** grouping orgs that share costs (e.g. all US DCs at one average cost).
-- **Item master org** at the top; **shipping networks** and **sourcing rules** between orgs.
-- Consider legal entities and **SFO** flows when orgs belong to different entities.
-
-Avoid too many orgs — each adds setup, planning and period-close overhead.`, 'D'],
-
-['Design', 'Standard vs average costing — how do you help a client choose?',
-`## Standard cost
-- Stable, predictable valuation; variances highlight purchasing and manufacturing performance.
-- Needs cost maintenance (yearly updates) and variance analysis.
-- Common in manufacturing.
-
-## Average (perpetual) cost
-- Reflects actual purchase prices; no variance analysis, less maintenance.
-- Cost can swing with price changes; harder to spot inefficiencies.
-- Common in distribution.
-
-## How I decide with them
-- Industry and margin analysis needs, finance team capacity, volatility of purchase prices, and group reporting standards. Prototype both with real data if unsure.`, 'D'],
-
-['Design', 'How would you design centralized procurement for a company with 10 operating companies?',
-`- One (or a few regional) **procurement BUs** serving many **requisitioning BUs** (service provider relationships).
-- **Global agreements** with **enable for all requisitioning BUs**; local agreements where needed.
-- **Category-based buyer assignment** (category managers).
-- **Approval rules** in requisitioning BUs (budget owners) and procurement BU (buyer/contract approvals).
-- **Supplier master** shared; site assignments to each client BU.
-- **Sold-to legal entity** and **bill-to BU** per requisitioning company so AP and liabilities sit in the right entity.
-- Use **SFO** if a central entity buys and resells internally.`, 'D'],
-
-['Design', 'How do you design supply chain financial orchestration flows?',
-`- Map **physical flows** (who ships/receives) and **financial flows** (who buys/sells legally) with the tax and finance teams.
-- For each flow: **trade relationships** between entities, **transfer pricing rules** (cost-plus, price list), **documentation** (intercompany AR/AP invoices or journal only), and **accounting**.
-- Define **financial orchestration flows** (procurement flow, shipment flow) and **assignment rules**.
-- Consider **tax implications** (VAT/customs) and profit-in-inventory eliminations.
-- Test end-to-end including intercompany invoices and costing in each entity.`, 'D'],
-
-['Design', 'How would you handle drop-ship vs warehouse fulfillment decisions in the O2C design?',
-`- **Item and supplier attributes** decide eligibility (e.g. bulky items always drop ship).
-- **Sourcing rules** and **orchestration process assignment** route lines to drop-ship or warehouse processes.
-- Consider **customer promise** (lead times), **margins** (freight), **visibility** (supplier ASNs for tracking), and **financial flows** (logical receipt/shipment accounting).
-- Ensure **AP and AR** timing works (supplier invoice vs customer invoice).
-- Returns: who receives them — supplier or your warehouse?`, 'D'],
-
-['Product Hub', 'How do you set up item data governance in Product Hub?',
-`- Define **item classes** with required attributes and numbering.
-- Use **New Item Requests** with definition steps per function (engineering, procurement, planning, costing, quality) and an approval step.
-- **Validation rules** and **templates** for consistency.
-- **Change orders** for changes after release.
-- **Data stewards** per class; KPIs on cycle time and data completeness.
-- Integrate PLM (e.g. Oracle PLM or Agile) as the source for engineering items if applicable.
-
-Result: fewer duplicate items and complete attributes before transactions start.`, 'D'],
-
-['Product Hub', 'How would you clean and migrate a legacy item master with many duplicates?',
-`- **Profile** the data: duplicates by description, manufacturer part number, UOM inconsistencies, inactive items.
-- Agree **rules**: which items migrate (activity in last 24 months, open transactions, on-hand), golden record selection.
-- **Standardize** descriptions and UOMs; map to new item classes and categories.
-- Build **cross-reference** (legacy → new item) for open orders, BOMs and history.
-- Load via **item import** in stages; reconcile counts and key attributes.
-- Business data owners sign off each mock.`, 'D'],
-
-['Procurement', 'How do you fix invoice matching problems on blanket POs with many receipts?',
-`- Symptom: AP staff must pick specific receipts, often stale ones, and invoices go on hold.
-- Option: change the **invoice match option** on the BPA/PO schedules from **Receipt** to **Purchase Order** — still **3-way** (receipt quantity is checked in total), but AP matches at PO level.
-- Update **document style/agreement defaults** so new releases default correctly; consider **mass update** for open POs.
-- Check impacts: price variance analysis by receipt, accrual clearing, reports.
-- Train receivers to receive promptly so totals are right.
-- Pilot with a few high-volume suppliers before rolling out.`, 'D'],
-
-['Procurement', 'What KPIs would you set up for procurement?',
-`- **Spend under management** / on-contract %.
-- **PO cycle time** (requisition to PO).
-- **Touchless PO %** (auto-created POs).
-- **Savings** (negotiated vs baseline).
-- **Supplier performance**: on-time delivery, quality rejects.
-- **Maverick spend**.
-- **Buyer productivity**.
-
-Use OTBI/FDI dashboards; baseline before go-live.`, 'B'],
-
-['Inventory', 'How would you run an inventory accuracy improvement program?',
-`- Measure **record accuracy** (by count) and value variance by location.
-- Implement **ABC cycle counting** with tolerances and root-cause codes.
-- Fix **process causes**: receiving delays, unrecorded issues, wrong locators, UOM mistakes.
-- Use **scanning/mobile** transactions instead of paper.
-- **Locator control** and material status to stop misplacement.
-- Weekly review of adjustments with warehouse leads.
-- Target e.g. 98%+ accuracy for A items.`, 'D'],
-
-['Inventory', 'How would you design lot and serial control for a pharmaceutical company?',
-`- **Lot control** on all API, raw materials and finished goods; **serial control** at saleable units if **DSCSA/EU FMD** serialization applies (often in a dedicated serialization system integrated with Oracle).
-- **Lot attributes**: expiry, retest date, manufacturer lot, grade, origin.
-- **Material status**: quarantine → approved/released → rejected; QA release controls availability.
-- **FEFO** picking.
-- **Genealogy** for recall: from raw material lot to customer shipment.
-- **GxP considerations**: validated system (CSV), audit trails, electronic signatures (21 CFR Part 11) for key transactions.`, 'D'],
-
-['Inventory', 'How do you plan the inventory cutover for a warehouse go-live?',
-`- **Freeze** transactions in legacy (stop receiving/shipping or log them manually).
-- **Physical count** (or validated cycle-count snapshot) by item, lot, serial, locator.
-- **Load on-hand** via inventory transaction import with costs from finance; reconcile quantity and value to legacy and GL.
-- Convert **open POs, sales orders, transfers** after on-hand.
-- **Catch-up** manual transactions after go-live.
-- Shipping/receiving restart with floor support.
-
-Plan around low-volume days and coordinate with customers/suppliers.`, 'D'],
-
-['Order Management', 'How would you design the O2C process for a company selling through e-commerce and EDI?',
-`- **Order capture**: e-commerce via REST order import (or OIC); EDI 850 via B2B provider → OM.
-- **Validation and pricing**: pricing in Fusion or honor channel price.
-- **Orchestration**: standard ship, drop ship, back-to-back.
-- **GOP** for promising; ATP shown to customers.
-- **Shipping** with carrier integration; **ASN (856)** back to EDI customers; tracking to e-commerce.
-- **Invoicing** (810 for EDI), payments for e-commerce (card settlement).
-- **Returns** process in both channels.
-- **Monitoring** of order import failures.`, 'D'],
-
-['Order Management', 'How do you handle order holds for export compliance?',
-`- Integrate with a **trade compliance** solution (Oracle Global Trade Management or third party) to screen parties (denied party screening) and items (classification, licenses).
-- Orchestration step triggers screening; failures place an **export compliance hold**.
-- Compliance team reviews and releases or cancels.
-- Audit trail for regulators.
-
-Common for tech and pharma companies selling internationally.`, 'D'],
-
-['Planning', 'How would you approach implementing Fusion Supply Planning?',
-`- Start with **data readiness**: item planning attributes (lead times, order modifiers, safety stock), BOM and routing accuracy, sourcing rules.
-- **Collections** setup and frequency.
-- Design **plan types** (supply plan, replenishment, MPS) and horizons.
-- Define **exceptions** planners act on; build workflows.
-- **Pilot** a product line; compare recommendations against current planner decisions.
-- Train planners on trust-building — they must see why the plan recommends something.
-- Measure: service level, inventory, expedites.`, 'D'],
-
-['Planning', 'How do you set safety stock?',
-`Methods:
-- **Fixed quantity** or **days of supply**.
-- **Statistical** — based on demand variability, lead time variability and target **service level** (e.g. 95% → z = 1.65).
-- Fusion supports **planning-calculated safety stock** using forecast error.
-
-Decisions: higher service levels for A items and critical customers; lower for C items. Review quarterly — static safety stock goes stale.`, 'D'],
-
-['Manufacturing', 'Discrete vs process manufacturing — what is different in Oracle?',
-`- **Discrete**: items assembled from components (electronics, machinery) — BOMs, routings/work definitions, work orders with operations, serial tracking.
-- **Process**: recipes and formulas with yields, by-products and co-products, batch sizes, potency/grade (chemicals, food, pharma).
-- Fusion supports both: **Discrete Manufacturing** and **Process Manufacturing** (batch work orders with outputs).
-- Costing differs: process manufacturing handles yields and co-product cost allocation.`, 'D'],
-
-['Quality', 'How would you integrate quality inspection into receiving for a regulated company?',
-`- **Inspection receipt routing** for regulated items.
-- **Inspection plans** by item/supplier with sampling (AQL) and specifications.
-- Received material goes to a **quarantine** subinventory/status until QA release.
-- Failures create **nonconformances** and **supplier corrective actions (SCAR)**.
-- **Electronic signatures** for release.
-- Link to supplier performance scores.`, 'D'],
-
-['Integration', 'What integrations are typical in an SCM implementation and how do you manage them?',
-`- **3PL/WMS**: shipments and receipts.
-- **MES** (manufacturing execution): work order completions and material consumption.
-- **E-commerce/CRM/CPQ**: orders and pricing.
-- **EDI/B2B**: suppliers and customers.
-- **Carriers / TMS**: rates, labels, tracking.
-- **PLM**: items and BOMs.
-- **Planning tools** (if external).
-
-## Management
-- Integration inventory with owners, patterns (real-time vs batch), error handling, monitoring and SLAs.
-- Build on **OIC** with standard APIs; test with partners early; plan cutover sequencing.`, 'B'],
-
-['Integration', 'How would you design an MES integration for work order execution?',
-`- **Fusion → MES**: released work orders, work definitions, item/lot master data (event-driven via business events or scheduled).
-- **MES → Fusion**: operation completions, material consumption (with lots), assembly completions, scrap, resource time — via **REST APIs** (work order transactions).
-- Decide **system of record** for each step to avoid double entry.
-- **Error handling**: retries, an error queue, reconciliation reports (WIP, on-hand).
-- **Timing**: near real-time for inventory accuracy; batching only where acceptable.`, 'D'],
-
-['Testing', 'How do you test end-to-end SCM flows involving finance and integrations?',
-`- **Scenario library**: P2P (stock, expense, services), O2C (stock, drop ship, back-to-back, ATO), returns (customer and supplier), transfers (intra and intercompany), plan-to-produce.
-- Include **integration partners** (3PL, EDI) using their test environments.
-- Validate **accounting** at each step: receipt, issue, COGS, intercompany invoices.
-- **Day-in-the-life** tests with warehouse and procurement users.
-- **Volume tests** for pick release and order import.`, 'B'],
-
-['Team Leadership', 'How do you build a strong SCM team on a project?',
-`- Mix of **deep module experts** and **end-to-end thinkers**.
-- Pair juniors with seniors; rotate across modules for breadth.
-- Clear **standards** (config workbooks, design templates, test evidence).
-- Weekly **design reviews** where the team challenges each other.
-- Recognition and growth paths; protect the team from chaos with clear priorities.`, 'B'],
-
-['Stakeholders', 'How do you balance operations (speed) and finance (control) requirements in SCM design?',
-`- Get both in the room for key designs (receiving, inventory adjustments, costing, returns).
-- Use **risk-based controls**: approvals only where value or risk is high (e.g. adjustments above $X).
-- Automate controls (tolerances, material status) instead of manual approvals.
-- Make accounting impacts visible in CRPs.
-- Agree KPIs that both care about (inventory accuracy, cost per order).`, 'B']
+QB["ora-lead-scm"] = (QB["ora-lead-scm"] || []).concat([
+["Workstream Leadership", "How do you lead the SCM workstream on a Fusion implementation?", "- Own **scope and plan** for Procurement, Inventory, OM, Costing, Product Hub, Manufacturing/Planning as in scope.\n- Act as **design authority**: end-to-end flows (P2P, O2C, plan-to-produce, returns, intercompany) consistent across modules and with Finance.\n- Lead **CRPs**, decisions log, gap resolutions with the operations leaders.\n- Manage the **team**: assign modules, review configuration and designs, coach.\n- Coordinate with **Finance** (costing, accruals), **integrations** (3PL, MES, e-commerce) and **data** (items, suppliers, on-hand).\n- Drive testing, cutover and hypercare readiness for warehouses and plants.", "B"],
+["Design", "How would you design inventory organizations for a company with plants, DCs and third-party warehouses?", "- One **inventory org per physical site** that has distinct costing, planning or legal ownership: each plant, each DC.\n- **3PL warehouses**: separate inventory orgs (often with simplified setups) integrated via ship/receipt messages.\n- **Subinventories** for stock types within a site (raw, WIP staging, FG, quarantine, returns).\n- **Cost organizations** grouping orgs that share costs (e.g. all US DCs at one average cost).\n- **Item master org** at the top; **shipping networks** and **sourcing rules** between orgs.\n- Consider legal entities and **SFO** flows when orgs belong to different entities.\n\nAvoid too many orgs — each adds setup, planning and period-close overhead.", "D"],
+["Design", "Standard vs average costing — how do you help a client choose?", "## Standard cost\n- Stable, predictable valuation; variances highlight purchasing and manufacturing performance.\n- Needs cost maintenance (yearly updates) and variance analysis.\n- Common in manufacturing.\n\n## Average (perpetual) cost\n- Reflects actual purchase prices; no variance analysis, less maintenance.\n- Cost can swing with price changes; harder to spot inefficiencies.\n- Common in distribution.\n\n## How I decide with them\n- Industry and margin analysis needs, finance team capacity, volatility of purchase prices, and group reporting standards. Prototype both with real data if unsure.", "D"],
+["Design", "How would you design centralized procurement for a company with 10 operating companies?", "- One (or a few regional) **procurement BUs** serving many **requisitioning BUs** (service provider relationships).\n- **Global agreements** with **enable for all requisitioning BUs**; local agreements where needed.\n- **Category-based buyer assignment** (category managers).\n- **Approval rules** in requisitioning BUs (budget owners) and procurement BU (buyer/contract approvals).\n- **Supplier master** shared; site assignments to each client BU.\n- **Sold-to legal entity** and **bill-to BU** per requisitioning company so AP and liabilities sit in the right entity.\n- Use **SFO** if a central entity buys and resells internally.", "D"],
+["Design", "How do you design supply chain financial orchestration flows?", "- Map **physical flows** (who ships/receives) and **financial flows** (who buys/sells legally) with the tax and finance teams.\n- For each flow: **trade relationships** between entities, **transfer pricing rules** (cost-plus, price list), **documentation** (intercompany AR/AP invoices or journal only), and **accounting**.\n- Define **financial orchestration flows** (procurement flow, shipment flow) and **assignment rules**.\n- Consider **tax implications** (VAT/customs) and profit-in-inventory eliminations.\n- Test end-to-end including intercompany invoices and costing in each entity.", "D"],
+["Design", "How would you handle drop-ship vs warehouse fulfillment decisions in the O2C design?", "- **Item and supplier attributes** decide eligibility (e.g. bulky items always drop ship).\n- **Sourcing rules** and **orchestration process assignment** route lines to drop-ship or warehouse processes.\n- Consider **customer promise** (lead times), **margins** (freight), **visibility** (supplier ASNs for tracking), and **financial flows** (logical receipt/shipment accounting).\n- Ensure **AP and AR** timing works (supplier invoice vs customer invoice).\n- Returns: who receives them — supplier or your warehouse?", "D"],
+["Product Hub", "How do you set up item data governance in Product Hub?", "- Define **item classes** with required attributes and numbering.\n- Use **New Item Requests** with definition steps per function (engineering, procurement, planning, costing, quality) and an approval step.\n- **Validation rules** and **templates** for consistency.\n- **Change orders** for changes after release.\n- **Data stewards** per class; KPIs on cycle time and data completeness.\n- Integrate PLM (e.g. Oracle PLM or Agile) as the source for engineering items if applicable.\n\nResult: fewer duplicate items and complete attributes before transactions start.", "D"],
+["Product Hub", "How would you clean and migrate a legacy item master with many duplicates?", "- **Profile** the data: duplicates by description, manufacturer part number, UOM inconsistencies, inactive items.\n- Agree **rules**: which items migrate (activity in last 24 months, open transactions, on-hand), golden record selection.\n- **Standardize** descriptions and UOMs; map to new item classes and categories.\n- Build **cross-reference** (legacy → new item) for open orders, BOMs and history.\n- Load via **item import** in stages; reconcile counts and key attributes.\n- Business data owners sign off each mock.", "D"],
+["Procurement", "How do you fix invoice matching problems on blanket POs with many receipts?", "**Why they ask:** a real problem in high-volume procurement. They want a fix with its impacts.\n\n**Answer:**\n\"The symptom is AP staff having to pick specific receipts, often old ones, and invoices going on hold. One fix is changing the invoice match option on the agreement or PO schedules from Receipt to Purchase Order. It's still 3-way matching, because the total received quantity is still checked, but AP matches at the PO level instead of picking receipts. I'd update the document style and agreement defaults so new releases default correctly, and consider a mass update for open POs. Then check the impacts: price variance by receipt, accrual clearing and reports. Receivers need to receive promptly so totals are right. And I'd pilot with a few high-volume suppliers first.\"\n\nTip: Explain that it's still 3-way matching. That answers the auditor's first worry.", "D"],
+["Procurement", "What KPIs would you set up for procurement?", "**Why they ask:** to see if you measure procurement by outcomes.\n\n**Answer:**\n\"Spend under management, or the percentage on contract. PO cycle time from requisition to PO. Touchless PO percentage. Savings against a baseline. Supplier performance, on-time delivery and quality rejects. Maverick spend. And buyer productivity. I'd build them in OTBI or Fusion Data Intelligence dashboards, and take a baseline before go-live so we can show improvement.\"\n\nTip: Mention the baseline. Without it, nobody can prove the project worked.", "B"],
+["Inventory", "How would you run an inventory accuracy improvement program?", "**Why they ask:** accuracy affects planning, customer service and audit.\n\n**Answer:**\n\"I measure record accuracy by count and value variance by location. I set up ABC cycle counting with tolerances and root-cause codes. I fix process causes: receiving delays, unrecorded issues, wrong locators and UOM mistakes. I move to scanning and mobile transactions instead of paper. I use locator control and material status to stop misplacement. And I review adjustments weekly with warehouse leads. A typical target is 98% or better for A items.\"\n\nTip: Give the target. It shows you've run one.", "D"],
+["Inventory", "How would you design lot and serial control for a pharmaceutical company?", "**Why they ask:** pharma has strict traceability and regulatory requirements.\n\n**Answer:**\n\"Lot control on all APIs, raw materials and finished goods. Serial control at saleable units where DSCSA or EU FMD serialization applies, often in a dedicated serialization system integrated with Oracle. Lot attributes include expiry, retest date, manufacturer lot, grade and origin. Material status moves from quarantine to approved or released to rejected, and QA release controls availability. Picking is FEFO. Genealogy supports recalls from raw material lot to customer shipment. And GxP: a validated system, audit trails, and electronic signatures under 21 CFR Part 11 for key transactions.\"\n\nTip: Mention material status and QA release. It's the core of pharma inventory control.", "D"],
+["Inventory", "How do you plan the inventory cutover for a warehouse go-live?", "**Why they ask:** a bad cutover means a warehouse that can't ship.\n\n**Answer:**\n\"I freeze legacy transactions, stopping receiving and shipping or logging them by hand. Then a physical count or a validated cycle-count snapshot by item, lot, serial and locator. On-hand is loaded with costs from finance and reconciled for quantity and value to legacy and GL. Open POs, sales orders and transfers are converted after on-hand. Manual transactions from the freeze are caught up after go-live. And shipping and receiving restart with support on the floor. I plan it around low-volume days and tell customers and suppliers in advance.\"\n\nTip: Mention telling customers and suppliers. Cutover affects them too.", "D"],
+["Order Management", "How would you design the O2C process for a company selling through e-commerce and EDI?", "- **Order capture**: e-commerce via REST order import (or OIC); EDI 850 via B2B provider → OM.\n- **Validation and pricing**: pricing in Fusion or honor channel price.\n- **Orchestration**: standard ship, drop ship, back-to-back.\n- **GOP** for promising; ATP shown to customers.\n- **Shipping** with carrier integration; **ASN (856)** back to EDI customers; tracking to e-commerce.\n- **Invoicing** (810 for EDI), payments for e-commerce (card settlement).\n- **Returns** process in both channels.\n- **Monitoring** of order import failures.", "D"],
+["Order Management", "How do you handle order holds for export compliance?", "- Integrate with a **trade compliance** solution (Oracle Global Trade Management or third party) to screen parties (denied party screening) and items (classification, licenses).\n- Orchestration step triggers screening; failures place an **export compliance hold**.\n- Compliance team reviews and releases or cancels.\n- Audit trail for regulators.\n\nCommon for tech and pharma companies selling internationally.", "D"],
+["Planning", "How would you approach implementing Fusion Supply Planning?", "- Start with **data readiness**: item planning attributes (lead times, order modifiers, safety stock), BOM and routing accuracy, sourcing rules.\n- **Collections** setup and frequency.\n- Design **plan types** (supply plan, replenishment, MPS) and horizons.\n- Define **exceptions** planners act on; build workflows.\n- **Pilot** a product line; compare recommendations against current planner decisions.\n- Train planners on trust-building — they must see why the plan recommends something.\n- Measure: service level, inventory, expedites.", "D"],
+["Planning", "How do you set safety stock?", "Methods:\n- **Fixed quantity** or **days of supply**.\n- **Statistical** — based on demand variability, lead time variability and target **service level** (e.g. 95% → z = 1.65).\n- Fusion supports **planning-calculated safety stock** using forecast error.\n\nDecisions: higher service levels for A items and critical customers; lower for C items. Review quarterly — static safety stock goes stale.", "D"],
+["Manufacturing", "Discrete vs process manufacturing — what is different in Oracle?", "- **Discrete**: items assembled from components (electronics, machinery) — BOMs, routings/work definitions, work orders with operations, serial tracking.\n- **Process**: recipes and formulas with yields, by-products and co-products, batch sizes, potency/grade (chemicals, food, pharma).\n- Fusion supports both: **Discrete Manufacturing** and **Process Manufacturing** (batch work orders with outputs).\n- Costing differs: process manufacturing handles yields and co-product cost allocation.", "D"],
+["Quality", "How would you integrate quality inspection into receiving for a regulated company?", "- **Inspection receipt routing** for regulated items.\n- **Inspection plans** by item/supplier with sampling (AQL) and specifications.\n- Received material goes to a **quarantine** subinventory/status until QA release.\n- Failures create **nonconformances** and **supplier corrective actions (SCAR)**.\n- **Electronic signatures** for release.\n- Link to supplier performance scores.", "D"],
+["Integration", "What integrations are typical in an SCM implementation and how do you manage them?", "- **3PL/WMS**: shipments and receipts.\n- **MES** (manufacturing execution): work order completions and material consumption.\n- **E-commerce/CRM/CPQ**: orders and pricing.\n- **EDI/B2B**: suppliers and customers.\n- **Carriers / TMS**: rates, labels, tracking.\n- **PLM**: items and BOMs.\n- **Planning tools** (if external).\n\n## Management\n- Integration inventory with owners, patterns (real-time vs batch), error handling, monitoring and SLAs.\n- Build on **OIC** with standard APIs; test with partners early; plan cutover sequencing.", "B"],
+["Integration", "How would you design an MES integration for work order execution?", "- **Fusion → MES**: released work orders, work definitions, item/lot master data (event-driven via business events or scheduled).\n- **MES → Fusion**: operation completions, material consumption (with lots), assembly completions, scrap, resource time — via **REST APIs** (work order transactions).\n- Decide **system of record** for each step to avoid double entry.\n- **Error handling**: retries, an error queue, reconciliation reports (WIP, on-hand).\n- **Timing**: near real-time for inventory accuracy; batching only where acceptable.", "D"],
+["Testing", "How do you test end-to-end SCM flows involving finance and integrations?", "- **Scenario library**: P2P (stock, expense, services), O2C (stock, drop ship, back-to-back, ATO), returns (customer and supplier), transfers (intra and intercompany), plan-to-produce.\n- Include **integration partners** (3PL, EDI) using their test environments.\n- Validate **accounting** at each step: receipt, issue, COGS, intercompany invoices.\n- **Day-in-the-life** tests with warehouse and procurement users.\n- **Volume tests** for pick release and order import.", "B"],
+["Team Leadership", "How do you build a strong SCM team on a project?", "- Mix of **deep module experts** and **end-to-end thinkers**.\n- Pair juniors with seniors; rotate across modules for breadth.\n- Clear **standards** (config workbooks, design templates, test evidence).\n- Weekly **design reviews** where the team challenges each other.\n- Recognition and growth paths; protect the team from chaos with clear priorities.", "B"],
+["Stakeholders", "How do you balance operations (speed) and finance (control) requirements in SCM design?", "- Get both in the room for key designs (receiving, inventory adjustments, costing, returns).\n- Use **risk-based controls**: approvals only where value or risk is high (e.g. adjustments above $X).\n- Automate controls (tolerances, material status) instead of manual approvals.\n- Make accounting impacts visible in CRPs.\n- Agree KPIs that both care about (inventory accuracy, cost per order).", "B"]
 ]);
