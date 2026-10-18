@@ -85,10 +85,10 @@ const PROFILE_FIELDS = [
   ['team', 'Team / department', 'e.g. ERP Finance Systems, IT', 0],
   ['manager', 'Who you report to', 'e.g. Director of Enterprise Applications', 0],
   ['resp', 'Main responsibilities', 'e.g. own Oracle Fusion Financials and SCM roadmap, support month-end close, lead integrations', 1],
-  ['projects', 'Current projects', 'e.g. Redwood rollout for Procurement; item request approval workflow', 1],
-  ['wins', 'Recent wins (with numbers if you can)', 'e.g. cut AP invoice holds 40% by fixing blanket PO matching', 1],
-  ['challenges', 'Challenges, risks or blockers', 'e.g. thin inventory team after a resignation; slow security approvals', 1],
-  ['goals', 'Your goals', 'e.g. promotion to Associate Director; lead the AI agent program', 1],
+  ['projects', 'Current projects', 'e.g. Redwood rollout for Procurement; period-close automation', 1],
+  ['wins', 'Recent wins (with numbers if you can)', 'e.g. cut month-end close from 8 days to 5', 1],
+  ['challenges', 'Challenges, risks or blockers', 'e.g. tight go-live timeline; slow security approvals', 1],
+  ['goals', 'Your goals', 'e.g. move into a lead or manager role; grow AI skills', 1],
   ['priorities', 'What your leaders care about most', 'e.g. faster close, audit-clean, cost savings, AI adoption', 1]
 ];
 let PROFILE = store.get('ip.profile', {});
