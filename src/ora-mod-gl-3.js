@@ -1,154 +1,28 @@
 // Oracle Modules — General Ledger deep dive (part 3: FCCS consolidation and close). Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-gl'] = (QB['ora-mod-gl'] || []).concat([
-['FCCS', 'What is Oracle FCCS and how does it fit with Fusion GL?',
-`- **Financial Consolidation and Close (FCCS)** is Oracle's cloud **EPM** application for **group consolidation and close**: currency translation, intercompany eliminations, ownership/NCI, consolidation journals, cash flow, and close task management.
-- **Fusion GL** remains the book of record for each ledger; FCCS receives **trial balances** (by entity, account, period, currency, often with intercompany partner and movement) via **Data Integration**, with **drill-through** back to Fusion.
-- Reporting via **Financial Reports, Smart View and Narrative Reporting**.`, 'B'],
-
-['FCCS', 'What are the standard dimensions in FCCS?',
-`- **Account**, **Entity**, **Period**, **Years**, **Scenario** (Actual, Budget…), **View** (Periodic, YTD, QTD), **Currency**, **Consolidation**, **Intercompany**, **Data Source**, **Movement**.
-- Optional **Multi-GAAP** dimension and **custom dimensions** (e.g. Product, Cost Center) — limited in number, so choose carefully.
-- **Consolidation** dimension tracks the stages (entity input, proportion, elimination, contribution); **Data Source** tracks where data came from (data input, journals, supplemental data, calculations).`, 'D'],
-
-['FCCS', 'Walk me through the FCCS consolidation process.',
-`- **Load** trial balances (and supplemental data) for each entity.
-- **Calculate** entity-level rules (configurable calculations).
-- **Translate** to parent currency using **average/ending rates** and historical overrides; **FX/CTA** calculated through the Movement dimension.
-- **Proportionalize** by ownership/consolidation method.
-- **Eliminate** intercompany balances and investments (equity elimination) at the first common parent.
-- **Contribute** results to the parent; repeat up the hierarchy.
-- **Journals** for top-side adjustments; **approvals** through the approval unit hierarchy.
-- **Review** calculation status (OK, Impacted, System Changed) and reports.`, 'D'],
-
-['FCCS', 'How does intercompany elimination work in FCCS?',
-`- Intercompany balances are loaded with the **Intercompany (partner) dimension** populated (from the GL intercompany segment).
-- **Intercompany matching reports** compare receivable vs payable (and revenue vs expense) between partner pairs, with tolerances.
-- On consolidation, balances are eliminated at the **first common parent**, with differences posted to a **plug (elimination difference) account**.
-- Root cause of mismatches: timing, FX rates, missing partner segment, misposted accounts — fix in GL where possible.`, 'D'],
-
-['FCCS', 'How does FCCS handle currency translation and CTA?',
-`- **Exchange rates** entered by period for rate accounts: **Average** and **Ending**; historical rates/amounts via **overrides** for equity and investments.
-- P&L translated at average (periodic) rates; balance sheet at ending; equity at historical.
-- **FX on opening balances** and **FX on movements** calculated in the **Movement** dimension; the difference flows to **CTA** (OCI).
-- **Currency dimension** shows entity currency, translated (parent) currency and adjustments.
-- Supports translation methods for hyperinflation with configuration.`, 'D'],
-
-['FCCS', 'How does ownership management and NCI work in FCCS?',
-`- **Ownership settings** per entity and parent: **% ownership**, **% control**, and **consolidation method** — Holding, Subsidiary (full consolidation), Proportional, Equity, Discontinued, etc.
-- FCCS calculates **non-controlling interest** for partially owned subsidiaries and performs **investment/equity eliminations**.
-- Ownership can change by period (acquisitions, disposals).
-- Mention configurable consolidation rules for special cases.`, 'D'],
-
-['FCCS', 'How do you integrate Fusion GL with FCCS?',
-`- **Data Integration (Data Exchange)** with a **Fusion GL source connection**: select ledgers/balance types, periods.
-- **Mappings**: GL account → FCCS account; BSV/legal entity → Entity; intercompany segment → Intercompany; currency; optional cost center/product → custom dimensions.
-- **Period and category** mappings; **load rules** run per period (scheduled during close).
-- **Validation** checks and **drill-through** to Fusion GL balances/journals.
-- **Write-back** of FCCS journals to GL is possible but usually not needed.`, 'D'],
-
-['FCCS', 'What is the Movement dimension and why is it useful?',
-`- Captures **roll-forward detail** for balance sheet accounts: opening balance, increases, decreases, acquisitions, disposals, FX on opening, FX on movement, closing.
-- Drives the **automated cash flow statement** (indirect method) and roll-forward disclosures (PP&E, equity).
-- Requires GL data with movement detail (via mappings or supplemental data) or calculated movements.`, 'D'],
-
-['FCCS', 'What is the Multi-GAAP dimension used for?',
-`- Stores **local GAAP**, **IFRS/US GAAP adjustments** and the **total** for another GAAP within the same application.
-- E.g. load local GAAP trial balances, enter or calculate IFRS adjustments, and report IFRS consolidated results.
-- Alternative is separate scenarios; Multi-GAAP keeps reconciliations visible.`, 'D'],
-
-['FCCS', 'How do journals work in FCCS and when would you use them?',
-`- **Consolidation journals** for **top-side adjustments**: reclassifications, consolidation entries, IFRS adjustments, late adjustments that shouldn't go back to the local ledger.
-- Journals have **workflow** (submit, approve, post), can be recurring, auto-reversing, and are posted to specific Consolidation/Data Source members.
-- Good practice: minimize top-side journals; correct at source (GL) where possible for audit trail.`, 'D'],
-
-['FCCS', 'What is Task Manager / Close Manager in FCCS?',
-`- Manages the **close calendar**: tasks, owners, dependencies, due dates, integrations (e.g. a data load task), approvals, and evidence.
-- Dashboards show status across entities.
-- Helps shorten and control close; used alongside **Account Reconciliation (ARCS)** for balance sheet reconciliations.`, 'B'],
-
-['FCCS', 'What is Supplemental Data Manager and Enterprise Journals?',
-`- **Supplemental Data Manager**: collects detailed data not in the GL (e.g. debt schedules, lease details, intercompany transaction detail, disclosure data) via forms with workflow; can feed consolidation accounts.
-- **Enterprise Journals**: manage journals with workflow and post them to ERP or FCCS — useful for controlled top-side and recurring entries.`, 'D'],
-
-['FCCS', 'What does the approval unit hierarchy do?',
-`- Defines **who prepares, reviews and approves** each entity's data (by entity/scenario/period), with **promotion** through levels.
-- Locks data once approved; prevents changes after sign-off.
-- Supports a controlled, auditable close process.`, 'B'],
-
-['FCCS', 'What is the calculation status and why do you care?',
-`- Each entity/period shows a status: **OK** (consolidated and current), **Impacted** (data changed since last consolidation), **System Changed** (metadata/rates changed), **No Data**.
-- Before reporting, ensure entities are **OK** — rerun consolidation if impacted.
-- Common interview trick: "numbers differ between two reports" → check calc status and rates.`, 'B'],
-
-['FCCS', 'How would you design the entity and account hierarchies in FCCS?',
-`- **Entity hierarchy** reflects legal ownership (for consolidation/NCI) and possibly alternate hierarchies for management or regions (shared members).
-- **Account hierarchy** aligned to financial statements, with **system accounts** FCCS requires (e.g. FCCS_Total Balance Sheet, Income Statement), plus rate and ownership accounts.
-- **Map** from the GL COA with clear ownership of mappings.
-- Keep custom dimensions minimal for performance.`, 'D'],
-
-['FCCS', 'How does FCCS produce the cash flow statement?',
-`- Uses the **Movement** dimension: for each balance sheet account, movements are tagged (e.g. increases/decreases, acquisitions, non-cash, FX).
-- Cash flow accounts are calculated from these movements (indirect method), with FX effect on cash shown separately.
-- Requires good movement data from GL mappings or supplemental data.`, 'D'],
-
-['FCCS', 'What are common FCCS implementation challenges?',
-`- **Mapping quality** from GL (accounts, entities, intercompany partner).
-- **Intercompany** discipline in source ledgers.
-- **Movement data** availability for cash flow.
-- **Ownership** complexity and historical rates for equity.
-- **Performance** with many custom dimensions.
-- **Change management** for finance users moving from spreadsheets or HFM.`, 'D'],
-
-['FCCS', 'How does FCCS compare to Hyperion Financial Management (HFM)?',
-`- FCCS is the **cloud successor** to HFM: prebuilt consolidation logic, dimensions and reports; quarterly Oracle updates.
-- **Less custom rules coding** (configurable calculations vs HFM rules files).
-- Built-in **close management**, supplemental data and integrations.
-- Migration involves redesigning dimensions and rules, not lifting HFM as-is.`, 'D'],
-
-['FCCS', 'What is the difference between consolidating in Fusion GL and in FCCS?',
-`- **Fusion GL**: ledger sets, translation, intercompany balancing, elimination journals — fine for simpler groups.
-- **FCCS**: full consolidation engine — ownership and NCI, equity eliminations, multi-GAAP, movement-based cash flow, journals with workflow, close tasks.
-- Rule of thumb: many entities, partial ownership, statutory consolidated reporting → FCCS.`, 'B'],
-
-['FCCS', 'How do you reconcile FCCS to Fusion GL?',
-`- **Data load validation** reports (totals by entity/account vs GL trial balance).
-- **Drill-through** to GL for differences.
-- Check **mapping** changes, **unmapped** members, period/category mappings.
-- Check **top-side journals** in FCCS (Data Source dimension shows their effect).
-- Sign-off per entity in the approval process.`, 'D'],
-
-['FCCS', 'Explain the Consolidation dimension members.',
-`- **Entity Input**: data loaded/entered for the entity.
-- **Entity Consolidation / Entity Total**: entity data after entity-level calculations and adjustments.
-- **Proportion**: entity data proportionalized by the ownership percentage.
-- **Elimination**: intercompany and investment eliminations.
-- **Contribution**: the entity's total contribution to the parent (proportion + elimination + contribution adjustments).
-Understanding these is key to explaining "why does the parent number differ from the sum of children".`, 'D'],
-
-['FCCS', 'How do you handle an acquisition mid-year in FCCS?',
-`- Add the entity to the hierarchy with **effective ownership** from the acquisition period.
-- Load opening balance sheet at acquisition (fair values, goodwill via journals/supplemental data).
-- **Movement**: acquisition movements for balance sheet and cash flow.
-- **NCI** if partial ownership.
-- Translate and consolidate from the acquisition date; prior periods unaffected.`, 'D'],
-
-['FCCS', 'How do Fusion GL and FCCS work together during month-end close?',
-`- GL: subledgers close → GL adjustments, revaluation, intercompany → GL closed/soft-closed.
-- **Data load** to FCCS (scheduled task) → entity reviews → translation/consolidation → top-side journals → approvals → reporting.
-- **Task Manager** orchestrates both; **ARCS** reconciliations in parallel.
-- Late GL adjustments trigger reload and reconsolidation (calc status Impacted).`, 'B'],
-
-['Interview Prep', 'Give a 60-second summary of your GL, IFRS and FCCS experience for this interview.',
-`Shape it like this (tailor the facts):
-- "I'm an Oracle Financials [your title] with [N] years in EBS and Fusion GL and subledgers."
-- "I've designed **multi-ledger** structures with **primary, secondary and reporting-currency ledgers** — for example [your client: industry, number of ledgers, reporting ledgers], and an **IFRS** program for [your client and why IFRS was needed]."
-- "I know the **IFRS vs US GAAP** differences that drive ledger and SLA design, and the **close**: revaluation, translation, intercompany, allocations and consolidation in **FCCS**."
-- "As a contractor I come in, learn the close quickly, and fix what slows it down."`, 'B'],
-
-['Interview Prep', 'What questions should you ask the client at the end of a GL/IFRS/FCCS interview?',
-`- How many ledgers/entities, and which GAAPs do you report under?
-- Is consolidation in FCCS today, or moving from HFM/spreadsheets?
-- What are the biggest close pain points (days to close, intercompany, top-side journals)?
-- Any IFRS 18 or other standard changes in scope?
-- What does success look like in the first 90 days of this contract?`, 'B']
+QB["ora-mod-gl"] = (QB["ora-mod-gl"] || []).concat([
+["FCCS", "What is Oracle FCCS and how does it fit with Fusion GL?", "**Why they ask:** many GL roles now include consolidation.\n\n**Answer:**\n\"FCCS, Financial Consolidation and Close, is Oracle's cloud EPM application for group consolidation and close. It handles currency translation, intercompany eliminations, ownership and non-controlling interest, consolidation journals, the cash flow statement and close task management. Fusion GL stays the book of record for each ledger. FCCS receives trial balances by entity, account, period and currency, often with intercompany partner and movement, through Data Integration, with drill-through back to Fusion. Reporting is in Financial Reports, Smart View and Narrative Reporting.\"\n\nTip: Say \"GL is the book of record\". It shows you understand who owns what.", "B"],
+["FCCS", "What are the standard dimensions in FCCS?", "**Why they ask:** dimension design is the core of any FCCS project.\n\n**Answer:**\n\"The standard dimensions are Account, Entity, Period, Years, Scenario, View, Currency, Consolidation, Intercompany, Data Source and Movement. There's an optional Multi-GAAP dimension and a small number of custom dimensions, like Product or Cost Center, which have to be chosen carefully because there's a limit and they affect performance. The Consolidation dimension tracks the stages, entity input, proportion, elimination and contribution, and Data Source tracks where the data came from, like a data load, a journal, supplemental data or a calculation.\"\n\nTip: Mention the limit on custom dimensions. It's the design decision that matters most.", "D"],
+["FCCS", "Walk me through the FCCS consolidation process.", "**Why they ask:** they want to see you understand the whole flow, not just individual features.\n\n**Answer:**\n\"It starts with loading trial balances and supplemental data for each entity. Then entity-level calculations run. Then translation into the parent's currency, using average and ending rates with historical overrides, and FX and CTA calculated through the Movement dimension. Then proportionalization by ownership and consolidation method. Then eliminations of intercompany balances and investments at the first common parent. Then each entity contributes its results to the parent, and the process repeats up the hierarchy. Top-side adjustments go in as journals, approvals move through the approval unit hierarchy, and before anyone reports I check the calculation status, OK, Impacted or System Changed.\"\n\nTip: End with the calculation status check. It's the step that prevents wrong numbers in reports.", "D"],
+["FCCS", "How does intercompany elimination work in FCCS?", "**Why they ask:** intercompany is the most common source of consolidation problems.\n\n**Answer:**\n\"Intercompany balances are loaded with the Intercompany dimension filled in, which comes from the GL intercompany segment. Intercompany matching reports compare receivables to payables, and revenue to expense, between each pair of partners, with tolerances. During consolidation, the balances are eliminated at the first common parent, and any difference goes to a plug account. When pairs don't match, the usual causes are timing, different FX rates, a missing partner segment, or a posting to the wrong account, and I fix those in GL where possible rather than with a top-side journal.\"\n\nTip: Say \"fix it at the source in GL\". Auditors prefer it, and so do controllers.", "D"],
+["FCCS", "How does FCCS handle currency translation and CTA?", "**Why they ask:** translation is where consolidation numbers get questioned.\n\n**Answer:**\n\"Exchange rates are entered by period, average and ending, and historical rates or amounts are set as overrides for equity and investments. The P&L is translated at average rates, the balance sheet at ending rates, and equity at historical rates. FCCS calculates FX on opening balances and FX on movements in the Movement dimension, and the difference flows to CTA in OCI. The Currency dimension shows entity currency, parent currency and adjustments. It can also be configured for hyperinflation translation methods.\"\n\nTip: Mention FX on opening vs FX on movement. It shows you understand how CTA is built.", "D"],
+["FCCS", "How does ownership management and NCI work in FCCS?", "**Why they ask:** partial ownership is where consolidation gets complex.\n\n**Answer:**\n\"Each entity has ownership settings under its parent: ownership percentage, control percentage, and a consolidation method, like holding, subsidiary for full consolidation, proportional, equity or discontinued. For partially owned subsidiaries, FCCS calculates non-controlling interest and performs the investment and equity eliminations. Ownership can change by period for acquisitions and disposals, and configurable consolidation rules handle special cases.\"\n\nTip: Give a simple example, like 80% owned means 20% NCI in equity and profit.", "D"],
+["FCCS", "How do you integrate Fusion GL with FCCS?", "**Why they ask:** a practical integration question.\n\n**Answer:**\n\"I use Data Integration with a Fusion GL source connection, choosing the ledgers, balance types and periods. Then the mappings: GL account to FCCS account, balancing segment or legal entity to Entity, intercompany segment to Intercompany, currency, and optionally cost center or product to custom dimensions. Period and category mappings follow, and load rules run per period on a schedule during close. Validation checks catch unmapped members, and drill-through goes back to Fusion GL balances and journals. Writing FCCS journals back to GL is possible but usually not needed.\"\n\nTip: Name the key mapping, intercompany segment to the Intercompany dimension. It's what makes eliminations work.", "D"],
+["FCCS", "What is the Movement dimension and why is it useful?", "**Why they ask:** movement data drives the cash flow statement.\n\n**Answer:**\n\"The Movement dimension holds the roll-forward of each balance sheet account: opening balance, increases, decreases, acquisitions, disposals, FX on opening, FX on movement, and closing. It drives the automated cash flow statement using the indirect method, and roll-forward disclosures like PP&E and equity. To work, it needs movement detail from the GL through mappings or supplemental data, or calculated movements.\"\n\nTip: Say it drives the cash flow. That's why it matters to the business.", "D"],
+["FCCS", "What is the Multi-GAAP dimension used for?", "**Why they ask:** to see if you know how FCCS supports more than one accounting standard.\n\n**Answer:**\n\"It stores local GAAP, the IFRS or US GAAP adjustments, and the total for the other GAAP in the same application. For example, I load local GAAP trial balances, enter or calculate the IFRS adjustments, and report IFRS consolidated results. The other option is separate scenarios, but Multi-GAAP keeps the adjustments visible and easy to reconcile.\"\n\nTip: Give the local GAAP to IFRS example. It's the common case.", "D"],
+["FCCS", "How do journals work in FCCS and when would you use them?", "**Why they ask:** too many top-side journals is a warning sign in any close.\n\n**Answer:**\n\"FCCS journals are for top-side adjustments: reclassifications, consolidation entries, IFRS adjustments, and late adjustments that shouldn't go back to the local ledger. They have workflow, submit, approve, post, and can be recurring or auto-reversing, posted to specific Consolidation and Data Source members. My rule is to keep top-side journals to a minimum and correct at source in GL wherever possible, because that keeps the audit trail clean.\"\n\nTip: Say you minimize top-side journals. It's a sign of a well-run close.", "D"],
+["FCCS", "What is Task Manager / Close Manager in FCCS?", "**Why they ask:** close management is part of most FCCS projects.\n\n**Answer:**\n\"Task Manager runs the close calendar: tasks, owners, dependencies, due dates, integration tasks like a data load, approvals and evidence. Dashboards show status across all entities, so the controller sees what's late. It helps shorten and control the close, and it's often used with Account Reconciliation for balance sheet reconciliations.\"\n\nTip: Mention dependencies. They're what make it more than a checklist.", "B"],
+["FCCS", "What is Supplemental Data Manager and Enterprise Journals?", "**Why they ask:** these tools fill the gaps between GL and consolidation.\n\n**Answer:**\n\"Supplemental Data Manager collects detail that isn't in the GL, like debt schedules, lease details, intercompany transaction detail and disclosure data, through forms with workflow, and it can feed consolidation accounts. Enterprise Journals manages journals with workflow and posts them to the ERP or to FCCS, which is useful for controlled top-side and recurring entries.\"\n\nTip: Give one example for each. Debt schedules for supplemental data is easy to remember.", "D"],
+["FCCS", "What does the approval unit hierarchy do?", "**Why they ask:** close controls depend on it.\n\n**Answer:**\n\"It defines who prepares, reviews and approves each entity's data, by entity, scenario and period, and data moves up through the levels as it's promoted. Once approved, the data is locked, so nobody can change it after sign-off. It gives a controlled and auditable close.\"\n\nTip: Mention the lock after approval. That's the control auditors care about.", "B"],
+["FCCS", "What is the calculation status and why do you care?", "**Why they ask:** a classic FCCS trick question.\n\n**Answer:**\n\"Each entity and period has a status: OK means consolidated and current; Impacted means data changed since the last consolidation; System Changed means metadata or rates changed; No Data means nothing's there. Before anyone reports, every entity should be OK, and if not, I rerun consolidation. If someone says two reports show different numbers, the first thing I check is the calculation status and the rates.\"\n\nTip: Give the two-reports-differ scenario. It's often the exact interview question.", "B"],
+["FCCS", "How would you design the entity and account hierarchies in FCCS?", "**Why they ask:** hierarchies decide how consolidation and reporting work.\n\n**Answer:**\n\"The entity hierarchy follows legal ownership, because that drives consolidation and NCI, with alternate hierarchies for management views or regions using shared members. The account hierarchy follows the financial statements and includes the system accounts FCCS needs, like total balance sheet and income statement, plus rate and ownership accounts. Mappings from the GL chart of accounts have clear owners. And I keep custom dimensions to a minimum for performance.\"\n\nTip: Say the entity hierarchy follows legal ownership. It's the rule that makes NCI correct.", "D"],
+["FCCS", "How does FCCS produce the cash flow statement?", "**Why they ask:** automated cash flow is one of the main reasons companies buy FCCS.\n\n**Answer:**\n\"It uses the Movement dimension. For each balance sheet account, movements are tagged, like increases, decreases, acquisitions, non-cash and FX. The cash flow accounts are calculated from those movements using the indirect method, with the FX effect on cash shown separately. It only works as well as the movement data, so I make sure the GL mappings or supplemental data provide it.\"\n\nTip: Say it depends on movement data quality. That's the honest part interviewers respect.", "D"],
+["FCCS", "What are common FCCS implementation challenges?", "**Why they ask:** to see if you've lived through an FCCS project.\n\n**Answer:**\n\"The common ones are mapping quality from the GL, especially accounts, entities and intercompany partner; intercompany discipline in the source ledgers; getting movement data for the cash flow; ownership complexity and historical rates for equity; performance when there are too many custom dimensions; and change management for finance users moving from spreadsheets or HFM. In my experience, intercompany discipline is the one that decides whether the project succeeds.\"\n\nTip: Pick one as the biggest and say why. It shows judgment, not just a list.", "D"],
+["FCCS", "How does FCCS compare to Hyperion Financial Management (HFM)?", "**Why they ask:** many FCCS projects are HFM migrations.\n\n**Answer:**\n\"FCCS is the cloud successor to HFM. It comes with built-in consolidation logic, dimensions and reports, and Oracle updates it every quarter. It needs much less custom rules coding, using configurable calculations instead of HFM rules files. It has close management, supplemental data and integrations built in. A migration means redesigning the dimensions and rules, not copying HFM as it is.\"\n\nTip: Say \"not a lift and shift\". It's the key message for an HFM client.", "D"],
+["FCCS", "What is the difference between consolidating in Fusion GL and in FCCS?", "**Why they ask:** to see if you can recommend the right tool.\n\n**Answer:**\n\"Fusion GL can consolidate with ledger sets, translation, intercompany balancing and elimination journals, which is fine for simpler groups. FCCS is a full consolidation engine: ownership and NCI, equity eliminations, multi-GAAP, movement-based cash flow, journals with workflow and close tasks. My rule of thumb: many entities, partial ownership, or statutory consolidated reporting means FCCS.\"\n\nTip: Give the rule of thumb. It answers \"which would you choose?\" before they ask.", "B"],
+["FCCS", "How do you reconcile FCCS to Fusion GL?", "**Why they ask:** if FCCS doesn't tie to GL, nobody trusts it.\n\n**Answer:**\n\"I run the data load validation reports, totals by entity and account against the GL trial balance, and drill through to GL for any difference. Then I check mapping changes, unmapped members, and period and category mappings. Then top-side journals in FCCS, which the Data Source dimension shows separately. And each entity signs off through the approval process.\"\n\nTip: Mention the Data Source dimension. It's the fastest way to see what changed after the load.", "D"],
+["FCCS", "Explain the Consolidation dimension members.", "**Why they ask:** understanding these is how you explain parent numbers to finance.\n\n**Answer:**\n\"Entity Input is the data loaded or entered for the entity. Entity Consolidation, or Entity Total, is that data after entity-level calculations and adjustments. Proportion is the entity's data multiplied by the ownership percentage. Elimination holds intercompany and investment eliminations. Contribution is what the entity adds to its parent: proportion plus eliminations plus contribution adjustments. When someone asks why the parent isn't the sum of its children, the answer is in these members.\"\n\nTip: End with the parent-vs-children question. It's the real use of this knowledge.", "D"],
+["FCCS", "How do you handle an acquisition mid-year in FCCS?", "**Why they ask:** acquisitions test whether you can handle real consolidation events.\n\n**Answer:**\n\"I add the new entity to the hierarchy with ownership effective from the acquisition period. I load its opening balance sheet at acquisition, with fair values and goodwill through journals or supplemental data. Acquisition movements are recorded for the balance sheet and cash flow. If ownership is partial, NCI is calculated. Translation and consolidation start from the acquisition date, and prior periods stay unchanged.\"\n\nTip: Mention acquisition movements in the cash flow. It's the detail most people miss.", "D"],
+["FCCS", "How do Fusion GL and FCCS work together during month-end close?", "**Why they ask:** they want the full close sequence across both systems.\n\n**Answer:**\n\"In Fusion, subledgers close, then GL adjustments, revaluation and intercompany, and GL is closed or soft-closed. Then a scheduled data load sends the trial balances to FCCS. Entities review their data, translation and consolidation run, top-side journals are posted, approvals move up, and reporting follows. Task Manager orchestrates both systems, and Account Reconciliation runs in parallel. If a late GL adjustment comes in, we reload and reconsolidate, and the calculation status shows which entities are impacted.\"\n\nTip: Mention late adjustments and calc status. It's the real-world part.", "B"],
+["Interview Prep", "Give a 60-second summary of your GL, IFRS and FCCS experience for this interview.", "**Why they ask:** they want a clear, confident summary to anchor the rest of the interview.\n\n**Answer (template, fill in your own facts):**\n\"I'm an Oracle Financials [title] with [N] years in EBS and Fusion GL and subledgers. I've designed multi-ledger structures with primary, secondary and reporting currency ledgers, for example for [client: industry, number of ledgers]. I led an IFRS program for [client], because [why IFRS was needed]. I know the IFRS and US GAAP differences that drive ledger and SLA design, and I know the close end to end: revaluation, translation, intercompany, allocations and consolidation in FCCS. As a contractor, I learn the close quickly and fix what slows it down.\"\n\nTip: Practice it out loud until it takes under a minute. Every fact should be one you can expand on.", "B"],
+["Interview Prep", "What questions should you ask the client at the end of a GL/IFRS/FCCS interview?", "**Why they ask:** good questions show you're already thinking like part of their team.\n\n**Answer:**\n\"I'd ask: How many ledgers and entities do you have, and which GAAPs do you report under? Is consolidation in FCCS today, or are you moving from HFM or spreadsheets? What are the biggest close pain points, like days to close, intercompany or top-side journals? Is IFRS 18 or any other standard change in scope? And what would success look like in the first 90 days of this contract?\"\n\nTip: Always ask the 90-day question. It tells you what they'll judge you on.", "B"]
 ]);
