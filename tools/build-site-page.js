@@ -114,7 +114,12 @@ details[open] summary::after { content:"Hide answer"; }
 .cta a:hover { background:var(--accent-hover); }
 footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2rem 1rem; border-top:1px solid var(--border); }
 @media (max-width:640px) { nav .links a.hide-sm { display:none; } .ans { padding-left:1rem; } }
+.author { display:flex; gap:0.9rem; align-items:flex-start; background:#F3F6FC; border:1px solid var(--border, #DDE3EE); border-radius:12px; padding:1rem 1.1rem; margin:0 0 1.5rem; }
+.author .av { flex:none; width:44px; height:44px; border-radius:50%; background:var(--navy, #0B1F4B); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-family:"Manrope",sans-serif; }
+.author b { display:block; color:var(--navy, #0B1F4B); }
+.author p { margin:0.15rem 0 0; font-size:0.88rem; color:var(--text-muted, #4A5568); line-height:1.5; }
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hari Pokkuluri", "jobTitle": "Senior Oracle ERP Solution Architect", "worksFor": {"@type": "Organization", "name": "Arahasoft", "url": "https://arahasoft.com/"}, "knowsAbout": ["Oracle Fusion Cloud", "Oracle E-Business Suite", "Oracle Financials", "Oracle SCM", "Oracle HCM", "Oracle Procurement"]}</script>
 </head>
 <body>
 <nav>
@@ -130,6 +135,7 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
   <span class="brand">Interview Edge by Arahasoft</span>
   <h1>${esc(roleTitle)} Interview Questions</h1>
   <p class="lead">${bankId.startsWith('w-') ? `How to handle ${esc(about)}. Each question has why it comes up, a sample answer and a tip. The sample answers use an example Senior ERP Analyst; swap in your own projects, wins and goals. Tap a question to see the answer.` : `The questions interviewers ask for ${esc(about)}, with why they ask, a full answer you can say in the room, and a tip. Tap a question to see the answer.`}</p>
+  <div class="author"><div class="av">HP</div><div><b>Questions and answers by Hari Pokkuluri</b><p>Senior Oracle ERP Solution Architect with 22+ years in Oracle Fusion Cloud and E-Business Suite: Financials, SCM, HCM and Procurement. Oracle-certified in R11/R12 Financials and OCI AI Foundations. Arahasoft.</p></div></div>
   <div class="stats">
     <span class="stat"><b>${qs.length}</b> questions</span>
     <span class="stat"><b>${basics}</b> basic</span>
