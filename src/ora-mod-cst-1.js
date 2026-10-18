@@ -1,82 +1,15 @@
 // Oracle Modules — Cost Management. Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-cst'] = (QB['ora-mod-cst'] || []).concat([
-['Setup', 'What are the key Cost Management setups in Fusion?',
-`- **Cost organizations** and relationships to inventory orgs.
-- **Cost books** (primary, secondary) and assignment to cost orgs.
-- **Valuation structures** and **valuation units**.
-- **Cost profiles**: item cost profiles (cost method, valuation structure, cost determination) and **default cost profiles**.
-- **Cost elements** and **cost element groups** (material, overhead, resource).
-- **Cost component mappings** and **expense pools**.
-- **Accounting** rules (SLA for cost accounting and receipt accounting).`, 'B'],
-
-['Setup', 'What are cost elements and analysis groups?',
-`- **Cost elements**: buckets for cost (material, freight, duty, overhead, labor, machine).
-- **Cost element groups** organize them for reporting.
-- **Analysis groups** give alternative groupings (e.g. by cost type for margin analysis).
-- Landed cost charges and overheads map to specific elements.`, 'D'],
-
-['Processes', 'What is the sequence of cost processing in Fusion?',
-`- **Transfer Transactions from Inventory/Receiving to Costing**.
-- **Cost processor** (Process Costing / cost transactions) values transactions by cost method.
-- **Create Cost Accounting Distributions** and **Create Receipt Accounting Distributions**.
-- **Create Accounting** (SLA) → transfer to GL.
-- Scheduled frequently (hourly/daily) for timely valuation.`, 'D'],
-
-['Standard Cost', 'How do you create and publish standard costs?',
-`- **Cost planning**: create a **cost scenario**, enter/import standard costs (material, overhead) and resource rates.
-- **Roll up** costs for manufactured items through structures/work definitions.
-- **Review** with finance (simulations, variance to current).
-- **Publish** the scenario with an effective date → on-hand revalued, revaluation posted.`, 'D'],
-
-['Average Cost', 'How does perpetual average cost handle receipts and returns?',
-`- Each receipt recalculates average = (on-hand value + receipt value) / (on-hand qty + receipt qty).
-- Issues/shipments at current average.
-- Returns to supplier at the **receipt cost** or current average depending on settings — can create variances.
-- Negative on-hand causes **cost adjustments** later when receipts arrive.`, 'D'],
-
-['Variances', 'Name the main variances in Fusion Cost Management.',
-`- **Purchase price variance (PPV)** (standard costing).
-- **Invoice price variance (IPV)** between PO and invoice.
-- **Work order variances**: material usage, resource efficiency/rate, overhead, scrap.
-- **Cycle count/physical inventory adjustments**.
-- **Cost revaluation** on standard cost updates.`, 'B'],
-
-['Landed Cost', 'How are landed costs allocated?',
-`- **Charge references** (freight, duty, insurance) with **allocation basis** (quantity, weight, volume, amount).
-- Estimated charges via **landed cost charge templates** on POs/trade operations; actuals from AP invoices.
-- Charges allocated to receipt lines → increase item cost; variances between estimated and actual adjusted.`, 'D'],
-
-['Accounting', 'What accounting does Cost Management create for a PO receipt into inventory under standard cost?',
-`- **Receipt Accounting**: Dr Receiving Inspection, Cr Accrual (at PO price) — for standard routing.
-- **Delivery to inventory**: Dr Inventory (standard), Dr/Cr **PPV**, Cr Receiving Inspection.
-- **AP invoice**: Dr Accrual, Cr Liability, IPV for differences.
-- Shipment: Dr COGS (or Deferred COGS), Cr Inventory at standard.`, 'D'],
-
-['Accounting', 'What is deferred COGS and when is it used?',
-`- When revenue is deferred (e.g. customer acceptance), COGS is held in **Deferred COGS** and recognized in proportion to revenue.
-- **COGS recognition** process uses revenue recognition events from AR/Revenue Management.
-- Ensures margin matching (matching principle).`, 'D'],
-
-['Period Close', 'What is the cost period close checklist?',
-`- All inventory/receiving transactions transferred and **costed** (no errors).
-- Landed cost and accrual adjustments processed.
-- Work orders closed; variances calculated.
-- **Create Cost/Receipt Accounting** run and transferred to GL.
-- **Inventory valuation** reconciled to GL.
-- **Close the cost period**; open next.`, 'B'],
-
-['Reporting', 'Which Cost Management reports do you use?',
-`- **Inventory valuation** (perpetual) by cost org/valuation unit/item.
-- **Item cost** and cost history reports.
-- **Margin analysis** (gross margin by item/customer).
-- **Receipt accounting / accrual reconciliation** reports.
-- **Cost accounting distributions** and **work order variance** reports.`, 'B'],
-
-['Interview', 'Tell me how you would troubleshoot inventory valuation that doesn\'t match GL.',
-`- **Same timing**: valuation as of period end, GL closed?
-- **Uncosted/unaccounted** transactions or transfers not run.
-- **Manual journals** in GL to inventory accounts.
-- **Account mapping** differences (expense subinventories, in-transit).
-- **Revaluations** posted in a different period.
-- Fix root causes and document a monthly reconciliation.`, 'D']
+QB["ora-mod-cst"] = (QB["ora-mod-cst"] || []).concat([
+["Setup", "What are the key Cost Management setups in Fusion?", "**Why they ask:** costing setup is where finance and supply chain meet. They want to know you can build it.\n\n**Answer:**\n\"I start with cost organizations and their relationships to inventory orgs. Then cost books, primary and any secondary, assigned to the cost orgs. Then valuation structures and valuation units, which decide the level costs are kept at. Then cost profiles: item cost profiles that set the cost method, valuation structure and cost determination, plus default cost profiles so new items get one automatically. Then cost elements and cost element groups for material, overhead and resources. Then cost component mappings and expense pools. And last, the SLA rules for cost accounting and receipt accounting.\"\n\nTip: Mention default cost profiles. Missing profiles are why new items show up uncosted.", "B"],
+["Setup", "What are cost elements and analysis groups?", "**Why they ask:** cost elements decide how detailed margin analysis can be.\n\n**Answer:**\n\"Cost elements are the buckets that make up an item's cost, like material, freight, duty, overhead, labor and machine. Cost element groups organize them for reporting. Analysis groups give other groupings, for example by cost type for margin analysis. Landed cost charges and overheads map to specific elements, so finance can see how much of an item's cost is freight versus the purchase price.\"\n\nTip: Give the freight example. It shows why the split matters to the business.", "D"],
+["Processes", "What is the sequence of cost processing in Fusion?", "**Why they ask:** when something isn't costed, you need to know where it stopped.\n\n**Answer:**\n\"Transactions first move from Inventory and Receiving to Costing with the transfer process. Then the cost processor values them using the cost method. Then Create Cost Accounting Distributions and Create Receipt Accounting Distributions build the accounting lines. Then Create Accounting in SLA sends them to GL. I schedule these to run hourly or daily, so valuation stays current and errors show up the same day.\"\n\nTip: Present it as a chain. When a transaction is stuck, you check each link in order.", "D"],
+["Standard Cost", "How do you create and publish standard costs?", "**Why they ask:** the standard cost cycle is a yearly finance event.\n\n**Answer:**\n\"In cost planning I create a cost scenario and enter or import the standard costs, material and overhead, plus resource rates. For manufactured items I roll up costs through the structures and work definitions. Finance reviews it, with simulations and the variance against current costs. Then I publish the scenario with an effective date. On publish, on-hand inventory is revalued and the revaluation is posted.\"\n\nTip: Mention the finance review before publishing. Revaluation surprises are what finance fears most.", "D"],
+["Average Cost", "How does perpetual average cost handle receipts and returns?", "**Why they ask:** average cost behaves differently from standard, and returns are the tricky part.\n\n**Answer:**\n\"Each receipt recalculates the average: on-hand value plus receipt value, divided by on-hand quantity plus receipt quantity. For example, 100 units at $10 on hand, receive 100 at $12, the new average is $11. Issues and shipments use the current average. Returns to supplier go out at the receipt cost or the current average, depending on settings, and that can create variances. And if on-hand goes negative, cost adjustments happen later when receipts arrive.\"\n\nTip: Do the average calculation with numbers. It's the clearest proof you understand it.", "D"],
+["Variances", "Name the main variances in Fusion Cost Management.", "**Why they ask:** variances are how finance reads cost performance.\n\n**Answer:**\n\"Purchase price variance under standard costing. Invoice price variance between PO and invoice. Work order variances: material usage, resource efficiency and rate, overhead and scrap. Cycle count and physical inventory adjustments. And cost revaluation when standard costs are updated.\"\n\nTip: Give one cause for each if asked. PPV usually means price changes or off-contract buying.", "B"],
+["Landed Cost", "How are landed costs allocated?", "**Why they ask:** landed cost affects margin accuracy for imported goods.\n\n**Answer:**\n\"Each charge, like freight, duty or insurance, has a charge reference and an allocation basis: quantity, weight, volume or amount. Estimated charges come from landed cost charge templates on POs or trade operations, and actual charges come from AP invoices. Charges are allocated to receipt lines, increasing the item cost. When actuals differ from estimates, the difference is adjusted. For example, $1,000 of freight on a shipment allocated by weight puts more on the heavy items.\"\n\nTip: Explain why the allocation basis matters. Freight by value would overcharge small, expensive items.", "D"],
+["Accounting", "What accounting does Cost Management create for a PO receipt into inventory under standard cost?", "**Why they ask:** a core accounting question for cost consultants.\n\n**Answer:**\n\"With standard routing, the receipt books Dr Receiving Inspection, Cr Accrual, at the PO price. Delivery to inventory books Dr Inventory at standard, PPV for the difference, and Cr Receiving Inspection. The AP invoice books Dr Accrual, Cr Liability, with IPV for any difference from the PO price. When the item ships, Dr COGS, or Deferred COGS, Cr Inventory at standard.\"\n\nTip: Walk through all four steps. It shows you can follow the cost through the whole flow.", "D"],
+["Accounting", "What is deferred COGS and when is it used?", "**Why they ask:** COGS must match revenue timing.\n\n**Answer:**\n\"When revenue is deferred, for example waiting for customer acceptance, the cost of the shipped goods is held in Deferred COGS instead of COGS. The COGS recognition process uses revenue recognition events from AR or Revenue Management to release COGS in the same proportion as revenue. That keeps margin correct under the matching principle.\"\n\nTip: Use the acceptance example. It's the most common reason.", "D"],
+["Period Close", "What is the cost period close checklist?", "**Why they ask:** a practical close question.\n\n**Answer:**\n\"All inventory and receiving transactions are transferred and costed, with no errors. Landed cost and accrual adjustments are processed. Work orders are closed and variances calculated. Create Cost Accounting and Create Receipt Accounting have run and transferred to GL. Inventory valuation is reconciled to GL. Then I close the cost period and open the next.\"\n\nTip: Put reconciliation before closing. It's the step people skip under pressure.", "B"],
+["Reporting", "Which Cost Management reports do you use?", "**Why they ask:** to see if you know where to look.\n\n**Answer:**\n\"The perpetual inventory valuation report by cost org, valuation unit and item. Item cost and cost history reports. Margin analysis by item and customer. Receipt accounting and accrual reconciliation reports. And cost accounting distributions and work order variance reports.\"\n\nTip: Say which one you'd run first at month-end: inventory valuation, to tie to GL.", "B"],
+["Interview", "Tell me how you would troubleshoot inventory valuation that doesn't match GL.", "**Why they ask:** a classic month-end problem.\n\n**Answer:**\n\"First timing: is the valuation as of the same period end, and is GL closed? Then uncosted or unaccounted transactions, or transfer processes that didn't run. Then manual journals in GL to inventory accounts. Then account mapping differences, like expense subinventories or in-transit. Then revaluations posted in a different period. I fix the causes and document a monthly reconciliation so it doesn't come back.\"\n\nTip: Start with timing. It explains more differences than people expect.", "D"]
 ]);
