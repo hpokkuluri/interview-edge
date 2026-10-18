@@ -1,177 +1,28 @@
-QB['ora-assoc-dir'] = (QB['ora-assoc-dir'] || []).concat([
-['Delivery', 'How do you ensure quality in your team\'s deliverables?',
-`- **Standards**: design templates, configuration workbooks, test evidence requirements.
-- **Peer reviews** and design reviews before build.
-- **Definition of done**: tested (including regression), documented, trained, approved.
-- **Defect tracking** and root-cause analysis for escaped defects.
-- **Automated tests** where possible.`, 'B'],
-
-['Delivery', 'How do you handle a project that is slipping?',
-`- **Diagnose**: scope growth, estimates, dependencies, resources, quality issues.
-- **Options**: reduce scope (MVP), add resources (carefully), extend dates, change approach.
-- **Re-plan** with the team; communicate to stakeholders with a recommendation.
-- Track **leading indicators** going forward.`, 'B'],
-
-['Delivery', 'What delivery methodology do you prefer for ERP enhancements?',
-`- **Agile/iterative** for enhancements and continuous improvement: backlog, sprints, demos to business.
-- **Hybrid** for larger programs: phase gates (design sign-off, UAT exit) with iterative build.
-- **ERP specifics**: quarterly update cycles, month-end freeze periods, SOX change control.
-- Pick what fits; focus on business engagement and quality.`, 'B'],
-
-['Technical', 'How would you approach consolidating multiple approval workflows into a simpler design?',
-`- **Inventory** current rules by transaction type and BU.
-- **Analyze** actual approval data — who really approves, how often rules are used.
-- **Design principles**: fewer rules, hierarchy-based with amount thresholds, exceptions by category.
-- **Prototype** and test with business; document.
-- **Communicate** and train approvers.
-- Measure approval cycle time before/after.`, 'D'],
-
-['Technical', 'How would you handle a request for a new report that finance needs urgently for an audit?',
-`- Clarify **exact requirements** and deadline; check if a **standard report/OTBI** already covers it.
-- Build quickly in **OTBI** (or BIP if formatting needed); validate completeness and accuracy with finance (**key report** validation if used as audit evidence).
-- Document parameters and logic.
-- Deliver and plan a proper version later if needed.`, 'B'],
-
-['Technical', 'What is your approach to data quality in ERP master data (suppliers, customers, items)?',
-`- **Ownership**: business data owners and stewards.
-- **Entry controls**: required fields, validations, approval workflows (supplier registration, NIR).
-- **Monitoring**: duplicate detection reports, completeness dashboards.
-- **Cleanup** campaigns with targets.
-- **Training** and feedback to requesters.`, 'B'],
-
-['People', 'How do you manage a mixed team of employees, contractors and offshore partners?',
-`- **One team culture**: shared goals, standups, recognition for all.
-- **Clear roles**: who owns design, build, test, support.
-- **Knowledge retention**: critical knowledge with employees; documentation.
-- **Time zones**: overlap hours and handoffs.
-- **Fair treatment** and inclusion in decisions.`, 'B'],
-
-['People', 'How do you prevent burnout during go-lives and month-end crunches?',
-`- **Plan** coverage and rotations; avoid single points of failure.
-- **Realistic** schedules; defer non-critical work.
-- **Recognize** extra effort; give time off after.
-- Watch for signs and talk to people.
-- Fix recurring crunch causes (automation, better processes).`, 'B'],
-
-['People', 'How do you develop a future leader on your team?',
-`- Identify potential: ownership, influence, judgment.
-- **Delegate** leadership opportunities (lead a workstream, run a CRP, mentor juniors).
-- **Coaching** on stakeholder management and decision-making.
-- **Exposure** to senior meetings.
-- **Feedback** and career conversations; sponsorship for promotion.`, 'B'],
-
-['Stakeholders', 'How do you manage expectations when the business wants everything now?',
-`- **Transparent backlog** and capacity.
-- **Prioritization** with business owners against value.
-- **Roadmap** with phased delivery.
-- **Quick wins** where possible.
-- Explain trade-offs openly; involve leaders in decisions.`, 'B'],
-
-['Stakeholders', 'How do you handle an executive escalation about a system issue?',
-`- **Acknowledge** quickly; understand impact.
-- **Assign** owner and get facts.
-- **Communicate** plan and timeline; update regularly.
-- **Fix** and confirm with the executive.
-- **Follow-up**: root cause and prevention; make sure the team learns, not panics.`, 'B'],
-
-['Governance', 'How do you prioritize the backlog between business requests, technical debt and compliance?',
-`- **Compliance/regulatory** and **security** first (non-negotiable dates).
-- **Business value** scoring for requests.
-- **Technical debt** allocated a fixed capacity (e.g. 15%).
-- Transparent decisions with governance board.`, 'B'],
-
-['Governance', 'How do you manage configuration changes safely in production?',
-`- **Change request** with business approval.
-- **Test** in non-production with evidence; regression for impacted areas.
-- **Migration** via configuration packages or documented steps; segregation of duties.
-- **Change window** outside close/payroll.
-- **Validation** after deployment; rollback plan.`, 'D'],
-
-['Technical', 'A key integration from a third-party system fails silently for three days. What do you change?',
-`- **Monitoring**: alerts on failures and on **absence of expected data** (heartbeat checks).
-- **Dashboards** visible to business owners.
-- **Error handling** with notifications and retries.
-- **Reconciliation** reports (source vs Oracle counts daily).
-- **Runbook** and owners.`, 'D'],
-
-['Technical', 'How would you approach a business request for AI automation in AP or procurement?',
-`- Clarify the **problem and metric** (e.g. invoice processing time).
-- Check **Oracle-native** capabilities (IDR, AI agents) first.
-- **Pilot** with a defined scope, human review, measured outcomes.
-- **Controls**: approvals, audit trail, security roles.
-- **Scale** after success.`, 'D'],
-
-['Strategy', 'How do you contribute to the ERP roadmap as Associate Director?',
-`- Bring **business needs** from your area and **pain points** from support data.
-- Evaluate **new Oracle features** relevant to your area.
-- Propose initiatives with **value and effort** estimates.
-- Align with the Director's priorities and enterprise strategy.`, 'B'],
-
-['Behavioral', 'Tell me about a decision you made with incomplete information.',
-`- **Situation**: whether to proceed with a quarterly update while one regression test was unresolved.
-- **Action**: assessed risk (area impacted, workaround available), consulted business owner, agreed to proceed with a monitored workaround and Oracle SR.
-- **Result**: no business impact; Oracle patch applied two weeks later.
-- **Learning**: frame risk clearly and agree with the business owner.`, 'B'],
-
-['Behavioral', 'What is your leadership style?',
-`- Describe honestly with examples, e.g.: **coaching** and **empowering** — clear goals, trust the team to own solutions, step in during crises.
-- High standards with **support**.
-- **Transparent** communication.
-- Adapt style to people and situations (more direction for new team members, more autonomy for experienced ones).`, 'B'],
-
-['Behavioral', 'Why do you want to move into an Associate Director role?',
-`- You've been leading informally (workstreams, mentoring) and want **broader impact** through a team.
-- You enjoy **business partnership** and **developing people**.
-- You still bring technical depth to keep delivery strong.
-- Examples of results you achieved through others.`, 'B'],
-
-['Behavioral', 'How do you handle a situation where your manager\'s direction conflicts with what the business wants?',
-`- Understand both **perspectives** and the reasoning.
-- Bring **data** on impacts.
-- Discuss openly with your manager first; propose a path.
-- If needed, facilitate a conversation between your manager and the business.
-- Once decided, commit and execute.`, 'B'],
-
-['Delivery', 'How do you measure the success of your ERP team?',
-`- **Service**: SLA attainment, incident trends.
-- **Delivery**: projects on time/scope, enhancement throughput.
-- **Quality**: defects, failed changes.
-- **Business outcomes**: e.g. close days, touchless rates.
-- **Team**: engagement, retention, skills growth.
-- **Stakeholder satisfaction**.`, 'B'],
-
-['Technical', 'How would you approach a request to add a new business unit to Oracle?',
-`- **Requirements**: legal entity, ledger, currency, tax, banking, processes.
-- **Setup**: BU, functions, reference data, approvals, security, sequences, payment profiles.
-- **Integrations** and reports updates.
-- **Data**: suppliers/customers site assignments, open balances.
-- **Testing** end-to-end; **training**; **go-live** plan.
-- Use a **checklist/template** for repeatable onboarding.`, 'D'],
-
-['Support', 'How do you reduce repeat incidents?',
-`- **Problem management**: track recurring incidents, root-cause analysis.
-- **Permanent fixes** (config, data, training, automation).
-- **Knowledge articles** and user self-service.
-- **Monitoring** for early detection.
-- Review top incident categories monthly.`, 'B'],
-
-['Behavioral', 'Describe a time you influenced a decision without formal authority.',
-`- **Situation**: procurement wanted to keep manual PO approvals for all amounts.
-- **Action**: analyzed 12 months of POs, showed 85% were under $2k with no rejections, proposed auto-approval under threshold with monthly review.
-- **Result**: approved; PO cycle time dropped from 3 days to same day for most POs.`, 'B'],
-
-['Strategy', 'What trends in ERP will matter most for your team in the next two years?',
-`- **AI agents** in Fusion (AP, procurement, collections, close).
-- **Redwood UX** adoption and extensions with Visual Builder.
-- **Continuous close** and automation.
-- **Data and analytics** (FDI).
-- **Regulatory digitization** (e-invoicing).
-- Skills shift: from configuration to automation and data.`, 'B'],
-
-['Delivery', 'How do you run a successful UAT with business users?',
-`- **Plan** scenarios with business owners; realistic data.
-- **Train** testers; give clear scripts and support.
-- **Daily triage** of defects; transparent status.
-- **Exit criteria** agreed upfront.
-- **Sign-off** formally.`, 'B']
+QB["ora-assoc-dir"] = (QB["ora-assoc-dir"] || []).concat([
+["Delivery", "How do you ensure quality in your team's deliverables?", "**Why they ask:** quality standards.\n\n**Answer:**\n\"Standards: design templates, configuration workbooks and test evidence requirements. Peer and design reviews before build. A definition of done: tested including regression, documented, trained and approved. Defects tracked, with root-cause analysis for those that reach production. And automated tests where possible.\"\n\nTip: Mention a definition of done. It removes ambiguity.", "B"],
+["Delivery", "How do you handle a project that is slipping?", "**Why they ask:** delivery recovery.\n\n**Answer:**\n\"I diagnose first: scope growth, estimates, dependencies, resources or quality issues. Then options: reduce scope to an MVP, add resources carefully, extend dates, or change the approach. I re-plan with the team and take a recommendation to stakeholders. And I track leading indicators from then on.\"\n\nTip: Mention leading indicators. They show slippage before the date is missed.", "B"],
+["Delivery", "What delivery methodology do you prefer for ERP enhancements?", "**Why they ask:** delivery approach.\n\n**Answer:**\n\"For enhancements and continuous improvement, agile and iterative: a backlog, sprints and demos to the business. For larger programs, a hybrid, with phase gates like design sign-off and UAT exit, and iterative build inside. ERP adds specifics: quarterly update cycles, month-end freeze periods and SOX change control. I pick what fits, and focus on business engagement and quality.\"\n\nTip: Mention month-end freezes. It shows ERP-specific awareness.", "B"],
+["Technical", "How would you approach consolidating multiple approval workflows into a simpler design?", "**Why they ask:** simplification is a common goal.\n\n**Answer:**\n\"I inventory the current rules by transaction type and BU. I analyze actual approval data: who really approves and how often each rule fires. Design principles: fewer rules, hierarchy-based with amount thresholds, and exceptions by category. I prototype and test with the business, and document. I communicate and train approvers. And I measure approval cycle time before and after.\"\n\nTip: Mention analyzing real approval data. It shows which rules actually matter.", "D"],
+["Technical", "How would you handle a request for a new report that finance needs urgently for an audit?", "**Why they ask:** urgent requests with control implications.\n\n**Answer:**\n\"I clarify the exact requirement and deadline, and check whether a standard report or OTBI already covers it. If not, I build it quickly in OTBI, or BIP if formatting matters, and validate completeness and accuracy with finance, because if it's audit evidence, it needs key report validation. I document the parameters and logic. Then deliver it, and plan a proper version later if needed.\"\n\nTip: Mention key report validation. Audit evidence needs it.", "B"],
+["Technical", "What is your approach to data quality in ERP master data (suppliers, customers, items)?", "**Why they ask:** data quality affects everything.\n\n**Answer:**\n\"Ownership by business data owners and stewards. Controls at entry: required fields, validations and approval workflows like supplier registration and NIRs. Monitoring with duplicate reports and completeness dashboards. Cleanup campaigns with targets. And training and feedback for the people requesting new records.\"\n\nTip: Say \"controls at entry\". It's cheaper than cleaning up later.", "B"],
+["People", "How do you manage a mixed team of employees, contractors and offshore partners?", "**Why they ask:** most ERP teams are mixed.\n\n**Answer:**\n\"One team culture: shared goals, shared stand-ups and recognition for everyone. Clear roles for design, build, test and support. Critical knowledge stays with employees and is documented. Overlap hours and handoffs across time zones. And fair treatment and inclusion in decisions.\"\n\nTip: Mention keeping critical knowledge with employees. It reduces risk.", "B"],
+["People", "How do you prevent burnout during go-lives and month-end crunches?", "**Why they ask:** sustainable leadership.\n\n**Answer:**\n\"I plan coverage and rotations so nobody is a single point of failure. I keep schedules realistic and defer non-critical work. I recognize extra effort and give time off afterwards. I watch for signs and talk to people. And I fix the recurring causes of crunches through automation and better processes.\"\n\nTip: Mention fixing recurring crunch causes. It's the long-term answer.", "B"],
+["People", "How do you develop a future leader on your team?", "**Why they ask:** succession and growth.\n\n**Answer:**\n\"I look for potential: ownership, influence and judgment. I delegate leadership opportunities, like leading a workstream, running a CRP or mentoring juniors. I coach them on stakeholder management and decisions. I give them exposure to senior meetings. And I hold career conversations and sponsor them for promotion.\"\n\nTip: Mention sponsorship. Coaching helps; sponsorship gets people promoted.", "B"],
+["Stakeholders", "How do you manage expectations when the business wants everything now?", "**Why they ask:** demand management.\n\n**Answer:**\n\"I make the backlog and capacity transparent. I prioritize with business owners by value. I share a roadmap with phased delivery. I find quick wins where possible. And I explain trade-offs openly and involve leaders in the decisions.\"\n\nTip: Involve leaders in trade-offs. It shares ownership of the choices.", "B"],
+["Stakeholders", "How do you handle an executive escalation about a system issue?", "**Why they ask:** composure under senior pressure.\n\n**Answer:**\n\"I acknowledge quickly and understand the impact. I assign an owner and get the facts. I communicate the plan and timeline, with regular updates. Once it's fixed, I confirm with the executive. Then follow-up: root cause and prevention, and I make sure the team learns from it rather than panics.\"\n\nTip: Mention protecting the team from panic. Good leaders absorb pressure.", "B"],
+["Governance", "How do you prioritize the backlog between business requests, technical debt and compliance?", "**Why they ask:** prioritization logic.\n\n**Answer:**\n\"Compliance, regulatory and security items come first, because their dates aren't negotiable. Business requests are scored by value. Technical debt gets a fixed share of capacity, like 15%. And decisions are made transparently through a governance board.\"\n\nTip: Mention fixed capacity for debt. Without it, debt always loses.", "B"],
+["Governance", "How do you manage configuration changes safely in production?", "**Why they ask:** change control.\n\n**Answer:**\n\"Every change has a request with business approval. It's tested in non-production with evidence and regression for impacted areas. Migration uses configuration packages or documented steps, with segregation of duties. Changes go in a window outside close and payroll. After deployment, we validate, and there's a rollback plan.\"\n\nTip: Mention avoiding close and payroll windows. It shows business awareness.", "D"],
+["Technical", "A key integration from a third-party system fails silently for three days. What do you change?", "**Why they ask:** monitoring design.\n\n**Answer:**\n\"Monitoring with alerts not only on failures but on the absence of expected data, heartbeat checks. Dashboards that business owners can see. Error handling with notifications and retries. Daily reconciliation reports comparing source and Oracle counts. And a runbook with clear owners.\"\n\nTip: Mention alerting on missing data. Silent failures send nothing to alert on.", "D"],
+["Technical", "How would you approach a business request for AI automation in AP or procurement?", "**Why they ask:** a current, practical question.\n\n**Answer:**\n\"I clarify the problem and the metric, like invoice processing time. I check Oracle-native capabilities first, Intelligent Document Recognition and AI agents. I run a pilot with a defined scope, human review and measured outcomes. Controls include approvals, audit trail and security roles. And I scale after it succeeds.\"\n\nTip: Say \"Oracle-native first\". It's lower cost and risk.", "D"],
+["Strategy", "How do you contribute to the ERP roadmap as Associate Director?", "**Why they ask:** strategic contribution.\n\n**Answer:**\n\"I bring business needs from my area and pain points from support data. I evaluate new Oracle features relevant to my area. I propose initiatives with value and effort estimates. And I align with my director's priorities and the enterprise strategy.\"\n\nTip: Mention support data. It turns opinions into evidence.", "B"],
+["Behavioral", "Tell me about a decision you made with incomplete information.", "**Why they ask:** judgment under uncertainty.\n\n**Answer (example):**\n\"I had to decide whether to proceed with a quarterly update while one regression test was still unresolved. I assessed the risk: which area it affected and whether a workaround existed. I consulted the business owner and we agreed to proceed with a monitored workaround and an Oracle SR. There was no business impact, and Oracle's patch came two weeks later. My lesson: frame the risk clearly and agree it with the business owner.\"\n\nTip: Show how you framed the risk. That's the skill they're testing.", "B"],
+["Behavioral", "What is your leadership style?", "**Why they ask:** fit with the team and culture.\n\n**Answer:**\n\"I'd describe it as coaching and empowering. I set clear goals and trust the team to own the solutions, and I step in during crises. I hold high standards with support. I communicate transparently. And I adapt: more direction for new team members, more autonomy for experienced ones. For example, [a short example from your own team].\"\n\nTip: Back it with a real example. Styles are easy to claim.", "B"],
+["Behavioral", "Why do you want to move into an Associate Director role?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I've been leading informally, running workstreams and mentoring, and I want broader impact through a team. I enjoy business partnership and developing people. I still bring technical depth to keep delivery strong. And I've already achieved results through others, for example [your example].\"\n\nTip: Fill in a concrete result achieved through others.", "B"],
+["Behavioral", "How do you handle a situation where your manager's direction conflicts with what the business wants?", "**Why they ask:** navigating competing directions.\n\n**Answer:**\n\"I understand both perspectives and the reasoning. I bring data on the impacts. I discuss it openly with my manager first and propose a path. If needed, I set up a conversation between my manager and the business. And once a decision is made, I commit and execute.\"\n\nTip: Say \"discuss with my manager first\". Going around them breaks trust.", "B"],
+["Delivery", "How do you measure the success of your ERP team?", "**Why they ask:** results orientation.\n\n**Answer:**\n\"Service: SLA attainment and incident trends. Delivery: projects on time and scope, and enhancement throughput. Quality: defects and failed changes. Business outcomes, like close days and touchless rates. Team: engagement, retention and skills growth. And stakeholder satisfaction.\"\n\nTip: Include business outcomes. It shows you think beyond IT metrics.", "B"],
+["Technical", "How would you approach a request to add a new business unit to Oracle?", "**Why they ask:** a practical setup question.\n\n**Answer:**\n\"I gather requirements: legal entity, ledger, currency, tax, banking and processes. Then setup: the BU, its functions, reference data, approvals, security, sequences and payment profiles. Integrations and reports are updated. Data: supplier and customer site assignments and opening balances. Then end-to-end testing, training and a go-live plan. And I use a checklist template so onboarding is repeatable.\"\n\nTip: Mention the reusable checklist. It makes the next BU faster.", "D"],
+["Support", "How do you reduce repeat incidents?", "**Why they ask:** support maturity.\n\n**Answer:**\n\"Problem management that tracks recurring incidents with root-cause analysis. Permanent fixes through configuration, data, training or automation. Knowledge articles and user self-service. Monitoring for early detection. And a monthly review of the top incident categories.\"\n\nTip: Mention the monthly review. It keeps problem management active.", "B"],
+["Behavioral", "Describe a time you influenced a decision without formal authority.", "**Why they ask:** influence skills.\n\n**Answer (example):**\n\"Procurement wanted to keep manual PO approvals for every amount. I analyzed 12 months of POs and showed that 85% were under $2,000 with no rejections. I proposed auto-approval under that threshold with a monthly review. It was approved, and PO cycle time dropped from three days to same-day for most POs.\"\n\nTip: Data plus a safety net, the monthly review, is what convinced them.", "B"],
+["Strategy", "What trends in ERP will matter most for your team in the next two years?", "**Why they ask:** forward thinking.\n\n**Answer:**\n\"AI agents in Fusion for AP, procurement, collections and close. Redwood adoption and extensions with Visual Builder Studio. Continuous close and automation. Data and analytics with Fusion Data Intelligence. Regulatory digitization like e-invoicing. And a skills shift from configuration toward automation and data.\"\n\nTip: Mention the skills shift. It shows you're preparing your team.", "B"],
+["Delivery", "How do you run a successful UAT with business users?", "**Why they ask:** UAT quality decides go-live readiness.\n\n**Answer:**\n\"I plan scenarios with business owners and use realistic data. I train the testers and give them clear scripts and support. Defects are triaged daily with transparent status. Exit criteria are agreed up front. And sign-off is formal.\"\n\nTip: Mention exit criteria agreed up front. It prevents arguments at the end.", "B"]
 ]);
