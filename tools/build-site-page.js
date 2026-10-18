@@ -5,8 +5,15 @@ const [ieDir, bankId, slug, roleTitle, outDir, about] = process.argv.slice(2);
 if (!about) throw new Error('Pass a 6th argument describing what the page covers, e.g. "Oracle Fusion Payables, Payments and Expenses projects"');
 global.QB = {}; global.window = global;
 require(path.resolve(ieDir, 'data/q', bankId + '.js'));
-const qs = QB[bankId];
-if (!qs || !qs.length) throw new Error('No questions for ' + bankId);
+// At Work banks carry {placeholders} that the app fills from the user's saved role; the site uses the app's neutral wording.
+const FALLBACK = { title: 'Senior ERP Analyst', team: 'the ERP applications team', manager: 'my manager',
+  resp: 'the finance applications and the integrations that feed them', projects: 'the supplier onboarding upgrade and the month-end close automation project',
+  wins: 'cutting invoice processing time by about 30% and closing the last two quarters on schedule',
+  challenges: 'a tight go-live date and one open role on the team',
+  goals: 'leading a larger team within the next year', priorities: 'a reliable close, fewer manual steps and faster delivery for finance' };
+const fill = t => t.replace(/\{(title|team|manager|resp|projects|wins|challenges|goals|priorities)\}/g, (m, k) => FALLBACK[k]);
+const qs = (QB[bankId] || []).map(q => [q[0], fill(q[1]), fill(q[2]), q[3]]);
+if (!qs.length) throw new Error('No questions for ' + bankId);
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`(.+?)`/g, '<code>$1</code>');
@@ -120,19 +127,19 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
   </div>
 </nav>
 <main class="wrap">
-  <div class="crumb"><a href="/">Arahasoft</a> › <a href="/interview/">Interview Edge</a> › ${bankId.startsWith('ora-mod-') ? 'Oracle Modules' : 'Oracle ERP Roles'}</div>
+  <div class="crumb"><a href="/">Arahasoft</a> › <a href="/interview/">Interview Edge</a> › ${bankId.startsWith('ora-mod-') ? 'Oracle Modules' : bankId.startsWith('ora-') ? 'Oracle ERP Roles' : bankId.startsWith('et-') ? 'ERP Technical' : bankId.startsWith('w-') ? 'At Work' : 'Interview Essentials'}</div>
   <span class="brand">Interview Edge by Arahasoft</span>
   <h1>${esc(roleTitle)} Interview Questions</h1>
-  <p class="lead">The questions interviewers ask for ${esc(about)}, with why they ask, a full answer you can say in the room, and a tip. Tap a question to see the answer.</p>
+  <p class="lead">${bankId.startsWith('w-') ? `How to handle ${esc(about)}. Each question has why it comes up, a sample answer and a tip. The sample answers use an example Senior ERP Analyst; swap in your own projects, wins and goals. Tap a question to see the answer.` : `The questions interviewers ask for ${esc(about)}, with why they ask, a full answer you can say in the room, and a tip. Tap a question to see the answer.`}</p>
   <div class="stats">
     <span class="stat"><b>${qs.length}</b> questions</span>
     <span class="stat"><b>${basics}</b> basic</span>
     <span class="stat"><b>${qs.length - basics}</b> in-depth</span>
   </div>
-  <div class="filters" id="filters">
+  ${topics.length > 1 && topics.length <= 14 ? `<div class="filters" id="filters">
     <button class="on" data-f="all">All</button>
     ${topics.map(t => `<button data-f="${esc(t)}">${esc(t)}</button>`).join('\n    ')}
-  </div>
+  </div>` : ''}
   <div class="tools"><button id="toggleAll">Show all answers</button></div>
   <div id="list">${items}
   </div>
@@ -146,7 +153,7 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
 <script>
 (function () {
   var list = document.getElementById('list'), qs = list.querySelectorAll('details.q');
-  document.getElementById('filters').addEventListener('click', function (e) {
+  var fl = document.getElementById('filters'); if (fl) fl.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
     var f = b.getAttribute('data-f');
