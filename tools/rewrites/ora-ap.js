@@ -1,0 +1,459 @@
+// Rewritten Oracle Payables answers (Why they ask → Answer → Tip). Apply with:
+// node -e "require('fs').writeFileSync('/tmp/r.json', JSON.stringify(require('./tools/rewrites/ora-ap.js')))" && node tools/rewrite.js /tmp/r.json ora-
+module.exports = {
+
+'What are the key Payables setups in Fusion?':
+`**Why they ask:** a quick check that you have actually configured Payables, not just used it.
+
+**Answer:**
+"I group them in the order I'd build them. First the business-unit level options: Payables and Procurement options for accounting, prepayments and conversion rates, then invoice options and payment options. Second the controls: invoice tolerances, hold and release names, and invoice approval rules in BPM. Third the defaults that save keying: payment terms and distribution sets. Fourth the Payments side: payment methods, payment process profiles and disbursement bank accounts. And underneath all of it, suppliers with their sites and site assignments, because nothing works without clean supplier data."
+
+- **Options (per business unit):** Payables and Procurement options, invoice options, payment options, tax and withholding.
+- **Controls:** invoice tolerances, hold and release names, invoice approval (BPM rules).
+- **Defaults:** payment terms, distribution sets.
+- **Payments:** payment methods, payment process profiles, disbursement bank accounts.
+- **Suppliers:** supplier, sites per procurement BU, site assignments to client BUs.
+
+Tip: Give the setups as a sequence, not a list. Saying "I build options first, then controls, then Payments" shows you have done it on a real project.`,
+
+'What are distribution sets and when do you use them?':
+`**Why they ask:** to see if you know the setups that cut manual keying for non-PO invoices, and whether you have configured one.
+
+**Answer:**
+"A distribution set is a template that builds the invoice distributions for you, so AP doesn't key the accounts every time. There are two kinds. A full distribution set has fixed percentages, for example a monthly utility bill split 40% to the plant cost center and 60% to the office. A skeleton set has the accounts but no amounts, so the clerk only types the split. We assign it as the default on the supplier site, and every invoice from that supplier comes in pre-coded. For recurring utility and lease invoices this takes each one from a few minutes to under one, and it cuts miscoding at month-end."
+
+Tip: Name both types, give one example with numbers, and say where it is assigned (the supplier site). That shows you've set it up, not just read about it.`,
+
+'How do you match an invoice to a PO, a receipt and a consumption advice?':
+`**Why they ask:** matching is the heart of PO-based invoicing, and the three options trip up a lot of consultants.
+
+**Answer:**
+"It depends on what the invoice is paying for. For a normal PO, I match to the PO schedule, either by quantity times price or by amount for service lines. If the PO schedule says receipt matching, AP matches to the specific receipts instead, which is useful when the price can differ by delivery. For consignment inventory, the supplier is paid for what we consume, not what we receive, so the invoice is matched to the consumption advice that Oracle generates when consigned stock is used. Which one AP uses is driven by the invoice match option on the PO schedule, not chosen by the clerk."
+
+- **PO match:** against the PO schedule (quantity × price, or amount).
+- **Receipt match:** against specific receipts, still 3-way; gives price variance by receipt.
+- **Consumption advice match:** consignment, pay on consumption.
+- **Control point:** the invoice match option on the PO schedule (Order or Receipt).
+
+Tip: Mention that receipt-level matching gives better traceability but more work for AP. Interviewers like hearing the trade-off.`,
+
+'What are quick credits and price corrections?':
+`**Why they ask:** these come up every week in AP, and getting them wrong distorts PO billed amounts and variances.
+
+**Answer:**
+"A price correction is for when the supplier billed the right quantity at the wrong price. I enter a price correction invoice or credit against the original invoice, and Oracle adjusts the unit price without touching the quantity billed on the PO, so the variance is accounted correctly. A quick credit is a credit memo that fully reverses an existing invoice in one step, all lines, which is the fastest way to back out an invoice the supplier wants to reissue. And if the problem is quantity, for example the supplier billed ten and shipped eight, I use a credit memo matched to the original invoice for two units."
+
+- **Price correction:** changes unit price only, keeps quantity.
+- **Quick credit:** reverses the whole invoice in one step.
+- **Quantity correction:** credit memo matched to the original for the difference.
+
+Tip: Link each one to the business case. "Supplier raised the price after we were invoiced" is a price correction, and saying so shows you know when to use it.`,
+
+'How do you set up hold resolution routing?':
+`**Why they ask:** holds sitting in an AP queue are the biggest cause of late payments. They want to know you can route them to the person who can actually fix them.
+
+**Answer:**
+"I set up the holds resolution workflow so each hold goes to the person who owns the cause, not to AP. Price holds go to the buyer, because only the buyer can fix the PO price or confirm the supplier is wrong. Quantity received holds go to the requester, because they need to receive the goods. The rules are defined by hold type and attributes like business unit. The notification lets the owner release, request information or reassign. Then I report days on hold by type and owner every week, so the controller can see where invoices are stuck."
+
+Tip: End with the measure: average days on hold by owner. It shows you think about running the process, not just configuring it.`,
+
+'Walk me through the components of the Fusion Payments setup.':
+`**Why they ask:** Payments is a separate module many AP consultants avoid. They want to know you can build a payment run end to end.
+
+**Answer:**
+"I think of it as how the money goes out, from the top down. Payment methods, like check, ACH and wire, with usage rules by business unit, currency and supplier. Payment formats, which are BI Publisher templates that produce the bank file. The payment process profile ties it together: which format, how payments are grouped, limits, document numbering and how the file is transmitted. Under that, the payment system and transmission configuration, usually SFTP or a web service to the bank. Then the disbursement bank account and, for checks, the payment documents. Finally, the payment process request runs the whole thing."
+
+- **Payment methods** with usage rules.
+- **Payment formats** (BI Publisher templates).
+- **Payment process profiles:** format, grouping, limits, numbering, transmission.
+- **Payment systems and transmission configurations** (SFTP, web service).
+- **Disbursement bank accounts** and **payment documents** (check stock).
+- **Payment process requests** run it.
+
+Tip: If you have set up a bank file, say which bank and format (NACHA or ISO 20022). One real example beats the whole list.`,
+
+'How do you set up payment approval for large payment runs?':
+`**Why they ask:** treasury and audit want a person to look at large payment runs before money leaves. They want to see you know how Fusion does it.
+
+**Answer:**
+"I enable payment approval in the payment options for the business unit, then define the approval rules in BPM, usually by total amount, currency or the disbursement bank account. When a payment process request is built, it stops and waits for approval. The approvers see the proposed payments, can remove or approve them, and only then does Oracle create the payment file. For smaller runs where approval is overkill, I use the 'stop process for review' setting on the PPR template, so AP still reviews proposed payments before the file goes out. A common design: runs over one million dollars go to the treasury manager, wires over a set limit go to the controller."
+
+Tip: Separate the two controls clearly: payment approval (formal, rule-based) and stop-for-review (manual check). Mixing them up is a common miss.`,
+
+'How do you handle supplier refunds and outbound payments to non-suppliers?':
+`**Why they ask:** these are edge cases that break naive designs, like creating a fake supplier just to pay a customer refund.
+
+**Answer:**
+"For a supplier refund, where the supplier pays us back, I enter it as a refund payment against the supplier's open credit memo, which clears the credit balance in AP. If the money is really a customer receipt, it belongs in Receivables instead. For paying people who aren't suppliers, like a customer refund, a one-time payee or an employee, I use payment requests. They can come from AR refunds, from Expenses or be entered manually, and they get paid through the normal payment run without creating a supplier record. That keeps the supplier master clean and avoids an audit finding for one-off suppliers."
+
+Tip: Say you avoid creating one-time suppliers. Auditors and controllers both care about a clean supplier master.`,
+
+'How do corporate card expenses get from the card issuer to payment?':
+`**Why they ask:** corporate card programs cross three systems (the bank, Expenses and AP), and the end-to-end flow is often misunderstood.
+
+**Answer:**
+"It starts with the issuer's transaction file, usually daily from Amex or Visa, which Oracle loads and matches to employees by card number. The transactions appear in the employee's Expenses work area. The employee adds the business purpose and receipts and submits them in an expense report, which goes through approval and audit like any other report. Payment depends on the card program. With company pay, the company pays the issuer through an AP invoice to the card issuer, and employees are only reimbursed for personal-card items. With individual pay, the employee is reimbursed and pays the card bill themselves."
+
+1. Issuer file loaded and matched to employees.
+2. Employee adds details and receipts, submits.
+3. Approval and audit.
+4. Payment: company pay (invoice to the issuer) or individual pay (reimburse the employee).
+
+Tip: Mention unmatched card transactions. Cards that don't match an employee are the most common support issue.`,
+
+'How do expense audits work in Fusion?':
+`**Why they ask:** auditing every report is expensive. They want to see you can design risk-based audit, not blanket checking.
+
+**Answer:**
+"Audit rules decide which reports go to the auditors. I usually set them by amount, policy violations, specific expense types like gifts or entertainment, and a random sample so everyone knows they could be checked. Auditors review the receipts, adjust or reject lines and can return a report to the employee. Receipt management tracks whether receipts are missing or received, and imaged receipts from the mobile app are accepted. Employees who keep getting audit findings can be put on an audit list so all their reports are checked for a period."
+
+Tip: Add the outcome: risk-based rules let you audit a small share of reports while catching most violations. That is the business case they want to hear.`,
+
+'What is "sweep" in Payables close and when do you use it?':
+`**Why they ask:** it tests whether you understand the Payables close and the risk of hiding problems.
+
+**Answer:**
+"At period close, Payables won't close while there are transactions in the period that can't be accounted, for example an invoice still on an accounting-related hold. Sweep moves those unaccounted transactions to the next open period so the current period can close on time. I use it as a last resort. First I try to fix and account what I can, then I run the Unaccounted Transactions report, review the remaining list with the accounting team, and only then sweep. Whatever was swept goes on the close checklist for the next period."
+
+Tip: Say "last resort, reviewed with accounting." Sweeping by default to close faster is a red flag for an interviewer.`,
+
+'What is your approach to AP automation for a contract role?':
+`**Why they ask:** contract roles are often brought in to cut AP cost fast. They want a plan, not a wish list.
+
+**Answer:**
+"In the first two weeks I measure the current state: invoice channels, touchless rate, holds by type, cycle time and cost per invoice. That tells me where the work is. Then I go after quick wins that are pure configuration: tuning tolerances, auto-approving invoices that match within tolerance, fixing supplier data, and changing the match option on blanket POs where receipt matching creates manual work. In the medium term, IDR for PDF invoices, the supplier portal or e-invoicing, and AI agents to triage holds and answer supplier questions. I report the numbers to the controller monthly so the gains are visible."
+
+Tip: Use a 30-60-90 shape and name one measure you would move, like touchless rate. It shows you'll deliver within a contract's timeline.`,
+
+'How would you architect an AP automation program end to end?':
+`**Why they ask:** an architect is expected to see the whole program, from how invoices arrive to how success is measured.
+
+**Answer:**
+"I design it in layers, following the invoice. Inbound: e-invoicing through EDI, PEPPOL or the supplier portal first, IDR for PDFs, and paper scanning only as a last resort. Validation: PO matching, tolerances, duplicate detection and tax validation. Approval: rules-based, with matched invoices auto-approved. Exceptions: AI agents that suggest how to resolve holds and answer supplier status questions. Payments: timing tuned between early-pay discounts and cash position, plus virtual cards where suppliers accept them. Analytics across all of it: touchless rate, cycle time, cost per invoice. And a supplier enablement program, because the technology only works if suppliers use the right channel."
+
+Tip: Name supplier enablement as its own workstream. Many automation programs fail because suppliers keep emailing PDFs.`,
+
+'Explain the Procure-to-Pay flow and where AP fits in.':
+`**Why they ask:** a basic question, but they listen for whether you connect the steps to the accounting.
+
+**Answer:**
+"Procurement starts it: a requisition becomes a purchase order. Receiving records the goods or services. Then AP takes over: the invoice is entered or imported and matched to the PO and receipt, validation checks matching, tax and holds, the invoice is approved, and it is paid through a payment process request. Finally Create Accounting sends the entries to the General Ledger through Subledger Accounting."
+
+**Worked example: the entries for a $1,000 purchase**
+- Receipt: Dr Inventory or Expense 1,000 / Cr Receipt Accrual 1,000
+- Invoice: Dr Receipt Accrual 1,000 / Cr AP Liability 1,000
+- Payment: Dr AP Liability 1,000 / Cr Cash Clearing 1,000
+- Bank reconciliation: Dr Cash Clearing 1,000 / Cr Cash 1,000
+
+Tip: Walking through the four entries without being asked separates a finance consultant from a system user.`,
+
+'What is the difference between 2-way, 3-way and 4-way matching?':
+`**Why they ask:** a core control question. They want the definitions and when you would use each one.
+
+**Answer:**
+"It's how many documents the invoice must agree with before it can be paid. Two-way checks the invoice against the PO, quantity and price, which suits services or low-risk items. Three-way adds the receipt, so we only pay for what was actually received. Four-way adds inspection or acceptance, used where quality checks matter, like lab supplies or parts that can be rejected. The match level is set on the PO schedule, defaulted from the supplier, item or purchasing options. Anything outside tolerance goes on hold."
+
+**Example:** PO for 100 units at $10. Receipt for 90. Invoice for 100 at $10.
+- 2-way: passes (invoice agrees with the PO).
+- 3-way: quantity received hold, because only 90 were received.
+
+Tip: The worked example shows you understand the control, not just the terms.`,
+
+'What are invoice holds and how do you release them?':
+`**Why they ask:** holds drive most AP work, and how you handle them shows if you understand the controls.
+
+**Answer:**
+"A hold stops an invoice from being paid until something is fixed. The common ones are matching holds like quantity ordered, quantity received, price and amount; variance holds on distributions or tax; account holds for an invalid account; supplier or site holds; and manual holds placed by users. System holds release on their own once the cause is fixed and the invoice is validated again, for example after the goods are received or the PO price is corrected. Manual-releasable holds need an authorized user to release them with a reason. To keep holds moving, I route each type to its owner with the holds resolution workflow."
+
+- **Matching:** quantity ordered, quantity received, price, amount.
+- **Variance:** distribution or tax variance.
+- **Account:** invalid distribution account.
+- **Supplier or site:** payment hold.
+- **Manual:** placed by users.
+
+Tip: Stress that you fix the cause, not just release the hold. Releasing holds without fixing them is an audit finding.`,
+
+'What types of invoices can you enter in Payables?':
+`**Why they ask:** a foundation check. A wrong invoice type means wrong accounting or reporting.
+
+**Answer:**
+"The everyday one is the standard invoice. Credit memos are credits from the supplier, debit memos are credits we raise against the supplier ourselves. Prepayments are advances that get applied to invoices later. Withholding tax invoices are created automatically for amounts withheld. Expense reports come in from Oracle Expenses for employee reimbursement. Payment requests pay people who aren't suppliers, like customer refunds. And interest invoices are created automatically for late-payment interest if that's set up."
+
+- **Standard**, **Credit memo**, **Debit memo**
+- **Prepayment**
+- **Withholding tax** (system-created)
+- **Expense report** (from Expenses)
+- **Payment request** (non-supplier payees)
+- **Interest** (system-created)
+
+Tip: Mention the difference between a credit memo and a debit memo clearly. Many candidates mix them up.`,
+
+'How does a prepayment work in AP?':
+`**Why they ask:** prepayments touch the balance sheet, and unapplied prepayments are a classic audit issue.
+
+**Answer:**
+"First you enter a prepayment invoice, validate it and pay it. That books a prepaid asset instead of an expense. When the real invoice arrives, you apply the prepayment to it, which reduces what you still owe and moves the amount out of the prepaid account. Temporary prepayments are meant to be applied to invoices. Permanent ones, like a lease deposit, are not. Oracle can also apply prepayments automatically during validation if that's set up. At month-end, I reconcile the prepaid account so nothing sits unapplied."
+
+**Worked example: $5,000 advance, then a $12,000 invoice**
+- Prepayment invoice: Dr Prepaid Expense 5,000 / Cr AP Liability 5,000
+- Payment: Dr AP Liability 5,000 / Cr Cash 5,000
+- Apply to the $12,000 invoice: Dr Expense 12,000 / Cr AP Liability 7,000 / Cr Prepaid Expense 5,000
+
+Tip: Mention reconciling the prepaid account. Unapplied prepayments are a common audit question.`,
+
+'What is a Payment Process Request (PPR)?':
+`**Why they ask:** every payment in Fusion goes through a PPR, so you need to explain it clearly.
+
+**Answer:**
+"A PPR is how Fusion selects invoices and pays them in bulk. You give it selection criteria: pay-through date, business unit, supplier, payment method, pay group and currency. Then the payment and processing options: which bank account, which payment process profile, and whether to stop for review. It runs in steps: select the invoices, review the proposed payments, build the payments, create the payment file or print checks, and transmit to the bank. Most companies schedule them, for example a daily ACH run and a weekly check run. The payment process profile decides the file format, such as NACHA or ISO 20022, and how it's sent."
+
+1. Select invoices.
+2. Review proposed payments (optional stop).
+3. Build payments.
+4. Create the payment file or print checks.
+5. Transmit to the bank.
+
+Tip: Mention scheduled PPR templates. Real companies don't submit PPRs by hand every day.`,
+
+'How do you handle 1099 reporting in Oracle Payables?':
+`**Why they ask:** 1099 errors cost penalties and go straight to the IRS. They want to see you start long before January.
+
+**Answer:**
+"It starts with supplier setup: US suppliers who need 1099s are marked federal reportable, with their taxpayer ID and income tax type, for example NEC for services. That income tax type defaults onto invoice distributions. During the year, if suppliers were set up wrong, I fix the history with the Update and Report Income Tax Details process. At year-end I run the US 1099 Report, the Invoice Exceptions and Supplier Exceptions reports, and then produce the electronic file or the printed forms."
+
+- **Setup:** federal reportable, taxpayer ID, income tax type (NEC, MISC).
+- **During the year:** Update and Report Income Tax Details for corrections.
+- **Year-end:** US 1099 Report, exception reports, 1099 Electronic Media.
+
+Tip: Say you review the exception reports in December, not January. It shows you've been through a real year-end.`,
+
+'Explain the Oracle Expenses flow.':
+`**Why they ask:** Expenses touches every employee, so it's often the most visible part of a Financials rollout.
+
+**Answer:**
+"The employee creates an expense report on the web or the mobile app and attaches receipts. Corporate card transactions import automatically. Expense policies check limits, like a daily meal cap, and whether receipts are required. The report goes to the manager for approval, plus anyone else the approval rules add. Auditors review a sample or the reports picked by audit rules. Once approved, Process Expense Reimbursements creates Payables invoices, and they're paid through a payment run or through payroll. The accounting defaults from the employee's cost center and the expense type."
+
+1. Create the report, attach receipts (card transactions import).
+2. Policy checks.
+3. Manager approval.
+4. Audit.
+5. Payables invoice created and paid.
+
+Tip: Mention the mobile app and receipt capture. Adoption depends on how easy it is for employees, and interviewers know that.`,
+
+'What is the difference between a supplier, a supplier site and a site assignment?':
+`**Why they ask:** supplier setup is behind many "I can't find the supplier" tickets. The structure tells them if you understand multi-BU setups.
+
+**Answer:**
+"The supplier is the company itself: name, tax ID, type. Addresses hold the physical locations. A supplier site is an address used for purchasing or paying, and it's created per procurement business unit, carrying payment terms, payment method, pay group and holds. A site assignment then lets a client business unit use that site. So in a shared services model, one procurement BU owns the site, and assignments let all the other BUs invoice against it. When a user says they can't find a supplier in their BU, the first thing I check is the site assignment."
+
+**Example:** Supplier ABC Corp → site ABC-NEWARK in the US procurement BU → assigned to US East, US West and Canada BUs.
+
+Tip: The "can't find the supplier" example is the line that lands. It shows real support experience.`,
+
+'How do payment terms and discounts work in AP?':
+`**Why they ask:** discounts are real money, and terms setup decides when cash leaves the company.
+
+**Answer:**
+"Payment terms set when an invoice is due and whether there's an early-payment discount. The classic is 2/10 Net 30: 2% off if paid within 10 days, otherwise the full amount in 30. Terms default from the supplier site or the PO onto the invoice, and the terms date basis, like invoice date or goods received date, sets the start date. Oracle creates installments from the terms, and the payment run picks them up when due. If the discount option is enabled and the payment date falls in the discount window, the discount is taken automatically."
+
+**Worked example:** $50,000 invoice dated March 1, terms 2/10 Net 30.
+- Paid by March 11: pay $49,000, discount $1,000.
+- Otherwise: pay $50,000 by March 31.
+
+Tip: Mention the terms date basis. Using goods received date instead of invoice date is a quiet way to protect cash.`,
+
+'What is the difference between invoice validation and invoice approval?':
+`**Why they ask:** people mix them up all the time, and the design choice affects cycle time.
+
+**Answer:**
+"Validation is the system check: matching to the PO and receipt, tolerances, tax, accounting and distribution totals. It places or releases holds. Approval is a business decision by people, like the cost center manager, routed by approval rules. An invoice normally needs both before it can be paid. The order is configurable. I usually validate first so approvers don't spend time on invoices that will go on hold anyway."
+
+- **Validation:** system, rule-based, creates or releases holds.
+- **Approval:** people, routed by rules.
+- **Both** are needed to pay; order is configurable.
+
+Tip: Give your preferred order and the reason. Having a view is what makes this answer senior.`,
+
+'How do you cancel an invoice, and what happens to the accounting?':
+`**Why they ask:** cancellation mistakes leave broken PO balances and wrong accounting.
+
+**Answer:**
+"You can only cancel an unpaid invoice with no prepayments applied. If it's paid, the payment has to be voided first. Cancelling is done from the Invoices work area. Oracle reverses the distributions and creates cancellation accounting on the cancel date, reversing both the expense and the liability. If the invoice was matched to a PO, the quantity billed on the PO is reduced, so the PO can be invoiced again. A cancelled invoice stays in the system for audit and can't be un-cancelled, so for a small correction I'd use a credit memo instead."
+
+**Example:** a $2,000 invoice matched to a PO is cancelled.
+- Entry: Dr AP Liability 2,000 / Cr Expense or Accrual 2,000
+- PO quantity billed goes back down, so the correct invoice can be matched.
+
+Tip: Mention that cancellation can't be undone. It shows you think before clicking.`,
+
+'A supplier is paid twice. How would you investigate and prevent it from happening again?':
+`**Why they ask:** duplicate payments are a classic control failure. They want root cause and prevention, not just recovery.
+
+**Answer:**
+"I'd start by finding both invoices and comparing them: invoice number, amount, date and supplier site. Duplicates usually differ by one character, a leading zero or a different site. Then I check how each one came in, because the most common pattern is one entered by hand and one from imaging or an integration. I'd also check whether duplicate checking was bypassed. To recover, I contact the supplier for a refund or a credit memo and net it on the next payment, making sure the 1099 amounts stay right. To prevent it, I tighten duplicate checks across supplier, number, amount and date, normalize invoice numbers on import, restrict who can override, and run a duplicate-payment report before each payment run."
+
+- **Investigate:** compare both invoices, check the source, check overrides.
+- **Recover:** refund or credit memo, fix 1099.
+- **Prevent:** stronger duplicate checks, normalized numbers, override control, pre-run report.
+
+Tip: Interviewers listen for root cause and the control you'd add, not just "we got the money back."`,
+
+'How would you increase touchless invoice processing?':
+`**Why they ask:** touchless rate is the main AP efficiency measure. They want concrete levers.
+
+**Answer:**
+"First I'd look at the holds by type and supplier, because that shows where the touches come from. Then I'd pull the levers in order of effort. Get suppliers invoicing against accurate POs, using catalogs and agreements. Tune tolerances and fix master data like supplier sites, bank details and units of measure. Auto-approve PO-matched invoices within tolerance. Then move capture away from manual keying: IDR for PDFs, and the supplier portal or e-invoicing for the biggest suppliers. And I review holds monthly and fix root causes, so the gains stick."
+
+**Example:** if 30% of invoices hit price holds from one supplier group, fixing their PO prices does more than any new tool.
+
+Tip: Lead with the data. Starting from "where do the touches come from" shows you'd fix the problem, not just buy software.`,
+
+'How do you handle invoice matching for services or blanket POs where receipts are messy?':
+`**Why they ask:** a common real-world problem where the textbook setup creates manual work.
+
+**Answer:**
+"For services, I'd use amount-based lines and often 2-way match, because receiving a quantity of hours or milestones rarely reflects reality. For blanket POs with many partial receipts, I'd consider changing the invoice match option from Receipt to Purchase Order. It's still a 3-way match, Oracle still checks received quantity, but in total for the schedule, so AP doesn't have to pick individual receipts. For high-volume suppliers, receipt acceptance or pay-on-receipt can remove the invoice step entirely. And requesters need to receive promptly, otherwise any design fails."
+
+**Trade-off:** matching at PO level loses receipt-level traceability for price differences, so I'd agree the change with internal audit first.
+
+Tip: Mentioning the audit trade-off is what makes this answer credible.`,
+
+'How would you roll out Oracle Expenses to 5,000 employees?':
+`**Why they ask:** a change-management question as much as a configuration one.
+
+**Answer:**
+"I'd get the policy owners to sign off on harmonized policies first, because rolling out software on top of unclear policy just moves the arguments into the system. In parallel, test the corporate card feeds with the issuer and make sure cards match employees. Use the mobile app with receipt capture and single sign-on, since easy submission drives adoption. Approval follows the manager hierarchy, so HR data has to be accurate before go-live. Then a pilot with one department, fix what breaks, and roll out in waves. Short training videos, FAQs, a ready help desk, and risk-based audit rules so auditors aren't swamped."
+
+1. Policies agreed.
+2. Card feeds tested.
+3. Mobile app and SSO.
+4. HR hierarchy cleaned up.
+5. Pilot, then waves.
+6. Training and help desk.
+7. Risk-based audit.
+
+Tip: Mention the HR data dependency. Bad manager hierarchy is the top reason expense rollouts stall.`,
+
+'How would you design approvals for non-PO invoices across 15 business units?':
+`**Why they ask:** a design question that tests whether you can keep it simple at scale.
+
+**Answer:**
+"I'd base routing on one rule set using the cost center manager hierarchy from HCM, with amount tiers, for example up to $5,000 to the cost center manager, up to $50,000 to the director, and above that the controller. Business-unit-specific approval groups only where a BU really needs something different. Small invoices from trusted suppliers can be auto-approved with an after-the-fact review. There must be a fallback approver for when the hierarchy has gaps. Then I'd watch approval cycle time and rejection rates, and fix HR data issues quickly when they show up."
+
+Tip: Say "one rule set, exceptions only where needed." Fifteen separate rule sets is the design they're hoping you won't propose.`,
+
+'How do you configure invoice approval workflow in Fusion Payables?':
+`**Why they ask:** a hands-on configuration question for senior functional consultants.
+
+**Answer:**
+"I turn on invoice approval in Manage Invoice Options for the business unit, then build the rules in BPM through Manage Invoice Approval Rules. A typical set: PO-matched invoices within tolerance need no approval, non-PO invoices go to the cost center manager by amount, and anything over $100,000 adds the controller. I use approval groups or the supervisor hierarchy, with a fallback for missing approvers. I decide whether approval happens before or after validation, and whether payment requires approval. Then I test the real-life paths: reassign, delegate, request information and reject."
+
+1. Enable invoice approval (Manage Invoice Options).
+2. Build rules in BPM (Manage Invoice Approval Rules).
+3. Approval groups or hierarchy, with a fallback.
+4. Set approval order and payment requirement.
+5. Test reassign, delegate, request info, reject.
+
+Tip: Mentioning the test scenarios shows you've been through UAT, not just setup.`,
+
+'What is Intelligent Document Recognition (IDR) / invoice imaging?':
+`**Why they ask:** most companies want to stop keying invoices. They want to know you can set up Oracle's capture.
+
+**Answer:**
+"IDR is Oracle's AI-based invoice capture. Suppliers email PDF or image invoices to a dedicated address. IDR reads the invoice and creates an incomplete invoice with the header and lines filled in, matched to the PO where it can find one. AP reviews and completes the exceptions in the Invoices work area. It gets more accurate as it learns supplier layouts. On a rollout I watch three things: supplier communication about where to send invoices, duplicate detection for invoices that arrive by email and by mail, and the touchless rate and processing time."
+
+Tip: Bring up duplicates. Invoices arriving by two routes is the most common IDR problem after go-live.`,
+
+'How do you set up a new payment format, for example a bank\'s ACH file?':
+`**Why they ask:** bank integration is where projects often slip. They want to know you can handle it end to end.
+
+**Answer:**
+"First I get the bank's file specification and their test process. Then I take a seeded BI Publisher template, like NACHA or ISO 20022 pain.001, copy it and adjust it to the bank's requirements. I create the payment format pointing to that template, and a payment process profile that links the format, the payment method, the transmission over SFTP or web service, and the grouping rules. The profile is assigned to the disbursement bank account and payment methods. Then testing with the bank: prenotes, a few small live payments, and making sure we receive and process the acknowledgment files."
+
+1. Bank specification and test plan.
+2. Copy and adjust the seeded template.
+3. Payment format.
+4. Payment process profile.
+5. Assign to bank account and methods.
+6. Test: prenotes, small live payments, acknowledgments.
+
+Tip: Mention acknowledgment files. Teams forget them, then can't tell whether the bank accepted the payments.`,
+
+'What is positive pay?':
+`**Why they ask:** a common treasury control, and they want to know you've set it up, not just heard of it.
+
+**Answer:**
+"Positive pay is a fraud control for checks. After each check run, we send the bank a file of the checks we issued: number, amount and payee. The bank only pays checks that match, and anything that doesn't match becomes an exception for treasury to approve or reject. In Fusion, I run the Positive Pay File process with a BI Publisher template in the bank's format, include voided checks so they can't be cashed, and transmit it automatically over SFTP after each payment run."
+
+Tip: Mention voided checks in the file. It shows you understand why the control exists.`,
+
+'How do you void a payment and what happens to the invoices and accounting?':
+`**Why they ask:** voids have side effects on invoices, accounting, 1099 and the bank. They want to see you think about all of them.
+
+**Answer:**
+"I void the payment in Payables with a void date and choose what happens to the invoices: cancel them, put them on hold, or leave them open to pay again. The accounting reverses the payment on the void date. If the payment already cleared the bank, I can't just void it, it becomes a stop payment or a refund. For electronic payments, I only void if the bank actually rejected the payment. And I check the knock-on effects: 1099 amounts and the next positive pay file, which should include the void."
+
+**Example:** a $3,000 check is voided and the invoice left open.
+- Entry: Dr Cash Clearing 3,000 / Cr AP Liability 3,000
+- The invoice is unpaid again and picked up by the next payment run.
+
+Tip: Covering the 1099 and positive pay impact is what lifts this answer above average.`,
+
+'How do you configure expense policies and corporate cards?':
+`**Why they ask:** a detailed setup question for Expenses projects.
+
+**Answer:**
+"I start with expense templates and expense types, like meals, hotel and mileage, each with a default account. Then the policies: rate limits by location or job level, daily limits, when receipts are required, and when a justification is needed. Each policy can be a warning or a hard error. Mileage rates are set by period and vehicle type. For corporate cards, I set up the card program, the issuer file load for Amex or Visa, matching to employees, and the payment option: company pay or individual pay. Finally the audit rules and receipt management."
+
+- **Templates and expense types** with default accounts.
+- **Policies:** rate and daily limits, receipt and justification rules, warning or error.
+- **Mileage rates.**
+- **Corporate cards:** program, issuer file, employee matching, company or individual pay.
+- **Audit rules** and receipt management.
+
+Tip: Mention warning versus error and why you chose each. That's the design judgment they're looking for.`,
+
+'How do you prevent supplier bank account fraud in Oracle?':
+`**Why they ask:** fake bank change requests are one of the most common payment frauds. They want real controls.
+
+**Answer:**
+"The first control is segregation of duties: the people who process invoices can't create or change supplier bank accounts. Supplier changes through the portal go through approval as supplier profile change requests. Before approving any bank change, someone calls the supplier on a contact number we already have on file, never the number in the request. I run a report of bank account changes before every payment run, and the first payment to a new account is held for review. Those four together stop most attempts."
+
+- **Segregation of duties** on bank account changes.
+- **Approval** of supplier profile change requests.
+- **Callback** to a known contact.
+- **Bank change report** before each payment run.
+- **Hold first payment** to a new account.
+
+Tip: Mention a real control and the segregation-of-duties conflicts you checked. Concrete detail makes this answer believable.`,
+
+'What are the key Payables options and invoice options you configure?':
+`**Why they ask:** these settings drive behavior across the whole business unit, and getting them wrong is costly.
+
+**Answer:**
+"Invoice options are where most of the decisions are: invoice approval, whether paid invoices can be adjusted, duplicate invoice checking, invoice currency, receipt acceptance days, the terms date basis and whether validation comes before approval. Matching options cover tolerances, whether distributions can be overridden and recalculation on match. Payment options cover things like allowing a payment date before the system date, who bears bank charges and payment document settings. The accounting options set accrual or cash basis, automatic offsets and the prepayment account. All of these are set per business unit, so I agree them with each BU's controller."
+
+Tip: End with "set per business unit, agreed with each controller." It shows you manage the decision, not just the screen.`,
+
+'How do you set up and use payment terms with installments?':
+`**Why they ask:** staged payments are common for large purchases, and installments are often set up wrong.
+
+**Answer:**
+"I define payment terms with more than one line, for example 50% due in 30 days and 50% in 60 days, each line with its own optional discount. When an invoice uses those terms, Oracle creates the installments automatically, each with its own due date and amount. The payment run picks up each installment when it's due. It's useful for large equipment purchases or contracts with staged payments."
+
+**Worked example:** $200,000 invoice dated June 1, terms 50/30, 50/60.
+- Installment 1: $100,000 due July 1.
+- Installment 2: $100,000 due July 31.
+
+Tip: A quick numeric example makes a dry setup question easy to follow.`,
+
+'How do you handle an employee who submitted an expense report with a policy violation?':
+`**Why they ask:** a practical question that shows how you'd balance policy and employee experience.
+
+**Answer:**
+"The system flags it first: policy rules mark the line as a warning or an error. A warning lets the employee submit with a justification. An error blocks submission until it's fixed. The manager sees any violations during approval, and auditors can reject or adjust lines. If it's a pattern, I don't just keep rejecting reports. I report violations by department, and either the policy gets clearer, the employee gets training, or the rule gets tighter."
+
+Tip: Talk about patterns, not just the one report. Interviewers want to hear you'd fix the root cause.`,
+
+};

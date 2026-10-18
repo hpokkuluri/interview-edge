@@ -1,519 +1,73 @@
 // ora-fc-fin — generated from src/ora-fc-fin-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Oracle Functional Consultant (2–3 yrs) — Finance. Format: [module, question, answer, 'B' basic | 'D' in-depth]
-QB['ora-fc-fin'] = (QB['ora-fc-fin'] || []).concat([
-['Fusion Basics', 'What is the difference between Oracle E-Business Suite and Oracle Fusion Cloud ERP?',
-`- **EBS** is on-premise (or hosted) — the customer owns the database, applies patches and can customize code directly. Forms-based UI, concurrent programs, responsibilities.
-- **Fusion Cloud ERP** is SaaS — Oracle hosts and upgrades it quarterly (e.g. 25A, 25B). No direct database access; you extend through configuration, Visual Builder, OIC, BI Publisher and REST APIs. Browser UI, scheduled processes, role-based security.
-
-## What changes for a consultant
-- Setups are done through **Functional Setup Manager (FSM)** tasks instead of individual forms.
-- You must regression-test every quarterly update.
-- Reporting uses OTBI, BI Publisher and Financial Reporting/Smart View.
-
-Tip: If you've worked on both, say which and give one example of how you did the same task in each.`, 'B'],
-
-['Fusion Basics', 'What is Functional Setup Manager and how do you use it?',
-`FSM is the Fusion tool for all application setup.
-
-- **Offerings** (e.g. Financials) contain **functional areas** (e.g. Payables), which contain **setup tasks** (e.g. Manage Payables Options).
-- You **opt in** to the offerings and features you need, then work through the task list.
-- **Implementation projects** group tasks and let you assign them to team members and track status.
-- **Configuration packages** export setups from one environment and import them into another (e.g. TEST → PROD).
-- **Scope values** let you set up a task for a specific BU or ledger.
-
-Tip: Mention you used configuration packages to move setups between pods — it shows you know the deployment process.`, 'B'],
-
-['General Ledger', 'What are the "4 Cs" of a ledger in Oracle?',
-`A ledger is defined by four things:
-- **Chart of accounts** — the account structure (segments).
-- **Calendar** — the accounting periods (e.g. monthly, 4-4-5).
-- **Currency** — the ledger currency.
-- **aCcounting method** — the Subledger Accounting method that tells subledgers how to create journals.
-
-Two legal entities can share one primary ledger only if all four are the same; otherwise they need separate ledgers.`, 'B'],
-
-['General Ledger', 'What is a balancing segment and why is it important?',
-`The balancing segment is the chart-of-accounts segment (usually **Company**) for which Oracle ensures debits equal credits on every journal.
-
-- If a journal crosses two balancing segment values (e.g. company 101 and 102), Oracle automatically creates **intercompany balancing lines** using the intercompany balancing rules.
-- Balancing segment values are typically assigned to **legal entities**, so you can produce a balance sheet per entity.
-- Fusion supports up to three balancing segments (primary, second and third) — e.g. Company and Cost Center.`, 'B'],
-
-['General Ledger', 'Walk me through the life of a manual journal entry in Fusion GL.',
-`- **Create**: Journals → Create Journal (or upload via the ADFdi spreadsheet). Enter batch, journal, ledger, period, category, lines.
-- **Validate**: cross-validation rules and account combinations are checked; invalid combinations are rejected.
-- **Approve**: if journal approval is enabled, the journal routes through BPM approval rules (often by amount or source).
-- **Post**: posting updates account balances (GL_BALANCES); can be manual or via AutoPost.
-- **Reverse** (if needed): reversal journals for accruals, scheduled for the next period.
-
-Tip: Mention the spreadsheet upload (ADFdi) — most finance teams use it for bulk journals.`, 'B'],
-
-['General Ledger', 'What are cross-validation rules?',
-`Cross-validation rules stop invalid combinations of segment values from being created.
-
-Example: "Balance-sheet accounts (1000–3999) must use cost center 000." The rule has a **condition filter** (when the rule applies) and a **validation filter** (what's allowed), plus an error message.
-
-- They only stop **new** combinations — existing ones must be disabled separately.
-- Set them up early, before transactions start, and test them with real account strings.`, 'B'],
-
-['General Ledger', 'How do you open and close GL periods, and what statuses can a period have?',
-`Period statuses: **Never Opened, Future Enterable, Open, Closed, Permanently Closed.**
-
-- Open the next period with **Manage Accounting Periods** (or the Open Period process).
-- Journals can be entered in Future Enterable periods but not posted.
-- Close the period after all subledgers have transferred and all journals are posted and reconciled.
-- A Closed period can be reopened; Permanently Closed cannot — use it only after audit sign-off.
-
-Subledgers (AP, AR, FA) have their own period statuses, closed before GL.`, 'B'],
-
-['General Ledger', 'What is the difference between a primary ledger, a secondary ledger and a reporting currency?',
-`- **Primary ledger** — the main book of record for a legal entity.
-- **Secondary ledger** — a parallel ledger that can differ in chart of accounts, calendar, currency and/or accounting method. Used for local GAAP vs IFRS/US GAAP or a different COA for statutory reporting. Can be maintained at subledger, journal or balance level.
-- **Reporting currency** — same COA, calendar and method as the primary; only the currency differs. Used when you just need to report in another currency.
-
-Rule of thumb: only the currency differs → reporting currency; anything else differs → secondary ledger.`, 'D'],
-
-['General Ledger', 'Explain revaluation and translation in GL.',
-`- **Revaluation** adjusts **foreign-currency balances** (e.g. a EUR bank account in a USD ledger) to the period-end exchange rate. The difference goes to unrealized gain/loss. Typically reversed the next period.
-- **Translation** converts the **whole ledger's balances** into another currency for reporting/consolidation — balance sheet at period-end rate, P&L at average rate, equity at historical rates; the difference goes to the Cumulative Translation Adjustment (CTA).
-
-Run revaluation before translation, after all foreign-currency transactions are posted.`, 'D'],
-
-['General Ledger', 'How would you set up a recurring allocation, for example rent allocated by headcount?',
-`Use **Calculation Manager** allocation rules in Fusion GL:
-- **Source (pool):** the rent account balance for the period.
-- **Basis:** a statistical account holding headcount by cost center (loaded each month).
-- **Target:** rent expense on each receiving cost center, proportional to headcount.
-- **Offset:** a credit back to the source cost center.
-
-Generate the allocation each month (manually or on a schedule), review, and post. In EBS the equivalent is **MassAllocations**.
-
-Tip: Mention you test with a small known set of numbers so you can check the math by hand.`, 'D'],
-
-['Accounts Payable', 'Explain the Procure-to-Pay flow and where AP fits in.',
-`- **Requisition** → **Purchase Order** (Procurement)
-- **Receipt** of goods/services (Receiving)
-- **Invoice** entered/imported, matched to PO and receipt (AP)
-- **Validation** — matching, tax and holds checked (AP)
-- **Approval** (AP)
-- **Payment** through a Payment Process Request (AP / Payments)
-- **Accounting** — Create Accounting and transfer to GL (SLA)
-
-Accounting entries: receipt accrual (Dr Inventory/Expense, Cr Receipt Accrual), invoice (Dr Accrual, Cr Liability), payment (Dr Liability, Cr Cash Clearing), reconciliation (Dr Cash Clearing, Cr Cash).`, 'B'],
-
-['Accounts Payable', 'What is the difference between 2-way, 3-way and 4-way matching?',
-`- **2-way**: invoice vs PO (quantity and price). Used for services or low-risk items.
-- **3-way**: invoice vs PO vs **receipt** — you can only be invoiced for what you received.
-- **4-way**: invoice vs PO vs receipt vs **inspection/acceptance** — used where quality checks matter.
-
-The match level is set on the PO schedule (defaulted from the supplier, item or purchasing options). Mismatches beyond tolerances put the invoice on hold.`, 'B'],
-
-['Accounts Payable', 'What are invoice holds and how do you release them?',
-`Holds stop an invoice from being paid until an issue is fixed.
-
-## Common holds
-- **Matching holds**: Qty Ord, Qty Rec, Price, Amount.
-- **Variance holds**: distribution/tax variance.
-- **Account holds**: invalid distribution account.
-- **Supplier/site holds**: payment hold on the supplier.
-- **Manual holds** placed by users.
-
-## Release
-- **System holds** release automatically when you fix the cause and re-validate (e.g. receive the goods, correct the price).
-- **Manual-releasable holds** are released by an authorized user with a release reason.
-- Holds can route to the right person via the holds resolution workflow.`, 'B'],
-
-['Accounts Payable', 'What types of invoices can you enter in Payables?',
-`- **Standard** — normal supplier invoice.
-- **Credit memo** — supplier credit (negative).
-- **Debit memo** — your own credit against a supplier.
-- **Prepayment** — advance payment, applied later to invoices.
-- **Withholding tax** — created automatically for withheld amounts.
-- **Expense report** — employee reimbursement (from Expenses).
-- **Payment request** — non-supplier payees (e.g. refunds).
-- **Interest** — late-payment interest (auto-created when set up).`, 'B'],
-
-['Accounts Payable', 'How does a prepayment work in AP?',
-`- Enter a **Prepayment** invoice, validate and pay it. Accounting: Dr Prepaid Expense, Cr Liability, then Cr Cash on payment.
-- When the real invoice arrives, **apply** the prepayment to it — this reduces the amount payable. Accounting reverses the prepaid asset into the invoice.
-- **Temporary** prepayments can be applied to invoices; **permanent** ones (e.g. deposits) cannot.
-- Prepayments can also be applied automatically at validation if set up.
-
-Tip: Mention reconciling the prepaid account — unapplied prepayments are a common audit question.`, 'B'],
-
-['Accounts Payable', 'What is a Payment Process Request (PPR)?',
-`A PPR is how Fusion selects and pays invoices in bulk.
-
-- **Selection criteria**: pay-through date, business unit, supplier, payment method, pay group, currency.
-- **Payment and processing options**: which disbursement bank account, payment process profile, whether to stop for review.
-- Steps: **select invoices → review proposed payments → build payments → create payment file** (or print checks) → **transmit** to the bank.
-- Can be scheduled (e.g. weekly check run, daily ACH).
-
-Payment Process Profiles define the format (NACHA, ISO 20022 XML, check) and transmission method.`, 'B'],
-
-['Accounts Payable', 'How do you handle 1099 reporting in Oracle Payables?',
-`- Mark US suppliers as **federal reportable**, with taxpayer ID and income tax type (e.g. MISC, NEC).
-- Invoice distributions carry the **income tax type** — defaulted from the supplier.
-- During the year, fix errors with the **Update and Report Income Tax Details** process.
-- At year end, run the **1099 reports** (US 1099 Report, Invoice Exceptions, Supplier Exceptions) and produce the electronic file (1099 Electronic Media) or forms.
-
-Tip: Mention reviewing the exception reports in December, not January.`, 'D'],
-
-['Accounts Receivable', 'Explain the Order-to-Cash flow and where AR fits in.',
-`- **Customer** set up (customer, account, sites)
-- **Sales order** booked and **shipped** (Order Management)
-- **Invoice** created in AR through **AutoInvoice** (from OM or other sources) or manually
-- **Receipt** recorded (manually, lockbox or bank statement)
-- **Receipt applied** to invoices
-- **Collections** for overdue balances
-- **Accounting** to GL via Create Accounting
-
-Accounting: invoice (Dr Receivable, Cr Revenue, Cr Tax), receipt (Dr Cash, Cr Receivable).`, 'B'],
-
-['Accounts Receivable', 'What is AutoInvoice?',
-`AutoInvoice is the AR program that imports transactions from other systems (Order Management, Projects, legacy billing) into invoices, credit memos and debit memos.
-
-- Data goes into the interface tables (RA_INTERFACE_LINES_ALL in EBS; FBDI or OM integration in Fusion).
-- **Transaction sources** control validation and defaulting (batch source).
-- **Grouping rules** decide which lines become one invoice; **line ordering rules** sort lines.
-- **AutoAccounting** derives the revenue/receivable accounts (in Fusion, alongside SLA).
-- Errors stay in the interface and are shown in the AutoInvoice exceptions report — fix and resubmit.`, 'B'],
-
-['Accounts Receivable', 'What is the customer structure in Oracle (party, account, site)?',
-`Oracle uses the **Trading Community Architecture (TCA)** model:
-- **Party** — the real-world organization or person (e.g. ACME Corp).
-- **Customer account** — the business relationship with that party (terms, profile, credit). One party can have several accounts.
-- **Account sites** — addresses used for the account, with **site uses** (Bill-to, Ship-to).
-- **Customer profile** — credit limits, collector, statement and dunning settings.
-
-Because parties are shared, the same company can be both a customer and a supplier.`, 'B'],
-
-['Accounts Receivable', 'How do you apply a receipt, and what happens with unapplied or on-account cash?',
-`- Create the receipt (manually, via lockbox or from bank statements) against a receipt method and bank account.
-- **Apply** it to one or more open transactions; partial application leaves a balance.
-- **Unapplied** — money received but not yet matched to invoices.
-- **On-account** — deliberately placed on the customer account to apply later (e.g. a deposit).
-- **Unidentified** — you don't know the customer yet.
-
-AutoMatch / AutoApply rules can apply receipts automatically using remittance information.`, 'B'],
-
-['Accounts Receivable', 'What is the difference between an adjustment and a credit memo?',
-`- **Credit memo** — reduces an invoice because of a business reason (return, pricing error, disputed line). It's a transaction document, often sent to the customer, and can reverse revenue and tax.
-- **Adjustment** — changes the balance of an invoice for small write-offs, bad debt, or rounding. It uses an activity (receivables activity) for the accounting and is subject to approval limits.
-
-Rule of thumb: billing was wrong → credit memo; collecting the money won't happen → adjustment.`, 'B'],
-
-['Fixed Assets', 'How does an asset get created from an AP invoice?',
-`- An AP invoice line is charged to an **asset clearing account** (or flagged as track as asset).
-- After accounting, run **Create Mass Additions** — this sends eligible lines to the **Mass Additions** queue in Assets.
-- In Assets, **review** the mass additions: assign category, location, cost center, date in service, merge or split lines.
-- **Post Mass Additions** creates the assets.
-- Depreciation starts based on the date placed in service and the prorate convention.`, 'B'],
-
-['Fixed Assets', 'What are the main asset transactions in Oracle Assets?',
-`- **Addition** — new asset.
-- **Adjustment** — change cost, life, method.
-- **Transfer** — move to another location, cost center or employee.
-- **Reclassification** — change asset category.
-- **Retirement** — full or partial, with proceeds of sale and cost of removal; gain/loss calculated.
-- **Reinstatement** — undo a retirement in the same period.
-- **Revaluation** and **impairment** where required.
-
-Each creates accounting entries through SLA after Create Accounting.`, 'B'],
-
-['Fixed Assets', 'What is depreciation prorate convention?',
-`The prorate convention decides **when depreciation starts** for an asset based on its date placed in service — e.g.:
-- **Following month** — starts next month.
-- **Mid-month** — half a month in the month added.
-- **Actual month** — full month in the month added.
-- **Half-year** (common in US tax books) — half a year of depreciation in the first year regardless of month.
-
-It's set on the asset category per book and copied to the asset.`, 'D']
+QB["ora-fc-fin"] = (QB["ora-fc-fin"] || []).concat([
+["Fusion Basics", "What is the difference between Oracle E-Business Suite and Oracle Fusion Cloud ERP?", "- **EBS** is on-premise (or hosted) — the customer owns the database, applies patches and can customize code directly. Forms-based UI, concurrent programs, responsibilities.\n- **Fusion Cloud ERP** is SaaS — Oracle hosts and upgrades it quarterly (e.g. 25A, 25B). No direct database access; you extend through configuration, Visual Builder, OIC, BI Publisher and REST APIs. Browser UI, scheduled processes, role-based security.\n\n## What changes for a consultant\n- Setups are done through **Functional Setup Manager (FSM)** tasks instead of individual forms.\n- You must regression-test every quarterly update.\n- Reporting uses OTBI, BI Publisher and Financial Reporting/Smart View.\n\nTip: If you've worked on both, say which and give one example of how you did the same task in each.", "B"],
+["Fusion Basics", "What is Functional Setup Manager and how do you use it?", "FSM is the Fusion tool for all application setup.\n\n- **Offerings** (e.g. Financials) contain **functional areas** (e.g. Payables), which contain **setup tasks** (e.g. Manage Payables Options).\n- You **opt in** to the offerings and features you need, then work through the task list.\n- **Implementation projects** group tasks and let you assign them to team members and track status.\n- **Configuration packages** export setups from one environment and import them into another (e.g. TEST → PROD).\n- **Scope values** let you set up a task for a specific BU or ledger.\n\nTip: Mention you used configuration packages to move setups between pods — it shows you know the deployment process.", "B"],
+["General Ledger", "What are the \"4 Cs\" of a ledger in Oracle?", "A ledger is defined by four things:\n- **Chart of accounts** — the account structure (segments).\n- **Calendar** — the accounting periods (e.g. monthly, 4-4-5).\n- **Currency** — the ledger currency.\n- **aCcounting method** — the Subledger Accounting method that tells subledgers how to create journals.\n\nTwo legal entities can share one primary ledger only if all four are the same; otherwise they need separate ledgers.", "B"],
+["General Ledger", "What is a balancing segment and why is it important?", "The balancing segment is the chart-of-accounts segment (usually **Company**) for which Oracle ensures debits equal credits on every journal.\n\n- If a journal crosses two balancing segment values (e.g. company 101 and 102), Oracle automatically creates **intercompany balancing lines** using the intercompany balancing rules.\n- Balancing segment values are typically assigned to **legal entities**, so you can produce a balance sheet per entity.\n- Fusion supports up to three balancing segments (primary, second and third) — e.g. Company and Cost Center.", "B"],
+["General Ledger", "Walk me through the life of a manual journal entry in Fusion GL.", "- **Create**: Journals → Create Journal (or upload via the ADFdi spreadsheet). Enter batch, journal, ledger, period, category, lines.\n- **Validate**: cross-validation rules and account combinations are checked; invalid combinations are rejected.\n- **Approve**: if journal approval is enabled, the journal routes through BPM approval rules (often by amount or source).\n- **Post**: posting updates account balances (GL_BALANCES); can be manual or via AutoPost.\n- **Reverse** (if needed): reversal journals for accruals, scheduled for the next period.\n\nTip: Mention the spreadsheet upload (ADFdi) — most finance teams use it for bulk journals.", "B"],
+["General Ledger", "What are cross-validation rules?", "Cross-validation rules stop invalid combinations of segment values from being created.\n\nExample: \"Balance-sheet accounts (1000–3999) must use cost center 000.\" The rule has a **condition filter** (when the rule applies) and a **validation filter** (what's allowed), plus an error message.\n\n- They only stop **new** combinations — existing ones must be disabled separately.\n- Set them up early, before transactions start, and test them with real account strings.", "B"],
+["General Ledger", "How do you open and close GL periods, and what statuses can a period have?", "Period statuses: **Never Opened, Future Enterable, Open, Closed, Permanently Closed.**\n\n- Open the next period with **Manage Accounting Periods** (or the Open Period process).\n- Journals can be entered in Future Enterable periods but not posted.\n- Close the period after all subledgers have transferred and all journals are posted and reconciled.\n- A Closed period can be reopened; Permanently Closed cannot — use it only after audit sign-off.\n\nSubledgers (AP, AR, FA) have their own period statuses, closed before GL.", "B"],
+["General Ledger", "What is the difference between a primary ledger, a secondary ledger and a reporting currency?", "- **Primary ledger** — the main book of record for a legal entity.\n- **Secondary ledger** — a parallel ledger that can differ in chart of accounts, calendar, currency and/or accounting method. Used for local GAAP vs IFRS/US GAAP or a different COA for statutory reporting. Can be maintained at subledger, journal or balance level.\n- **Reporting currency** — same COA, calendar and method as the primary; only the currency differs. Used when you just need to report in another currency.\n\nRule of thumb: only the currency differs → reporting currency; anything else differs → secondary ledger.", "D"],
+["General Ledger", "Explain revaluation and translation in GL.", "- **Revaluation** adjusts **foreign-currency balances** (e.g. a EUR bank account in a USD ledger) to the period-end exchange rate. The difference goes to unrealized gain/loss. Typically reversed the next period.\n- **Translation** converts the **whole ledger's balances** into another currency for reporting/consolidation — balance sheet at period-end rate, P&L at average rate, equity at historical rates; the difference goes to the Cumulative Translation Adjustment (CTA).\n\nRun revaluation before translation, after all foreign-currency transactions are posted.", "D"],
+["General Ledger", "How would you set up a recurring allocation, for example rent allocated by headcount?", "Use **Calculation Manager** allocation rules in Fusion GL:\n- **Source (pool):** the rent account balance for the period.\n- **Basis:** a statistical account holding headcount by cost center (loaded each month).\n- **Target:** rent expense on each receiving cost center, proportional to headcount.\n- **Offset:** a credit back to the source cost center.\n\nGenerate the allocation each month (manually or on a schedule), review, and post. In EBS the equivalent is **MassAllocations**.\n\nTip: Mention you test with a small known set of numbers so you can check the math by hand.", "D"],
+["Accounts Payable", "Explain the Procure-to-Pay flow and where AP fits in.", "**Why they ask:** a basic question, but they listen for whether you connect the steps to the accounting.\n\n**Answer:**\n\"Procurement starts it: a requisition becomes a purchase order. Receiving records the goods or services. Then AP takes over: the invoice is entered or imported and matched to the PO and receipt, validation checks matching, tax and holds, the invoice is approved, and it is paid through a payment process request. Finally Create Accounting sends the entries to the General Ledger through Subledger Accounting.\"\n\n**Worked example: the entries for a $1,000 purchase**\n- Receipt: Dr Inventory or Expense 1,000 / Cr Receipt Accrual 1,000\n- Invoice: Dr Receipt Accrual 1,000 / Cr AP Liability 1,000\n- Payment: Dr AP Liability 1,000 / Cr Cash Clearing 1,000\n- Bank reconciliation: Dr Cash Clearing 1,000 / Cr Cash 1,000\n\nTip: Walking through the four entries without being asked separates a finance consultant from a system user.", "B"],
+["Accounts Payable", "What is the difference between 2-way, 3-way and 4-way matching?", "**Why they ask:** a core control question. They want the definitions and when you would use each one.\n\n**Answer:**\n\"It's how many documents the invoice must agree with before it can be paid. Two-way checks the invoice against the PO, quantity and price, which suits services or low-risk items. Three-way adds the receipt, so we only pay for what was actually received. Four-way adds inspection or acceptance, used where quality checks matter, like lab supplies or parts that can be rejected. The match level is set on the PO schedule, defaulted from the supplier, item or purchasing options. Anything outside tolerance goes on hold.\"\n\n**Example:** PO for 100 units at $10. Receipt for 90. Invoice for 100 at $10.\n- 2-way: passes (invoice agrees with the PO).\n- 3-way: quantity received hold, because only 90 were received.\n\nTip: The worked example shows you understand the control, not just the terms.", "B"],
+["Accounts Payable", "What are invoice holds and how do you release them?", "**Why they ask:** holds drive most AP work, and how you handle them shows if you understand the controls.\n\n**Answer:**\n\"A hold stops an invoice from being paid until something is fixed. The common ones are matching holds like quantity ordered, quantity received, price and amount; variance holds on distributions or tax; account holds for an invalid account; supplier or site holds; and manual holds placed by users. System holds release on their own once the cause is fixed and the invoice is validated again, for example after the goods are received or the PO price is corrected. Manual-releasable holds need an authorized user to release them with a reason. To keep holds moving, I route each type to its owner with the holds resolution workflow.\"\n\n- **Matching:** quantity ordered, quantity received, price, amount.\n- **Variance:** distribution or tax variance.\n- **Account:** invalid distribution account.\n- **Supplier or site:** payment hold.\n- **Manual:** placed by users.\n\nTip: Stress that you fix the cause, not just release the hold. Releasing holds without fixing them is an audit finding.", "B"],
+["Accounts Payable", "What types of invoices can you enter in Payables?", "**Why they ask:** a foundation check. A wrong invoice type means wrong accounting or reporting.\n\n**Answer:**\n\"The everyday one is the standard invoice. Credit memos are credits from the supplier, debit memos are credits we raise against the supplier ourselves. Prepayments are advances that get applied to invoices later. Withholding tax invoices are created automatically for amounts withheld. Expense reports come in from Oracle Expenses for employee reimbursement. Payment requests pay people who aren't suppliers, like customer refunds. And interest invoices are created automatically for late-payment interest if that's set up.\"\n\n- **Standard**, **Credit memo**, **Debit memo**\n- **Prepayment**\n- **Withholding tax** (system-created)\n- **Expense report** (from Expenses)\n- **Payment request** (non-supplier payees)\n- **Interest** (system-created)\n\nTip: Mention the difference between a credit memo and a debit memo clearly. Many candidates mix them up.", "B"],
+["Accounts Payable", "How does a prepayment work in AP?", "**Why they ask:** prepayments touch the balance sheet, and unapplied prepayments are a classic audit issue.\n\n**Answer:**\n\"First you enter a prepayment invoice, validate it and pay it. That books a prepaid asset instead of an expense. When the real invoice arrives, you apply the prepayment to it, which reduces what you still owe and moves the amount out of the prepaid account. Temporary prepayments are meant to be applied to invoices. Permanent ones, like a lease deposit, are not. Oracle can also apply prepayments automatically during validation if that's set up. At month-end, I reconcile the prepaid account so nothing sits unapplied.\"\n\n**Worked example: $5,000 advance, then a $12,000 invoice**\n- Prepayment invoice: Dr Prepaid Expense 5,000 / Cr AP Liability 5,000\n- Payment: Dr AP Liability 5,000 / Cr Cash 5,000\n- Apply to the $12,000 invoice: Dr Expense 12,000 / Cr AP Liability 7,000 / Cr Prepaid Expense 5,000\n\nTip: Mention reconciling the prepaid account. Unapplied prepayments are a common audit question.", "B"],
+["Accounts Payable", "What is a Payment Process Request (PPR)?", "**Why they ask:** every payment in Fusion goes through a PPR, so you need to explain it clearly.\n\n**Answer:**\n\"A PPR is how Fusion selects invoices and pays them in bulk. You give it selection criteria: pay-through date, business unit, supplier, payment method, pay group and currency. Then the payment and processing options: which bank account, which payment process profile, and whether to stop for review. It runs in steps: select the invoices, review the proposed payments, build the payments, create the payment file or print checks, and transmit to the bank. Most companies schedule them, for example a daily ACH run and a weekly check run. The payment process profile decides the file format, such as NACHA or ISO 20022, and how it's sent.\"\n\n1. Select invoices.\n2. Review proposed payments (optional stop).\n3. Build payments.\n4. Create the payment file or print checks.\n5. Transmit to the bank.\n\nTip: Mention scheduled PPR templates. Real companies don't submit PPRs by hand every day.", "B"],
+["Accounts Payable", "How do you handle 1099 reporting in Oracle Payables?", "**Why they ask:** 1099 errors cost penalties and go straight to the IRS. They want to see you start long before January.\n\n**Answer:**\n\"It starts with supplier setup: US suppliers who need 1099s are marked federal reportable, with their taxpayer ID and income tax type, for example NEC for services. That income tax type defaults onto invoice distributions. During the year, if suppliers were set up wrong, I fix the history with the Update and Report Income Tax Details process. At year-end I run the US 1099 Report, the Invoice Exceptions and Supplier Exceptions reports, and then produce the electronic file or the printed forms.\"\n\n- **Setup:** federal reportable, taxpayer ID, income tax type (NEC, MISC).\n- **During the year:** Update and Report Income Tax Details for corrections.\n- **Year-end:** US 1099 Report, exception reports, 1099 Electronic Media.\n\nTip: Say you review the exception reports in December, not January. It shows you've been through a real year-end.", "D"],
+["Accounts Receivable", "Explain the Order-to-Cash flow and where AR fits in.", "- **Customer** set up (customer, account, sites)\n- **Sales order** booked and **shipped** (Order Management)\n- **Invoice** created in AR through **AutoInvoice** (from OM or other sources) or manually\n- **Receipt** recorded (manually, lockbox or bank statement)\n- **Receipt applied** to invoices\n- **Collections** for overdue balances\n- **Accounting** to GL via Create Accounting\n\nAccounting: invoice (Dr Receivable, Cr Revenue, Cr Tax), receipt (Dr Cash, Cr Receivable).", "B"],
+["Accounts Receivable", "What is AutoInvoice?", "AutoInvoice is the AR program that imports transactions from other systems (Order Management, Projects, legacy billing) into invoices, credit memos and debit memos.\n\n- Data goes into the interface tables (RA_INTERFACE_LINES_ALL in EBS; FBDI or OM integration in Fusion).\n- **Transaction sources** control validation and defaulting (batch source).\n- **Grouping rules** decide which lines become one invoice; **line ordering rules** sort lines.\n- **AutoAccounting** derives the revenue/receivable accounts (in Fusion, alongside SLA).\n- Errors stay in the interface and are shown in the AutoInvoice exceptions report — fix and resubmit.", "B"],
+["Accounts Receivable", "What is the customer structure in Oracle (party, account, site)?", "Oracle uses the **Trading Community Architecture (TCA)** model:\n- **Party** — the real-world organization or person (e.g. ACME Corp).\n- **Customer account** — the business relationship with that party (terms, profile, credit). One party can have several accounts.\n- **Account sites** — addresses used for the account, with **site uses** (Bill-to, Ship-to).\n- **Customer profile** — credit limits, collector, statement and dunning settings.\n\nBecause parties are shared, the same company can be both a customer and a supplier.", "B"],
+["Accounts Receivable", "How do you apply a receipt, and what happens with unapplied or on-account cash?", "- Create the receipt (manually, via lockbox or from bank statements) against a receipt method and bank account.\n- **Apply** it to one or more open transactions; partial application leaves a balance.\n- **Unapplied** — money received but not yet matched to invoices.\n- **On-account** — deliberately placed on the customer account to apply later (e.g. a deposit).\n- **Unidentified** — you don't know the customer yet.\n\nAutoMatch / AutoApply rules can apply receipts automatically using remittance information.", "B"],
+["Accounts Receivable", "What is the difference between an adjustment and a credit memo?", "- **Credit memo** — reduces an invoice because of a business reason (return, pricing error, disputed line). It's a transaction document, often sent to the customer, and can reverse revenue and tax.\n- **Adjustment** — changes the balance of an invoice for small write-offs, bad debt, or rounding. It uses an activity (receivables activity) for the accounting and is subject to approval limits.\n\nRule of thumb: billing was wrong → credit memo; collecting the money won't happen → adjustment.", "B"],
+["Fixed Assets", "How does an asset get created from an AP invoice?", "- An AP invoice line is charged to an **asset clearing account** (or flagged as track as asset).\n- After accounting, run **Create Mass Additions** — this sends eligible lines to the **Mass Additions** queue in Assets.\n- In Assets, **review** the mass additions: assign category, location, cost center, date in service, merge or split lines.\n- **Post Mass Additions** creates the assets.\n- Depreciation starts based on the date placed in service and the prorate convention.", "B"],
+["Fixed Assets", "What are the main asset transactions in Oracle Assets?", "- **Addition** — new asset.\n- **Adjustment** — change cost, life, method.\n- **Transfer** — move to another location, cost center or employee.\n- **Reclassification** — change asset category.\n- **Retirement** — full or partial, with proceeds of sale and cost of removal; gain/loss calculated.\n- **Reinstatement** — undo a retirement in the same period.\n- **Revaluation** and **impairment** where required.\n\nEach creates accounting entries through SLA after Create Accounting.", "B"],
+["Fixed Assets", "What is depreciation prorate convention?", "The prorate convention decides **when depreciation starts** for an asset based on its date placed in service — e.g.:\n- **Following month** — starts next month.\n- **Mid-month** — half a month in the month added.\n- **Actual month** — full month in the month added.\n- **Half-year** (common in US tax books) — half a year of depreciation in the first year regardless of month.\n\nIt's set on the asset category per book and copied to the asset.", "D"]
 ]);
 
-QB['ora-fc-fin'] = (QB['ora-fc-fin'] || []).concat([
-['Cash Management', 'How does bank statement reconciliation work in Oracle Cash Management?',
-`- **Load bank statements** — electronic files (BAI2, MT940, CAMT.053) or manual entry.
-- **Autoreconciliation** matches statement lines to system transactions (AP payments, AR receipts, journals) using **reconciliation rule sets** — match on reference, amount, date with tolerances.
-- **Manual reconciliation** for what auto-match misses.
-- **External transactions** — create bank charges or interest directly from unmatched lines, using transaction creation rules.
-- Reconciled payments clear (Dr Cash Clearing, Cr Cash) and accounting goes to GL.`, 'B'],
-
-['Cash Management', 'What is the difference between a bank, a branch and a bank account in Oracle?',
-`- **Bank** — the institution (e.g. JPMorgan Chase).
-- **Branch** — a specific branch with routing number/BIC.
-- **Bank account** — your company's account at that branch: account number, currency, GL cash and cash clearing accounts, and usage (Payables, Receivables, Payroll).
-
-Bank accounts are owned by a **legal entity** and can be used by the business units granted access.`, 'B'],
-
-['Subledger Accounting', 'What is Create Accounting and why does it matter?',
-`Subledger transactions (invoices, receipts, assets) don't hit GL by themselves. **Create Accounting** runs Subledger Accounting to build journal entries from those events, then (optionally) **transfers and posts** them to GL.
-
-- Modes: **Draft** (preview, can change) or **Final** (locked).
-- Errors (e.g. invalid account) appear in the Create Accounting execution report — fix them and rerun.
-- Run it frequently (daily) to catch issues early, not just at month end.`, 'B'],
-
-['Subledger Accounting', 'How do you find out why a transaction did not create accounting?',
-`- Check the **Create Accounting execution report** for the error message.
-- View the transaction's accounting status (e.g. invoice "Unaccounted" vs "Accounted").
-- Common causes: transaction not validated/approved, period closed in the subledger, invalid or disabled account combination, cross-validation rule failure, missing mapping in an account derivation rule.
-- Use **Review Subledger Journal Entries** to see draft entries and errors.
-- Fix the root cause, then rerun Create Accounting for that transaction or batch.`, 'D'],
-
-['Tax', 'How is tax calculated on transactions in Oracle Fusion?',
-`Oracle uses **Tax (E-Business Tax / Fusion Tax)** with a hierarchy:
-- **Tax regime** (e.g. US Sales Tax, UK VAT) → **Tax** → **Tax status** → **Tax rate** → **Tax jurisdiction**.
-- **Tax rules** decide when a tax applies and which rate — based on parties, locations, product and transaction details.
-- Parties need **tax profiles** and registrations.
-- The tax is calculated on AP invoices, AR transactions and POs and shown on separate tax lines with their own accounts.
-- For US sales tax many companies integrate with a partner (Vertex, Avalara).`, 'D'],
-
-['Expenses', 'Explain the Oracle Expenses flow.',
-`- Employee creates an **expense report** (mobile app or web), attaches receipts; corporate card transactions can import automatically.
-- **Expense policies** check limits (e.g. daily meal limit) and required receipts.
-- **Approval** by the manager (and others via rules).
-- **Auditor** review (sample or rule-based), receipt verification.
-- Approved reports become **Payables invoices** (Process Expense Reimbursements) and are paid via a PPR or payroll.
-- Accounting goes to the expense accounts defaulted from the employee's cost center and expense type.`, 'B'],
-
-['Security', 'How is security structured in Oracle Fusion Financials?',
-`- **Job roles** (e.g. Accounts Payable Specialist) are assigned to users and contain **duty roles** and **privileges** — what the user can do.
-- **Data access** — which data: via **data access sets** for ledgers in GL and **business unit/ledger data roles** for subledgers (Manage Data Access for Users).
-- **Abstract roles** (Employee, Line Manager) for self-service.
-- Custom roles are created by copying seeded roles in the Security Console — never edit seeded roles.
-
-Tip: Mention segregation of duties — e.g. the person who creates suppliers shouldn't be able to pay them.`, 'B'],
-
-['Reporting', 'What reporting tools are available in Oracle Fusion Financials?',
-`- **OTBI (Transactional Business Intelligence)** — self-service ad-hoc analyses on real-time data using subject areas. Fast to build, limited formatting.
-- **BI Publisher (BIP)** — pixel-perfect reports (invoices, checks, statements) and complex SQL-based extracts.
-- **Financial Reporting / Smart View** — GL balance reporting from the Essbase cube; Smart View in Excel for ad-hoc and formatted statements.
-- **Account Monitor and Account Inspector** — quick balance views and drill-down.
-- **Infolets/dashboards** for managers.
-
-Rule of thumb: ad-hoc → OTBI; formatted documents or extracts → BIP; financial statements → FR/Smart View.`, 'B'],
-
-['Reporting', 'How do you reconcile Payables to the General Ledger?',
-`- Run the **Payables to Ledger Reconciliation** report (Fusion) — compares the AP trial balance with GL liability balances by period.
-- Investigate differences: unaccounted transactions, accounting not transferred/posted, manual journals posted directly to the liability account, and transactions accounted in a different period.
-- Make sure the **AP trial balance** (open invoices) equals the GL liability account.
-- Fix the root cause — don't just make a manual adjustment.
-
-The same idea applies to AR (Receivables to Ledger Reconciliation) and Assets.`, 'D'],
-
-['Period Close', 'What steps would you follow to close the Payables period?',
-`- Make sure all invoices are entered and **validated**; resolve holds that matter for the period.
-- Complete the **payment runs** for the period.
-- Run **Create Accounting** and transfer to GL; clear any accounting errors.
-- Review the **Unaccounted Transactions** and exception reports.
-- **Sweep** remaining unaccounted transactions to the next period if appropriate.
-- **Close the Payables period**, then open the next one.
-- Reconcile the AP trial balance to GL.`, 'B'],
-
-['Period Close', 'What is the typical order of closing subledgers before GL?',
-`- **Purchasing/Receiving** — receipts complete; accruals.
-- **Payables** — invoices and payments accounted; close.
-- **Receivables** — invoices and receipts accounted; close.
-- **Cash Management** — bank statements reconciled.
-- **Assets** — additions from AP posted; depreciation run; close (Assets needs Payables done first).
-- **Projects/Inventory/Cost** if used.
-- **General Ledger** — post, revalue, translate, consolidate, close.`, 'B'],
-
-['Data Loads', 'What is FBDI and how do you use it?',
-`**File-Based Data Import** is the standard way to load bulk data into Fusion.
-- Download the **Excel template** for the object (e.g. AP invoices, journals, suppliers) from the Oracle docs.
-- Fill it in, generate the **CSV zip**.
-- Upload to **UCM** and run **Load Interface File for Import**, then the import process (e.g. Import Payables Invoices).
-- Review errors in the import report or the interface correction screens, fix and reload.
-
-Other options: **ADFdi spreadsheets** for journals and some objects, and **REST APIs** for integrations.`, 'B'],
-
-['Testing', 'How do you test a configuration change before moving it to production?',
-`- Write **test scenarios** with expected results (including accounting).
-- Test in a non-production pod: the happy path, edge cases and negative tests.
-- Check related processes — e.g. a payment terms change affects invoice due dates and payment runs.
-- Get the **business user** to run **UAT** and sign off.
-- Move the change via a configuration package or documented manual steps; keep evidence for audit.
-- After the quarterly update, rerun key regression tests.`, 'B'],
-
-['Support', 'A user says they cannot see a business unit when entering invoices. How do you troubleshoot?',
-`- Check the user's **roles** — do they have the AP role at all?
-- Check **data access**: in Manage Data Access for Users, is the user granted the role for that business unit?
-- Check that the BU uses the Payables business function and is set up correctly.
-- Ask the user to sign out and back in (or wait for the role refresh process).
-- If many users are affected, check whether a security change or quarterly update caused it.
-
-Tip: Interviewers like a structured approach — "role → data access → setup → refresh".`, 'B'],
-
-['Support', 'How do you handle a production support ticket you have never seen before?',
-`- **Reproduce** the issue and capture details: user, transaction, screenshots, error message, when it started.
-- Check what changed recently (configuration, update, data).
-- Search **My Oracle Support** for the error and known bugs; check release notes.
-- Test a fix in a lower environment.
-- If it's a product bug, raise an **SR** with Oracle including steps and logs.
-- Keep the user updated; document the fix in the knowledge base.`, 'B'],
-
-['Behavioral', 'Tell me about yourself.',
-`Keep it to about 90 seconds: **present → past → why this role.**
-
-## Example shape
-- "I'm an Oracle Financials consultant with about three years' experience, mainly in Fusion AP, AR and GL."
-- "On my last project I supported a Fusion implementation for a mid-size manufacturer — I configured payables options, payment terms and the payment process profiles, built test scripts and ran the AP part of UAT."
-- "Since go-live I've handled support tickets and month-end close issues, which taught me a lot about subledger accounting."
-- "I'm looking for a role where I can own a module end-to-end, which is why this position interests me."
-
-Tip: Tailor the last line to the job description.`, 'B'],
-
-['Behavioral', 'Describe a time you made a mistake on a project. What happened?',
-`Pick a real, moderate mistake and focus on what you learned.
-
-## Example (STAR)
-- **Situation:** I changed a payment term setup in TEST but forgot one business unit when I documented it for PROD.
-- **Task:** After migration, invoices for that BU had wrong due dates.
-- **Action:** I spotted it in a post-migration check, told my lead straight away, fixed the setup, and corrected the affected invoices before the payment run.
-- **Result:** No late or early payments went out. Since then I use a migration checklist and compare setups between environments after every move.
-
-Tip: Own it, show how you caught it, and the process you changed.`, 'B'],
-
-['Behavioral', 'How do you explain a technical issue to a non-technical finance user?',
-`- Start with the **business impact** ("the invoice can't be paid until…"), not system terms.
-- Use their language — "approval", "due date", "account" — and avoid table names.
-- Give **what they need to do** and by when, in a few steps.
-- Show it on screen or with a screenshot.
-- Confirm they understood and follow up.
-
-Tip: Give a quick real example, e.g. explaining a matching hold as "the invoice says 10 units but we only received 8".`, 'B'],
-
-['General Ledger', 'What are journal categories and sources used for?',
-`- **Journal source** — where the journal came from (Manual, Payables, Receivables, Spreadsheet, a custom source for an integration).
-- **Journal category** — what kind of entry it is (Accrual, Adjustment, Purchase Invoices, Receipts).
-
-They are used in **journal approval rules**, **reporting and audit** (e.g. all manual journals), **reversal options**, **AutoPost criteria** and **document sequencing**.`, 'B'],
-
-['General Ledger', 'What is the difference between Smart View and Financial Reporting Studio?',
-`- **Smart View** is an Excel add-in that queries the GL balances cube. Great for ad-hoc analysis, pivoting and building Excel-based reports with live data and drill-down.
-- **Financial Reporting (FR) Studio / Financial Reporting Center** produces formatted, governed reports (P&L, balance sheet) published to many users — though Oracle is moving these to Narrative Reporting and Smart View-based reports.
-
-Both read from the same **Essbase cube** that is updated when journals post.`, 'D'],
-
-['Accounts Payable', 'What is the difference between a supplier, a supplier site and a site assignment?',
-`- **Supplier** — the company you buy from (name, tax ID, type).
-- **Supplier address** — physical address.
-- **Supplier site** — the address used for purchasing and/or paying, created **per procurement business unit**, with payment terms, payment method, pay group and holds.
-- **Site assignment** — lets a **client business unit** use that site (e.g. a shared-services BU processes invoices for many BUs).
-
-Site assignments are a common reason a user "can't find the supplier" in a BU.`, 'B'],
-
-['Accounts Payable', 'How do payment terms and discounts work in AP?',
-`- **Payment terms** define due date(s) and early-payment discounts — e.g. **2/10 Net 30**: 2% discount if paid within 10 days, full amount due in 30.
-- Terms default from the supplier site (or PO) onto the invoice; the **terms date basis** (invoice date, goods received, system date) decides the starting date.
-- Installments are created from the terms; the PPR picks them up when due.
-- Discounts are taken automatically if the payment date falls within the discount period and the option is enabled.`, 'B'],
-
-['Behavioral', 'Why do you want to grow in Oracle Finance consulting?',
-`Link your interest to finance processes and real impact.
-
-- "I like that ERP sits where finance and technology meet — a good setup decision saves the finance team hours every month."
-- "I want to deepen my GL, SLA and close knowledge and move from configuring to designing solutions."
-- Mention any certification you're working on (e.g. Oracle Financials Cloud Implementation Professional).
-
-Tip: Avoid "it pays well". Show curiosity about accounting, not just the software.`, 'B'],
-
-['Accounts Receivable', 'What is the purpose of receivables activities and transaction types?',
-`- **Transaction types** classify AR transactions (Invoice, Credit Memo, Debit Memo, Chargeback, Deposit) and control: whether they post to GL, affect open receivables, the default receivable/revenue accounts, and the related credit memo type.
-- **Receivables activities** are used for non-invoice postings: adjustments, write-offs, finance charges, miscellaneous cash, bank charges, refunds — each with its own GL account.
-
-Getting these right drives correct accounting and reporting.`, 'D'],
-
-['Accounts Receivable', 'How do collections and dunning work in Oracle?',
-`- **Advanced Collections** (Fusion) assigns customers to **collectors** based on profiles.
-- Collectors work their queue: view aging, record **promises to pay**, log disputes, send correspondence.
-- **Dunning** sends reminder letters automatically based on aging and dunning plans.
-- **Scoring and strategies** prioritize high-risk customers.
-- Disputes can create credit memo requests that route for approval.
-
-KPIs to mention: DSO, percent current, collector effectiveness.`, 'D']
+QB["ora-fc-fin"] = (QB["ora-fc-fin"] || []).concat([
+["Cash Management", "How does bank statement reconciliation work in Oracle Cash Management?", "- **Load bank statements** — electronic files (BAI2, MT940, CAMT.053) or manual entry.\n- **Autoreconciliation** matches statement lines to system transactions (AP payments, AR receipts, journals) using **reconciliation rule sets** — match on reference, amount, date with tolerances.\n- **Manual reconciliation** for what auto-match misses.\n- **External transactions** — create bank charges or interest directly from unmatched lines, using transaction creation rules.\n- Reconciled payments clear (Dr Cash Clearing, Cr Cash) and accounting goes to GL.", "B"],
+["Cash Management", "What is the difference between a bank, a branch and a bank account in Oracle?", "- **Bank** — the institution (e.g. JPMorgan Chase).\n- **Branch** — a specific branch with routing number/BIC.\n- **Bank account** — your company's account at that branch: account number, currency, GL cash and cash clearing accounts, and usage (Payables, Receivables, Payroll).\n\nBank accounts are owned by a **legal entity** and can be used by the business units granted access.", "B"],
+["Subledger Accounting", "What is Create Accounting and why does it matter?", "Subledger transactions (invoices, receipts, assets) don't hit GL by themselves. **Create Accounting** runs Subledger Accounting to build journal entries from those events, then (optionally) **transfers and posts** them to GL.\n\n- Modes: **Draft** (preview, can change) or **Final** (locked).\n- Errors (e.g. invalid account) appear in the Create Accounting execution report — fix them and rerun.\n- Run it frequently (daily) to catch issues early, not just at month end.", "B"],
+["Subledger Accounting", "How do you find out why a transaction did not create accounting?", "- Check the **Create Accounting execution report** for the error message.\n- View the transaction's accounting status (e.g. invoice \"Unaccounted\" vs \"Accounted\").\n- Common causes: transaction not validated/approved, period closed in the subledger, invalid or disabled account combination, cross-validation rule failure, missing mapping in an account derivation rule.\n- Use **Review Subledger Journal Entries** to see draft entries and errors.\n- Fix the root cause, then rerun Create Accounting for that transaction or batch.", "D"],
+["Tax", "How is tax calculated on transactions in Oracle Fusion?", "Oracle uses **Tax (E-Business Tax / Fusion Tax)** with a hierarchy:\n- **Tax regime** (e.g. US Sales Tax, UK VAT) → **Tax** → **Tax status** → **Tax rate** → **Tax jurisdiction**.\n- **Tax rules** decide when a tax applies and which rate — based on parties, locations, product and transaction details.\n- Parties need **tax profiles** and registrations.\n- The tax is calculated on AP invoices, AR transactions and POs and shown on separate tax lines with their own accounts.\n- For US sales tax many companies integrate with a partner (Vertex, Avalara).", "D"],
+["Expenses", "Explain the Oracle Expenses flow.", "**Why they ask:** Expenses touches every employee, so it's often the most visible part of a Financials rollout.\n\n**Answer:**\n\"The employee creates an expense report on the web or the mobile app and attaches receipts. Corporate card transactions import automatically. Expense policies check limits, like a daily meal cap, and whether receipts are required. The report goes to the manager for approval, plus anyone else the approval rules add. Auditors review a sample or the reports picked by audit rules. Once approved, Process Expense Reimbursements creates Payables invoices, and they're paid through a payment run or through payroll. The accounting defaults from the employee's cost center and the expense type.\"\n\n1. Create the report, attach receipts (card transactions import).\n2. Policy checks.\n3. Manager approval.\n4. Audit.\n5. Payables invoice created and paid.\n\nTip: Mention the mobile app and receipt capture. Adoption depends on how easy it is for employees, and interviewers know that.", "B"],
+["Security", "How is security structured in Oracle Fusion Financials?", "- **Job roles** (e.g. Accounts Payable Specialist) are assigned to users and contain **duty roles** and **privileges** — what the user can do.\n- **Data access** — which data: via **data access sets** for ledgers in GL and **business unit/ledger data roles** for subledgers (Manage Data Access for Users).\n- **Abstract roles** (Employee, Line Manager) for self-service.\n- Custom roles are created by copying seeded roles in the Security Console — never edit seeded roles.\n\nTip: Mention segregation of duties — e.g. the person who creates suppliers shouldn't be able to pay them.", "B"],
+["Reporting", "What reporting tools are available in Oracle Fusion Financials?", "- **OTBI (Transactional Business Intelligence)** — self-service ad-hoc analyses on real-time data using subject areas. Fast to build, limited formatting.\n- **BI Publisher (BIP)** — pixel-perfect reports (invoices, checks, statements) and complex SQL-based extracts.\n- **Financial Reporting / Smart View** — GL balance reporting from the Essbase cube; Smart View in Excel for ad-hoc and formatted statements.\n- **Account Monitor and Account Inspector** — quick balance views and drill-down.\n- **Infolets/dashboards** for managers.\n\nRule of thumb: ad-hoc → OTBI; formatted documents or extracts → BIP; financial statements → FR/Smart View.", "B"],
+["Reporting", "How do you reconcile Payables to the General Ledger?", "- Run the **Payables to Ledger Reconciliation** report (Fusion) — compares the AP trial balance with GL liability balances by period.\n- Investigate differences: unaccounted transactions, accounting not transferred/posted, manual journals posted directly to the liability account, and transactions accounted in a different period.\n- Make sure the **AP trial balance** (open invoices) equals the GL liability account.\n- Fix the root cause — don't just make a manual adjustment.\n\nThe same idea applies to AR (Receivables to Ledger Reconciliation) and Assets.", "D"],
+["Period Close", "What steps would you follow to close the Payables period?", "- Make sure all invoices are entered and **validated**; resolve holds that matter for the period.\n- Complete the **payment runs** for the period.\n- Run **Create Accounting** and transfer to GL; clear any accounting errors.\n- Review the **Unaccounted Transactions** and exception reports.\n- **Sweep** remaining unaccounted transactions to the next period if appropriate.\n- **Close the Payables period**, then open the next one.\n- Reconcile the AP trial balance to GL.", "B"],
+["Period Close", "What is the typical order of closing subledgers before GL?", "- **Purchasing/Receiving** — receipts complete; accruals.\n- **Payables** — invoices and payments accounted; close.\n- **Receivables** — invoices and receipts accounted; close.\n- **Cash Management** — bank statements reconciled.\n- **Assets** — additions from AP posted; depreciation run; close (Assets needs Payables done first).\n- **Projects/Inventory/Cost** if used.\n- **General Ledger** — post, revalue, translate, consolidate, close.", "B"],
+["Data Loads", "What is FBDI and how do you use it?", "**File-Based Data Import** is the standard way to load bulk data into Fusion.\n- Download the **Excel template** for the object (e.g. AP invoices, journals, suppliers) from the Oracle docs.\n- Fill it in, generate the **CSV zip**.\n- Upload to **UCM** and run **Load Interface File for Import**, then the import process (e.g. Import Payables Invoices).\n- Review errors in the import report or the interface correction screens, fix and reload.\n\nOther options: **ADFdi spreadsheets** for journals and some objects, and **REST APIs** for integrations.", "B"],
+["Testing", "How do you test a configuration change before moving it to production?", "- Write **test scenarios** with expected results (including accounting).\n- Test in a non-production pod: the happy path, edge cases and negative tests.\n- Check related processes — e.g. a payment terms change affects invoice due dates and payment runs.\n- Get the **business user** to run **UAT** and sign off.\n- Move the change via a configuration package or documented manual steps; keep evidence for audit.\n- After the quarterly update, rerun key regression tests.", "B"],
+["Support", "A user says they cannot see a business unit when entering invoices. How do you troubleshoot?", "- Check the user's **roles** — do they have the AP role at all?\n- Check **data access**: in Manage Data Access for Users, is the user granted the role for that business unit?\n- Check that the BU uses the Payables business function and is set up correctly.\n- Ask the user to sign out and back in (or wait for the role refresh process).\n- If many users are affected, check whether a security change or quarterly update caused it.\n\nTip: Interviewers like a structured approach — \"role → data access → setup → refresh\".", "B"],
+["Support", "How do you handle a production support ticket you have never seen before?", "- **Reproduce** the issue and capture details: user, transaction, screenshots, error message, when it started.\n- Check what changed recently (configuration, update, data).\n- Search **My Oracle Support** for the error and known bugs; check release notes.\n- Test a fix in a lower environment.\n- If it's a product bug, raise an **SR** with Oracle including steps and logs.\n- Keep the user updated; document the fix in the knowledge base.", "B"],
+["Behavioral", "Tell me about yourself.", "Keep it to about 90 seconds: **present → past → why this role.**\n\n## Example shape\n- \"I'm an Oracle Financials consultant with about three years' experience, mainly in Fusion AP, AR and GL.\"\n- \"On my last project I supported a Fusion implementation for a mid-size manufacturer — I configured payables options, payment terms and the payment process profiles, built test scripts and ran the AP part of UAT.\"\n- \"Since go-live I've handled support tickets and month-end close issues, which taught me a lot about subledger accounting.\"\n- \"I'm looking for a role where I can own a module end-to-end, which is why this position interests me.\"\n\nTip: Tailor the last line to the job description.", "B"],
+["Behavioral", "Describe a time you made a mistake on a project. What happened?", "Pick a real, moderate mistake and focus on what you learned.\n\n## Example (STAR)\n- **Situation:** I changed a payment term setup in TEST but forgot one business unit when I documented it for PROD.\n- **Task:** After migration, invoices for that BU had wrong due dates.\n- **Action:** I spotted it in a post-migration check, told my lead straight away, fixed the setup, and corrected the affected invoices before the payment run.\n- **Result:** No late or early payments went out. Since then I use a migration checklist and compare setups between environments after every move.\n\nTip: Own it, show how you caught it, and the process you changed.", "B"],
+["Behavioral", "How do you explain a technical issue to a non-technical finance user?", "- Start with the **business impact** (\"the invoice can't be paid until…\"), not system terms.\n- Use their language — \"approval\", \"due date\", \"account\" — and avoid table names.\n- Give **what they need to do** and by when, in a few steps.\n- Show it on screen or with a screenshot.\n- Confirm they understood and follow up.\n\nTip: Give a quick real example, e.g. explaining a matching hold as \"the invoice says 10 units but we only received 8\".", "B"],
+["General Ledger", "What are journal categories and sources used for?", "- **Journal source** — where the journal came from (Manual, Payables, Receivables, Spreadsheet, a custom source for an integration).\n- **Journal category** — what kind of entry it is (Accrual, Adjustment, Purchase Invoices, Receipts).\n\nThey are used in **journal approval rules**, **reporting and audit** (e.g. all manual journals), **reversal options**, **AutoPost criteria** and **document sequencing**.", "B"],
+["General Ledger", "What is the difference between Smart View and Financial Reporting Studio?", "- **Smart View** is an Excel add-in that queries the GL balances cube. Great for ad-hoc analysis, pivoting and building Excel-based reports with live data and drill-down.\n- **Financial Reporting (FR) Studio / Financial Reporting Center** produces formatted, governed reports (P&L, balance sheet) published to many users — though Oracle is moving these to Narrative Reporting and Smart View-based reports.\n\nBoth read from the same **Essbase cube** that is updated when journals post.", "D"],
+["Accounts Payable", "What is the difference between a supplier, a supplier site and a site assignment?", "**Why they ask:** supplier setup is behind many \"I can't find the supplier\" tickets. The structure tells them if you understand multi-BU setups.\n\n**Answer:**\n\"The supplier is the company itself: name, tax ID, type. Addresses hold the physical locations. A supplier site is an address used for purchasing or paying, and it's created per procurement business unit, carrying payment terms, payment method, pay group and holds. A site assignment then lets a client business unit use that site. So in a shared services model, one procurement BU owns the site, and assignments let all the other BUs invoice against it. When a user says they can't find a supplier in their BU, the first thing I check is the site assignment.\"\n\n**Example:** Supplier ABC Corp → site ABC-NEWARK in the US procurement BU → assigned to US East, US West and Canada BUs.\n\nTip: The \"can't find the supplier\" example is the line that lands. It shows real support experience.", "B"],
+["Accounts Payable", "How do payment terms and discounts work in AP?", "**Why they ask:** discounts are real money, and terms setup decides when cash leaves the company.\n\n**Answer:**\n\"Payment terms set when an invoice is due and whether there's an early-payment discount. The classic is 2/10 Net 30: 2% off if paid within 10 days, otherwise the full amount in 30. Terms default from the supplier site or the PO onto the invoice, and the terms date basis, like invoice date or goods received date, sets the start date. Oracle creates installments from the terms, and the payment run picks them up when due. If the discount option is enabled and the payment date falls in the discount window, the discount is taken automatically.\"\n\n**Worked example:** $50,000 invoice dated March 1, terms 2/10 Net 30.\n- Paid by March 11: pay $49,000, discount $1,000.\n- Otherwise: pay $50,000 by March 31.\n\nTip: Mention the terms date basis. Using goods received date instead of invoice date is a quiet way to protect cash.", "B"],
+["Behavioral", "Why do you want to grow in Oracle Finance consulting?", "Link your interest to finance processes and real impact.\n\n- \"I like that ERP sits where finance and technology meet — a good setup decision saves the finance team hours every month.\"\n- \"I want to deepen my GL, SLA and close knowledge and move from configuring to designing solutions.\"\n- Mention any certification you're working on (e.g. Oracle Financials Cloud Implementation Professional).\n\nTip: Avoid \"it pays well\". Show curiosity about accounting, not just the software.", "B"],
+["Accounts Receivable", "What is the purpose of receivables activities and transaction types?", "- **Transaction types** classify AR transactions (Invoice, Credit Memo, Debit Memo, Chargeback, Deposit) and control: whether they post to GL, affect open receivables, the default receivable/revenue accounts, and the related credit memo type.\n- **Receivables activities** are used for non-invoice postings: adjustments, write-offs, finance charges, miscellaneous cash, bank charges, refunds — each with its own GL account.\n\nGetting these right drives correct accounting and reporting.", "D"],
+["Accounts Receivable", "How do collections and dunning work in Oracle?", "- **Advanced Collections** (Fusion) assigns customers to **collectors** based on profiles.\n- Collectors work their queue: view aging, record **promises to pay**, log disputes, send correspondence.\n- **Dunning** sends reminder letters automatically based on aging and dunning plans.\n- **Scoring and strategies** prioritize high-risk customers.\n- Disputes can create credit memo requests that route for approval.\n\nKPIs to mention: DSO, percent current, collector effectiveness.", "D"]
 ]);
 
 // Added Oct 2026: more functional, Fusion platform, Redwood and AI Agent Studio questions.
-QB['ora-fc-fin'] = (QB['ora-fc-fin'] || []).concat([
-['Redwood', 'What is Oracle Redwood and how is it different from the classic Fusion pages?',
-`**Redwood** is Oracle's new user experience and design system for Fusion Applications.
-- **Classic pages** are built on older ADF technology — dense forms, many tabs, the "Alta" look.
-- **Redwood pages** are rebuilt: cleaner layouts, guided flows, smart defaults, better search, mobile-friendly, and AI assistance built in (summaries, suggestions).
-- Oracle is moving modules to Redwood release by release and **retiring the classic pages** over time — so consultants need to know both during the transition.
-- Redwood pages are extended with **Visual Builder Studio**, not Page Composer.
-
-Tip: Mention which Redwood pages you have used (e.g. Redwood Payables invoice pages, Manage Journals, Expenses).`, 'B'],
-
-['Redwood', 'How do you turn on a Redwood page in Fusion?',
-`- Many Redwood pages are enabled with **profile options** (Setup and Maintenance → Manage Administrator Profile Values), usually named for the page, set at site level.
-- Some are delivered as **opt-in features** in Functional Setup Manager; newer ones become the default automatically in a later release.
-- Always enable in a **test environment first**, run your test scripts, check personalizations and reports, and train users before switching production.
-
-Tip: Say you check the quarterly **readiness ("What's New")** documents to see which pages became Redwood.`, 'B'],
-
-['Redwood', 'A user says a field they always used is missing on the new Redwood page. What do you do?',
-`- Check whether the field moved (Redwood often groups fields differently or puts them in a drawer or "Show more").
-- Check if it was a **personalization** on the classic page (Page Composer) — those don't carry over to Redwood.
-- If needed, add it back using **Visual Builder Studio** (show the field, make it required, default a value) — done by a consultant/admin with the right role, tested in a sandbox/test pod first.
-- Confirm the field is still populated by integrations and reports.`, 'B'],
-
-['AI Agent Studio', 'What is Oracle AI Agent Studio?',
-`**AI Agent Studio** is the tool inside Oracle Fusion Applications for **creating, configuring, testing and managing AI agents**.
-- Oracle delivers **ready-made agents and templates** (e.g. for payables, procurement, HR questions) that you can use or adjust.
-- You can **build your own** agents with instructions, "topics" and **tools** that let the agent read or act on Fusion data (business objects), documents, email and outside systems.
-- Agents **respect Fusion security** — they act with the user's roles and data access.
-- You can choose the **LLM** behind an agent and monitor usage and quality.
-
-Tip: A junior consultant isn't expected to be an expert — show you know what it is and one use case in your area.`, 'B'],
-
-['AI Agent Studio', 'What is the difference between an AI agent and a simple chatbot?',
-`- A **chatbot** answers questions from a fixed script or a knowledge base.
-- An **AI agent** can **reason about a goal and take actions**: look up an invoice, check a PO, draft an email, create or update a record — using tools, with rules about what it may do.
-- In Fusion, agents run inside the application's security and can include **human approval** before important actions.
-
-Example: "Why is this invoice on hold?" — an agent can read the holds, the PO and receipts, explain the cause and suggest the next step.`, 'B'],
-
-['AI Agent Studio', 'Give an example of how an AI agent could help an AP team.',
-`- **Invoice question agent**: suppliers or internal users ask "When will invoice 123 be paid?" — the agent reads invoice status, holds and the next payment run and answers.
-- **Hold resolution helper**: explains why an invoice is on hold and who needs to act.
-- **Invoice intake**: reads emailed invoices (with IDR) and prepares them for review.
-- People still **approve** payments and changes — the agent saves time on lookups and routine steps.`, 'B'],
-
-['General Ledger', 'What is the difference between a journal batch, a journal and a journal line?',
-`- **Batch** — a group of journals posted together (e.g. one month's accruals).
-- **Journal (entry)** — belongs to one ledger, period, category and currency; must balance.
-- **Line** — one debit or credit to an account combination, with description and amount.
-
-Approval and posting usually happen at batch level; reversals can be done per journal.`, 'B'],
-
-['General Ledger', 'How do recurring journals work?',
-`- Used for entries that repeat every period with the same or formula-based amounts (rent, amortization, standard accruals).
-- In Fusion, built with **Calculation Manager** formula rules (or the recurring journal option), then **generated** each period and posted.
-- Amounts can be fixed, or calculated from balances (e.g. 1/12 of a prepaid account).
-
-Tip: Mention you schedule generation to run right after period open.`, 'B'],
-
-['Accounts Payable', 'What is the difference between invoice validation and invoice approval?',
-`- **Validation** is a system check: matching to PO/receipt, tolerances, tax, accounting, distribution totals — it places or releases **holds**.
-- **Approval** is a business decision by people (managers, cost center owners) routed by approval rules.
-- An invoice usually needs **both** before it can be paid; the order (validate first or approve first) is configurable.`, 'B'],
-
-['Accounts Payable', 'How do you cancel an invoice, and what happens to the accounting?',
-`- You can cancel only **unpaid** invoices (void the payment first if paid) with no applied prepayments.
-- Cancel from the Invoices work area; Oracle reverses the distributions and creates **cancellation accounting** (reversing the liability and expense) on the cancel date.
-- If the invoice was matched to a PO, the PO quantity billed is reduced.
-- Cancelled invoices remain for audit; you can't undo a cancellation.`, 'B'],
-
-['Accounts Receivable', 'What is a customer statement vs a dunning letter?',
-`- **Statement** — a periodic summary of all open transactions and payments for a customer (informational).
-- **Dunning letter** — a reminder about **overdue** items, often escalating in tone by days late.
-- Both are generated from AR (Collections in Fusion) and sent by print or email.`, 'B'],
-
-['Fixed Assets', 'What happens when you retire an asset?',
-`- Choose full or partial retirement, date, proceeds of sale and cost of removal.
-- Oracle calculates **gain or loss** = proceeds − (cost − accumulated depreciation) − removal cost.
-- Run **Calculate Gains and Losses**, then create accounting: removes cost and accumulated depreciation, books proceeds and gain/loss.
-- A retirement can be reinstated in the same period if done by mistake.`, 'D']
+QB["ora-fc-fin"] = (QB["ora-fc-fin"] || []).concat([
+["Redwood", "What is Oracle Redwood and how is it different from the classic Fusion pages?", "**Redwood** is Oracle's new user experience and design system for Fusion Applications.\n- **Classic pages** are built on older ADF technology — dense forms, many tabs, the \"Alta\" look.\n- **Redwood pages** are rebuilt: cleaner layouts, guided flows, smart defaults, better search, mobile-friendly, and AI assistance built in (summaries, suggestions).\n- Oracle is moving modules to Redwood release by release and **retiring the classic pages** over time — so consultants need to know both during the transition.\n- Redwood pages are extended with **Visual Builder Studio**, not Page Composer.\n\nTip: Mention which Redwood pages you have used (e.g. Redwood Payables invoice pages, Manage Journals, Expenses).", "B"],
+["Redwood", "How do you turn on a Redwood page in Fusion?", "- Many Redwood pages are enabled with **profile options** (Setup and Maintenance → Manage Administrator Profile Values), usually named for the page, set at site level.\n- Some are delivered as **opt-in features** in Functional Setup Manager; newer ones become the default automatically in a later release.\n- Always enable in a **test environment first**, run your test scripts, check personalizations and reports, and train users before switching production.\n\nTip: Say you check the quarterly **readiness (\"What's New\")** documents to see which pages became Redwood.", "B"],
+["Redwood", "A user says a field they always used is missing on the new Redwood page. What do you do?", "- Check whether the field moved (Redwood often groups fields differently or puts them in a drawer or \"Show more\").\n- Check if it was a **personalization** on the classic page (Page Composer) — those don't carry over to Redwood.\n- If needed, add it back using **Visual Builder Studio** (show the field, make it required, default a value) — done by a consultant/admin with the right role, tested in a sandbox/test pod first.\n- Confirm the field is still populated by integrations and reports.", "B"],
+["AI Agent Studio", "What is Oracle AI Agent Studio?", "**AI Agent Studio** is the tool inside Oracle Fusion Applications for **creating, configuring, testing and managing AI agents**.\n- Oracle delivers **ready-made agents and templates** (e.g. for payables, procurement, HR questions) that you can use or adjust.\n- You can **build your own** agents with instructions, \"topics\" and **tools** that let the agent read or act on Fusion data (business objects), documents, email and outside systems.\n- Agents **respect Fusion security** — they act with the user's roles and data access.\n- You can choose the **LLM** behind an agent and monitor usage and quality.\n\nTip: A junior consultant isn't expected to be an expert — show you know what it is and one use case in your area.", "B"],
+["AI Agent Studio", "What is the difference between an AI agent and a simple chatbot?", "- A **chatbot** answers questions from a fixed script or a knowledge base.\n- An **AI agent** can **reason about a goal and take actions**: look up an invoice, check a PO, draft an email, create or update a record — using tools, with rules about what it may do.\n- In Fusion, agents run inside the application's security and can include **human approval** before important actions.\n\nExample: \"Why is this invoice on hold?\" — an agent can read the holds, the PO and receipts, explain the cause and suggest the next step.", "B"],
+["AI Agent Studio", "Give an example of how an AI agent could help an AP team.", "- **Invoice question agent**: suppliers or internal users ask \"When will invoice 123 be paid?\" — the agent reads invoice status, holds and the next payment run and answers.\n- **Hold resolution helper**: explains why an invoice is on hold and who needs to act.\n- **Invoice intake**: reads emailed invoices (with IDR) and prepares them for review.\n- People still **approve** payments and changes — the agent saves time on lookups and routine steps.", "B"],
+["General Ledger", "What is the difference between a journal batch, a journal and a journal line?", "- **Batch** — a group of journals posted together (e.g. one month's accruals).\n- **Journal (entry)** — belongs to one ledger, period, category and currency; must balance.\n- **Line** — one debit or credit to an account combination, with description and amount.\n\nApproval and posting usually happen at batch level; reversals can be done per journal.", "B"],
+["General Ledger", "How do recurring journals work?", "- Used for entries that repeat every period with the same or formula-based amounts (rent, amortization, standard accruals).\n- In Fusion, built with **Calculation Manager** formula rules (or the recurring journal option), then **generated** each period and posted.\n- Amounts can be fixed, or calculated from balances (e.g. 1/12 of a prepaid account).\n\nTip: Mention you schedule generation to run right after period open.", "B"],
+["Accounts Payable", "What is the difference between invoice validation and invoice approval?", "**Why they ask:** people mix them up all the time, and the design choice affects cycle time.\n\n**Answer:**\n\"Validation is the system check: matching to the PO and receipt, tolerances, tax, accounting and distribution totals. It places or releases holds. Approval is a business decision by people, like the cost center manager, routed by approval rules. An invoice normally needs both before it can be paid. The order is configurable. I usually validate first so approvers don't spend time on invoices that will go on hold anyway.\"\n\n- **Validation:** system, rule-based, creates or releases holds.\n- **Approval:** people, routed by rules.\n- **Both** are needed to pay; order is configurable.\n\nTip: Give your preferred order and the reason. Having a view is what makes this answer senior.", "B"],
+["Accounts Payable", "How do you cancel an invoice, and what happens to the accounting?", "**Why they ask:** cancellation mistakes leave broken PO balances and wrong accounting.\n\n**Answer:**\n\"You can only cancel an unpaid invoice with no prepayments applied. If it's paid, the payment has to be voided first. Cancelling is done from the Invoices work area. Oracle reverses the distributions and creates cancellation accounting on the cancel date, reversing both the expense and the liability. If the invoice was matched to a PO, the quantity billed on the PO is reduced, so the PO can be invoiced again. A cancelled invoice stays in the system for audit and can't be un-cancelled, so for a small correction I'd use a credit memo instead.\"\n\n**Example:** a $2,000 invoice matched to a PO is cancelled.\n- Entry: Dr AP Liability 2,000 / Cr Expense or Accrual 2,000\n- PO quantity billed goes back down, so the correct invoice can be matched.\n\nTip: Mention that cancellation can't be undone. It shows you think before clicking.", "B"],
+["Accounts Receivable", "What is a customer statement vs a dunning letter?", "- **Statement** — a periodic summary of all open transactions and payments for a customer (informational).\n- **Dunning letter** — a reminder about **overdue** items, often escalating in tone by days late.\n- Both are generated from AR (Collections in Fusion) and sent by print or email.", "B"],
+["Fixed Assets", "What happens when you retire an asset?", "- Choose full or partial retirement, date, proceeds of sale and cost of removal.\n- Oracle calculates **gain or loss** = proceeds − (cost − accumulated depreciation) − removal cost.\n- Run **Calculate Gains and Losses**, then create accounting: removes cost and accumulated depreciation, books proceeds and gain/loss.\n- A retirement can be reinstated in the same period if done by mistake.", "D"]
 ]);
