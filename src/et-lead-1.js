@@ -1,251 +1,52 @@
 // Oracle Technical Lead (10–15 yrs). Format: [topic, question, answer, 'B'|'D']
-QB['et-lead'] = [
-["Role", "What does an Oracle technical lead do?",
-`**Why they ask:** confirms you lead people and designs, not just code.
-
-**Answer:** Owns the technical workstream: integration and extension architecture within the project, technical standards, design reviews, estimates and plans for RICEW objects, team allocation and mentoring, environment and deployment coordination, quality (code reviews, testing), and communication with functional leads, architects and the PMO. Escalates risks early.
-
-Tip: Mention team size and number of objects you've led.`, 'B'],
-
-["Planning", "How do you plan the technical workstream on an implementation?",
-`**Answer:** Build the RICEW inventory from requirements, classify by complexity (simple/medium/complex), estimate with standard effort per tier, sequence by dependencies and test cycles (CRP, SIT1, SIT2, UAT), assign developers by skill, track weekly, and keep buffer for changes and defects.
-
-**Example:** 80 objects: 40 simple × 3 days, 30 medium × 7, 10 complex × 15 = 480 developer-days.
-
-Tip: Show the math.`, 'D'],
-
-["Standards", "What technical standards do you establish?",
-`**Answer:** Naming conventions, folder and repository structure, error handling and logging patterns, integration design patterns, security guidelines, documentation templates, code review checklist, and deployment procedures.
-
-Tip: Standards save time later.`, 'B'],
-
-["Design Review", "How do you run design reviews?",
-`**Answer:** Review technical designs against requirements, standards, performance, security, supportability and reuse; involve functional leads; record decisions; and approve before build.
-
-Tip: Catch issues before coding.`, 'B'],
-
-["Integration", "How do you decide integration patterns across a program?",
-`**Answer:** Classify integrations by volume, latency and direction; standardize patterns (REST real-time, event-driven, FBDI batch, BICC extracts, SFTP file exchange); reuse common components (logging, error handling, lookups); and document an integration catalog.
-
-Tip: Integration catalog.`, 'D'],
-
-["OIC", "How do you structure OIC development for a large team?",
-`**Answer:** Package by domain, naming standards, reusable child integrations for common tasks (notifications, logging, file handling), lookups for configuration, connection management per environment, version control of exports, and code reviews.
-
-Tip: Governance for scale.`, 'D'],
-
-["Environments", "How do you manage environments and deployments?",
-`**Answer:** Environment strategy (Dev, Test, UAT, Prod), refresh calendar, migration checklists, configuration management, deployment windows, and approvals — with automated pipelines where possible.
-
-Tip: Reduce deployment errors.`, 'D'],
-
-["Quality", "How do you ensure quality of technical deliverables?",
-`**Answer:** Design reviews, code reviews, unit test standards with evidence, peer testing, automated tests for critical integrations, and defect trend tracking by developer and object.
-
-Tip: Prevention over correction.`, 'B'],
-
-["Team", "How do you manage a team of onshore and offshore developers?",
-`**Answer:** Clear task definitions and acceptance criteria, overlap hours for handoffs, daily stand-ups, documented standards, regular code reviews, recognition, and building ownership rather than ticket-taking.
-
-Tip: Mention a successful distributed delivery.`, 'B'],
-
-["Team", "How do you develop junior developers?",
-`**Answer:** Pair them on designs, give increasingly complex objects, review code with explanations, share business context, and encourage certifications.
-
-Tip: Build the bench.`, 'B'],
-
-["Team", "How do you handle a developer who consistently misses deadlines?",
-`**Answer:** Understand causes (skills, unclear specs, overload), adjust assignments, provide support or pairing, set clear checkpoints, and escalate through HR process if needed.
-
-Tip: Fair and direct.`, 'B'],
-
-["Estimation", "How do you handle pressure to reduce estimates?",
-`**Answer:** Explain the basis of estimates, offer options (reduce scope, phase delivery, add resources, accept risk), and document decisions. Don't cut estimates without changing scope.
-
-Tip: Options, not promises.`, 'D'],
-
-["Risk", "What are common technical risks on Oracle projects?",
-`**Answer:** Late or changing requirements, data quality for conversions, integration partner readiness, environment availability, performance at volume, security design gaps, quarterly update impacts, and key-person dependencies.
-
-Tip: Mitigation for each.`, 'D'],
-
-["Data Migration", "How do you lead a data migration workstream?",
-`**Answer:** Define objects and load sequence, mapping ownership with business, cleansing plan, automated load tools, reconciliation reports, mock conversion schedule with timings and sign-offs, and a detailed cutover runbook.
-
-Tip: Reconciliation sign-off by business.`, 'D'],
-
-["Cutover", "What goes into a technical cutover plan?",
-`**Answer:** Sequenced tasks with owners and timings (freeze legacy, final extracts, loads, validations, integration switch-over, scheduled jobs enablement), go/no-go checkpoints, rollback plan, and communication plan — rehearsed in mock cutovers.
-
-Tip: Rehearsal is essential.`, 'D'],
-
-["Performance", "How do you plan for performance on an Oracle implementation?",
-`**Answer:** Identify high-volume processes and integrations, design for bulk processing, run volume tests in SIT, tune reports and integrations, and coordinate with Oracle for SaaS load testing policies.
-
-Tip: Volume testing before UAT.`, 'D'],
-
-["Security", "How do you design security for integrations and extensions?",
-`**Answer:** Dedicated integration users with least-privilege custom roles, OAuth where possible, credential management, encryption in transit, data masking in non-prod, and audit logging.
-
-Tip: Least privilege.`, 'D'],
-
-["Quarterly Updates", "How do you manage quarterly update impact on custom objects?",
-`**Answer:** Maintain a custom object inventory, review release notes for changes affecting APIs, tables and pages, run regression tests (automated where possible) in the test pod, fix issues, and sign off before production updates.
-
-Tip: Automation reduces effort.`, 'D'],
-
-["Redwood", "How do you plan for Redwood adoption in technical work?",
-`**Answer:** Inventory personalizations and extensions on classic pages, check Oracle's Redwood conversion timelines, plan VB Studio extensions for Redwood pages, update test scripts, and coordinate training.
-
-Tip: Check readiness material each quarter.`, 'D'],
-
-["AI", "How would you lead AI agent adoption technically?",
-`**Answer:** Identify use cases with the business, use AI Agent Studio templates, design tools/APIs the agents need with proper security, test accuracy and safety, set up monitoring, and govern changes like other code.
-
-Tip: Governance plus value.`, 'D'],
-
-["Stakeholders", "How do you work with functional leads?",
-`**Answer:** Joint requirement walkthroughs, agreed specs with sample data, regular syncs, shared defect triage, and transparency on technical constraints.
-
-Tip: One team.`, 'B'],
-
-["Stakeholders", "How do you report technical status to the PMO?",
-`**Answer:** Objects by status (design, build, unit test, ready), defects and aging, risks and issues, dependency status, and forecast vs plan — in a concise dashboard.
-
-Tip: Data-driven reporting.`, 'B'],
-
-["Vendors", "How do you work with third-party integration partners?",
-`**Answer:** Agree interface specifications and SLAs early, define test timelines and environments, joint testing, clear defect ownership, and escalation paths.
-
-Tip: Partner readiness is a common risk.`, 'D'],
-
-["Support", "How do you transition technical objects to support?",
-`**Answer:** Documentation (designs, runbooks), knowledge transfer sessions, monitoring setup, known-issue list, hypercare period with joint support, and formal sign-off.
-
-Tip: Supportability planned from the start.`, 'D'],
-
-["Production Support", "How do you run technical production support?",
-`**Answer:** Ticket triage by severity, SLAs, monitoring dashboards, root-cause analysis for recurring issues, change management for fixes, and regular reporting.
-
-Tip: Reduce repeat incidents.`, 'D'],
-
-["Change Management", "How do you control changes in production?",
-`**Answer:** Formal change requests with impact analysis, approvals (CAB), testing evidence, scheduled deployment windows, rollback plans and post-deployment validation — also satisfying SOX change management.
-
-Tip: Audit evidence.`, 'D'],
-
-["Technical Debt", "How do you manage technical debt?",
-`**Answer:** Track it in a backlog, prioritize by risk and cost of delay, allocate capacity each release, and retire unnecessary customizations during upgrades.
-
-Tip: Make it visible.`, 'D'],
-
-["Tools", "Which tools do you use to manage the technical team?",
-`**Answer:** Jira or Azure DevOps for work tracking, Git for version control, Confluence/SharePoint for documentation, OIC and VB Studio pipelines, and monitoring dashboards.
-
-Tip: Name what you've used.`, 'B'],
-
-["Scenario", "A critical integration fails on go-live day. What do you do?",
-`**Answer:** Mobilize the team, triage quickly, communicate status to leadership, apply a workaround (manual process or reprocessing) to protect business operations, fix the root cause, reprocess transactions, and document lessons.
-
-Tip: Protect the business first.`, 'D'],
-
-["Scenario", "SIT is behind schedule with many technical defects. What do you do?",
-`**Answer:** Analyze defects by object and root cause, add daily triage, assign best developers to critical paths, reprioritize by business impact, and communicate a realistic recovery plan.
-
-Tip: Data-driven recovery.`, 'D'],
-
-["Scenario", "The business asks for a major change late in the project. What do you do?",
-`**Answer:** Assess impact on effort, timeline and risk; present options (defer to phase 2, add resources, cut scope); get a formal change decision.
-
-Tip: Change control.`, 'D'],
-
-["Behavioral", "Tell me about a large technical delivery you led.",
-`**Sample answer:** "I led 12 developers delivering 95 RICEW objects for an Oracle Fusion Financials and Procurement implementation — 35 OIC integrations, 40 reports and 20 conversions. We hit every test cycle milestone and went live with zero critical integration defects."
-
-Tip: Scale and outcome.`, 'B'],
-
-["Behavioral", "Tell me about a conflict within your team.",
-`**Sample answer:** "Two senior developers disagreed on an integration pattern. I had each present pros and cons, we evaluated against our standards and volumes, and chose the event-driven option; both felt heard."
-
-Tip: Facilitation.`, 'B'],
-
-["Behavioral", "Tell me about a technical decision you'd make differently.",
-`**Sample answer:** "We built a custom BIP extract for a data warehouse that later had performance issues. I'd use BICC incremental extracts from the start."
-
-Tip: Honest learning.`, 'B'],
-
-["Architecture", "How do you work with solution architects?",
-`**Answer:** Align with the overall architecture, provide technical feasibility input, raise risks, and ensure designs follow architectural principles.
-
-Tip: Collaboration.`, 'B'],
-
-["Reusability", "How do you promote reuse across the team?",
-`**Answer:** Shared libraries (child integrations, common BIP data models, VB components), a component catalog, and design reviews that check for existing assets.
-
-Tip: Efficiency.`, 'D'],
-
-["Documentation", "What documentation do you require from your team?",
-`**Answer:** Technical designs, mapping documents, unit test evidence, deployment notes, and support runbooks.
-
-Tip: Consistent templates.`, 'B'],
-
-["Testing", "How do you approach automated testing for integrations?",
-`**Answer:** Build test harnesses with sample payloads, validate outputs, run after changes and quarterly updates, and integrate with pipelines where possible.
-
-Tip: Regression safety net.`, 'D'],
-
-["EBS to Fusion", "How do you plan the technical side of an EBS-to-Fusion migration?",
-`**Answer:** Inventory EBS customizations, classify (retire/standard/rebuild), design Fusion integrations and extensions, plan data migration from EBS, build coexistence integrations if phased, and train the team on Fusion tooling.
-
-Tip: Retire as much as possible.`, 'D'],
-
-["Budget", "How do you manage technical budget and resources?",
-`**Answer:** Track effort vs estimates, forecast remaining work, manage contractors and offshore costs, and flag overruns early with options.
-
-Tip: Financial awareness.`, 'D'],
-
-["Hiring", "How do you interview technical consultants?",
-`**Answer:** Technical exercises (SQL, design scenario), discussion of past projects in depth, problem-solving approach, and communication skills.
-
-Tip: Practical evaluation.`, 'B'],
-
-["Career", "Where do you see yourself next?",
-`**Answer:** Technical architect or delivery lead for larger programs, owning integration and extension architecture across platforms.
-
-Tip: Growth.`, 'B'],
-
-["Closing", "Why should we hire you as technical lead?",
-`**Sample answer:** "I've led large technical teams to on-time, high-quality delivery, set standards that reduced defects, managed complex cutovers, and developed developers into leads."
-
-Tip: Leadership plus delivery.`, 'B'],
-
-["Communication", "How do you explain a technical issue to business stakeholders?",
-`**Answer:** Focus on business impact, cause in simple terms, what's being done, timeline and any workaround — avoiding jargon.
-
-Tip: Business language.`, 'B'],
-
-["Metrics", "Which metrics do you track for the technical team?",
-`**Answer:** Objects delivered vs plan, defect density and reopen rate, unit test coverage evidence, cycle time per object, production incidents and resolution time.
-
-Tip: Balanced metrics.`, 'D'],
-
-["Governance", "How do you avoid over-customization?",
-`**Answer:** Challenge requirements with "fit to standard" workshops, require business justification and architecture approval for customizations, and prefer configuration and extensions over custom code.
-
-Tip: Design authority.`, 'D'],
-
-["Monitoring", "How do you set up monitoring for integrations?",
-`**Answer:** OIC monitoring with alerts, custom dashboards of success/failure counts, business-level reconciliation reports, and on-call procedures.
-
-Tip: Business reconciliation is often missed.`, 'D'],
-
-["Hypercare", "How do you run technical hypercare?",
-`**Answer:** Daily stand-ups, war-room support, monitoring of first runs (payments, imports, close), rapid fixes through expedited change control, and issue tracking until stable.
-
-Tip: First-time process monitoring.`, 'D'],
-
-["Knowledge", "How do you avoid single points of knowledge in the team?",
-`**Answer:** Documentation, pairing, rotating assignments, and knowledge-sharing sessions.
-
-Tip: Key-person risk.`, 'B']
-];
+QB["et-lead"] = (QB["et-lead"] || []).concat([
+["Role", "What does an Oracle technical lead do?", "**Why they ask:** confirms you lead people and designs, not just code.\n\n**Answer:** Owns the technical workstream: integration and extension architecture within the project, technical standards, design reviews, estimates and plans for RICEW objects, team allocation and mentoring, environment and deployment coordination, quality (code reviews, testing), and communication with functional leads, architects and the PMO. Escalates risks early.\n\nTip: Mention team size and number of objects you've led.", "B"],
+["Planning", "How do you plan the technical workstream on an implementation?", "**Why they ask:** planning is the technical lead's core job.\n\n**Answer:**\n\"I build the RICEW inventory from the requirements and classify each object as simple, medium or complex. I estimate with a standard effort per tier, then sequence the work by dependencies and test cycles: CRP, SIT1, SIT2 and UAT. I assign developers by skill, track weekly, and keep a buffer for changes and defects. For example, 80 objects: 40 simple at 3 days, 30 medium at 7 and 10 complex at 15 gives 120 plus 210 plus 150, which is 480 developer-days, before buffer.\"\n\nTip: Show the math. It proves the plan isn't a guess.", "D"],
+["Standards", "What technical standards do you establish?", "**Why they ask:** standards make teams consistent.\n\n**Answer:**\n\"Naming conventions, folder and repository structure, error handling and logging patterns, integration design patterns, security guidelines, documentation templates, a code review checklist, and deployment procedures.\"\n\nTip: Say \"standards save time later\". It's why they matter.", "B"],
+["Design Review", "How do you run design reviews?", "**Why they ask:** catching issues before build.\n\n**Answer:**\n\"I review each technical design against the requirements, our standards, performance, security, supportability and reuse. Functional leads join so the business logic is checked too. Decisions are recorded, and the design is approved before anyone builds.\"\n\nTip: Say \"catch issues before coding\". It's the cheapest point to fix them.", "B"],
+["Integration", "How do you decide integration patterns across a program?", "**Why they ask:** consistency across many integrations.\n\n**Answer:**\n\"I classify integrations by volume, latency and direction. Then I standardize a small set of patterns: REST for real-time, event-driven for near real-time, FBDI for batch inbound, BICC for bulk extracts, and SFTP for file exchange. Common components, like logging, error handling and lookups, are reused. And everything is documented in an integration catalog.\"\n\nTip: Mention the integration catalog. It's how a program stays manageable.", "D"],
+["OIC", "How do you structure OIC development for a large team?", "**Why they ask:** OIC at scale needs governance.\n\n**Answer:**\n\"I package integrations by domain with naming standards. Reusable child integrations handle common tasks like notifications, logging and file handling. Lookups hold configuration. Connections are managed per environment. Exports go into version control. And code reviews apply to integrations like any other code.\"\n\nTip: Mention reusable child integrations. They cut build time a lot.", "D"],
+["Environments", "How do you manage environments and deployments?", "**Why they ask:** deployment errors are common.\n\n**Answer:**\n\"An environment strategy for dev, test, UAT and production, with a refresh calendar. Migration checklists, configuration management, deployment windows and approvals. And automated pipelines wherever possible.\"\n\nTip: Say \"reduce deployment errors\". It's the goal.", "D"],
+["Quality", "How do you ensure quality of technical deliverables?", "**Why they ask:** quality leadership.\n\n**Answer:**\n\"Design reviews, code reviews, unit test standards with evidence, peer testing, automated tests for critical integrations, and tracking defect trends by developer and object, so I can coach where needed.\"\n\nTip: Say \"prevention over correction\". It's the mindset.", "B"],
+["Team", "How do you manage a team of onshore and offshore developers?", "**Why they ask:** distributed teams are the norm.\n\n**Answer:**\n\"I give clear task definitions with acceptance criteria. We use overlap hours for handoffs and daily stand-ups. Standards are documented, and code is reviewed regularly. I recognize good work and build ownership, so people own outcomes instead of just taking tickets.\"\n\nTip: Mention a distributed delivery that went well. It makes it real.", "B"],
+["Team", "How do you develop junior developers?", "**Why they ask:** building the team.\n\n**Answer:**\n\"I pair them on designs, give them increasingly complex objects, review their code with explanations, share the business context, and encourage certifications.\"\n\nTip: Say \"build the bench\". It shows you think ahead.", "B"],
+["Team", "How do you handle a developer who consistently misses deadlines?", "**Why they ask:** people management.\n\n**Answer:**\n\"I try to understand the cause: skills, unclear specs or overload. Then I adjust assignments, provide support or pairing, and set clear checkpoints. If it doesn't improve, I escalate through the HR process.\"\n\nTip: Be fair and direct. That's what they want to hear.", "B"],
+["Estimation", "How do you handle pressure to reduce estimates?", "**Why they ask:** integrity under pressure.\n\n**Answer:**\n\"I explain how the estimates were built, then offer options: reduce scope, phase delivery, add resources, or accept more risk. And I document the decision. I don't cut estimates without changing scope, because that just moves the problem to go-live.\"\n\nTip: Say \"options, not promises\". It's the professional answer.", "D"],
+["Risk", "What are common technical risks on Oracle projects?", "**Why they ask:** risk awareness.\n\n**Answer:**\n\"Late or changing requirements, data quality for conversions, integration partner readiness, environment availability, performance at volume, security design gaps, quarterly update impacts, and key-person dependencies.\"\n\nTip: Have a mitigation ready for each. They'll ask.", "D"],
+["Data Migration", "How do you lead a data migration workstream?", "**Why they ask:** migration leadership.\n\n**Answer:**\n\"I define the objects and load sequence, agree mapping ownership with the business, set a cleansing plan, build automated load tools and reconciliation reports, run a mock conversion schedule with timings and sign-offs, and write a detailed cutover runbook.\"\n\nTip: Say \"reconciliation sign-off by the business\". They own the data.", "D"],
+["Cutover", "What goes into a technical cutover plan?", "**Why they ask:** cutover planning.\n\n**Answer:**\n\"Sequenced tasks with owners and timings: freeze legacy, final extracts, loads, validations, switching integrations over, and enabling scheduled jobs. Go/no-go checkpoints, a rollback plan and a communication plan. And it's rehearsed in mock cutovers.\"\n\nTip: Say \"rehearsal is essential\". Untested cutovers run long.", "D"],
+["Performance", "How do you plan for performance on an Oracle implementation?", "**Why they ask:** performance failures at go-live are costly.\n\n**Answer:**\n\"I identify the high-volume processes and integrations early, design for bulk processing, run volume tests in SIT, tune reports and integrations, and coordinate with Oracle on their SaaS load testing policies.\"\n\nTip: Say \"volume testing before UAT\". Finding issues in UAT is too late.", "D"],
+["Security", "How do you design security for integrations and extensions?", "**Why they ask:** security design.\n\n**Answer:**\n\"Dedicated integration users with least-privilege custom roles, OAuth where possible, proper credential management, encryption in transit, data masking in non-production, and audit logging.\"\n\nTip: Say \"least privilege\". It's the foundation.", "D"],
+["Quarterly Updates", "How do you manage quarterly update impact on custom objects?", "**Why they ask:** quarterly risk management.\n\n**Answer:**\n\"I maintain a custom object inventory, review release notes for changes to APIs, tables and pages, run regression tests in the test environment, automated where possible, fix issues, and sign off before production is updated.\"\n\nTip: Mention automation. It's what makes it sustainable every quarter.", "D"],
+["Redwood", "How do you plan for Redwood adoption in technical work?", "**Why they ask:** Redwood is changing extension work.\n\n**Answer:**\n\"I inventory personalizations and extensions on classic pages, check Oracle's Redwood conversion timelines, plan VB Studio extensions for the Redwood pages, update test scripts, and coordinate training.\"\n\nTip: Mention checking readiness material each quarter.", "D"],
+["AI", "How would you lead AI agent adoption technically?", "**Why they ask:** current technical leadership.\n\n**Answer:**\n\"I'd identify use cases with the business, start from AI Agent Studio templates, design the tools and APIs the agents need with proper security, test accuracy and safety, set up monitoring, and govern changes to agents like any other code.\"\n\nTip: Say \"governance plus value\". Both matter.", "D"],
+["Stakeholders", "How do you work with functional leads?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Joint requirement walkthroughs, agreed specs with sample data, regular syncs, shared defect triage, and being open about technical constraints.\"\n\nTip: Say \"one team\". It's the attitude they want.", "B"],
+["Stakeholders", "How do you report technical status to the PMO?", "**Why they ask:** reporting discipline.\n\n**Answer:**\n\"A concise dashboard: objects by status, design, build, unit test and ready; defects and their age; risks and issues; dependency status; and forecast against plan.\"\n\nTip: Say \"data-driven reporting\". It builds trust.", "B"],
+["Vendors", "How do you work with third-party integration partners?", "**Why they ask:** partners are a common risk.\n\n**Answer:**\n\"I agree interface specifications and SLAs early, define test timelines and environments, test jointly, set clear defect ownership, and agree escalation paths.\"\n\nTip: Say \"partner readiness is a common risk\". Plan for it.", "D"],
+["Support", "How do you transition technical objects to support?", "**Why they ask:** supportability.\n\n**Answer:**\n\"Documentation, including designs and runbooks. Knowledge transfer sessions. Monitoring set up. A known-issue list. A hypercare period with joint support. And formal sign-off from the support team.\"\n\nTip: Say \"plan supportability from the start\". Not at the end.", "D"],
+["Production Support", "How do you run technical production support?", "**Why they ask:** run-mode leadership.\n\n**Answer:**\n\"Ticket triage by severity with SLAs, monitoring dashboards, root-cause analysis for recurring issues, change management for fixes, and regular reporting.\"\n\nTip: Say \"reduce repeat incidents\". That's the measure of good support.", "D"],
+["Change Management", "How do you control changes in production?", "**Why they ask:** change control and SOX.\n\n**Answer:**\n\"Formal change requests with impact analysis, approval through the change board, testing evidence, scheduled deployment windows, rollback plans and validation after deployment. That also satisfies SOX change management.\"\n\nTip: Mention audit evidence. It's part of the job.", "D"],
+["Technical Debt", "How do you manage technical debt?", "**Why they ask:** long-term thinking.\n\n**Answer:**\n\"I track it in a backlog, prioritize by risk and cost of delay, allocate some capacity every release, and retire unnecessary customizations during upgrades.\"\n\nTip: Say \"make it visible\". Hidden debt never gets paid.", "D"],
+["Tools", "Which tools do you use to manage the technical team?", "**Why they ask:** practical tooling.\n\n**Answer:**\n\"Jira or Azure DevOps for work tracking, Git for version control, Confluence or SharePoint for documentation, OIC and VB Studio pipelines for deployment, and monitoring dashboards.\"\n\nTip: Name what you've actually used.", "B"],
+["Scenario", "A critical integration fails on go-live day. What do you do?", "**Why they ask:** crisis handling.\n\n**Answer:**\n\"I mobilize the team, triage quickly and communicate status to leadership. I apply a workaround, a manual process or reprocessing, to protect business operations. Then I fix the root cause, reprocess the transactions, and document the lessons.\"\n\nTip: Say \"protect the business first\". It's the priority.", "D"],
+["Scenario", "SIT is behind schedule with many technical defects. What do you do?", "**Why they ask:** delivery recovery.\n\n**Answer:**\n\"I analyze the defects by object and root cause, add a daily triage, put the best developers on the critical path, reprioritize by business impact, and communicate a realistic recovery plan.\"\n\nTip: Say \"data-driven recovery\". Guessing makes it worse.", "D"],
+["Scenario", "The business asks for a major change late in the project. What do you do?", "**Why they ask:** change control.\n\n**Answer:**\n\"I assess the impact on effort, timeline and risk, then present options: defer to phase 2, add resources, or cut other scope. And I get a formal change decision.\"\n\nTip: Say \"change control\". It protects everyone.", "D"],
+["Behavioral", "Tell me about a large technical delivery you led.", "**Why they ask:** proof of scale.\n\n**Answer (example):**\n\"I led 12 developers delivering 95 RICEW objects for a Fusion Financials and Procurement implementation: 35 OIC integrations, 40 reports and 20 conversions. We hit every test cycle milestone and went live with no critical integration defects.\"\n\nTip: Give scale and outcome. It's what they remember.", "B"],
+["Behavioral", "Tell me about a conflict within your team.", "**Why they ask:** facilitation skill.\n\n**Answer (example):**\n\"Two senior developers disagreed on an integration pattern. I had each present the pros and cons, we evaluated them against our standards and volumes, and chose the event-driven option. Both felt heard, and the decision stuck.\"\n\nTip: Show facilitation, not dictating.", "B"],
+["Behavioral", "Tell me about a technical decision you'd make differently.", "**Why they ask:** honesty and learning.\n\n**Answer (example):**\n\"We built a custom BIP extract to feed a data warehouse, and it later had performance problems as volumes grew. Today I'd use BICC incremental extracts from the start.\"\n\nTip: Keep it honest and specific. It shows learning.", "B"],
+["Architecture", "How do you work with solution architects?", "**Why they ask:** role clarity.\n\n**Answer:**\n\"I align with the overall architecture, give technical feasibility input, raise risks early, and make sure the team's designs follow the architectural principles.\"\n\nTip: Say you raise risks early. Architects value that.", "B"],
+["Reusability", "How do you promote reuse across the team?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Shared libraries, like child integrations, common BIP data models and VB components. A component catalog. And design reviews that check whether an existing asset can be reused.\"\n\nTip: Mention the component catalog. It makes reuse easy.", "D"],
+["Documentation", "What documentation do you require from your team?", "**Why they ask:** documentation standards.\n\n**Answer:**\n\"Technical designs, mapping documents, unit test evidence, deployment notes and support runbooks, all using consistent templates.\"\n\nTip: Say \"consistent templates\". It makes documents usable.", "B"],
+["Testing", "How do you approach automated testing for integrations?", "**Why they ask:** regression safety.\n\n**Answer:**\n\"I build test harnesses with sample payloads, validate the outputs, run them after every change and quarterly update, and plug them into pipelines where possible.\"\n\nTip: Call it a regression safety net. That's what it is.", "D"],
+["EBS to Fusion", "How do you plan the technical side of an EBS-to-Fusion migration?", "**Why they ask:** migration leadership.\n\n**Answer:**\n\"I inventory the EBS customizations and classify each as retire, standard or rebuild. I design the Fusion integrations and extensions, plan the data migration from EBS, build coexistence integrations if it's phased, and train the team on Fusion tools.\"\n\nTip: Say \"retire as much as possible\". It's the biggest saving.", "D"],
+["Budget", "How do you manage technical budget and resources?", "**Why they ask:** financial awareness.\n\n**Answer:**\n\"I track effort against estimates, forecast remaining work, manage contractor and offshore costs, and flag overruns early with options.\"\n\nTip: Say \"early, with options\". It's what managers want.", "D"],
+["Hiring", "How do you interview technical consultants?", "**Why they ask:** hiring judgment.\n\n**Answer:**\n\"I use technical exercises, like SQL and a design scenario, an in-depth discussion of past projects, a look at their problem-solving approach, and an assessment of communication skills.\"\n\nTip: Mention practical exercises. They reveal real skill.", "B"],
+["Career", "Where do you see yourself next?", "**Why they ask:** career direction.\n\n**Answer:**\n\"As a technical architect or delivery lead for larger programs, owning integration and extension architecture across platforms.\"\n\nTip: Keep it focused. It shows ambition with direction.", "B"],
+["Closing", "Why should we hire you as technical lead?", "**Why they ask:** a closing question.\n\n**Answer (sample):**\n\"I've led large technical teams to on-time, high-quality delivery, set standards that cut defects, managed complex cutovers, and developed developers into leads.\"\n\nTip: Combine leadership with delivery. Both are the job.", "B"],
+["Communication", "How do you explain a technical issue to business stakeholders?", "**Why they ask:** communication.\n\n**Answer:**\n\"I focus on the business impact, explain the cause in simple terms, say what's being done, give a timeline and any workaround, and avoid jargon.\"\n\nTip: Say \"business language\". It's the skill being tested.", "B"],
+["Metrics", "Which metrics do you track for the technical team?", "**Why they ask:** measurement.\n\n**Answer:**\n\"Objects delivered against plan, defect density and reopen rate, unit test evidence, cycle time per object, and production incidents with resolution time.\"\n\nTip: Say \"balanced metrics\". Speed alone hides quality issues.", "D"],
+["Governance", "How do you avoid over-customization?", "**Why they ask:** protecting the platform.\n\n**Answer:**\n\"I challenge requirements in fit-to-standard workshops, require business justification and architecture approval for any customization, and prefer configuration and extensions over custom code.\"\n\nTip: Mention a design authority. It's the governance that makes it stick.", "D"],
+["Monitoring", "How do you set up monitoring for integrations?", "**Why they ask:** operational readiness.\n\n**Answer:**\n\"OIC monitoring with alerts, dashboards of success and failure counts, business-level reconciliation reports, and on-call procedures.\"\n\nTip: Mention business reconciliation. It's the part most teams miss.", "D"],
+["Hypercare", "How do you run technical hypercare?", "**Why they ask:** go-live support.\n\n**Answer:**\n\"Daily stand-ups and war-room support. Close monitoring of first runs, like payments, imports and the first close. Rapid fixes through expedited change control. And tracking every issue until things are stable.\"\n\nTip: Mention first-time process monitoring. First runs are where problems show.", "D"],
+["Knowledge", "How do you avoid single points of knowledge in the team?", "**Why they ask:** key-person risk.\n\n**Answer:**\n\"Documentation, pairing, rotating assignments and knowledge-sharing sessions.\"\n\nTip: Say \"key-person risk\". It shows you think about resilience.", "B"]
+]);
