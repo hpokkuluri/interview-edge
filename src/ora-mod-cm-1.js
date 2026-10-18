@@ -1,92 +1,18 @@
 // Oracle Modules — Cash Management & Treasury. Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-cm'] = (QB['ora-mod-cm'] || []).concat([
-['Setup', 'What are the main Cash Management setups in Fusion?',
-`- **Banks, branches and bank accounts** (owner legal entity, currency, GL cash and cash clearing accounts, use for payables/receivables/payroll, BU access).
-- **Bank statement transaction codes** (map bank codes to transaction types).
-- **Parse rules** to extract references from statement text.
-- **Reconciliation matching rules**, **tolerance rules** and **rule sets**.
-- **Transaction creation rules** for bank charges/interest.
-- **Bank statement processing profiles** and transmission configurations.`, 'B'],
-
-['Bank Statements', 'How do you load bank statements automatically?',
-`- Configure **transmission** (SFTP/bank connectivity) and **Retrieve Electronic Bank Statements**, or upload files.
-- Formats: **BAI2, MT940, CAMT.053 (ISO 20022)**, EDIFACT FINSTA, or custom via mapping.
-- **Load and Import Bank Statement** process → statements appear for reconciliation.
-- Use **prior-day** statements for reconciliation and **intraday** (camt.052/BAI intraday) for cash positioning.`, 'D'],
-
-['Bank Statements', 'What are parse rules and why are they useful?',
-`- Parse rules extract values (e.g. **invoice number, check number, customer reference**) from the statement line's **addenda/description** text into structured fields.
-- Matching rules then use those fields — big improvement in auto-reconciliation rates when banks put references in free text.`, 'D'],
-
-['Reconciliation', 'Explain matching rules, tolerance rules and rule sets.',
-`- **Matching rules**: how statement lines match system transactions — one-to-one, one-to-many, many-to-one, many-to-many — on fields like reference, amount, date, counterparty.
-- **Tolerance rules**: allowed differences in **amount** (absolute/percent) and **date** ranges; amount differences can create external transactions (e.g. bank fees).
-- **Rule sets** combine rules in **priority order** and are assigned to bank accounts.
-- Start strict (exact reference + amount), then looser rules.`, 'D'],
-
-['Reconciliation', 'Why might autoreconciliation miss a payment that clearly cleared?',
-`- Reference on the statement doesn't match (bank truncated it, different format).
-- Amount differs (bank fees deducted, FX).
-- Date outside tolerance.
-- Payment **not accounted** or not in a reconcilable status (voided, not cleared).
-- Payments grouped by the bank (one debit for many payments) but rules only do one-to-one.
-Fix rules/parse rules and resend references in payment files.`, 'D'],
-
-['Reconciliation', 'How do you reconcile ACH batch deposits or lockbox totals?',
-`- Banks often post **one deposit line** for many receipts.
-- Use **many-to-one** matching rules (sum of receipts in a batch = statement line), grouped by **receipt batch/deposit number** or date.
-- Ensure receipts are **remitted/batched** consistently with bank deposits.`, 'D'],
-
-['External Transactions', 'What are external cash transactions and transaction creation rules?',
-`- **External transactions**: cash items not originating from AP/AR/Payroll (bank fees, interest, sweeps, wire charges, taxes).
-- **Transaction creation rules**: when a statement line matches a pattern (transaction code, description), Oracle **creates the external transaction automatically** with the right accounts and reconciles it.
-- Reduces manual journals for recurring bank items.`, 'B'],
-
-['Cash Clearing', 'Explain cash clearing accounting at payment and at reconciliation.',
-`- Payment issued: **Dr AP Liability, Cr Cash Clearing**.
-- When reconciled to the bank statement: **Dr Cash Clearing, Cr Cash** (accounting on clearing).
-- Clearing account balance = issued but not yet cleared payments — reconcile regularly.
-- Some companies account payments directly to cash (no clearing) — then reconciliation has no accounting.`, 'D'],
-
-['Cash Positioning', 'How does cash positioning work in Fusion?',
-`- Starting point: **bank statement balances** (prior-day/intraday).
-- Add expected **inflows/outflows**: AP payments scheduled, AR receipts expected, payroll, external transactions, forecasts.
-- View by **bank account, legal entity, currency**; plan funding and investments.
-- **Cash forecasting** extends to future periods using subledger data and external sources.`, 'D'],
-
-['Bank Account Transfers', 'How do you handle transfers between bank accounts?',
-`- **Bank account transfers** in Cash Management: from/to account, amount, date; settlement via payment file (if bank) or manual.
-- Accounting: Dr destination cash (or clearing), Cr source cash.
-- **Ad hoc payments** and **cash pooling** (sweeps) may come from bank statements via transaction creation rules.
-- Intercompany transfers create intercompany balances.`, 'D'],
-
-['Payments', 'How do payment acknowledgments and status files work?',
-`- Banks return **acknowledgment files** (e.g. ISO 20022 **pain.002**) for accepted/rejected payment files and individual payments.
-- Fusion can import them to update **payment status** (e.g. rejected payments to be voided/reissued).
-- Monitor rejections daily; root causes: invalid bank details, missing data, format errors.`, 'D'],
-
-['Banking', 'How would you set up Positive Pay and check fraud controls?',
-`- Positive pay file of issued and voided checks sent to the bank after each check run (automated transmission).
-- **Payee positive pay** (payee name match) where banks support it.
-- Restrict **check stock** and printing; signatures; segregate check printing from AP entry.
-- Stale-dated checks process (void and escheat as required).`, 'B'],
-
-['Data Migration', 'What do you convert for Cash Management at go-live?',
-`- **Banks, branches, accounts** with GL mappings and uses.
-- **Outstanding (uncleared) payments** and deposits, so they can be reconciled after go-live (often loaded as AP payments/receipts or external transactions).
-- **Opening statement balances**.
-- Reconcile book vs bank at cutover; finance signs off.`, 'D'],
-
-['Treasury', 'When would a company use a dedicated treasury management system with Fusion?',
-`- Complex **liquidity**: many banks/countries, **in-house bank**, netting, cash pooling.
-- **Investments, debt, FX hedging**, risk management and hedge accounting.
-- **Bank connectivity** hubs and SWIFT.
-- Integration: TMS sends **journals** to GL and payment instructions to/from Fusion; Fusion sends AP/AR forecasts and bank statements.`, 'D'],
-
-['Interview', 'What metrics show a healthy Cash Management process?',
-`- **Auto-reconciliation rate** (e.g. >90%).
-- **Unreconciled items** count and age.
-- **Days to complete bank reconciliation** after month-end.
-- **Payment rejection** rate.
-- **Accuracy of cash forecasts** vs actuals.`, 'B']
+QB["ora-mod-cm"] = (QB["ora-mod-cm"] || []).concat([
+["Setup", "What are the main Cash Management setups in Fusion?", "**Why they ask:** to see if you can stand up banking and reconciliation, which every finance go-live needs.\n\n**Answer:**\n\"I start with banks, branches and bank accounts. Each account is owned by a legal entity, has a currency, cash and cash clearing GL accounts, its uses for Payables, Receivables or Payroll, and the business units that can use it. Then the statement side: bank statement transaction codes that map the bank's codes to Oracle transaction types, and parse rules to pull references out of the statement text. Then reconciliation: matching rules, tolerance rules, and rule sets that put them in order. Then transaction creation rules so bank fees and interest are booked automatically. And finally the bank statement processing profile and transmission setup, so statements load on their own every morning.\"\n\nTip: Present it as accounts → statements → reconciliation → automation. It shows you know the order things depend on.", "B"],
+["Bank Statements", "How do you load bank statements automatically?", "**Why they ask:** manual statement uploads don't scale. They want to know you've automated it.\n\n**Answer:**\n\"I set up the transmission configuration so Fusion connects to the bank or a connectivity hub over SFTP, and schedule Retrieve Electronic Bank Statements followed by Load and Import Bank Statement. Formats are usually BAI2 in the US, MT940 or CAMT.053 elsewhere, and I prefer CAMT.053 because it's an ISO 20022 standard with structured references. Once imported, the statements are ready for autoreconciliation. I use prior-day statements for reconciliation and intraday statements, like CAMT.052 or BAI intraday, only for cash positioning, because intraday data isn't final.\"\n\nTip: Make the prior-day vs intraday point. It shows you understand treasury, not just the load job.", "D"],
+["Bank Statements", "What are parse rules and why are they useful?", "**Why they ask:** parse rules are a small setup that can lift auto-match rates a lot. Only hands-on people know them.\n\n**Answer:**\n\"Banks often put the useful reference, like an invoice number, check number or customer reference, inside the free-text description or addenda of a statement line. A parse rule tells Fusion where to find it, for example 'take the 10 characters after INV#', and copies it into a structured field. Matching rules can then use that field. On one project the bank put our payment reference in the middle of a long text string, and adding one parse rule moved the auto-match rate on that account from about 60% to over 90%.\"\n\nTip: Give a before-and-after number. That's why they asked.", "D"],
+["Reconciliation", "Explain matching rules, tolerance rules and rule sets.", "**Why they ask:** these three pieces decide how much reconciliation is automatic.\n\n**Answer:**\n\"Matching rules say how statement lines match system transactions: one-to-one, one-to-many, many-to-one or many-to-many, using fields like reference, amount, date and counterparty. Tolerance rules allow small differences, an amount range, absolute or percent, and a date range; an amount difference can create an external transaction for things like a bank fee. Rule sets put the matching rules in priority order and are assigned to bank accounts. I always build from strict to loose: first exact reference and amount, then amount and date within tolerance, then the grouped rules for batch deposits. That way the risky matches only happen after the safe ones.\"\n\nTip: Say \"strict to loose\" and explain why. It's the design principle behind a good rule set.", "D"],
+["Reconciliation", "Why might autoreconciliation miss a payment that clearly cleared?", "**Why they ask:** a troubleshooting question. They want a checklist and a fix.\n\n**Answer:**\n\"I check five things. First the reference: the bank may have truncated it or changed the format, so it doesn't match. Second the amount: the bank might have deducted a fee, or there's an FX difference. Third the date: the clearing date may be outside the tolerance. Fourth the status: the payment might not be accounted, or it's voided, so it isn't available to reconcile. Fifth grouping: the bank may have posted one debit for many payments while my rules only do one-to-one. Then I fix it at the source: add a parse rule, widen a tolerance, add a many-to-one rule, or make sure our payment file sends a reference the bank returns, like the ISO 20022 end-to-end ID.\"\n\nTip: End with fixing the payment file reference. It's the permanent fix most people miss.", "D"],
+["Reconciliation", "How do you reconcile ACH batch deposits or lockbox totals?", "**Why they ask:** batch deposits are the classic case where one-to-one matching fails.\n\n**Answer:**\n\"Banks usually post one deposit line for the whole batch, for example one $48,250 line for 120 customer ACH receipts. So I use a many-to-one matching rule, where the sum of receipts in a batch equals the statement line, grouped by receipt batch, deposit number or date. The other half is process: AR has to batch and remit receipts the same way the bank deposits them. If AR groups by day but the bank groups by lockbox file, they'll never match, so I agree the grouping with AR first.\"\n\nTip: Say that AR's batching has to mirror the bank. That's the real fix.", "D"],
+["External Transactions", "What are external cash transactions and transaction creation rules?", "**Why they ask:** to see if you can remove manual journals for bank items.\n\n**Answer:**\n\"External transactions are cash movements that don't come from AP, AR or Payroll, like bank fees, interest, sweeps, wire charges and some taxes. Transaction creation rules automate them: when a statement line matches a pattern, say transaction code 699 or a description containing 'SERVICE FEE', Fusion creates the external transaction with the right accounts and reconciles it straight away. On a company with 50 accounts that can remove a few hundred manual journals a month.\"\n\nTip: Give the volume of manual journals removed. Treasury managers love that number.", "B"],
+["Cash Clearing", "Explain cash clearing accounting at payment and at reconciliation.", "**Why they ask:** cash clearing confuses many people, and it's what makes reconciliation drive the books.\n\n**Answer:**\n\"When a payment is issued, AP books Dr Liability, Cr Cash Clearing. The money hasn't left the bank yet. When the payment appears on the bank statement and is reconciled, Cash Management books Dr Cash Clearing, Cr Cash. So the cash account matches the bank, and the cash clearing balance equals payments issued but not yet cleared. I reconcile that clearing balance to the list of uncleared payments every month. Some companies skip clearing and book payments straight to cash; then reconciliation creates no accounting, but cash in GL won't match the bank until checks clear.\"\n\nTip: Explain what the clearing balance means. That's the test behind the question.", "D"],
+["Cash Positioning", "How does cash positioning work in Fusion?", "**Why they ask:** treasury-facing roles need to know how today's cash is calculated.\n\n**Answer:**\n\"It starts from the bank statement balances, prior-day and intraday. Then it adds expected inflows and outflows: AP payments scheduled for today, AR receipts expected, payroll, external transactions and any manual forecasts. The treasurer sees the position by bank account, legal entity and currency, and decides where to move money, for example funding a payroll account or sweeping surplus into an investment. Cash forecasting extends the same idea into future periods, using subledger data and outside sources.\"\n\nTip: Give one decision the treasurer makes from it. It shows you know what it's for.", "D"],
+["Bank Account Transfers", "How do you handle transfers between bank accounts?", "**Why they ask:** transfers are frequent and easy to account wrongly, especially across entities.\n\n**Answer:**\n\"I use bank account transfers in Cash Management: from account, to account, amount and date. Settlement can go through a payment file to the bank or be done manually and recorded. The accounting is Dr destination cash or clearing, Cr source cash. Automatic sweeps and cash pooling usually show up on the statement first, so I create them from the statement with transaction creation rules. If the two accounts belong to different legal entities, the transfer also creates intercompany balances, and I make sure those are set up so they eliminate at consolidation.\"\n\nTip: Mention the intercompany case. It's where transfers go wrong.", "D"],
+["Payments", "How do payment acknowledgments and status files work?", "**Why they ask:** a rejected payment that nobody notices means an unpaid supplier.\n\n**Answer:**\n\"After we send a payment file, the bank returns acknowledgment files, usually ISO 20022 pain.002, saying whether the whole file and each payment was accepted or rejected. Fusion imports them and updates the payment status, so rejected payments are visible and can be voided and reissued. I set up a daily check of rejections, and the usual causes are invalid supplier bank details, missing data like an address for international wires, or a format error. Tracking the reasons shows where supplier data needs cleaning.\"\n\nTip: Name pain.002 and say who checks it daily. Ownership is the point.", "D"],
+["Banking", "How would you set up Positive Pay and check fraud controls?", "**Why they ask:** check fraud is still common in the US. They want controls, not just a file.\n\n**Answer:**\n\"After every check run, Fusion sends a positive pay file of issued and voided checks to the bank automatically, and the bank only clears checks that match. Where the bank supports it, I use payee positive pay, which also matches the payee name. Then the physical controls: check stock is locked up, signatures are controlled, and the person who prints checks isn't the person who enters invoices. Finally a stale-dated check process: void old uncashed checks and handle escheatment as each state requires.\"\n\nTip: Say the file is sent automatically, not by a person. Manual handling is the gap fraudsters use.", "B"],
+["Data Migration", "What do you convert for Cash Management at go-live?", "**Why they ask:** if open items aren't converted, the first bank reconciliation after go-live fails.\n\n**Answer:**\n\"I convert banks, branches and accounts with their GL accounts and uses. Then the open items: payments issued but not yet cleared, and deposits not yet on the bank statement, so they can be reconciled after go-live. They're usually loaded as AP payments and AR receipts, or as external transactions. Then the opening statement balances. At cutover I reconcile book to bank for each account, and finance signs off before the first live statement loads.\"\n\nTip: Focus on uncleared items. That's the part people forget.", "D"],
+["Treasury", "When would a company use a dedicated treasury management system with Fusion?", "**Why they ask:** a senior question about knowing Fusion's limits.\n\n**Answer:**\n\"I'd suggest a treasury system like Kyriba or FIS when liquidity is complex: many banks and countries, an in-house bank, netting or cash pooling. Also when treasury manages investments, debt, FX hedging, risk and hedge accounting. And when they need a bank connectivity hub or SWIFT. The integration is clear: the treasury system sends journals to GL and payment instructions to or from Fusion; Fusion sends AP and AR forecasts and bank statements to the treasury system. For a company with ten bank accounts in one country, Fusion alone is enough.\"\n\nTip: Say when you wouldn't need one. It shows judgment, not just product knowledge.", "D"],
+["Interview", "What metrics show a healthy Cash Management process?", "**Why they ask:** to see if you measure the process, not just run it.\n\n**Answer:**\n\"I track five: auto-reconciliation rate, where above 90% is healthy; the number and age of unreconciled items; how many days after month-end the bank reconciliations are done; the payment rejection rate; and how close the cash forecast was to actual cash. If the auto-match rate drops suddenly, it usually means a bank changed its file format, so that one gets a weekly look.\"\n\nTip: Give a target for at least one metric. Numbers make it believable.", "B"]
 ]);

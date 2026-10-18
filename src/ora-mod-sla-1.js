@@ -1,99 +1,19 @@
 // Oracle Modules — SLA, Tax & Accounting Hub. Format: [topic, question, answer, 'B'|'D']
-QB['ora-mod-sla'] = (QB['ora-mod-sla'] || []).concat([
-['SLA', 'Explain the SLA hierarchy: accounting method, rule sets and rules.',
-`- **Subledger accounting method** (e.g. Standard Accrual) assigned to a ledger — groups the rules for all subledgers.
-- **Journal entry rule sets** per **event class/type** (e.g. Payables Invoices) — attached to the method.
-- Inside rule sets: **journal line rules** (debit/credit, accounting class, conditions), **account derivation rules** (how to build accounts), **description rules**, **supporting references**.
-- **Mapping sets** and **sources** feed the rules.
-- After changes: **activate** the rule set (Fusion validates and compiles).`, 'D'],
-
-['SLA', 'What is the difference between "Create Accounting" draft, final and final post?',
-`- **Draft**: entries created for review; can be deleted and recreated; not transferred to GL.
-- **Final**: locked entries; transferred to GL (if transfer selected).
-- **Final post**: transferred and posted in GL in one run.
-- Use draft to test rule changes; final for production runs.`, 'B'],
-
-['SLA', 'How do account derivation rules build an account?',
-`- Rule types: **account combination** (whole account), **segment** (one segment) or **value set**-based.
-- Conditions choose which rule applies (e.g. by supplier type, item category).
-- Values come from **constants**, **sources** (transaction attributes, DFFs) or **mapping sets**.
-- Combine: start from a default account (e.g. from the distribution) and override specific segments (natural account from mapping, cost center from the transaction).
-- Order/priority matters — first matching condition wins.`, 'D'],
-
-['SLA', 'How do you add a custom source to SLA rules?',
-`- Use a **descriptive flexfield** on the transaction (e.g. invoice line) exposed as a source, or create a **custom source** (where supported) based on existing sources/formulas.
-- Assign it to the event class; use it in conditions or derivation rules.
-- Test with transactions that populate and don't populate the field.`, 'D'],
-
-['SLA', 'What are accounting classes and why do they matter?',
-`- Each journal line gets an **accounting class** (Liability, Item Expense, Receivable, Revenue, Gain, Loss, Cash Clearing…).
-- Used for **reporting**, **third-party balances**, **reconciliation reports** and rule conditions (e.g. override only the Liability class).
-- Mention you use them to validate entries in testing.`, 'B'],
-
-['SLA', 'How do you correct accounting that was wrong after Create Accounting in final mode?',
-`- You can't edit final SLA entries. Options:
-- **Fix the source transaction** (e.g. adjust distribution) — creates new events and accounting.
-- **Manual subledger journal entries** (SLA manual entries) with the same audit trail.
-- **GL journal** as last resort (breaks subledger-to-GL reconciliation unless reclassed with care).
-- Fix the **rule** for future transactions.`, 'D'],
-
-['SLA', 'What is the purpose of supporting references and third-party balances?',
-`- **Supporting references** store extra attributes on journal lines and keep **balances by those values** (e.g. by contract, project, supplier) — useful for reconciliation and analysis.
-- **Third-party balances**: balances by supplier/customer on control accounts — supports supplier/customer balance reports and reconciliation.`, 'D'],
-
-['SLA', 'What diagnostics help with SLA issues?',
-`- **Create Accounting execution report** (errors per event).
-- **Subledger journal entry** inquiry with **view accounting** and **account derivation** details.
-- **Accounting event diagnostics** (enable SLA diagnostics profile, run diagnostics report) — shows source values used.
-- **Unaccounted transactions** reports by subledger.`, 'D'],
-
-['Tax', 'Explain the Fusion Tax configuration hierarchy.',
-`- **Tax regime** (country/tax type, e.g. US Sales Tax, UK VAT) → **Tax** → **Tax status** (standard, reduced, exempt) → **Tax rate** (with effective dates) → **Tax jurisdiction** (geography).
-- **Tax rules**: determine place of supply, applicability, status, rate, taxable basis, calculation, recovery.
-- **Party tax profiles** and **registrations** for legal entities, suppliers, customers.
-- **Product tax classification** for items/services.
-- **Configuration owner** controls (global vs per legal entity).`, 'D'],
-
-['Tax', 'How do you handle VAT recovery on purchases?',
-`- **Recovery rates** (100%, partial, 0%) on tax rates, with rules (e.g. non-recoverable for entertainment).
-- Recoverable tax → **tax receivable/input VAT** account; non-recoverable → expense or asset cost.
-- **Partial recovery** for mixed-use businesses.
-- Reports for VAT returns from tax reporting ledger.`, 'D'],
-
-['Tax', 'What is the tax reporting ledger and how is it used?',
-`- Stores tax lines from AP/AR/GL (and other sources) with attributes needed for **tax returns** (VAT returns, sales/purchase registers, EC sales lists).
-- Run **Select Tax Reporting Data**/extracts and country-specific reports.
-- Supports **reconciliation** of tax accounts to tax reports.`, 'D'],
-
-['Tax', 'How do withholding taxes work in Fusion Payables?',
-`- **Withholding tax regime/codes** and rates; supplier site withholding applicability.
-- At invoice validation or payment, Oracle withholds tax and creates a **withholding tax invoice** to the tax authority (supplier).
-- Certificates and reporting by jurisdiction.
-- Common in Latin America, India, some EU countries.`, 'D'],
-
-['Tax', 'What are e-invoicing mandates and how do they affect Oracle?',
-`- Many countries require **electronic invoices** cleared or reported to tax authorities (Mexico CFDI, Italy SDI, India IRN, Saudi ZATCA, PEPPOL-based regimes, and upcoming EU ViDA requirements).
-- **Oracle approach**: localizations and partner integrations to generate/submit invoices, receive acknowledgments, and store legal documents.
-- Plan per country with tax/legal teams; test early.`, 'D'],
-
-['Accounting Hub', 'How do you implement Fusion Accounting Hub for a non-Oracle source?',
-`- Register a **subledger application**; define the **event model** (entities, event classes/types).
-- Define **sources** (transaction attributes) and **source assignments**.
-- Build **accounting rules** (journal line rules, ADRs, mapping sets) and an **accounting method**.
-- Load transactions via **FBDI/REST** (Accounting Hub transaction objects), run **Create Accounting**.
-- Reconcile source → FAH → GL; drill down available for analysis.`, 'D'],
-
-['Accounting Hub', 'Why use Accounting Hub instead of summarized GL journal imports?',
-`- **Accounting rules centrally controlled** by finance (not hard-coded in source systems).
-- **Multi-GAAP** from the same transactions (multiple methods/ledgers).
-- **Detailed audit trail** and drill-down; supporting references for reporting.
-- Better **reconciliation** with source systems.
-- Trade-off: more design and data volume.`, 'D'],
-
-['Interview', 'Give an example of an SLA rule change you made and how you tested it.',
-`Shape:
-- Business need (e.g. separate AP liability account for intercompany suppliers).
-- Rule change (copied method, mapping set by supplier type, ADR on liability line).
-- Tests: invoice, payment, cancellation, prepayment application, credit memo — draft accounting first, then final in test.
-- Result and controls (documentation, approval, audit evidence).`, 'B']
+QB["ora-mod-sla"] = (QB["ora-mod-sla"] || []).concat([
+["SLA", "Explain the SLA hierarchy: accounting method, rule sets and rules.", "**Why they ask:** SLA is the heart of Fusion accounting. They want to know you can find your way around it.\n\n**Answer:**\n\"At the top is the subledger accounting method, like Standard Accrual, assigned to a ledger. It groups the rules for every subledger. Under it are journal entry rule sets, one per event class, for example Payables Invoices. Inside a rule set are journal line rules that say debit or credit, the accounting class and conditions; account derivation rules that build each account; description rules; and supporting references. Sources and mapping sets feed the rules with data. After any change I activate the rule set, which validates and compiles it. And I never edit the seeded method; I copy it first.\"\n\nTip: Say you copy the seeded method. Interviewers listen for it.", "D"],
+["SLA", "What is the difference between \"Create Accounting\" draft, final and final post?", "**Why they ask:** a basic SLA question, but using the wrong mode in production causes real problems.\n\n**Answer:**\n\"Draft creates entries you can review. They aren't transferred to GL and can be deleted and recreated, so I use draft to test a rule change. Final locks the entries and, if transfer is selected, sends them to GL. Final post does that and also posts them in GL in the same run. In production most companies schedule final with transfer, and post in GL as a separate controlled step, so someone reviews the batch first.\"\n\nTip: Explain why many companies don't use final post. It shows you've seen real close controls.", "B"],
+["SLA", "How do account derivation rules build an account?", "**Why they ask:** account derivation rules are the most common SLA customization.\n\n**Answer:**\n\"An ADR can build the whole account combination, one segment, or use a value set. Conditions decide which line of the rule applies, for example by supplier type or item category, and the first condition that matches wins, so the order matters. The value can come from a constant, a source like a transaction attribute or a descriptive flexfield, or a mapping set. The pattern I use most is to start from the default account, for example from the invoice distribution, and override only the segment that needs to change, like the natural account from a mapping set, while the cost center still comes from the transaction.\"\n\nTip: Say \"override only the segment that needs to change\". It's the cleanest design and interviewers know it.", "D"],
+["SLA", "How do you add a custom source to SLA rules?", "**Why they ask:** custom sources come up when the business needs accounting by a field Oracle doesn't provide.\n\n**Answer:**\n\"The common way is a descriptive flexfield on the transaction, for example on the invoice line, which SLA can expose as a source. Where it's supported, I can also create a custom source built from existing sources or a formula. Then I assign it to the event class and use it in a condition or an account derivation rule. In testing I always include transactions where the field is filled and where it's blank, because the blank case is what breaks accounting in production.\"\n\nTip: Mention testing the blank case. It shows experience.", "D"],
+["SLA", "What are accounting classes and why do they matter?", "**Why they ask:** a basic SLA concept that shows up in reporting and rule design.\n\n**Answer:**\n\"Every journal line gets an accounting class, like Liability, Item Expense, Receivable, Revenue, Gain, Loss or Cash Clearing. They're used in reports, in third-party balances, in reconciliation reports, and in rule conditions, for example changing the account only for the Liability class. In testing I check the accounting class on every line, because it tells me the rule fired on the right line.\"\n\nTip: Mention using them in testing. It turns a definition into practice.", "B"],
+["SLA", "How do you correct accounting that was wrong after Create Accounting in final mode?", "**Why they ask:** a real-world problem. They want the right order of fixes.\n\n**Answer:**\n\"Final entries can't be edited, so I have three options. The best is to fix the source transaction, for example adjust or reverse the invoice distribution, which creates new events and correct accounting with a full trail. If that's not possible, I create a manual subledger journal entry in SLA, which keeps the audit trail in the subledger. A GL journal is the last resort, because it breaks the subledger-to-GL reconciliation unless it's carefully documented. Then I fix the rule so future transactions are right.\"\n\nTip: Give the fixes in order of preference and finish with fixing the rule.", "D"],
+["SLA", "What is the purpose of supporting references and third-party balances?", "**Why they ask:** these features help reconciliation, and many consultants don't use them.\n\n**Answer:**\n\"Supporting references store extra attributes on journal lines, like contract, project or supplier, and SLA keeps balances by those values. That lets me reconcile or analyze an account by something that isn't in the chart of accounts. Third-party balances are balances by supplier or customer on control accounts, so I can report and reconcile what we owe each supplier or what each customer owes us directly from the accounting. I've used supporting references to reconcile intercompany accounts by counterparty.\"\n\nTip: Give one real use, like intercompany reconciliation.", "D"],
+["SLA", "What diagnostics help with SLA issues?", "**Why they ask:** troubleshooting SLA is a daily support task.\n\n**Answer:**\n\"I start with the Create Accounting execution report, which lists errors by event. Then I look at the subledger journal entry, with view accounting and the account derivation details, to see which rule built which account. If that's not enough, I enable the SLA diagnostics profile and run the accounting event diagnostics report, which shows the actual source values the rules used. That usually answers why a rule didn't fire. And I run the unaccounted transactions reports by subledger to see the full scope of the problem.\"\n\nTip: Mention the diagnostics report showing source values. It's the tool that actually solves the hard cases.", "D"],
+["Tax", "Explain the Fusion Tax configuration hierarchy.", "**Why they ask:** tax setup is complex, and they want to see you understand how the pieces nest.\n\n**Answer:**\n\"It goes tax regime, then tax, then tax status, then tax rate, with tax jurisdictions defining the geography. For example, the UK VAT regime has a VAT tax, with statuses like standard, reduced and zero, each with rates and effective dates. Tax rules then decide place of supply, whether tax applies, which status and rate, the taxable basis, the calculation and recovery. Parties need tax profiles and registrations, legal entities, suppliers and customers. Items and services need product tax classifications. And the configuration owner decides whether the setup is global or per legal entity.\"\n\nTip: Use one real regime as the example. It makes the hierarchy easy to follow.", "D"],
+["Tax", "How do you handle VAT recovery on purchases?", "**Why they ask:** recovery affects cost and the VAT return.\n\n**Answer:**\n\"Each tax rate has a recovery rate, 100%, partial or zero, and rules can override it, for example entertainment is non-recoverable in many countries. Recoverable VAT goes to the input VAT account and is claimed on the return. Non-recoverable VAT goes to the expense or becomes part of the asset cost. For mixed-use businesses, like a company with both taxable and exempt sales, partial recovery rates apply. The VAT return is built from the tax reporting ledger.\"\n\nTip: Give the entertainment example. It shows you've set up a real recovery rule.", "D"],
+["Tax", "What is the tax reporting ledger and how is it used?", "**Why they ask:** tax returns depend on it.\n\n**Answer:**\n\"The tax reporting ledger stores tax lines from AP, AR, GL and other sources, with all the attributes needed for tax returns: VAT returns, sales and purchase registers, and EC sales lists. I run Select Tax Reporting Data or the extract, then the country reports. It's also how I reconcile the tax accounts in GL to what's reported, which is the check every tax team wants before filing.\"\n\nTip: Mention the reconciliation to GL. It's what tax teams actually care about.", "D"],
+["Tax", "How do withholding taxes work in Fusion Payables?", "**Why they ask:** important for Latin America, India and parts of Europe.\n\n**Answer:**\n\"I set up a withholding tax regime with codes and rates, and mark which supplier sites are subject to it. At invoice validation or at payment, depending on the setup, Oracle withholds the tax from what we pay the supplier and creates a withholding tax invoice payable to the tax authority, which is set up as a supplier. Then certificates are issued to suppliers and reports are produced for each jurisdiction. In India, for example, TDS withholding is standard on many services.\"\n\nTip: Mention that the tax authority is a supplier. It's a detail that shows you've set it up.", "D"],
+["Tax", "What are e-invoicing mandates and how do they affect Oracle?", "**Why they ask:** e-invoicing is spreading fast, and global projects now plan for it from day one.\n\n**Answer:**\n\"More and more countries require invoices to be sent to, or cleared by, the tax authority electronically: Mexico CFDI, Italy SDI, India IRN, Saudi ZATCA, PEPPOL-based regimes, and the EU's ViDA requirements coming in. In Oracle that means localizations or partner integrations that generate the invoice in the required format, submit it, receive the acknowledgment and store the legal document. I plan it country by country with the tax and legal teams, and test it early, because in some countries an invoice isn't legally valid until it's cleared.\"\n\nTip: Say \"test early\". In clearance countries, a late failure means you can't bill.", "D"],
+["Accounting Hub", "How do you implement Fusion Accounting Hub for a non-Oracle source?", "**Why they ask:** Accounting Hub projects are specialist work. They want the steps.\n\n**Answer:**\n\"First I register a subledger application and define the event model: entities, event classes and event types. Then I define the sources, the transaction attributes the source system will send, and assign them to the event classes. Then I build the accounting rules, journal line rules, account derivation rules and mapping sets, and an accounting method. Transactions load through FBDI or REST, and Create Accounting turns them into journals for GL. Finally I reconcile source system to Accounting Hub to GL, and set up drill-down so finance can trace a GL balance back to the source transaction.\"\n\nTip: Name the event model first. Everything else depends on getting it right.", "D"],
+["Accounting Hub", "Why use Accounting Hub instead of summarized GL journal imports?", "**Why they ask:** a design trade-off question.\n\n**Answer:**\n\"With Accounting Hub, finance controls the accounting rules in one place instead of having them hard-coded in each source system. The same transactions can produce accounting for more than one GAAP. You get a detailed audit trail, drill-down and supporting references for reporting, and reconciliation to the source is much easier. The trade-off is more design work and more data volume. If a source system already produces clean accounting and only needs a monthly summary, a GL journal import is simpler.\"\n\nTip: Give the case where you wouldn't use it. It shows balanced judgment.", "D"],
+["Interview", "Give an example of an SLA rule change you made and how you tested it.", "**Why they ask:** they want proof you've changed SLA in a controlled way.\n\n**Answer:**\n\"The business wanted AP liability for intercompany suppliers on a separate account from third-party suppliers. I copied the seeded accounting method, created a mapping set from supplier type to natural account, and an account derivation rule on the liability line that overrides only the natural account. I tested in draft first, then final in the test environment, covering invoice, payment, cancellation, prepayment application and credit memo, because each event touches the liability. Then I documented the change, got approval, and kept the test evidence for audit.\"\n\nTip: List the events you tested. That's what separates a real answer from a theoretical one.", "B"]
 ]);
