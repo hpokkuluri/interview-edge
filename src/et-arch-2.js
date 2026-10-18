@@ -1,14 +1,5 @@
-QB['et-arch'] = (QB['et-arch'] || []).concat([
-["Integration", "How do you choose between OIC and other iPaaS tools?",
-`**Answer:** Consider existing enterprise standards, prebuilt adapters for Oracle and other apps, licensing and cost model, team skills, monitoring and governance capabilities, and non-Oracle integration needs. OIC fits Oracle-heavy landscapes; MuleSoft, Boomi or Azure Integration Services may already be enterprise standards.
-
-Tip: Align with enterprise standards.`, 'D'],
-["Events", "How would you use OCI Streaming in an Oracle architecture?",
-`**Answer:** As a Kafka-compatible event backbone for high-volume, real-time data flows — e.g. publishing order and inventory events from Fusion (via OIC) to multiple consumers like analytics, WMS and e-commerce — decoupling producers and consumers.
-
-Tip: Fan-out to many consumers.`, 'D'],
-["Governance", "How do you prevent integration sprawl?",
-`**Answer:** Integration catalog with owners, reusable services, design authority approval for new integrations, retirement of unused ones, and monitoring of usage.
-
-Tip: Catalog and ownership.`, 'D']
+QB["et-arch"] = (QB["et-arch"] || []).concat([
+["Integration", "How do you choose between OIC and other iPaaS tools?", "**Why they ask:** platform selection.\n\n**Answer:**\n\"I consider existing enterprise standards, prebuilt adapters for Oracle and other apps, licensing and cost, team skills, monitoring and governance capabilities, and non-Oracle integration needs. OIC fits Oracle-heavy landscapes; MuleSoft, Boomi or Azure Integration Services may already be the enterprise standard.\"\n\nTip: Say \"align with enterprise standards\". Fighting them rarely pays.", "D"],
+["Events", "How would you use OCI Streaming in an Oracle architecture?", "**Why they ask:** event architecture.\n\n**Answer:**\n\"As a Kafka-compatible event backbone for high-volume, real-time data. For example, publishing order and inventory events from Fusion through OIC to several consumers, like analytics, the WMS and e-commerce, so producers and consumers are decoupled.\"\n\nTip: Mention fan-out to many consumers. It's the main reason to use it.", "D"],
+["Governance", "How do you prevent integration sprawl?", "**Why they ask:** governance at scale.\n\n**Answer:**\n\"An integration catalog with owners, reusable services, design authority approval for new integrations, retiring unused ones, and monitoring usage.\"\n\nTip: Say \"catalog and ownership\". They're the foundation.", "D"]
 ]);

@@ -1,239 +1,50 @@
 // Oracle Technical Architect (15+ yrs). Format: [topic, question, answer, 'B'|'D']
-QB['et-arch'] = [
-["Role", "What does an Oracle technical architect do?",
-`**Why they ask:** distinguishes architecture from lead development.
-
-**Answer:** Defines the target technical architecture around Oracle applications: integration architecture, extension strategy (SaaS + PaaS), data and analytics architecture, security and identity, environments and DevOps, non-functional requirements (performance, availability, resilience), and governance. Makes and documents key decisions, guides technical leads, and aligns with enterprise architecture.
-
-Tip: Mention architecture decision records (ADRs).`, 'B'],
-
-["Integration", "How do you define an integration architecture for Oracle Fusion?",
-`**Answer:** Inventory systems and data flows; define patterns (API-led REST, event-driven via business events, bulk via ERP Integration Service/FBDI, analytics via BICC/FDI, file/SFTP); choose the platform (OIC, plus API Gateway, Streaming as needed); standardize canonical models, error handling, security and monitoring; and set governance through an integration catalog and design authority.
-
-Tip: Draw a high-level diagram in interviews if allowed.`, 'D'],
-
-["Integration", "What is API-led connectivity?",
-`**Answer:** Layering APIs into system APIs (access to systems of record), process APIs (business logic/orchestration), and experience APIs (tailored to consumers like portals or mobile). It increases reuse and decouples consumers from back-end changes.
-
-Tip: Useful framing even with OIC.`, 'D'],
-
-["Integration", "When would you use events vs APIs vs batch?",
-`**Answer:** **Events** for real-time notifications and decoupling (order approved → notify warehouse). **APIs** for request-response needs and lookups. **Batch** for high volumes where latency is acceptable (daily journals, bulk loads). Choose by volume, latency, consistency and coupling.
-
-Tip: Trade-off thinking.`, 'D'],
-
-["Extensions", "What is your extension strategy for Oracle SaaS?",
-`**Answer:** Configure first; then in-app extensions (flexfields, Application Composer, VB Studio Redwood extensions, page composer, AI Agent Studio); then side-by-side PaaS extensions on OCI (Visual Builder apps, Autonomous Database, Functions) integrated via APIs and events. Never modify the SaaS core; keep extensions upgrade-safe.
-
-Tip: "Clean core" equivalent for Oracle.`, 'D'],
-
-["Data", "How do you design data and analytics architecture around Fusion?",
-`**Answer:** Use Fusion Data Intelligence or BICC → Autonomous Data Warehouse → Oracle Analytics Cloud (or other analytics platforms), with incremental pipelines, master data governance, semantic models, and security aligned with Fusion roles. OTBI/BIP for operational reporting.
-
-Tip: Separate operational vs analytical reporting.`, 'D'],
-
-["Master Data", "How do you approach master data management?",
-`**Answer:** Define systems of record for each domain (customers, suppliers, items, employees, chart of accounts), governance processes and data owners, quality rules, synchronization patterns, and tools (Fusion Product Hub, Customer Data Management, or MDM platforms).
-
-Tip: Ownership before tools.`, 'D'],
-
-["Security", "How do you design identity and access for Oracle Cloud?",
-`**Answer:** SSO with the corporate IdP (Microsoft Entra ID, Okta) via SAML/OIDC, OCI IAM identity domains, automated user provisioning (SCIM or HCM-driven), role design with least privilege, SoD controls, integration users with OAuth, and audit logging.
-
-Tip: Mention SoD tooling (Oracle Risk Management/Advanced Access Controls).`, 'D'],
-
-["Security", "How do you protect sensitive data across integrations?",
-`**Answer:** Encryption in transit (TLS) and at rest, field-level masking, tokenization for card data, least-privilege integration roles, data classification, secure key/credential management (OCI Vault), and non-production data masking.
-
-Tip: Data classification first.`, 'D'],
-
-["NFRs", "Which non-functional requirements do you define?",
-`**Answer:** Performance (response times, batch windows), scalability (volumes, growth), availability and resilience, security, recoverability (RPO/RTO for PaaS components), maintainability, monitoring, and compliance.
-
-Tip: Quantify each.`, 'D'],
-
-["Resilience", "How do you design resilient integrations?",
-`**Answer:** Retries with backoff for transient failures, idempotent processing, dead-letter handling, circuit breakers for failing targets, asynchronous decoupling with queues/streaming, monitoring and alerting, and replay capability.
-
-Tip: Assume failures will happen.`, 'D'],
-
-["OCI", "Which OCI services complement Oracle Fusion?",
-`**Answer:** OIC (integration), Visual Builder (apps), Autonomous Database and ADW (data), Object Storage (files), Functions (serverless logic), API Gateway, Streaming (events), Vault (secrets), Logging and Monitoring, OCI Generative AI and AI services.
-
-Tip: Name a solution combining several.`, 'D'],
-
-["AI", "How do you architect AI solutions with Oracle applications?",
-`**Answer:** Use embedded Fusion AI features and AI Agent Studio for in-app agents with Fusion security; for custom AI, use OCI Generative AI or other LLMs with retrieval (RAG) over approved data, tools exposed via secure APIs, guardrails, evaluation, monitoring, and human review for sensitive decisions.
-
-Tip: Governance and security.`, 'D'],
-
-["DevOps", "How do you design CI/CD for Oracle extensions and integrations?",
-`**Answer:** Git repositories, VB Studio pipelines for extensions and apps, OIC project export/import automation (via REST APIs), automated tests, environment configuration management, approvals, and release notes.
-
-Tip: Automate repeatable deployments.`, 'D'],
-
-["Environments", "How do you plan Fusion environments?",
-`**Answer:** Production and test pods (plus additional non-prod as needed for development, training, UAT), refresh (P2T/T2T) calendar aligned to project phases, quarterly update cadence, and matching PaaS environments.
-
-Tip: Refresh planning affects testing.`, 'D'],
-
-["Migration", "How do you architect an EBS-to-Fusion migration?",
-`**Answer:** Assess EBS footprint and customizations, define target architecture and phasing (big bang vs phased by module/region), coexistence integrations, data migration architecture (extract-transform-load with reconciliation), retire customizations, plan extensions, and decommissioning/archival of EBS data.
-
-Tip: Archive strategy for historical data.`, 'D'],
-
-["Migration", "How do you handle historical data in a migration?",
-`**Answer:** Migrate only open transactions and balances (plus limited history if required), archive history in a read-only data store or reporting warehouse, and keep legal retention compliance.
-
-Tip: Avoid migrating everything.`, 'D'],
-
-["Coexistence", "How do you design coexistence between EBS and Fusion?",
-`**Answer:** Define systems of record per process, integrate master data and transactions via OIC (EBS adapter with connectivity agent and ERP Cloud adapter), align charts of accounts and calendars, and plan for reconciliation and eventual cutover.
-
-Tip: Minimize coexistence duration.`, 'D'],
-
-["Multi-pillar", "How do you integrate Fusion ERP, HCM and SCM with other platforms?",
-`**Answer:** Fusion pillars share a common platform; external integrations follow standard patterns. For example, HCM → identity provisioning, ERP ↔ banks, SCM ↔ WMS/TMS/3PL, ERP ↔ CRM (Salesforce), with OIC as hub.
-
-Tip: Hub-and-spoke vs point-to-point.`, 'D'],
-
-["Governance", "How do you run a design authority?",
-`**Answer:** Regular reviews of designs against principles and standards, decision logs (ADRs), exception handling, reuse checks, and alignment with enterprise architecture.
-
-Tip: Lightweight but consistent.`, 'D'],
-
-["Principles", "What architecture principles do you set for Oracle programs?",
-`**Answer:** Adopt standard functionality first; extend, don't customize; API-first and event-driven where appropriate; single source of truth for master data; security by design; automate deployments; design for supportability and quarterly updates.
-
-Tip: Principles guide decisions.`, 'D'],
-
-["Performance", "How do you approach performance architecture?",
-`**Answer:** Volume modeling, bulk patterns for high volumes, asynchronous processing, caching reference data, scheduling heavy jobs off-peak, and performance testing in SIT.
-
-Tip: Model volumes early.`, 'D'],
-
-["Monitoring", "How do you design observability for the Oracle landscape?",
-`**Answer:** Centralized logging and monitoring (OIC monitoring, OCI Logging/Monitoring, APM), business transaction tracking, dashboards for integration health and SLAs, alerting to support tools (ServiceNow), and reconciliation reports.
-
-Tip: Business-level observability.`, 'D'],
-
-["Cost", "How do you manage costs in Oracle cloud architecture?",
-`**Answer:** Right-size OIC message packs and PaaS services, schedule non-prod environments, monitor usage, avoid unnecessary data extracts, and review subscriptions regularly.
-
-Tip: FinOps awareness.`, 'D'],
-
-["Vendors", "How do you evaluate third-party tools around Oracle?",
-`**Answer:** Fit to requirements and architecture, integration capability, security and compliance, total cost, vendor viability and support, and references.
-
-Tip: Avoid tool sprawl.`, 'D'],
-
-["Stakeholders", "How do you communicate architecture to executives?",
-`**Answer:** Business outcomes, risks and costs of options, simple diagrams, and clear recommendations — avoiding technical detail unless asked.
-
-Tip: Business language.`, 'B'],
-
-["Stakeholders", "How do you handle disagreement with enterprise architecture?",
-`**Answer:** Understand their standards and reasoning, present trade-offs with data, propose options, and escalate to a design authority decision if needed.
-
-Tip: Constructive negotiation.`, 'D'],
-
-["Scenario", "The business wants a custom feature Oracle doesn't support. What do you do?",
-`**Answer:** Challenge the requirement and its value, check roadmap and standard alternatives, consider process change, and if still needed, design a side-by-side extension that doesn't break upgrades.
-
-Tip: Value and upgrade safety.`, 'D'],
-
-["Scenario", "Integration failures are causing month-end delays. How do you fix it?",
-`**Answer:** Analyze failure patterns and root causes, redesign fragile integrations (idempotency, retries, validation upstream), add monitoring and reconciliation, and schedule critical integrations with buffers before close.
-
-Tip: Systemic fix.`, 'D'],
-
-["Scenario", "An acquisition needs to be onboarded to your Oracle instance in 90 days. What's your approach?",
-`**Answer:** Assess the acquired company's processes and data, decide enterprise structure changes (new legal entities, ledgers, BUs), template-based configuration, prioritized integrations (banks, payroll), data migration of open items and balances, security roles, and phased go-live.
-
-Tip: Template approach accelerates onboarding.`, 'D'],
-
-["Behavioral", "Tell me about an architecture you designed.",
-`**Sample answer:** "I designed the integration architecture for a global Fusion rollout: OIC hub with 60 integrations, event-driven order flows to WMS, BICC to ADW for analytics, SSO with Entra ID and automated provisioning from HCM. It supported four regional go-lives with standard patterns and low support effort."
-
-Tip: Scope and principles.`, 'B'],
-
-["Behavioral", "Tell me about a decision you made that didn't work out.",
-`**Sample answer:** "We used point-to-point REST calls for a high-volume item sync; it hit API limits. We moved to batch FBDI with deltas. Now I model volumes before choosing patterns."
-
-Tip: Learning.`, 'B'],
-
-["Behavioral", "How do you keep technical leads aligned with architecture?",
-`**Answer:** Clear principles and reference designs, design reviews, regular architecture forums, and being accessible for guidance.
-
-Tip: Enable, don't police.`, 'B'],
-
-["Strategy", "How do you build an Oracle technology roadmap?",
-`**Answer:** Align to business strategy, assess current state, identify gaps (Redwood adoption, AI agents, analytics, integration modernization), prioritize initiatives by value and dependency, and plan quarterly increments.
-
-Tip: Tie to quarterly update features.`, 'D'],
-
-["Redwood", "What is the architectural impact of Redwood?",
-`**Answer:** Shift of UI extensions to VB Studio, new personalization model, changes to test automation and training, and opportunities for consistent UX across custom VB apps using Redwood components.
-
-Tip: Plan extension migration.`, 'D'],
-
-["Compliance", "How do you design for SOX and audit requirements?",
-`**Answer:** Controls in system configuration (approvals, SoD), change management for extensions and integrations, audit trails, IPE validation of reports used in controls, and access reviews.
-
-Tip: Built-in compliance.`, 'D'],
-
-["Disaster Recovery", "How do you approach DR for an Oracle SaaS landscape?",
-`**Answer:** Oracle manages SaaS DR per its service descriptions; architects must plan DR for PaaS components (OIC, databases, VB apps) with defined RPO/RTO, backups, cross-region options, and runbooks; and business continuity procedures for integration outages.
-
-Tip: Shared responsibility model.`, 'D'],
-
-["Testing", "How do you ensure testability in architecture?",
-`**Answer:** Modular integrations, mockable endpoints, test data strategies, automated regression for quarterly updates, and environment parity.
-
-Tip: Design for testing.`, 'D'],
-
-["Interview", "What questions would you ask in an architect interview?",
-`**Answer:** "What's the current integration landscape and pain points?", "How many customizations exist?", "What's the governance model?", "What are the strategic priorities — AI, analytics, M&A?"
-
-Tip: Diagnostic.`, 'B'],
-
-["Career", "Why are you ready for an architect role?",
-`**Sample answer:** "I've designed and governed integration and extension architectures for multi-country Fusion programs, led technical teams, and partnered with business and enterprise architecture."
-
-Tip: Proof.`, 'B'],
-
-["Closing", "Why should we hire you as Oracle technical architect?",
-`**Sample answer:** "I bring deep Oracle SaaS and PaaS expertise, proven integration and extension architectures, strong security and governance practices, and a business-first mindset that keeps solutions upgrade-safe."
-
-Tip: Value statement.`, 'B'],
-
-["Patterns", "What is the strangler pattern and when is it useful?",
-`**Answer:** Gradually replacing parts of a legacy system by routing functionality to new services until the old system can be retired — useful for phased EBS or legacy decommissioning.
-
-Tip: Migration strategy.`, 'D'],
-
-["Patterns", "What is a canonical data model?",
-`**Answer:** A common, system-independent representation of business entities (customer, order) used in integrations so each system maps to the canonical model instead of to every other system.
-
-Tip: Reduces mapping complexity.`, 'D'],
-
-["Documentation", "What architecture artifacts do you produce?",
-`**Answer:** Context and integration diagrams, solution architecture documents, ADRs, integration catalog, security architecture, NFR specifications, and environment/deployment diagrams.
-
-Tip: Keep them current.`, 'B'],
-
-["Analytics", "OTBI, BIP, FDI or OAC — how do you choose?",
-`**Answer:** OTBI for real-time operational self-service; BIP for formatted documents and extracts; FDI for prebuilt cross-pillar analytics and KPIs with historical data; OAC for broader enterprise analytics and visualization across sources.
-
-Tip: Use-case driven.`, 'D'],
-
-["Identity", "How do you automate user provisioning in Fusion?",
-`**Answer:** Drive provisioning from HCM (new hire → user account and role mapping rules), or from the corporate IdP via SCIM; automate deprovisioning on termination; and periodic access certification.
-
-Tip: Joiner-mover-leaver process.`, 'D'],
-
-["Leadership", "How do you mentor future architects?",
-`**Answer:** Involve them in design decisions, explain trade-offs, review their designs, and give them ownership of architecture domains.
-
-Tip: Build capability.`, 'B']
-];
+QB["et-arch"] = (QB["et-arch"] || []).concat([
+["Role", "What does an Oracle technical architect do?", "**Why they ask:** distinguishes architecture from lead development.\n\n**Answer:** Defines the target technical architecture around Oracle applications: integration architecture, extension strategy (SaaS + PaaS), data and analytics architecture, security and identity, environments and DevOps, non-functional requirements (performance, availability, resilience), and governance. Makes and documents key decisions, guides technical leads, and aligns with enterprise architecture.\n\nTip: Mention architecture decision records (ADRs).", "B"],
+["Integration", "How do you define an integration architecture for Oracle Fusion?", "**Why they ask:** the core architect question.\n\n**Answer:**\n\"I start by inventorying the systems and data flows. Then I define a small set of patterns: API-led REST, event-driven through business events, bulk through the ERP Integration Service and FBDI, analytics through BICC or Fusion Data Intelligence, and file transfer over SFTP. I choose the platform, usually OIC, with API Gateway and Streaming where needed. I standardize canonical models, error handling, security and monitoring. And I govern it through an integration catalog and a design authority.\"\n\nTip: If they allow it, draw a high-level diagram. It shows clarity of thought.", "D"],
+["Integration", "What is API-led connectivity?", "**Why they ask:** a common architecture concept.\n\n**Answer:**\n\"It layers APIs into three tiers. System APIs give access to systems of record. Process APIs hold business logic and orchestration. Experience APIs are tailored to consumers like portals or mobile apps. It increases reuse and shields consumers from back-end changes.\"\n\nTip: Say it's useful framing even when the platform is OIC.", "D"],
+["Integration", "When would you use events vs APIs vs batch?", "**Why they ask:** pattern selection.\n\n**Answer:**\n\"Events are for real-time notifications and decoupling, for example order approved, notify the warehouse. APIs are for request-response needs and lookups. Batch is for high volumes where some delay is acceptable, like daily journals or bulk loads. I choose by volume, latency, consistency and coupling.\"\n\nTip: Show the trade-off thinking. It's what architects are paid for.", "D"],
+["Extensions", "What is your extension strategy for Oracle SaaS?", "**Why they ask:** protecting upgradeability.\n\n**Answer:**\n\"Configure first. Then in-app extensions: flexfields, Application Composer, VB Studio Redwood extensions and AI Agent Studio. Then side-by-side extensions on OCI, like Visual Builder apps, Autonomous Database and Functions, connected through APIs and events. I never modify the SaaS core, and every extension has to be upgrade-safe.\"\n\nTip: Call it Oracle's version of a \"clean core\". Interviewers recognize the idea.", "D"],
+["Data", "How do you design data and analytics architecture around Fusion?", "**Why they ask:** analytics architecture.\n\n**Answer:**\n\"Fusion Data Intelligence or BICC feeds Autonomous Data Warehouse, and Oracle Analytics Cloud or another analytics platform sits on top. Pipelines are incremental, with master data governance, semantic models, and security aligned with Fusion roles. OTBI and BIP stay for operational reporting.\"\n\nTip: Separate operational and analytical reporting. It's the key principle.", "D"],
+["Master Data", "How do you approach master data management?", "**Why they ask:** MDM is foundational.\n\n**Answer:**\n\"I define the system of record for each domain: customers, suppliers, items, employees and the chart of accounts. Then governance processes and data owners, quality rules, synchronization patterns, and the tools, like Fusion Product Hub, Customer Data Management, or an MDM platform.\"\n\nTip: Say \"ownership before tools\". It's where MDM succeeds or fails.", "D"],
+["Security", "How do you design identity and access for Oracle Cloud?", "**Why they ask:** identity architecture.\n\n**Answer:**\n\"SSO with the corporate identity provider, like Microsoft Entra ID or Okta, through SAML or OIDC, with OCI IAM identity domains. Automated provisioning through SCIM or driven from HCM. Least-privilege role design and SoD controls. Integration users authenticate with OAuth. And audit logging.\"\n\nTip: Mention SoD tooling like Advanced Access Controls.", "D"],
+["Security", "How do you protect sensitive data across integrations?", "**Why they ask:** data protection.\n\n**Answer:**\n\"Encryption in transit with TLS and at rest. Field-level masking. Tokenization for card data. Least-privilege integration roles. Data classification. Secure key and credential management in OCI Vault. And masking in non-production.\"\n\nTip: Say \"data classification first\". You protect what you've classified.", "D"],
+["NFRs", "Which non-functional requirements do you define?", "**Why they ask:** NFRs are an architect's responsibility.\n\n**Answer:**\n\"Performance, like response times and batch windows. Scalability for volumes and growth. Availability and resilience. Security. Recoverability, with RPO and RTO for PaaS components. Maintainability. Monitoring. And compliance.\"\n\nTip: Say you quantify each one. Vague NFRs can't be tested.", "D"],
+["Resilience", "How do you design resilient integrations?", "**Why they ask:** integrations fail; design for it.\n\n**Answer:**\n\"Retries with backoff for transient failures, idempotent processing, dead-letter handling, circuit breakers for failing targets, asynchronous decoupling with queues or streaming, monitoring and alerting, and the ability to replay.\"\n\nTip: Say \"assume failures will happen\". It's the architect's mindset.", "D"],
+["OCI", "Which OCI services complement Oracle Fusion?", "**Why they ask:** platform breadth.\n\n**Answer:**\n\"OIC for integration, Visual Builder for apps, Autonomous Database and ADW for data, Object Storage for files, Functions for serverless logic, API Gateway, Streaming for events, Vault for secrets, Logging and Monitoring, and OCI Generative AI and AI services.\"\n\nTip: Describe one solution that combines several. It shows design, not a list.", "D"],
+["AI", "How do you architect AI solutions with Oracle applications?", "**Why they ask:** current architecture skills.\n\n**Answer:**\n\"For in-app agents, I use Fusion's embedded AI and AI Agent Studio, which inherit Fusion security. For custom AI, I use OCI Generative AI or other LLMs with retrieval over approved data, tools exposed through secure APIs, guardrails, evaluation and monitoring, and human review for sensitive decisions.\"\n\nTip: Lead with governance and security. That's what clients worry about.", "D"],
+["DevOps", "How do you design CI/CD for Oracle extensions and integrations?", "**Why they ask:** delivery maturity.\n\n**Answer:**\n\"Git repositories, VB Studio pipelines for extensions and apps, automated OIC project export and import through its REST APIs, automated tests, environment configuration management, approvals and release notes.\"\n\nTip: Say \"automate repeatable deployments\". Manual moves cause errors.", "D"],
+["Environments", "How do you plan Fusion environments?", "**Why they ask:** environment strategy.\n\n**Answer:**\n\"Production and test pods, plus more non-production environments as needed for development, training or UAT. A refresh calendar, production-to-test and test-to-test, aligned with project phases. The quarterly update cadence. And matching PaaS environments.\"\n\nTip: Say \"refresh planning affects testing\". Stale test data hides problems.", "D"],
+["Migration", "How do you architect an EBS-to-Fusion migration?", "**Why they ask:** a common architecture engagement.\n\n**Answer:**\n\"I assess the EBS footprint and customizations, define the target architecture and phasing, big bang or phased by module or region, and design coexistence integrations. The data migration architecture is extract, transform and load with reconciliation. Customizations are retired where possible, extensions planned, and EBS is decommissioned with its data archived.\"\n\nTip: Mention the archive strategy. Historical data needs a home.", "D"],
+["Migration", "How do you handle historical data in a migration?", "**Why they ask:** a cost and compliance decision.\n\n**Answer:**\n\"I migrate only open transactions and balances, plus limited history if the business needs it. The rest goes into a read-only archive or reporting warehouse, kept for legal retention.\"\n\nTip: Say \"avoid migrating everything\". It's expensive and rarely needed.", "D"],
+["Coexistence", "How do you design coexistence between EBS and Fusion?", "**Why they ask:** phased migration design.\n\n**Answer:**\n\"I define the system of record for each process. Master data and transactions integrate through OIC, using the EBS adapter with the connectivity agent and the ERP Cloud adapter. Charts of accounts and calendars are aligned. And I plan reconciliation and the eventual cutover.\"\n\nTip: Say \"minimize coexistence duration\". It's costly to run.", "D"],
+["Multi-pillar", "How do you integrate Fusion ERP, HCM and SCM with other platforms?", "**Why they ask:** enterprise integration design.\n\n**Answer:**\n\"The Fusion pillars share a common platform, so external integrations follow standard patterns. For example, HCM feeds identity provisioning, ERP connects to banks, SCM connects to WMS, TMS and 3PLs, and ERP connects to CRM like Salesforce, with OIC as the hub.\"\n\nTip: Contrast hub-and-spoke with point-to-point. Hub-and-spoke scales.", "D"],
+["Governance", "How do you run a design authority?", "**Why they ask:** governance practice.\n\n**Answer:**\n\"Regular reviews of designs against principles and standards, decision records, a process for exceptions, reuse checks, and alignment with enterprise architecture.\"\n\nTip: Say \"lightweight but consistent\". Heavy governance gets bypassed.", "D"],
+["Principles", "What architecture principles do you set for Oracle programs?", "**Why they ask:** principles guide every decision.\n\n**Answer:**\n\"Adopt standard functionality first. Extend, don't customize. API-first and event-driven where appropriate. One source of truth for master data. Security by design. Automated deployments. And design for supportability and quarterly updates.\"\n\nTip: Say \"principles guide decisions\". It's why you set them early.", "D"],
+["Performance", "How do you approach performance architecture?", "**Why they ask:** performance by design.\n\n**Answer:**\n\"Volume modeling, bulk patterns for high volumes, asynchronous processing, caching reference data, scheduling heavy jobs off-peak, and performance testing in SIT.\"\n\nTip: Say \"model volumes early\". It decides the patterns.", "D"],
+["Monitoring", "How do you design observability for the Oracle landscape?", "**Why they ask:** operations.\n\n**Answer:**\n\"Centralized logging and monitoring with OIC monitoring, OCI Logging and Monitoring, and APM. Business transaction tracking. Dashboards for integration health and SLAs. Alerts into support tools like ServiceNow. And reconciliation reports.\"\n\nTip: Say \"business-level observability\". Technical green doesn't mean business green.", "D"],
+["Cost", "How do you manage costs in Oracle cloud architecture?", "**Why they ask:** FinOps awareness.\n\n**Answer:**\n\"I right-size OIC message packs and PaaS services, schedule non-production environments to shut down when idle, monitor usage, avoid unnecessary data extracts, and review subscriptions regularly.\"\n\nTip: Mention FinOps. It's a growing expectation of architects.", "D"],
+["Vendors", "How do you evaluate third-party tools around Oracle?", "**Why they ask:** tool selection judgment.\n\n**Answer:**\n\"Fit to requirements and the architecture, integration capability, security and compliance, total cost, vendor viability and support, and references.\"\n\nTip: Say \"avoid tool sprawl\". Every tool adds integration and skills cost.", "D"],
+["Stakeholders", "How do you communicate architecture to executives?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"I talk about business outcomes, the risks and costs of each option, with simple diagrams and a clear recommendation, and avoid technical detail unless they ask.\"\n\nTip: Say \"business language\". It's the skill.", "B"],
+["Stakeholders", "How do you handle disagreement with enterprise architecture?", "**Why they ask:** working within an organization.\n\n**Answer:**\n\"I make sure I understand their standards and reasoning, present the trade-offs with data, propose options, and if needed, take it to the design authority for a decision.\"\n\nTip: Say \"constructive negotiation\". It shows maturity.", "D"],
+["Scenario", "The business wants a custom feature Oracle doesn't support. What do you do?", "**Why they ask:** protecting the platform while serving the business.\n\n**Answer:**\n\"I challenge the requirement and its value, check Oracle's roadmap and standard alternatives, and consider a process change. If it's still needed, I design a side-by-side extension that won't break on upgrades.\"\n\nTip: Balance value with upgrade safety. That's the answer.", "D"],
+["Scenario", "Integration failures are causing month-end delays. How do you fix it?", "**Why they ask:** systemic problem solving.\n\n**Answer:**\n\"I analyze the failure patterns and root causes. Then I redesign the fragile integrations with idempotency, retries and validation upstream. I add monitoring and reconciliation. And I schedule critical integrations with buffer time before close.\"\n\nTip: Say \"systemic fix\". Patching each failure won't solve it.", "D"],
+["Scenario", "An acquisition needs to be onboarded to your Oracle instance in 90 days. What's your approach?", "**Why they ask:** M&A architecture.\n\n**Answer:**\n\"I assess the acquired company's processes and data, decide the enterprise structure changes, new legal entities, ledgers and BUs, and configure from our template. I prioritize the integrations that matter on day one, like banks and payroll. I migrate open items and balances, set up security roles, and go live in phases.\"\n\nTip: Say \"a template approach accelerates onboarding\". It's the key.", "D"],
+["Behavioral", "Tell me about an architecture you designed.", "**Why they ask:** proof of architecture experience.\n\n**Answer (example):**\n\"I designed the integration architecture for a global Fusion rollout: an OIC hub with 60 integrations, event-driven order flows to the WMS, BICC to ADW for analytics, SSO with Entra ID and automated provisioning from HCM. It supported four regional go-lives using the same patterns, with low support effort.\"\n\nTip: Give scope and the principles behind it.", "B"],
+["Behavioral", "Tell me about a decision you made that didn't work out.", "**Why they ask:** honesty and learning.\n\n**Answer (example):**\n\"We used point-to-point REST calls for a high-volume item sync, and it hit API limits. We moved to batch FBDI loads with deltas. Now I model volumes before choosing a pattern.\"\n\nTip: State the lesson clearly. It's what they're listening for.", "B"],
+["Behavioral", "How do you keep technical leads aligned with architecture?", "**Why they ask:** influence across teams.\n\n**Answer:**\n\"Clear principles and reference designs, design reviews, regular architecture forums, and being easy to reach for guidance.\"\n\nTip: Say \"enable, don't police\". It keeps leads on your side.", "B"],
+["Strategy", "How do you build an Oracle technology roadmap?", "**Why they ask:** strategy.\n\n**Answer:**\n\"I align to business strategy, assess the current state, and identify gaps, like Redwood adoption, AI agents, analytics and integration modernization. Then I prioritize initiatives by value and dependency and plan them in quarterly increments.\"\n\nTip: Tie it to quarterly update features. It keeps the roadmap realistic.", "D"],
+["Redwood", "What is the architectural impact of Redwood?", "**Why they ask:** current architecture changes.\n\n**Answer:**\n\"UI extensions move to VB Studio, there's a new personalization model, test automation and training need to change, and there's an opportunity for a consistent UX across custom Visual Builder apps using Redwood components.\"\n\nTip: Say \"plan the extension migration\". It's real work.", "D"],
+["Compliance", "How do you design for SOX and audit requirements?", "**Why they ask:** compliance by design.\n\n**Answer:**\n\"Controls in system configuration, like approvals and SoD. Change management for extensions and integrations. Audit trails. IPE validation of reports used in controls. And access reviews.\"\n\nTip: Say \"built-in compliance\". It's cheaper than bolting it on.", "D"],
+["Disaster Recovery", "How do you approach DR for an Oracle SaaS landscape?", "**Why they ask:** resilience.\n\n**Answer:**\n\"Oracle manages SaaS disaster recovery under its service descriptions. Architects plan DR for the PaaS components, OIC, databases and Visual Builder apps, with defined RPO and RTO, backups, cross-region options and runbooks, plus business continuity procedures for integration outages.\"\n\nTip: Name the shared responsibility model. It frames the answer.", "D"],
+["Testing", "How do you ensure testability in architecture?", "**Why they ask:** quality by design.\n\n**Answer:**\n\"Modular integrations, endpoints that can be mocked, a test data strategy, automated regression for quarterly updates, and environment parity.\"\n\nTip: Say \"design for testing\". It saves months later.", "D"],
+["Interview", "What questions would you ask in an architect interview?", "**Why they ask:** shows how you diagnose.\n\n**Answer:**\n\"I'd ask: What's the current integration landscape and its pain points? How many customizations exist? What's the governance model? And what are the strategic priorities, AI, analytics or M&A?\"\n\nTip: Ask diagnostic questions. They show how you think.", "B"],
+["Career", "Why are you ready for an architect role?", "**Why they ask:** readiness.\n\n**Answer (sample):**\n\"I've designed and governed integration and extension architectures for multi-country Fusion programs, led technical teams, and worked closely with business leaders and enterprise architecture.\"\n\nTip: Back it with proof. Readiness claims need evidence.", "B"],
+["Closing", "Why should we hire you as Oracle technical architect?", "**Why they ask:** a closing question.\n\n**Answer (sample):**\n\"I bring deep Oracle SaaS and PaaS expertise, proven integration and extension architectures, strong security and governance practices, and a business-first mindset that keeps solutions upgrade-safe.\"\n\nTip: End with business-first. It separates architects from engineers.", "B"],
+["Patterns", "What is the strangler pattern and when is it useful?", "**Why they ask:** migration strategy.\n\n**Answer:**\n\"The strangler pattern gradually replaces parts of a legacy system by routing functions to new services, until the old system can be retired. It's useful for phased EBS or legacy decommissioning.\"\n\nTip: Tie it to EBS migration. It's the practical use.", "D"],
+["Patterns", "What is a canonical data model?", "**Why they ask:** integration design.\n\n**Answer:**\n\"A canonical data model is a common, system-independent representation of business entities, like customer or order. Each system maps to the canonical model instead of to every other system, which cuts mapping complexity.\"\n\nTip: Explain the math: N systems, N mappings instead of N squared.", "D"],
+["Documentation", "What architecture artifacts do you produce?", "**Why they ask:** documentation practice.\n\n**Answer:**\n\"Context and integration diagrams, solution architecture documents, decision records, the integration catalog, security architecture, NFR specifications, and environment and deployment diagrams.\"\n\nTip: Say \"keep them current\". Outdated diagrams mislead.", "B"],
+["Analytics", "OTBI, BIP, FDI or OAC — how do you choose?", "**Why they ask:** analytics tool selection.\n\n**Answer:**\n\"OTBI for real-time operational self-service. BIP for formatted documents and extracts. FDI for prebuilt cross-pillar analytics and KPIs with history. OAC for broader enterprise analytics and visualization across many sources.\"\n\nTip: Say \"use-case driven\". The tool follows the need.", "D"],
+["Identity", "How do you automate user provisioning in Fusion?", "**Why they ask:** identity lifecycle.\n\n**Answer:**\n\"Provisioning is driven from HCM, a new hire creates a user account and role mapping rules assign roles, or from the corporate identity provider through SCIM. Deprovisioning is automated on termination. And there's periodic access certification.\"\n\nTip: Call it the joiner-mover-leaver process. It's the standard term.", "D"],
+["Leadership", "How do you mentor future architects?", "**Why they ask:** building capability.\n\n**Answer:**\n\"I involve them in design decisions, explain the trade-offs, review their designs, and give them ownership of architecture domains.\"\n\nTip: Mention ownership of a domain. It's how architects grow.", "B"]
+]);
