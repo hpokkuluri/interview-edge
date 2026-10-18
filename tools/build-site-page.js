@@ -1,7 +1,8 @@
 // Builds one Interview Edge role page for arahasoft.com from an interview-edge question bank.
-// Usage: node build-role-page.js <interview-edge dir> <bank id> <slug> <role title> <out dir>
+// Usage: node build-site-page.js <interview-edge dir> <bank id> <slug> <role title> <out dir> "<what the page covers>"
 const fs = require('fs'), path = require('path');
-const [ieDir, bankId, slug, roleTitle, outDir] = process.argv.slice(2);
+const [ieDir, bankId, slug, roleTitle, outDir, about] = process.argv.slice(2);
+if (!about) throw new Error('Pass a 6th argument describing what the page covers, e.g. "Oracle Fusion Payables, Payments and Expenses projects"');
 global.QB = {}; global.window = global;
 require(path.resolve(ieDir, 'data/q', bankId + '.js'));
 const qs = QB[bankId];
@@ -27,7 +28,7 @@ function md(text) {
 
 const topics = [...new Set(qs.map(q => q[0]))];
 const basics = qs.filter(q => q[3] === 'B').length;
-const desc = `${qs.length} ${roleTitle} interview questions with full answers, from Oracle Fusion Cloud setup to period close. Interview Edge by Arahasoft.`;
+const desc = `${qs.length} ${roleTitle} interview questions with full answers: why they ask, what to say, and a tip. Interview Edge by Arahasoft.`;
 const pageTitle = `${roleTitle} Interview Questions (${qs.length}) | Interview Edge by Arahasoft`;
 const url = `https://arahasoft.com/interview/${slug}/`;
 
@@ -119,10 +120,10 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
   </div>
 </nav>
 <main class="wrap">
-  <div class="crumb"><a href="/">Arahasoft</a> › <a href="/interview/">Interview Edge</a> › Oracle Modules</div>
+  <div class="crumb"><a href="/">Arahasoft</a> › <a href="/interview/">Interview Edge</a> › ${bankId.startsWith('ora-mod-') ? 'Oracle Modules' : 'Oracle ERP Roles'}</div>
   <span class="brand">Interview Edge by Arahasoft</span>
   <h1>${esc(roleTitle)} Interview Questions</h1>
-  <p class="lead">The questions interviewers ask on Oracle Fusion Payables, Payments and Expenses projects, with why they ask, a full answer you can say in the room, and a tip. Tap a question to see the answer.</p>
+  <p class="lead">The questions interviewers ask for ${esc(about)}, with why they ask, a full answer you can say in the room, and a tip. Tap a question to see the answer.</p>
   <div class="stats">
     <span class="stat"><b>${qs.length}</b> questions</span>
     <span class="stat"><b>${basics}</b> basic</span>
