@@ -54,7 +54,6 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(pageTitle)}</title>
 <meta name="description" content="${esc(desc)}">
-<meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="${url}">
 <meta property="og:title" content="${esc(pageTitle)}">
 <meta property="og:description" content="${esc(desc)}">
