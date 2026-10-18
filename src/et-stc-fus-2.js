@@ -1,10 +1,4 @@
-QB['et-stc-fus'] = (QB['et-stc-fus'] || []).concat([
-["Integrations", "How do you design a supplier master integration with Fusion?",
-`**Answer:** Decide the system of record, use the Suppliers REST API for real-time creates/updates (or FBDI Supplier Import for bulk), handle sites, addresses, contacts and bank accounts in the correct order, map business unit site assignments, validate tax IDs, handle duplicates by external key, and secure bank data handling.
-
-Tip: Bank account changes need extra controls.`, 'D'],
-["Performance", "How do you avoid hitting OIC and Fusion limits in high-volume integrations?",
-`**Answer:** Batch records, prefer bulk import over row-by-row REST, use parallel processing carefully within concurrency limits, schedule off-peak, and monitor OIC message consumption against your message pack subscription.
-
-Tip: Message packs drive OIC cost.`, 'D']
+QB["et-stc-fus"] = (QB["et-stc-fus"] || []).concat([
+["Integrations", "How do you design a supplier master integration with Fusion?", "**Why they ask:** master data integration design.\n\n**Answer:**\n\"I decide the system of record first. Real-time creates and updates use the Suppliers REST API, and bulk loads use FBDI Supplier Import. Sites, addresses, contacts and bank accounts load in the right order, with business unit site assignments mapped. Tax IDs are validated, duplicates are handled by an external key, and bank data is handled securely.\"\n\nTip: Mention extra controls for bank account changes. It's a fraud risk.", "D"],
+["Performance", "How do you avoid hitting OIC and Fusion limits in high-volume integrations?", "**Why they ask:** scale and cost.\n\n**Answer:**\n\"I batch records, prefer bulk import over row-by-row REST, use parallel processing carefully within concurrency limits, schedule off-peak, and monitor OIC message consumption against the message pack subscription.\"\n\nTip: Mention message packs. They drive OIC cost.", "D"]
 ]);
