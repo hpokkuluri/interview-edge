@@ -1,257 +1,57 @@
 // et-tc-ebs — generated from src/et-tc-ebs-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Oracle Technical Consultant — EBS (2–5 yrs). Format: [topic, question, answer, 'B'|'D']
-QB['et-tc-ebs'] = [
-["Architecture", "Describe Oracle EBS R12 architecture.",
-`**Why they ask:** baseline for EBS technical roles.
-
-**Answer:** Three tiers: **desktop/client** (browser for OAF pages and Forms via Java applet/JNLP), **application tier** (WebLogic for OAF and Forms services in R12.2, concurrent processing, reports), and **database tier** (Oracle Database with APPS and product schemas). R12.2 uses **online patching** with a dual file system (run and patch editions) and edition-based redefinition.
-
-Tip: Mention R12.2 online patching (adop) — it affects development.`, 'B'],
-
-["Schemas", "What is the APPS schema?",
-`**Answer:** The central schema that owns synonyms, views and packages giving access to all product schemas (AP, AR, GL, PO...). Custom code typically runs under APPS with custom objects in a custom schema (e.g. XXCUST) and synonyms in APPS.
-
-Tip: Mention custom schema registration.`, 'B'],
-
-["Concurrent Programs", "How do you create and register a concurrent program?",
-`**Answer:** Write the executable (PL/SQL procedure with errbuf/retcode parameters, SQL*Plus script, Oracle Report, host script or Java), define the **executable** (System Administrator → Concurrent → Executable), define the **program** with parameters (value sets), output type and incompatibilities, then add it to a **request group** attached to the responsibility.
-
-Tip: Mention errbuf and retcode signature for PL/SQL.`, 'B'],
-
-["Concurrent Programs", "What are errbuf and retcode?",
-`**Answer:** The first two OUT parameters of a PL/SQL concurrent program procedure. **errbuf** returns an error message; **retcode** returns status: 0 = success, 1 = warning, 2 = error. They determine the request's completion status.
-
-Tip: Quick and precise.`, 'B'],
-
-["Concurrent Programs", "How do you write to the log and output files?",
-`**Answer:** Use FND_FILE.PUT_LINE(FND_FILE.LOG, 'message') for the log file and FND_FILE.PUT_LINE(FND_FILE.OUTPUT, 'text') for the output file.
-
-Tip: Logging aids support.`, 'B'],
-
-["Concurrent Programs", "How do you submit a concurrent request from PL/SQL?",
-`**Answer:** Initialize the context with FND_GLOBAL.APPS_INITIALIZE(user_id, resp_id, resp_appl_id), then call FND_REQUEST.SUBMIT_REQUEST(application, program, description, start_time, sub_request, argument1...), COMMIT, and optionally wait with FND_CONCURRENT.WAIT_FOR_REQUEST.
-
-Tip: Commit is required for the request to be picked up.`, 'D'],
-
-["PL/SQL", "What PL/SQL concepts are essential for EBS development?",
-`**Answer:** Packages (spec and body), procedures and functions, cursors (explicit, implicit, cursor FOR loops, REF cursors), exception handling, collections and BULK COLLECT/FORALL for performance, records and %TYPE/%ROWTYPE, autonomous transactions (for logging), and dynamic SQL.
-
-Tip: Show BULK COLLECT example knowledge.`, 'B'],
-
-["PL/SQL", "What is BULK COLLECT and FORALL?",
-`**Answer:** BULK COLLECT fetches multiple rows into a collection in one context switch; FORALL performs DML for all elements in one switch — much faster than row-by-row loops. Use LIMIT with BULK COLLECT to control memory.
-
-**Example:** fetch 1,000 rows at a time with LIMIT 1000 and FORALL insert into a staging table.
-
-Tip: Performance focus.`, 'D'],
-
-["PL/SQL", "How do you handle exceptions properly?",
-`**Answer:** Catch specific exceptions (NO_DATA_FOUND, TOO_MANY_ROWS), log meaningful messages with context, use RAISE_APPLICATION_ERROR for custom errors, avoid WHEN OTHERS THEN NULL, and set retcode/errbuf in concurrent programs.
-
-Tip: "Never swallow errors."`, 'B'],
-
-["Multi-Org", "How does multi-org access work in R12?",
-`**Answer:** MOAC (multi-org access control) lets a responsibility access multiple operating units via a security profile. In code, set context with MO_GLOBAL.SET_POLICY_CONTEXT('S', org_id) for a single org or 'M' for multiple, after FND_GLOBAL.APPS_INITIALIZE. Views like AP_INVOICES use VPD policies; _ALL tables bypass them.
-
-Tip: Common source of "no data" bugs.`, 'D'],
-
-["Interfaces", "Explain the standard interface approach for loading data.",
-`**Answer:** Load data into **interface tables** (e.g. AP_INVOICES_INTERFACE and AP_INVOICE_LINES_INTERFACE), run the **standard import program** (Payables Open Interface Import), which validates and creates records in base tables, then review and fix rejections (AP_INTERFACE_REJECTIONS). Never insert directly into base tables.
-
-Tip: Mention the reason — validations and integrity.`, 'B'],
-
-["Interfaces", "What is the difference between interfaces, APIs and conversions?",
-`**Answer:** **Interfaces** are recurring data exchanges with other systems (inbound/outbound). **APIs** are Oracle-supported PL/SQL packages to create/update records (e.g. HZ_PARTY_V2PUB, PO API). **Conversions** are one-time migrations of legacy data at go-live, often using interfaces or APIs.
-
-Tip: Clear distinctions.`, 'B'],
-
-["APIs", "How do you create a customer using TCA APIs?",
-`**Answer:** Use HZ_CUST_ACCOUNT_V2PUB.CREATE_CUST_ACCOUNT (which creates party and account), then HZ_LOCATION_V2PUB.CREATE_LOCATION, HZ_PARTY_SITE_V2PUB.CREATE_PARTY_SITE, HZ_CUST_ACCOUNT_SITE_V2PUB for account sites and site uses. Check x_return_status, x_msg_count and x_msg_data; retrieve messages with FND_MSG_PUB.GET.
-
-Tip: TCA model knowledge is valued.`, 'D'],
-
-["Reports", "How do you build an XML Publisher (BI Publisher) report in EBS?",
-`**Answer:** Create a data definition (data template XML with SQL queries, or an Oracle Report/PLSQL generating XML), register it in XML Publisher Administrator, create an RTF template in Word with the BI Publisher add-in, register the template, and define a concurrent program with output format XML linked to the data definition code.
-
-Tip: Data template approach is preferred.`, 'B'],
-
-["Reports", "How do you customize a seeded report output layout?",
-`**Answer:** Copy the seeded RTF template, modify it, register it as a new template (or alternate template) under the same data definition, and set it as default on the concurrent program — avoiding changes to seeded files.
-
-Tip: Upgrade-safe approach.`, 'D'],
-
-["Forms", "How do you customize a form without changing seeded code?",
-`**Answer:** Use **Forms Personalization** (Help → Diagnostics → Custom Code → Personalize) for simple changes — property changes, messages, validations, menu actions — or **CUSTOM.pll** for more complex logic. Avoid modifying seeded .fmb files.
-
-Tip: Forms personalization covers most needs.`, 'B'],
-
-["OAF", "What is OAF and how do you extend an OAF page?",
-`**Answer:** Oracle Application Framework is the Java/MVC framework for EBS self-service pages. Use **personalization** for UI changes (fields, labels, regions) and **extensions** for logic: extend a View Object (VO) or controller (CO), substitute via JDeveloper and jpx import. Keep extensions in custom packages.
-
-Tip: Personalize first, extend if needed.`, 'D'],
-
-["Workflow", "What is Oracle Workflow used for?",
-`**Answer:** Business process automation and approvals — PO and requisition approvals, AP invoice approvals (AME-based), item creation workflows and notifications. Developers customize workflow processes in Workflow Builder, add functions (PL/SQL), and troubleshoot with workflow monitoring.
-
-Tip: Mention debugging stuck workflows.`, 'D'],
-
-["AME", "What is AME?",
-`**Answer:** Approvals Management Engine defines approval rules using attributes, conditions, action types and approver groups — used by AP invoices, requisitions, HR transactions and more. Rules are configured rather than coded.
-
-Tip: Common in approval customizations.`, 'D'],
-
-["Value Sets", "What types of value sets exist?",
-`**Answer:** Independent, dependent, table-validated, special/pair, translatable, none (format only). Used for parameters and flexfield segments.
-
-Tip: Table-validated is most used for parameters.`, 'B'],
-
-["Flexfields", "What are DFFs and KFFs in EBS?",
-`**Answer:** **Descriptive flexfields** capture additional attributes (ATTRIBUTE1–15 columns) on forms. **Key flexfields** define structured codes like the Accounting Flexfield (chart of accounts), item categories and locations.
-
-Tip: Mention context-sensitive DFFs.`, 'B'],
-
-["Profiles", "What are profile options?",
-`**Answer:** Settings controlling application behavior at site, application, responsibility or user level (e.g. MO: Operating Unit, GL Ledger Name). Code can read them with FND_PROFILE.VALUE.
-
-Tip: Hierarchy of levels.`, 'B'],
-
-["Lookups", "How do you use lookups in custom code?",
-`**Answer:** Define lookup types and codes (Application Developer → Lookups) and query FND_LOOKUP_VALUES with LOOKUP_TYPE, LANGUAGE and ENABLED_FLAG/date checks — making configuration editable without code changes.
-
-Tip: Avoid hard-coded values.`, 'B'],
-
-["Alerts", "What are Oracle Alerts?",
-`**Answer:** Event or periodic alerts that monitor data with SQL and send notifications or run actions — e.g. email when an invoice is on hold for more than 10 days.
-
-Tip: Simple monitoring solution.`, 'D'],
-
-["Performance", "How do you tune a slow EBS concurrent program?",
-`**Answer:** Enable trace (level 12 with binds/waits), analyze with TKPROF, check execution plans, add or use indexes appropriately, avoid row-by-row processing (use bulk), gather statistics (FND_STATS), and remove unnecessary joins or functions on indexed columns.
-
-Tip: Trace + TKPROF is the classic answer.`, 'D'],
-
-["Performance", "How do you enable a trace for a concurrent program?",
-`**Answer:** Check "Enable Trace" on the concurrent program definition (or set the profile "Concurrent: Allow Debugging" and use debug options when submitting), run it, find the trace file in the database trace directory, and format with TKPROF.
-
-Tip: Practical steps.`, 'D'],
-
-["R12.2", "How does online patching (adop) affect custom development?",
-`**Answer:** R12.2 uses edition-based redefinition: code changes are applied to the patch edition during an adop cycle (prepare, apply, finalize, cutover, cleanup). Custom objects must follow EBS standards (editioning views, registering custom schema with AD_ZD), and deployments use adop or follow the online patching rules.
-
-Tip: Mention "Online Patching Enablement" readiness reports.`, 'D'],
-
-["Deployment", "How do you migrate code between EBS instances?",
-`**Answer:** Version control for source; FNDLOAD for AOL objects (concurrent programs, value sets, menus, lookups); XDOLoader for BI Publisher templates and data definitions; scripts for database objects; and a deployment checklist with sequence and validation.
-
-Tip: FNDLOAD is a must-know.`, 'B'],
-
-["FNDLOAD", "What is FNDLOAD?",
-`**Answer:** A utility to download and upload AOL objects between instances using .lct configuration files — e.g. afcpprog.lct for concurrent programs, afffload.lct for value sets, aflvmlu.lct for lookups.
-
-Tip: Name a couple of lct files.`, 'B'],
-
-["Security", "How is EBS security structured?",
-`**Answer:** Users → responsibilities → menus (functions) and request groups; data security through operating units/security profiles, and Role-Based Access Control (UMX) for roles and grants.
-
-Tip: Responsibility-based security.`, 'B'],
-
-["Conversions", "Walk me through converting legacy suppliers.",
-`**Answer:** Map legacy data to AP_SUPPLIERS_INT, AP_SUPPLIER_SITES_INT and AP_SUP_SITE_CONTACT_INT (or use the supplier APIs/iSupplier), cleanse and deduplicate, load interface tables, run Supplier Open Interface Import programs, review rejections, and reconcile counts.
-
-Tip: Order: suppliers → sites → contacts → bank accounts.`, 'D'],
-
-["Outbound", "How do you build an outbound interface?",
-`**Answer:** A concurrent program (PL/SQL or BI Publisher) extracts data, formats it (CSV, XML, fixed width), writes files with UTL_FILE or XML output, transfers via SFTP (host script or middleware), tracks last-run timestamps for incremental extracts, and logs errors.
-
-Tip: Mention incremental extraction design.`, 'D'],
-
-["UTL_FILE", "How do you write files from PL/SQL?",
-`**Answer:** Use UTL_FILE.FOPEN with an Oracle directory object, PUT_LINE to write, and FCLOSE; handle exceptions; ensure directory permissions on the database server.
-
-Tip: Directory object setup.`, 'D'],
-
-["Debugging", "How do you debug data issues in EBS?",
-`**Answer:** Query the relevant base tables (via APPS), check MOAC context, review concurrent request logs, use Help → Examine to find field columns, enable FND debug logging (FND: Debug Log Enabled), and compare with working records.
-
-Tip: Help → Examine is handy.`, 'B'],
-
-["Upgrades", "What technical work comes with an EBS upgrade to R12.2?",
-`**Answer:** Analyze customizations for compliance with online patching standards, fix code that breaks (e.g. direct table references), retest reports, interfaces and extensions, update deployment processes for adop, and regression-test end-to-end flows.
-
-Tip: Mention the Online Patching Readiness reports.`, 'D'],
-
-["Migration", "How do EBS skills transfer to Oracle Fusion?",
-`**Answer:** SQL, data model knowledge, business process understanding and reporting skills transfer well. New skills: FBDI/HDL loads, REST APIs, OIC, BI Publisher in the cloud, OTBI, and Visual Builder — and the "no direct DB" mindset.
-
-Tip: Show readiness to move to cloud.`, 'B'],
-
-["Integrations", "What middleware have you used with EBS?",
-`**Answer:** Oracle SOA Suite, Oracle Integration Cloud with the EBS adapter, Integrated SOA Gateway (ISG) to expose PL/SQL APIs as REST/SOAP services, and file-based transfers.
-
-Tip: ISG is useful knowledge.`, 'D'],
-
-["Behavioral", "Tell me about a complex interface you built.",
-`**Sample answer:** "I built an inbound sales order interface from an e-commerce platform into Order Management using the Order Import interface. I added validation for customers and items, error tables for rejected lines, and an email report. It processed 5,000 orders a day with under 1% manual fixes."
-
-Tip: Numbers.`, 'B'],
-
-["Behavioral", "Tell me about fixing a production issue.",
-`**Sample answer:** "A month-end GL interface program ran for 6 hours. Tracing showed a full table scan from a function on an indexed date column. I rewrote the predicate and used BULK COLLECT; runtime dropped to 12 minutes."
-
-Tip: Root cause + result.`, 'B'],
-
-["Behavioral", "How do you document your work?",
-`**Answer:** Technical design (MD070), code comments, migration steps, test results, and support notes for operations.
-
-Tip: Support teams appreciate it.`, 'B'],
-
-["Tables", "Name key tables in AP, PO and GL.",
-`**Answer:** **AP:** AP_INVOICES_ALL, AP_INVOICE_LINES_ALL, AP_INVOICE_DISTRIBUTIONS_ALL, AP_PAYMENT_SCHEDULES_ALL, AP_CHECKS_ALL. **PO:** PO_HEADERS_ALL, PO_LINES_ALL, PO_LINE_LOCATIONS_ALL, PO_DISTRIBUTIONS_ALL, RCV_TRANSACTIONS. **GL:** GL_JE_HEADERS, GL_JE_LINES, GL_BALANCES, GL_CODE_COMBINATIONS.
-
-Tip: Common rapid-fire question.`, 'B'],
-
-["Tables", "How do subledger accounting tables link to GL in R12?",
-`**Answer:** XLA_EVENTS → XLA_AE_HEADERS → XLA_AE_LINES → GL_IMPORT_REFERENCES (gl_sl_link_id) → GL_JE_LINES. XLA_TRANSACTION_ENTITIES links to the source transaction.
-
-Tip: SLA drilldown knowledge is valued.`, 'D'],
-
-["Tables", "What are key Order Management and Inventory tables?",
-`**Answer:** OE_ORDER_HEADERS_ALL, OE_ORDER_LINES_ALL, WSH_DELIVERY_DETAILS, WSH_NEW_DELIVERIES; MTL_SYSTEM_ITEMS_B, MTL_ONHAND_QUANTITIES_DETAIL, MTL_MATERIAL_TRANSACTIONS.
-
-Tip: Rapid recall.`, 'B'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Toward senior technical consultant — leading designs, performance tuning, integrations, and building Fusion and OIC skills for cloud migrations.
-
-Tip: Cloud direction.`, 'B'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I write clean, performant PL/SQL, build reliable interfaces and BI Publisher reports, follow EBS standards for upgrade safety, and I'm learning Fusion and OIC to support cloud moves."
-
-Tip: Skills + growth.`, 'B'],
-
-["Standards", "What are EBS development best practices?",
-`**Answer:** Custom objects with XX prefix in a custom schema, no modification of seeded objects, use APIs and interfaces, follow R12.2 online patching standards, version control, code reviews, and FNDLOAD-based deployments.
-
-Tip: Upgrade-safe development.`, 'B'],
-
-["Who Columns", "What are WHO columns?",
-`**Answer:** Standard audit columns on EBS tables: CREATED_BY, CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE, LAST_UPDATE_LOGIN. Custom tables should include them and populate via FND_GLOBAL.
-
-Tip: Standards awareness.`, 'B']
-];
-
-QB['et-tc-ebs'] = (QB['et-tc-ebs'] || []).concat([
-["Reports", "What is the difference between Oracle Reports and BI Publisher in EBS?",
-`**Answer:** Oracle Reports (.rdf) combines data and layout in one tool (Reports Builder) and is legacy. BI Publisher separates data (data templates or reports) from layouts (RTF/Excel/PDF templates), making layout changes easier and supporting multiple outputs and bursting. New development should use BI Publisher.
-
-Tip: Separation of data and layout.`, 'B'],
-["Concurrent Programs", "What are request sets?",
-`**Answer:** Groups of concurrent programs run in stages, in sequence or parallel, with stage completion rules — used for chained processes like month-end jobs.
-
-Tip: Mention stage functions for conditional flow.`, 'B'],
-["PL/SQL", "What are autonomous transactions and when do you use them?",
-`**Answer:** PRAGMA AUTONOMOUS_TRANSACTION lets a procedure commit independently of the calling transaction — useful for error logging that must persist even if the main transaction rolls back. Avoid using them for business data changes.
-
-Tip: Logging is the classic use.`, 'D']
+QB["et-tc-ebs"] = (QB["et-tc-ebs"] || []).concat([
+["Architecture", "Describe Oracle EBS R12 architecture.", "**Why they ask:** baseline for EBS technical roles.\n\n**Answer:** Three tiers: **desktop/client** (browser for OAF pages and Forms via Java applet/JNLP), **application tier** (WebLogic for OAF and Forms services in R12.2, concurrent processing, reports), and **database tier** (Oracle Database with APPS and product schemas). R12.2 uses **online patching** with a dual file system (run and patch editions) and edition-based redefinition.\n\nTip: Mention R12.2 online patching (adop) — it affects development.", "B"],
+["Schemas", "What is the APPS schema?", "**Why they ask:** a basic EBS architecture question.\n\n**Answer:**\n\"APPS is the central schema that owns the synonyms, views and packages giving access to all the product schemas, like AP, AR, GL and PO. Custom code usually runs under APPS, while custom objects live in a custom schema, like XXCUST, with synonyms created in APPS. The custom schema should also be registered in the application.\"\n\nTip: Mention registering the custom schema. It shows you follow EBS standards.", "B"],
+["Concurrent Programs", "How do you create and register a concurrent program?", "**Why they ask:** concurrent programs are core EBS development.\n\n**Answer:**\n\"First I write the executable: a PL/SQL procedure with errbuf and retcode parameters, a SQL*Plus script, an Oracle Report, a host script or Java. Then I define the executable in System Administrator, Concurrent, Executable. Then I define the program with its parameters, using value sets, plus output type and incompatibilities. Finally I add it to a request group attached to the responsibility, so users can run it.\"\n\nTip: Mention the errbuf and retcode signature. It's the detail they listen for.", "B"],
+["Concurrent Programs", "What are errbuf and retcode?", "**Why they ask:** a precise technical check.\n\n**Answer:**\n\"They're the first two OUT parameters of a PL/SQL concurrent program procedure. errbuf returns an error message. retcode returns the status: 0 for success, 1 for warning and 2 for error. Together they decide how the request completes.\"\n\nTip: Keep it quick and precise. That's what this question rewards.", "B"],
+["Concurrent Programs", "How do you write to the log and output files?", "**Why they ask:** logging matters for support.\n\n**Answer:**\n\"I use FND_FILE.PUT_LINE with FND_FILE.LOG for the log file, and FND_FILE.PUT_LINE with FND_FILE.OUTPUT for the output file. I log key steps and counts, so support can see what happened without running a debugger.\"\n\nTip: Mention logging counts. It's what support needs first.", "B"],
+["Concurrent Programs", "How do you submit a concurrent request from PL/SQL?", "**Why they ask:** a common development task.\n\n**Answer:**\n\"I initialize the context with FND_GLOBAL.APPS_INITIALIZE, passing user, responsibility and application IDs. Then I call FND_REQUEST.SUBMIT_REQUEST with the application, program, description, start time, sub-request flag and arguments. Then I COMMIT, because the request isn't picked up until it's committed. If I need to wait for it, I use FND_CONCURRENT.WAIT_FOR_REQUEST.\"\n\nTip: Say \"commit is required\". It's the classic bug.", "D"],
+["PL/SQL", "What PL/SQL concepts are essential for EBS development?", "**Why they ask:** a PL/SQL depth check.\n\n**Answer:**\n\"Packages with spec and body, procedures and functions. Cursors: explicit, implicit, cursor FOR loops and REF cursors. Exception handling. Collections with BULK COLLECT and FORALL for performance. Records with %TYPE and %ROWTYPE. Autonomous transactions for logging. And dynamic SQL.\"\n\nTip: Be ready with a BULK COLLECT example. It's the usual follow-up.", "B"],
+["PL/SQL", "What is BULK COLLECT and FORALL?", "**Why they ask:** performance knowledge.\n\n**Answer:**\n\"BULK COLLECT fetches many rows into a collection in one context switch, and FORALL runs DML for all elements in one switch. That's much faster than processing row by row. I use LIMIT with BULK COLLECT to control memory, for example fetching 1,000 rows at a time and inserting them into a staging table with FORALL.\"\n\nTip: Mention LIMIT. Without it, large loads run out of memory.", "D"],
+["PL/SQL", "How do you handle exceptions properly?", "**Why they ask:** code quality.\n\n**Answer:**\n\"I catch specific exceptions like NO_DATA_FOUND and TOO_MANY_ROWS, log meaningful messages with context, and use RAISE_APPLICATION_ERROR for custom errors. I never write WHEN OTHERS THEN NULL. And in concurrent programs, I set retcode and errbuf so the request shows the right status.\"\n\nTip: Say \"never swallow errors\". It's a principle interviewers like to hear.", "B"],
+["Multi-Org", "How does multi-org access work in R12?", "**Why they ask:** a common source of bugs.\n\n**Answer:**\n\"MOAC, multi-org access control, lets a responsibility access several operating units through a security profile. In code, after FND_GLOBAL.APPS_INITIALIZE, I set the context with MO_GLOBAL.SET_POLICY_CONTEXT: 'S' with an org_id for a single org, or 'M' for multiple. Views like AP_INVOICES use VPD policies to filter by org, while the _ALL tables bypass them.\"\n\nTip: Mention that missing context causes \"no data\" bugs. It's very common.", "D"],
+["Interfaces", "Explain the standard interface approach for loading data.", "**Why they ask:** EBS data integrity.\n\n**Answer:**\n\"I load data into the interface tables, for example AP_INVOICES_INTERFACE and AP_INVOICE_LINES_INTERFACE. Then I run the standard import program, like Payables Open Interface Import, which validates the data and creates records in the base tables. Then I review and fix rejections, for example in AP_INTERFACE_REJECTIONS. I never insert directly into base tables, because the import program applies the validations and keeps the data consistent.\"\n\nTip: Explain why you never insert into base tables. That's the point.", "B"],
+["Interfaces", "What is the difference between interfaces, APIs and conversions?", "**Why they ask:** vocabulary and design clarity.\n\n**Answer:**\n\"Interfaces are recurring data exchanges with other systems, inbound or outbound. APIs are Oracle-supported PL/SQL packages to create or update records, like HZ_PARTY_V2PUB or the PO APIs. Conversions are one-time migrations of legacy data at go-live, usually using interfaces or APIs to load the data.\"\n\nTip: Keep the distinctions crisp. That's what they test.", "B"],
+["APIs", "How do you create a customer using TCA APIs?", "**Why they ask:** TCA is complex and widely used.\n\n**Answer:**\n\"I use HZ_CUST_ACCOUNT_V2PUB.CREATE_CUST_ACCOUNT, which creates the party and the account. Then HZ_LOCATION_V2PUB.CREATE_LOCATION for the address, HZ_PARTY_SITE_V2PUB.CREATE_PARTY_SITE for the party site, and HZ_CUST_ACCOUNT_SITE_V2PUB for the account site and site uses, like bill-to and ship-to. After each call I check x_return_status, x_msg_count and x_msg_data, and read the messages with FND_MSG_PUB.GET.\"\n\nTip: Walk the order of calls. It shows you understand the TCA model.", "D"],
+["Reports", "How do you build an XML Publisher (BI Publisher) report in EBS?", "**Why they ask:** a standard EBS reporting task.\n\n**Answer:**\n\"I create a data definition, preferably a data template XML with the SQL queries, or a report or PL/SQL that generates XML. I register it in XML Publisher Administrator. I create an RTF template in Word with the BI Publisher add-in and register it. Then I define a concurrent program with output format XML, linked to the data definition code.\"\n\nTip: Say the data template approach is preferred. It's the modern EBS way.", "B"],
+["Reports", "How do you customize a seeded report output layout?", "**Why they ask:** upgrade-safe customization.\n\n**Answer:**\n\"I copy the seeded RTF template, modify the copy, and register it as a new template under the same data definition. Then I set it as the default on the concurrent program. That way I never change seeded files, and patches won't overwrite my change.\"\n\nTip: Say \"never change seeded files\". It's the upgrade-safe principle.", "D"],
+["Forms", "How do you customize a form without changing seeded code?", "**Why they ask:** EBS customization standards.\n\n**Answer:**\n\"For simple changes, like properties, messages, validations or menu actions, I use Forms Personalization from Help, Diagnostics, Custom Code, Personalize. For more complex logic, CUSTOM.pll. I avoid modifying seeded .fmb files, because patches would overwrite them.\"\n\nTip: Say forms personalization covers most needs. It's true and shows restraint.", "B"],
+["OAF", "What is OAF and how do you extend an OAF page?", "**Why they ask:** OAF is used for EBS self-service pages.\n\n**Answer:**\n\"Oracle Application Framework is the Java MVC framework behind EBS self-service pages. For UI changes like fields, labels and regions, I use personalization. For logic, I use extensions: extend a view object or controller in JDeveloper, and substitute it through a jpx import. Extensions go in custom packages.\"\n\nTip: Say \"personalize first, extend if needed\". It's the right order.", "D"],
+["Workflow", "What is Oracle Workflow used for?", "**Why they ask:** workflow is behind most approvals.\n\n**Answer:**\n\"Oracle Workflow automates business processes and approvals: PO and requisition approvals, AP invoice approvals with AME, item creation workflows and notifications. Developers customize processes in Workflow Builder, add PL/SQL functions, and troubleshoot with workflow monitoring.\"\n\nTip: Mention debugging stuck workflows. It's a common support task.", "D"],
+["AME", "What is AME?", "**Why they ask:** AME drives many approvals.\n\n**Answer:**\n\"Approvals Management Engine defines approval rules using attributes, conditions, action types and approver groups. It's used by AP invoices, requisitions, HR transactions and more. The rules are configured, not coded, so the business can change them without development.\"\n\nTip: Mention it's configured, not coded. That's its value.", "D"],
+["Value Sets", "What types of value sets exist?", "**Why they ask:** a basic EBS question.\n\n**Answer:**\n\"Independent, dependent, table-validated, special or pair, translatable, and none, which is format only. They're used for program parameters and flexfield segments. Table-validated is the most common for parameters.\"\n\nTip: Mention table-validated for parameters. It's the practical one.", "B"],
+["Flexfields", "What are DFFs and KFFs in EBS?", "**Why they ask:** flexfields are everywhere in EBS.\n\n**Answer:**\n\"Descriptive flexfields capture extra attributes on forms, stored in the ATTRIBUTE1 to 15 columns. Key flexfields define structured codes, like the Accounting Flexfield for the chart of accounts, item categories and locations. DFFs can be context-sensitive, showing different segments by context.\"\n\nTip: Mention context-sensitive DFFs. It shows depth.", "B"],
+["Profiles", "What are profile options?", "**Why they ask:** profiles control behavior.\n\n**Answer:**\n\"Profile options are settings that control application behavior at site, application, responsibility or user level, like MO: Operating Unit or GL Ledger Name. The most specific level wins. In code I read them with FND_PROFILE.VALUE.\"\n\nTip: Explain the level hierarchy. It's the follow-up.", "B"],
+["Lookups", "How do you use lookups in custom code?", "**Why they ask:** avoiding hard-coded values.\n\n**Answer:**\n\"I define lookup types and codes in Application Developer, Lookups, and query FND_LOOKUP_VALUES by LOOKUP_TYPE, LANGUAGE, enabled flag and dates. That keeps configuration editable by functional users without code changes.\"\n\nTip: Say \"avoid hard-coded values\". It's the reason to use lookups.", "B"],
+["Alerts", "What are Oracle Alerts?", "**Why they ask:** a simple monitoring tool.\n\n**Answer:**\n\"Oracle Alerts are event or periodic alerts that monitor data with SQL and send notifications or run actions. For example, emailing AP when an invoice has been on hold for more than ten days.\"\n\nTip: Give the example. It shows a real use.", "D"],
+["Performance", "How do you tune a slow EBS concurrent program?", "**Why they ask:** performance tuning.\n\n**Answer:**\n\"I enable trace at level 12 to capture binds and waits, and analyze it with TKPROF. I check execution plans and indexes. I replace row-by-row processing with bulk operations. I make sure statistics are gathered with FND_STATS. And I remove unnecessary joins and functions on indexed columns.\"\n\nTip: Say \"trace plus TKPROF\". It's the classic answer.", "D"],
+["Performance", "How do you enable a trace for a concurrent program?", "**Why they ask:** practical tuning steps.\n\n**Answer:**\n\"I check Enable Trace on the concurrent program definition, or set Concurrent: Allow Debugging and use the debug options when submitting. I run the program, find the trace file in the database trace directory, and format it with TKPROF.\"\n\nTip: Keep it practical. They want to know you've done it.", "D"],
+["R12.2", "How does online patching (adop) affect custom development?", "**Why they ask:** R12.2 changes how code is deployed.\n\n**Answer:**\n\"R12.2 uses edition-based redefinition. Changes are applied to the patch edition during an adop cycle: prepare, apply, finalize, cutover and cleanup. Custom objects must follow EBS standards, like editioning views and registering the custom schema with AD_ZD, and deployments use adop or follow the online patching rules.\"\n\nTip: Mention the Online Patching Enablement readiness reports. They find non-compliant code.", "D"],
+["Deployment", "How do you migrate code between EBS instances?", "**Why they ask:** deployment discipline.\n\n**Answer:**\n\"Source code goes in version control. FNDLOAD moves AOL objects like concurrent programs, value sets, menus and lookups. XDOLoader moves BI Publisher templates and data definitions. Scripts handle database objects. And a deployment checklist sets the order and validation steps.\"\n\nTip: FNDLOAD is a must-know. Name it.", "B"],
+["FNDLOAD", "What is FNDLOAD?", "**Why they ask:** a basic deployment tool.\n\n**Answer:**\n\"FNDLOAD downloads and uploads AOL objects between instances using .lct configuration files. For example, afcpprog.lct for concurrent programs, afffload.lct for value sets and aflvmlu.lct for lookups.\"\n\nTip: Name a couple of .lct files. It proves hands-on use.", "B"],
+["Security", "How is EBS security structured?", "**Why they ask:** basic security model.\n\n**Answer:**\n\"Users get responsibilities, which give menus of functions and request groups of programs. Data security comes from operating units through security profiles. And Role-Based Access Control, through UMX, adds roles and grants.\"\n\nTip: Say \"responsibility-based\". It's the core of EBS security.", "B"],
+["Conversions", "Walk me through converting legacy suppliers.", "**Why they ask:** a common conversion.\n\n**Answer:**\n\"I map legacy data to AP_SUPPLIERS_INT, AP_SUPPLIER_SITES_INT and AP_SUP_SITE_CONTACT_INT, or use the supplier APIs. I cleanse and de-duplicate first. Then load the interface tables and run the Supplier Open Interface Import programs, review rejections, and reconcile counts. The order is suppliers, then sites, then contacts, then bank accounts.\"\n\nTip: Give the load order. It's what makes conversions work.", "D"],
+["Outbound", "How do you build an outbound interface?", "**Why they ask:** outbound design.\n\n**Answer:**\n\"A concurrent program in PL/SQL or BI Publisher extracts the data and formats it as CSV, XML or fixed width. Files are written with UTL_FILE or XML output, and transferred by SFTP through a host script or middleware. I track the last-run timestamp so the extract is incremental. And errors are logged.\"\n\nTip: Mention incremental extraction. Full extracts every time don't scale.", "D"],
+["UTL_FILE", "How do you write files from PL/SQL?", "**Why they ask:** a practical skill.\n\n**Answer:**\n\"I use UTL_FILE.FOPEN with an Oracle directory object, PUT_LINE to write, and FCLOSE to close. I handle exceptions and close the file in the exception handler too. The directory object must exist and have the right permissions on the database server.\"\n\nTip: Mention the directory object setup. It's often the blocker.", "D"],
+["Debugging", "How do you debug data issues in EBS?", "**Why they ask:** support skills.\n\n**Answer:**\n\"I query the relevant base tables through APPS and check the MOAC context. I review the concurrent request logs. I use Help, Examine to find which column a field maps to. I enable FND debug logging with FND: Debug Log Enabled. And I compare with records that work.\"\n\nTip: Mention Help, Examine. It's a handy trick.", "B"],
+["Upgrades", "What technical work comes with an EBS upgrade to R12.2?", "**Why they ask:** upgrade experience.\n\n**Answer:**\n\"I analyze customizations for compliance with online patching standards and fix code that breaks, like direct table references instead of editioned objects. I retest reports, interfaces and extensions. I update deployment processes for adop. And I regression-test end-to-end flows.\"\n\nTip: Mention the Online Patching Readiness reports. They scope the work.", "D"],
+["Migration", "How do EBS skills transfer to Oracle Fusion?", "**Why they ask:** cloud readiness.\n\n**Answer:**\n\"SQL, data model knowledge, business process understanding and reporting skills transfer well. The new skills are FBDI and HDL loads, REST APIs, OIC, BI Publisher in the cloud, OTBI and Visual Builder, plus the mindset of no direct database access.\"\n\nTip: Show you're ready for cloud. It's what most employers want now.", "B"],
+["Integrations", "What middleware have you used with EBS?", "**Why they ask:** integration experience.\n\n**Answer:**\n\"Oracle SOA Suite, Oracle Integration Cloud with the EBS adapter, Integrated SOA Gateway to expose PL/SQL APIs as REST or SOAP services, and file-based transfers.\"\n\nTip: Mention Integrated SOA Gateway. It's useful and less known.", "D"],
+["Behavioral", "Tell me about a complex interface you built.", "**Why they ask:** proof of experience.\n\n**Answer (example):**\n\"I built an inbound sales order interface from an e-commerce platform into Order Management using the Order Import interface. I added validation for customers and items, error tables for rejected lines, and a daily email report. It handled about 5,000 orders a day with under 1% needing manual fixes.\"\n\nTip: Include numbers. They make the story credible.", "B"],
+["Behavioral", "Tell me about fixing a production issue.", "**Why they ask:** support and tuning experience.\n\n**Answer (example):**\n\"A month-end GL interface program was running for six hours. A trace showed a full table scan caused by a function on an indexed date column. I rewrote the predicate and switched to BULK COLLECT, and runtime dropped to 12 minutes.\"\n\nTip: Root cause plus result. Keep it short.", "B"],
+["Behavioral", "How do you document your work?", "**Why they ask:** supportability.\n\n**Answer:**\n\"A technical design in MD070 style, code comments, migration steps, test results, and support notes for operations.\"\n\nTip: Mention support notes. Operations teams appreciate them most.", "B"],
+["Tables", "Name key tables in AP, PO and GL.", "**Why they ask:** a rapid-fire data model check.\n\n**Answer:**\n\"For AP: AP_INVOICES_ALL, AP_INVOICE_LINES_ALL, AP_INVOICE_DISTRIBUTIONS_ALL, AP_PAYMENT_SCHEDULES_ALL and AP_CHECKS_ALL. For PO: PO_HEADERS_ALL, PO_LINES_ALL, PO_LINE_LOCATIONS_ALL, PO_DISTRIBUTIONS_ALL and RCV_TRANSACTIONS. For GL: GL_JE_HEADERS, GL_JE_LINES, GL_BALANCES and GL_CODE_COMBINATIONS.\"\n\nTip: Say them fast and confidently. It's a recall test.", "B"],
+["Tables", "How do subledger accounting tables link to GL in R12?", "**Why they ask:** SLA drill-down knowledge.\n\n**Answer:**\n\"XLA_EVENTS links to XLA_AE_HEADERS, then XLA_AE_LINES. From there, GL_IMPORT_REFERENCES joins through gl_sl_link_id to GL_JE_LINES. And XLA_TRANSACTION_ENTITIES links back to the source transaction, like the invoice.\"\n\nTip: Draw the chain if you can. It's valued knowledge.", "D"],
+["Tables", "What are key Order Management and Inventory tables?", "**Why they ask:** a rapid-fire recall check.\n\n**Answer:**\n\"For Order Management and shipping: OE_ORDER_HEADERS_ALL, OE_ORDER_LINES_ALL, WSH_DELIVERY_DETAILS and WSH_NEW_DELIVERIES. For Inventory: MTL_SYSTEM_ITEMS_B, MTL_ONHAND_QUANTITIES_DETAIL and MTL_MATERIAL_TRANSACTIONS.\"\n\nTip: Rapid recall is the point. Practice the list.", "B"],
+["Career", "Where do you want to grow?", "**Why they ask:** career direction.\n\n**Answer:**\n\"I want to grow into a senior technical consultant: leading designs, performance tuning and integrations, and building Fusion and OIC skills for cloud migrations.\"\n\nTip: Point toward cloud. It's where the work is going.", "B"],
+["Closing", "Why should we hire you?", "**Why they ask:** a closing question.\n\n**Answer (sample):**\n\"I deliver reliable reports, data loads and integrations in Fusion, using BIP, OTBI, FBDI, REST and OIC, and I understand the business processes behind them, so what I build works for users the first time.\"\n\nTip: Combine technical skill with business awareness. That's what they want.", "B"],
+["Standards", "What are EBS development best practices?", "**Why they ask:** upgrade-safe development.\n\n**Answer:**\n\"Custom objects with an XX prefix in a custom schema. No changes to seeded objects. Use APIs and interfaces instead of direct inserts. Follow R12.2 online patching standards. Version control and code reviews. And deployments through FNDLOAD.\"\n\nTip: Sum it up as \"upgrade-safe development\". It's the goal behind every rule.", "B"],
+["Who Columns", "What are WHO columns?", "**Why they ask:** standards awareness.\n\n**Answer:**\n\"They're the standard audit columns on EBS tables: CREATED_BY, CREATION_DATE, LAST_UPDATED_BY, LAST_UPDATE_DATE and LAST_UPDATE_LOGIN. Custom tables should include them, populated from FND_GLOBAL.\"\n\nTip: Mention populating them from FND_GLOBAL. It shows practice.", "B"]
+]);
+
+QB["et-tc-ebs"] = (QB["et-tc-ebs"] || []).concat([
+["Reports", "What is the difference between Oracle Reports and BI Publisher in EBS?", "**Why they ask:** reporting tool knowledge.\n\n**Answer:**\n\"Oracle Reports, the .rdf files, combine data and layout in one tool, Reports Builder, and are legacy. BI Publisher separates the data, from data templates or reports, from the layout, in RTF, Excel or PDF templates. That makes layout changes easier and supports multiple outputs and bursting. New development should use BI Publisher.\"\n\nTip: Say \"separation of data and layout\". It's the key advantage.", "B"],
+["Concurrent Programs", "What are request sets?", "**Why they ask:** process automation.\n\n**Answer:**\n\"Request sets group concurrent programs into stages that run in sequence or in parallel, with stage completion rules. They're used for chained processes, like month-end jobs.\"\n\nTip: Mention stage functions for conditional flow. It shows depth.", "B"],
+["PL/SQL", "What are autonomous transactions and when do you use them?", "**Why they ask:** a PL/SQL depth question.\n\n**Answer:**\n\"PRAGMA AUTONOMOUS_TRANSACTION lets a procedure commit independently of the calling transaction. The classic use is error logging that must be kept even if the main transaction rolls back. I avoid them for business data changes, because they can break consistency.\"\n\nTip: Give logging as the example. It's the right use.", "D"]
 ]);

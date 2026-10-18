@@ -1,14 +1,5 @@
-QB['et-tc-ebs'] = (QB['et-tc-ebs'] || []).concat([
-["Reports", "What is the difference between Oracle Reports and BI Publisher in EBS?",
-`**Answer:** Oracle Reports (.rdf) combines data and layout in one tool (Reports Builder) and is legacy. BI Publisher separates data (data templates or reports) from layouts (RTF/Excel/PDF templates), making layout changes easier and supporting multiple outputs and bursting. New development should use BI Publisher.
-
-Tip: Separation of data and layout.`, 'B'],
-["Concurrent Programs", "What are request sets?",
-`**Answer:** Groups of concurrent programs run in stages, in sequence or parallel, with stage completion rules — used for chained processes like month-end jobs.
-
-Tip: Mention stage functions for conditional flow.`, 'B'],
-["PL/SQL", "What are autonomous transactions and when do you use them?",
-`**Answer:** PRAGMA AUTONOMOUS_TRANSACTION lets a procedure commit independently of the calling transaction — useful for error logging that must persist even if the main transaction rolls back. Avoid using them for business data changes.
-
-Tip: Logging is the classic use.`, 'D']
+QB["et-tc-ebs"] = (QB["et-tc-ebs"] || []).concat([
+["Reports", "What is the difference between Oracle Reports and BI Publisher in EBS?", "**Why they ask:** reporting tool knowledge.\n\n**Answer:**\n\"Oracle Reports, the .rdf files, combine data and layout in one tool, Reports Builder, and are legacy. BI Publisher separates the data, from data templates or reports, from the layout, in RTF, Excel or PDF templates. That makes layout changes easier and supports multiple outputs and bursting. New development should use BI Publisher.\"\n\nTip: Say \"separation of data and layout\". It's the key advantage.", "B"],
+["Concurrent Programs", "What are request sets?", "**Why they ask:** process automation.\n\n**Answer:**\n\"Request sets group concurrent programs into stages that run in sequence or in parallel, with stage completion rules. They're used for chained processes, like month-end jobs.\"\n\nTip: Mention stage functions for conditional flow. It shows depth.", "B"],
+["PL/SQL", "What are autonomous transactions and when do you use them?", "**Why they ask:** a PL/SQL depth question.\n\n**Answer:**\n\"PRAGMA AUTONOMOUS_TRANSACTION lets a procedure commit independently of the calling transaction. The classic use is error logging that must be kept even if the main transaction rolls back. I avoid them for business data changes, because they can break consistency.\"\n\nTip: Give logging as the example. It's the right use.", "D"]
 ]);
