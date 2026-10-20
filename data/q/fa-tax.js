@@ -1,263 +1,54 @@
 // fa-tax — generated from src/fa-tax-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Tax Accountant / Tax Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fa-tax'] = [
-["Provision", "What is the ASC 740 income tax provision?",
-`**Why they ask:** the provision is the core corporate tax accounting task.
-
-**Answer:** The provision records income taxes in the financial statements: **current tax** (what's payable for the year on taxable income) plus **deferred tax** (the future tax effect of temporary differences between book and tax bases). It also covers valuation allowances, uncertain tax positions (ASC 740-10) and the effective tax rate reconciliation.
-
-Tip: Mention you've prepared quarterly provisions with an estimated annual ETR.`, 'B', 'E'],
-
-["Provision", "What are temporary and permanent differences?",
-`**Answer:**
-- **Temporary differences** reverse over time and create deferred tax assets or liabilities — e.g. accelerated tax depreciation (DTL), bad debt reserves and accrued bonuses deducted when paid (DTA).
-- **Permanent differences** never reverse and affect the effective tax rate — e.g. fines and penalties, 50% of meals, tax-exempt interest.
-
-Tip: Give one of each with the direction.`, 'B', 'E'],
-
-["Provision", "Walk me through calculating a deferred tax liability from depreciation.",
-`**Answer:** Book basis of equipment $800,000; tax basis $500,000 (because of bonus depreciation). Temporary difference = $300,000. At a 25% combined rate, DTL = $75,000. Each year, the change in the DTL is the deferred tax expense. As book depreciation catches up, the difference reverses.
-
-Tip: Showing a quick number calculation proves understanding.`, 'D', 'M'],
-
-["Provision", "When do you record a valuation allowance?",
-`**Answer:** When it's **more likely than not** (over 50%) that some or all of a deferred tax asset won't be realized. Weigh positive evidence (future taxable income, reversing DTLs, tax planning strategies) against negative evidence (cumulative losses in recent years — a significant negative signal). Reassess every period.
-
-Tip: Mention the three-year cumulative loss test.`, 'D', 'M'],
-
-["Provision", "What is an uncertain tax position?",
-`**Answer:** Under ASC 740-10 (formerly FIN 48), a tax benefit is recognized only if it's more likely than not to be sustained on examination, based on technical merits. The amount recognized is the largest amount with a greater than 50% chance of being realized on settlement. Unrecognized benefits are disclosed, with interest and penalties.
-
-Tip: Mention documentation and reassessment as statutes expire.`, 'D', 'S'],
-
-["Provision", "What is the effective tax rate reconciliation?",
-`**Answer:** It explains the difference between the statutory rate (21% federal in the US) and the company's effective rate — e.g. state taxes, foreign rate differences, permanent items, credits (R&D), valuation allowance changes, and uncertain positions.
-
-Tip: Mention ASU 2023-09's expanded rate reconciliation disclosures.`, 'D', 'M'],
-
-["Provision", "How do you calculate an interim (quarterly) tax provision?",
-`**Answer:** Estimate the annual effective tax rate (ordinary income), apply it to year-to-date income, and record discrete items (e.g. stock comp windfalls, settlements, law changes) in the quarter they occur (ASC 740-270).
-
-Tip: Mention updating the forecast each quarter with FP&A.`, 'D', 'M'],
-
-["Compliance", "How do you manage tax compliance across jurisdictions?",
-`**Answer:** A compliance calendar for every return (federal, state, local, foreign, indirect), clear owners, data extraction from the ERP and tax engines, reconciliation to the GL, review and approval, timely filing and payment, and a tracker for notices and audits. Outsource where in-house capacity is limited.
-
-Tip: Mention software like OneSource, CorpTax or Vertex.`, 'B', 'E'],
-
-["Compliance", "What is the difference between a tax return and a tax provision?",
-`**Answer:** The **return** reports actual taxable income and tax due to the government, filed months after year-end. The **provision** estimates tax expense for the financial statements at year-end. The **return-to-provision (RTP) true-up** adjusts the provision once the return is filed.
-
-Tip: Mention RTP adjustments are a key audit focus.`, 'B', 'E'],
-
-["Indirect Tax", "Explain sales tax, use tax and VAT.",
-`**Answer:**
-- **Sales tax (US):** charged by the seller to the end customer, set by states and localities; the seller collects and remits.
-- **Use tax:** owed by the buyer when sales tax wasn't charged on a taxable purchase.
-- **VAT:** charged at each stage of the supply chain; businesses reclaim input VAT and remit output VAT — the end consumer bears it.
-
-Tip: Mention reverse charge for cross-border services under VAT.`, 'B', 'E'],
-
-["Nexus", "What is nexus and how did Wayfair change it?",
-`**Answer:** Nexus is the connection that gives a state the right to require tax collection. Before 2018 it required physical presence. **South Dakota v. Wayfair (2018)** allowed **economic nexus** — thresholds like $100,000 in sales or 200 transactions per year in the state. Most states adopted similar thresholds, so remote sellers must register and collect.
-
-Tip: Mention monitoring thresholds quarterly.`, 'B', 'M'],
-
-["Indirect Tax", "How do tax engines work with an ERP?",
-`**Answer:** The ERP sends transaction details — ship-from/ship-to addresses, product tax codes, customer exemptions, amounts — to an engine like **Vertex** or **Avalara** in real time. The engine returns tax rates and amounts, and stores data for returns. Accuracy depends on correct product taxability mapping, address quality and exemption certificate management.
-
-Tip: Mention you've tested tax scenarios during an ERP implementation if true.`, 'D', 'M'],
-
-["Indirect Tax", "How do you manage exemption certificates?",
-`**Answer:** Collect valid certificates before exempt sales, validate them (correct state, form, signature, expiry), store them centrally (often in the tax engine), link to customer records, and renew before expiry. Missing certificates are the top finding in sales tax audits.
-
-Tip: That last sentence is a strong point.`, 'D', 'M'],
-
-["International", "What is transfer pricing?",
-`**Answer:** Setting prices for transactions between related entities in different countries — goods, services, royalties, loans. Prices must follow the **arm's length principle** (what unrelated parties would agree). Methods: CUP, resale price, cost plus, TNMM, profit split. Documentation: master file, local file, country-by-country report for large groups.
-
-Tip: Mention the risk of double taxation and audits.`, 'D', 'S'],
-
-["International", "What is Pillar Two?",
-`**Answer:** The OECD global minimum tax framework: groups with revenue above €750M pay at least a 15% effective tax rate in each jurisdiction, via top-up taxes (IIR, UTPR, QDMTT). Many countries implemented it from 2024. It adds complex calculations, data requirements and safe harbors.
-
-Tip: Mention the data challenge — jurisdictional ETRs need new data.`, 'D', 'S'],
-
-["International", "What are GILTI and FDII?",
-`**Answer:** US international provisions from the 2017 Tax Cuts and Jobs Act. **GILTI** taxes US shareholders on certain low-taxed foreign income of controlled foreign corporations. **FDII** gives a reduced rate on certain foreign-derived income of US companies. Rules have changed in recent legislation, so check current law.
-
-Tip: Acknowledging law changes shows care.`, 'D', 'S'],
-
-["Credits", "What is the R&D tax credit?",
-`**Answer:** A US federal (and many state) credit for qualified research expenses — wages, supplies, contract research — for activities meeting the four-part test (permitted purpose, technological in nature, elimination of uncertainty, process of experimentation). Requires documentation. Note the rules on capitalizing R&E costs under Section 174 have changed with recent legislation — confirm current treatment.
-
-Tip: Mention documentation with engineering teams.`, 'D', 'M'],
-
-["Fixed Assets", "How does tax depreciation differ from book depreciation?",
-`**Answer:** Book depreciation follows useful life (often straight-line). Tax uses MACRS with set recovery periods, plus bonus depreciation and Section 179 expensing, which front-load deductions. The difference creates deferred tax liabilities.
-
-Tip: Mention tracking separate book and tax asset books in the ERP.`, 'B', 'E'],
-
-["Audits", "How do you handle a tax audit?",
-`**Answer:** Confirm scope and timeline, assign one point of contact, gather documents and respond to information requests on time, provide only what's requested, track all communications, review proposed adjustments carefully, negotiate or appeal where justified, and fix processes that caused issues.
-
-Tip: Mention involving advisors for complex audits.`, 'B', 'M'],
-
-["Audits", "What do sales tax auditors usually find?",
-`**Answer:** Missing or invalid exemption certificates, untaxed purchases (use tax not accrued), wrong product taxability, sourcing errors (wrong jurisdiction), and nexus not registered timely.
-
-Tip: Mention a self-review before an audit.`, 'D', 'M'],
-
-["Planning", "How do you find tax-saving opportunities?",
-`**Answer:** Review credits and incentives (R&D, state incentives, energy credits), timing of deductions, entity structure, accounting method changes, fixed asset cost segregation, and indirect tax recovery (overpaid sales tax, VAT reclaims). Coordinate with business and legal; document substance.
-
-Tip: Give a real saving amount.`, 'D', 'S'],
-
-["Planning", "How do you think about tax risk vs savings?",
-`**Answer:** Assess technical support for the position, documentation, likelihood of challenge, reputational impact, and alignment with the company's tax risk appetite approved by leadership. Aggressive positions with weak support create uncertain tax positions and audit costs.
-
-Tip: Mention a board-approved tax policy.`, 'D', 'S'],
-
-["Payroll", "What payroll tax issues come up with remote employees?",
-`**Answer:** Employees working in a different state create withholding obligations there, possible nexus for the company, unemployment insurance registration, and "convenience of employer" rules (e.g. New York). Track work locations and update payroll accordingly.
-
-Tip: Very current issue — strong to mention.`, 'D', 'M'],
-
-["Data", "What data do you need from the ERP for tax?",
-`**Answer:** Trial balance by entity, fixed asset book and tax data, detailed P&L for permanent differences (meals, penalties), intercompany transactions, sales by jurisdiction and taxability, purchases subject to use tax, and payroll by state.
-
-Tip: Mention tax-sensitive chart of accounts design.`, 'D', 'M'],
-
-["Systems", "Which tax software have you used?",
-`**Sample answer:** "OneSource Tax Provision for quarterly provisions, CorpTax for federal and state returns, and Vertex integrated with Oracle for sales tax. I've also built Excel workpapers for return-to-provision and state apportionment."
-
-Tip: Name tasks done in each.`, 'B', 'E'],
-
-["State", "How does state apportionment work?",
-`**Answer:** States tax a share of a multistate company's income using apportionment formulas — most now use a **single sales factor** (sales in the state ÷ total sales). Sales sourcing rules (market-based vs cost of performance for services) determine which state gets the sale.
-
-Tip: Mention market-based sourcing trend.`, 'D', 'M'],
-
-["Accounting", "What journal entries does the tax provision create?",
-`**Answer:**
-- Current: Dr Current income tax expense / Cr Income taxes payable.
-- Deferred: Dr Deferred tax expense / Cr Deferred tax liability (or Dr DTA / Cr Deferred tax benefit).
-- Payment: Dr Income taxes payable / Cr Cash.
-
-Tip: Simple and quick.`, 'B', 'E'],
-
-["Accounting", "What is the impact of a tax rate change on deferred taxes?",
-`**Answer:** Deferred tax assets and liabilities are remeasured at the new enacted rate, with the effect recorded in income tax expense in the period the law is enacted (ASC 740). Under IFRS, the rate must be substantively enacted.
-
-Tip: Mention 2017 TCJA remeasurement as an example.`, 'D', 'M'],
-
-["Stock Comp", "How does stock compensation affect taxes?",
-`**Answer:** Book expense is based on grant-date fair value; the tax deduction is based on value at exercise or vesting. The difference creates excess tax benefits or shortfalls, recorded in the income statement (ASU 2016-09), affecting the ETR as discrete items.
-
-Tip: Mention the volatility it creates in quarterly ETRs.`, 'D', 'S'],
-
-["Leases", "How do leases affect tax accounting?",
-`**Answer:** Book under ASC 842 records ROU assets and lease liabilities; tax typically deducts rent payments as paid (for operating leases). This creates temporary differences — a DTL on the ROU asset and a DTA on the lease liability.
-
-Tip: Show you understand book-tax mismatch.`, 'D', 'M'],
-
-["Communication", "How do you explain the tax rate to the CFO?",
-`**Answer:** Start with the effective rate and how it compares with last year and the plan, then the 3–4 drivers (mix of earnings by country, credits, discrete items), the outlook, and any risks or opportunities. Avoid jargon.
-
-Tip: Plain language for non-tax leaders.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a tax saving you found.",
-`**Sample answer:** "Reviewing our purchase data, I found we'd been paying sales tax on manufacturing equipment that was exempt in two states. We filed refund claims and recovered $240,000, then updated exemption setups in Vertex to stop future overpayments."
-
-Tip: Saving plus prevention.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a mistake in a tax filing and how you handled it.",
-`**Sample answer:** "A state return used the wrong apportionment factor because a sales report excluded one region. I found it during the next quarter's review, quantified a $35,000 underpayment, filed an amended return with my manager's approval, and added a reconciliation check of sales by state to the GL."
-
-Tip: Own it, fix it, prevent it.`, 'B', 'M'],
-
-["Behavioral", "How do you stay current with tax law changes?",
-`**Answer:** Subscriptions to tax research (Checkpoint, CCH, Bloomberg Tax), Big 4 alerts, CPE courses, professional associations (TEI), and monitoring legislation. Then assess impact on the company and update the team.
-
-Tip: Mention a recent change you analyzed.`, 'B', 'E'],
-
-["Management", "How do you manage outside tax advisors?",
-`**Answer:** Clear scope and fee estimates, deliverables and deadlines, provide clean data on time, review their work critically, and build in-house knowledge so reliance decreases over time.
-
-Tip: Cost control and quality.`, 'D', 'S'],
-
-["Management", "How would you structure a tax department?",
-`**Answer:** Provision and reporting, compliance (direct and indirect), planning and international, and audits/controversy — sized by complexity, supported by technology and selective outsourcing.
-
-Tip: Mention tax technology as a growing function.`, 'D', 'S'],
-
-["Controls", "What controls exist over the tax provision?",
-`**Answer:** Review of provision workpapers by a manager, reconciliation of tax accounts to the GL, review of RTP adjustments, validation of tax rates and law changes, review of uncertain positions, and controls over data inputs (IPE). Tax provision is a common source of material weaknesses.
-
-Tip: That last point shows awareness.`, 'D', 'S'],
-
-["VAT", "How does VAT work for a US company selling into Europe?",
-`**Answer:** B2B sales of goods/services often use the **reverse charge** — the customer self-accounts for VAT. B2C sales of digital services require registration (or using the OSS scheme) and charging local VAT rates. Goods imported may need an importer of record and import VAT.
-
-Tip: Mention e-invoicing mandates spreading across Europe.`, 'D', 'S'],
-
-["E-invoicing", "What are e-invoicing mandates?",
-`**Answer:** Governments requiring invoices to be issued electronically in a structured format and sometimes cleared through a government platform in real time (e.g. Mexico, Italy, India, and upcoming mandates in France, Germany and the EU ViDA rules). ERPs need integrations or providers to comply.
-
-Tip: Current and practical.`, 'D', 'S'],
-
-["Property Tax", "What is property tax compliance?",
-`**Answer:** Filing personal property returns listing business assets by location, paying real estate taxes, and appealing assessments when values are too high. Fixed asset data by location is the key input.
-
-Tip: Brief and accurate.`, 'B', 'E'],
-
-["Withholding", "What is withholding tax on cross-border payments?",
-`**Answer:** Taxes withheld by the payer on payments like royalties, interest, dividends or services to foreign recipients. Treaty rates reduce withholding with proper documentation (W-8BEN-E in the US, residency certificates abroad).
-
-Tip: Mention coordinating with AP.`, 'D', 'M'],
-
-["Scenario", "Your company is entering a new state with a warehouse. What tax steps do you take?",
-`**Answer:** Register for sales/use tax, income/franchise tax, payroll withholding and unemployment, property tax filings; update tax engine nexus settings; assess apportionment impact; check incentives offered by the state.
-
-Tip: Holistic answer.`, 'D', 'M'],
-
-["Scenario", "The company plans to acquire a business. What does tax review?",
-`**Answer:** Due diligence on historical exposures (income, sales, payroll), deal structure (stock vs asset purchase, step-up opportunities), NOL usage limits (Section 382), transfer pricing, and integration of tax compliance after close.
-
-Tip: Mention Section 382.`, 'D', 'S'],
-
-["Scenario", "Book income is up but cash taxes went down. Why might that happen?",
-`**Answer:** Bonus depreciation or accelerated deductions, use of NOLs or credits, timing differences (reserves, deferred revenue), stock comp deductions, or a shift of income to lower-tax jurisdictions.
-
-Tip: Shows book-tax thinking.`, 'D', 'M'],
-
-["Technical", "What is an NOL and how can it be used?",
-`**Answer:** A net operating loss occurs when deductions exceed taxable income. US federal NOLs generated after 2017 carry forward indefinitely and can offset up to 80% of taxable income per year. They create a deferred tax asset, subject to valuation allowance assessment and Section 382 limits after ownership changes.
-
-Tip: Mention state rules differ.`, 'D', 'M'],
-
-["Technical", "What is the difference between tax avoidance and tax evasion?",
-`**Answer:** Tax avoidance is legally arranging affairs to reduce tax within the law (credits, timing, structure). Tax evasion is illegally not paying tax owed (hiding income, false deductions). Companies need substance and documentation for planning positions.
-
-Tip: Short and clear.`, 'B', 'E'],
-
-["Technical", "What is a 1099 vs W-2 classification issue?",
-`**Answer:** Misclassifying employees as independent contractors creates payroll tax, benefits and penalty exposure. Classification depends on control, financial relationship and the relationship's nature (IRS common-law test; some states use the stricter ABC test).
-
-Tip: Mention California's AB5 as an example of the ABC test.`, 'D', 'M'],
-
-["Career", "Why tax?",
-`**Sample answer:** "Tax combines technical rules with real business impact — every decision has a tax angle. I like the research and problem solving, and I want to grow into a tax manager role covering provision and planning."
-
-Tip: Mention a specific area you enjoy.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I prepare accurate provisions and returns on time, I understand how ERP and tax engines connect, and I find savings — like the $240,000 sales tax refund. I stay current and explain tax clearly to non-tax leaders."
-
-Tip: Proof plus communication.`, 'B', 'E'],
-
-["Technical", "What is the difference between ASC 740 and IAS 12?",
-`**Answer:** Both use a balance sheet approach for deferred taxes. Differences include: IFRS recognizes DTAs only when probable (vs US GAAP full recognition less valuation allowance), different treatment of uncertain tax positions (IFRIC 23), intra-group transfer of assets, and "substantively enacted" vs "enacted" tax rates.
-
-Tip: Good for companies reporting under both.`, 'D', 'S']
-];
+QB["fa-tax"] = (QB["fa-tax"] || []).concat([
+["Provision", "What is the ASC 740 income tax provision?", "**Why they ask:** the provision is the core corporate tax accounting task.\n\n**Answer:** The provision records income taxes in the financial statements: **current tax** (what's payable for the year on taxable income) plus **deferred tax** (the future tax effect of temporary differences between book and tax bases). It also covers valuation allowances, uncertain tax positions (ASC 740-10) and the effective tax rate reconciliation.\n\nTip: Mention you've prepared quarterly provisions with an estimated annual ETR.", "B", "E"],
+["Provision", "What are temporary and permanent differences?", "**Why they ask:** the foundation of tax accounting.\n\n**Answer:**\n\"Temporary differences reverse over time, so they create deferred tax assets or liabilities. Accelerated tax depreciation creates a deferred tax liability, because we deduct more for tax now and less later. Bad debt reserves and accrued bonuses create deferred tax assets, because we expense them for book now but deduct them for tax only when they're written off or paid. Permanent differences never reverse, so they change the effective tax rate — fines and penalties, the 50% of meals that isn't deductible, tax-exempt interest.\"\n\nTip: Give one of each, with the direction.", "B", "E"],
+["Provision", "Walk me through calculating a deferred tax liability from depreciation.", "**Why they ask:** proves you can actually compute deferred taxes.\n\n**Answer:**\n\"Say the equipment's book basis is $800,000 and its tax basis is $500,000, because we took bonus depreciation. The temporary difference is $300,000. At a 25% combined federal and state rate, the deferred tax liability is $75,000. Each year, the change in that DTL is the deferred tax expense. As book depreciation catches up with tax, the difference shrinks and the liability reverses.\"\n\nTip: Doing the numbers quickly proves understanding.", "D", "M"],
+["Provision", "When do you record a valuation allowance?", "**Why they ask:** a key judgment in every provision.\n\n**Answer:**\n\"When it's more likely than not — over 50% — that some or all of a deferred tax asset won't be realized. I weigh positive evidence, like future taxable income, reversing DTLs and tax planning strategies, against negative evidence. The strongest negative evidence is cumulative losses over the last three years — that's very hard to overcome. And I reassess every period.\"\n\nTip: Mention the three-year cumulative loss test.", "D", "M"],
+["Provision", "What is an uncertain tax position?", "**Why they ask:** UTPs are a frequent audit focus.\n\n**Answer:**\n\"Under ASC 740-10, what used to be FIN 48, we only recognize a tax benefit if it's more likely than not to be sustained on examination, based on its technical merits. Then we recognize the largest amount that's more than 50% likely to be realized on settlement. The rest is an unrecognized tax benefit — disclosed, with interest and penalties accrued. So if we claim a $1 million credit but only $600,000 is likely to survive audit, we recognize $600,000.\"\n\nTip: Mention documentation and reassessment as statutes of limitation expire.", "D", "S"],
+["Provision", "What is the effective tax rate reconciliation?", "**Why they ask:** a standard disclosure every tax person prepares.\n\n**Answer:**\n\"It explains the difference between the statutory rate — 21% federal in the US — and the company's effective rate. The reconciling items are things like state taxes, foreign income taxed at different rates, permanent items, credits like R&D, changes in the valuation allowance, and uncertain positions. If our effective rate is 24%, it shows how we get from 21 to 24.\"\n\nTip: Mention ASU 2023-09's expanded rate reconciliation disclosures.", "D", "M"],
+["Provision", "How do you calculate an interim (quarterly) tax provision?", "**Why they ask:** quarterly provisions are routine work.\n\n**Answer:**\n\"Under ASC 740-270, I estimate the annual effective tax rate on ordinary income and apply it to year-to-date income. Discrete items — stock comp windfalls, audit settlements, law changes — are recorded in the quarter they happen, not spread across the year. Each quarter I update the annual forecast with FP&A, so the rate stays current.\"\n\nTip: Mention updating the forecast each quarter with FP&A.", "D", "M"],
+["Compliance", "How do you manage tax compliance across jurisdictions?", "**Why they ask:** missed filings mean penalties.\n\n**Answer:**\n\"I keep a compliance calendar for every return — federal, state, local, foreign and indirect — each with an owner. Data comes from the ERP and tax engines and is reconciled to the GL. Every return is reviewed and approved, filed and paid on time, and notices and audits go on a tracker. Where we don't have the capacity in-house, we outsource. Software like OneSource, CorpTax or Vertex supports the process.\"\n\nTip: Name the software you've used.", "B", "E"],
+["Compliance", "What is the difference between a tax return and a tax provision?", "**Why they ask:** a basic but important distinction.\n\n**Answer:**\n\"The return reports actual taxable income and tax owed to the government, and it's filed months after year-end. The provision is the estimate of tax expense for the financial statements at year-end. Once the return is filed, the return-to-provision true-up adjusts the provision for the differences.\"\n\nTip: Mention that RTP adjustments are a key audit focus.", "B", "E"],
+["Indirect Tax", "Explain sales tax, use tax and VAT.", "**Why they ask:** indirect tax basics.\n\n**Answer:**\n\"Sales tax in the US is charged by the seller to the end customer, set by states and localities, and the seller collects and remits it. Use tax is owed by the buyer when sales tax wasn't charged on a taxable purchase. VAT is charged at every stage of the supply chain — businesses reclaim the VAT they pay on inputs and remit the VAT they charge on outputs, so only the final consumer actually bears it.\"\n\nTip: Mention the reverse charge for cross-border services under VAT.", "B", "E"],
+["Nexus", "What is nexus and how did Wayfair change it?", "**Why they ask:** nexus decides where you must collect tax.\n\n**Answer:**\n\"Nexus is the connection that lets a state require you to collect its tax. Before 2018 it took physical presence. The Supreme Court's South Dakota v. Wayfair decision allowed economic nexus — thresholds like $100,000 in sales or 200 transactions a year in the state. Most states adopted similar thresholds, so remote sellers now have to register and collect in many states. Several have since dropped the transaction count and kept only the dollar threshold.\"\n\nTip: Mention monitoring thresholds quarterly.", "B", "M"],
+["Indirect Tax", "How do tax engines work with an ERP?", "**Why they ask:** tax and systems now overlap heavily.\n\n**Answer:**\n\"The ERP sends transaction details in real time — ship-from and ship-to addresses, product tax codes, customer exemptions and amounts — to an engine like Vertex or Avalara. The engine returns the rates and tax amounts, and stores the data for filing returns. Accuracy depends on correct product taxability mapping, clean addresses and good exemption certificate management.\"\n\nTip: Mention testing tax scenarios during an ERP implementation, if you have.", "D", "M"],
+["Indirect Tax", "How do you manage exemption certificates?", "**Why they ask:** missing certificates cost companies in audits.\n\n**Answer:**\n\"We collect a valid certificate before making an exempt sale, and validate it — right state, right form, signed, not expired. Certificates are stored centrally, often in the tax engine, linked to the customer record, and renewed before they expire. Missing certificates are the top finding in sales tax audits.\"\n\nTip: That last sentence is a strong point.", "D", "M"],
+["International", "What is transfer pricing?", "**Why they ask:** a major risk area for multinationals.\n\n**Answer:**\n\"It's how related entities in different countries price transactions with each other — goods, services, royalties, loans. Prices have to follow the arm's length principle: what unrelated parties would agree to. The methods include comparable uncontrolled price, resale price, cost plus, TNMM and profit split. Large groups need a master file, local files and a country-by-country report. Getting it wrong risks double taxation and audits in both countries.\"\n\nTip: Mention double-taxation and audit risk.", "D", "S"],
+["International", "What is Pillar Two?", "**Why they ask:** a current global tax change.\n\n**Answer:**\n\"It's the OECD global minimum tax. Groups with revenue over €750 million must pay at least a 15% effective tax rate in every jurisdiction, through top-up taxes — the income inclusion rule, the undertaxed profits rule, and qualified domestic minimum top-up taxes. Many countries implemented it from 2024. The hard part is data — you need jurisdiction-level effective tax rates, which most systems weren't built to produce. Safe harbors help reduce the work.\"\n\nTip: Mention the data challenge.", "D", "S"],
+["International", "What are GILTI and FDII?", "**Why they ask:** US international tax knowledge.\n\n**Answer:**\n\"Both came from the 2017 Tax Cuts and Jobs Act. GILTI taxes US shareholders on certain low-taxed foreign income of controlled foreign corporations. FDII gives US companies a reduced rate on certain income from serving foreign markets. Both were changed by the 2025 tax legislation — including new names and rates for later years — so I'd always check current law before giving numbers.\"\n\nTip: Acknowledging law changes shows care.", "D", "S"],
+["Credits", "What is the R&D tax credit?", "**Why they ask:** a common savings area.\n\n**Answer:**\n\"It's a federal credit, plus many state versions, for qualified research expenses — wages, supplies and contract research — on activities that meet the four-part test: a permitted purpose, technological in nature, eliminating uncertainty, and a process of experimentation. Documentation is critical. The related Section 174 rules on capitalizing research costs have changed more than once recently, so I'd confirm the current treatment.\"\n\nTip: Mention documenting it with engineering teams.", "D", "M"],
+["Fixed Assets", "How does tax depreciation differ from book depreciation?", "**Why they ask:** the most common temporary difference.\n\n**Answer:**\n\"Book depreciation follows the asset's useful life, usually straight-line. Tax uses MACRS with set recovery periods, plus bonus depreciation and Section 179 expensing, which front-load deductions. So tax deductions come earlier than book expense, and that difference creates a deferred tax liability.\"\n\nTip: Mention keeping separate book and tax asset books in the ERP.", "B", "E"],
+["Audits", "How do you handle a tax audit?", "**Why they ask:** audits need discipline.\n\n**Answer:**\n\"I confirm the scope and timeline, and name one point of contact. We gather documents and answer information requests on time, providing only what's asked for. Every communication is tracked. Proposed adjustments get a careful review, and we negotiate or appeal where justified. Afterward, I fix whatever process caused the issues. For complex audits, I bring in advisors.\"\n\nTip: Mention involving advisors for complex audits.", "B", "M"],
+["Audits", "What do sales tax auditors usually find?", "**Why they ask:** shows practical audit experience.\n\n**Answer:**\n\"Missing or invalid exemption certificates. Purchases where use tax wasn't accrued. Wrong product taxability. Sourcing errors — tax charged for the wrong jurisdiction. And states where we had nexus but didn't register in time. Before an audit, I'd do a self-review of exactly those areas.\"\n\nTip: Mention a self-review before an audit.", "D", "M"],
+["Planning", "How do you find tax-saving opportunities?", "**Why they ask:** tax should add value, not just comply.\n\n**Answer:**\n\"I review credits and incentives — R&D, state incentives, energy credits. Timing of deductions, entity structure, accounting method changes, and cost segregation studies on buildings. And indirect tax recovery — overpaid sales tax and VAT reclaims. I coordinate with the business and legal, and make sure every position has real substance and documentation.\"\n\nTip: Give a real saving amount.", "D", "S"],
+["Planning", "How do you think about tax risk vs savings?", "**Why they ask:** they want judgment, not aggression.\n\n**Answer:**\n\"I look at the technical support for the position, the documentation, how likely it is to be challenged, any reputational impact, and whether it fits the company's tax risk appetite as approved by leadership. Aggressive positions with weak support become uncertain tax positions and audit costs that often wipe out the savings.\"\n\nTip: Mention a board-approved tax policy.", "D", "S"],
+["Payroll", "What payroll tax issues come up with remote employees?", "**Why they ask:** a very current issue.\n\n**Answer:**\n\"An employee working from another state creates withholding obligations there, possibly nexus for the company, and unemployment insurance registration. Some states, like New York, have 'convenience of the employer' rules that tax remote workers as if they worked in-state. So we need to track where people actually work and update payroll when they move.\"\n\nTip: Very current — strong to mention.", "D", "M"],
+["Data", "What data do you need from the ERP for tax?", "**Why they ask:** tax depends on finance systems.\n\n**Answer:**\n\"Trial balance by entity. Fixed asset data for both book and tax. A detailed P&L to pick out permanent differences like meals and penalties. Intercompany transactions. Sales by jurisdiction and taxability. Purchases subject to use tax. And payroll by state. The more the chart of accounts separates tax-sensitive items, the less manual work at provision time.\"\n\nTip: Mention tax-sensitive chart of accounts design.", "D", "M"],
+["Systems", "Which tax software have you used?", "**Why they ask:** practical tool knowledge.\n\n**Answer:**\n\"OneSource Tax Provision for quarterly provisions, CorpTax for federal and state returns, and Vertex integrated with Oracle for sales tax. I've also built Excel workpapers for the return-to-provision and state apportionment.\"\n\nTip: Name what you did in each — swap in your own tools.", "B", "E"],
+["State", "How does state apportionment work?", "**Why they ask:** multistate income tax basics.\n\n**Answer:**\n\"States tax a share of a multistate company's income using an apportionment formula. Most now use a single sales factor — sales in the state divided by total sales. If 10% of our sales are in a state, roughly 10% of our income is taxed there. Sourcing rules decide which state gets a sale; for services, most states have moved to market-based sourcing — where the customer gets the benefit.\"\n\nTip: Mention the market-based sourcing trend.", "D", "M"],
+["Accounting", "What journal entries does the tax provision create?", "**Why they ask:** a basic accounting check.\n\n**Answer:**\n\"For current tax: debit current income tax expense, credit income taxes payable. For deferred tax: debit deferred tax expense and credit the deferred tax liability — or debit the deferred tax asset and credit a deferred tax benefit. When we pay: debit income taxes payable, credit cash.\"\n\nTip: Keep it simple and quick.", "B", "E"],
+["Accounting", "What is the impact of a tax rate change on deferred taxes?", "**Why they ask:** tests ASC 740 knowledge.\n\n**Answer:**\n\"Deferred tax assets and liabilities are remeasured at the new enacted rate, and the whole effect goes through income tax expense in the period the law is enacted. Under IFRS, the trigger is when the rate is substantively enacted. The 2017 rate cut from 35% to 21% is the classic example — companies with big DTLs booked large benefits that quarter.\"\n\nTip: Use the 2017 remeasurement as an example.", "D", "M"],
+["Stock Comp", "How does stock compensation affect taxes?", "**Why they ask:** stock comp makes the ETR volatile.\n\n**Answer:**\n\"Book expense is based on fair value at grant date. The tax deduction is based on value when the award vests or is exercised. If the stock price rose, the deduction is bigger than the book expense — an excess tax benefit. If it fell, it's a shortfall. Under ASU 2016-09 those go through the income statement as discrete items, which makes quarterly effective tax rates jump around.\"\n\nTip: Mention the quarterly ETR volatility.", "D", "S"],
+["Leases", "How do leases affect tax accounting?", "**Why they ask:** shows understanding of book-tax mismatches.\n\n**Answer:**\n\"For book, ASC 842 puts a right-of-use asset and a lease liability on the balance sheet. For tax, operating lease rent is usually just deducted as paid. That creates temporary differences in both directions — a deferred tax liability on the right-of-use asset and a deferred tax asset on the lease liability.\"\n\nTip: Show you understand the book-tax mismatch.", "D", "M"],
+["Communication", "How do you explain the tax rate to the CFO?", "**Why they ask:** tax must communicate clearly.\n\n**Answer:**\n\"I start with the effective rate and how it compares with last year and the plan. Then the three or four drivers — usually the mix of earnings by country, credits and discrete items. Then the outlook and any risks or opportunities. No jargon — 'more profit in Ireland lowered the rate' is clearer than a list of reconciling items.\"\n\nTip: Plain language for non-tax leaders.", "B", "M"],
+["Behavioral", "Tell me about a tax saving you found.", "**Why they ask:** proof of value.\n\n**Answer:**\n\"Reviewing our purchase data, I found we'd been paying sales tax on manufacturing equipment that was exempt in two states. We filed refund claims and recovered $240,000, and I updated the exemption setups in Vertex so we stopped overpaying.\"\n\nTip: Saving plus prevention.", "B", "M"],
+["Behavioral", "Tell me about a mistake in a tax filing and how you handled it.", "**Why they ask:** they want ownership.\n\n**Answer:**\n\"A state return used the wrong apportionment factor because a sales report left out one region. I caught it in the next quarter's review, quantified a $35,000 underpayment, and filed an amended return with my manager's approval. Then I added a reconciliation of sales by state to the GL so it can't happen again.\"\n\nTip: Own it, fix it, prevent it.", "B", "M"],
+["Behavioral", "How do you stay current with tax law changes?", "**Why they ask:** tax law changes constantly.\n\n**Answer:**\n\"I use tax research services like Checkpoint, CCH or Bloomberg Tax, read Big 4 alerts, take CPE courses, and stay active in professional groups like TEI. When something changes, I assess the impact on our company and brief the team. The 2025 federal tax legislation is a recent example — I mapped which provisions affected our depreciation and R&D.\"\n\nTip: Mention a recent change you analyzed.", "B", "E"],
+["Management", "How do you manage outside tax advisors?", "**Why they ask:** advisor fees add up quickly.\n\n**Answer:**\n\"Clear scope and fee estimates upfront, with deliverables and deadlines. I give them clean data on time, because that's what drives their hours. I review their work critically, and I build in-house knowledge so we depend on them less over time.\"\n\nTip: Cost control and quality.", "D", "S"],
+["Management", "How would you structure a tax department?", "**Why they ask:** a leadership question.\n\n**Answer:**\n\"Four areas: provision and reporting; compliance, both direct and indirect; planning and international; and audits and controversy. Sized by the company's complexity, supported by technology, with selective outsourcing for peaks or specialist areas. Tax technology is becoming a role of its own.\"\n\nTip: Mention tax technology as a growing function.", "D", "S"],
+["Controls", "What controls exist over the tax provision?", "**Why they ask:** the provision is a frequent source of material weaknesses.\n\n**Answer:**\n\"Manager review of the provision workpapers. Reconciliation of tax accounts to the GL. Review of return-to-provision adjustments. Validation of tax rates and law changes. Review of uncertain positions. And controls over the data inputs — the IPE. Tax provision is one of the most common sources of material weaknesses, so these matter.\"\n\nTip: That last point shows awareness.", "D", "S"],
+["VAT", "How does VAT work for a US company selling into Europe?", "**Why they ask:** cross-border indirect tax.\n\n**Answer:**\n\"For B2B sales, the reverse charge usually applies — the customer accounts for the VAT themselves. For B2C digital services, we have to register — or use the One Stop Shop scheme — and charge each country's local VAT rate. For goods, someone needs to act as importer of record and handle import VAT.\"\n\nTip: Mention e-invoicing mandates spreading across Europe.", "D", "S"],
+["E-invoicing", "What are e-invoicing mandates?", "**Why they ask:** a current compliance change.\n\n**Answer:**\n\"Governments are requiring invoices to be issued electronically in a structured format, and sometimes cleared through a government platform in real time. Mexico, Italy and India already do this, and France, Germany and the EU's ViDA rules are rolling it out. ERPs need integrations or a provider to comply, or invoices aren't legally valid.\"\n\nTip: Current and practical.", "D", "S"],
+["Property Tax", "What is property tax compliance?", "**Why they ask:** a broad-knowledge question.\n\n**Answer:**\n\"Filing personal property returns that list business assets by location, paying real estate taxes, and appealing assessments when values are too high. Fixed asset data by location is the key input.\"\n\nTip: Brief and accurate is enough.", "B", "E"],
+["Withholding", "What is withholding tax on cross-border payments?", "**Why they ask:** coordination between tax and AP.\n\n**Answer:**\n\"It's tax the payer withholds on payments like royalties, interest, dividends or services to foreign recipients. Tax treaties can reduce the rate if the right documentation is in place — a W-8BEN-E for payments from the US, or a residency certificate abroad. AP applies the withholding at payment, so tax and AP need to coordinate.\"\n\nTip: Mention coordinating with AP.", "D", "M"],
+["Scenario", "Your company is entering a new state with a warehouse. What tax steps do you take?", "**Why they ask:** tests a holistic view.\n\n**Answer:**\n\"Register for sales and use tax, income or franchise tax, payroll withholding and unemployment insurance. Set up property tax filings for the warehouse assets. Update nexus settings in the tax engine. Assess the effect on apportionment. And check what incentives the state offers — sometimes there are credits for new jobs or investment.\"\n\nTip: Cover all tax types, not just income tax.", "D", "M"],
+["Scenario", "The company plans to acquire a business. What does tax review?", "**Why they ask:** tax diligence protects deal value.\n\n**Answer:**\n\"Due diligence on historical exposures — income, sales and payroll tax. Deal structure — a stock or asset purchase, and whether we can get a basis step-up. Limits on using the target's NOLs under Section 382. Transfer pricing. And how tax compliance integrates after close.\"\n\nTip: Mention Section 382.", "D", "S"],
+["Scenario", "Book income is up but cash taxes went down. Why might that happen?", "**Why they ask:** tests book-tax thinking.\n\n**Answer:**\n\"Several reasons. Bonus depreciation or other accelerated deductions. Using NOLs or credits. Timing differences like reserves or deferred revenue. Stock comp deductions. Or more income earned in lower-tax countries. Any of these lowers cash tax without lowering book income.\"\n\nTip: This shows book-tax thinking.", "D", "M"],
+["Technical", "What is an NOL and how can it be used?", "**Why they ask:** NOLs are valuable assets.\n\n**Answer:**\n\"A net operating loss is when deductions exceed taxable income. For US federal purposes, NOLs from after 2017 carry forward indefinitely and can offset up to 80% of taxable income each year. They create a deferred tax asset, which needs a valuation allowance assessment, and Section 382 limits their use after an ownership change. State rules differ.\"\n\nTip: Mention that state rules differ.", "D", "M"],
+["Technical", "What is the difference between tax avoidance and tax evasion?", "**Why they ask:** an ethics and terminology check.\n\n**Answer:**\n\"Tax avoidance is legally arranging your affairs to pay less tax — using credits, timing or structure within the law. Tax evasion is illegally not paying what's owed — hiding income or claiming false deductions. Companies doing planning need real substance and documentation behind every position.\"\n\nTip: Short and clear.", "B", "E"],
+["Technical", "What is a 1099 vs W-2 classification issue?", "**Why they ask:** misclassification creates real exposure.\n\n**Answer:**\n\"If we treat employees as independent contractors when they're not, we're exposed to back payroll taxes, benefits and penalties. Classification depends on control, the financial relationship and the nature of the relationship — the IRS common-law test. Some states use the stricter ABC test, like California under AB5.\"\n\nTip: California's AB5 is a good example.", "D", "M"],
+["Career", "Why tax?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Tax combines technical rules with real business impact — almost every decision has a tax angle. I enjoy the research and problem solving, and I want to grow into a tax manager role covering provision and planning.\"\n\nTip: Mention a specific area you enjoy.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch for tax.\n\n**Answer:**\n\"I prepare accurate provisions and returns on time, I understand how the ERP and tax engines connect, and I find savings — like the $240,000 sales tax refund. I stay current, and I explain tax clearly to non-tax leaders.\"\n\nTip: Proof plus communication.", "B", "E"],
+["Technical", "What is the difference between ASC 740 and IAS 12?", "**Why they ask:** for companies reporting under both.\n\n**Answer:**\n\"Both use a balance sheet approach for deferred taxes. The differences: IFRS recognizes deferred tax assets only when realization is probable, while US GAAP recognizes them in full and then applies a valuation allowance. Uncertain tax positions follow IFRIC 23 under IFRS. Intra-group asset transfers are treated differently. And IFRS uses substantively enacted rates, while US GAAP uses enacted rates.\"\n\nTip: Good to know for companies reporting under both.", "D", "S"]
+]);
