@@ -1,22 +1,7 @@
-QB['da-ae'] = (QB['da-ae'] || []).concat([
-["Modeling", "How do you model subscription revenue (MRR)?",
-`**Answer:** Build a subscription-level model with start/end dates and amounts, explode to monthly grain with a date spine, then classify movements per customer month: new, expansion, contraction, churn, reactivation. Test that movements reconcile to MRR changes.
-
-Tip: Reconciliation test.`, 'D', 'M'],
-["Modeling", "What is a surrogate key and when do you use it?",
-`**Answer:** A system-generated key (often a hash of business keys via dbt_utils.generate_surrogate_key) used as the primary key in models — stable across sources and useful for SCD2 rows or composite natural keys.
-
-Tip: Hash of business keys.`, 'B', 'M'],
-["Collaboration", "How do you work with data engineers?",
-`**Answer:** Engineers own ingestion and platform reliability; analytics engineers own business transformations and definitions. Agree on raw data contracts, freshness SLAs and where logic lives.
-
-Tip: Clear boundaries.`, 'B', 'E'],
-["Performance", "How do you decide between views and tables in marts?",
-`**Answer:** Views for lightweight, rarely queried or fast logic; tables (or incremental) for heavy joins and frequently queried marts to avoid repeated compute. Measure query costs and dashboard latency.
-
-Tip: Cost and latency.`, 'B', 'M'],
-["Stakeholders", "How do you explain a metric change to business users?",
-`**Answer:** Show the definition change or data change clearly, compare old vs new values side by side, explain why the new version is more accurate, and communicate before the release.
-
-Tip: No surprises.`, 'B', 'M']
+QB["da-ae"] = (QB["da-ae"] || []).concat([
+["Modeling", "How do you model subscription revenue (MRR)?", "**Why they ask:** a common SaaS model.\n\n**Answer:**\n\"Build a subscription-level model with start and end dates and amounts, explode it to monthly grain with a date spine, then classify each customer-month's movement: new, expansion, contraction, churn or reactivation. And test that the movements reconcile exactly to the change in total MRR.\"\n\nTip: Add a reconciliation test.", "D", "M"],
+["Modeling", "What is a surrogate key and when do you use it?", "**Why they ask:** modeling fundamentals.\n\n**Answer:**\n\"A system-generated key — often a hash of the business keys using dbt_utils.generate_surrogate_key — used as a model's primary key. It's stable across sources and useful for SCD2 rows or composite natural keys.\"\n\nTip: A hash of business keys.", "B", "M"],
+["Collaboration", "How do you work with data engineers?", "**Why they ask:** team boundaries.\n\n**Answer:**\n\"Data engineers own ingestion and platform reliability; analytics engineers own business transformations and definitions. We agree on raw data contracts, freshness SLAs and where each kind of logic lives.\"\n\nTip: Clear boundaries.", "B", "E"],
+["Performance", "How do you decide between views and tables in marts?", "**Why they ask:** cost and latency.\n\n**Answer:**\n\"Views for lightweight or rarely queried logic; tables or incremental models for heavy joins and marts that dashboards query constantly, so the compute isn't repeated on every query. I measure query costs and dashboard latency to decide.\"\n\nTip: Cost and latency.", "B", "M"],
+["Stakeholders", "How do you explain a metric change to business users?", "**Why they ask:** change management.\n\n**Answer:**\n\"Explain clearly what changed — the definition or the data — show old and new values side by side, explain why the new version is more accurate, and communicate it before the release, not after people notice.\"\n\nTip: No surprises.", "B", "M"]
 ]);

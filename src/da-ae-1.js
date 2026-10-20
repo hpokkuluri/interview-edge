@@ -1,229 +1,48 @@
 // Analytics Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['da-ae'] = [
-["Role", "What does an analytics engineer do?",
-`**Why they ask:** the role sits between data engineering and analysis.
-
-**Answer:** Transforms raw data into clean, tested, well-documented data models that analysts and business users can trust — typically with SQL and dbt in a cloud warehouse. Owns business logic definitions, metric consistency, data tests, documentation and the semantic layer, applying software engineering practices (version control, CI, code review) to analytics.
-
-Tip: "Single source of truth for metrics."`, 'B', 'E'],
-
-["dbt", "What are dbt models, sources and refs?",
-`**Answer:** **Sources** declare raw tables loaded into the warehouse. **Models** are SELECT statements that dbt materializes as views or tables. **ref()** links models so dbt builds a dependency graph (DAG) and runs them in order; **source()** references raw data and enables freshness checks.
-
-Tip: ref() enables lineage.`, 'B', 'E'],
-
-["dbt", "What materializations does dbt support?",
-`**Answer:** view (fast to build, computed at query time), table (rebuilt fully), incremental (only new/changed rows — for large tables), ephemeral (inlined CTE), and snapshots for SCD Type 2 history. Choose by size, freshness and query cost.
-
-Tip: Incremental for big facts.`, 'B', 'M'],
-
-["dbt", "How do incremental models work?",
-`**Answer:** On first run, build the full table; afterward, process only new or changed records using is_incremental() filters (e.g. updated_at > max in target) and merge or append into the table. Handle late-arriving data with a lookback window and use unique_key for merges.
-
-Tip: Lookback windows.`, 'D', 'M'],
-
-["dbt", "How do you test data in dbt?",
-`**Answer:** Generic tests (unique, not_null, accepted_values, relationships), packages like dbt-utils/dbt-expectations, custom singular tests (SQL returning failing rows), source freshness checks, and model contracts for enforced schemas.
-
-Tip: Tests on primary keys at minimum.`, 'B', 'M'],
-
-["dbt", "How do you structure a dbt project?",
-`**Answer:** Layers: **staging** (one model per source table — renaming, casting, light cleaning), **intermediate** (business logic joins), **marts** (facts and dimensions for consumption, organized by domain). Consistent naming (stg_, int_, fct_, dim_), documentation and tests at each layer.
-
-Tip: Staging is 1:1 with sources.`, 'B', 'M'],
-
-["dbt", "What are dbt snapshots?",
-`**Answer:** A way to capture changes in mutable source tables over time (SCD Type 2), adding dbt_valid_from and dbt_valid_to columns using timestamp or check strategies.
-
-Tip: History of changing records.`, 'D', 'M'],
-
-["Modeling", "How do you design fact and dimension tables?",
-`**Answer:** Declare the fact table's grain (e.g. one row per order line), include foreign keys to dimensions and additive measures; dimensions hold descriptive attributes and handle history (SCD2) where needed. Conformed dimensions are shared across facts.
-
-Tip: Grain first.`, 'B', 'M'],
-
-["Modeling", "Wide tables vs star schemas — which do you prefer?",
-`**Answer:** Star schemas are flexible and reduce duplication; wide, denormalized "one big tables" are easier for BI users and fast in columnar warehouses. Many teams build star schemas and expose wide marts for specific use cases.
-
-Tip: Pragmatic balance.`, 'D', 'M'],
-
-["Metrics", "What is a semantic layer?",
-`**Answer:** A layer that defines metrics, dimensions and relationships once (e.g. dbt Semantic Layer/MetricFlow, LookML, Cube, Power BI semantic models) so every tool calculates "revenue" or "active users" the same way.
-
-Tip: Consistent metrics everywhere.`, 'D', 'M'],
-
-["Metrics", "How do you resolve conflicting metric definitions?",
-`**Answer:** Bring stakeholders together, document each definition and its purpose, agree a canonical definition (with variants explicitly named if needed), implement it in the semantic layer or models, and communicate it in a metrics glossary.
-
-Tip: Governance through documentation.`, 'B', 'M'],
-
-["SQL", "What SQL patterns do you use most?",
-`**Answer:** CTEs for readability, window functions (deduplication, running totals, sessionization), conditional aggregation (SUM(CASE WHEN...)), date spines for gap filling, and careful join logic to avoid fan-out.
-
-Tip: Join fan-out awareness.`, 'B', 'M'],
-
-["SQL", "What is join fan-out and how do you avoid it?",
-`**Answer:** Joining tables at different grains duplicates rows and inflates sums (e.g. joining orders to order lines then summing order totals). Avoid by aggregating to the correct grain before joining and testing row counts/uniqueness.
-
-Tip: Uniqueness tests catch it.`, 'D', 'M'],
-
-["SQL", "How do you sessionize event data?",
-`**Answer:** Order events per user, use LAG to compute time since previous event, flag a new session when the gap exceeds a threshold (e.g. 30 minutes), then use a running SUM of flags to assign session IDs.
-
-Tip: Classic analytics engineering question.`, 'D', 'M'],
-
-["Version Control", "How do you use Git in analytics engineering?",
-`**Answer:** Feature branches, pull requests with code review, CI running dbt build on changed models (slim CI with state comparison), and deployments through environments (dev → prod).
-
-Tip: Slim CI.`, 'B', 'M'],
-
-["CI", "What should dbt CI check?",
-`**Answer:** Compilation, building and testing modified models and their downstream dependents in a CI schema, linting SQL (SQLFluff), documentation coverage, and optionally data diffs comparing results with production.
-
-Tip: Data diffs catch logic changes.`, 'D', 'M'],
-
-["Performance", "How do you optimize slow models?",
-`**Answer:** Incremental materialization, filtering early, avoiding unnecessary DISTINCT and cross joins, partitioning/clustering in the warehouse, pre-aggregating, and checking query profiles.
-
-Tip: Query profile analysis.`, 'D', 'M'],
-
-["Documentation", "How do you document data models?",
-`**Answer:** YAML descriptions for models and columns in dbt, doc blocks for shared definitions, generated dbt docs with lineage, and a data catalog. Write descriptions for business users, not just engineers.
-
-Tip: Business-friendly descriptions.`, 'B', 'E'],
-
-["Data Quality", "How do you handle data quality issues from sources?",
-`**Answer:** Test at staging, alert owners, quarantine bad records where appropriate, communicate impact to consumers, and work with source teams on data contracts.
-
-Tip: Communication matters.`, 'B', 'M'],
-
-["BI", "How do you support BI tools?",
-`**Answer:** Provide clean marts with clear grain and naming, consistent metric definitions, row-level security where needed, and performance tuning for dashboard queries.
-
-Tip: Design for the end user.`, 'B', 'M'],
-
-["Stakeholders", "How do you gather requirements for a new data model?",
-`**Answer:** Understand the questions stakeholders need answered, decisions they'll make, metrics and definitions, granularity, refresh frequency, and access needs — then prototype and iterate.
-
-Tip: Start from questions.`, 'B', 'M'],
-
-["Reverse ETL", "How does analytics engineering support operational tools?",
-`**Answer:** Build trusted models (customer health scores, segments) that reverse ETL tools sync into CRM, marketing and support systems.
-
-Tip: Activation.`, 'D', 'M'],
-
-["Governance", "How do you handle PII in models?",
-`**Answer:** Mask or hash sensitive columns, restrict access via roles and row/column policies, keep PII in limited models, and document classifications.
-
-Tip: Least privilege.`, 'B', 'M'],
-
-["Warehouses", "Which warehouses have you used and what differs?",
-`**Answer:** Snowflake (separate compute warehouses, easy scaling), BigQuery (serverless, pay per bytes scanned — partition/cluster to control cost), Redshift (cluster-based, distribution/sort keys), Databricks SQL (lakehouse). Optimize differently for each.
-
-Tip: Cost models differ.`, 'D', 'M'],
-
-["Cost", "How do you control warehouse cost from dbt?",
-`**Answer:** Incremental models, appropriate materializations, avoiding full refreshes, scheduling jobs sensibly, right-sized warehouses, query tagging to track cost by model, and removing unused models.
-
-Tip: Unused models cost money.`, 'D', 'M'],
-
-["Orchestration", "How do you schedule dbt runs?",
-`**Answer:** dbt Cloud jobs, or orchestrators (Airflow, Dagster, Prefect) triggering dbt after ingestion completes, with source freshness checks, retries and alerts.
-
-Tip: Trigger on data arrival.`, 'B', 'M'],
-
-["Testing", "What's the difference between data tests and unit tests in dbt?",
-`**Answer:** Data tests validate actual data in tables (uniqueness, nulls). Unit tests (dbt 1.8+) validate model logic with mocked input rows and expected outputs, independent of production data.
-
-Tip: Unit tests for complex logic.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a data model you built that had impact.",
-`**Sample answer:** "Finance and sales used different revenue numbers. I built a unified revenue mart in dbt with tested logic for refunds, discounts and currency, documented in the semantic layer. Monthly reconciliation time dropped from three days to one hour."
-
-Tip: Trust and time saved.`, 'B', 'M'],
-
-["Behavioral", "Tell me about catching a data issue before stakeholders did.",
-`**Sample answer:** "A relationships test failed after a source added a new customer type, which would have dropped 8% of orders from dashboards. I fixed the mapping before the morning refresh and added accepted_values tests."
-
-Tip: Proactive quality.`, 'B', 'M'],
-
-["Behavioral", "How do you balance speed with rigor?",
-`**Answer:** Prototype quickly with clear caveats, then harden models used for decisions with tests and documentation before wide release.
-
-Tip: Label prototypes.`, 'B', 'M'],
-
-["AI", "How does AI affect analytics engineering?",
-`**Answer:** AI assistants generate SQL and documentation, and natural-language BI depends heavily on well-modeled, well-documented data and semantic layers — making analytics engineering more important for trustworthy AI answers.
-
-Tip: Semantic layer for AI.`, 'D', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior analytics engineer or data platform/architecture roles — semantic layers, governance and data product strategy.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build trusted, tested data models that end metric debates — my revenue mart cut reconciliation from three days to an hour — and I bring software engineering discipline to analytics."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Jinja", "How do you use Jinja and macros in dbt?",
-`**Answer:** Jinja templates add logic (loops, conditionals, variables) to SQL; macros create reusable SQL functions (e.g. currency conversion, date spines, grant statements). Keep macros simple and documented.
-
-Tip: Don't over-abstract.`, 'D', 'M'],
-
-["Packages", "Which dbt packages do you use?",
-`**Answer:** dbt-utils (generic helpers), dbt-expectations (rich tests), dbt-date, codegen (scaffolding), and audit helpers for comparing results.
-
-Tip: Practical tools.`, 'B', 'M'],
-
-["Date Spine", "What is a date spine and why use it?",
-`**Answer:** A table of continuous dates used to fill gaps — e.g. showing zero sales on days with no orders and computing daily metrics accurately.
-
-Tip: Gap filling.`, 'B', 'M'],
-
-["Exposures", "What are dbt exposures?",
-`**Answer:** Declarations of downstream uses (dashboards, ML models, apps) in dbt, adding them to lineage so you know what breaks when models change.
-
-Tip: Impact analysis.`, 'D', 'M'],
-
-["Contracts", "What are dbt model contracts?",
-`**Answer:** Enforced schemas (column names, types, constraints) for models; builds fail if the output doesn't match — protecting downstream consumers.
-
-Tip: Data contracts in dbt.`, 'D', 'M'],
-
-["Naming", "Why do naming conventions matter?",
-`**Answer:** Consistent prefixes (stg_, int_, fct_, dim_), clear column names (is_, has_, _at for timestamps, _id for keys) make models discoverable and reduce errors.
-
-Tip: Consistency.`, 'B', 'E'],
-
-["Mesh", "What is dbt Mesh?",
-`**Answer:** A way to split large dbt projects into multiple projects owned by different teams, with cross-project references, model access levels, versions and contracts.
-
-Tip: Scaling dbt.`, 'D', 'S'],
-
-["Timezones", "How do you handle time zones in models?",
-`**Answer:** Store timestamps in UTC, convert to local time in marts where needed, and document which time zone each date field uses — especially for daily reporting.
-
-Tip: Daily boundaries.`, 'B', 'M'],
-
-["Currency", "How do you handle multi-currency reporting?",
-`**Answer:** Store transaction currency and amount, join to daily or monthly exchange rates, and provide reporting-currency columns with documented rate logic.
-
-Tip: Rate type consistency.`, 'D', 'M'],
-
-["Ownership", "How do you assign ownership of data models?",
-`**Answer:** Define owners per domain or mart in metadata, set up alerting to owners, and include ownership in documentation and catalog.
-
-Tip: Accountability.`, 'B', 'M'],
-
-["Linting", "Why lint SQL?",
-`**Answer:** Consistent style improves readability and reviews; tools like SQLFluff enforce rules automatically in CI.
-
-Tip: Automate style.`, 'B', 'E'],
-
-["Refactoring", "How do you refactor legacy SQL into dbt?",
-`**Answer:** Inventory existing queries, rebuild in layers with tests, compare outputs against legacy results (audit helper), migrate consumers, then retire old queries.
-
-Tip: Compare outputs.`, 'D', 'M']
-];
+QB["da-ae"] = (QB["da-ae"] || []).concat([
+["Role", "What does an analytics engineer do?", "**Why they ask:** the role sits between data engineering and analysis.\n\n**Answer:** Transforms raw data into clean, tested, well-documented data models that analysts and business users can trust — typically with SQL and dbt in a cloud warehouse. Owns business logic definitions, metric consistency, data tests, documentation and the semantic layer, applying software engineering practices (version control, CI, code review) to analytics.\n\nTip: \"Single source of truth for metrics.\"", "B", "E"],
+["dbt", "What are dbt models, sources and refs?", "**Why they ask:** dbt fundamentals.\n\n**Answer:**\n\"Sources declare the raw tables loaded into the warehouse. Models are SELECT statements that dbt materializes as views or tables. ref() links models to each other, so dbt builds a dependency graph and runs everything in the right order. source() references raw data and enables freshness checks. Using ref() everywhere is what gives you lineage.\"\n\nTip: ref() enables lineage.", "B", "E"],
+["dbt", "What materializations does dbt support?", "**Why they ask:** performance and cost choices.\n\n**Answer:**\n\"View — fast to build, computed at query time. Table — rebuilt fully each run. Incremental — processes only new or changed rows, for large tables. Ephemeral — inlined as a CTE. And snapshots for SCD Type 2 history. I choose by size, freshness needs and query cost — incremental for big fact tables.\"\n\nTip: Incremental for big facts.", "B", "M"],
+["dbt", "How do incremental models work?", "**Why they ask:** large table handling.\n\n**Answer:**\n\"On the first run, dbt builds the full table. After that, the is_incremental() block filters to only new or changed records — for example, updated_at greater than the max already in the target — and merges or appends them. I set a unique_key for merges and use a lookback window, like three days, to catch late-arriving data.\"\n\nTip: Use lookback windows.", "D", "M"],
+["dbt", "How do you test data in dbt?", "**Why they ask:** quality discipline.\n\n**Answer:**\n\"Generic tests — unique, not_null, accepted_values, relationships — packages like dbt-utils and dbt-expectations, custom singular tests that return failing rows, source freshness checks, and model contracts that enforce schemas. At a minimum, every model's primary key gets unique and not_null tests.\"\n\nTip: Test primary keys at minimum.", "B", "M"],
+["dbt", "How do you structure a dbt project?", "**Why they ask:** maintainability.\n\n**Answer:**\n\"Three layers. Staging — one model per source table, just renaming, casting and light cleaning. Intermediate — business logic and joins. Marts — facts and dimensions for consumption, organized by domain. With consistent naming — stg_, int_, fct_, dim_ — and documentation and tests at each layer.\"\n\nTip: Staging is one-to-one with sources.", "B", "M"],
+["dbt", "What are dbt snapshots?", "**Why they ask:** history tracking.\n\n**Answer:**\n\"They capture changes in mutable source tables over time as SCD Type 2, adding dbt_valid_from and dbt_valid_to columns, using either a timestamp strategy or a check strategy on chosen columns. They're how you keep history of records the source system overwrites.\"\n\nTip: History of changing records.", "D", "M"],
+["Modeling", "How do you design fact and dimension tables?", "**Why they ask:** dimensional modeling.\n\n**Answer:**\n\"First declare the fact table's grain — say one row per order line. Then include foreign keys to dimensions and additive measures. Dimensions hold descriptive attributes and track history with SCD2 where needed. Conformed dimensions, like customer and date, are shared across facts so reports line up.\"\n\nTip: Grain first.", "B", "M"],
+["Modeling", "Wide tables vs star schemas — which do you prefer?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Star schemas are flexible and reduce duplication. Wide, denormalized 'one big tables' are easier for BI users and fast in columnar warehouses. Many teams, including mine, build a star schema underneath and expose wide marts for specific use cases.\"\n\nTip: A pragmatic balance.", "D", "M"],
+["Metrics", "What is a semantic layer?", "**Why they ask:** metric consistency.\n\n**Answer:**\n\"A layer that defines metrics, dimensions and relationships once — dbt's Semantic Layer with MetricFlow, LookML, Cube, or Power BI semantic models — so every tool calculates 'revenue' or 'active users' the same way. No more three versions of revenue in three dashboards.\"\n\nTip: Consistent metrics everywhere.", "D", "M"],
+["Metrics", "How do you resolve conflicting metric definitions?", "**Why they ask:** a constant analytics problem.\n\n**Answer:**\n\"Bring the stakeholders together, document each definition and why it exists, agree a canonical definition — with variants explicitly named if they're really needed, like 'gross revenue' and 'net revenue' — implement it in the semantic layer or models, and publish it in a metrics glossary.\"\n\nTip: Governance through documentation.", "B", "M"],
+["SQL", "What SQL patterns do you use most?", "**Why they ask:** practical SQL depth.\n\n**Answer:**\n\"CTEs for readability, window functions for deduplication, running totals and sessionization, conditional aggregation with SUM(CASE WHEN ...), date spines for gap filling, and careful join logic to avoid fan-out.\"\n\nTip: Know join fan-out.", "B", "M"],
+["SQL", "What is join fan-out and how do you avoid it?", "**Why they ask:** a classic data bug.\n\n**Answer:**\n\"It's when joining tables at different grains duplicates rows and inflates sums. For example, joining orders to order lines and then summing the order total counts each order once per line. I avoid it by aggregating to the right grain before joining, and testing row counts and uniqueness after joins.\"\n\nTip: Uniqueness tests catch it.", "D", "M"],
+["SQL", "How do you sessionize event data?", "**Why they ask:** a classic analytics engineering question.\n\n**Answer:**\n\"Order each user's events by time, use LAG to get the time since their previous event, and flag a new session when the gap is over a threshold — say 30 minutes. Then a running SUM of those flags per user gives each event a session number.\"\n\nTip: A classic question — practice it.", "D", "M"],
+["Version Control", "How do you use Git in analytics engineering?", "**Why they ask:** engineering practice.\n\n**Answer:**\n\"Feature branches, pull requests with code review, CI that builds only the changed models and their dependents — slim CI using state comparison — and deployments through environments, dev to prod.\"\n\nTip: Mention slim CI.", "B", "M"],
+["CI", "What should dbt CI check?", "**Why they ask:** quality gates.\n\n**Answer:**\n\"That the project compiles, that modified models and their downstream dependents build and pass tests in a CI schema, SQL linting with SQLFluff, documentation coverage, and optionally a data diff against production to catch unintended logic changes.\"\n\nTip: Data diffs catch logic changes.", "D", "M"],
+["Performance", "How do you optimize slow models?", "**Why they ask:** cost and speed.\n\n**Answer:**\n\"Incremental materialization, filtering early, removing unnecessary DISTINCT and cross joins, using partitioning and clustering in the warehouse, pre-aggregating, and reading the query profile to find the expensive step.\"\n\nTip: Analyze the query profile.", "D", "M"],
+["Documentation", "How do you document data models?", "**Why they ask:** usability.\n\n**Answer:**\n\"YAML descriptions for models and columns, doc blocks for shared definitions, generated dbt docs with lineage, and a data catalog. And I write descriptions for business users, not just engineers — 'Revenue after refunds, in USD, recognized at shipment.'\"\n\nTip: Business-friendly descriptions.", "B", "E"],
+["Data Quality", "How do you handle data quality issues from sources?", "**Why they ask:** source reality.\n\n**Answer:**\n\"Test at the staging layer, alert the owners, quarantine bad records where it makes sense, tell consumers about the impact before they find it, and work with source teams on data contracts.\"\n\nTip: Communication matters.", "B", "M"],
+["BI", "How do you support BI tools?", "**Why they ask:** serving the end user.\n\n**Answer:**\n\"Clean marts with clear grain and naming, consistent metric definitions, row-level security where needed, and performance tuning for the queries dashboards actually run.\"\n\nTip: Design for the end user.", "B", "M"],
+["Stakeholders", "How do you gather requirements for a new data model?", "**Why they ask:** building the right thing.\n\n**Answer:**\n\"I start from the questions stakeholders need answered and the decisions they'll make, then pin down metrics and definitions, granularity, refresh frequency and access needs. Then prototype and iterate with them.\"\n\nTip: Start from questions.", "B", "M"],
+["Reverse ETL", "How does analytics engineering support operational tools?", "**Why they ask:** data activation.\n\n**Answer:**\n\"By building trusted models — customer health scores, segments — that reverse ETL tools sync into CRM, marketing and support systems, so teams act on the data inside the tools they use.\"\n\nTip: Activation.", "D", "M"],
+["Governance", "How do you handle PII in models?", "**Why they ask:** privacy.\n\n**Answer:**\n\"Mask or hash sensitive columns, restrict access with roles and row or column policies, keep PII in a few limited models, and document the data classifications.\"\n\nTip: Least privilege.", "B", "M"],
+["Warehouses", "Which warehouses have you used and what differs?", "**Why they ask:** platform depth.\n\n**Answer:**\n\"Snowflake — separate compute warehouses, easy scaling. BigQuery — serverless, billed per bytes scanned, so partitioning and clustering directly control cost. Redshift — cluster-based, with distribution and sort keys. Databricks SQL — lakehouse. Each is optimized differently because the cost models differ.\"\n\nTip: Cost models differ.", "D", "M"],
+["Cost", "How do you control warehouse cost from dbt?", "**Why they ask:** cost ownership.\n\n**Answer:**\n\"Incremental models, the right materializations, avoiding unnecessary full refreshes, sensible job scheduling, right-sized warehouses, query tagging to track cost by model, and removing models nobody uses — they still cost money every run.\"\n\nTip: Unused models cost money.", "D", "M"],
+["Orchestration", "How do you schedule dbt runs?", "**Why they ask:** orchestration.\n\n**Answer:**\n\"dbt Cloud jobs, or an orchestrator — Airflow, Dagster, Prefect — that triggers dbt after ingestion finishes, with source freshness checks, retries and alerts. Triggering on data arrival beats a fixed clock time.\"\n\nTip: Trigger on data arrival.", "B", "M"],
+["Testing", "What's the difference between data tests and unit tests in dbt?", "**Why they ask:** testing depth.\n\n**Answer:**\n\"Data tests validate the actual data in tables — uniqueness, nulls, relationships. Unit tests, available since dbt 1.8, validate model logic using mocked input rows and expected outputs, independent of production data. I use unit tests for complex logic like revenue allocation.\"\n\nTip: Unit tests for complex logic.", "D", "M"],
+["Behavioral", "Tell me about a data model you built that had impact.", "**Why they ask:** proof.\n\n**Answer:**\n\"Finance and sales were reporting different revenue numbers. I built a unified revenue mart in dbt, with tested logic for refunds, discounts and currency, documented in the semantic layer. Monthly reconciliation dropped from three days to one hour.\"\n\nTip: Trust and time saved.", "B", "M"],
+["Behavioral", "Tell me about catching a data issue before stakeholders did.", "**Why they ask:** proactive quality.\n\n**Answer:**\n\"A relationships test failed after a source added a new customer type, which would have dropped 8% of orders from the dashboards. I fixed the mapping before the morning refresh and added an accepted_values test on that field.\"\n\nTip: Proactive quality.", "B", "M"],
+["Behavioral", "How do you balance speed with rigor?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Prototype quickly, with clear caveats on the output. Then, for any model used for real decisions, harden it with tests and documentation before releasing it widely. And label prototypes clearly so nobody mistakes them for certified data.\"\n\nTip: Label prototypes.", "B", "M"],
+["AI", "How does AI affect analytics engineering?", "**Why they ask:** current awareness.\n\n**Answer:**\n\"AI assistants generate SQL and documentation, and natural-language BI depends heavily on well-modeled, well-documented data and semantic layers. So analytics engineering becomes more important — an AI answer is only as trustworthy as the model underneath it.\"\n\nTip: Semantic layers matter for AI.", "D", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior analytics engineer or data architecture — semantic layers, governance and data product strategy.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build trusted, tested data models that end metric debates — my revenue mart cut reconciliation from three days to an hour — and I bring software engineering discipline to analytics.\"\n\nTip: Proof.", "B", "M"],
+["Jinja", "How do you use Jinja and macros in dbt?", "**Why they ask:** dbt depth.\n\n**Answer:**\n\"Jinja adds logic to SQL — loops, conditionals and variables. Macros are reusable SQL functions — currency conversion, date spines, grant statements. I keep macros simple and documented, because over-abstracted SQL is hard for the next person to read.\"\n\nTip: Don't over-abstract.", "D", "M"],
+["Packages", "Which dbt packages do you use?", "**Why they ask:** practical tooling.\n\n**Answer:**\n\"dbt-utils for generic helpers, dbt-expectations for richer tests, dbt-date, codegen for scaffolding, and audit_helper for comparing results during refactors.\"\n\nTip: Practical tools.", "B", "M"],
+["Date Spine", "What is a date spine and why use it?", "**Why they ask:** gap filling.\n\n**Answer:**\n\"A table of continuous dates used to fill gaps — so a day with no orders shows zero sales instead of disappearing, and daily averages and running totals are correct.\"\n\nTip: Gap filling.", "B", "M"],
+["Exposures", "What are dbt exposures?", "**Why they ask:** impact analysis.\n\n**Answer:**\n\"Declarations of downstream uses — dashboards, ML models, apps — inside dbt, so they appear in the lineage graph. Before changing a model, I can see exactly which dashboards it feeds.\"\n\nTip: Impact analysis.", "D", "M"],
+["Contracts", "What are dbt model contracts?", "**Why they ask:** protecting consumers.\n\n**Answer:**\n\"Enforced schemas — column names, data types and constraints — on a model. If the output doesn't match, the build fails, which protects downstream consumers from silent breaking changes.\"\n\nTip: Data contracts in dbt.", "D", "M"],
+["Naming", "Why do naming conventions matter?", "**Why they ask:** maintainability.\n\n**Answer:**\n\"Consistent prefixes — stg_, int_, fct_, dim_ — and clear column names — is_ and has_ for booleans, _at for timestamps, _id for keys — make models discoverable and reduce mistakes, especially as the team grows.\"\n\nTip: Consistency.", "B", "E"],
+["Mesh", "What is dbt Mesh?", "**Why they ask:** scaling dbt.\n\n**Answer:**\n\"A way to split a large dbt project into multiple projects owned by different teams, with cross-project references, model access levels, versions and contracts — so a finance team can depend on a marketing team's model without one giant monolith.\"\n\nTip: Scaling dbt.", "D", "S"],
+["Timezones", "How do you handle time zones in models?", "**Why they ask:** a common daily-reporting bug.\n\n**Answer:**\n\"Store timestamps in UTC, convert to local time in the marts where it matters, and document which time zone each date field uses. Otherwise an order at 11 p.m. Eastern lands on the next day in UTC reporting.\"\n\nTip: Watch daily boundaries.", "B", "M"],
+["Currency", "How do you handle multi-currency reporting?", "**Why they ask:** global data.\n\n**Answer:**\n\"Store the transaction currency and amount, join to daily or monthly exchange rates, and provide reporting-currency columns with the rate logic documented — and use the same rate type finance uses, or numbers won't reconcile.\"\n\nTip: Rate type consistency.", "D", "M"],
+["Ownership", "How do you assign ownership of data models?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Define owners per domain or mart in metadata, route alerts to those owners, and show ownership in the documentation and catalog.\"\n\nTip: Accountability.", "B", "M"],
+["Linting", "Why lint SQL?", "**Why they ask:** code quality.\n\n**Answer:**\n\"Consistent style makes SQL easier to read and review. Tools like SQLFluff enforce the rules automatically in CI, so reviews focus on logic, not formatting.\"\n\nTip: Automate style.", "B", "E"],
+["Refactoring", "How do you refactor legacy SQL into dbt?", "**Why they ask:** migration experience.\n\n**Answer:**\n\"Inventory the existing queries, rebuild them in layers with tests, compare outputs against the legacy results with audit_helper, migrate consumers over, and then retire the old queries.\"\n\nTip: Compare outputs.", "D", "M"]
+]);
