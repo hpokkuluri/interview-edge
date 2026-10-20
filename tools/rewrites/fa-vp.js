@@ -1,0 +1,396 @@
+// Rewritten Finance & Accounting — VP Finance (Why they ask → Answer → Tip). Apply with rewrite.js (prefix fa-vp-).
+module.exports = {
+
+'What would your first 90 days look like?':
+`**Why they ask:** they want a senior leader who listens, then moves.
+
+**Answer:**
+"First I listen — to the CEO and CFO on priorities, to business leaders, the finance team, auditors, banks, and board members if appropriate. Then I assess close and reporting quality, the planning process, controls, systems, talent, and cash and funding. Then I act: quick wins first — for example, a sharper board pack and daily cash visibility — and a 12 to 18 month roadmap agreed with the CFO."
+
+Tip: Name one quick win that builds trust fast.`,
+
+'How does finance shape company strategy?':
+`**Why they ask:** a VP must be a strategic partner.
+
+**Answer:**
+"Finance provides the fact base on where the company actually makes money, models the strategic options and their returns, sets capital allocation discipline, and tracks whether initiatives deliver. In strategy discussions, finance should be the honest broker. For example, our profitability work showed one 'growth' segment was destroying value, and we redirected $10 million of investment."
+
+Tip: Share a strategic choice finance changed.`,
+
+'How do you think about capital allocation?':
+`**Why they ask:** a core executive responsibility.
+
+**Answer:**
+"The options are organic growth investment, M&A, paying down debt, and dividends or buybacks. I compare expected returns against the cost of capital and the risk, keep a liquidity buffer, and match choices to strategy. The anchor is ROIC versus WACC. And after we invest, I review actual returns, so future decisions get better."
+
+Tip: ROIC versus WACC is the anchor.`,
+
+'How would you approach a refinancing?':
+`**Why they ask:** VPs often lead capital markets work.
+
+**Answer:**
+"I'd assess our future capital needs and current terms, model scenarios, and review market conditions. Then decide the mix — bank loans, notes or private credit — and run a competitive process with lenders. I negotiate covenants and flexibility as hard as pricing, because room to grow or do a deal matters more than a few basis points. Then board approval."
+
+Tip: Flexibility for future growth matters.`,
+
+'What is an optimal capital structure for us?':
+`**Why they ask:** tests financial judgment.
+
+**Answer:**
+"It's the structure that minimizes cost of capital while keeping flexibility and acceptable risk. It depends on cash flow stability, growth needs, the asset base, rating goals and covenants. A stable, cash-generative company can carry more debt — say 2.5 to 3 times EBITDA. A fast-growing or cyclical one should carry less. I'd want to see your cash flow volatility before giving a number."
+
+Tip: Tailor it to the company's profile.`,
+
+'How do you prepare materials for the board?':
+`**Why they ask:** board communication is a VP skill.
+
+**Answer:**
+"I lead with the story: performance against plan, outlook, key risks and decisions needed. Consistent KPIs over time, clear charts, an executive summary up front and detail in the appendix. And I pre-brief the audit committee chair and key directors, so there are no surprises in the meeting."
+
+Tip: 'No surprises for the board' is the rule.`,
+
+'How do you handle tough questions from the board?':
+`**Why they ask:** credibility with directors.
+
+**Answer:**
+"I answer directly, admit what I don't know and commit to follow up, avoid being defensive, and bring data. I anticipate most questions by reviewing the pack through a director's eyes beforehand. Candor builds more credibility than a polished answer."
+
+Tip: Credibility comes from candor.`,
+
+'How do you support investor relations or lenders?':
+`**Why they ask:** external credibility matters.
+
+**Answer:**
+"Consistent, credible messaging. Guidance that's well supported. Clear KPIs and timely reporting. And proactive communication with lenders on covenants and performance — good news and bad. I build those relationships before I need them, not during a crisis."
+
+Tip: Mention lender meetings or earnings support.`,
+
+'How would you redesign the planning process?':
+`**Why they ask:** planning is often slow and low-value.
+
+**Answer:**
+"I'd move from a long annual budget to targets plus rolling forecasts, use driver-based models with fewer line items, integrate financial and operational planning through IBP, and put it on a modern EPM tool. The goal is a shorter cycle focused on decisions. At my last company that took the budget from four months to seven weeks."
+
+Tip: Give a before-and-after cycle time.`,
+
+'How would you organize the finance function?':
+`**Why they ask:** organization design is a VP decision.
+
+**Answer:**
+"Three layers. Business partners — FP&A aligned to business units. Centers of excellence — tax, treasury, technical accounting, FP&A modeling. And shared services — transactional accounting, AP, AR and payroll — possibly in a global business services center. All on common systems and data. How far you go depends on scale; a $300 million company won't need a global shared services center."
+
+Tip: Mention scale considerations.`,
+
+'How would you modernize finance?':
+`**Why they ask:** they want a transformation leader.
+
+**Answer:**
+"Standardize processes first. Consolidate onto a cloud ERP and EPM. Automate the close and transactional work, build self-service analytics, and introduce AI where it's proven — AP, reconciliations, forecasting. Reskill the team toward analysis. And phase it with measurable benefits at each step, with change management treated as a workstream, not an afterthought."
+
+Tip: Mention change management explicitly.`,
+
+'What makes finance transformations fail?':
+`**Why they ask:** shows learned experience.
+
+**Answer:**
+"Unclear objectives. Automating broken processes. Underestimating data quality work. Weak executive sponsorship. Too much customization. And neglecting training and change management. I've seen a project slip six months because nobody owned the data cleanup."
+
+Tip: Show you've learned from one.`,
+
+'How do you choose between ERP options or a major finance system?':
+`**Why they ask:** big, expensive decisions.
+
+**Answer:**
+"I define requirements and future-state processes first. Then evaluate fit, total cost of ownership, the vendor's roadmap and ecosystem, implementation partner quality, and references from similar companies. I prefer standard functionality over customization, because customization is what makes upgrades painful."
+
+Tip: Mention references from similar companies.`,
+
+"What is finance's role in M&A?":
+`**Why they ask:** VPs lead deal finance.
+
+**Answer:**
+"Valuation and deal modeling. Due diligence — quality of earnings, working capital, debt-like items and tax. Financing. Purchase accounting. And integration — systems, close, controls and synergy tracking. Synergy tracking after close is where many deals disappoint."
+
+Tip: Synergy tracking after close is the weak spot.`,
+
+'What do you look for in due diligence?':
+`**Why they ask:** protects deal value.
+
+**Answer:**
+"Quality of earnings — sustainable EBITDA after adjustments. Revenue quality — concentration, churn and contract terms. Working capital normalization. Debt-like items. Tax exposures. Systems and control maturity. And key-person risk. On one deal, we found $2 million of 'one-time' costs that recurred every year, which cut the price."
+
+Tip: Mention a deal issue you uncovered.`,
+
+'What financial risks keep you up at night?':
+`**Why they ask:** risk awareness.
+
+**Answer:**
+"Liquidity in a downturn, customer concentration, input cost inflation, FX and interest rate exposure, cyber-enabled payment fraud, and control failures in fast-growing areas. For each, I want monitoring in place and a mitigation plan ready."
+
+Tip: Tailor it to the company.`,
+
+'How do you build resilience into the financial plan?':
+`**Why they ask:** volatility is constant.
+
+**Answer:**
+"Scenario planning with pre-agreed triggers and actions. A liquidity buffer and committed credit facilities. A flexible cost structure — more variable, less fixed. And diversified suppliers and customers. Triggers turn scenarios into action — if bookings drop 15%, we freeze hiring automatically."
+
+Tip: Triggers turn scenarios into action.`,
+
+'How do you drive cash generation across the company?':
+`**Why they ask:** cash discipline is cultural.
+
+**Answer:**
+"Make cash a shared KPI — free cash flow and working capital days — in leaders' goals and incentives. Run a monthly cash council. And target the levers: collections, payment terms, inventory and capex discipline."
+
+Tip: Mention incentive alignment.`,
+
+'How do you ensure control quality across a growing company?':
+`**Why they ask:** growth breaks controls.
+
+**Answer:**
+"Controls have to scale with growth. Automate key controls, get SOX-ready ahead of an IPO or as revenue grows, set clear policies, ensure internal audit coverage, and build a culture where controls are seen as enabling, not bureaucracy."
+
+Tip: Mention a pre-IPO readiness project if relevant.`,
+
+'How do you build a finance leadership bench?':
+`**Why they ask:** succession is a VP responsibility.
+
+**Answer:**
+"I identify high-potential people, give them stretch roles and rotations, and mentor them. I build succession plans for key roles and hire externally where there are gaps. And I measure retention and promotion rates. Two of my former managers are now controllers."
+
+Tip: Name leaders you developed.`,
+
+'How do you attract and retain finance talent?':
+`**Why they ask:** finance talent is scarce.
+
+**Answer:**
+"Interesting work — less manual, more analysis. Clear growth paths. Flexibility. Competitive pay. Recognition. And strong managers. I also reduce burnout through automation and better planning, because people leave crunch-driven teams."
+
+Tip: Practical and people-focused.`,
+
+'How do you partner with the CEO and executive team?':
+`**Why they ask:** the VP is part of leadership.
+
+**Answer:**
+"I understand their priorities, give clear and honest analysis, challenge constructively in private and support decisions in public. The goal is for finance to be a trusted adviser in every major decision, not the department that says no."
+
+Tip: 'Challenge privately, support publicly.'`,
+
+'How would you improve pricing discipline?':
+`**Why they ask:** pricing is a major profit lever.
+
+**Answer:**
+"A deal desk with margin guardrails, approval levels for discounts, price realization tracking, cost-to-serve visibility, and regular price reviews tied to inflation and value. At my last company, tightening discount approvals added 1.5 points of gross margin in a year."
+
+Tip: Give the margin impact of a pricing initiative.`,
+
+'How do you set targets that are ambitious but credible?':
+`**Why they ask:** bad targets demotivate.
+
+**Answer:**
+"I use market data, historical performance and bottom-up plans together. Then set a commit target and a stretch target, and link incentives appropriately. Targets should be tied to drivers leaders actually control."
+
+Tip: Commit versus stretch is practical.`,
+
+'How do you improve the quality of management information?':
+`**Why they ask:** decisions depend on information.
+
+**Answer:**
+"One source of truth for data and definitions. Automated reporting. Fewer, better KPIs. Consistent formats. And commentary that explains drivers and actions, not just numbers."
+
+Tip: Data governance matters.`,
+
+'How do you oversee tax strategy?':
+`**Why they ask:** tax is a big cost and risk.
+
+**Answer:**
+"Compliance first. Then sustainable planning aligned with real business substance. I monitor law changes — like Pillar Two and the recent R&D cost rules — manage the effective tax rate and cash taxes, and keep the audit committee informed of significant positions."
+
+Tip: Keep a responsible planning tone.`,
+
+'What treasury priorities would you set?':
+`**Why they ask:** liquidity is existential.
+
+**Answer:**
+"Full cash visibility. An accurate 13-week forecast. A liquidity buffer and committed facilities. Bank rationalization. An FX hedging policy. And strong payment controls. Visibility comes first."
+
+Tip: Visibility first.`,
+
+'What is your strategy for AI in finance?':
+`**Why they ask:** they want a current, grounded view.
+
+**Answer:**
+"Start with proven use cases — invoice processing, reconciliations, cash application. Then analytics — forecasting, anomaly detection, draft commentary. Govern data access and accuracy, keep humans accountable for decisions, measure the benefits, and upskill the team so they can use it well."
+
+Tip: Concrete and measured.`,
+
+'Revenue drops 20% unexpectedly. What do you do in the first two weeks?':
+`**Why they ask:** crisis leadership.
+
+**Answer:**
+"Liquidity first: a daily 13-week cash forecast, confirm revolver availability, and check covenants. Then model scenarios and agree immediate actions — hiring freeze, stop discretionary spend, review capex. Communicate with the board and lenders early. And plan deeper structural actions if the drop persists."
+
+Tip: Cash first, then cost, then communication.`,
+
+'The CEO wants to make an acquisition you think is overpriced. What do you do?':
+`**Why they ask:** tests courage and loyalty together.
+
+**Answer:**
+"I present the analysis — valuation against realistic synergies, the risks, alternative uses of the capital, and a walk-away price. I'd suggest structures like an earn-out to bridge the gap. And give a clear recommendation. If the decision goes ahead anyway, I commit fully to making it succeed."
+
+Tip: Honest advice, then full support.`,
+
+'You discover a material weakness six weeks before year-end. What do you do?':
+`**Why they ask:** a serious, realistic scenario.
+
+**Answer:**
+"I assess the scope and impact with the controller, the auditors and the audit committee right away. We implement remediation and compensating controls immediately, and perform extra procedures to make sure the financials themselves are correct. If it can't be remediated and tested in time, we plan the disclosure. Transparency with the audit committee is non-negotiable."
+
+Tip: Transparency with the audit committee.`,
+
+'Finance costs are above benchmark. How do you reduce them?':
+`**Why they ask:** VPs run finance efficiently.
+
+**Answer:**
+"I benchmark by process — cost per invoice, days to close, finance FTEs per billion of revenue. Then standardize and automate, consolidate transactional work into shared services, cut reporting, and rationalize systems. I protect controls and business partnering. Benchmark data makes the case with leadership."
+
+Tip: Benchmark data makes the case.`,
+
+'Tell me about leading finance through a tough period.':
+`**Why they ask:** proof under pressure.
+
+**Answer:**
+"During a sharp downturn, I moved us to weekly cash forecasting, renegotiated our credit facility covenants early — before we needed to — and led a $15 million cost program. We avoided a covenant breach and were investing again within 18 months."
+
+Tip: Leadership plus numbers.`,
+
+'Tell me about a transformation you led.':
+`**Why they ask:** VP-level proof of change.
+
+**Answer:**
+"I led a move from three ERPs to Oracle Fusion with EPM. We standardized the chart of accounts and close, cut the close from 12 days to 6, and gave business leaders self-service dashboards. Finance headcount stayed flat while revenue grew 40%."
+
+Tip: Scope, actions, results.`,
+
+'Tell me about a time you disagreed with the CEO.':
+`**Why they ask:** they want a VP who can push back.
+
+**Answer:**
+"The CEO wanted aggressive guidance to lenders. I showed our forecast range and the covenant risk if we missed. We agreed on a more conservative plan, with upside described as potential. We beat the plan, and the lenders' trust in us grew."
+
+Tip: Data, respect, outcome.`,
+
+"What's the hardest people decision you've made?":
+`**Why they ask:** leadership maturity.
+
+**Answer:**
+"Replacing a long-tenured controller who couldn't adapt to a new ERP and a faster close. I gave clear feedback and real support for six months. When it didn't work, I made the change with respect and helped with the transition. The team's performance improved significantly afterward."
+
+Tip: Fair, humane and decisive.`,
+
+'How do you set the tone at the top for finance integrity?':
+`**Why they ask:** culture starts with the leader.
+
+**Answer:**
+"By modeling it. No pressure to manage results inappropriately, open discussion of judgments, real support for people who raise concerns, and swift action on violations. People watch what you do when the quarter is tight."
+
+Tip: Short and sincere.`,
+
+"What is finance's role in sustainability reporting?":
+`**Why they ask:** a growing reporting area.
+
+**Answer:**
+"Finance brings financial-grade controls and data quality to ESG metrics, prepares for disclosure requirements — like California's climate laws, or the EU's CSRD for some companies — and quantifies the financial impact of climate and sustainability initiatives. These requirements keep changing, so I'd check the current rules for our footprint."
+
+Tip: Note that requirements are evolving.`,
+
+'What questions would you ask the CEO or CFO?':
+`**Why they ask:** your questions reveal your thinking.
+
+**Answer:**
+"'What does success look like for finance in 12 months?' 'Where do you feel least confident in the numbers today?' And 'What's the biggest strategic decision coming in the next two years?'"
+
+Tip: Strategic and candid.`,
+
+'Why VP Finance at this company?':
+`**Why they ask:** fit and motivation.
+
+**Answer:**
+"At your growth stage you need a finance function that scales — planning, controls, systems and capital — and that's what I've built before. I want to be part of the leadership team shaping the next phase."
+
+Tip: Match your experience to their stage.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I've led finance through growth and downturns, delivered a major ERP and close transformation, managed lender relationships and board reporting, and built leaders. And I'm a strong partner to CEOs — candid and focused on solutions."
+
+Tip: Breadth plus proof.`,
+
+'How do you think about EBITDA adjustments?':
+`**Why they ask:** credibility with investors.
+
+**Answer:**
+"Adjustments should be truly non-recurring and well documented — restructuring, deal costs. If the same 'one-time' item shows up every year, it isn't one-time. Aggressive adjustments cost credibility with lenders and investors. And I always reconcile adjusted figures clearly to GAAP."
+
+Tip: Credibility over optics.`,
+
+'What is free cash flow conversion and why does it matter?':
+`**Why they ask:** quality of earnings.
+
+**Answer:**
+"It's free cash flow divided by net income, or by EBITDA. It shows how much profit actually turns into cash. Low conversion signals working capital or capex drag. Many healthy businesses target 80 to 100% of net income. Investors and lenders watch it closely."
+
+Tip: Give a target range.`,
+
+'How do you evaluate a lease vs buy decision?':
+`**Why they ask:** a classic financing decision.
+
+**Answer:**
+"I compare the after-tax present value of the lease payments against buying — purchase price, financing cost, the depreciation tax shield and residual value. Then I consider flexibility, the balance sheet impact under ASC 842, and how the covenants define debt — some count leases, some don't."
+
+Tip: Include the covenant angle.`,
+
+'What is the difference between cash and accrual metrics in performance management?':
+`**Why they ask:** incentive design.
+
+**Answer:**
+"Accrual metrics like EBITDA and net income show profitability. Cash metrics like free cash flow and cash conversion show liquidity and quality of earnings. Good performance management uses both, so leaders don't hit a profit target by stuffing the channel or building inventory. That's why I put a cash metric into incentives."
+
+Tip: Mention including cash in incentives.`,
+
+'What is the role of an audit committee and how do you support it?':
+`**Why they ask:** VPs work closely with it.
+
+**Answer:**
+"It oversees financial reporting, internal controls, internal and external audit, and often risk and compliance. Finance supports it with timely, accurate reporting, transparency on judgments and issues, and follow-through on its recommendations. Private sessions between the committee and the auditors are normal and healthy."
+
+Tip: Mention private sessions with auditors.`,
+
+'How would you manage finance across multiple countries?':
+`**Why they ask:** global complexity.
+
+**Answer:**
+"Global policies and a common chart of accounts, a single ERP where possible, regional finance leads, shared services for transactions, attention to local statutory and tax requirements, and a regular communication rhythm across time zones."
+
+Tip: Share an example.`,
+
+'How do you link operational and financial planning?':
+`**Why they ask:** disconnected plans fail.
+
+**Answer:**
+"Through integrated business planning. Sales, supply, workforce and capex plans feed one financial plan with shared assumptions on a monthly cadence. Gaps and trade-offs get decided in one executive forum, not in separate meetings that contradict each other."
+
+Tip: Mention S&OP or IBP.`,
+
+'How do you make finance a respected partner rather than a gatekeeper?':
+`**Why they ask:** culture of finance.
+
+**Answer:**
+"Say 'here's how we can' more than 'no'. Bring insights early, be fast and accurate, and understand the business deeply. Keep controls firm, but make the right path the easy path."
+
+Tip: Practical and positive.`,
+
+};
