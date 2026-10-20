@@ -1,251 +1,57 @@
 // ss-rel — generated from src/ss-rel-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Maintenance / Reliability Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ss-rel'] = [
-["Role", "What does a reliability engineer do?",
-`**Why they ask:** distinguish reliability from reactive maintenance.
-
-**Answer:** Improves equipment reliability and availability: analyzes failures, develops maintenance strategies (preventive, predictive, condition-based), performs RCA and RCM/FMEA, manages critical spares, tracks reliability metrics (MTBF, MTTR), and reduces lifecycle cost.
-
-Tip: Proactive vs reactive.`, 'B', 'E'],
-
-["Metrics", "What are MTBF and MTTR?",
-`**Answer:** **MTBF** = operating time / number of failures. **MTTR** = total repair time / number of repairs. Availability = MTBF / (MTBF + MTTR).
-
-**Example:** MTBF 200 hours, MTTR 4 hours → availability 98%.
-
-Tip: Availability formula.`, 'B', 'E'],
-
-["Strategies", "Compare maintenance strategies.",
-`**Answer:** **Reactive** (run to failure — fine for non-critical, cheap items). **Preventive** (time or usage-based). **Predictive/condition-based** (vibration, oil analysis, thermography, ultrasonic triggering action). **Proactive/reliability-centered** (eliminate failure causes).
-
-Tip: Match strategy to criticality.`, 'B', 'E'],
-
-["RCM", "What is reliability-centered maintenance?",
-`**Answer:** A structured method to define maintenance by asking: functions, functional failures, failure modes, effects, consequences, and appropriate tasks (condition monitoring, scheduled restoration/discard, failure finding, or redesign).
-
-Tip: Seven RCM questions.`, 'D', 'M'],
-
-["Criticality", "How do you rank asset criticality?",
-`**Answer:** Score assets on safety, environmental, production, quality and cost impacts of failure, plus likelihood; focus strategies and spares on high-criticality assets.
-
-Tip: Risk matrix.`, 'B', 'M'],
-
-["P-F Curve", "Explain the P-F curve.",
-`**Answer:** It shows the interval between potential failure (P — detectable) and functional failure (F). Condition monitoring frequency must be shorter than the P-F interval to catch failures in time.
-
-Tip: Inspection frequency.`, 'D', 'M'],
-
-["Predictive", "Which predictive technologies have you used?",
-`**Answer:** Vibration analysis (imbalance, misalignment, bearing defects), infrared thermography (electrical hot spots), oil analysis (wear particles, contamination), ultrasound (leaks, bearings), motor current analysis — increasingly with IoT sensors.
-
-Tip: Match to failure modes.`, 'B', 'M'],
-
-["Vibration", "What faults can vibration analysis detect?",
-`**Answer:** Imbalance (1× running speed radial), misalignment (1× and 2× axial), looseness (multiple harmonics), bearing defects (bearing frequencies BPFO/BPFI), gear mesh problems.
-
-Tip: Frequency signatures.`, 'D', 'S'],
-
-["RCA", "How do you perform root cause analysis on equipment failure?",
-`**Answer:** Preserve failed parts and evidence, gather data (operating conditions, history), use 5 Whys, fishbone or fault tree, consider physical, human and latent (system) causes, implement corrective actions, and verify effectiveness.
-
-Tip: Latent causes.`, 'B', 'M'],
-
-["Weibull", "What is Weibull analysis?",
-`**Answer:** Statistical modeling of failure data: shape β < 1 infant mortality, β = 1 random failures, β > 1 wear-out — guiding whether time-based replacement makes sense.
-
-Tip: Only wear-out benefits from time-based PM.`, 'D', 'S'],
-
-["CMMS", "How do you use a CMMS?",
-`**Answer:** Manage work orders, PM schedules, asset hierarchy, failure codes, spare parts and history — data quality is key for analysis. Examples: SAP PM, IBM Maximo, Oracle EAM, Fiix, UpKeep.
-
-Tip: Failure codes.`, 'B', 'E'],
-
-["PM Optimization", "How do you optimize PM programs?",
-`**Answer:** Review PM tasks against failure modes and history, remove non-value tasks, convert to condition-based where possible, adjust frequencies and add missing tasks.
-
-Tip: Task value.`, 'D', 'M'],
-
-["Spares", "How do you manage critical spares?",
-`**Answer:** Identify critical parts by asset criticality and lead time, set min/max based on failure rates and risk, standardize parts, and review obsolescence.
-
-Tip: Lead time risk.`, 'B', 'M'],
-
-["Planning", "What is maintenance planning and scheduling?",
-`**Answer:** Planners prepare job plans (tasks, parts, tools, permits, estimates) ahead; schedulers coordinate with production to execute work efficiently — increasing wrench time.
-
-Tip: Wrench time.`, 'B', 'M'],
-
-["KPIs", "Which maintenance KPIs do you track?",
-`**Answer:** Planned maintenance percentage (>85%), PM compliance, schedule compliance, backlog weeks, MTBF/MTTR, OEE availability, maintenance cost as % of replacement asset value, and emergency work percentage.
-
-Tip: Planned %.`, 'B', 'M'],
-
-["Precision", "What is precision maintenance?",
-`**Answer:** Doing maintenance to precise standards — alignment, balancing, proper lubrication, torque — to prevent defects that cause early failures.
-
-Tip: Lubrication.`, 'D', 'M'],
-
-["Lubrication", "Why is lubrication important?",
-`**Answer:** Poor lubrication (wrong type, contamination, over/under greasing) causes a large share of bearing failures; programs include standards, contamination control and oil analysis.
-
-Tip: Contamination control.`, 'B', 'E'],
-
-["TPM", "What is total productive maintenance?",
-`**Answer:** Involving operators in basic maintenance (autonomous maintenance — cleaning, inspection, lubrication), focused improvement, planned maintenance, and training to maximize OEE.
-
-Tip: Operator ownership.`, 'B', 'M'],
-
-["Safety", "How do you ensure safety in maintenance?",
-`**Answer:** Lockout/tagout, permits, job safety analyses, confined space and hot work controls, and training.
-
-Tip: LOTO.`, 'B', 'E'],
-
-["Capital", "How do you decide repair vs replace?",
-`**Answer:** Compare lifecycle costs: repair costs, reliability trends, downtime impact, parts availability, energy efficiency and replacement cost (NPV analysis).
-
-Tip: Lifecycle cost.`, 'D', 'M'],
-
-["Behavioral", "Tell me about improving reliability.",
-`**Sample answer:** "A critical compressor failed monthly. Vibration and oil analysis revealed misalignment and contamination. After precision alignment and filtration upgrades, MTBF rose from 30 to 210 days, saving $500K in downtime."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about shifting from reactive to planned maintenance.",
-`**Sample answer:** "Emergency work was 55%. I introduced criticality ranking, planning and scheduling, and condition monitoring; within 18 months planned work reached 80%."
-
-Tip: Transformation.`, 'B', 'M'],
-
-["Behavioral", "How do you work with production?",
-`**Answer:** Agree on maintenance windows, share reliability data, and show how planned downtime prevents bigger losses.
-
-Tip: Shared goals.`, 'B', 'E'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** CMRP (Certified Maintenance & Reliability Professional), CRE (ASQ Certified Reliability Engineer), vibration analyst certifications (ISO 18436), and PE.
-
-Tip: CMRP.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Reliability manager or maintenance manager.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I eliminate repeat failures and shift teams to planned work — raising MTBF sevenfold on critical assets and saving downtime costs."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Bad Actors", "How do you identify bad actors?",
-`**Answer:** Pareto analysis of downtime, cost and failure frequency by asset to target the few assets causing most losses.
-
-Tip: Pareto.`, 'B', 'E'],
-
-["Backlog", "How do you manage maintenance backlog?",
-`**Answer:** Measure in crew-weeks (target 2–4 weeks ready backlog), prioritize by criticality and risk, and adjust staffing or contractors.
-
-Tip: Crew-weeks.`, 'B', 'M'],
-
-["Failure Codes", "Why are failure codes important?",
-`**Answer:** Consistent problem, cause and action codes enable meaningful failure analysis and reliability improvement.
-
-Tip: Data quality.`, 'B', 'E'],
-
-["IoT", "How does IoT change maintenance?",
-`**Answer:** Continuous sensor monitoring, remote alerts, analytics and AI-based anomaly detection enabling predictive maintenance at scale.
-
-Tip: Anomaly detection.`, 'B', 'M'],
-
-["Contractors", "How do you manage maintenance contractors?",
-`**Answer:** Clear scopes, safety prequalification, supervision, quality checks and performance metrics.
-
-Tip: Safety.`, 'B', 'E'],
-
-["Shutdowns", "How do you plan a major shutdown/turnaround?",
-`**Answer:** Scope freeze, detailed planning and scheduling (critical path), materials and contractors lined up, safety plans, daily coordination meetings and post-shutdown review.
-
-Tip: Scope freeze.`, 'D', 'M'],
-
-["Energy", "How does reliability affect energy use?",
-`**Answer:** Misalignment, poor lubrication and leaks waste energy; reliable equipment runs more efficiently.
-
-Tip: Compressed air leaks.`, 'B', 'E'],
-
-["FMEA", "How do you use FMEA in reliability?",
-`**Answer:** Identify failure modes of equipment, effects and causes, rate risk, and define maintenance or design actions.
-
-Tip: Equipment FMEA.`, 'B', 'M'],
-
-["Scenario", "A critical pump keeps failing every few weeks. What do you do?",
-`**Answer:** Gather failure history and inspect failed parts, check operating conditions (cavitation, running off BEP), alignment, lubrication and installation, perform RCA and fix the root cause.
-
-Tip: Operating point.`, 'B', 'M'],
-
-["Scenario", "Leadership wants to cut maintenance budget 15%. What do you do?",
-`**Answer:** Show risk of deferred maintenance, find savings through PM optimization, condition-based strategies, spares optimization and contract renegotiation instead of cutting critical work.
-
-Tip: Risk-based savings.`, 'D', 'M'],
-
-["Asset Management", "What is ISO 55000?",
-`**Answer:** International standard for asset management systems — aligning asset decisions with organizational objectives across lifecycle.
-
-Tip: Lifecycle.`, 'D', 'M'],
-
-["Design", "How do reliability engineers influence new equipment design?",
-`**Answer:** Provide failure history and maintainability requirements, review designs for access and standardization, and set reliability specs.
-
-Tip: Maintainability.`, 'D', 'M'],
-
-["Wrench Time", "What is wrench time and how do you improve it?",
-`**Answer:** Percentage of a technician's time spent on hands-on work (often 25–35%); improve by planning, kitting parts, reducing travel and waiting.
-
-Tip: Kitting.`, 'D', 'M'],
-
-["Thermography", "What does infrared thermography find?",
-`**Answer:** Hot spots in electrical panels, loose connections, overloaded circuits, motor and bearing overheating, and insulation issues.
-
-Tip: Electrical safety.`, 'B', 'E'],
-
-["Culture", "How do you build a reliability culture?",
-`**Answer:** Leadership support, training, operator involvement, celebrating defect elimination, and data-driven decisions.
-
-Tip: Defect elimination.`, 'B', 'M']
-];
-
-QB['ss-rel'] = (QB['ss-rel']||[]).concat([
-["Failure Patterns", "What are the six failure patterns?",
-`**Answer:** From airline studies: A (bathtub), B (wear-out), C (gradual increase), D (low then rising), E (random) and F (infant mortality then random). Most failures in complex equipment are random or infant mortality, so time-based overhauls often don't help and can introduce failures.
-
-Tip: Supports condition-based maintenance.`, 'D', 'S'],
-["Alignment", "Why is shaft alignment important?",
-`**Answer:** Misalignment increases vibration, bearing and seal wear, coupling failures and energy use. Use laser alignment to tolerances, correct soft foot, and check thermal growth.
-
-Tip: Laser alignment.`, 'B', 'M'],
-["Bearings", "What causes premature bearing failure?",
-`**Answer:** Poor lubrication (the leading cause), contamination, misalignment, improper installation (impact damage), overloading, and electrical fluting from VFDs.
-
-Tip: Lubrication and contamination.`, 'B', 'M'],
-["Defect Elimination", "What is defect elimination?",
-`**Answer:** A systematic process where teams identify recurring defects, analyze causes and remove them permanently, instead of repeatedly repairing them. Track defects eliminated as a metric.
-
-Tip: Permanent fixes.`, 'D', 'M'],
-["Root Cause", "Physical vs human vs latent root causes?",
-`**Answer:** **Physical** is the material cause (a fatigued shaft). **Human** is the action that triggered it (incorrect installation). **Latent** is the system weakness that allowed it (no procedure or training). Lasting fixes address latent causes.
-
-Tip: System fixes.`, 'D', 'M'],
-["Reliability Block", "How do redundancy and series systems affect reliability?",
-`**Answer:** Series systems multiply reliabilities (0.95 × 0.95 = 0.9025). Parallel redundancy improves it: 1 − (1 − 0.95)² = 0.9975.
-
-Tip: Show the calculation.`, 'D', 'M'],
-["Spare Parts Math", "How do you set spares for slow-moving critical parts?",
-`**Answer:** Use failure rates and lead time with a Poisson model to find the stock level that meets a target availability, weighing the downtime cost against holding cost. Even one spare can be justified for long-lead critical items.
-
-Tip: Downtime cost.`, 'D', 'S'],
-["Digital Twin", "What is a digital twin in maintenance?",
-`**Answer:** A virtual model of an asset fed with real-time data to simulate performance, predict failures and test maintenance strategies.
-
-Tip: Simulation.`, 'D', 'M'],
-["Training", "How do you build maintenance technician skills?",
-`**Answer:** Skills matrices, structured on-the-job training, precision maintenance training, certifications, and mentoring by senior technicians.
-
-Tip: Skills matrix.`, 'B', 'E']
+QB["ss-rel"] = (QB["ss-rel"] || []).concat([
+["Role", "What does a reliability engineer do?", "**Why they ask:** distinguish reliability from reactive maintenance.\n\n**Answer:** Improves equipment reliability and availability: analyzes failures, develops maintenance strategies (preventive, predictive, condition-based), performs RCA and RCM/FMEA, manages critical spares, tracks reliability metrics (MTBF, MTTR), and reduces lifecycle cost.\n\nTip: Proactive vs reactive.", "B", "E"],
+["Metrics", "What are MTBF and MTTR?", "**Why they ask:** core reliability metrics.\n\n**Answer:**\n\"MTBF — mean time between failures — is operating time divided by the number of failures. MTTR — mean time to repair — is total repair time divided by the number of repairs. Availability is MTBF divided by MTBF plus MTTR. With an MTBF of 200 hours and MTTR of 4 hours, availability is 200 over 204 — about 98%. Raising MTBF and cutting MTTR both improve it.\"\n\nTip: Know the availability formula.", "B", "E"],
+["Strategies", "Compare maintenance strategies.", "**Why they ask:** strategy selection.\n\n**Answer:**\n\"Reactive — run to failure — is fine for non-critical, cheap items like a light bulb. Preventive is time- or usage-based. Predictive or condition-based uses vibration, oil analysis, thermography or ultrasound to trigger action. Proactive or reliability-centered work eliminates the failure causes. The right one depends on asset criticality and how the asset fails.\"\n\nTip: Match the strategy to criticality.", "B", "E"],
+["RCM", "What is reliability-centered maintenance?", "**Why they ask:** a structured methodology.\n\n**Answer:**\n\"RCM defines maintenance by asking seven questions: what are the asset's functions, how can it fail to perform them, what causes each failure, what happens when it fails, what are the consequences, what task can prevent or predict it, and what if no task is suitable. The answer might be condition monitoring, scheduled restoration or discard, failure-finding tasks, or a redesign.\"\n\nTip: Know the seven RCM questions.", "D", "M"],
+["Criticality", "How do you rank asset criticality?", "**Why they ask:** focus on what matters.\n\n**Answer:**\n\"I score each asset on the safety, environmental, production, quality and cost impact of a failure, plus how likely failure is — a risk matrix. Then focus maintenance strategies and spare parts on the high-criticality assets. A bottleneck with no backup scores very differently from one of three identical pumps.\"\n\nTip: Use a risk matrix.", "B", "M"],
+["P-F Curve", "Explain the P-F curve.", "**Why they ask:** inspection timing.\n\n**Answer:**\n\"It shows the time between potential failure — P, when a problem becomes detectable — and functional failure — F, when it actually fails. Condition monitoring has to happen more often than the P-F interval, or you'll miss it. If vibration shows a bearing defect three months before failure, monthly checks catch it; quarterly might not.\"\n\nTip: It sets inspection frequency.", "D", "M"],
+["Predictive", "Which predictive technologies have you used?", "**Why they ask:** practical PdM experience.\n\n**Answer:**\n\"Vibration analysis for imbalance, misalignment and bearing defects; infrared thermography for electrical hot spots; oil analysis for wear particles and contamination; ultrasound for leaks and early bearing problems; and motor current analysis — increasingly through wireless IoT sensors. The technology has to match the failure mode.\"\n\nTip: Match technology to failure modes.", "B", "M"],
+["Vibration", "What faults can vibration analysis detect?", "**Why they ask:** technical depth.\n\n**Answer:**\n\"Imbalance shows up at one times running speed, radially. Misalignment at one and two times running speed, often axially. Looseness shows multiple harmonics. Bearing defects appear at the bearing's characteristic frequencies — BPFO and BPFI. And gear mesh problems at the gear mesh frequency and its sidebands.\"\n\nTip: Know the frequency signatures.", "D", "S"],
+["RCA", "How do you perform root cause analysis on equipment failure?", "**Why they ask:** stopping repeat failures.\n\n**Answer:**\n\"Preserve the failed parts and evidence, gather data — operating conditions and history — and use 5 Whys, fishbone or fault tree analysis. I look at three levels: physical causes, human causes, and latent system causes. Then implement corrective actions and verify they worked. The latent cause is where the lasting fix is.\"\n\nTip: Find the latent causes.", "B", "M"],
+["Weibull", "What is Weibull analysis?", "**Why they ask:** data-driven maintenance strategy.\n\n**Answer:**\n\"It's statistical modeling of failure data. The shape parameter beta tells the story: beta below 1 means infant mortality, equal to 1 means random failures, above 1 means wear-out. Only wear-out failures benefit from time-based replacement — for random failures, replacing parts on a schedule wastes money and can introduce new failures.\"\n\nTip: Only wear-out benefits from time-based PM.", "D", "S"],
+["CMMS", "How do you use a CMMS?", "**Why they ask:** maintenance data foundation.\n\n**Answer:**\n\"To manage work orders, PM schedules, the asset hierarchy, failure codes, spare parts and history. Examples are SAP PM, IBM Maximo, Oracle EAM, Fiix and UpKeep. The value is only as good as the data — if technicians close work orders with 'fixed' and no failure code, you can't analyze anything.\"\n\nTip: Failure codes matter.", "B", "E"],
+["PM Optimization", "How do you optimize PM programs?", "**Why they ask:** many PMs add no value.\n\n**Answer:**\n\"I review each PM task against the actual failure modes and history. Remove tasks that don't prevent anything, convert time-based tasks to condition-based where possible, adjust frequencies, and add tasks that are missing. Often 30% of PM tasks can be removed or changed without increasing risk.\"\n\nTip: Check each task's value.", "D", "M"],
+["Spares", "How do you manage critical spares?", "**Why they ask:** spares prevent long outages.\n\n**Answer:**\n\"Identify critical parts based on asset criticality and lead time, set min-max based on failure rates and risk, standardize parts across equipment, and review obsolescence. A 16-week lead-time gearbox for a bottleneck machine is worth stocking even if it rarely fails.\"\n\nTip: Think about lead-time risk.", "B", "M"],
+["Planning", "What is maintenance planning and scheduling?", "**Why they ask:** efficiency of the maintenance team.\n\n**Answer:**\n\"Planners prepare job plans ahead — tasks, parts, tools, permits and time estimates. Schedulers coordinate with production so the work happens efficiently. Together they raise wrench time — the share of a technician's day actually spent working on equipment instead of searching for parts or waiting.\"\n\nTip: Raise wrench time.", "B", "M"],
+["KPIs", "Which maintenance KPIs do you track?", "**Why they ask:** managing maintenance by data.\n\n**Answer:**\n\"Planned maintenance percentage — target above 85% — PM compliance, schedule compliance, backlog in weeks, MTBF and MTTR, OEE availability, maintenance cost as a percentage of replacement asset value, and emergency work percentage.\"\n\nTip: Planned percentage.", "B", "M"],
+["Precision", "What is precision maintenance?", "**Why they ask:** prevents early failures.\n\n**Answer:**\n\"Doing maintenance to precise standards — laser alignment, balancing, correct lubrication and torque — to avoid introducing the defects that cause early failures. A lot of failures are caused by the last repair.\"\n\nTip: Lubrication is a big part.", "D", "M"],
+["Lubrication", "Why is lubrication important?", "**Why they ask:** a top failure cause.\n\n**Answer:**\n\"Poor lubrication — wrong type, contamination, over- or under-greasing — causes a large share of bearing failures. A good program has standards for each point, contamination control, and oil analysis. Over-greasing is as harmful as under-greasing.\"\n\nTip: Contamination control.", "B", "E"],
+["TPM", "What is total productive maintenance?", "**Why they ask:** operator involvement.\n\n**Answer:**\n\"TPM involves operators in basic maintenance — autonomous maintenance like cleaning, inspection and lubrication — along with focused improvement, planned maintenance and training, all to maximize OEE. Operators own their equipment's basic condition.\"\n\nTip: Operator ownership.", "B", "M"],
+["Safety", "How do you ensure safety in maintenance?", "**Why they ask:** maintenance is high-risk work.\n\n**Answer:**\n\"Lockout/tagout on every job, permits, job safety analyses, confined space and hot work controls, and training. No schedule pressure justifies skipping LOTO.\"\n\nTip: LOTO first.", "B", "E"],
+["Capital", "How do you decide repair vs replace?", "**Why they ask:** capital decisions.\n\n**Answer:**\n\"I compare lifecycle costs: repair costs, the reliability trend, downtime impact, parts availability, energy efficiency, and replacement cost — usually with an NPV analysis. A motor that's failed three times in a year and is 15% less efficient often costs more to keep than to replace.\"\n\nTip: Use lifecycle cost.", "D", "M"],
+["Behavioral", "Tell me about improving reliability.", "**Why they ask:** proof.\n\n**Answer:**\n\"A critical compressor was failing monthly. Vibration and oil analysis showed misalignment and contamination. After precision alignment and upgraded filtration, MTBF rose from 30 days to 210 days, saving about $500,000 in downtime.\"\n\nTip: Measured results.", "B", "M"],
+["Behavioral", "Tell me about shifting from reactive to planned maintenance.", "**Why they ask:** transformation experience.\n\n**Answer:**\n\"Emergency work was 55% of the total. I introduced criticality ranking, a planning and scheduling process, and condition monitoring on critical assets. Within 18 months, planned work reached 80%.\"\n\nTip: Show the transformation.", "B", "M"],
+["Behavioral", "How do you work with production?", "**Why they ask:** maintenance–production friction.\n\n**Answer:**\n\"We agree maintenance windows, share reliability data, and I show how planned downtime prevents much bigger unplanned losses. When production sees that a four-hour PM avoided a two-day breakdown, they protect the windows.\"\n\nTip: Shared goals.", "B", "E"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"The CMRP — Certified Maintenance and Reliability Professional — ASQ's Certified Reliability Engineer, vibration analyst certifications under ISO 18436, and a PE license.\"\n\nTip: CMRP.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward reliability manager or maintenance manager.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I eliminate repeat failures and shift teams to planned work — I raised MTBF sevenfold on critical assets and cut downtime costs significantly.\"\n\nTip: Proof.", "B", "E"],
+["Bad Actors", "How do you identify bad actors?", "**Why they ask:** focus.\n\n**Answer:**\n\"A Pareto analysis of downtime, cost and failure frequency by asset. Usually a handful of 'bad actor' assets cause most of the losses, so that's where reliability work starts.\"\n\nTip: Use Pareto.", "B", "E"],
+["Backlog", "How do you manage maintenance backlog?", "**Why they ask:** workload control.\n\n**Answer:**\n\"I measure it in crew-weeks — target two to four weeks of ready backlog — prioritize by criticality and risk, and adjust staffing or bring in contractors if it grows. Too little backlog wastes labor; too much means important work is waiting.\"\n\nTip: Measure in crew-weeks.", "B", "M"],
+["Failure Codes", "Why are failure codes important?", "**Why they ask:** data quality.\n\n**Answer:**\n\"Consistent problem, cause and action codes make failure analysis possible. Without them, you can't tell whether the pumps keep failing from seals, bearings or cavitation.\"\n\nTip: Data quality.", "B", "E"],
+["IoT", "How does IoT change maintenance?", "**Why they ask:** modern tools.\n\n**Answer:**\n\"Continuous sensor monitoring, remote alerts, and AI-based anomaly detection make predictive maintenance practical at scale — on hundreds of assets instead of the few a vibration analyst could walk to each month.\"\n\nTip: Mention anomaly detection.", "B", "M"],
+["Contractors", "How do you manage maintenance contractors?", "**Why they ask:** contractor control.\n\n**Answer:**\n\"Clear scopes, safety prequalification, supervision, quality checks and performance metrics. Contractors work to our standards, especially on safety.\"\n\nTip: Safety first.", "B", "E"],
+["Shutdowns", "How do you plan a major shutdown/turnaround?", "**Why they ask:** high-stakes project.\n\n**Answer:**\n\"Freeze the scope early, then detailed planning and a critical-path schedule, materials and contractors lined up in advance, safety plans, daily coordination meetings during the shutdown, and a post-shutdown review. Scope creep is what blows shutdowns.\"\n\nTip: Freeze the scope.", "D", "M"],
+["Energy", "How does reliability affect energy use?", "**Why they ask:** cost and sustainability.\n\n**Answer:**\n\"Misalignment, poor lubrication and leaks all waste energy. Reliable equipment runs more efficiently. Compressed air leaks alone can waste a quarter of compressor energy.\"\n\nTip: Compressed air leaks.", "B", "E"],
+["FMEA", "How do you use FMEA in reliability?", "**Why they ask:** proactive analysis.\n\n**Answer:**\n\"An equipment FMEA identifies each failure mode, its effects and causes, rates the risk, and defines maintenance or design actions for the high-risk ones. It's the backbone of an RCM analysis.\"\n\nTip: Equipment FMEA.", "B", "M"],
+["Scenario", "A critical pump keeps failing every few weeks. What do you do?", "**Why they ask:** practical troubleshooting.\n\n**Answer:**\n\"Gather the failure history and inspect the failed parts. Then check operating conditions — is it cavitating or running far from its best efficiency point? — plus alignment, lubrication and installation. Do a root-cause analysis and fix the cause. Often the pump isn't the problem; the system it's running in is.\"\n\nTip: Check the operating point.", "B", "M"],
+["Scenario", "Leadership wants to cut maintenance budget 15%. What do you do?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"I'd show the risk of deferring maintenance, with numbers, and find the savings elsewhere — optimizing PMs, moving to condition-based strategies, optimizing spares and renegotiating contracts — rather than cutting critical work that leads to bigger failures later.\"\n\nTip: Risk-based savings.", "D", "M"],
+["Asset Management", "What is ISO 55000?", "**Why they ask:** asset management standard.\n\n**Answer:**\n\"It's the international standard for asset management systems — aligning asset decisions with organizational objectives across the whole lifecycle, from acquisition to disposal.\"\n\nTip: Lifecycle view.", "D", "M"],
+["Design", "How do reliability engineers influence new equipment design?", "**Why they ask:** designing reliability in.\n\n**Answer:**\n\"By providing failure history and maintainability requirements, reviewing designs for access and standardization, and setting reliability specifications in purchase contracts. It's much cheaper to design reliability in than to fix it later.\"\n\nTip: Maintainability.", "D", "M"],
+["Wrench Time", "What is wrench time and how do you improve it?", "**Why they ask:** maintenance productivity.\n\n**Answer:**\n\"It's the percentage of a technician's time spent on hands-on work — often only 25 to 35%. I improve it with planning, kitting parts before the job, reducing travel and waiting, and having permits ready.\"\n\nTip: Kitting helps a lot.", "D", "M"],
+["Thermography", "What does infrared thermography find?", "**Why they ask:** a key PdM tool.\n\n**Answer:**\n\"Hot spots in electrical panels, loose connections, overloaded circuits, motor and bearing overheating, and insulation problems. It's especially valuable for electrical safety — a loose connection found early prevents a fire.\"\n\nTip: Electrical safety.", "B", "E"],
+["Culture", "How do you build a reliability culture?", "**Why they ask:** sustainability of results.\n\n**Answer:**\n\"Leadership support, training, involving operators, celebrating defect elimination, and making decisions with data. When the team celebrates a failure that never happened again, the culture is shifting.\"\n\nTip: Defect elimination.", "B", "M"]
+]);
+
+QB["ss-rel"] = (QB["ss-rel"] || []).concat([
+["Failure Patterns", "What are the six failure patterns?", "**Why they ask:** foundation of RCM.\n\n**Answer:**\n\"From airline studies: A, the bathtub curve; B, wear-out; C, a gradual increase; D, low then rising; E, random; and F, infant mortality then random. Most failures in complex equipment are random or infant mortality, so time-based overhauls often don't help — and can introduce failures. That's the case for condition-based maintenance.\"\n\nTip: It supports condition-based maintenance.", "D", "S"],
+["Alignment", "Why is shaft alignment important?", "**Why they ask:** precision maintenance.\n\n**Answer:**\n\"Misalignment increases vibration, bearing and seal wear, coupling failures and energy use. I use laser alignment to tolerance, correct soft foot first, and account for thermal growth, because a pump aligned cold can be out of alignment once it's hot.\"\n\nTip: Laser alignment.", "B", "M"],
+["Bearings", "What causes premature bearing failure?", "**Why they ask:** a common failure.\n\n**Answer:**\n\"Poor lubrication is the leading cause, then contamination, misalignment, improper installation like hammering bearings on, overloading, and electrical fluting from VFDs.\"\n\nTip: Lubrication and contamination.", "B", "M"],
+["Defect Elimination", "What is defect elimination?", "**Why they ask:** proactive reliability.\n\n**Answer:**\n\"It's a systematic process where teams identify recurring defects, analyze the causes and remove them permanently, instead of repairing them again and again. I track defects eliminated as a metric.\"\n\nTip: Permanent fixes.", "D", "M"],
+["Root Cause", "Physical vs human vs latent root causes?", "**Why they ask:** RCA depth.\n\n**Answer:**\n\"The physical root cause is the material cause — a fatigued shaft. The human root cause is the action that triggered it — an incorrect installation. The latent root cause is the system weakness that allowed it — no procedure or no training. Lasting fixes address the latent cause.\"\n\nTip: System fixes last.", "D", "M"],
+["Reliability Block", "How do redundancy and series systems affect reliability?", "**Why they ask:** system reliability math.\n\n**Answer:**\n\"In a series system, reliabilities multiply — two components at 0.95 give 0.9025. Parallel redundancy improves it: one minus the chance both fail, one minus 0.05 squared, which is 0.9975. That's why critical systems have backups.\"\n\nTip: Show the calculation.", "D", "M"],
+["Spare Parts Math", "How do you set spares for slow-moving critical parts?", "**Why they ask:** spares judgment.\n\n**Answer:**\n\"I use the failure rate and lead time in a Poisson model to find the stock level that meets a target availability, and weigh the cost of downtime against holding cost. For a long-lead critical part, even one spare can be easily justified.\"\n\nTip: Weigh downtime cost.", "D", "S"],
+["Digital Twin", "What is a digital twin in maintenance?", "**Why they ask:** emerging technology.\n\n**Answer:**\n\"A virtual model of an asset, fed with real-time data, used to simulate performance, predict failures and test maintenance strategies without touching the real equipment.\"\n\nTip: It's for simulation.", "D", "M"],
+["Training", "How do you build maintenance technician skills?", "**Why they ask:** capability building.\n\n**Answer:**\n\"Skills matrices, structured on-the-job training, precision maintenance training, certifications, and mentoring by senior technicians before they retire and take their knowledge with them.\"\n\nTip: Use a skills matrix.", "B", "E"]
 ]);

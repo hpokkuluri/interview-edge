@@ -1,38 +1,11 @@
-QB['ss-rel'] = (QB['ss-rel']||[]).concat([
-["Failure Patterns", "What are the six failure patterns?",
-`**Answer:** From airline studies: A (bathtub), B (wear-out), C (gradual increase), D (low then rising), E (random) and F (infant mortality then random). Most failures in complex equipment are random or infant mortality, so time-based overhauls often don't help and can introduce failures.
-
-Tip: Supports condition-based maintenance.`, 'D', 'S'],
-["Alignment", "Why is shaft alignment important?",
-`**Answer:** Misalignment increases vibration, bearing and seal wear, coupling failures and energy use. Use laser alignment to tolerances, correct soft foot, and check thermal growth.
-
-Tip: Laser alignment.`, 'B', 'M'],
-["Bearings", "What causes premature bearing failure?",
-`**Answer:** Poor lubrication (the leading cause), contamination, misalignment, improper installation (impact damage), overloading, and electrical fluting from VFDs.
-
-Tip: Lubrication and contamination.`, 'B', 'M'],
-["Defect Elimination", "What is defect elimination?",
-`**Answer:** A systematic process where teams identify recurring defects, analyze causes and remove them permanently, instead of repeatedly repairing them. Track defects eliminated as a metric.
-
-Tip: Permanent fixes.`, 'D', 'M'],
-["Root Cause", "Physical vs human vs latent root causes?",
-`**Answer:** **Physical** is the material cause (a fatigued shaft). **Human** is the action that triggered it (incorrect installation). **Latent** is the system weakness that allowed it (no procedure or training). Lasting fixes address latent causes.
-
-Tip: System fixes.`, 'D', 'M'],
-["Reliability Block", "How do redundancy and series systems affect reliability?",
-`**Answer:** Series systems multiply reliabilities (0.95 × 0.95 = 0.9025). Parallel redundancy improves it: 1 − (1 − 0.95)² = 0.9975.
-
-Tip: Show the calculation.`, 'D', 'M'],
-["Spare Parts Math", "How do you set spares for slow-moving critical parts?",
-`**Answer:** Use failure rates and lead time with a Poisson model to find the stock level that meets a target availability, weighing the downtime cost against holding cost. Even one spare can be justified for long-lead critical items.
-
-Tip: Downtime cost.`, 'D', 'S'],
-["Digital Twin", "What is a digital twin in maintenance?",
-`**Answer:** A virtual model of an asset fed with real-time data to simulate performance, predict failures and test maintenance strategies.
-
-Tip: Simulation.`, 'D', 'M'],
-["Training", "How do you build maintenance technician skills?",
-`**Answer:** Skills matrices, structured on-the-job training, precision maintenance training, certifications, and mentoring by senior technicians.
-
-Tip: Skills matrix.`, 'B', 'E']
+QB["ss-rel"] = (QB["ss-rel"] || []).concat([
+["Failure Patterns", "What are the six failure patterns?", "**Why they ask:** foundation of RCM.\n\n**Answer:**\n\"From airline studies: A, the bathtub curve; B, wear-out; C, a gradual increase; D, low then rising; E, random; and F, infant mortality then random. Most failures in complex equipment are random or infant mortality, so time-based overhauls often don't help — and can introduce failures. That's the case for condition-based maintenance.\"\n\nTip: It supports condition-based maintenance.", "D", "S"],
+["Alignment", "Why is shaft alignment important?", "**Why they ask:** precision maintenance.\n\n**Answer:**\n\"Misalignment increases vibration, bearing and seal wear, coupling failures and energy use. I use laser alignment to tolerance, correct soft foot first, and account for thermal growth, because a pump aligned cold can be out of alignment once it's hot.\"\n\nTip: Laser alignment.", "B", "M"],
+["Bearings", "What causes premature bearing failure?", "**Why they ask:** a common failure.\n\n**Answer:**\n\"Poor lubrication is the leading cause, then contamination, misalignment, improper installation like hammering bearings on, overloading, and electrical fluting from VFDs.\"\n\nTip: Lubrication and contamination.", "B", "M"],
+["Defect Elimination", "What is defect elimination?", "**Why they ask:** proactive reliability.\n\n**Answer:**\n\"It's a systematic process where teams identify recurring defects, analyze the causes and remove them permanently, instead of repairing them again and again. I track defects eliminated as a metric.\"\n\nTip: Permanent fixes.", "D", "M"],
+["Root Cause", "Physical vs human vs latent root causes?", "**Why they ask:** RCA depth.\n\n**Answer:**\n\"The physical root cause is the material cause — a fatigued shaft. The human root cause is the action that triggered it — an incorrect installation. The latent root cause is the system weakness that allowed it — no procedure or no training. Lasting fixes address the latent cause.\"\n\nTip: System fixes last.", "D", "M"],
+["Reliability Block", "How do redundancy and series systems affect reliability?", "**Why they ask:** system reliability math.\n\n**Answer:**\n\"In a series system, reliabilities multiply — two components at 0.95 give 0.9025. Parallel redundancy improves it: one minus the chance both fail, one minus 0.05 squared, which is 0.9975. That's why critical systems have backups.\"\n\nTip: Show the calculation.", "D", "M"],
+["Spare Parts Math", "How do you set spares for slow-moving critical parts?", "**Why they ask:** spares judgment.\n\n**Answer:**\n\"I use the failure rate and lead time in a Poisson model to find the stock level that meets a target availability, and weigh the cost of downtime against holding cost. For a long-lead critical part, even one spare can be easily justified.\"\n\nTip: Weigh downtime cost.", "D", "S"],
+["Digital Twin", "What is a digital twin in maintenance?", "**Why they ask:** emerging technology.\n\n**Answer:**\n\"A virtual model of an asset, fed with real-time data, used to simulate performance, predict failures and test maintenance strategies without touching the real equipment.\"\n\nTip: It's for simulation.", "D", "M"],
+["Training", "How do you build maintenance technician skills?", "**Why they ask:** capability building.\n\n**Answer:**\n\"Skills matrices, structured on-the-job training, precision maintenance training, certifications, and mentoring by senior technicians before they retire and take their knowledge with them.\"\n\nTip: Use a skills matrix.", "B", "E"]
 ]);
