@@ -1,0 +1,396 @@
+// Rewritten Operations Specialists — Trade Compliance (Why they ask → Answer → Tip). Apply with rewrite.js (prefix ss-trade-).
+module.exports = {
+
+'How do you classify a product under the HTS?':
+`**Why they ask:** classification is the core skill.
+
+**Answer:**
+"I apply the General Rules of Interpretation in order. GRI 1 first — the heading text and the section and chapter notes decide most cases. Only if that doesn't settle it do I move on — for example, GRI 3 and essential character for composite goods. I use the Explanatory Notes and CBP rulings in the CROSS database, and for uncertain, high-value items I request a binding ruling."
+
+Tip: Always start with GRI 1.`,
+
+'What is customs valuation?':
+`**Why they ask:** valuation errors are a top penalty area.
+
+**Answer:**
+"The primary method is transaction value — the price actually paid or payable — plus required additions: assists, royalties and license fees if they're a condition of sale, selling commissions, packing, and proceeds of resale. If transaction value can't be used, there are fallback methods — identical or similar goods, deductive and computed value. Assists are the one people miss — like tooling we send to a supplier for free."
+
+Tip: Don't forget assists.`,
+
+'Non-preferential vs preferential origin?':
+`**Why they ask:** two different rule sets.
+
+**Answer:**
+"Non-preferential origin, based on substantial transformation, decides marking, tariffs like Section 301, and quotas. Preferential origin under free trade agreements like USMCA uses specific rules of origin — tariff shift or regional value content — to qualify for reduced duty. A product can be Mexican for USMCA but Chinese for Section 301, so you have to analyze both."
+
+Tip: They're different rules.`,
+
+'How do you manage the impact of tariff changes?':
+`**Why they ask:** a very current challenge.
+
+**Answer:**
+"I map exposure by HTS code and country, model the landed cost changes, and evaluate mitigation — alternative sourcing, FTA qualification, legal tariff engineering, exclusions, foreign trade zones and drawback. Then communicate the scenarios to procurement and finance so they can act."
+
+Tip: Use scenario modeling.`,
+
+'What are Section 301 and 232 tariffs?':
+`**Why they ask:** current US trade policy.
+
+**Answer:**
+"They're US tariffs on top of normal duties. Section 232 is based on national security — steel, aluminum and a growing list of other products. Section 301 targets unfair trade practices — mainly many Chinese goods — with product lists and exclusion processes. More recently there have also been tariffs under IEEPA, and their scope and legal status have been changing, so I check the current position before advising."
+
+Tip: Stay current — these change often.`,
+
+'How do you manage customs brokers?':
+`**Why they ask:** importer accountability.
+
+**Answer:**
+"Clear instructions — our classification database and valuation rules — a power of attorney, regular entry reviews and audits, and KPIs for accuracy and timeliness. The importer remains legally responsible, so I can't just trust the broker; I verify."
+
+Tip: The importer remains responsible.`,
+
+'What does reasonable care mean for importers?':
+`**Why they ask:** the legal standard.
+
+**Answer:**
+"It's the legal obligation to use reasonable care in classifying, valuing and declaring goods. You prove it through documented procedures, training, records, rulings and internal audits. If something goes wrong, those documents are what reduce penalties."
+
+Tip: Documented processes prove it.`,
+
+'Explain EAR and ITAR.':
+`**Why they ask:** export control basics.
+
+**Answer:**
+"The EAR, run by Commerce's BIS, controls dual-use items through the Commerce Control List and ECCNs; low-control items are EAR99. Whether you need a license depends on the item, destination, end user and end use. ITAR, run by State's DDTC, controls defense articles on the US Munitions List, with much stricter licensing. The first step is always correct classification."
+
+Tip: Start with the ECCN determination.`,
+
+'What is restricted party screening?':
+`**Why they ask:** a critical control.
+
+**Answer:**
+"Checking customers, suppliers and other parties against government lists — OFAC's SDN list, the BIS Entity List, Denied Persons, the Unverified List and others — before transactions, and re-screening regularly because lists change. It should be automated in the ERP so nothing ships unscreened."
+
+Tip: Automate screening.`,
+
+'How do OFAC sanctions affect business?':
+`**Why they ask:** sanctions risk.
+
+**Answer:**
+"They prohibit dealings with sanctioned countries, regions and persons — including any entity 50% or more owned by sanctioned persons, even if it isn't on the list itself. They require a compliance program and carry blocking and reporting obligations. Violations are strict liability."
+
+Tip: Know the 50% rule.`,
+
+'How do you qualify goods under USMCA?':
+`**Why they ask:** FTA savings.
+
+**Answer:**
+"I check whether goods meet the product-specific rule of origin — tariff shift or regional value content — get origin information from suppliers, prepare the certification of origin data elements, and keep records for five years. Supplier data is the hard part."
+
+Tip: Supplier data is the hard part.`,
+
+'What is duty drawback?':
+`**Why they ask:** a refund opportunity.
+
+**Answer:**
+"It's a refund of up to 99% of duties paid on imported goods that are later exported or destroyed — either used in manufacturing or as unused merchandise. It needs good documentation and claims, but it can recover significant money for exporters."
+
+Tip: Up to 99% refund.`,
+
+'What are foreign trade zone benefits?':
+`**Why they ask:** a duty strategy.
+
+**Answer:**
+"Duty deferral until goods enter US commerce, no duty on re-exports, inverted tariff benefits when components carry higher duty than the finished product, savings from weekly entries, and reduced duty on scrap."
+
+Tip: Duty deferral.`,
+
+'What is CTPAT?':
+`**Why they ask:** supply chain security.
+
+**Answer:**
+"The Customs Trade Partnership Against Terrorism is a voluntary supply chain security program. Members meet security criteria and get fewer inspections and faster processing in return."
+
+Tip: Mention the security benefits.`,
+
+'Explain key Incoterms.':
+`**Why they ask:** responsibility and duty.
+
+**Answer:**
+"Incoterms 2020 define who does what. EXW — the buyer handles everything. FCA — the seller delivers to the buyer's carrier. FOB — for sea, the seller loads on board. CIF — the seller pays freight and insurance to the port. DAP — delivered at place, the buyer pays import duties. DDP — the seller handles everything including import duties. DDP is risky for exporters, because you become responsible for importing into a country you may not know."
+
+Tip: DDP risks for exporters.`,
+
+'How do you run internal trade compliance audits?':
+`**Why they ask:** self-assessment.
+
+**Answer:**
+"I sample entries and exports and check classification, valuation, origin, documentation, license use and screening. I quantify the errors and implement corrective actions — and if I find a real violation, consider a prior disclosure."
+
+Tip: Use sample testing.`,
+
+'What is a prior disclosure?':
+`**Why they ask:** penalty mitigation.
+
+**Answer:**
+"It's voluntarily reporting a customs violation to CBP before an investigation starts, which significantly reduces penalties. For export violations, there are similar voluntary self-disclosures to BIS, DDTC or OFAC."
+
+Tip: It reduces penalties.`,
+
+'What are recordkeeping requirements?':
+`**Why they ask:** compliance basics.
+
+**Answer:**
+"Customs records must be kept for five years from the date of entry under 19 CFR 163. Export records are kept five years under the EAR. And they have to be organized and retrievable, because CBP can ask for them on short notice."
+
+Tip: Five years.`,
+
+'Which trade compliance systems have you used?':
+`**Why they ask:** tool familiarity.
+
+**Answer:**
+"SAP GTS, Oracle Global Trade Management, Thomson Reuters ONESOURCE, Descartes, E2open — formerly Amber Road — and various screening tools."
+
+Tip: Highlight automation.`,
+
+'Tell me about saving duty costs.':
+`**Why they ask:** proof of value.
+
+**Answer:**
+"I reviewed classifications for our top 200 imports and found 18 classified at higher rates than correct. After rulings and corrections, plus qualifying our Mexican parts for USMCA, we saved $1.4 million a year."
+
+Tip: Measured savings.`,
+
+'Tell me about a compliance risk you caught.':
+`**Why they ask:** prevention.
+
+**Answer:**
+"Screening flagged that a new distributor's parent company was on the Entity List. We stopped the shipment, consulted counsel, and avoided a serious export violation."
+
+Tip: Show prevention.`,
+
+'How do you train other departments?':
+`**Why they ask:** compliance depends on others.
+
+**Answer:**
+"Role-based training for procurement, sales, logistics and engineering, with practical examples from our own business and quick reference guides they actually use. Engineers need deemed-export training; sales needs red flags."
+
+Tip: Keep it practical.`,
+
+'Which certifications matter?':
+`**Why they ask:** credentials.
+
+**Answer:**
+"A Licensed Customs Broker license, the Certified Customs Specialist, the Certified Export Specialist, and export compliance certifications like ECoP. The LCB exam is the toughest and most respected."
+
+Tip: LCB.`,
+
+'Where do you want to grow?':
+`**Why they ask:** career fit.
+
+**Answer:**
+"Toward director of global trade compliance."
+
+Tip: Show direction.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I keep shipments compliant and costs down — I saved $1.4 million in duties and prevented export violations through solid processes."
+
+Tip: Proof.`,
+
+'What are country of origin marking requirements?':
+`**Why they ask:** a basic import rule.
+
+**Answer:**
+"Imported goods must be marked legibly and permanently with the country of origin, in English, for the ultimate purchaser in the US — with some exceptions. Mis-marking can lead to penalties and marking duties."
+
+Tip: Think 'ultimate purchaser'.`,
+
+'What is the UFLPA?':
+`**Why they ask:** a major current risk.
+
+**Answer:**
+"The Uyghur Forced Labor Prevention Act presumes that goods made wholly or partly in Xinjiang, or by listed entities, were made with forced labor and can't be imported — unless the importer proves otherwise with clear and convincing evidence. That means tracing the supply chain all the way to raw materials."
+
+Tip: Supply chain mapping.`,
+
+'What is de minimis and how has it changed?':
+`**Why they ask:** current e-commerce impact.
+
+**Answer:**
+"Section 321 de minimis allowed duty-free entry for shipments valued at $800 or less. Since 2025 it's been suspended, first for China and then more broadly, and legislation also repeals it — which hit e-commerce imports hard. I'd check the current rules before relying on it."
+
+Tip: Stay current.`,
+
+'What is a deemed export?':
+`**Why they ask:** an often-missed risk.
+
+**Answer:**
+"Releasing controlled technology or source code to a foreign national inside the US counts as an export to their home country, and may need a license. It matters most for engineering and R&D teams."
+
+Tip: Engineering teams.`,
+
+'How do you determine if an export license is needed?':
+`**Why they ask:** export control process.
+
+**Answer:**
+"Identify the ECCN, check the Commerce Country Chart for the destination against the reasons for control, screen the end user and end use, check whether a license exception applies, and apply for a license if it's still required."
+
+Tip: Use the country chart.`,
+
+'What documentation supports FTA claims?':
+`**Why they ask:** audits of FTA claims.
+
+**Answer:**
+"Certifications of origin, supplier declarations, bills of materials and cost data for regional value content, and production records. If you claim preference, you need to prove it."
+
+Tip: Supplier declarations.`,
+
+'What penalties exist for customs violations?':
+`**Why they ask:** risk awareness.
+
+**Answer:**
+"Under 19 USC 1592, penalties depend on culpability — negligence, gross negligence or fraud. Fraud penalties can reach the full domestic value of the goods. A prior disclosure reduces them significantly."
+
+Tip: Know the culpability levels.`,
+
+'A shipment is held by CBP. What do you do?':
+`**Why they ask:** practical response.
+
+**Answer:**
+"Find out why — an exam, documentation, admissibility or a forced-labor detention. Work with the broker to provide documents, coordinate with logistics on costs and customer impact, and fix the root cause to prevent repeats."
+
+Tip: Find the root cause.`,
+
+'Engineering wants to send technical drawings to an overseas supplier. What do you check?':
+`**Why they ask:** technology controls.
+
+**Answer:**
+"Classify the technology — ECCN or USML. Check the licensing requirement for the destination, screen the supplier, and set controls on how the data is transferred and stored. Technical drawings are controlled just like hardware."
+
+Tip: Technology is controlled too.`,
+
+'What is ACE?':
+`**Why they ask:** CBP systems.
+
+**Answer:**
+"The Automated Commercial Environment is CBP's system for filing imports and exports. Importers can pull ACE reports on their entries, which I review regularly to catch broker errors."
+
+Tip: Use ACE reports.`,
+
+'What is AES filing?':
+`**Why they ask:** export filing.
+
+**Answer:**
+"Electronic Export Information is filed through the Automated Export System for exports over $2,500 per Schedule B number, or whenever a license is required, regardless of value."
+
+Tip: The $2,500 threshold.`,
+
+'How do you partner with procurement?':
+`**Why they ask:** cross-functional value.
+
+**Answer:**
+"I provide landed cost and tariff analysis for sourcing decisions, guidance on qualifying for FTAs, and the supplier origin documentation requirements. Duty is often the deciding factor between two suppliers."
+
+Tip: Landed cost.`,
+
+'Why maintain a classification database?':
+`**Why they ask:** consistency.
+
+**Answer:**
+"It ensures the same product is classified the same way across shipments and brokers, speeds up entries, and provides audit evidence of reasonable care."
+
+Tip: Consistency.`,
+
+'How does transfer pricing affect customs value?':
+`**Why they ask:** a complex related-party issue.
+
+**Answer:**
+"Related-party prices must be acceptable for customs — shown through circumstances of sale or test values. Year-end transfer pricing adjustments may change customs value after entry, so many companies use the CBP reconciliation program to report them."
+
+Tip: Mention the reconciliation program.`,
+
+'What should you know about EU customs?':
+`**Why they ask:** global scope.
+
+**Answer:**
+"The Union Customs Code, EORI numbers, AEO — authorized economic operator — status, and newer rules like CBAM, the carbon border adjustment mechanism, which requires reporting embedded emissions on certain imports."
+
+Tip: Mention CBAM.`,
+
+'Which trade compliance metrics do you track?':
+`**Why they ask:** managing by data.
+
+**Answer:**
+"Entry accuracy, duty paid versus duty saved, holds and exams, screening hits resolved, audit findings and training completion."
+
+Tip: Track duty savings.`,
+
+"What's involved in a US import entry?":
+`**Why they ask:** import process knowledge.
+
+**Answer:**
+"The entry — CBP Form 3461 or ACE cargo release — and the entry summary, Form 7501, with classification, value, origin, duties and fees like MPF and HMF. It's supported by the commercial invoice, packing list, bill of lading, and any partner government agency requirements — FDA, EPA, USDA. Duties are paid by ACH."
+
+Tip: Mention partner government agencies.`,
+
+'What is ISF (10+2)?':
+`**Why they ask:** ocean import compliance.
+
+**Answer:**
+"The Importer Security Filing for ocean shipments, due at least 24 hours before the cargo is loaded at the foreign port — 10 data elements from the importer and 2 from the carrier. Late or inaccurate filings carry penalties."
+
+Tip: 24 hours before loading.`,
+
+'What is a customs bond?':
+`**Why they ask:** importing requires one.
+
+**Answer:**
+"It guarantees the importer will pay duties, taxes and penalties. It's either a single transaction bond or a continuous bond — usually at least $50,000 or 10% of the prior year's duties. If duties rise, say from new tariffs, the bond can become insufficient and halt entries, so I monitor it."
+
+Tip: Monitor bond sufficiency.`,
+
+'What are antidumping and countervailing duties?':
+`**Why they ask:** high-duty risks.
+
+**Answer:**
+"Antidumping duties apply to imports sold below fair value; countervailing duties offset foreign government subsidies. They can be very high — sometimes over 100% — and depend on the specific case scope and manufacturer, so a careful scope review is essential."
+
+Tip: Scope rulings.`,
+
+'What makes an effective export compliance program?':
+`**Why they ask:** program design.
+
+**Answer:**
+"Management commitment, a risk assessment, export authorization procedures, recordkeeping, training, audits, a process for handling violations, and screening — following BIS's Export Compliance Guidelines."
+
+Tip: Use the BIS guidelines.`,
+
+'What are export red flags?':
+`**Why they ask:** know-your-customer.
+
+**Answer:**
+"A customer reluctant to share the end use, unusual payment terms, products that don't fit the buyer's business, odd shipping routes, requests to remove labels, or a freight forwarder listed as the final destination. Any of these means investigate before shipping."
+
+Tip: Know your customer.`,
+
+'What is tariff engineering?':
+`**Why they ask:** legal duty reduction.
+
+**Answer:**
+"It's legally designing or modifying a product before import so it classifies under a lower-duty heading. It has to be a genuine product design, not a misrepresentation, and it's best supported by a binding ruling."
+
+Tip: Legal and documented.`,
+
+'How do you correct errors on entries?':
+`**Why they ask:** correction process.
+
+**Answer:**
+"Before liquidation, file a post-summary correction — within 300 days of entry. After liquidation, file a protest within 180 days. For violations, a prior disclosure. And fix the root cause so it doesn't repeat."
+
+Tip: Know the timelines.`,
+
+};
