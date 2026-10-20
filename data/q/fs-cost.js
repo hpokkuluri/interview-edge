@@ -1,261 +1,57 @@
 // fs-cost — generated from src/fs-cost-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Cost Accountant. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fs-cost'] = [
-["Role", "What does a cost accountant do?",
-`**Why they ask:** baseline.
-
-**Answer:** Measures and analyzes product and operational costs: maintains standard costs and BOM/routing costing, analyzes variances, values inventory, allocates overhead, supports pricing and make-vs-buy decisions, and performs month-end inventory and COGS close.
-
-Tip: Mention manufacturing environment and ERP.`, 'B', 'E'],
-
-["Costing Methods", "Compare standard, actual, average and FIFO costing.",
-`**Answer:** **Standard:** predetermined costs, variances captured — good for control in manufacturing. **Actual:** tracks real costs per unit/job. **Weighted average:** blends costs. **FIFO:** first in, first out, matches older costs to COGS. LIFO is allowed under US GAAP but not IFRS.
-
-Tip: Standard + variance analysis.`, 'B', 'M'],
-
-["Standard Cost", "How do you set standard costs?",
-`**Answer:** Material: BOM quantities × expected purchase price (plus scrap/yield). Labor: routing hours × labor rates. Overhead: routing hours × overhead rates based on budgeted overhead / budgeted activity. Review annually or when significant changes occur.
-
-Tip: Components of standard.`, 'B', 'M'],
-
-["Variances", "Explain material price and usage variances.",
-`**Answer:** **Price variance** = (actual price − standard price) × actual quantity. **Usage variance** = (actual quantity − standard quantity allowed) × standard price.
-
-**Example:** standard 10 kg at $5; actual 11 kg at $4.80 for output. PPV = (4.80 − 5) × 11 = −$2.20 favorable; usage = (11 − 10) × 5 = $5 unfavorable.
-
-Tip: Show calculation.`, 'B', 'M'],
-
-["Variances", "Explain labor rate and efficiency variances.",
-`**Answer:** **Rate** = (actual rate − standard rate) × actual hours. **Efficiency** = (actual hours − standard hours) × standard rate.
-
-**Example:** standard 2 hours at $30; actual 2.5 hours at $28. Rate = (28 − 30) × 2.5 = −$5 F; efficiency = (2.5 − 2) × 30 = $15 U.
-
-Tip: Interpret causes.`, 'B', 'M'],
-
-["Variances", "What are overhead variances?",
-`**Answer:** Variable overhead spending and efficiency variances; fixed overhead budget (spending) variance and volume variance (absorption due to production differing from planned volume).
-
-Tip: Volume variance.`, 'D', 'M'],
-
-["Absorption", "Absorption vs variable costing?",
-`**Answer:** **Absorption** (required for GAAP) includes fixed manufacturing overhead in inventory. **Variable costing** expenses fixed overhead in the period — useful for internal decisions. Profits differ when inventory levels change.
-
-Tip: Inventory build inflates absorption profit.`, 'B', 'M'],
-
-["Overhead", "How do you allocate overhead?",
-`**Answer:** Using cost drivers: machine hours, labor hours, or activity-based costing (ABC) with multiple drivers (setups, inspections, material moves) for more accurate product costs.
-
-Tip: ABC benefits.`, 'B', 'M'],
-
-["ABC", "When is activity-based costing valuable?",
-`**Answer:** When products differ in complexity, volume and resource consumption — traditional allocation over-costs high-volume simple products and under-costs low-volume complex ones.
-
-Tip: Cross-subsidization.`, 'D', 'M'],
-
-["Inventory", "How do you value inventory at month-end?",
-`**Answer:** Physical or cycle counts reconciled to system, cost roll validation, WIP valuation, capitalized variances (if material), obsolescence/excess reserves, and lower of cost or net realizable value testing.
-
-Tip: LCNRV.`, 'B', 'M'],
-
-["Reserves", "How do you calculate an excess and obsolete reserve?",
-`**Answer:** Compare on-hand to demand (e.g. 12-month usage/forecast), reserve quantities beyond demand at policy percentages, identify obsolete items (no movement, discontinued), and review with operations.
-
-Tip: Policy and judgment.`, 'B', 'M'],
-
-["COGS", "How is COGS calculated?",
-`**Answer:** Beginning inventory + purchases/production costs − ending inventory, or the sum of standard cost of goods shipped plus variances expensed.
-
-Tip: Both approaches.`, 'B', 'E'],
-
-["WIP", "How do you value work in process?",
-`**Answer:** Material issued plus labor and overhead applied for operations completed, using production order status or equivalent units in process costing.
-
-Tip: Equivalent units.`, 'D', 'M'],
-
-["Process Costing", "What are equivalent units?",
-`**Answer:** Partially completed units expressed as whole units for costing. 1,000 units 40% complete for conversion = 400 equivalent units of conversion.
-
-Tip: Process industries.`, 'D', 'M'],
-
-["Decisions", "How do you do make-vs-buy analysis?",
-`**Answer:** Compare relevant costs: avoidable costs of making (materials, labor, variable overhead, avoidable fixed costs) vs purchase price plus logistics, considering capacity, quality, strategic and risk factors.
-
-Tip: Relevant costs only.`, 'B', 'M'],
-
-["Decisions", "What is contribution margin?",
-`**Answer:** Sales minus variable costs — the amount covering fixed costs and profit. Contribution margin per constrained resource guides product mix decisions.
-
-**Example:** price $100, variable cost $60 → CM $40 (40%).
-
-Tip: Constraint-based mix.`, 'B', 'E'],
-
-["Break-even", "How do you calculate break-even?",
-`**Answer:** Break-even units = fixed costs / contribution margin per unit. Fixed $400,000, CM $40 → 10,000 units.
-
-Tip: Simple formula.`, 'B', 'E'],
-
-["ERP", "How does costing work in Oracle/SAP?",
-`**Answer:** Oracle Cost Management (cost scenarios, standard cost update, cost accounting distributions, receipt accounting) or SAP CO-PC (cost estimates, material ledger for actual costing, variance calculation on production orders).
-
-Tip: Material ledger.`, 'D', 'M'],
-
-["PPV", "How is purchase price variance used?",
-`**Answer:** Measures procurement performance vs standard; recorded at receipt (Dr Inventory at standard, Dr/Cr PPV, Cr AP/accrual at actual) and analyzed by supplier and item.
-
-Tip: Recorded at receipt.`, 'B', 'M'],
-
-["Cost Roll", "What is a cost roll-up?",
-`**Answer:** Calculating item costs from lower-level components through BOMs and routings; validating changes before updating standards and revaluing inventory.
-
-Tip: Revaluation impact.`, 'D', 'M'],
-
-["Analysis", "How do you analyze gross margin by product?",
-`**Answer:** Revenue less standard cost and allocated variances by product, customer and channel; identify drivers (mix, price, cost changes) and unprofitable products.
-
-Tip: Margin bridge.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a cost saving you identified.",
-`**Sample answer:** "Variance analysis showed scrap at 8% on one line versus 3% standard. Working with operations, we found a calibration issue; fixing it saved $420K annually."
-
-Tip: Analysis to action.`, 'B', 'M'],
-
-["Behavioral", "Tell me about improving inventory accuracy.",
-`**Sample answer:** "I introduced ABC cycle counting with root-cause reviews; inventory adjustments fell 60% and year-end physical count variance was immaterial."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "How do you explain variances to operations managers?",
-`**Answer:** In operational terms — hours, scrap, prices — with clear drivers and trends, not just accounting numbers.
-
-Tip: Speak their language.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** CMA (Certified Management Accountant) is most relevant; CPA also valued.
-
-Tip: CMA.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Cost manager, plant controller, or FP&A.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I turn cost data into operational improvements — identifying $420K in scrap savings and improving inventory accuracy."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Landed Cost", "What is landed cost?",
-`**Answer:** Total cost of getting goods to your location: purchase price plus freight, duties, insurance and handling — capitalized into inventory.
-
-Tip: Duties and freight.`, 'B', 'E'],
-
-["Capacity", "Why does capacity utilization matter for cost?",
-`**Answer:** Fixed overhead per unit rises when volume falls; unabsorbed overhead should be expensed (abnormal capacity) rather than capitalized under GAAP.
-
-Tip: Normal capacity.`, 'D', 'M'],
-
-["Scrap", "How do you account for scrap?",
-`**Answer:** Normal scrap is included in standard cost; abnormal scrap is expensed as a variance; track by cause.
-
-Tip: Normal vs abnormal.`, 'B', 'M'],
-
-["Target Costing", "What is target costing?",
-`**Answer:** Start with market price minus desired margin to get allowable cost, then design products and processes to meet it.
-
-Tip: Market-driven.`, 'D', 'M'],
-
-["Standards Update", "What happens when you update standards annually?",
-`**Answer:** Inventory is revalued at new standards, creating a revaluation variance; analyze changes by component and communicate margin impacts.
-
-Tip: Revaluation.`, 'D', 'M'],
-
-["Intercompany", "How do transfer prices affect cost accounting?",
-`**Answer:** Intercompany purchases include profit; consolidation eliminates unrealized profit in inventory, requiring tracking of intercompany margin.
-
-Tip: Profit in inventory elimination.`, 'D', 'M'],
-
-["Scenario", "Gross margin dropped 3 points this month. How do you investigate?",
-`**Answer:** Build a margin bridge: price, volume, mix, material cost (PPV), labor and overhead variances, inventory adjustments and reserves; identify largest drivers.
-
-Tip: Margin bridge.`, 'B', 'M'],
-
-["Scenario", "Physical count shows a big shortage. What do you do?",
-`**Answer:** Recount, check cut-off and unprocessed transactions, review transfers and scrap, investigate theft or system errors, then record adjustments and fix processes.
-
-Tip: Recount and cut-off.`, 'B', 'M'],
-
-["Job Costing", "Job costing vs process costing?",
-`**Answer:** **Job costing** accumulates costs per unique order (custom manufacturing, projects); **process costing** averages costs across homogeneous units (chemicals, food).
-
-Tip: Fit to industry.`, 'B', 'E'],
-
-["Cycle Counting", "What is ABC cycle counting?",
-`**Answer:** Counting high-value/high-movement (A) items more frequently than B and C items, improving accuracy efficiently.
-
-Tip: Frequency by value.`, 'B', 'E'],
-
-["Excel", "Which Excel skills matter?",
-`**Answer:** Pivot tables, lookups, SUMIFS, variance models and data analysis of large ERP extracts; Power Query and Power BI increasingly.
-
-Tip: Power Query.`, 'B', 'E'],
-
-["Pricing", "How do you support pricing decisions?",
-`**Answer:** Provide accurate product costs, contribution margins, and scenario analysis on volume and cost changes.
-
-Tip: Contribution margin.`, 'B', 'M'],
-
-["Lean", "How does lean manufacturing affect cost accounting?",
-`**Answer:** Lean accounting uses value stream costing, simpler reporting and less focus on traditional variances that may encourage overproduction.
-
-Tip: Value streams.`, 'D', 'M'],
-
-["Freight", "How do you allocate freight costs?",
-`**Answer:** Inbound freight capitalized to inventory (by weight, value or quantity); outbound freight usually expensed as fulfillment cost.
-
-Tip: Inbound vs outbound.`, 'B', 'M'],
-
-["Audit", "What do auditors test in inventory?",
-`**Answer:** Observation of counts, cost testing, reserves, LCNRV, cut-off and capitalization of variances.
-
-Tip: Count observation.`, 'B', 'M'],
-
-["Tariffs", "How do tariffs affect cost accounting?",
-`**Answer:** Duties increase landed costs capitalized to inventory and affect standard costs and margins; analyze sourcing alternatives.
-
-Tip: Landed cost updates.`, 'D', 'M']
-];
-
-QB['fs-cost'] = (QB['fs-cost']||[]).concat([
-["Variances", "How do you explain a production volume variance?",
-`**Answer:** Fixed overhead applied at the standard rate × actual output, minus budgeted fixed overhead. Producing below the planned volume under-absorbs fixed costs, which gives an unfavorable variance. It reflects capacity use, not spending efficiency.
-
-**Example:** budget $500K for 50,000 units ($10/unit). Producing 45,000 units applies $450K, a $50K unfavorable volume variance.
-
-Tip: Capacity, not spending.`, 'D', 'M'],
-["Yield", "What are mix and yield variances?",
-`**Answer:** When inputs can substitute for each other, the material usage variance splits into **mix** (a different blend of inputs than standard) and **yield** (more or less output from the total input than standard). This is common in chemicals and food.
-
-Tip: Process industries.`, 'D', 'S'],
-["Joint Costs", "How are joint costs allocated?",
-`**Answer:** Costs before the split-off point are allocated across joint products by physical units, relative sales value at split-off, or net realizable value. By-products are often credited against joint cost.
-
-Tip: Sales value method.`, 'D', 'M'],
-["Capitalized Variances", "Should variances be capitalized into inventory?",
-`**Answer:** Material variances that make standard costs differ significantly from actual should be allocated between inventory and COGS so that inventory approximates actual cost under GAAP. Immaterial variances are usually expensed.
-
-Tip: Materiality.`, 'D', 'M'],
-["Cost Centers", "Cost center vs profit center vs investment center?",
-`**Answer:** A **cost center** is responsible for costs (maintenance). A **profit center** is responsible for revenue and costs (a product line). An **investment center** is also responsible for capital used, measured by ROI or EVA (a division).
-
-Tip: Responsibility accounting.`, 'B', 'E'],
-["Relevant Costs", "What are sunk costs and why ignore them?",
-`**Answer:** Costs already incurred that can't be recovered. They don't change with the decision, so only future, differential costs and revenues matter.
-
-**Example:** $200K already spent on old tooling shouldn't affect whether to buy better tooling.
-
-Tip: A classic trap.`, 'B', 'E'],
-["Scenario", "Operations says standard costs are unrealistic. What do you do?",
-`**Answer:** Review the assumptions with them (yields, labor efficiency, prices), compare against recent actuals, update standards where they're justified, and keep standards achievable but challenging so variances stay meaningful.
-
-Tip: Collaborative standard setting.`, 'B', 'M']
+QB["fs-cost"] = (QB["fs-cost"] || []).concat([
+["Role", "What does a cost accountant do?", "**Why they ask:** baseline.\n\n**Answer:** Measures and analyzes product and operational costs: maintains standard costs and BOM/routing costing, analyzes variances, values inventory, allocates overhead, supports pricing and make-vs-buy decisions, and performs month-end inventory and COGS close.\n\nTip: Mention manufacturing environment and ERP.", "B", "E"],
+["Costing Methods", "Compare standard, actual, average and FIFO costing.", "**Why they ask:** costing methods are the foundation of the role.\n\n**Answer:**\n\"Standard costing uses predetermined costs and captures the differences as variances — good for control in manufacturing. Actual costing tracks the real cost per unit or job. Weighted average blends costs as new receipts come in. FIFO matches the oldest costs to cost of goods sold first. LIFO is allowed under US GAAP but not IFRS. In manufacturing I prefer standard costing, because the variances tell operations exactly where costs went off plan.\"\n\nTip: Standard plus variance analysis.", "B", "M"],
+["Standard Cost", "How do you set standard costs?", "**Why they ask:** standards drive every variance.\n\n**Answer:**\n\"Material is the BOM quantity times the expected purchase price, plus scrap and yield allowances. Labor is routing hours times labor rates. Overhead is routing hours times an overhead rate — budgeted overhead divided by budgeted activity. I review standards annually, or sooner if there's a big change like a new supplier price.\"\n\nTip: Know the components of a standard.", "B", "M"],
+["Variances", "Explain material price and usage variances.", "**Why they ask:** a core calculation.\n\n**Answer:**\n\"The price variance is actual price minus standard price, times actual quantity. The usage variance is actual quantity minus standard quantity allowed, times standard price. Say the standard is 10 kilos at $5, and we actually used 11 kilos at $4.80. The price variance is minus 20 cents times 11 — $2.20 favorable. The usage variance is one extra kilo times $5 — $5 unfavorable. So procurement did well, but production used too much.\"\n\nTip: Show the calculation and interpret it.", "B", "M"],
+["Variances", "Explain labor rate and efficiency variances.", "**Why they ask:** a core calculation.\n\n**Answer:**\n\"The rate variance is actual rate minus standard rate, times actual hours. The efficiency variance is actual hours minus standard hours, times standard rate. If the standard is 2 hours at $30 and we actually took 2.5 hours at $28: the rate variance is minus $2 times 2.5 — $5 favorable. Efficiency is half an hour times $30 — $15 unfavorable. Maybe a less experienced crew — cheaper but slower.\"\n\nTip: Interpret the causes.", "B", "M"],
+["Variances", "What are overhead variances?", "**Why they ask:** overhead is often the largest cost.\n\n**Answer:**\n\"For variable overhead, there are spending and efficiency variances. For fixed overhead, there's the budget or spending variance, and the volume variance — which comes from production being different from the planned volume, so fixed costs are over- or under-absorbed. The volume variance reflects capacity use, not spending.\"\n\nTip: Explain the volume variance.", "D", "M"],
+["Absorption", "Absorption vs variable costing?", "**Why they ask:** a classic concept with real consequences.\n\n**Answer:**\n\"Absorption costing, which GAAP requires, puts fixed manufacturing overhead into inventory. Variable costing expenses fixed overhead in the period — useful for internal decisions. Profits differ when inventory changes: if we build inventory, absorption costing parks some fixed cost on the balance sheet and profit looks better, even though nothing was sold.\"\n\nTip: An inventory build inflates absorption profit.", "B", "M"],
+["Overhead", "How do you allocate overhead?", "**Why they ask:** allocation drives product cost.\n\n**Answer:**\n\"Using cost drivers — machine hours, labor hours — or activity-based costing with multiple drivers like setups, inspections and material moves. ABC gives more accurate product costs when products use resources very differently.\"\n\nTip: Mention ABC benefits.", "B", "M"],
+["ABC", "When is activity-based costing valuable?", "**Why they ask:** costing judgment.\n\n**Answer:**\n\"When products differ a lot in complexity, volume and resource use. Traditional allocation over-costs high-volume simple products and under-costs low-volume complex ones — so the simple products subsidize the complex ones. ABC exposes that, and sometimes shows that 'profitable' custom products are actually losing money.\"\n\nTip: Explain cross-subsidization.", "D", "M"],
+["Inventory", "How do you value inventory at month-end?", "**Why they ask:** inventory valuation is a key close task.\n\n**Answer:**\n\"I reconcile physical or cycle counts to the system, validate the cost roll, value work in process, capitalize variances if they're material, review excess and obsolete reserves, and test lower of cost and net realizable value.\"\n\nTip: Mention LCNRV.", "B", "M"],
+["Reserves", "How do you calculate an excess and obsolete reserve?", "**Why they ask:** a judgment-heavy estimate.\n\n**Answer:**\n\"I compare on-hand quantities to demand — say 12 months of usage or forecast — and reserve the excess quantity at policy percentages. Obsolete items — no movement or discontinued — get a full reserve. Then I review the list with operations, because they know which 'slow' items are about to be used in a new order.\"\n\nTip: Policy plus judgment.", "B", "M"],
+["COGS", "How is COGS calculated?", "**Why they ask:** a basic check.\n\n**Answer:**\n\"Two ways. Beginning inventory plus purchases or production costs minus ending inventory. Or, in a standard-cost system, the standard cost of goods shipped plus the variances expensed in the period. Both should tie.\"\n\nTip: Know both approaches.", "B", "E"],
+["WIP", "How do you value work in process?", "**Why they ask:** WIP is often misvalued.\n\n**Answer:**\n\"It's material issued plus labor and overhead applied for operations completed so far, using production order status. In process costing, I use equivalent units in process.\"\n\nTip: Mention equivalent units.", "D", "M"],
+["Process Costing", "What are equivalent units?", "**Why they ask:** process costing basics.\n\n**Answer:**\n\"They express partially completed units as whole units for costing. If 1,000 units are 40% complete for conversion costs, that's 400 equivalent units of conversion. Material might be 100% complete if it's all added at the start.\"\n\nTip: Used in process industries.", "D", "M"],
+["Decisions", "How do you do make-vs-buy analysis?", "**Why they ask:** relevant cost thinking.\n\n**Answer:**\n\"I compare relevant costs only: the avoidable costs of making — materials, labor, variable overhead and any fixed costs that would actually go away — against the purchase price plus logistics. Then factor in capacity, quality, strategic and risk factors. Allocated fixed overhead that stays either way is irrelevant.\"\n\nTip: Relevant costs only.", "B", "M"],
+["Decisions", "What is contribution margin?", "**Why they ask:** a decision-making concept.\n\n**Answer:**\n\"Sales minus variable costs — the amount left to cover fixed costs and profit. At a $100 price and $60 variable cost, contribution margin is $40, or 40%. When a resource is constrained, I rank products by contribution margin per unit of that constraint, not per product.\"\n\nTip: Constraint-based mix.", "B", "E"],
+["Break-even", "How do you calculate break-even?", "**Why they ask:** a basic analysis.\n\n**Answer:**\n\"Break-even units are fixed costs divided by contribution margin per unit. With $400,000 of fixed costs and a $40 contribution margin, break-even is 10,000 units.\"\n\nTip: A simple formula.", "B", "E"],
+["ERP", "How does costing work in Oracle/SAP?", "**Why they ask:** ERP familiarity.\n\n**Answer:**\n\"In Oracle Cost Management, you use cost scenarios, run standard cost updates, generate cost accounting distributions, and use receipt accounting. In SAP CO-PC, you have cost estimates, the material ledger for actual costing, and variance calculation on production orders. SAP's material ledger is what lets you revalue inventory to actual at period end.\"\n\nTip: Mention the material ledger.", "D", "M"],
+["PPV", "How is purchase price variance used?", "**Why they ask:** procurement performance.\n\n**Answer:**\n\"It measures procurement performance against standard. It's recorded at receipt: debit inventory at standard, debit or credit PPV, and credit AP or the accrual at actual. Then I analyze it by supplier and item, so procurement sees where they're beating or missing standard.\"\n\nTip: It's recorded at receipt.", "B", "M"],
+["Cost Roll", "What is a cost roll-up?", "**Why they ask:** standard cost mechanics.\n\n**Answer:**\n\"It calculates item costs from lower-level components through BOMs and routings, up to the finished good. I validate the changes before updating standards, because the update revalues all inventory on hand — a mistake there hits the P&L immediately.\"\n\nTip: Know the revaluation impact.", "D", "M"],
+["Analysis", "How do you analyze gross margin by product?", "**Why they ask:** profitability insight.\n\n**Answer:**\n\"Revenue less standard cost and allocated variances, by product, customer and channel. Then identify the drivers — mix, price and cost changes — and the unprofitable products. A margin bridge from last period to this one makes the story clear.\"\n\nTip: Use a margin bridge.", "B", "M"],
+["Behavioral", "Tell me about a cost saving you identified.", "**Why they ask:** analysis that leads to action.\n\n**Answer:**\n\"Variance analysis showed scrap at 8% on one line against a 3% standard. Working with operations, we traced it to a calibration problem. Fixing it saved $420,000 a year.\"\n\nTip: Analysis to action.", "B", "M"],
+["Behavioral", "Tell me about improving inventory accuracy.", "**Why they ask:** inventory integrity.\n\n**Answer:**\n\"I introduced ABC cycle counting with root-cause reviews for every significant variance. Inventory adjustments fell 60%, and the year-end physical count variance was immaterial.\"\n\nTip: Measured results.", "B", "M"],
+["Behavioral", "How do you explain variances to operations managers?", "**Why they ask:** influence.\n\n**Answer:**\n\"In their terms — hours, scrap, prices — with clear drivers and trends, not debits and credits. 'Line 3 used 400 extra labor hours because of two changeovers that ran long' lands better than 'labor efficiency variance of $12,000 unfavorable.'\"\n\nTip: Speak their language.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"The CMA — Certified Management Accountant — is the most relevant. A CPA is also valued, especially for audit and reporting work.\"\n\nTip: CMA.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward cost manager, plant controller, or FP&A.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I turn cost data into operational improvements — I found $420,000 in scrap savings and significantly improved inventory accuracy.\"\n\nTip: Proof.", "B", "E"],
+["Landed Cost", "What is landed cost?", "**Why they ask:** inventory valuation.\n\n**Answer:**\n\"It's the total cost of getting goods to our location — purchase price plus freight, duties, insurance and handling — and it's capitalized into inventory.\"\n\nTip: Include duties and freight.", "B", "E"],
+["Capacity", "Why does capacity utilization matter for cost?", "**Why they ask:** GAAP and cost accuracy.\n\n**Answer:**\n\"Fixed overhead per unit rises when volume falls. Under GAAP, overhead is absorbed based on normal capacity, and unabsorbed overhead from abnormally low production is expensed in the period, not capitalized into inventory.\"\n\nTip: Normal capacity.", "D", "M"],
+["Scrap", "How do you account for scrap?", "**Why they ask:** a common cost issue.\n\n**Answer:**\n\"Normal scrap is built into the standard cost. Abnormal scrap is expensed as a variance. And I track it by cause, because that's where the savings are.\"\n\nTip: Normal versus abnormal.", "B", "M"],
+["Target Costing", "What is target costing?", "**Why they ask:** market-driven cost management.\n\n**Answer:**\n\"Start with the market price, subtract the desired margin, and that's the allowable cost. Then design the product and process to meet it. If the market will pay $50 and we need 30% margin, the product has to cost $35.\"\n\nTip: It's market-driven.", "D", "M"],
+["Standards Update", "What happens when you update standards annually?", "**Why they ask:** standard cost cycle.\n\n**Answer:**\n\"Inventory on hand is revalued at the new standards, creating a revaluation variance. I analyze the changes by component and communicate the margin impact to finance and sales before it lands.\"\n\nTip: Explain revaluation.", "D", "M"],
+["Intercompany", "How do transfer prices affect cost accounting?", "**Why they ask:** intercompany complexity.\n\n**Answer:**\n\"Intercompany purchases include the selling entity's profit. On consolidation, any unrealized profit still sitting in inventory has to be eliminated, so we need to track the intercompany margin in each entity's inventory.\"\n\nTip: Eliminate profit in inventory.", "D", "M"],
+["Scenario", "Gross margin dropped 3 points this month. How do you investigate?", "**Why they ask:** a practical analysis.\n\n**Answer:**\n\"I build a margin bridge: price, volume, mix, material cost through PPV, labor and overhead variances, and inventory adjustments and reserves. Then identify the largest drivers. Often it's one big item — a reserve true-up or a quarter's worth of variance landing in one month.\"\n\nTip: Use a margin bridge.", "B", "M"],
+["Scenario", "Physical count shows a big shortage. What do you do?", "**Why they ask:** investigation discipline.\n\n**Answer:**\n\"Recount first. Then check cut-off and unprocessed transactions, review transfers and scrap, and investigate theft or system errors. Only then record the adjustment, and fix the process that caused it.\"\n\nTip: Recount and check cut-off.", "B", "M"],
+["Job Costing", "Job costing vs process costing?", "**Why they ask:** industry fit.\n\n**Answer:**\n\"Job costing accumulates costs for each unique order — custom manufacturing or projects. Process costing averages costs across identical units — chemicals or food. The method has to fit the industry.\"\n\nTip: Fit to industry.", "B", "E"],
+["Cycle Counting", "What is ABC cycle counting?", "**Why they ask:** inventory control.\n\n**Answer:**\n\"Counting high-value or high-movement A items more often than B and C items. It improves accuracy efficiently, because effort goes where the value is.\"\n\nTip: Frequency by value.", "B", "E"],
+["Excel", "Which Excel skills matter?", "**Why they ask:** practical tools.\n\n**Answer:**\n\"Pivot tables, lookups, SUMIFS, variance models, and analyzing large ERP extracts. Power Query and Power BI are increasingly important.\"\n\nTip: Power Query.", "B", "E"],
+["Pricing", "How do you support pricing decisions?", "**Why they ask:** business partnering.\n\n**Answer:**\n\"By providing accurate product costs, contribution margins, and scenario analysis on volume and cost changes, so sales knows the floor price and the margin at each price point.\"\n\nTip: Focus on contribution margin.", "B", "M"],
+["Lean", "How does lean manufacturing affect cost accounting?", "**Why they ask:** modern costing.\n\n**Answer:**\n\"Lean accounting uses value stream costing, simpler reporting, and less focus on traditional variances — because labor efficiency and absorption variances can encourage overproduction to make the numbers look good.\"\n\nTip: Value streams.", "D", "M"],
+["Freight", "How do you allocate freight costs?", "**Why they ask:** inventory valuation.\n\n**Answer:**\n\"Inbound freight is capitalized into inventory, allocated by weight, value or quantity. Outbound freight is usually expensed as a fulfillment cost.\"\n\nTip: Inbound versus outbound.", "B", "M"],
+["Audit", "What do auditors test in inventory?", "**Why they ask:** audit readiness.\n\n**Answer:**\n\"They observe counts, test costs, review reserves and lower of cost and NRV, check cut-off, and look at how variances are capitalized.\"\n\nTip: Count observation.", "B", "M"],
+["Tariffs", "How do tariffs affect cost accounting?", "**Why they ask:** current impact.\n\n**Answer:**\n\"Duties increase landed costs capitalized into inventory, which changes standard costs and margins. I update landed cost assumptions and analyze sourcing alternatives with procurement.\"\n\nTip: Update landed costs.", "D", "M"]
+]);
+
+QB["fs-cost"] = (QB["fs-cost"] || []).concat([
+["Variances", "How do you explain a production volume variance?", "**Why they ask:** a commonly misunderstood variance.\n\n**Answer:**\n\"It's fixed overhead applied at the standard rate times actual output, minus budgeted fixed overhead. If we budget $500,000 for 50,000 units — $10 a unit — and produce 45,000, we apply $450,000, so there's a $50,000 unfavorable volume variance. It reflects capacity use, not overspending.\"\n\nTip: Capacity, not spending.", "D", "M"],
+["Yield", "What are mix and yield variances?", "**Why they ask:** process industry depth.\n\n**Answer:**\n\"When inputs can substitute for each other, the material usage variance splits into mix — using a different blend of inputs than standard — and yield — getting more or less output from the total input than standard. It's common in chemicals and food.\"\n\nTip: Process industries.", "D", "S"],
+["Joint Costs", "How are joint costs allocated?", "**Why they ask:** joint products.\n\n**Answer:**\n\"Costs before the split-off point are allocated across joint products by physical units, relative sales value at split-off, or net realizable value. By-products are often credited against the joint cost.\"\n\nTip: The sales value method.", "D", "M"],
+["Capitalized Variances", "Should variances be capitalized into inventory?", "**Why they ask:** GAAP judgment.\n\n**Answer:**\n\"If variances make standard cost differ significantly from actual cost, they should be allocated between inventory and COGS so inventory approximates actual cost under GAAP. Immaterial variances are usually just expensed.\"\n\nTip: Materiality decides.", "D", "M"],
+["Cost Centers", "Cost center vs profit center vs investment center?", "**Why they ask:** responsibility accounting.\n\n**Answer:**\n\"A cost center is responsible for costs — like maintenance. A profit center is responsible for revenue and costs — like a product line. An investment center is also responsible for the capital it uses, measured by ROI or EVA — like a division.\"\n\nTip: Responsibility accounting.", "B", "E"],
+["Relevant Costs", "What are sunk costs and why ignore them?", "**Why they ask:** a classic decision trap.\n\n**Answer:**\n\"Sunk costs are already spent and can't be recovered, so they don't change with the decision. Only future, differential costs and revenues matter. If we've spent $200,000 on old tooling, that shouldn't affect whether we buy better tooling now.\"\n\nTip: A classic trap.", "B", "E"],
+["Scenario", "Operations says standard costs are unrealistic. What do you do?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"I review the assumptions with them — yields, labor efficiency and prices — and compare against recent actuals. Where they're right, we update the standards. The goal is standards that are achievable but challenging, so the variances stay meaningful.\"\n\nTip: Collaborative standard setting.", "B", "M"]
 ]);

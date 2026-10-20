@@ -1,34 +1,9 @@
-QB['fs-cost'] = (QB['fs-cost']||[]).concat([
-["Variances", "How do you explain a production volume variance?",
-`**Answer:** Fixed overhead applied at the standard rate × actual output, minus budgeted fixed overhead. Producing below the planned volume under-absorbs fixed costs, which gives an unfavorable variance. It reflects capacity use, not spending efficiency.
-
-**Example:** budget $500K for 50,000 units ($10/unit). Producing 45,000 units applies $450K, a $50K unfavorable volume variance.
-
-Tip: Capacity, not spending.`, 'D', 'M'],
-["Yield", "What are mix and yield variances?",
-`**Answer:** When inputs can substitute for each other, the material usage variance splits into **mix** (a different blend of inputs than standard) and **yield** (more or less output from the total input than standard). This is common in chemicals and food.
-
-Tip: Process industries.`, 'D', 'S'],
-["Joint Costs", "How are joint costs allocated?",
-`**Answer:** Costs before the split-off point are allocated across joint products by physical units, relative sales value at split-off, or net realizable value. By-products are often credited against joint cost.
-
-Tip: Sales value method.`, 'D', 'M'],
-["Capitalized Variances", "Should variances be capitalized into inventory?",
-`**Answer:** Material variances that make standard costs differ significantly from actual should be allocated between inventory and COGS so that inventory approximates actual cost under GAAP. Immaterial variances are usually expensed.
-
-Tip: Materiality.`, 'D', 'M'],
-["Cost Centers", "Cost center vs profit center vs investment center?",
-`**Answer:** A **cost center** is responsible for costs (maintenance). A **profit center** is responsible for revenue and costs (a product line). An **investment center** is also responsible for capital used, measured by ROI or EVA (a division).
-
-Tip: Responsibility accounting.`, 'B', 'E'],
-["Relevant Costs", "What are sunk costs and why ignore them?",
-`**Answer:** Costs already incurred that can't be recovered. They don't change with the decision, so only future, differential costs and revenues matter.
-
-**Example:** $200K already spent on old tooling shouldn't affect whether to buy better tooling.
-
-Tip: A classic trap.`, 'B', 'E'],
-["Scenario", "Operations says standard costs are unrealistic. What do you do?",
-`**Answer:** Review the assumptions with them (yields, labor efficiency, prices), compare against recent actuals, update standards where they're justified, and keep standards achievable but challenging so variances stay meaningful.
-
-Tip: Collaborative standard setting.`, 'B', 'M']
+QB["fs-cost"] = (QB["fs-cost"] || []).concat([
+["Variances", "How do you explain a production volume variance?", "**Why they ask:** a commonly misunderstood variance.\n\n**Answer:**\n\"It's fixed overhead applied at the standard rate times actual output, minus budgeted fixed overhead. If we budget $500,000 for 50,000 units — $10 a unit — and produce 45,000, we apply $450,000, so there's a $50,000 unfavorable volume variance. It reflects capacity use, not overspending.\"\n\nTip: Capacity, not spending.", "D", "M"],
+["Yield", "What are mix and yield variances?", "**Why they ask:** process industry depth.\n\n**Answer:**\n\"When inputs can substitute for each other, the material usage variance splits into mix — using a different blend of inputs than standard — and yield — getting more or less output from the total input than standard. It's common in chemicals and food.\"\n\nTip: Process industries.", "D", "S"],
+["Joint Costs", "How are joint costs allocated?", "**Why they ask:** joint products.\n\n**Answer:**\n\"Costs before the split-off point are allocated across joint products by physical units, relative sales value at split-off, or net realizable value. By-products are often credited against the joint cost.\"\n\nTip: The sales value method.", "D", "M"],
+["Capitalized Variances", "Should variances be capitalized into inventory?", "**Why they ask:** GAAP judgment.\n\n**Answer:**\n\"If variances make standard cost differ significantly from actual cost, they should be allocated between inventory and COGS so inventory approximates actual cost under GAAP. Immaterial variances are usually just expensed.\"\n\nTip: Materiality decides.", "D", "M"],
+["Cost Centers", "Cost center vs profit center vs investment center?", "**Why they ask:** responsibility accounting.\n\n**Answer:**\n\"A cost center is responsible for costs — like maintenance. A profit center is responsible for revenue and costs — like a product line. An investment center is also responsible for the capital it uses, measured by ROI or EVA — like a division.\"\n\nTip: Responsibility accounting.", "B", "E"],
+["Relevant Costs", "What are sunk costs and why ignore them?", "**Why they ask:** a classic decision trap.\n\n**Answer:**\n\"Sunk costs are already spent and can't be recovered, so they don't change with the decision. Only future, differential costs and revenues matter. If we've spent $200,000 on old tooling, that shouldn't affect whether we buy better tooling now.\"\n\nTip: A classic trap.", "B", "E"],
+["Scenario", "Operations says standard costs are unrealistic. What do you do?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"I review the assumptions with them — yields, labor efficiency and prices — and compare against recent actuals. Where they're right, we update the standards. The goal is standards that are achievable but challenging, so the variances stay meaningful.\"\n\nTip: Collaborative standard setting.", "B", "M"]
 ]);
