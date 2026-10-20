@@ -1,254 +1,53 @@
 // Mobile Engineer (iOS / Android / cross-platform). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['swe-mob'] = [
-["Platforms", "Native vs cross-platform — how do you choose?",
-`**Why they ask:** a key architecture decision for mobile teams.
-
-**Answer:** **Native** (Swift/SwiftUI, Kotlin/Jetpack Compose) gives best performance, platform features on day one and the most polished UX. **Cross-platform** (React Native, Flutter, Kotlin Multiplatform) shares code across iOS and Android, speeding delivery with smaller teams. Choose by team skills, performance needs, platform-specific features, and long-term maintenance.
-
-Tip: Mention KMP for sharing business logic while keeping native UI.`, 'B', 'M'],
-
-["iOS", "What are the key concepts of SwiftUI?",
-`**Answer:** Declarative UI built from views as functions of state; state management with @State, @Binding, @StateObject/@ObservedObject or the Observation framework (@Observable), environment values, modifiers, and navigation stacks. Views re-render when observed state changes.
-
-Tip: Mention @Observable in newer iOS versions.`, 'B', 'M'],
-
-["iOS", "Explain the iOS app lifecycle.",
-`**Answer:** States: not running, inactive, active, background, suspended. Apps respond to transitions (scene phases in SwiftUI or SceneDelegate) to save state, pause work and handle background tasks within system limits.
-
-Tip: Background execution limits.`, 'B', 'E'],
-
-["iOS", "How does memory management work in Swift?",
-`**Answer:** ARC (automatic reference counting) frees objects when no strong references remain. Retain cycles (e.g. closures capturing self strongly, delegates) cause leaks — use weak or unowned references. Find leaks with Instruments (Leaks, Allocations).
-
-Tip: [weak self] in closures.`, 'B', 'M'],
-
-["iOS", "What is Swift concurrency?",
-`**Answer:** async/await, Task and TaskGroup for structured concurrency, actors for safe shared mutable state, @MainActor for UI updates, and Sendable checking — reducing data races compared with GCD callbacks.
-
-Tip: @MainActor for UI.`, 'D', 'M'],
-
-["Android", "What are the key concepts of Jetpack Compose?",
-`**Answer:** Declarative UI with composable functions; state with remember/mutableStateOf and state hoisting; recomposition when state changes; side effects with LaunchedEffect/DisposableEffect; theming with Material 3; and navigation with Navigation Compose.
-
-Tip: State hoisting.`, 'B', 'M'],
-
-["Android", "Explain the Android activity lifecycle.",
-`**Answer:** onCreate → onStart → onResume (visible and interactive) → onPause → onStop → onDestroy. Configuration changes (rotation) recreate activities — keep state in ViewModels and SavedStateHandle.
-
-Tip: ViewModel survives configuration changes.`, 'B', 'E'],
-
-["Android", "What is the recommended Android app architecture?",
-`**Answer:** UI layer (Compose/Views + ViewModels exposing state via StateFlow), domain layer (use cases, optional), data layer (repositories combining remote and local sources), unidirectional data flow, dependency injection with Hilt, coroutines and Flow for async work.
-
-Tip: Google's guide to app architecture.`, 'B', 'M'],
-
-["Android", "What are Kotlin coroutines and Flow?",
-`**Answer:** Coroutines provide lightweight asynchronous code with suspend functions and structured concurrency (scopes like viewModelScope). Flow is a cold asynchronous stream; StateFlow/SharedFlow hold and share state. Dispatchers choose threads (Main, IO, Default).
-
-Tip: Structured concurrency prevents leaks.`, 'D', 'M'],
-
-["Architecture", "MVVM vs MVI vs clean architecture on mobile?",
-`**Answer:** **MVVM**: ViewModel exposes observable state; view binds to it. **MVI**: unidirectional flow with intents → reducer → single immutable state. **Clean architecture**: separating presentation, domain and data layers with dependency rules. Many teams combine MVVM/MVI with clean layering.
-
-Tip: Choose for testability and team familiarity.`, 'D', 'M'],
-
-["React Native", "How does React Native work and what changed with the new architecture?",
-`**Answer:** JavaScript/TypeScript code runs in a JS engine (Hermes) and renders native components. The new architecture (Fabric renderer, TurboModules, JSI) replaces the asynchronous bridge with direct, synchronous native calls, improving performance. Expo simplifies development and builds.
-
-Tip: Mention Expo and Hermes.`, 'D', 'M'],
-
-["Flutter", "What are the strengths of Flutter?",
-`**Answer:** Single Dart codebase rendering its own UI with a consistent look across platforms, fast hot reload, good performance (compiled to native code), and a rich widget library. Trade-offs: larger app size and platform look requires extra work.
-
-Tip: Balanced view.`, 'D', 'M'],
-
-["Networking", "How do you handle networking in mobile apps?",
-`**Answer:** Use URLSession/Alamofire (iOS) or Retrofit/OkHttp/Ktor (Android); typed models with Codable/kotlinx.serialization; retries with backoff; timeouts; caching; handling poor connectivity; and certificate pinning for sensitive apps.
-
-Tip: Offline and slow networks.`, 'B', 'M'],
-
-["Offline", "How do you design an offline-first app?",
-`**Answer:** Local database as the source of truth (Room, SwiftData/Core Data, SQLite, Realm), sync changes in the background with queues and retries, conflict resolution strategy (last-write-wins, merge, server authoritative), and UI that shows sync status.
-
-Tip: Conflict resolution.`, 'D', 'S'],
-
-["Storage", "Where do you store data securely on device?",
-`**Answer:** Sensitive data (tokens, credentials) in Keychain (iOS) or Android Keystore/EncryptedSharedPreferences; never in plain UserDefaults/SharedPreferences; app data in databases with encryption if sensitive.
-
-Tip: Keychain/Keystore.`, 'B', 'M'],
-
-["Security", "What mobile security practices do you follow?",
-`**Answer:** Secure storage, TLS with optional certificate pinning, no secrets embedded in the app binary, obfuscation (R8/ProGuard), jailbreak/root detection where needed, secure authentication (OAuth with PKCE, biometrics), and following OWASP MASVS.
-
-Tip: "Apps can be decompiled — never ship secrets."`, 'D', 'M'],
-
-["Auth", "How do you implement login in a mobile app?",
-`**Answer:** OAuth 2.0/OIDC authorization code flow with PKCE via the system browser (ASWebAuthenticationSession, Custom Tabs), store tokens securely, refresh silently, support biometrics for re-authentication, and passkeys where supported.
-
-Tip: PKCE is required for public clients.`, 'D', 'M'],
-
-["Performance", "How do you improve app startup time?",
-`**Answer:** Defer non-critical initialization, lazy-load modules, reduce work on the main thread, optimize images and layouts, and measure with Instruments (App Launch) or Android Macrobenchmark and Baseline Profiles.
-
-Tip: Baseline Profiles on Android.`, 'D', 'M'],
-
-["Performance", "How do you avoid janky scrolling?",
-`**Answer:** Keep the main thread free (do I/O and parsing off-thread), efficient list rendering (LazyColumn/List with stable IDs, cell reuse), image loading and caching libraries (Coil, Kingfisher), and profile frame times.
-
-Tip: Main thread discipline.`, 'D', 'M'],
-
-["Performance", "How do you find memory leaks?",
-`**Answer:** iOS: Instruments Leaks and Memory Graph Debugger. Android: LeakCanary and Android Studio profiler. Common causes: retained contexts/activities, closures capturing self, unremoved listeners.
-
-Tip: Tool names show experience.`, 'D', 'M'],
-
-["Testing", "How do you test mobile apps?",
-`**Answer:** Unit tests for ViewModels and logic (XCTest, JUnit), UI tests (XCUITest, Espresso/Compose testing), snapshot tests for UI regressions, integration tests with mocked APIs, and device cloud runs (Firebase Test Lab, BrowserStack). Manual exploratory testing on real devices.
-
-Tip: Snapshot tests catch UI regressions.`, 'B', 'M'],
-
-["Release", "How does app store release work?",
-`**Answer:** Build and sign (certificates, provisioning profiles / keystores), upload to App Store Connect or Google Play Console, beta testing (TestFlight, internal/closed tracks), review process, phased/staged rollouts, and monitoring crashes after release.
-
-Tip: Staged rollouts reduce risk.`, 'B', 'M'],
-
-["CI/CD", "How do you automate mobile builds?",
-`**Answer:** CI services (GitHub Actions, Bitrise, Xcode Cloud, Codemagic), fastlane for signing and deployment, automated tests, build versioning, and distribution to testers.
-
-Tip: fastlane mention.`, 'B', 'M'],
-
-["Monitoring", "How do you monitor app quality in production?",
-`**Answer:** Crash reporting (Firebase Crashlytics, Sentry), ANR and performance metrics (Play Console vitals, MetricKit), analytics for key flows, and alerts on crash-free user rate drops.
-
-Tip: Crash-free users target (e.g. 99.5%+).`, 'B', 'M'],
-
-["Push", "How do push notifications work?",
-`**Answer:** The app registers with APNs (iOS) or FCM (Android) to get a device token, sends it to your backend, which sends notifications through the provider. Handle permissions, categories/channels, deep links, and silent pushes for background updates.
-
-Tip: Permission timing matters for opt-in rates.`, 'B', 'M'],
-
-["Deep Links", "How do deep links work?",
-`**Answer:** Universal Links (iOS) and App Links (Android) open the app for specific URLs when installed (verified domain association files), falling back to the website otherwise. Route to the right screen and handle auth states.
-
-Tip: Verified links avoid disambiguation prompts.`, 'D', 'M'],
-
-["Accessibility", "How do you make mobile apps accessible?",
-`**Answer:** Labels for VoiceOver/TalkBack, support Dynamic Type/font scaling, sufficient contrast, touch targets at least 44pt/48dp, logical focus order, and testing with accessibility tools (Accessibility Inspector, Accessibility Scanner).
-
-Tip: Dynamic Type support.`, 'B', 'M'],
-
-["Backward Compatibility", "How do you handle supporting old OS and app versions?",
-`**Answer:** Set a minimum OS version based on user analytics, use availability checks for new APIs, keep backend APIs backward compatible for older app versions, and use forced or soft updates when needed.
-
-Tip: Old app versions stay in the field for months.`, 'D', 'M'],
-
-["Modularization", "Why modularize a mobile codebase?",
-`**Answer:** Faster builds, clear ownership, reuse across features/apps, and better testability — using Swift packages or Gradle modules by feature and layer.
-
-Tip: Build time improvements.`, 'D', 'S'],
-
-["Battery", "How do you minimize battery usage?",
-`**Answer:** Batch network requests, use WorkManager/BGTaskScheduler for deferrable work, limit location updates (significant change, geofences), avoid wake locks and constant polling, and use push instead of polling.
-
-Tip: System schedulers.`, 'D', 'M'],
-
-["Location", "How do you handle location permissions responsibly?",
-`**Answer:** Request only when needed with clear explanation, prefer "while using" over "always", handle denial gracefully, and respect privacy rules (App Store privacy labels, Play data safety).
-
-Tip: Privacy expectations.`, 'B', 'M'],
-
-["Privacy", "What privacy requirements affect mobile apps?",
-`**Answer:** App Store privacy nutrition labels and privacy manifests, App Tracking Transparency for tracking on iOS, Google Play data safety section, GDPR/CCPA consent, and minimizing data collection.
-
-Tip: Store compliance.`, 'D', 'M'],
-
-["Payments", "How do in-app purchases work?",
-`**Answer:** Digital goods must generally use Apple's StoreKit and Google Play Billing (with platform fees, reduced rates for small developers or subscriptions after year one in many cases), with server-side receipt/purchase validation and subscription status handling; physical goods can use other payment processors. Rules vary by region — check current store guidelines.
-
-Tip: Server-side validation.`, 'D', 'M'],
-
-["Images", "How do you handle images efficiently?",
-`**Answer:** Image loading libraries with memory/disk caching, downsampling to view size, modern formats (WebP/HEIC), placeholders, and avoiding loading full-size images in lists.
-
-Tip: Downsampling saves memory.`, 'B', 'M'],
-
-["Coding", "How would you build an infinite-scrolling feed?",
-`**Answer:** Paged API (cursor-based), Paging 3 on Android or async sequence/list prefetching on iOS, lazy lists with stable IDs, image caching, pull-to-refresh, error/retry footer, and state restoration.
-
-Tip: Paging library mention.`, 'D', 'M'],
-
-["Coding", "How do you handle state restoration?",
-`**Answer:** Save UI state (scroll positions, form inputs) using SavedStateHandle/rememberSaveable on Android and SceneStorage/state restoration on iOS so users return to where they left off after process death.
-
-Tip: Process death testing.`, 'D', 'M'],
-
-["Design", "How do you work with designers on mobile?",
-`**Answer:** Follow platform conventions (Human Interface Guidelines, Material Design), shared design tokens, review designs for feasibility and accessibility early, and build reusable components.
-
-Tip: Platform conventions matter.`, 'B', 'E'],
-
-["Behavioral", "Tell me about an app feature you shipped.",
-`**Sample answer:** "I built offline order capture for field sales reps: Room database, background sync with WorkManager and conflict resolution. Reps could work in areas without signal, and order entry errors dropped 30%."
-
-Tip: Impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a crash you fixed.",
-`**Sample answer:** "Crash-free users dropped to 97% after a release. Crashlytics showed a null state on resume after process death. I fixed state restoration, added a test, and crash-free users returned to 99.7%."
-
-Tip: Metrics.`, 'B', 'M'],
-
-["Behavioral", "How do you handle app store rejection?",
-`**Answer:** Read the guideline cited, fix the issue or clarify with the reviewer through Resolution Center, adjust processes to prevent repeats.
-
-Tip: Calm and practical.`, 'B', 'E'],
-
-["AI", "How would you add on-device AI features?",
-`**Answer:** Use platform frameworks (Core ML, Apple's on-device foundation models where available, ML Kit, Gemini Nano/AI Core, TensorFlow Lite) for privacy and offline capability; fall back to cloud models for heavy tasks; watch model size, battery and latency.
-
-Tip: Privacy advantage of on-device.`, 'D', 'S'],
-
-["Cross-platform", "What are common pitfalls in React Native apps?",
-`**Answer:** Heavy work on the JS thread, too many re-renders, large lists without FlashList/FlatList optimization, outdated native dependencies, and inconsistent platform behavior. Profile with Flipper/React DevTools and native profilers.
-
-Tip: Performance profiling.`, 'D', 'M'],
-
-["KMP", "What is Kotlin Multiplatform?",
-`**Answer:** Sharing Kotlin code (business logic, networking, data) across Android, iOS and other platforms while keeping native UIs (or sharing UI with Compose Multiplatform).
-
-Tip: Growing adoption.`, 'D', 'S'],
-
-["Seniority", "What makes a senior mobile engineer?",
-`**Answer:** Owns app architecture and quality, balances platform conventions with product needs, improves performance and stability metrics, mentors others, and plans releases and backward compatibility.
-
-Tip: Examples.`, 'B', 'S'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Mobile tech lead or architect — app architecture, platform strategy, and leading a mobile team.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build fast, stable, accessible mobile apps — I've raised crash-free users to 99.7%, cut startup time by 40%, and shipped offline features used daily by thousands of users."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Analytics", "How do you instrument mobile analytics?",
-`**Answer:** Define events with product, use an analytics SDK with consistent naming, batch events to save battery, respect consent, and validate in debug views.
-
-Tip: Consent first.`, 'B', 'M'],
-
-["Feature Flags", "How do you use remote config and feature flags on mobile?",
-`**Answer:** Remote Config/LaunchDarkly to toggle features, run experiments, and kill-switch problematic features without a new release, with safe defaults when offline.
-
-Tip: Kill switches.`, 'D', 'M'],
-
-["Dependency Injection", "Why use dependency injection on mobile?",
-`**Answer:** Easier testing (swap fakes), clear dependencies and lifecycle management. Android: Hilt/Koin. iOS: initializer injection, Swift packages or frameworks like Factory.
-
-Tip: Testability.`, 'B', 'M'],
-
-["App Size", "How do you reduce app size?",
-`**Answer:** Remove unused resources and code (R8 shrinking), use App Bundles and app thinning, compress images, on-demand resources/dynamic feature modules, and audit third-party SDKs.
-
-Tip: SDK bloat is common.`, 'D', 'M']
-];
+QB["swe-mob"] = (QB["swe-mob"] || []).concat([
+["Platforms", "Native vs cross-platform — how do you choose?", "**Why they ask:** a key architecture decision for mobile teams.\n\n**Answer:** **Native** (Swift/SwiftUI, Kotlin/Jetpack Compose) gives best performance, platform features on day one and the most polished UX. **Cross-platform** (React Native, Flutter, Kotlin Multiplatform) shares code across iOS and Android, speeding delivery with smaller teams. Choose by team skills, performance needs, platform-specific features, and long-term maintenance.\n\nTip: Mention KMP for sharing business logic while keeping native UI.", "B", "M"],
+["iOS", "What are the key concepts of SwiftUI?", "**Why they ask:** SwiftUI is the modern iOS UI framework.\n\n**Answer:**\n\"SwiftUI is declarative: a view is a function of its state, and when observed state changes, SwiftUI re-renders. State tools: @State for local values, @Binding to pass write access to a child, and for models the Observation framework — marking a class @Observable, which replaced ObservableObject with @Published from iOS 17 — plus environment values, modifiers, and NavigationStack for navigation. A toggle bound to @State isOn updates the label automatically, with no manual refresh code.\"\n\nTip: Mention @Observable in newer iOS versions.", "B", "M"],
+["iOS", "Explain the iOS app lifecycle.", "**Why they ask:** correct handling of backgrounding.\n\n**Answer:**\n\"States are not running, inactive, active, background and suspended. In SwiftUI I watch scenePhase: when it goes to background, I save drafts and pause timers or video. Background time is limited — a few seconds by default — so longer work uses BGTaskScheduler, and the system can kill a suspended app at any time without warning.\"\n\nTip: Background execution limits.", "B", "E"],
+["iOS", "How does memory management work in Swift?", "**Why they ask:** leaks are a common iOS bug.\n\n**Answer:**\n\"ARC — automatic reference counting — frees an object when no strong references remain. Retain cycles cause leaks: a view controller holds a closure, and the closure captures self strongly, so neither is ever freed. The fix is [weak self] in the closure, or weak delegates. I find leaks with Instruments' Leaks and Allocations tools and Xcode's Memory Graph Debugger.\"\n\nTip: [weak self] in closures.", "B", "M"],
+["iOS", "What is Swift concurrency?", "**Why they ask:** modern async Swift.\n\n**Answer:**\n\"async/await for readable async code, Task and TaskGroup for structured concurrency — child tasks are cancelled with their parent — actors to protect shared mutable state, @MainActor to guarantee UI updates run on the main thread, and Sendable checking so the compiler catches data races. It replaces nested GCD callbacks: loading a profile and its posts in parallel is two async let lines.\"\n\nTip: @MainActor for UI.", "D", "M"],
+["Android", "What are the key concepts of Jetpack Compose?", "**Why they ask:** Compose is the modern Android UI toolkit.\n\n**Answer:**\n\"Declarative UI from composable functions; state with remember and mutableStateOf; state hoisting — moving state up to the caller so composables stay stateless and testable; recomposition when state changes; side effects with LaunchedEffect and DisposableEffect; Material 3 theming; and Navigation Compose. A hoisted search field takes a value and an onValueChange lambda, so the screen owns the query.\"\n\nTip: State hoisting.", "B", "M"],
+["Android", "Explain the Android activity lifecycle.", "**Why they ask:** a top source of Android bugs.\n\n**Answer:**\n\"onCreate, onStart, onResume when visible and interactive, then onPause, onStop and onDestroy. Configuration changes like rotation destroy and recreate the activity, so anything held in the activity is lost. State lives in a ViewModel, which survives configuration changes, and SavedStateHandle covers process death.\"\n\nTip: ViewModel survives configuration changes.", "B", "E"],
+["Android", "What is the recommended Android app architecture?", "**Why they ask:** structure and testability.\n\n**Answer:**\n\"Following Google's architecture guide: a UI layer of Compose screens and ViewModels exposing state through StateFlow; an optional domain layer of use cases; and a data layer of repositories combining remote and local sources. Unidirectional data flow — events go up, state comes down — Hilt for dependency injection, and coroutines with Flow for async work.\"\n\nTip: Google's guide to app architecture.", "B", "M"],
+["Android", "What are Kotlin coroutines and Flow?", "**Why they ask:** async Kotlin fundamentals.\n\n**Answer:**\n\"Coroutines are lightweight async code built on suspend functions, with structured concurrency: launching in viewModelScope means work is cancelled automatically when the ViewModel is cleared, so no leaks. Flow is a cold asynchronous stream; StateFlow holds current state for the UI and SharedFlow broadcasts events. Dispatchers pick the thread — Main for UI, IO for network and disk, Default for CPU work.\"\n\nTip: Structured concurrency prevents leaks.", "D", "M"],
+["Architecture", "MVVM vs MVI vs clean architecture on mobile?", "**Why they ask:** architecture judgment.\n\n**Answer:**\n\"MVVM: a ViewModel exposes observable state and the view binds to it. MVI: strictly unidirectional — user intents go to a reducer that produces a single immutable state — which makes state predictable and easy to test. Clean architecture separates presentation, domain and data layers with dependencies pointing inward. Many teams combine MVVM or MVI with clean layering; I choose by testability and what the team knows.\"\n\nTip: Choose for testability and team familiarity.", "D", "M"],
+["React Native", "How does React Native work and what changed with the new architecture?", "**Why they ask:** cross-platform depth.\n\n**Answer:**\n\"JavaScript or TypeScript runs in a JS engine — Hermes by default — and renders real native components. The old architecture sent everything as serialized messages across an asynchronous bridge. The new architecture — the Fabric renderer, TurboModules and JSI — lets JavaScript call native code directly and synchronously, which improves performance and startup. Expo simplifies development, builds and updates.\"\n\nTip: Mention Expo and Hermes.", "D", "M"],
+["Flutter", "What are the strengths of Flutter?", "**Why they ask:** cross-platform options.\n\n**Answer:**\n\"One Dart codebase that renders its own UI, so it looks identical on iOS and Android, very fast hot reload, good performance because it compiles to native code, and a rich widget library. Trade-offs: larger app size, and matching each platform's native look takes extra work.\"\n\nTip: Balanced view.", "D", "M"],
+["Networking", "How do you handle networking in mobile apps?", "**Why they ask:** mobile networks are unreliable.\n\n**Answer:**\n\"URLSession or Alamofire on iOS, Retrofit with OkHttp or Ktor on Android; typed models with Codable or kotlinx.serialization; timeouts, retries with backoff, response caching, graceful handling of slow and offline connections, and certificate pinning for sensitive apps like banking. I test on throttled 3G profiles, not just office Wi-Fi.\"\n\nTip: Offline and slow networks.", "B", "M"],
+["Offline", "How do you design an offline-first app?", "**Why they ask:** a hard, valuable capability.\n\n**Answer:**\n\"The local database is the source of truth — Room, SwiftData or SQLite — so the UI always reads locally. Changes go into an outbox queue and sync in the background with retries. I pick a conflict strategy up front — last-write-wins, field-level merge, or server authoritative — and show sync status in the UI so users know what's pending.\"\n\nTip: Conflict resolution.", "D", "S"],
+["Storage", "Where do you store data securely on device?", "**Why they ask:** secure storage basics.\n\n**Answer:**\n\"Tokens and credentials in the Keychain on iOS or the Android Keystore — never in plain UserDefaults or SharedPreferences, which can be read on a compromised device or from backups. App data goes in a database, encrypted if it's sensitive.\"\n\nTip: Keychain/Keystore.", "B", "M"],
+["Security", "What mobile security practices do you follow?", "**Why they ask:** apps run on untrusted devices.\n\n**Answer:**\n\"Secure storage, TLS with optional certificate pinning, no secrets embedded in the binary, obfuscation with R8, jailbreak or root detection where the risk justifies it, OAuth with PKCE and biometrics for authentication, and following OWASP MASVS. Apps can be decompiled in minutes, so an API key in the app is a public API key.\"\n\nTip: \"Apps can be decompiled — never ship secrets.\"", "D", "M"],
+["Auth", "How do you implement login in a mobile app?", "**Why they ask:** auth done right.\n\n**Answer:**\n\"OAuth 2.0 and OIDC authorization code flow with PKCE, opened in the system browser through ASWebAuthenticationSession or Custom Tabs so the app never sees the password; tokens in Keychain or Keystore; silent refresh; biometrics for re-authentication; and passkeys where supported. PKCE is essential because a mobile app can't keep a client secret.\"\n\nTip: PKCE is required for public clients.", "D", "M"],
+["Performance", "How do you improve app startup time?", "**Why they ask:** first impressions.\n\n**Answer:**\n\"Defer non-critical initialization — analytics and SDKs can start after the first frame — lazy-load modules, keep the main thread free, simplify the first screen, and measure with Instruments' App Launch template or Android Macrobenchmark. On Android, Baseline Profiles precompile hot code paths; on one app they cut cold start by about 30%.\"\n\nTip: Baseline Profiles on Android.", "D", "M"],
+["Performance", "How do you avoid janky scrolling?", "**Why they ask:** smoothness is noticed.\n\n**Answer:**\n\"Keep the main thread free — parsing and disk work off-thread — use lazy lists with stable IDs and cell reuse, load images with Coil or Kingfisher with caching and downsampling, and profile frame times. At 60 frames per second there are about 16 milliseconds per frame, so one synchronous JSON parse on scroll drops frames.\"\n\nTip: Main thread discipline.", "D", "M"],
+["Performance", "How do you find memory leaks?", "**Why they ask:** practical tooling.\n\n**Answer:**\n\"On iOS, Instruments' Leaks tool and the Memory Graph Debugger; on Android, LeakCanary and the Android Studio memory profiler. Usual causes are retained activities or contexts, closures capturing self, and listeners never removed. LeakCanary once showed a singleton holding an activity context, leaking every screen.\"\n\nTip: Tool names show experience.", "D", "M"],
+["Testing", "How do you test mobile apps?", "**Why they ask:** quality practices.\n\n**Answer:**\n\"Unit tests for ViewModels and logic with XCTest or JUnit, UI tests with XCUITest, Espresso or Compose testing, snapshot tests for UI regressions, integration tests with mocked APIs, device-cloud runs on Firebase Test Lab or BrowserStack, and exploratory testing on real devices, including small and old ones.\"\n\nTip: Snapshot tests catch UI regressions.", "B", "M"],
+["Release", "How does app store release work?", "**Why they ask:** release experience.\n\n**Answer:**\n\"Build and sign — certificates and provisioning profiles on iOS, a keystore on Android — upload to App Store Connect or Google Play Console, beta test through TestFlight or internal and closed tracks, pass review, then roll out in phases — say 1%, 10%, 50%, 100% — while watching crash rates. A bad build caught at 1% affects a handful of users.\"\n\nTip: Staged rollouts reduce risk.", "B", "M"],
+["CI/CD", "How do you automate mobile builds?", "**Why they ask:** CI/CD for mobile.\n\n**Answer:**\n\"CI on GitHub Actions, Bitrise, Xcode Cloud or Codemagic, fastlane for signing, screenshots and store uploads, automated tests on every pull request, automatic build numbering, and distribution to testers. It turned our release from a half-day manual process into one command.\"\n\nTip: fastlane mention.", "B", "M"],
+["Monitoring", "How do you monitor app quality in production?", "**Why they ask:** production ownership.\n\n**Answer:**\n\"Crash reporting with Crashlytics or Sentry, ANR rates and performance through Play Console vitals and MetricKit, analytics on key flows, and alerts when crash-free users drop. I aim for 99.5% or higher crash-free users.\"\n\nTip: Crash-free users target (e.g. 99.5%+).", "B", "M"],
+["Push", "How do push notifications work?", "**Why they ask:** a core mobile capability.\n\n**Answer:**\n\"The app registers with APNs on iOS or FCM on Android and gets a device token, which it sends to our backend; the backend sends notifications through the provider. We handle permissions, categories or channels, deep links into the right screen, and silent pushes for background updates. Asking for permission at a meaningful moment — like after a user tracks their first order — gets much better opt-in than asking at launch.\"\n\nTip: Permission timing matters for opt-in rates.", "B", "M"],
+["Deep Links", "How do deep links work?", "**Why they ask:** navigation and growth.\n\n**Answer:**\n\"Universal Links on iOS and App Links on Android open the app for specific URLs when it's installed, verified by association files hosted on our domain, and fall back to the website otherwise. The app routes to the right screen and handles the case where the user isn't logged in — log in first, then continue to the linked content.\"\n\nTip: Verified links avoid disambiguation prompts.", "D", "M"],
+["Accessibility", "How do you make mobile apps accessible?", "**Why they ask:** accessibility is required.\n\n**Answer:**\n\"Labels for VoiceOver and TalkBack, support for Dynamic Type and font scaling, sufficient contrast, touch targets at least 44 points on iOS and 48 dp on Android, logical focus order, and testing with Accessibility Inspector and Accessibility Scanner. Testing at the largest text size usually reveals truncated layouts.\"\n\nTip: Dynamic Type support.", "B", "M"],
+["Backward Compatibility", "How do you handle supporting old OS and app versions?", "**Why they ask:** real-world fragmentation.\n\n**Answer:**\n\"Set the minimum OS from user analytics — dropping a version that 2% of users run is a business decision — use availability checks for newer APIs, keep backend APIs backward compatible for older app versions, and use soft or forced updates when necessary, like a security fix.\"\n\nTip: Old app versions stay in the field for months.", "D", "M"],
+["Modularization", "Why modularize a mobile codebase?", "**Why they ask:** scaling the codebase.\n\n**Answer:**\n\"Faster incremental builds, clear ownership, reuse across features or apps, and better testability — using Swift packages or Gradle modules split by feature and layer. Modularizing one app cut incremental build time from about four minutes to under one.\"\n\nTip: Build time improvements.", "D", "S"],
+["Battery", "How do you minimize battery usage?", "**Why they ask:** users uninstall battery hogs.\n\n**Answer:**\n\"Batch network requests, schedule deferrable work with WorkManager or BGTaskScheduler so the OS runs it efficiently, limit location updates with significant-change or geofencing, avoid wake locks and constant polling, and use push instead of polling.\"\n\nTip: System schedulers.", "D", "M"],
+["Location", "How do you handle location permissions responsibly?", "**Why they ask:** privacy expectations.\n\n**Answer:**\n\"Ask only when the feature needs it, with a clear explanation, prefer 'while using the app' over 'always', handle denial gracefully with a manual alternative like entering a ZIP code, and keep App Store privacy labels and Play data safety declarations accurate.\"\n\nTip: Privacy expectations.", "B", "M"],
+["Privacy", "What privacy requirements affect mobile apps?", "**Why they ask:** store compliance.\n\n**Answer:**\n\"App Store privacy labels and privacy manifests, App Tracking Transparency before tracking across apps on iOS, Google Play's data safety section, GDPR and CCPA consent, and collecting as little data as possible. Third-party SDKs count too — their data collection is ours to declare.\"\n\nTip: Store compliance.", "D", "M"],
+["Payments", "How do in-app purchases work?", "**Why they ask:** monetization knowledge.\n\n**Answer:**\n\"Digital goods generally must use Apple's StoreKit and Google Play Billing, which take a platform fee — typically 30%, with reduced rates for small developers and many subscriptions. Physical goods can use other payment processors. Purchases are validated server-side and subscription status is tracked through server notifications. Rules have been changing by region, including the US and EU, so I check current store guidelines.\"\n\nTip: Server-side validation.", "D", "M"],
+["Images", "How do you handle images efficiently?", "**Why they ask:** memory and performance.\n\n**Answer:**\n\"Image libraries with memory and disk caching, downsampling to the display size, modern formats like WebP or HEIC, placeholders, and never decoding full-size images in lists. A 12-megapixel photo decoded at full size takes about 48 MB of memory; a 300-pixel thumbnail needs a tiny fraction.\"\n\nTip: Downsampling saves memory.", "B", "M"],
+["Coding", "How would you build an infinite-scrolling feed?", "**Why they ask:** a common mobile design question.\n\n**Answer:**\n\"A cursor-based paged API, Paging 3 on Android or prefetching in a lazy list on iOS, stable IDs, image caching, pull-to-refresh, an error-and-retry footer instead of a full-screen error, and scroll position restored when the user comes back.\"\n\nTip: Paging library mention.", "D", "M"],
+["Coding", "How do you handle state restoration?", "**Why they ask:** process death is real.\n\n**Answer:**\n\"Save UI state — scroll position, form input — with SavedStateHandle and rememberSaveable on Android and SceneStorage or state restoration on iOS, so after the OS kills the app in the background, users return exactly where they were. I test with 'Don't keep activities' enabled on Android.\"\n\nTip: Process death testing.", "D", "M"],
+["Design", "How do you work with designers on mobile?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Follow platform conventions — Apple's Human Interface Guidelines and Material Design — share design tokens, review designs early for feasibility and accessibility, and build reusable components. A bottom sheet that behaves like iOS on iOS feels right; one copied from Android doesn't.\"\n\nTip: Platform conventions matter.", "B", "E"],
+["Behavioral", "Tell me about an app feature you shipped.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built offline order capture for field sales reps: a Room database, background sync with WorkManager and conflict resolution. Reps could take orders without signal, and order entry errors dropped 30%.\"\n\nTip: Impact.", "B", "M"],
+["Behavioral", "Tell me about a crash you fixed.", "**Why they ask:** production debugging.\n\n**Answer:**\n\"Crash-free users dropped to 97% after a release. Crashlytics showed a null state when the app resumed after process death. I fixed state restoration, added a test for it, and crash-free users went back to 99.7%.\"\n\nTip: Metrics.", "B", "M"],
+["Behavioral", "How do you handle app store rejection?", "**Why they ask:** practical release experience.\n\n**Answer:**\n\"Read the cited guideline carefully, fix the issue or clarify with the reviewer through Resolution Center — sometimes it's a misunderstanding that a demo account resolves — and update our release checklist so it doesn't happen again.\"\n\nTip: Calm and practical.", "B", "E"],
+["AI", "How would you add on-device AI features?", "**Why they ask:** current trends.\n\n**Answer:**\n\"Platform frameworks — Core ML and Apple's on-device foundation models where available, ML Kit, Gemini Nano through AICore, or TensorFlow Lite — for privacy and offline use, falling back to cloud models for heavy tasks. I watch model size, battery and latency, and only use on-device where the device supports it.\"\n\nTip: Privacy advantage of on-device.", "D", "S"],
+["Cross-platform", "What are common pitfalls in React Native apps?", "**Why they ask:** cross-platform experience.\n\n**Answer:**\n\"Heavy work on the JS thread, too many re-renders, large lists without FlashList or a tuned FlatList, outdated native dependencies blocking upgrades, and platform differences nobody tested. I profile with React DevTools and the native profilers.\"\n\nTip: Performance profiling.", "D", "M"],
+["KMP", "What is Kotlin Multiplatform?", "**Why they ask:** cross-platform landscape.\n\n**Answer:**\n\"A way to share Kotlin code — business logic, networking, data — across Android, iOS and other platforms while keeping native UIs, or sharing UI too with Compose Multiplatform. It's gaining adoption because teams keep native UX while writing logic once.\"\n\nTip: Growing adoption.", "D", "S"],
+["Seniority", "What makes a senior mobile engineer?", "**Why they ask:** leveling.\n\n**Answer:**\n\"Owning app architecture and quality, balancing platform conventions with product needs, improving stability and performance metrics, mentoring, and planning releases and backward compatibility. For instance, I set crash-free targets per release and own the rollback decision.\"\n\nTip: Examples.", "B", "S"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward mobile tech lead or architect — app architecture, platform strategy and leading a mobile team.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build fast, stable, accessible mobile apps — I've raised crash-free users to 99.7%, cut startup time by 40%, and shipped offline features thousands of people use every day.\"\n\nTip: Proof.", "B", "M"],
+["Analytics", "How do you instrument mobile analytics?", "**Why they ask:** product mindset.\n\n**Answer:**\n\"Define events with product, use an analytics SDK with consistent naming, batch events to save battery and data, respect consent before tracking, and validate events in debug views before release.\"\n\nTip: Consent first.", "B", "M"],
+["Feature Flags", "How do you use remote config and feature flags on mobile?", "**Why they ask:** release control without app updates.\n\n**Answer:**\n\"Firebase Remote Config or LaunchDarkly to toggle features, run experiments, and kill-switch a broken feature without waiting days for store review, with safe defaults cached for offline. A kill switch saved us once when a payment provider changed their API on a Friday.\"\n\nTip: Kill switches.", "D", "M"],
+["Dependency Injection", "Why use dependency injection on mobile?", "**Why they ask:** testable design.\n\n**Answer:**\n\"It makes testing easy — swap a real repository for a fake — and makes dependencies and lifecycles explicit. Hilt or Koin on Android; on iOS, initializer injection or a lightweight library like Factory.\"\n\nTip: Testability.", "B", "M"],
+["App Size", "How do you reduce app size?", "**Why they ask:** size affects installs.\n\n**Answer:**\n\"Remove unused code and resources with R8 shrinking, ship App Bundles and rely on app thinning, compress images, use on-demand resources or dynamic feature modules, and audit third-party SDKs — one analytics SDK we removed was 8 MB on its own.\"\n\nTip: SDK bloat is common.", "D", "M"]
+]);
