@@ -1,252 +1,57 @@
 // pd-sm — generated from src/pd-sm-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Scrum Master / Agile Coach. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['pd-sm'] = [
-["Role", "What does a Scrum Master do?",
-`**Why they ask:** to see if you're a servant leader, not a task manager.
-
-**Answer:** Accountable for the Scrum team's effectiveness: coaches the team and organization in Scrum and agile practices, removes impediments, facilitates events when needed, helps the product owner with backlog techniques, and fosters continuous improvement and self-management.
-
-Tip: Servant leadership.`, 'B', 'E'],
-
-["Scrum", "Describe the Scrum framework.",
-`**Answer:** Accountabilities: Product Owner, Developers, Scrum Master. Events: the Sprint (container), Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective. Artifacts with commitments: Product Backlog (Product Goal), Sprint Backlog (Sprint Goal), Increment (Definition of Done).
-
-Tip: 2020 Scrum Guide terms.`, 'B', 'E'],
-
-["Scrum", "What is the purpose of each Scrum event?",
-`**Answer:** **Planning:** why (sprint goal), what and how. **Daily Scrum:** inspect progress toward the goal and adapt (15 min, for developers). **Review:** inspect the increment with stakeholders and adapt the backlog. **Retrospective:** improve how the team works.
-
-Tip: Inspect and adapt.`, 'B', 'E'],
-
-["DoD", "What is the Definition of Done?",
-`**Answer:** A shared quality standard an increment must meet (code reviewed, tested, documented, deployed to staging, etc.). It creates transparency and prevents hidden work.
-
-Tip: DoD vs acceptance criteria.`, 'B', 'E'],
-
-["Estimation", "How do you approach estimation?",
-`**Answer:** Relative estimation with story points via planning poker, focusing on shared understanding; or no-estimates approaches with right-sized items and flow metrics. Estimates are for planning, not performance measurement.
-
-Tip: Don't compare teams' velocity.`, 'B', 'M'],
-
-["Metrics", "Which metrics do you use?",
-`**Answer:** Velocity (for team planning only), sprint goal success, cycle time and throughput, work in progress, escaped defects, team happiness, and predictability.
-
-Tip: Flow metrics.`, 'B', 'M'],
-
-["Impediments", "How do you handle impediments?",
-`**Answer:** Make them visible, empower the team to solve what they can, escalate organizational blockers, track to resolution and address root causes.
-
-Tip: Team first, then escalate.`, 'B', 'E'],
-
-["Retrospectives", "How do you keep retrospectives effective?",
-`**Answer:** Vary formats (start/stop/continue, sailboat, 4Ls), create psychological safety, use data, focus on a few actionable improvements with owners, and follow up next sprint.
-
-Tip: Follow through on actions.`, 'B', 'M'],
-
-["Daily Scrum", "The daily scrum has become a status report to the manager. What do you do?",
-`**Answer:** Remind the purpose (developers planning their day toward the sprint goal), coach the team to talk to each other, use the board, and talk with the manager about other ways to get updates.
-
-Tip: Team-owned.`, 'B', 'M'],
-
-["Conflict", "How do you handle conflict in the team?",
-`**Answer:** Encourage open discussion, facilitate focusing on interests and facts, use working agreements, coach individuals, and escalate only if needed.
-
-Tip: Working agreements.`, 'B', 'M'],
-
-["Kanban", "Scrum vs Kanban?",
-`**Answer:** **Scrum** uses fixed sprints, roles and events. **Kanban** focuses on visualizing flow, limiting WIP and continuous delivery without fixed iterations. Teams may combine (Scrumban).
-
-Tip: WIP limits.`, 'B', 'E'],
-
-["Scaling", "What scaling frameworks do you know?",
-`**Answer:** SAFe (ARTs, PI planning), LeSS, Nexus, Scrum@Scale, and Spotify-inspired models. Choose based on context and avoid adding unnecessary process.
-
-Tip: PI planning experience.`, 'D', 'M'],
-
-["SAFe", "What happens in PI planning?",
-`**Answer:** A 2-day event where teams in an Agile Release Train align on PI objectives, plan features across iterations, identify dependencies and risks (ROAM), and commit with confidence votes.
-
-Tip: ROAM risks.`, 'D', 'M'],
-
-["Coaching", "How do you coach a new product owner?",
-`**Answer:** Teach backlog ordering by value, writing clear items, stakeholder management, defining product goals, and saying no — through pairing and feedback.
-
-Tip: Pairing.`, 'B', 'M'],
-
-["Self-management", "How do you foster self-management?",
-`**Answer:** Ask questions instead of giving answers, let the team own decisions and commitments, make information visible, and gradually step back.
-
-Tip: Coaching stance.`, 'B', 'M'],
-
-["Scope", "Stakeholders want to add work mid-sprint. What do you do?",
-`**Answer:** Route the request to the product owner; if critical and the sprint goal remains, the team may negotiate scope; if the goal becomes obsolete, the PO can cancel the sprint.
-
-Tip: PO decides.`, 'B', 'M'],
-
-["Technical Practices", "Which technical practices support agility?",
-`**Answer:** CI/CD, automated testing, TDD, pair/mob programming, trunk-based development, and refactoring — enabling frequent, reliable delivery.
-
-Tip: Agile needs engineering.`, 'B', 'M'],
-
-["Remote", "How do you run Scrum with remote teams?",
-`**Answer:** Digital boards, clear working agreements, overlapping hours, cameras-on norms for key events, async updates, and intentional team building.
-
-Tip: Overlapping hours.`, 'B', 'E'],
-
-["Transformation", "How do you lead an agile transformation?",
-`**Answer:** Start with why and outcomes, pilot teams, leadership engagement, training and coaching, change structures and incentives, measure outcomes, and scale gradually.
-
-Tip: Leadership behaviors.`, 'D', 'M'],
-
-["Behavioral", "Tell me about improving a team's delivery.",
-`**Sample answer:** "A team missed sprint goals 70% of the time. We reduced WIP, split stories smaller and improved refinement. Within three months goal success reached 85% and cycle time dropped 40%."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling a resistant team member.",
-`**Sample answer:** "A senior developer saw Scrum as overhead. I listened, invited him to redesign our refinement to be leaner, and he became an advocate."
-
-Tip: Involve critics.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a failed retrospective action.",
-`**Sample answer:** "We committed to too many actions and completed none. Now we pick one improvement per sprint with an owner, and track it on the board."
-
-Tip: One action.`, 'B', 'E'],
-
-["Certifications", "Which certifications are useful?",
-`**Answer:** PSM I/II, CSM/A-CSM, SAFe Scrum Master/SPC, ICAgile coaching certifications, and Kanban (KMP).
-
-Tip: PSM is rigorous.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Agile coach, release train engineer, or delivery manager.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I help teams become self-managing and predictable — raising sprint goal success to 85% and cutting cycle time 40% through coaching and better flow."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Backlog", "What makes a backlog item ready?",
-`**Answer:** Clear value, acceptance criteria, small enough to finish within a sprint, dependencies understood and estimated — teams may use a Definition of Ready as a guide, not a gate.
-
-Tip: Not a rigid gate.`, 'B', 'E'],
-
-["Splitting", "How do you split large stories?",
-`**Answer:** By workflow steps, business rules, data variations, interfaces, happy path vs edge cases, or CRUD operations — keeping each slice valuable.
-
-Tip: Vertical slices.`, 'B', 'M'],
-
-["Velocity", "Management wants to use velocity to compare teams. How do you respond?",
-`**Answer:** Explain story points are team-relative and comparisons create gaming; suggest outcome and flow metrics instead.
-
-Tip: Goodhart's law.`, 'B', 'M'],
-
-["Burndown", "What do burndown charts show?",
-`**Answer:** Remaining work over time in a sprint or release, helping spot risks; flat lines indicate blocked work or poor updates.
-
-Tip: Interpretation.`, 'B', 'E'],
-
-["Psychological Safety", "How do you build psychological safety?",
-`**Answer:** Model vulnerability, respond to mistakes as learning, encourage all voices, and address disrespectful behavior quickly.
-
-Tip: Leader behavior.`, 'B', 'M'],
-
-["Dependencies", "How do you manage dependencies between teams?",
-`**Answer:** Make them visible (boards, PI planning), coordinate through scrum of scrums, and reduce them via team structure and architecture.
-
-Tip: Reduce, don't just manage.`, 'D', 'M'],
-
-["Facilitation", "What facilitation techniques do you use?",
-`**Answer:** Liberating Structures (1-2-4-All), dot voting, timeboxing, silent brainstorming, fist of five.
-
-Tip: Inclusive techniques.`, 'B', 'E'],
-
-["Product Goal", "What is the Product Goal?",
-`**Answer:** A long-term objective for the product that the Product Backlog serves, giving the team direction.
-
-Tip: Commitment for the backlog.`, 'B', 'E'],
-
-["Scenario", "The team consistently overcommits. What do you do?",
-`**Answer:** Use historical velocity/throughput for planning, smaller items, account for capacity (holidays, support), and reflect in retros.
-
-Tip: Data-driven planning.`, 'B', 'E'],
-
-["Scenario", "The PO is rarely available. What do you do?",
-`**Answer:** Make the impact visible, discuss with the PO and their manager, agree on availability, or propose a delegate with decision authority.
-
-Tip: Impact visibility.`, 'B', 'M'],
-
-["Scenario", "Production support keeps interrupting sprints. What do you do?",
-`**Answer:** Measure interruptions, reserve capacity, rotate a support person, or use Kanban for support, and address root causes of incidents.
-
-Tip: Rotation.`, 'B', 'M'],
-
-["DevOps", "How does DevOps relate to agile?",
-`**Answer:** DevOps extends agility to delivery and operations with automation, continuous delivery and shared responsibility.
-
-Tip: Faster feedback.`, 'B', 'E'],
-
-["Leadership", "How do you work with managers in an agile organization?",
-`**Answer:** Help them shift from directing tasks to developing people, setting context and removing systemic impediments.
-
-Tip: Manager role change.`, 'D', 'M'],
-
-["Agile Manifesto", "What are the Agile Manifesto values?",
-`**Answer:** Individuals and interactions over processes and tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan.
-
-Tip: Value on the left more.`, 'B', 'E'],
-
-["Flow", "What is Little's Law?",
-`**Answer:** Average cycle time = average WIP / average throughput. Reducing WIP reduces cycle time.
-
-**Example:** 20 items in progress, throughput 10/week → cycle time 2 weeks.
-
-Tip: WIP limits.`, 'D', 'M'],
-
-["Coaching", "Coaching vs mentoring vs teaching?",
-`**Answer:** **Teaching** shares knowledge; **mentoring** shares experience and advice; **coaching** asks questions to help people find their own answers.
-
-Tip: Choose the stance.`, 'B', 'M'],
-
-["Tools", "Which tools have you used?",
-`**Answer:** Jira, Azure DevOps, Rally, Miro/Mural, and Confluence.
-
-Tip: Tools serve process.`, 'B', 'E']
-];
-
-QB['pd-sm'] = (QB['pd-sm']||[]).concat([
-["Sprint Planning", "How do you facilitate sprint planning?",
-`**Answer:** The PO proposes how the sprint could increase value. The team crafts a sprint goal, selects items based on capacity and past throughput, breaks them into tasks or a plan for the first days, and confirms commitment to the goal.
-
-Tip: Goal first, then items.`, 'B', 'E'],
-["Sprint Review", "How do you make sprint reviews valuable?",
-`**Answer:** Invite real stakeholders, demonstrate working software (not slides), discuss feedback and market changes, and adapt the product backlog together. It's a working session, not a presentation.
-
-Tip: Working session.`, 'B', 'E'],
-["Working Agreements", "What are working agreements?",
-`**Answer:** Team-created norms (core hours, communication channels, code review expectations, meeting behavior) that support collaboration. Revisit them in retros.
-
-Tip: Team-owned.`, 'B', 'E'],
-["Cycle Time", "How do you use cycle time scatterplots?",
-`**Answer:** Plot completed items by cycle time to see variability and percentiles. For example, "85% of items finish within 6 days", which supports forecasting and spots outliers to discuss.
-
-Tip: Percentile forecasting.`, 'D', 'M'],
-["Monte Carlo", "What is Monte Carlo forecasting?",
-`**Answer:** Simulating many possible futures from historical throughput to forecast completion dates with probabilities. For example, "85% chance of finishing 40 items by June 30".
-
-Tip: Probabilistic forecasting.`, 'D', 'S'],
-["Team Formation", "How do you help a new team form?",
-`**Answer:** Kick-off on purpose and goals, working agreements, roles, skills mapping, team-building activities, and early wins. Recognize the forming-storming-norming-performing stages.
-
-Tip: Tuckman stages.`, 'B', 'E'],
-["Anti-patterns", "What Scrum anti-patterns do you watch for?",
-`**Answer:** Mini-waterfall sprints, no sprint goal, the PO acting as a proxy without authority, skipped retros, carryover every sprint, a scrum master acting as task manager, and velocity used as a target.
-
-Tip: Name a few you've fixed.`, 'B', 'M'],
-["Scenario", "Half the sprint backlog is unfinished every sprint. What do you do?",
-`**Answer:** Analyze the causes (oversized stories, dependencies, unplanned work, too much WIP), then make the data visible in a retro. Agree experiments: smaller stories, WIP limits, swarming and better refinement.
-
-Tip: Experiments.`, 'B', 'M']
+QB["pd-sm"] = (QB["pd-sm"] || []).concat([
+["Role", "What does a Scrum Master do?", "**Why they ask:** to see if you're a servant leader, not a task manager.\n\n**Answer:** Accountable for the Scrum team's effectiveness: coaches the team and organization in Scrum and agile practices, removes impediments, facilitates events when needed, helps the product owner with backlog techniques, and fosters continuous improvement and self-management.\n\nTip: Servant leadership.", "B", "E"],
+["Scrum", "Describe the Scrum framework.", "**Why they ask:** foundational knowledge, in current terms.\n\n**Answer:**\n\"Under the 2020 Scrum Guide there are three accountabilities: the Product Owner, the Developers and the Scrum Master. Five events: the Sprint as the container, Sprint Planning, the Daily Scrum, the Sprint Review and the Retrospective. And three artifacts, each with a commitment: the Product Backlog with the Product Goal, the Sprint Backlog with the Sprint Goal, and the Increment with the Definition of Done.\"\n\nTip: 2020 Scrum Guide terms.", "B", "E"],
+["Scrum", "What is the purpose of each Scrum event?", "**Why they ask:** understanding beyond mechanics.\n\n**Answer:**\n\"Sprint Planning answers why this sprint matters — the sprint goal — what we'll deliver and how. The Daily Scrum is 15 minutes for developers to inspect progress toward the goal and adapt the plan. The Sprint Review inspects the increment with stakeholders and adapts the backlog. The Retrospective improves how the team works. Every event is an inspect-and-adapt point.\"\n\nTip: Inspect and adapt.", "B", "E"],
+["DoD", "What is the Definition of Done?", "**Why they ask:** quality and transparency.\n\n**Answer:**\n\"A shared quality standard every increment must meet — code reviewed, automated tests passing, documentation updated, deployed to staging. It creates transparency about what 'done' means and prevents hidden work piling up. It differs from acceptance criteria, which are specific to one item; the DoD applies to all of them.\"\n\nTip: DoD vs acceptance criteria.", "B", "E"],
+["Estimation", "How do you approach estimation?", "**Why they ask:** planning philosophy.\n\n**Answer:**\n\"Relative estimation with story points through planning poker, where the real value is the conversation when one person says 3 and another says 13. Or a no-estimates approach with right-sized items and flow metrics. Either way, estimates are for planning, never for measuring performance or comparing teams.\"\n\nTip: Don't compare teams' velocity.", "B", "M"],
+["Metrics", "Which metrics do you use?", "**Why they ask:** measuring team health.\n\n**Answer:**\n\"Velocity for the team's own planning only, sprint goal success, cycle time and throughput, work in progress, escaped defects, team happiness, and predictability. Flow metrics like cycle time tell me more than velocity about how work actually moves.\"\n\nTip: Flow metrics.", "B", "M"],
+["Impediments", "How do you handle impediments?", "**Why they ask:** a core Scrum Master duty.\n\n**Answer:**\n\"Make them visible, empower the team to solve what they can themselves, escalate organizational blockers, track them to resolution, and look at root causes. If the team waits three days for every test environment, I fix the request process, not just today's environment.\"\n\nTip: Team first, then escalate.", "B", "E"],
+["Retrospectives", "How do you keep retrospectives effective?", "**Why they ask:** continuous improvement.\n\n**Answer:**\n\"Vary formats — start-stop-continue, sailboat, 4Ls — build psychological safety, bring data like cycle time and carryover, and leave with one or two actionable improvements with owners. Then start the next retro by checking whether we did them; otherwise retros become venting sessions.\"\n\nTip: Follow through on actions.", "B", "M"],
+["Daily Scrum", "The daily scrum has become a status report to the manager. What do you do?", "**Why they ask:** coaching skill.\n\n**Answer:**\n\"Remind the team of its purpose — developers planning their next day toward the sprint goal — coach them to talk to each other rather than to the manager, walk the board instead of going person by person, and talk privately with the manager about other ways to get the visibility they need, like the board or the sprint review.\"\n\nTip: Team-owned.", "B", "M"],
+["Conflict", "How do you handle conflict in the team?", "**Why they ask:** facilitation and people skills.\n\n**Answer:**\n\"Encourage open discussion, facilitate a focus on interests and facts rather than positions, use working agreements the team created, coach individuals one-on-one, and escalate only if needed. Healthy disagreement about solutions is a good sign; personal conflict needs early attention.\"\n\nTip: Working agreements.", "B", "M"],
+["Kanban", "Scrum vs Kanban?", "**Why they ask:** framework judgment.\n\n**Answer:**\n\"Scrum uses fixed-length sprints with defined accountabilities and events. Kanban focuses on visualizing flow, limiting work in progress and delivering continuously without fixed iterations. Support teams with unpredictable work often suit Kanban; product teams with roadmap work often suit Scrum; many combine them as Scrumban.\"\n\nTip: WIP limits.", "B", "E"],
+["Scaling", "What scaling frameworks do you know?", "**Why they ask:** scale experience.\n\n**Answer:**\n\"SAFe with Agile Release Trains and PI planning, LeSS, Nexus, Scrum@Scale, and Spotify-inspired models. I choose by context and avoid adding process the organization doesn't need — scaling frameworks can easily become bureaucracy.\"\n\nTip: PI planning experience.", "D", "M"],
+["SAFe", "What happens in PI planning?", "**Why they ask:** SAFe experience.\n\n**Answer:**\n\"A two-day event where all teams in an Agile Release Train align on PI objectives, plan features across the iterations of the next 8 to 12 weeks, identify dependencies and risks — sorting risks into ROAM: resolved, owned, accepted, mitigated — and end with a confidence vote on the plan.\"\n\nTip: ROAM risks.", "D", "M"],
+["Coaching", "How do you coach a new product owner?", "**Why they ask:** coaching others.\n\n**Answer:**\n\"Through pairing and feedback on ordering the backlog by value, writing clear items, managing stakeholders, defining a product goal, and saying no. Saying no is usually the hardest skill for a new PO.\"\n\nTip: Pairing.", "B", "M"],
+["Self-management", "How do you foster self-management?", "**Why they ask:** coaching stance.\n\n**Answer:**\n\"Ask questions instead of giving answers, let the team own decisions and commitments, make information visible, and step back gradually. When a team asks me who should take a task, I ask them how they'd like to decide.\"\n\nTip: Coaching stance.", "B", "M"],
+["Scope", "Stakeholders want to add work mid-sprint. What do you do?", "**Why they ask:** protecting focus.\n\n**Answer:**\n\"Route the request to the product owner. If it's critical and the sprint goal still holds, the team may negotiate swapping scope. If the new priority makes the sprint goal obsolete, the PO can cancel the sprint. Either way, the PO decides, not the loudest stakeholder.\"\n\nTip: PO decides.", "B", "M"],
+["Technical Practices", "Which technical practices support agility?", "**Why they ask:** agile needs engineering.\n\n**Answer:**\n\"CI/CD, automated testing, TDD, pair or mob programming, trunk-based development and refactoring. Without them, two-week sprints just produce two weeks of untested code.\"\n\nTip: Agile needs engineering.", "B", "M"],
+["Remote", "How do you run Scrum with remote teams?", "**Why they ask:** remote reality.\n\n**Answer:**\n\"Digital boards, clear working agreements, protected overlapping hours, cameras-on norms for key events, async updates for everything else, and intentional team building — remote teams don't bond by accident.\"\n\nTip: Overlapping hours.", "B", "E"],
+["Transformation", "How do you lead an agile transformation?", "**Why they ask:** organizational change.\n\n**Answer:**\n\"Start with why and the outcomes we want, pilot with a few teams, engage leadership — their behavior matters more than any training — provide training and coaching, change structures and incentives that conflict with agility, measure outcomes, and scale gradually.\"\n\nTip: Leadership behaviors.", "D", "M"],
+["Behavioral", "Tell me about improving a team's delivery.", "**Why they ask:** proof.\n\n**Answer:**\n\"A team missed sprint goals 70% of the time. We reduced work in progress, split stories smaller and improved refinement. Within three months sprint goal success reached 85% and cycle time dropped 40%.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about handling a resistant team member.", "**Why they ask:** influence.\n\n**Answer:**\n\"A senior developer saw Scrum as overhead. I listened to his specific complaints, invited him to redesign our refinement sessions to be leaner, and he became one of our strongest advocates.\"\n\nTip: Involve critics.", "B", "M"],
+["Behavioral", "Tell me about a failed retrospective action.", "**Why they ask:** learning.\n\n**Answer:**\n\"We committed to six actions and completed none. Now we pick one improvement per sprint, give it an owner, and track it on the board like any other work.\"\n\nTip: One action.", "B", "E"],
+["Certifications", "Which certifications are useful?", "**Why they ask:** credentials.\n\n**Answer:**\n\"PSM I and II, CSM and A-CSM, SAFe Scrum Master or SPC, ICAgile coaching certifications, and Kanban Management Professional.\"\n\nTip: PSM is rigorous.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward agile coach, release train engineer or delivery manager.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I help teams become self-managing and predictable — raising sprint goal success to 85% and cutting cycle time 40% through coaching and better flow.\"\n\nTip: Proof.", "B", "E"],
+["Backlog", "What makes a backlog item ready?", "**Why they ask:** refinement practice.\n\n**Answer:**\n\"Clear value, acceptance criteria, small enough to finish within a sprint, dependencies understood, and estimated. Some teams use a Definition of Ready as a guide — but not as a rigid gate that blocks useful work.\"\n\nTip: Not a rigid gate.", "B", "E"],
+["Splitting", "How do you split large stories?", "**Why they ask:** practical refinement.\n\n**Answer:**\n\"By workflow steps, business rules, data variations, interfaces, happy path versus edge cases, or CRUD operations — keeping each slice valuable end to end. 'Pay an invoice' might split into 'pay a single-currency invoice' first and 'handle foreign currency' later.\"\n\nTip: Vertical slices.", "B", "M"],
+["Velocity", "Management wants to use velocity to compare teams. How do you respond?", "**Why they ask:** protecting metrics.\n\n**Answer:**\n\"Explain that story points are relative to each team, so one team's 40 isn't comparable to another's 25, and using velocity as a target invites inflation — Goodhart's law. Then suggest outcome and flow metrics that actually show performance.\"\n\nTip: Goodhart's law.", "B", "M"],
+["Burndown", "What do burndown charts show?", "**Why they ask:** metric interpretation.\n\n**Answer:**\n\"Remaining work over time in a sprint or release, helping spot risk early. A flat line for several days usually means blocked work or a board nobody updates; a cliff at the end means work isn't being finished incrementally.\"\n\nTip: Interpretation.", "B", "E"],
+["Psychological Safety", "How do you build psychological safety?", "**Why they ask:** team culture.\n\n**Answer:**\n\"Model vulnerability myself, treat mistakes as learning, make sure every voice is heard — using silent writing before discussion helps quieter people — and address disrespectful behavior quickly.\"\n\nTip: Leader behavior.", "B", "M"],
+["Dependencies", "How do you manage dependencies between teams?", "**Why they ask:** scaling coordination.\n\n**Answer:**\n\"Make them visible on boards and in PI planning, coordinate through a scrum of scrums, and — most importantly — reduce them through better team structure and architecture rather than just managing them forever.\"\n\nTip: Reduce, don't just manage.", "D", "M"],
+["Facilitation", "What facilitation techniques do you use?", "**Why they ask:** facilitation toolkit.\n\n**Answer:**\n\"Liberating Structures like 1-2-4-All, dot voting, timeboxing, silent brainstorming and fist of five for quick consensus checks. 1-2-4-All is great because everyone thinks alone first, so the loudest person doesn't anchor the group.\"\n\nTip: Inclusive techniques.", "B", "E"],
+["Product Goal", "What is the Product Goal?", "**Why they ask:** current Scrum Guide knowledge.\n\n**Answer:**\n\"A long-term objective for the product that the Product Backlog serves — the commitment for the backlog, giving the team direction across sprints.\"\n\nTip: Commitment for the backlog.", "B", "E"],
+["Scenario", "The team consistently overcommits. What do you do?", "**Why they ask:** planning coaching.\n\n**Answer:**\n\"Plan from historical velocity or throughput, use smaller items, account for real capacity — holidays, support duty — and reflect on it in the retro. If the team averages 30 points, planning 45 isn't ambition, it's a forecast of failure.\"\n\nTip: Data-driven planning.", "B", "E"],
+["Scenario", "The PO is rarely available. What do you do?", "**Why they ask:** handling dysfunction.\n\n**Answer:**\n\"Make the impact visible — blocked questions, rework from guesses — discuss it with the PO and if needed their manager, agree on availability like fixed office hours, or propose a delegate with genuine decision authority.\"\n\nTip: Impact visibility.", "B", "M"],
+["Scenario", "Production support keeps interrupting sprints. What do you do?", "**Why they ask:** practical problem-solving.\n\n**Answer:**\n\"Measure the interruptions, reserve capacity for them, rotate one person onto support each sprint so the rest stay focused, or move support into a Kanban flow — and address the root causes of the incidents so there are fewer.\"\n\nTip: Rotation.", "B", "M"],
+["DevOps", "How does DevOps relate to agile?", "**Why they ask:** broader delivery view.\n\n**Answer:**\n\"DevOps extends agility from development into delivery and operations through automation, continuous delivery and shared responsibility, so feedback from real users arrives faster.\"\n\nTip: Faster feedback.", "B", "E"],
+["Leadership", "How do you work with managers in an agile organization?", "**Why they ask:** organizational coaching.\n\n**Answer:**\n\"Help them shift from directing tasks to developing people, setting context and removing systemic impediments — the things teams can't fix themselves.\"\n\nTip: Manager role change.", "D", "M"],
+["Agile Manifesto", "What are the Agile Manifesto values?", "**Why they ask:** foundations.\n\n**Answer:**\n\"Individuals and interactions over processes and tools; working software over comprehensive documentation; customer collaboration over contract negotiation; responding to change over following a plan. The items on the right still have value — the ones on the left are valued more.\"\n\nTip: Value on the left more.", "B", "E"],
+["Flow", "What is Little's Law?", "**Why they ask:** flow understanding.\n\n**Answer:**\n\"Average cycle time equals average work in progress divided by average throughput. With 20 items in progress and a throughput of 10 a week, cycle time is 2 weeks; cut WIP to 10 and it drops to 1 week. That's why WIP limits work.\"\n\nTip: WIP limits.", "D", "M"],
+["Coaching", "Coaching vs mentoring vs teaching?", "**Why they ask:** coaching stance.\n\n**Answer:**\n\"Teaching shares knowledge. Mentoring shares experience and advice. Coaching asks questions so people find their own answers. I choose the stance per situation — a brand-new team needs teaching; a mature team needs coaching.\"\n\nTip: Choose the stance.", "B", "M"],
+["Tools", "Which tools have you used?", "**Why they ask:** practical experience.\n\n**Answer:**\n\"Jira, Azure DevOps, Rally, Miro and Mural, and Confluence. The tool should serve the process, not dictate it.\"\n\nTip: Tools serve process.", "B", "E"]
+]);
+
+QB["pd-sm"] = (QB["pd-sm"] || []).concat([
+["Sprint Planning", "How do you facilitate sprint planning?", "**Why they ask:** event facilitation.\n\n**Answer:**\n\"The PO proposes how the sprint could increase value, the team crafts a sprint goal, selects items based on capacity and past throughput, plans at least the first few days of work, and confirms commitment to the goal. Goal first, then items.\"\n\nTip: Goal first, then items.", "B", "E"],
+["Sprint Review", "How do you make sprint reviews valuable?", "**Why they ask:** stakeholder engagement.\n\n**Answer:**\n\"Invite real stakeholders and users, demonstrate working software rather than slides, discuss feedback and market changes, and adapt the backlog together. It's a working session, not a presentation.\"\n\nTip: Working session.", "B", "E"],
+["Working Agreements", "What are working agreements?", "**Why they ask:** team norms.\n\n**Answer:**\n\"Team-created norms — core hours, which channel for what, code review turnaround, meeting behavior — that support collaboration. The team owns them and revisits them in retros.\"\n\nTip: Team-owned.", "B", "E"],
+["Cycle Time", "How do you use cycle time scatterplots?", "**Why they ask:** flow analytics.\n\n**Answer:**\n\"Plot completed items by cycle time to see variability and percentiles — 'items finish within 6 days 85% of the time' — which supports forecasting and highlights outliers to discuss in the retro.\"\n\nTip: Percentile forecasting.", "D", "M"],
+["Monte Carlo", "What is Monte Carlo forecasting?", "**Why they ask:** probabilistic planning.\n\n**Answer:**\n\"Simulating thousands of possible futures from historical throughput to forecast completion with probabilities — 'an 85% chance of finishing these 40 items by June 30' — which is more honest than a single date.\"\n\nTip: Probabilistic forecasting.", "D", "S"],
+["Team Formation", "How do you help a new team form?", "**Why they ask:** team building.\n\n**Answer:**\n\"A kick-off on purpose and goals, working agreements, clear roles, skills mapping, team-building activities and early wins — and recognizing the forming, storming, norming, performing stages so storming doesn't feel like failure.\"\n\nTip: Tuckman stages.", "B", "E"],
+["Anti-patterns", "What Scrum anti-patterns do you watch for?", "**Why they ask:** practical experience.\n\n**Answer:**\n\"Mini-waterfall sprints, no sprint goal, a proxy PO without authority, skipped retros, carryover every sprint, a Scrum Master acting as task manager, and velocity used as a target. I fixed chronic carryover on one team by introducing WIP limits and swarming.\"\n\nTip: Name a few you've fixed.", "B", "M"],
+["Scenario", "Half the sprint backlog is unfinished every sprint. What do you do?", "**Why they ask:** diagnosis and coaching.\n\n**Answer:**\n\"Analyze the causes — oversized stories, dependencies, unplanned work, too much WIP — make the data visible in a retro, and agree on experiments: smaller stories, WIP limits, swarming on the top item, better refinement. Then measure whether it improves.\"\n\nTip: Experiments.", "B", "M"]
 ]);
