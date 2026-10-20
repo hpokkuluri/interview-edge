@@ -1,30 +1,7 @@
-QB['sec-ciso'] = (QB['sec-ciso']||[]).concat([
-["Risk Appetite", "How do you set cyber risk appetite with leadership?",
-`**Answer:** Run workshops with executives to define tolerances in business terms: for example, acceptable downtime for critical systems, tolerance for sensitive data exposure, and recovery time objectives. Translate these into measurable thresholds and have the board approve them.
-
-Tip: Make appetite measurable.`, 'D', 'S'],
-["Operating Model", "How do you organize a security function?",
-`**Answer:** Typical pillars:
-- Security operations
-- Security engineering and architecture
-- Identity
-- GRC and risk
-- Product/application security
-- Awareness
-
-Business information security officers (BISOs) align with business units. Use managed services where specialization or 24x7 coverage is costly.
-
-Tip: BISOs connect security to the business.`, 'D', 'M'],
-["Peers", "How do you use peer networks and information sharing?",
-`**Answer:** Industry ISACs, CISO peer groups and government partnerships (CISA) for threat intelligence, benchmarking and lessons learned. Share responsibly within agreed rules (TLP).
-
-Tip: ISAC membership.`, 'B', 'M'],
-["Metrics", "How do you show security ROI?",
-`**Answer:** Risk reduction quantified in dollars (FAIR), incidents avoided or contained faster, audit and insurance savings, efficiency from automation and tool consolidation, and business enablement (deals won thanks to security certifications).
-
-Tip: Deals enabled by SOC 2/ISO.`, 'D', 'S'],
-["Sales", "How does security help revenue?",
-`**Answer:** Certifications and strong security answers speed up enterprise sales, a trust center reduces questionnaire workload, and security becomes a differentiator in regulated markets.
-
-Tip: Security as a sales asset.`, 'B', 'M']
+QB["sec-ciso"] = (QB["sec-ciso"] || []).concat([
+["Risk Appetite", "How do you set cyber risk appetite with leadership?", "**Why they ask:** governance in practice.\n\n**Answer:**\n\"Workshops with executives to define tolerances in business terms — for example, no more than 24 hours of downtime for order processing, zero tolerance for regulated data exposure — then translate those into measurable thresholds and have the board approve them.\"\n\nTip: Make appetite measurable.", "D", "S"],
+["Operating Model", "How do you organize a security function?", "**Why they ask:** organizational design.\n\n**Answer:**\n\"Typically six pillars: security operations, engineering and architecture, identity, GRC and risk, product or application security, and awareness. Business information security officers align with business units, and managed services cover 24x7 or specialist needs.\"\n\nTip: BISOs connect security to the business.", "D", "M"],
+["Peers", "How do you use peer networks and information sharing?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Industry ISACs, CISO peer groups and government partnerships like CISA for threat intelligence, benchmarking and lessons learned — sharing responsibly under the Traffic Light Protocol.\"\n\nTip: ISAC membership.", "B", "M"],
+["Metrics", "How do you show security ROI?", "**Why they ask:** value demonstration.\n\n**Answer:**\n\"Risk reduction quantified in dollars with FAIR, incidents contained faster, audit and insurance savings, efficiency from automation and consolidation, and business enablement — like deals won because we had SOC 2.\"\n\nTip: Deals enabled by SOC 2/ISO.", "D", "S"],
+["Sales", "How does security help revenue?", "**Why they ask:** business mindset.\n\n**Answer:**\n\"Certifications and strong security answers speed enterprise sales, a public trust center cuts questionnaire work, and in regulated markets security is a differentiator. In my last company, SOC 2 shortened enterprise sales cycles by about three weeks.\"\n\nTip: Security as a sales asset.", "B", "M"]
 ]);
