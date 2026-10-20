@@ -1,256 +1,57 @@
 // cl-devops — generated from src/cl-devops-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // DevOps Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['cl-devops'] = [
-["Culture", "What is DevOps?",
-`**Why they ask:** to see if you understand it as culture plus practice, not just tools.
-
-**Answer:** A culture and set of practices that bring development and operations together to deliver software faster and more reliably: shared ownership, automation (CI/CD, infrastructure as code), continuous feedback through monitoring, small frequent releases, and learning from failures. Tools support it but don't define it.
-
-Tip: Mention DORA metrics as how you measure it.`, 'B', 'E'],
-
-["Metrics", "What are the DORA metrics?",
-`**Answer:** Deployment frequency, lead time for changes, change failure rate, and time to restore service (MTTR) — research-backed measures of delivery performance. Recent DORA reports also add reliability and deployment rework rate.
-
-Tip: Show your team's numbers.`, 'B', 'M'],
-
-["CI/CD", "Explain CI vs continuous delivery vs continuous deployment.",
-`**Answer:** **Continuous integration:** developers merge small changes frequently; every change is automatically built and tested. **Continuous delivery:** every change that passes the pipeline is releasable, with deployment to production by a manual approval. **Continuous deployment:** passing changes deploy to production automatically.
-
-Tip: Clear distinctions.`, 'B', 'E'],
-
-["CI/CD", "What stages would you put in a CI/CD pipeline?",
-`**Answer:** Checkout → lint and static analysis → unit tests → build artifact/container → security scans (SAST, dependencies, container image) → integration tests → deploy to staging → smoke/acceptance tests → approval (if needed) → progressive production deploy (canary/blue-green) → post-deploy verification and automatic rollback.
-
-Tip: Fast feedback early in the pipeline.`, 'B', 'M'],
-
-["CI/CD", "Which CI/CD tools have you used?",
-`**Sample answer:** "GitHub Actions and GitLab CI for most pipelines, Jenkins on a legacy platform, Azure DevOps Pipelines in a Microsoft shop, and Argo CD for GitOps deployments to Kubernetes."
-
-Tip: Name what you built.`, 'B', 'E'],
-
-["Deployments", "Blue-green vs canary vs rolling deployments?",
-`**Answer:** **Rolling:** replace instances gradually. **Blue-green:** run new version alongside old, switch traffic at once, quick rollback by switching back. **Canary:** route a small percentage of traffic to the new version, watch metrics, then expand. Feature flags decouple deployment from release.
-
-Tip: Canary with automated analysis.`, 'B', 'M'],
-
-["Deployments", "How do you roll back a bad deployment?",
-`**Answer:** Automated rollback on failed health checks or error-rate thresholds, redeploy the previous artifact (immutable versions), switch traffic back (blue-green), or disable via feature flag. Database changes must be backward compatible for rollback to work.
-
-Tip: Backward-compatible migrations.`, 'B', 'M'],
-
-["GitOps", "What is GitOps?",
-`**Answer:** Using Git as the source of truth for infrastructure and application configuration; an agent (Argo CD, Flux) continuously reconciles the cluster state with the repository. Changes happen through pull requests, giving audit trails and easy rollback.
-
-Tip: Pull-based deployment.`, 'D', 'M'],
-
-["Git", "What branching strategy do you prefer?",
-`**Answer:** Trunk-based development with short-lived feature branches and feature flags for continuous delivery; GitFlow for scheduled releases with multiple versions. Trunk-based correlates with better DORA performance.
-
-Tip: Short-lived branches.`, 'B', 'M'],
-
-["IaC", "Why infrastructure as code?",
-`**Answer:** Repeatable, versioned, reviewed infrastructure; faster environment creation; drift prevention; and disaster recovery. Tools: Terraform/OpenTofu, CloudFormation, Bicep, Pulumi, plus configuration management (Ansible).
-
-Tip: Mention drift detection.`, 'B', 'E'],
-
-["IaC", "Terraform vs Ansible?",
-`**Answer:** Terraform is declarative provisioning of infrastructure with state. Ansible is primarily configuration management and orchestration (installing software, configuring servers) using agentless SSH. They complement each other.
-
-Tip: Provisioning vs configuration.`, 'B', 'M'],
-
-["Containers", "What is Docker and why use it?",
-`**Answer:** Packaging applications with their dependencies into images that run consistently anywhere. Benefits: environment consistency, isolation, fast startup, and easy scaling with orchestrators.
-
-Tip: Image best practices.`, 'B', 'E'],
-
-["Containers", "How do you write a good Dockerfile?",
-`**Answer:** Small, trusted base images (distroless/alpine/slim), multi-stage builds to keep build tools out of the final image, layer ordering for caching (dependencies before source), run as non-root, pin versions, no secrets in images, and add health checks.
-
-Tip: Multi-stage builds.`, 'B', 'M'],
-
-["Kubernetes", "Explain core Kubernetes objects.",
-`**Answer:** Pods (smallest unit), Deployments (desired replicas and rolling updates), Services (stable networking), Ingress/Gateway (HTTP routing), ConfigMaps and Secrets (configuration), StatefulSets (stateful apps), DaemonSets (one pod per node), Jobs/CronJobs, and namespaces for isolation.
-
-Tip: Deployment vs StatefulSet.`, 'B', 'M'],
-
-["Kubernetes", "How do you troubleshoot a pod in CrashLoopBackOff?",
-`**Answer:** kubectl describe pod (events), kubectl logs --previous, check resource limits (OOMKilled), liveness probe configuration, config/secrets, image and command, and dependencies the app needs at startup.
-
-Tip: OOMKilled and probes are common.`, 'B', 'M'],
-
-["Kubernetes", "What are liveness, readiness and startup probes?",
-`**Answer:** **Readiness** decides if a pod receives traffic. **Liveness** restarts a container if it's stuck. **Startup** delays other probes for slow-starting apps. Misconfigured liveness probes cause restart loops.
-
-Tip: Readiness vs liveness.`, 'B', 'M'],
-
-["Kubernetes", "How do you manage Kubernetes manifests?",
-`**Answer:** Helm charts for templated packages, Kustomize for overlays per environment, and GitOps tools to deploy. Keep values per environment and validate with linting and policy checks.
-
-Tip: Helm vs Kustomize.`, 'D', 'M'],
-
-["Monitoring", "How do you set up monitoring and alerting?",
-`**Answer:** Metrics (Prometheus, CloudWatch, Datadog), logs (ELK/OpenSearch, Loki, Splunk), traces (OpenTelemetry, Jaeger), dashboards (Grafana), and alerts on SLO-based symptoms with runbooks — avoiding alert fatigue.
-
-Tip: Runbooks with alerts.`, 'B', 'M'],
-
-["Security", "What is DevSecOps?",
-`**Answer:** Integrating security into the delivery pipeline: SAST, dependency/SCA scanning, secrets scanning, container image scanning, IaC scanning, DAST, policy as code, signed artifacts and SBOMs — shifting security left while keeping speed.
-
-Tip: Supply chain security.`, 'B', 'M'],
-
-["Security", "How do you manage secrets in pipelines?",
-`**Answer:** Store secrets in a vault (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault) or the CI's secret store, use OIDC federation to cloud providers instead of long-lived keys, mask secrets in logs, scope access narrowly, and rotate.
-
-Tip: OIDC federation.`, 'D', 'M'],
-
-["Security", "What is software supply chain security?",
-`**Answer:** Protecting the build and dependency chain: verified dependencies, lockfiles, SBOMs, signed artifacts (Sigstore/cosign), provenance (SLSA), protected branches, least-privilege CI runners and scanning for malicious packages.
-
-Tip: SLSA framework.`, 'D', 'S'],
-
-["Testing", "How do you keep pipelines fast?",
-`**Answer:** Parallelize jobs, cache dependencies and build layers, run only affected tests in monorepos, use faster runners, split slow tests to later stages, and fix flaky tests.
-
-Tip: Caching and parallelism.`, 'B', 'M'],
-
-["Incidents", "How do you handle a production incident?",
-`**Answer:** Detect and acknowledge, assess impact, communicate (status page, stakeholders), mitigate quickly (rollback, scale, failover), resolve root cause, and run a blameless postmortem with action items.
-
-Tip: Mitigate first.`, 'B', 'M'],
-
-["Postmortems", "What makes a good blameless postmortem?",
-`**Answer:** Timeline, impact, contributing factors (technical and process), what went well, what didn't, and tracked action items — focusing on systems, not individuals.
-
-Tip: Track action items to completion.`, 'B', 'M'],
-
-["Automation", "What tasks have you automated?",
-`**Answer:** Environment provisioning, deployments, certificate renewals, backups and restores tests, scaling, patching, user onboarding, and cost cleanup of idle resources.
-
-Tip: Time saved.`, 'B', 'E'],
-
-["Scripting", "Which scripting languages do you use?",
-`**Answer:** Bash for system tasks, Python for automation and APIs, PowerShell in Windows/Azure environments, and Go for tooling occasionally.
-
-Tip: Practical examples.`, 'B', 'E'],
-
-["Linux", "Which Linux skills matter for DevOps?",
-`**Answer:** Processes and services (systemd), file permissions, networking tools (ss, curl, dig, tcpdump), logs (journalctl), package management, disk and memory troubleshooting (df, du, free, top), and shell scripting.
-
-Tip: Troubleshooting commands.`, 'B', 'E'],
-
-["Networking", "How do you troubleshoot slow network calls between services?",
-`**Answer:** Check DNS resolution time, latency with traces, TLS handshakes, connection pooling, load balancer health and limits, packet loss, and service mesh configuration.
-
-Tip: Tracing shows where time goes.`, 'D', 'M'],
-
-["Artifacts", "How do you manage build artifacts?",
-`**Answer:** Versioned, immutable artifacts stored in registries (container registries, Artifactory, Nexus, cloud artifact registries), built once and promoted through environments, with retention policies.
-
-Tip: Build once, deploy many.`, 'B', 'M'],
-
-["Environments", "How do you manage multiple environments?",
-`**Answer:** Infrastructure as code with environment parameters, consistent configuration management, ephemeral preview environments for pull requests, and promotion pipelines.
-
-Tip: Preview environments.`, 'B', 'M'],
-
-["Feature Flags", "How do feature flags help DevOps?",
-`**Answer:** Deploy code without releasing features, gradual rollouts, A/B tests, kill switches for problems, and trunk-based development.
-
-Tip: Separate deploy from release.`, 'B', 'M'],
-
-["Database", "How do you handle database changes in CI/CD?",
-`**Answer:** Version-controlled migrations run in the pipeline, backward-compatible expand/contract patterns, automated testing on copies of data, backups before production migrations, and monitoring after.
-
-Tip: Expand/contract.`, 'D', 'M'],
-
-["Cost", "How can DevOps reduce cloud costs?",
-`**Answer:** Auto-scaling, scheduled shutdown of non-prod, right-sizing, spot instances for CI runners, cleaning unused resources automatically, and cost visibility in dashboards.
-
-Tip: Spot runners.`, 'B', 'M'],
-
-["Behavioral", "Tell me about improving a delivery pipeline.",
-`**Sample answer:** "Deployments took two hours and happened weekly with frequent failures. I containerized the services, built GitHub Actions pipelines with tests and canary deploys via Argo Rollouts. We now deploy multiple times a day in 12 minutes, and change failure rate dropped from 20% to 5%."
-
-Tip: DORA improvements.`, 'B', 'M'],
-
-["Behavioral", "Tell me about an incident you led.",
-`**Sample answer:** "A config change caused 502s across services. I led rollback within 9 minutes, then we added config validation in CI and staged rollouts for config changes."
-
-Tip: Speed and prevention.`, 'B', 'M'],
-
-["Behavioral", "How do you get developers to adopt new tools or practices?",
-`**Answer:** Solve their pain points, make the new way easier (templates, docs), pilot with willing teams, share results, and support them during adoption.
-
-Tip: Make the right way easy.`, 'B', 'M'],
-
-["AI", "How is AI used in DevOps?",
-`**Answer:** AI assistants for writing pipelines and IaC, incident summarization and root-cause suggestions (AIOps), log anomaly detection, and code review assistance — with human verification.
-
-Tip: AIOps.`, 'D', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior DevOps, SRE or platform engineering — building self-service platforms and reliability practices.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I improve delivery speed and reliability together — I've moved teams from weekly to daily deployments with lower failure rates through CI/CD, IaC and observability."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Observability", "Monitoring vs observability?",
-`**Answer:** Monitoring tracks known metrics and alerts on predefined conditions. Observability is the ability to understand unknown problems from telemetry (logs, metrics, traces) — asking new questions without shipping new code.
-
-Tip: Known vs unknown unknowns.`, 'B', 'M'],
-
-["Runbooks", "What makes a good runbook?",
-`**Answer:** Clear trigger (which alert), diagnosis steps, mitigation actions, escalation contacts, and links to dashboards — kept current and ideally automated.
-
-Tip: Automate runbook steps.`, 'B', 'M'],
-
-["Config", "How do you manage application configuration?",
-`**Answer:** Externalized config (environment variables, ConfigMaps, parameter stores), secrets separately in vaults, validated config schemas, and config changes deployed through pipelines.
-
-Tip: Validate config in CI.`, 'B', 'M'],
-
-["Service Mesh", "What is a service mesh?",
-`**Answer:** Infrastructure (Istio, Linkerd) that manages service-to-service communication — mTLS, retries, timeouts, traffic splitting and observability — via sidecars or ambient mode, without changing application code.
-
-Tip: Use only if complexity justifies it.`, 'D', 'S'],
-
-["Compliance", "How do you meet compliance requirements in DevOps?",
-`**Answer:** Automated evidence (pipeline logs, approvals, test results), change management through pull requests, access controls, audit logging, and policy-as-code checks.
-
-Tip: Compliance as code.`, 'D', 'M'],
-
-["On-call", "How do you make on-call sustainable?",
-`**Answer:** Reduce noisy alerts, good runbooks, fair rotations, follow-the-sun where possible, compensating time off, and fixing recurring issues.
-
-Tip: Alert hygiene.`, 'B', 'M'],
-
-["Scenario", "Builds are failing randomly. What do you do?",
-`**Answer:** Identify flaky tests or infrastructure issues from failure patterns, quarantine flaky tests, fix shared state or timing issues, stabilize runners, and track flake rates.
-
-Tip: Flake tracking.`, 'B', 'M'],
-
-["Scenario", "A team wants to deploy manually because pipelines are 'too slow'. How do you respond?",
-`**Answer:** Measure where time goes, speed up the pipeline (caching, parallelism), keep safety checks, and show manual deployments' risks. Make the pipeline the fastest path.
-
-Tip: Fix the pipeline.`, 'B', 'M'],
-
-["Platform", "What is the difference between DevOps and platform engineering?",
-`**Answer:** DevOps is a culture and set of practices; platform engineering builds internal developer platforms that provide self-service golden paths, so product teams can practice DevOps without each building their own tooling.
-
-Tip: Platform as product.`, 'B', 'M']
-];
-
-QB['cl-devops'] = (QB['cl-devops'] || []).concat([
-["Testing", "What is shift-left testing in DevOps?",
-`**Answer:** Moving testing and quality checks earlier — unit and contract tests on every commit, static analysis and security scans in pull requests, and ephemeral environments for integration tests — so problems are caught when cheapest to fix.
-
-Tip: Faster feedback.`, 'B', 'M'],
-["Kubernetes", "How do you manage resource requests and limits for deployments?",
-`**Answer:** Set requests from observed usage (with VPA recommendations or monitoring), memory limits to prevent runaway usage, be cautious with CPU limits to avoid throttling, and review regularly as workloads change.
-
-Tip: Requests drive scheduling and cost.`, 'D', 'M']
+QB["cl-devops"] = (QB["cl-devops"] || []).concat([
+["Culture", "What is DevOps?", "**Why they ask:** to see if you understand it as culture plus practice, not just tools.\n\n**Answer:** A culture and set of practices that bring development and operations together to deliver software faster and more reliably: shared ownership, automation (CI/CD, infrastructure as code), continuous feedback through monitoring, small frequent releases, and learning from failures. Tools support it but don't define it.\n\nTip: Mention DORA metrics as how you measure it.", "B", "E"],
+["Metrics", "What are the DORA metrics?", "**Why they ask:** they're the standard measure of delivery performance.\n\n**Answer:**\n\"Four research-backed measures: deployment frequency, lead time for changes, change failure rate, and time to restore service. Recent DORA reports add reliability and deployment rework rate. On my last team we went from weekly deploys with a two-day lead time and a 20% change failure rate to several deploys a day, under four hours lead time, and about 5% failures.\"\n\nTip: Show your team's numbers.", "B", "M"],
+["CI/CD", "Explain CI vs continuous delivery vs continuous deployment.", "**Why they ask:** terms people blur.\n\n**Answer:**\n\"Continuous integration means developers merge small changes often and every change is automatically built and tested. Continuous delivery means every change that passes the pipeline is releasable — production deployment is one approval click away. Continuous deployment removes the click: every passing change goes to production automatically.\"\n\nTip: Clear distinctions.", "B", "E"],
+["CI/CD", "What stages would you put in a CI/CD pipeline?", "**Why they ask:** pipeline design.\n\n**Answer:**\n\"Checkout, lint and static analysis, unit tests, build the artifact or container, security scans — SAST, dependencies, the image — integration tests, deploy to staging, smoke and acceptance tests, an approval gate if needed, a progressive production deploy with canary or blue-green, then post-deploy verification with automatic rollback. The cheap, fast checks go first so developers get feedback in minutes.\"\n\nTip: Fast feedback early in the pipeline.", "B", "M"],
+["CI/CD", "Which CI/CD tools have you used?", "**Why they ask:** hands-on breadth.\n\n**Answer:**\n\"GitHub Actions and GitLab CI for most pipelines, Jenkins on a legacy platform, Azure DevOps Pipelines in a Microsoft shop, and Argo CD for GitOps deployments to Kubernetes. The one I'm proudest of is a reusable GitHub Actions workflow that 30 services now share.\"\n\nTip: Name what you built.", "B", "E"],
+["Deployments", "Blue-green vs canary vs rolling deployments?", "**Why they ask:** release safety.\n\n**Answer:**\n\"Rolling replaces instances gradually. Blue-green runs the new version alongside the old and switches all traffic at once, so rollback is just switching back. Canary routes a small slice — say 5% — to the new version, watches error rates and latency, then expands. Feature flags go further and decouple deployment from release entirely. My favorite is canary with automated analysis through Argo Rollouts or Flagger.\"\n\nTip: Canary with automated analysis.", "B", "M"],
+["Deployments", "How do you roll back a bad deployment?", "**Why they ask:** recovery speed.\n\n**Answer:**\n\"Ideally automatically, when health checks or error-rate thresholds fail. Otherwise redeploy the previous immutable artifact, switch traffic back in blue-green, or flip the feature flag off. The catch is the database: schema changes must be backward compatible, or the old code can't run against the new schema and rollback fails.\"\n\nTip: Backward-compatible migrations.", "B", "M"],
+["GitOps", "What is GitOps?", "**Why they ask:** a modern deployment model.\n\n**Answer:**\n\"Git is the source of truth for infrastructure and application configuration. An agent like Argo CD or Flux runs in the cluster and continuously reconciles actual state with the repository. Every change is a pull request, so you get review, an audit trail, and rollback by reverting a commit. It's pull-based — the CI system never needs cluster credentials.\"\n\nTip: Pull-based deployment.", "D", "M"],
+["Git", "What branching strategy do you prefer?", "**Why they ask:** delivery flow.\n\n**Answer:**\n\"Trunk-based development with short-lived branches — merged within a day or two — and feature flags for incomplete work. GitFlow still fits scheduled releases with multiple supported versions, like on-prem software. Trunk-based correlates with better DORA performance because it avoids painful long merges.\"\n\nTip: Short-lived branches.", "B", "M"],
+["IaC", "Why infrastructure as code?", "**Why they ask:** a core DevOps practice.\n\n**Answer:**\n\"Repeatable, versioned, reviewed infrastructure; new environments in minutes rather than weeks; drift prevention; and disaster recovery because you can rebuild from code. Tools are Terraform or OpenTofu, CloudFormation, Bicep or Pulumi, plus Ansible for configuration. I run scheduled terraform plan jobs to detect drift when someone clicks in the console.\"\n\nTip: Mention drift detection.", "B", "E"],
+["IaC", "Terraform vs Ansible?", "**Why they ask:** tool fit.\n\n**Answer:**\n\"Terraform declaratively provisions infrastructure — networks, databases, clusters — and tracks it in state. Ansible is mainly configuration management and orchestration — installing and configuring software on servers — agentless over SSH. They complement each other: Terraform creates the VM, Ansible configures it.\"\n\nTip: Provisioning vs configuration.", "B", "M"],
+["Containers", "What is Docker and why use it?", "**Why they ask:** container basics.\n\n**Answer:**\n\"Docker packages an application with its dependencies into an image that runs the same on a laptop, in CI and in production. It gives environment consistency, isolation, fast startup and easy scaling with an orchestrator — the end of 'works on my machine'.\"\n\nTip: Image best practices.", "B", "E"],
+["Containers", "How do you write a good Dockerfile?", "**Why they ask:** practical container skill.\n\n**Answer:**\n\"Small, trusted base images — distroless or slim — multi-stage builds so compilers and build tools never reach the final image, layer ordering for caching with dependencies copied before source, running as non-root, pinned versions, no secrets baked in, and a health check. Multi-stage alone took one of our Node images from 1.1 GB to 180 MB.\"\n\nTip: Multi-stage builds.", "B", "M"],
+["Kubernetes", "Explain core Kubernetes objects.", "**Why they ask:** Kubernetes literacy.\n\n**Answer:**\n\"Pods are the smallest unit. Deployments manage replicas and rolling updates for stateless apps. Services give stable networking. Ingress or the Gateway API handle HTTP routing. ConfigMaps and Secrets hold configuration. StatefulSets give stable identity and storage for databases. DaemonSets run one pod per node — log agents, for example. Jobs and CronJobs run batch work, and namespaces provide isolation.\"\n\nTip: Deployment vs StatefulSet.", "B", "M"],
+["Kubernetes", "How do you troubleshoot a pod in CrashLoopBackOff?", "**Why they ask:** daily Kubernetes reality.\n\n**Answer:**\n\"kubectl describe pod for events, then kubectl logs --previous to see why the last container died. Then check: OOMKilled from memory limits, a liveness probe that's too aggressive, missing config or secrets, a wrong image or command, or a dependency like the database that isn't reachable at startup. OOMKills and probes cause most of them.\"\n\nTip: OOMKilled and probes are common.", "B", "M"],
+["Kubernetes", "What are liveness, readiness and startup probes?", "**Why they ask:** probe misconfiguration causes outages.\n\n**Answer:**\n\"Readiness decides whether a pod receives traffic — failing it just removes the pod from the Service. Liveness restarts a container that's stuck. Startup delays the other probes for slow-starting apps like a Java service that needs 90 seconds. A liveness probe that checks the database can restart every pod when the database blips — that's a classic self-inflicted outage.\"\n\nTip: Readiness vs liveness.", "B", "M"],
+["Kubernetes", "How do you manage Kubernetes manifests?", "**Why they ask:** config at scale.\n\n**Answer:**\n\"Helm charts for templated, versioned packages; Kustomize for environment overlays on plain YAML; and a GitOps tool to deploy them. Values per environment live in Git, and CI runs linting plus policy checks — like Kyverno or Conftest — before anything merges.\"\n\nTip: Helm vs Kustomize.", "D", "M"],
+["Monitoring", "How do you set up monitoring and alerting?", "**Why they ask:** operability.\n\n**Answer:**\n\"Metrics with Prometheus, CloudWatch or Datadog; logs with ELK or OpenSearch, Loki or Splunk; traces with OpenTelemetry and Jaeger; Grafana dashboards. Alerts fire on SLO-based symptoms — error rate and latency users feel — each with a runbook link. When I took over one rotation, cutting 140 noisy alerts to 25 meaningful ones ended the 3 a.m. false pages.\"\n\nTip: Runbooks with alerts.", "B", "M"],
+["Security", "What is DevSecOps?", "**Why they ask:** security in the pipeline.\n\n**Answer:**\n\"Building security into delivery: SAST, dependency or SCA scanning, secrets scanning, container image scanning, IaC scanning, DAST, policy as code, signed artifacts and SBOMs. The point is shifting security left without slowing teams — findings show up in the pull request, not in an audit six months later.\"\n\nTip: Supply chain security.", "B", "M"],
+["Security", "How do you manage secrets in pipelines?", "**Why they ask:** pipelines are a prime target.\n\n**Answer:**\n\"Secrets live in a vault — HashiCorp Vault, AWS Secrets Manager, Azure Key Vault — or the CI secret store. For cloud access I use OIDC federation so the pipeline gets short-lived credentials and there are no long-lived keys to leak. Secrets are masked in logs, scoped narrowly per environment, and rotated.\"\n\nTip: OIDC federation.", "D", "M"],
+["Security", "What is software supply chain security?", "**Why they ask:** a fast-growing threat area.\n\n**Answer:**\n\"Protecting everything that goes into a build: verified dependencies and lockfiles, SBOMs, signed artifacts with Sigstore or cosign, build provenance per the SLSA framework, protected branches, least-privilege CI runners, and scanning for malicious packages. Incidents like compromised packages showed the build pipeline is as important as the code.\"\n\nTip: SLSA framework.", "D", "S"],
+["Testing", "How do you keep pipelines fast?", "**Why they ask:** slow pipelines get bypassed.\n\n**Answer:**\n\"Parallelize jobs, cache dependencies and Docker layers, run only affected tests in monorepos, use bigger runners where it pays, move slow end-to-end suites later, and fix flaky tests. On one repo caching plus test splitting took the pipeline from 38 minutes to 11.\"\n\nTip: Caching and parallelism.", "B", "M"],
+["Incidents", "How do you handle a production incident?", "**Why they ask:** calm under pressure.\n\n**Answer:**\n\"Detect and acknowledge, assess impact, communicate — status page and stakeholders — then mitigate fast: roll back, scale or fail over. Root cause comes after service is restored. Then a blameless postmortem with action items that are tracked to completion.\"\n\nTip: Mitigate first.", "B", "M"],
+["Postmortems", "What makes a good blameless postmortem?", "**Why they ask:** learning culture.\n\n**Answer:**\n\"A timeline, customer impact, contributing factors both technical and process, what went well, what didn't, and owned action items with dates. It focuses on systems, not individuals — 'why did the system allow one command to delete prod?' rather than 'who ran it?'\"\n\nTip: Track action items to completion.", "B", "M"],
+["Automation", "What tasks have you automated?", "**Why they ask:** automation mindset.\n\n**Answer:**\n\"Environment provisioning, deployments, certificate renewals, backup restore tests, scaling, patching, user onboarding, and nightly cleanup of idle resources. The certificate automation alone removed about 20 manual renewals a quarter and an entire class of outages.\"\n\nTip: Time saved.", "B", "E"],
+["Scripting", "Which scripting languages do you use?", "**Why they ask:** practical skill.\n\n**Answer:**\n\"Bash for system tasks, Python for automation and API work — for example a script that reconciles cloud tags against our CMDB — PowerShell in Windows and Azure environments, and occasionally Go for CLI tooling.\"\n\nTip: Practical examples.", "B", "E"],
+["Linux", "Which Linux skills matter for DevOps?", "**Why they ask:** troubleshooting foundation.\n\n**Answer:**\n\"Processes and services with systemd, file permissions, networking tools — ss, curl, dig, tcpdump — logs with journalctl, package management, disk and memory troubleshooting with df, du, free and top, and shell scripting. If a disk fills up, du -sh across directories finds the culprit in a minute.\"\n\nTip: Troubleshooting commands.", "B", "E"],
+["Networking", "How do you troubleshoot slow network calls between services?", "**Why they ask:** distributed debugging.\n\n**Answer:**\n\"Start with a trace to see where time actually goes. Then check DNS resolution time, TLS handshakes — a missing connection pool means a new handshake on every call — load balancer health and limits, packet loss, and service mesh retries or timeouts. Once it was a client creating a new HTTPS connection per request; pooling cut p99 from 800 ms to 120.\"\n\nTip: Tracing shows where time goes.", "D", "M"],
+["Artifacts", "How do you manage build artifacts?", "**Why they ask:** release integrity.\n\n**Answer:**\n\"Versioned, immutable artifacts in a registry — container registries, Artifactory, Nexus — built once and promoted through dev, staging and production, so what we tested is exactly what we ship. Plus retention policies so the registry doesn't grow forever.\"\n\nTip: Build once, deploy many.", "B", "M"],
+["Environments", "How do you manage multiple environments?", "**Why they ask:** consistency.\n\n**Answer:**\n\"Infrastructure as code with environment parameters, consistent configuration management, ephemeral preview environments spun up per pull request and destroyed on merge, and promotion pipelines between environments.\"\n\nTip: Preview environments.", "B", "M"],
+["Feature Flags", "How do feature flags help DevOps?", "**Why they ask:** release control.\n\n**Answer:**\n\"They let us deploy code without releasing features, roll out gradually — 1%, 10%, 100% — run A/B tests, kill a misbehaving feature in seconds without a deploy, and support trunk-based development. The discipline is cleaning up old flags.\"\n\nTip: Separate deploy from release.", "B", "M"],
+["Database", "How do you handle database changes in CI/CD?", "**Why they ask:** the hardest part of continuous delivery.\n\n**Answer:**\n\"Version-controlled migrations run by the pipeline, the expand-and-contract pattern — add the new column, deploy code that writes both, backfill, switch reads, then drop the old column later — testing on copies of data, backups before production migrations, and monitoring afterward.\"\n\nTip: Expand/contract.", "D", "M"],
+["Cost", "How can DevOps reduce cloud costs?", "**Why they ask:** cost awareness.\n\n**Answer:**\n\"Autoscaling, scheduled shutdown of non-prod at night and weekends — that's about 65% of the hours — right-sizing, spot instances for CI runners, automated cleanup of unused resources, and cost dashboards per team.\"\n\nTip: Spot runners.", "B", "M"],
+["Behavioral", "Tell me about improving a delivery pipeline.", "**Why they ask:** proof.\n\n**Answer:**\n\"Deployments took two hours, happened weekly and failed often. I containerized the services and built GitHub Actions pipelines with tests and canary deploys via Argo Rollouts. We now deploy several times a day in 12 minutes, and change failure rate dropped from 20% to 5%.\"\n\nTip: DORA improvements.", "B", "M"],
+["Behavioral", "Tell me about an incident you led.", "**Why they ask:** incident leadership.\n\n**Answer:**\n\"A config change caused 502s across services. I led the rollback within 9 minutes, then we added config validation in CI and staged rollouts for config changes, the same as code.\"\n\nTip: Speed and prevention.", "B", "M"],
+["Behavioral", "How do you get developers to adopt new tools or practices?", "**Why they ask:** influence.\n\n**Answer:**\n\"Solve a pain they actually feel, make the new way easier than the old — templates, docs, a one-command setup — pilot with a willing team, share their results, and support people during adoption. Mandates without that rarely stick.\"\n\nTip: Make the right way easy.", "B", "M"],
+["AI", "How is AI used in DevOps?", "**Why they ask:** current trends.\n\n**Answer:**\n\"AI assistants for writing pipelines and IaC, incident summarization and root-cause suggestions in AIOps tools, log anomaly detection, and code review help. All with human verification — an AI-written Terraform change still goes through plan and review.\"\n\nTip: AIOps.", "D", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior DevOps, SRE or platform engineering — building self-service platforms and reliability practices that many teams use.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I improve delivery speed and reliability together — I've moved teams from weekly to daily deployments with lower failure rates through CI/CD, infrastructure as code and observability.\"\n\nTip: Proof.", "B", "M"],
+["Observability", "Monitoring vs observability?", "**Why they ask:** conceptual clarity.\n\n**Answer:**\n\"Monitoring tracks known metrics and alerts on conditions we predicted. Observability is the ability to understand problems we didn't predict, from rich telemetry — logs, metrics and traces — asking new questions without shipping new code. Monitoring answers 'is it broken?'; observability answers 'why?'\"\n\nTip: Known vs unknown unknowns.", "B", "M"],
+["Runbooks", "What makes a good runbook?", "**Why they ask:** on-call quality.\n\n**Answer:**\n\"A clear trigger — which alert — diagnosis steps, mitigation actions, escalation contacts, and links to the right dashboards. Kept current, and ideally the repetitive steps automated so the runbook becomes a button.\"\n\nTip: Automate runbook steps.", "B", "M"],
+["Config", "How do you manage application configuration?", "**Why they ask:** config errors cause outages.\n\n**Answer:**\n\"Externalized config — environment variables, ConfigMaps, parameter stores — secrets separately in a vault, schemas that validate config in CI, and config changes deployed through pipelines like code, not edited live.\"\n\nTip: Validate config in CI.", "B", "M"],
+["Service Mesh", "What is a service mesh?", "**Why they ask:** advanced networking.\n\n**Answer:**\n\"Infrastructure like Istio or Linkerd that handles service-to-service communication — mTLS, retries, timeouts, traffic splitting and observability — through sidecars or ambient mode, without application code changes. It adds real complexity, so I use it only when we need those features across many services.\"\n\nTip: Use only if complexity justifies it.", "D", "S"],
+["Compliance", "How do you meet compliance requirements in DevOps?", "**Why they ask:** regulated environments.\n\n**Answer:**\n\"Automated evidence — pipeline logs, approvals, test results — change management through pull requests with required reviews, access controls, audit logging and policy-as-code checks. Auditors get a report instead of screenshots.\"\n\nTip: Compliance as code.", "D", "M"],
+["On-call", "How do you make on-call sustainable?", "**Why they ask:** retention and reliability.\n\n**Answer:**\n\"Reduce noisy alerts, write good runbooks, keep rotations fair, use follow-the-sun where possible, give time off after rough nights, and fix recurring issues instead of re-paging on them.\"\n\nTip: Alert hygiene.", "B", "M"],
+["Scenario", "Builds are failing randomly. What do you do?", "**Why they ask:** flakiness kills trust.\n\n**Answer:**\n\"Look at failure patterns to separate flaky tests from infrastructure problems, quarantine flaky tests so they don't block merges, fix shared state or timing issues, stabilize runners, and track the flake rate so it stays visible.\"\n\nTip: Flake tracking.", "B", "M"],
+["Scenario", "A team wants to deploy manually because pipelines are 'too slow'. How do you respond?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"They have a point, so I'd measure where the time goes and speed it up — caching, parallelism — while keeping the safety checks, and show the risk of manual deploys with real incident data. The goal is making the pipeline the fastest path.\"\n\nTip: Fix the pipeline.", "B", "M"],
+["Platform", "What is the difference between DevOps and platform engineering?", "**Why they ask:** industry evolution.\n\n**Answer:**\n\"DevOps is a culture and set of practices. Platform engineering builds an internal developer platform with self-service golden paths, so product teams can practice DevOps without each building their own tooling.\"\n\nTip: Platform as product.", "B", "M"]
+]);
+
+QB["cl-devops"] = (QB["cl-devops"] || []).concat([
+["Testing", "What is shift-left testing in DevOps?", "**Why they ask:** quality strategy.\n\n**Answer:**\n\"Moving testing earlier — unit and contract tests on every commit, static analysis and security scans in pull requests, ephemeral environments for integration tests — so problems are caught when they're cheapest to fix.\"\n\nTip: Faster feedback.", "B", "M"],
+["Kubernetes", "How do you manage resource requests and limits for deployments?", "**Why they ask:** cost and stability.\n\n**Answer:**\n\"Set requests from observed usage — VPA recommendations or monitoring data — set memory limits to stop runaways, be cautious with CPU limits because they cause throttling, and review regularly. Requests drive scheduling and therefore cost; over-requesting by 2x means paying for twice the nodes.\"\n\nTip: Requests drive scheduling and cost.", "D", "M"]
 ]);

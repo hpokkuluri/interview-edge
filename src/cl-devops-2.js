@@ -1,10 +1,4 @@
-QB['cl-devops'] = (QB['cl-devops'] || []).concat([
-["Testing", "What is shift-left testing in DevOps?",
-`**Answer:** Moving testing and quality checks earlier — unit and contract tests on every commit, static analysis and security scans in pull requests, and ephemeral environments for integration tests — so problems are caught when cheapest to fix.
-
-Tip: Faster feedback.`, 'B', 'M'],
-["Kubernetes", "How do you manage resource requests and limits for deployments?",
-`**Answer:** Set requests from observed usage (with VPA recommendations or monitoring), memory limits to prevent runaway usage, be cautious with CPU limits to avoid throttling, and review regularly as workloads change.
-
-Tip: Requests drive scheduling and cost.`, 'D', 'M']
+QB["cl-devops"] = (QB["cl-devops"] || []).concat([
+["Testing", "What is shift-left testing in DevOps?", "**Why they ask:** quality strategy.\n\n**Answer:**\n\"Moving testing earlier — unit and contract tests on every commit, static analysis and security scans in pull requests, ephemeral environments for integration tests — so problems are caught when they're cheapest to fix.\"\n\nTip: Faster feedback.", "B", "M"],
+["Kubernetes", "How do you manage resource requests and limits for deployments?", "**Why they ask:** cost and stability.\n\n**Answer:**\n\"Set requests from observed usage — VPA recommendations or monitoring data — set memory limits to stop runaways, be cautious with CPU limits because they cause throttling, and review regularly. Requests drive scheduling and therefore cost; over-requesting by 2x means paying for twice the nodes.\"\n\nTip: Requests drive scheduling and cost.", "D", "M"]
 ]);
