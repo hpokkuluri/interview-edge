@@ -1,224 +1,47 @@
 // Solutions Architect. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['inf-sa'] = [
-["Role", "What does a solutions architect do?",
-`**Why they ask:** the title varies between enterprise, vendor and consulting settings.
-
-**Answer:** Translates business requirements into technical solution designs: gathering functional and non-functional requirements, choosing technologies, designing integration, data, security and deployment, estimating cost, documenting decisions, and guiding delivery teams through implementation. Pre-sales SAs at vendors also run demos and proofs of concept.
-
-Tip: Say which kind of SA you've been.`, 'B', 'E'],
-
-["Requirements", "How do you gather requirements for a new solution?",
-`**Answer:** Stakeholder interviews and workshops, current-state analysis, business goals and success metrics, functional requirements (what it does), non-functional requirements (performance, availability, security, compliance, scalability, cost), constraints (budget, timeline, skills, existing tech), and assumptions — documented and agreed.
-
-Tip: NFRs are often missed.`, 'B', 'E'],
-
-["Design", "Walk me through how you design a solution.",
-`**Answer:** Clarify goals and requirements, identify options (build vs buy vs SaaS), assess them against criteria (fit, cost, risk, time, skills), design the architecture (components, integrations, data flows, security, deployment), validate with a proof of concept if risky, estimate cost and effort, document decisions (ADRs), and review with stakeholders.
-
-Tip: Options and trade-offs.`, 'B', 'M'],
-
-["Design", "Design a scalable e-commerce platform.",
-`**Answer:** CDN and WAF in front, a stateless web/API tier on autoscaling containers, microservices or a modular monolith for catalog, cart, orders and payments, a relational database for orders with read replicas, a cache (Redis) for sessions and catalog, search (OpenSearch), queues for order processing and notifications, a payment provider integration (tokenized), object storage for images, observability, and multi-AZ deployment.
-
-Tip: Mention peak-event scaling, such as Black Friday.`, 'D', 'M'],
-
-["Build vs Buy", "How do you decide between build, buy or SaaS?",
-`**Answer:** Buy or SaaS when the capability isn't a differentiator, mature products exist and speed matters. Build when it's core to competitive advantage or no product fits. Consider total cost of ownership, integration, customization limits, vendor lock-in and support.
-
-Tip: Differentiation drives build.`, 'B', 'M'],
-
-["Integration", "What integration patterns do you use?",
-`**Answer:** Synchronous REST/GraphQL APIs, asynchronous messaging and events (Kafka, SQS/SNS, Service Bus), file-based batch, iPaaS (MuleSoft, Boomi, Oracle Integration), API gateways, and change data capture. Choose based on latency, coupling, volume and reliability needs.
-
-Tip: Prefer async for loose coupling.`, 'B', 'M'],
-
-["Integration", "How do you make integrations reliable?",
-`**Answer:** Idempotent operations, retries with backoff, dead-letter queues, monitoring and alerting, correlation IDs for tracing, contract versioning, and reconciliation reports.
-
-Tip: Idempotency.`, 'D', 'M'],
-
-["NFR", "How do you design for high availability?",
-`**Answer:** Remove single points of failure, use redundancy across availability zones, health checks and automatic failover, stateless services, replicated data stores, graceful degradation, and tested recovery, all sized to the availability target (99.9% ≈ 8.8 hours of downtime a year; 99.99% ≈ 53 minutes).
-
-Tip: Know the downtime numbers.`, 'B', 'M'],
-
-["NFR", "How do you design for scalability?",
-`**Answer:** Horizontal scaling of stateless components, caching, database read replicas and sharding or partitioning, asynchronous processing, CDNs, and autoscaling based on metrics, with load testing to confirm.
-
-Tip: Find the bottleneck first.`, 'B', 'M'],
-
-["NFR", "How do you design for security?",
-`**Answer:** Threat model, identity and SSO, least privilege, encryption in transit and at rest, secrets management, network segmentation, input validation, logging and monitoring, and compliance requirements built in from the start.
-
-Tip: Security by design.`, 'B', 'M'],
-
-["Cost", "How do you estimate solution cost?",
-`**Answer:** Infrastructure (cloud calculators with expected usage), licensing and SaaS fees, implementation effort, support and operations, and contingency, presented as a total cost of ownership over 3–5 years with assumptions stated.
-
-Tip: State assumptions.`, 'B', 'M'],
-
-["Cloud", "How do you choose between cloud service models?",
-`**Answer:** IaaS for control or lift-and-shift, PaaS and serverless to reduce operations and speed delivery, SaaS for commodity capabilities. Balance against control, portability, skills and cost.
-
-Tip: Managed services reduce toil.`, 'B', 'M'],
-
-["Architecture Styles", "Monolith vs microservices?",
-`**Answer:** A **monolith** (ideally modular) is simpler to build, test and deploy, and is often best early on. **Microservices** enable independent scaling and deployment for large teams, but add distributed complexity (networking, data consistency, observability). Choose based on team size and domain complexity.
-
-Tip: A modular monolith is a valid answer.`, 'B', 'M'],
-
-["Architecture Styles", "When is event-driven architecture a good fit?",
-`**Answer:** When multiple systems react to business events, when loose coupling and scalability matter, and when real-time processing is needed. Trade-offs: eventual consistency, debugging complexity, and the need for schema governance.
-
-Tip: Trade-offs.`, 'D', 'M'],
-
-["Data", "How do you choose a database for a solution?",
-`**Answer:** Relational for transactions and complex queries, document stores for flexible schemas, key-value for caching and simple lookups, wide-column for massive write scale, graph for relationships, time-series for metrics, and vector databases for AI similarity search — based on access patterns and consistency needs.
-
-Tip: Access patterns.`, 'B', 'M'],
-
-["Documentation", "What architecture documentation do you produce?",
-`**Answer:** Context and container diagrams (the C4 model), integration and data flow diagrams, deployment views, NFRs, architecture decision records, risks and assumptions, and cost estimates.
-
-Tip: C4 model.`, 'B', 'E'],
-
-["Governance", "How do you get architecture approved?",
-`**Answer:** Align early with enterprise architecture standards, security and data teams, present options and trade-offs at architecture review boards, document decisions and exceptions, and follow up on conditions.
-
-Tip: No surprises at the review board.`, 'B', 'M'],
-
-["Stakeholders", "How do you handle conflicting stakeholder requirements?",
-`**Answer:** Clarify the underlying goals, quantify trade-offs (cost, time, risk), offer options, and escalate the decision to the right owner with a recommendation.
-
-Tip: Options with a recommendation.`, 'B', 'M'],
-
-["Delivery", "How do you stay involved during delivery?",
-`**Answer:** Regular design reviews, answering team questions, adjusting the design when new information emerges, reviewing critical code or configuration, tracking architecture risks and validating NFRs through testing.
-
-Tip: Don't throw designs over the wall.`, 'B', 'M'],
-
-["Migration", "How do you plan an application migration to the cloud?",
-`**Answer:** Assess and categorize applications (the 7 Rs: retire, retain, rehost, relocate, replatform, repurchase, refactor), find dependencies, plan migration waves, design the landing zone, migrate and test, cut over, then optimize.
-
-Tip: The 7 Rs.`, 'B', 'M'],
-
-["AI", "How would you design a generative AI solution for internal knowledge search?",
-`**Answer:** RAG architecture: ingest documents with access control metadata, chunk and embed them into a vector store, retrieve relevant chunks with permission filtering, generate answers with an LLM, show citations, add guardrails, evaluate quality, monitor cost, and log usage.
-
-Tip: Permission-aware retrieval.`, 'D', 'M'],
-
-["Pre-sales", "How do you run a proof of concept?",
-`**Answer:** Agree success criteria and scope up front, a time-box, the data and environments, a demo of key scenarios, documented results against the criteria, and next steps.
-
-Tip: Success criteria first.`, 'B', 'M'],
-
-["Pre-sales", "How do you handle a customer requirement your product can't meet?",
-`**Answer:** Be honest, understand the underlying need, propose workarounds, partners or roadmap items, and never overpromise.
-
-Tip: Trust over a quick win.`, 'B', 'M'],
-
-["Risk", "How do you manage architecture risks?",
-`**Answer:** Identify risks early (new technology, integration complexity, performance unknowns), mitigate them with spikes and proofs of concept, track them in a risk log, and communicate them to stakeholders.
-
-Tip: Spikes for unknowns.`, 'B', 'M'],
-
-["Communication", "How do you explain a technical design to executives?",
-`**Answer:** Business outcome first, a simple diagram, cost, timeline, risks and decisions needed. Leave the technical details for the appendix.
-
-Tip: Outcome first.`, 'B', 'E'],
-
-["Enterprise", "How do you integrate a new SaaS app with ERP systems?",
-`**Answer:** Define master data ownership, integration patterns (APIs/iPaaS), identity via SSO and SCIM, data mapping and transformations, error handling and reconciliation, and security and compliance reviews.
-
-Tip: Master data ownership.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a solution you designed.",
-`**Sample answer:** "I designed a customer portal integrating with Oracle ERP through an API layer and event queues. It handled 10x seasonal peaks without issues and cut support calls 30%."
-
-Tip: Outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a design decision you got wrong.",
-`**Sample answer:** "I chose microservices for a small team's product. Operational overhead slowed them down, so we consolidated into a modular monolith. I now match the architecture to team size."
-
-Tip: Learning.`, 'B', 'M'],
-
-["Behavioral", "Tell me about influencing without authority.",
-`**Sample answer:** "Teams were building duplicate integrations. I proposed a shared API layer, demonstrated reuse savings with a pilot, and got buy-in from three teams."
-
-Tip: Show value.`, 'B', 'M'],
-
-["Certifications", "Which certifications are valuable?",
-`**Answer:** AWS Solutions Architect Associate/Professional, Azure Solutions Architect Expert, Google Professional Cloud Architect, TOGAF, and domain certifications such as Salesforce or Oracle.
-
-Tip: Professional level.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Enterprise architect or principal architect.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I turn business needs into practical, cost-aware solutions and stay with teams through delivery. My designs scale, integrate cleanly and land on budget."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Caching", "How do you use caching effectively?",
-`**Answer:** Cache read-heavy, rarely changing data (CDN for static content, Redis for sessions and lookups), set TTLs and invalidation strategies, avoid caching sensitive data improperly, and watch out for stampedes.
-
-Tip: Invalidation strategy.`, 'B', 'M'],
-
-["API", "How do you design good APIs?",
-`**Answer:** Resource-oriented REST design, consistent naming, versioning, pagination, clear error formats, idempotency keys for writes, authentication (OAuth), rate limits, and OpenAPI documentation.
-
-Tip: Idempotency keys.`, 'B', 'M'],
-
-["Resilience", "What resilience patterns do you know?",
-`**Answer:** Retries with exponential backoff and jitter, circuit breakers, bulkheads, timeouts, fallbacks, queues for load leveling, and graceful degradation.
-
-Tip: Circuit breakers.`, 'D', 'M'],
-
-["Consistency", "How do you handle transactions across services?",
-`**Answer:** Avoid distributed transactions. Use the saga pattern (choreography or orchestration) with compensating actions, the outbox pattern for reliable event publishing, and idempotent consumers.
-
-Tip: Outbox pattern.`, 'D', 'S'],
-
-["Observability", "What observability should every solution include?",
-`**Answer:** Structured logs with correlation IDs, metrics (latency, errors, throughput, saturation), distributed tracing, health checks, dashboards and alerts tied to SLOs.
-
-Tip: Correlation IDs.`, 'B', 'M'],
-
-["Scenario", "The business wants a solution live in 3 months but the scope is large. What do you do?",
-`**Answer:** Define an MVP of the highest-value features, phase the rest, use SaaS or managed services to speed up, and make trade-offs and risks explicit.
-
-Tip: MVP and phases.`, 'B', 'M'],
-
-["Scenario", "A legacy system has no APIs. How do you integrate with it?",
-`**Answer:** Options: database-level integration with care, file exports, change data capture, RPA as a last resort, or wrapping it with an API layer, while planning modernization.
-
-Tip: Wrap and modernize.`, 'D', 'M'],
-
-["Lock-in", "How do you think about vendor lock-in?",
-`**Answer:** Accept lock-in where the value is high (managed services), reduce it where switching risk matters (open standards, abstraction layers, data portability), and document exit strategies.
-
-Tip: Pragmatic view.`, 'D', 'M'],
-
-["Estimation", "How do you estimate effort for a solution?",
-`**Answer:** Break the work into components, estimate with the delivery teams, compare with past projects, add contingency for risk, and refine as requirements firm up.
-
-Tip: Involve the teams.`, 'B', 'M'],
-
-["Compliance", "How do compliance requirements affect design?",
-`**Answer:** Data residency, encryption, audit logging, access controls, retention and approved services all shape choices, for example HIPAA-eligible services or PCI scope reduction through tokenization.
-
-Tip: Early compliance review.`, 'D', 'M'],
-
-["Diagrams", "What makes a good architecture diagram?",
-`**Answer:** A clear purpose and audience, consistent notation, labeled flows and protocols, trust boundaries, and a legend. Avoid cramming everything into one picture.
-
-Tip: One diagram per purpose.`, 'B', 'E'],
-
-["Technical Debt", "How do you handle technical debt in designs?",
-`**Answer:** Make debt explicit (ADRs), quantify its impact, plan paydown alongside features, and avoid unnecessary debt in critical areas such as security and data.
-
-Tip: Explicit debt.`, 'D', 'M']
-];
+QB["inf-sa"] = (QB["inf-sa"] || []).concat([
+["Role", "What does a solutions architect do?", "**Why they ask:** the title varies between enterprise, vendor and consulting settings.\n\n**Answer:** Translates business requirements into technical solution designs: gathering functional and non-functional requirements, choosing technologies, designing integration, data, security and deployment, estimating cost, documenting decisions, and guiding delivery teams through implementation. Pre-sales SAs at vendors also run demos and proofs of concept.\n\nTip: Say which kind of SA you've been.", "B", "E"],
+["Requirements", "How do you gather requirements for a new solution?", "**Why they ask:** good architecture starts with good requirements.\n\n**Answer:**\n\"Stakeholder interviews and workshops, a look at the current state, business goals and success metrics, then functional requirements — what it must do — and non-functional requirements — performance, availability, security, compliance, scalability and cost. Plus constraints like budget, timeline, team skills and existing technology, and assumptions, all documented and agreed. NFRs are the ones most often missed: 'it should be fast' becomes '95% of searches under 2 seconds at 500 concurrent users.'\"\n\nTip: NFRs are often missed.", "B", "E"],
+["Design", "Walk me through how you design a solution.", "**Why they ask:** your design process.\n\n**Answer:**\n\"Clarify goals and requirements, identify options — build, buy or SaaS — and score them against criteria like fit, cost, risk, time and skills. Then design the architecture: components, integrations, data flows, security and deployment. Validate risky parts with a proof of concept, estimate cost and effort, record decisions as ADRs, and review with stakeholders. The output is always options with trade-offs and a recommendation, not a single take-it-or-leave-it design.\"\n\nTip: Options and trade-offs.", "B", "M"],
+["Design", "Design a scalable e-commerce platform.", "**Why they ask:** a classic design exercise.\n\n**Answer:**\n\"A CDN and WAF at the edge; a stateless web and API tier on autoscaling containers; catalog, cart, orders and payments as services or modules in a modular monolith; a relational database for orders with read replicas; Redis for sessions and hot catalog data; OpenSearch for search; queues for order processing and notifications so checkout stays fast; a tokenized payment provider integration to keep card data out of scope; object storage for images; observability throughout; and multi-AZ deployment. For Black Friday, pre-scale, load test at 10x, and cache aggressively.\"\n\nTip: Mention peak-event scaling, such as Black Friday.", "D", "M"],
+["Build vs Buy", "How do you decide between build, buy or SaaS?", "**Why they ask:** strategic judgment.\n\n**Answer:**\n\"Buy or SaaS when the capability isn't a differentiator, mature products exist and speed matters — HR, payroll, ticketing. Build when it's core to competitive advantage or nothing fits — like a pricing engine that is the business. I compare total cost of ownership over three to five years, integration effort, customization limits, lock-in and support.\"\n\nTip: Differentiation drives build.", "B", "M"],
+["Integration", "What integration patterns do you use?", "**Why they ask:** integration design.\n\n**Answer:**\n\"Synchronous REST or GraphQL APIs, asynchronous messaging and events — Kafka, SQS and SNS, Service Bus — file-based batch, iPaaS like MuleSoft, Boomi or Oracle Integration, API gateways, and change data capture. I choose by latency, coupling, volume and reliability. If the order system shouldn't fail when the warehouse system is down, that's an event, not a synchronous call.\"\n\nTip: Prefer async for loose coupling.", "B", "M"],
+["Integration", "How do you make integrations reliable?", "**Why they ask:** integrations fail in production.\n\n**Answer:**\n\"Idempotent operations so retries are safe, retries with backoff, dead-letter queues for poison messages, monitoring and alerts, correlation IDs for tracing a transaction across systems, versioned contracts, and reconciliation reports that compare counts and totals daily between source and target.\"\n\nTip: Idempotency.", "D", "M"],
+["NFR", "How do you design for high availability?", "**Why they ask:** resilience design.\n\n**Answer:**\n\"Remove single points of failure, spread redundancy across availability zones, use health checks with automatic failover, stateless services, replicated data stores, graceful degradation and tested recovery — all sized to the target. 99.9% allows about 8.8 hours of downtime a year; 99.99% only about 53 minutes, which usually means multi-region and a much higher cost.\"\n\nTip: Know the downtime numbers.", "B", "M"],
+["NFR", "How do you design for scalability?", "**Why they ask:** growth readiness.\n\n**Answer:**\n\"Horizontal scaling of stateless components, caching, database read replicas and partitioning or sharding, asynchronous processing, CDNs, and autoscaling on meaningful metrics — confirmed with load testing. I find the first bottleneck before optimizing anything; it's usually the database.\"\n\nTip: Find the bottleneck first.", "B", "M"],
+["NFR", "How do you design for security?", "**Why they ask:** security by design.\n\n**Answer:**\n\"A threat model early, identity with SSO, least privilege, encryption in transit and at rest, secrets management, network segmentation, input validation, logging and monitoring, and compliance requirements built in from the start rather than bolted on before go-live.\"\n\nTip: Security by design.", "B", "M"],
+["Cost", "How do you estimate solution cost?", "**Why they ask:** financial credibility.\n\n**Answer:**\n\"Infrastructure from cloud calculators with realistic usage, licensing and SaaS fees, implementation effort, ongoing support and operations, and contingency — presented as total cost of ownership over three to five years with every assumption written down, so if usage doubles, everyone can see why the bill did.\"\n\nTip: State assumptions.", "B", "M"],
+["Cloud", "How do you choose between cloud service models?", "**Why they ask:** cloud judgment.\n\n**Answer:**\n\"IaaS for control or lift-and-shift, PaaS and serverless to cut operations and deliver faster, SaaS for commodity capabilities. I balance control, portability, skills and cost — managed services remove a lot of patching and on-call toil.\"\n\nTip: Managed services reduce toil.", "B", "M"],
+["Architecture Styles", "Monolith vs microservices?", "**Why they ask:** avoiding fashionable over-engineering.\n\n**Answer:**\n\"A modular monolith is simpler to build, test and deploy and is often best early on. Microservices allow independent scaling and deployment for large teams, but add distributed complexity — networking, data consistency, observability. I decide by team size and domain complexity; for a team of eight, a modular monolith is usually right.\"\n\nTip: A modular monolith is a valid answer.", "B", "M"],
+["Architecture Styles", "When is event-driven architecture a good fit?", "**Why they ask:** pattern judgment.\n\n**Answer:**\n\"When multiple systems need to react to business events — an order placed triggers billing, fulfillment and loyalty points — when loose coupling and scale matter, and when processing needs to be near real time. The trade-offs are eventual consistency, harder debugging and the need for schema governance.\"\n\nTip: Trade-offs.", "D", "M"],
+["Data", "How do you choose a database for a solution?", "**Why they ask:** data architecture.\n\n**Answer:**\n\"By access patterns and consistency needs: relational for transactions and complex queries, document stores for flexible schemas, key-value for caching and simple lookups, wide-column for massive write volumes, graph for relationship queries, time-series for metrics, and vector databases for AI similarity search.\"\n\nTip: Access patterns.", "B", "M"],
+["Documentation", "What architecture documentation do you produce?", "**Why they ask:** communication artifacts.\n\n**Answer:**\n\"Context and container diagrams following the C4 model, integration and data flow diagrams, deployment views, the NFRs, architecture decision records, risks and assumptions, and cost estimates.\"\n\nTip: C4 model.", "B", "E"],
+["Governance", "How do you get architecture approved?", "**Why they ask:** governance navigation.\n\n**Answer:**\n\"Align early with enterprise architecture standards and the security and data teams, present options and trade-offs at the review board, document decisions and exceptions, and follow up on any conditions. Nothing at the board should be a surprise — I pre-review with the key reviewers.\"\n\nTip: No surprises at the review board.", "B", "M"],
+["Stakeholders", "How do you handle conflicting stakeholder requirements?", "**Why they ask:** stakeholder management.\n\n**Answer:**\n\"Clarify the underlying goals, quantify the trade-offs in cost, time and risk, offer options, and escalate the decision to the right owner with my recommendation. Often both stakeholders want the same outcome expressed differently.\"\n\nTip: Options with a recommendation.", "B", "M"],
+["Delivery", "How do you stay involved during delivery?", "**Why they ask:** follow-through.\n\n**Answer:**\n\"Regular design reviews, answering team questions quickly, adjusting the design as new information emerges, reviewing critical code or configuration, tracking architecture risks, and validating NFRs through performance and security testing. Designs that are thrown over the wall rarely survive contact with delivery.\"\n\nTip: Don't throw designs over the wall.", "B", "M"],
+["Migration", "How do you plan an application migration to the cloud?", "**Why they ask:** migration methodology.\n\n**Answer:**\n\"Assess and categorize each application with the 7 Rs — retire, retain, rehost, relocate, replatform, repurchase, refactor — map dependencies, plan migration waves, design the landing zone, migrate and test, cut over, then optimize cost and performance.\"\n\nTip: The 7 Rs.", "B", "M"],
+["AI", "How would you design a generative AI solution for internal knowledge search?", "**Why they ask:** current architecture demand.\n\n**Answer:**\n\"A RAG architecture: ingest documents with their access-control metadata, chunk and embed them into a vector store, retrieve relevant chunks filtered by the user's permissions, generate answers with an LLM, show citations so users can verify, add guardrails, evaluate answer quality against a test set, monitor cost, and log usage. Permission-aware retrieval is non-negotiable — the assistant must never surface a document the user can't open.\"\n\nTip: Permission-aware retrieval.", "D", "M"],
+["Pre-sales", "How do you run a proof of concept?", "**Why they ask:** de-risking.\n\n**Answer:**\n\"Agree success criteria and scope up front, time-box it — two to four weeks — set up data and environments, demo the key scenarios, document results against the criteria, and recommend next steps. Without agreed criteria, a PoC becomes an endless demo.\"\n\nTip: Success criteria first.", "B", "M"],
+["Pre-sales", "How do you handle a customer requirement your product can't meet?", "**Why they ask:** integrity.\n\n**Answer:**\n\"Be honest, understand the underlying need, propose workarounds, partner solutions or roadmap items, and never overpromise. Customers remember the architect who told them the truth.\"\n\nTip: Trust over a quick win.", "B", "M"],
+["Risk", "How do you manage architecture risks?", "**Why they ask:** risk management.\n\n**Answer:**\n\"Identify them early — new technology, integration complexity, performance unknowns — mitigate with spikes and proofs of concept, track them in a risk log with owners, and communicate them openly to stakeholders.\"\n\nTip: Spikes for unknowns.", "B", "M"],
+["Communication", "How do you explain a technical design to executives?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"Business outcome first, one simple diagram, cost, timeline, risks and the decisions needed — technical detail in the appendix. 'This lets us launch in two new countries in Q3 for $400K, with one risk around the tax integration.'\"\n\nTip: Outcome first.", "B", "E"],
+["Enterprise", "How do you integrate a new SaaS app with ERP systems?", "**Why they ask:** enterprise integration.\n\n**Answer:**\n\"Define master data ownership first — which system owns customers, items, prices — then integration patterns through APIs or iPaaS, identity with SSO and SCIM, data mapping and transformations, error handling and reconciliation, and security and compliance reviews.\"\n\nTip: Master data ownership.", "D", "M"],
+["Behavioral", "Tell me about a solution you designed.", "**Why they ask:** proof.\n\n**Answer:**\n\"I designed a customer portal integrating with Oracle ERP through an API layer and event queues. It handled 10x seasonal peaks without issues and cut support calls 30%.\"\n\nTip: Outcome.", "B", "M"],
+["Behavioral", "Tell me about a design decision you got wrong.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"I chose microservices for a small team's product. The operational overhead slowed them down, so we consolidated into a modular monolith. Now I match architecture to team size and maturity.\"\n\nTip: Learning.", "B", "M"],
+["Behavioral", "Tell me about influencing without authority.", "**Why they ask:** influence.\n\n**Answer:**\n\"Teams were building duplicate integrations to the same ERP. I proposed a shared API layer, proved reuse savings with a pilot, and got buy-in from three teams.\"\n\nTip: Show value.", "B", "M"],
+["Certifications", "Which certifications are valuable?", "**Why they ask:** credentials.\n\n**Answer:**\n\"AWS Solutions Architect Associate and Professional, Azure Solutions Architect Expert, Google Professional Cloud Architect, TOGAF, and domain certifications such as Salesforce or Oracle.\"\n\nTip: Professional level.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward enterprise architect or principal architect.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I turn business needs into practical, cost-aware solutions and stay with teams through delivery. My designs scale, integrate cleanly and land on budget.\"\n\nTip: Proof.", "B", "M"],
+["Caching", "How do you use caching effectively?", "**Why they ask:** performance design.\n\n**Answer:**\n\"Cache read-heavy, rarely changing data — a CDN for static content, Redis for sessions and lookups — with clear TTLs and invalidation, never caching user-specific or sensitive data under shared keys, and protecting against stampedes when popular keys expire.\"\n\nTip: Invalidation strategy.", "B", "M"],
+["API", "How do you design good APIs?", "**Why they ask:** interface design.\n\n**Answer:**\n\"Resource-oriented REST, consistent naming, versioning, pagination, a clear error format, idempotency keys on writes so a retried payment doesn't charge twice, OAuth authentication, rate limits, and OpenAPI documentation.\"\n\nTip: Idempotency keys.", "B", "M"],
+["Resilience", "What resilience patterns do you know?", "**Why they ask:** robust design.\n\n**Answer:**\n\"Retries with exponential backoff and jitter, circuit breakers, bulkheads, timeouts, fallbacks, queues for load leveling, and graceful degradation — if recommendations fail, show bestsellers instead of an error.\"\n\nTip: Circuit breakers.", "D", "M"],
+["Consistency", "How do you handle transactions across services?", "**Why they ask:** distributed consistency.\n\n**Answer:**\n\"Avoid distributed transactions. Use sagas — choreographed or orchestrated — with compensating actions, the outbox pattern so events are published reliably with the data change, and idempotent consumers.\"\n\nTip: Outbox pattern.", "D", "S"],
+["Observability", "What observability should every solution include?", "**Why they ask:** operability.\n\n**Answer:**\n\"Structured logs with correlation IDs, metrics for latency, errors, throughput and saturation, distributed tracing, health checks, and dashboards with alerts tied to SLOs.\"\n\nTip: Correlation IDs.", "B", "M"],
+["Scenario", "The business wants a solution live in 3 months but the scope is large. What do you do?", "**Why they ask:** pragmatic delivery.\n\n**Answer:**\n\"Define an MVP of the highest-value features, phase the rest, use SaaS or managed services to move faster, and make the trade-offs and risks explicit to the sponsor.\"\n\nTip: MVP and phases.", "B", "M"],
+["Scenario", "A legacy system has no APIs. How do you integrate with it?", "**Why they ask:** real-world constraints.\n\n**Answer:**\n\"Options: careful database-level integration, file exports, change data capture, RPA as a last resort, or wrapping it with an API layer so consumers don't depend on the legacy internals — while planning modernization.\"\n\nTip: Wrap and modernize.", "D", "M"],
+["Lock-in", "How do you think about vendor lock-in?", "**Why they ask:** balanced judgment.\n\n**Answer:**\n\"Accept lock-in where the value is high, like managed services that remove operational work; reduce it where switching risk matters through open standards, abstraction layers and data portability; and document exit strategies.\"\n\nTip: Pragmatic view.", "D", "M"],
+["Estimation", "How do you estimate effort for a solution?", "**Why they ask:** planning credibility.\n\n**Answer:**\n\"Break the work into components, estimate with the delivery teams who'll do it, compare with past projects, add contingency for risk, and refine as requirements firm up.\"\n\nTip: Involve the teams.", "B", "M"],
+["Compliance", "How do compliance requirements affect design?", "**Why they ask:** regulated environments.\n\n**Answer:**\n\"Data residency, encryption, audit logging, access controls, retention and approved services all shape choices — for example using HIPAA-eligible services only, or tokenizing card data to shrink PCI scope.\"\n\nTip: Early compliance review.", "D", "M"],
+["Diagrams", "What makes a good architecture diagram?", "**Why they ask:** communication.\n\n**Answer:**\n\"A clear purpose and audience, consistent notation, labeled flows and protocols, trust boundaries and a legend — and one diagram per purpose rather than everything crammed into one picture.\"\n\nTip: One diagram per purpose.", "B", "E"],
+["Technical Debt", "How do you handle technical debt in designs?", "**Why they ask:** long-term thinking.\n\n**Answer:**\n\"Make debt explicit in ADRs, quantify its impact, plan paydown alongside features, and avoid taking on debt in critical areas like security and data integrity.\"\n\nTip: Explicit debt.", "D", "M"]
+]);
