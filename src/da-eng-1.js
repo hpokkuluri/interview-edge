@@ -1,229 +1,48 @@
 // Data Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['da-eng'] = [
-["Role", "What does a data engineer do?",
-`**Why they ask:** baseline scope.
-
-**Answer:** Builds and operates the systems that move, store and prepare data: ingestion from sources (databases, APIs, files, streams), pipelines and transformations (batch and streaming), data warehouses and lakehouses, data quality and testing, orchestration, performance and cost optimization, security and governance — so analysts, data scientists and applications get reliable data.
-
-Tip: Mention reliability and data quality, not just pipelines.`, 'B', 'E'],
-
-["ETL", "ETL vs ELT?",
-`**Answer:** **ETL** transforms data before loading into the warehouse (traditional, when warehouse compute was expensive). **ELT** loads raw data first and transforms inside the warehouse (Snowflake, BigQuery, Databricks) using SQL/dbt — more flexible, keeps raw history, and scales with cloud compute.
-
-Tip: ELT with dbt is the modern default.`, 'B', 'E'],
-
-["Architecture", "Data warehouse vs data lake vs lakehouse?",
-`**Answer:** **Warehouse:** structured, modeled data optimized for SQL analytics (Snowflake, Redshift, BigQuery, Synapse). **Lake:** cheap storage of raw data in any format (S3, ADLS). **Lakehouse:** lake storage with warehouse features — ACID tables, schema enforcement, time travel — via open table formats (Delta Lake, Apache Iceberg, Hudi) on Databricks, Snowflake or others.
-
-Tip: Mention Iceberg/Delta.`, 'B', 'M'],
-
-["Architecture", "What is the medallion architecture?",
-`**Answer:** Layers of data refinement: **bronze** (raw ingested data), **silver** (cleaned, conformed, deduplicated), **gold** (business-level aggregates and models for reporting and ML).
-
-Tip: Common in Databricks.`, 'B', 'M'],
-
-["Modeling", "Explain dimensional modeling.",
-`**Answer:** Kimball approach: **fact tables** store measurable events (sales, clicks) at a defined grain; **dimension tables** store descriptive context (customer, product, date). Star schemas are simple and fast for BI. Choose the grain carefully first.
-
-Tip: "Declare the grain."`, 'B', 'M'],
-
-["Modeling", "What are slowly changing dimensions?",
-`**Answer:** Ways to handle changes in dimension attributes: **Type 1** overwrite (no history), **Type 2** add a new row with effective dates and current flag (full history), **Type 3** add a column for previous value (limited history). Type 2 is most common for analytics history.
-
-Tip: SCD2 with valid_from/valid_to.`, 'B', 'M'],
-
-["SQL", "How do you write efficient SQL for large datasets?",
-`**Answer:** Filter early, select only needed columns (columnar storage), use partition and cluster pruning, avoid SELECT *, avoid unnecessary DISTINCT and cross joins, pre-aggregate, use window functions instead of self-joins, and check query plans/profiles.
-
-Tip: Partition pruning.`, 'B', 'M'],
-
-["Pipelines", "How do you design a reliable data pipeline?",
-`**Answer:** Idempotent loads (rerunnable without duplicates — merge/upsert, partition overwrite), incremental processing with watermarks, schema validation, data quality checks, retries with alerting, backfill capability, lineage and logging, and SLAs for freshness.
-
-Tip: Idempotency is key.`, 'D', 'M'],
-
-["Pipelines", "How do you handle incremental loads?",
-`**Answer:** Track a high-water mark (updated_at timestamp or ID), or use change data capture; load only new/changed records; MERGE into targets; handle late-arriving data and deletes (soft deletes or CDC delete events).
-
-Tip: Deletes are often missed.`, 'D', 'M'],
-
-["CDC", "What is change data capture?",
-`**Answer:** Capturing inserts, updates and deletes from source databases as they happen, typically by reading transaction logs (Debezium, Fivetran, AWS DMS, GoldenGate), then streaming changes to a warehouse or lake. Low impact on sources and near-real-time.
-
-Tip: Log-based CDC.`, 'D', 'M'],
-
-["Orchestration", "What is Airflow and how do you use it?",
-`**Answer:** Apache Airflow orchestrates workflows as DAGs (directed acyclic graphs) of tasks with dependencies, schedules, retries, alerting and backfills. Keep tasks idempotent, avoid heavy processing in the scheduler, and use sensors carefully. Alternatives: Dagster, Prefect, cloud-native tools (ADF, Step Functions).
-
-Tip: Mention Dagster's asset-based approach.`, 'B', 'M'],
-
-["dbt", "What is dbt and why is it popular?",
-`**Answer:** dbt (data build tool) lets you write transformations as SQL SELECT models, managing dependencies, tests (unique, not_null, relationships, custom), documentation, lineage and incremental models, with version control and CI. It brings software engineering practices to analytics.
-
-Tip: Tests and lineage.`, 'B', 'M'],
-
-["Spark", "What is Apache Spark and when do you use it?",
-`**Answer:** A distributed processing engine for large-scale batch and streaming data (DataFrames, Spark SQL). Use it when data or computation exceeds a single machine or warehouse SQL is not suitable (complex transformations, ML feature engineering). Common on Databricks, EMR, Synapse.
-
-Tip: Know when SQL is enough.`, 'B', 'M'],
-
-["Spark", "How do you optimize a slow Spark job?",
-`**Answer:** Check the Spark UI for skewed or slow stages, reduce shuffles (broadcast small tables in joins), handle data skew (salting, AQE), right-size partitions, cache reused data, use columnar formats (Parquet) with partition pruning, and avoid Python UDFs where native functions exist.
-
-Tip: Skew and shuffle.`, 'D', 'S'],
-
-["Streaming", "Batch vs streaming — when do you choose streaming?",
-`**Answer:** Streaming when low latency matters — fraud detection, real-time dashboards, personalization, alerts. Batch is simpler and cheaper for daily reporting. Tools: Kafka, Kinesis, Flink, Spark Structured Streaming. Consider exactly-once semantics, late data and windowing.
-
-Tip: "Don't stream if daily is fine."`, 'D', 'M'],
-
-["Streaming", "How do you handle late-arriving data in streaming?",
-`**Answer:** Use event time (not processing time), watermarks that define how late data can be accepted, windowed aggregations that update when late events arrive, and a reconciliation batch for very late data.
-
-Tip: Event time vs processing time.`, 'D', 'S'],
-
-["Kafka", "What are Kafka topics, partitions and consumer groups?",
-`**Answer:** A topic is a named stream of events split into partitions for parallelism; order is guaranteed within a partition. Consumer groups share partitions so each message is processed by one consumer in the group. Retention allows replay.
-
-Tip: Partition key determines ordering.`, 'D', 'M'],
-
-["Data Quality", "How do you ensure data quality?",
-`**Answer:** Tests at ingestion and transformation (schema, nulls, uniqueness, ranges, referential integrity, freshness, volume anomalies) using dbt tests, Great Expectations or Soda; data contracts with producers; monitoring and alerting; and clear ownership.
-
-Tip: Data contracts.`, 'B', 'M'],
-
-["Data Contracts", "What is a data contract?",
-`**Answer:** An agreement between data producers and consumers defining schema, semantics, quality expectations and SLAs for a dataset, enforced in CI or at ingestion — preventing upstream changes from silently breaking pipelines.
-
-Tip: Shift-left data quality.`, 'D', 'S'],
-
-["File Formats", "Why use Parquet?",
-`**Answer:** Columnar storage with compression and encoding — queries read only needed columns, reducing I/O and cost. Supports predicate pushdown and schema. Better than CSV/JSON for analytics.
-
-Tip: Columnar benefits.`, 'B', 'E'],
-
-["Table Formats", "What do Delta Lake and Iceberg provide?",
-`**Answer:** ACID transactions on data lake files, schema enforcement and evolution, time travel, efficient upserts/deletes (MERGE), and partition evolution — making lakes reliable for analytics.
-
-Tip: Open table formats.`, 'D', 'M'],
-
-["Cloud", "Which cloud data services have you used?",
-`**Sample answer:** "On AWS: S3, Glue, Redshift and Kinesis; on Azure: ADLS, Data Factory and Synapse/Fabric; plus Snowflake and Databricks across clouds."
-
-Tip: Name what you built.`, 'B', 'M'],
-
-["Snowflake", "What are key Snowflake concepts?",
-`**Answer:** Separation of storage and compute; virtual warehouses that scale independently; micro-partitions and clustering; time travel and zero-copy cloning; data sharing; and pay-per-second compute — manage cost with auto-suspend and right-sizing.
-
-Tip: Cost control.`, 'D', 'M'],
-
-["Cost", "How do you control data platform costs?",
-`**Answer:** Right-size and auto-suspend compute, partition/cluster to reduce scanned data, incremental models instead of full rebuilds, lifecycle policies on storage, monitor expensive queries, and tag costs by team.
-
-Tip: FinOps for data.`, 'D', 'M'],
-
-["Security", "How do you secure data platforms?",
-`**Answer:** Role-based access control and least privilege, column/row-level security and masking for sensitive data, encryption in transit and at rest, secrets management, audit logging, and compliance with GDPR/HIPAA as relevant.
-
-Tip: Masking PII.`, 'B', 'M'],
-
-["Governance", "What is data lineage and why does it matter?",
-`**Answer:** Tracking where data comes from and how it's transformed to where it's used. It helps impact analysis, debugging, trust and compliance. Tools: dbt docs, OpenLineage, Unity Catalog, Purview, data catalogs.
-
-Tip: Impact analysis before changes.`, 'D', 'M'],
-
-["Testing", "How do you test data pipelines?",
-`**Answer:** Unit tests for transformation logic, data tests on outputs, integration tests with sample data, CI that runs dbt builds on changed models, and comparing outputs before and after changes (data diff).
-
-Tip: Data diff in CI.`, 'D', 'M'],
-
-["Python", "Which Python skills matter for data engineering?",
-`**Answer:** pandas/polars for smaller data, PySpark, writing robust ingestion scripts (APIs, pagination, retries), packaging and testing (pytest), and type hints.
-
-Tip: Polars is gaining adoption.`, 'B', 'M'],
-
-["APIs", "How do you ingest data from a REST API reliably?",
-`**Answer:** Handle authentication, pagination, rate limits (backoff), incremental extraction (updated_since), retries, schema changes, and land raw responses before transforming. Consider managed connectors (Fivetran, Airbyte).
-
-Tip: Land raw first.`, 'B', 'M'],
-
-["Backfills", "How do you run a backfill safely?",
-`**Answer:** Make pipelines parameterized by date range and idempotent, run in batches, monitor resource usage and cost, validate results, and avoid overwhelming source systems.
-
-Tip: Idempotency enables backfills.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a pipeline you built.",
-`**Sample answer:** "I built CDC pipelines from 12 PostgreSQL databases into Snowflake using Debezium and Kafka, with dbt models for silver and gold layers. Data freshness went from daily to 10 minutes, and finance reporting moved off spreadsheets."
-
-Tip: Scale and impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a data quality incident.",
-`**Sample answer:** "A source system changed a status code, so revenue dashboards dropped 30%. I added accepted-values tests and volume anomaly alerts, set up a data contract with the source team, and fixed the mapping."
-
-Tip: Detection and prevention.`, 'B', 'M'],
-
-["Behavioral", "How do you work with analysts and data scientists?",
-`**Answer:** Understand their use cases and SLAs, provide well-documented models, self-service access, and quick feedback loops for issues.
-
-Tip: Data as a product.`, 'B', 'E'],
-
-["AI", "How do data engineers support AI and LLM projects?",
-`**Answer:** Build pipelines for unstructured data (documents, chunking, embeddings), vector stores or vector search in existing platforms, feature pipelines for ML, data quality and lineage for training data, and governance of what data AI can access.
-
-Tip: Unstructured data pipelines.`, 'D', 'S'],
-
-["Data Mesh", "What is data mesh?",
-`**Answer:** An organizational approach where domain teams own their data as products, supported by a self-service platform and federated governance. It addresses central team bottlenecks but requires mature teams.
-
-Tip: Socio-technical, not a tool.`, 'D', 'S'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior or staff data engineer / data platform architect — streaming, platform design and governance.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build reliable, cost-efficient data platforms — CDC pipelines, dbt models and data quality checks — and I've cut freshness from a day to minutes while lowering warehouse costs 30%."
-
-Tip: Proof.`, 'B', 'M'],
-
-["SQL", "How do you deduplicate records in a pipeline?",
-`**Answer:** Use ROW_NUMBER() OVER (PARTITION BY business_key ORDER BY updated_at DESC) and keep rn = 1, or MERGE with the latest record; define the business key carefully.
-
-Tip: Business key clarity.`, 'B', 'M'],
-
-["Partitioning", "How do you choose partition keys?",
-`**Answer:** Based on common query filters (often date), balanced partition sizes (avoid too many small files), and data arrival patterns. Combine with clustering/sort keys for other filters.
-
-Tip: Small files problem.`, 'D', 'M'],
-
-["Small Files", "What is the small files problem?",
-`**Answer:** Many tiny files in a data lake slow queries and metadata operations. Fix with compaction (OPTIMIZE in Delta, rewrite in Iceberg), appropriate batch sizes, and partition design.
-
-Tip: Compaction jobs.`, 'D', 'M'],
-
-["Observability", "What is data observability?",
-`**Answer:** Monitoring data health — freshness, volume, schema changes, distribution anomalies and lineage — to detect issues before users do. Tools: Monte Carlo, Bigeye, Soda, or custom checks.
-
-Tip: Five pillars.`, 'D', 'M'],
-
-["Reverse ETL", "What is reverse ETL?",
-`**Answer:** Syncing modeled data from the warehouse back into operational tools (CRM, marketing platforms, support systems) so teams act on analytics. Tools: Hightouch, Census.
-
-Tip: Operational analytics.`, 'D', 'M'],
-
-["Schema Evolution", "How do you handle schema changes in sources?",
-`**Answer:** Detect changes automatically, allow additive changes with schema evolution, alert on breaking changes, version contracts, and coordinate with source owners.
-
-Tip: Contracts and alerts.`, 'D', 'M'],
-
-["Fabric", "What is Microsoft Fabric?",
-`**Answer:** Microsoft's unified analytics SaaS combining data engineering, data factory, warehousing, real-time analytics, data science and Power BI on OneLake (a single lake with Delta format).
-
-Tip: Relevant in Microsoft shops.`, 'D', 'M'],
-
-["Databricks", "What is Unity Catalog?",
-`**Answer:** Databricks' unified governance layer for data and AI assets — centralized access control, lineage, auditing and discovery across workspaces.
-
-Tip: Governance in lakehouse.`, 'D', 'M']
-];
+QB["da-eng"] = (QB["da-eng"] || []).concat([
+["Role", "What does a data engineer do?", "**Why they ask:** baseline scope.\n\n**Answer:** Builds and operates the systems that move, store and prepare data: ingestion from sources (databases, APIs, files, streams), pipelines and transformations (batch and streaming), data warehouses and lakehouses, data quality and testing, orchestration, performance and cost optimization, security and governance — so analysts, data scientists and applications get reliable data.\n\nTip: Mention reliability and data quality, not just pipelines.", "B", "E"],
+["ETL", "ETL vs ELT?", "**Why they ask:** a foundational architecture choice.\n\n**Answer:**\n\"ETL transforms data before loading it into the warehouse — the traditional approach when warehouse compute was expensive. ELT loads raw data first and transforms inside the warehouse — Snowflake, BigQuery, Databricks — usually with SQL and dbt. ELT is more flexible, keeps the raw history so you can rebuild models, and scales with cloud compute. It's the modern default.\"\n\nTip: ELT with dbt is the modern default.", "B", "E"],
+["Architecture", "Data warehouse vs data lake vs lakehouse?", "**Why they ask:** platform understanding.\n\n**Answer:**\n\"A warehouse holds structured, modeled data optimized for SQL analytics — Snowflake, Redshift, BigQuery, Synapse. A lake is cheap storage for raw data in any format — S3 or ADLS. A lakehouse puts warehouse features on lake storage — ACID tables, schema enforcement, time travel — using open table formats like Delta Lake, Apache Iceberg or Hudi, on Databricks, Snowflake or others.\"\n\nTip: Mention Iceberg and Delta.", "B", "M"],
+["Architecture", "What is the medallion architecture?", "**Why they ask:** a common pattern.\n\n**Answer:**\n\"It's layers of data refinement. Bronze is raw ingested data, as it arrived. Silver is cleaned, conformed and deduplicated. Gold is business-level models and aggregates for reporting and ML. Keeping bronze means you can always rebuild silver and gold if logic changes.\"\n\nTip: Common in Databricks.", "B", "M"],
+["Modeling", "Explain dimensional modeling.", "**Why they ask:** analytics modeling.\n\n**Answer:**\n\"It's the Kimball approach. Fact tables store measurable events — sales, clicks — at a defined grain. Dimension tables store the descriptive context — customer, product, date. Star schemas are simple and fast for BI. The first step is always declaring the grain — for example, one row per order line — because everything else depends on it.\"\n\nTip: 'Declare the grain.'", "B", "M"],
+["Modeling", "What are slowly changing dimensions?", "**Why they ask:** history handling.\n\n**Answer:**\n\"Ways to handle changes in dimension attributes. Type 1 overwrites — no history. Type 2 adds a new row with effective dates and a current flag — full history. Type 3 adds a column for the previous value — limited history. Type 2 is most common for analytics, so if a customer moves region, past sales stay with the old region.\"\n\nTip: SCD2 with valid_from and valid_to.", "B", "M"],
+["SQL", "How do you write efficient SQL for large datasets?", "**Why they ask:** cost and performance.\n\n**Answer:**\n\"Filter early, select only the columns I need — columnar storage only reads those — use partition and cluster pruning, avoid SELECT star, unnecessary DISTINCT and accidental cross joins, pre-aggregate, use window functions instead of self-joins, and check the query profile. Filtering on the partition column can turn a terabyte scan into gigabytes.\"\n\nTip: Partition pruning.", "B", "M"],
+["Pipelines", "How do you design a reliable data pipeline?", "**Why they ask:** reliability is the job.\n\n**Answer:**\n\"Idempotent loads — rerunnable without duplicates, using MERGE or partition overwrite. Incremental processing with watermarks. Schema validation and data quality checks. Retries with alerting. Backfill capability. Lineage and logging. And agreed SLAs for freshness. Idempotency matters most — it makes every recovery safe.\"\n\nTip: Idempotency is key.", "D", "M"],
+["Pipelines", "How do you handle incremental loads?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Track a high-water mark — an updated_at timestamp or an ID — or use change data capture. Load only new or changed records, MERGE them into the target, and handle late-arriving data and deletes, either as soft deletes or CDC delete events. Deletes are the part most often missed.\"\n\nTip: Deletes are often missed.", "D", "M"],
+["CDC", "What is change data capture?", "**Why they ask:** a common ingestion pattern.\n\n**Answer:**\n\"It captures inserts, updates and deletes from source databases as they happen, usually by reading the transaction log, with tools like Debezium, Fivetran, AWS DMS or GoldenGate, and streams the changes to a warehouse or lake. Log-based CDC has very low impact on the source and gives near-real-time data.\"\n\nTip: Log-based CDC.", "D", "M"],
+["Orchestration", "What is Airflow and how do you use it?", "**Why they ask:** orchestration.\n\n**Answer:**\n\"Apache Airflow orchestrates workflows as DAGs of tasks with dependencies, schedules, retries, alerting and backfills. I keep tasks idempotent, avoid heavy processing in the scheduler, and use sensors carefully. Alternatives include Dagster, with its asset-based approach, Prefect, and cloud tools like Azure Data Factory or Step Functions.\"\n\nTip: Mention Dagster's asset-based approach.", "B", "M"],
+["dbt", "What is dbt and why is it popular?", "**Why they ask:** a standard modern tool.\n\n**Answer:**\n\"dbt lets you write transformations as SQL SELECT models. It manages dependencies between them, tests — unique, not_null, relationships, custom — documentation, lineage and incremental models, all in version control with CI. It brings software engineering practices to analytics work.\"\n\nTip: Tests and lineage.", "B", "M"],
+["Spark", "What is Apache Spark and when do you use it?", "**Why they ask:** distributed processing.\n\n**Answer:**\n\"A distributed engine for large-scale batch and streaming data, with DataFrames and Spark SQL. I use it when data or computation is too big for a single machine, or warehouse SQL isn't suitable — complex transformations or ML feature engineering. Common on Databricks, EMR and Synapse. But if warehouse SQL can do it, that's usually simpler.\"\n\nTip: Know when SQL is enough.", "B", "M"],
+["Spark", "How do you optimize a slow Spark job?", "**Why they ask:** practical Spark skill.\n\n**Answer:**\n\"Check the Spark UI for skewed or slow stages. Reduce shuffles — broadcast small tables in joins. Handle data skew with salting or adaptive query execution. Right-size partitions, cache data that's reused, use Parquet with partition pruning, and replace Python UDFs with native functions. Skew and shuffles cause most slow jobs.\"\n\nTip: Skew and shuffle.", "D", "S"],
+["Streaming", "Batch vs streaming — when do you choose streaming?", "**Why they ask:** architecture judgment.\n\n**Answer:**\n\"Streaming when low latency really matters — fraud detection, real-time dashboards, personalization, alerting. Batch is simpler and cheaper for daily reporting. Streaming tools include Kafka, Kinesis, Flink and Spark Structured Streaming, with extra complexity — exactly-once semantics, late data and windowing. Don't stream if daily is fine.\"\n\nTip: 'Don't stream if daily is fine.'", "D", "M"],
+["Streaming", "How do you handle late-arriving data in streaming?", "**Why they ask:** streaming depth.\n\n**Answer:**\n\"Use event time, not processing time. Set watermarks that define how late data can still be accepted, use windowed aggregations that update when late events arrive, and run a reconciliation batch for anything very late.\"\n\nTip: Event time versus processing time.", "D", "S"],
+["Kafka", "What are Kafka topics, partitions and consumer groups?", "**Why they ask:** streaming basics.\n\n**Answer:**\n\"A topic is a named stream of events, split into partitions for parallelism. Order is guaranteed only within a partition, so the partition key decides ordering — for example, keying by customer ID keeps each customer's events in order. Consumer groups share the partitions so each message is processed by one consumer in the group. Retention allows replay.\"\n\nTip: The partition key determines ordering.", "D", "M"],
+["Data Quality", "How do you ensure data quality?", "**Why they ask:** trust in data.\n\n**Answer:**\n\"Tests at ingestion and transformation — schema, nulls, uniqueness, ranges, referential integrity, freshness and volume anomalies — using dbt tests, Great Expectations or Soda. Data contracts with producers. Monitoring and alerting. And clear ownership of each dataset.\"\n\nTip: Data contracts.", "B", "M"],
+["Data Contracts", "What is a data contract?", "**Why they ask:** shift-left quality.\n\n**Answer:**\n\"An agreement between data producers and consumers defining a dataset's schema, meaning, quality expectations and SLAs, enforced in CI or at ingestion. It stops an upstream team from renaming a column and silently breaking ten pipelines.\"\n\nTip: Shift-left data quality.", "D", "S"],
+["File Formats", "Why use Parquet?", "**Why they ask:** storage formats.\n\n**Answer:**\n\"It's columnar, with compression and encoding, so queries read only the columns they need — much less I/O and cost. It supports predicate pushdown and carries its schema. For analytics it's far better than CSV or JSON.\"\n\nTip: Columnar benefits.", "B", "E"],
+["Table Formats", "What do Delta Lake and Iceberg provide?", "**Why they ask:** lakehouse foundations.\n\n**Answer:**\n\"ACID transactions on data lake files, schema enforcement and evolution, time travel, efficient upserts and deletes with MERGE, and partition evolution. They make a data lake reliable enough for analytics — no more half-written files.\"\n\nTip: Open table formats.", "D", "M"],
+["Cloud", "Which cloud data services have you used?", "**Why they ask:** platform experience.\n\n**Answer:**\n\"On AWS: S3, Glue, Redshift and Kinesis. On Azure: ADLS, Data Factory and Synapse, now Fabric. Plus Snowflake and Databricks across clouds.\"\n\nTip: Name what you built — swap in your own stack.", "B", "M"],
+["Snowflake", "What are key Snowflake concepts?", "**Why they ask:** a popular platform.\n\n**Answer:**\n\"Separation of storage and compute; virtual warehouses that scale independently; micro-partitions and clustering; time travel and zero-copy cloning; secure data sharing; and per-second compute billing. Cost control comes from auto-suspend, right-sizing warehouses and watching expensive queries.\"\n\nTip: Cost control.", "D", "M"],
+["Cost", "How do you control data platform costs?", "**Why they ask:** data costs grow fast.\n\n**Answer:**\n\"Right-size compute and use auto-suspend, partition and cluster to reduce data scanned, use incremental models instead of full rebuilds, apply storage lifecycle policies, monitor the most expensive queries, and tag costs by team so each team sees its own spend.\"\n\nTip: FinOps for data.", "D", "M"],
+["Security", "How do you secure data platforms?", "**Why they ask:** data protection.\n\n**Answer:**\n\"Role-based access with least privilege, column- and row-level security and masking for sensitive data, encryption in transit and at rest, secrets management, audit logging, and compliance with GDPR or HIPAA as relevant. Masking PII by default is the single biggest win.\"\n\nTip: Mask PII.", "B", "M"],
+["Governance", "What is data lineage and why does it matter?", "**Why they ask:** trust and change safety.\n\n**Answer:**\n\"It tracks where data comes from, how it's transformed, and where it's used. It helps impact analysis before changes, debugging, trust and compliance. Tools include dbt docs, OpenLineage, Unity Catalog, Purview and data catalogs.\"\n\nTip: Impact analysis before changes.", "D", "M"],
+["Testing", "How do you test data pipelines?", "**Why they ask:** engineering rigor.\n\n**Answer:**\n\"Unit tests for transformation logic, data tests on outputs, integration tests with sample data, CI that builds and tests changed dbt models, and comparing outputs before and after a change with a data diff.\"\n\nTip: Data diff in CI.", "D", "M"],
+["Python", "Which Python skills matter for data engineering?", "**Why they ask:** coding depth.\n\n**Answer:**\n\"pandas or Polars for smaller data, PySpark for big data, writing robust ingestion scripts that handle APIs, pagination and retries, plus packaging, testing with pytest, and type hints.\"\n\nTip: Polars is gaining adoption.", "B", "M"],
+["APIs", "How do you ingest data from a REST API reliably?", "**Why they ask:** a common task.\n\n**Answer:**\n\"Handle authentication, pagination, rate limits with exponential backoff, incremental extraction using something like updated_since, retries and schema changes. And land the raw responses before transforming, so I can reprocess without calling the API again. Managed connectors like Fivetran or Airbyte are often worth it.\"\n\nTip: Land raw first.", "B", "M"],
+["Backfills", "How do you run a backfill safely?", "**Why they ask:** operational maturity.\n\n**Answer:**\n\"Pipelines parameterized by date range and idempotent, run in batches, with resource usage and cost monitored, results validated, and care not to overwhelm source systems — backfilling a year at once can take down a production database.\"\n\nTip: Idempotency enables backfills.", "D", "M"],
+["Behavioral", "Tell me about a pipeline you built.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built CDC pipelines from 12 PostgreSQL databases into Snowflake using Debezium and Kafka, with dbt models for the silver and gold layers. Data freshness went from daily to about 10 minutes, and finance reporting moved off spreadsheets.\"\n\nTip: Scale and impact.", "B", "M"],
+["Behavioral", "Tell me about a data quality incident.", "**Why they ask:** detection and prevention.\n\n**Answer:**\n\"A source system changed a status code, and revenue dashboards dropped 30% overnight. I fixed the mapping, then added accepted-values tests and volume anomaly alerts, and set up a data contract with the source team so changes come with notice.\"\n\nTip: Detection and prevention.", "B", "M"],
+["Behavioral", "How do you work with analysts and data scientists?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"I understand their use cases and SLAs, provide well-documented models, give them self-service access, and keep fast feedback loops for issues. I treat datasets as products with users.\"\n\nTip: Data as a product.", "B", "E"],
+["AI", "How do data engineers support AI and LLM projects?", "**Why they ask:** current relevance.\n\n**Answer:**\n\"By building pipelines for unstructured data — document parsing, chunking and embeddings — vector stores or vector search in existing platforms, feature pipelines for ML, data quality and lineage for training data, and governance over what data AI systems can access.\"\n\nTip: Unstructured data pipelines.", "D", "S"],
+["Data Mesh", "What is data mesh?", "**Why they ask:** organizational architecture.\n\n**Answer:**\n\"An organizational approach where domain teams own their data as products, supported by a self-service platform and federated governance. It addresses the central data team bottleneck, but needs mature domain teams. It's socio-technical, not a tool you buy.\"\n\nTip: Socio-technical, not a tool.", "D", "S"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior or staff data engineer, or data platform architect — streaming, platform design and governance.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build reliable, cost-efficient data platforms — CDC pipelines, dbt models and data quality checks. I've cut freshness from a day to minutes while lowering warehouse costs 30%.\"\n\nTip: Proof.", "B", "M"],
+["SQL", "How do you deduplicate records in a pipeline?", "**Why they ask:** a common task.\n\n**Answer:**\n\"ROW_NUMBER() OVER (PARTITION BY business_key ORDER BY updated_at DESC), keeping row number 1 — the latest version of each key — or a MERGE with the latest record. The key step is defining the business key correctly.\"\n\nTip: Business key clarity.", "B", "M"],
+["Partitioning", "How do you choose partition keys?", "**Why they ask:** performance design.\n\n**Answer:**\n\"Based on the most common query filters — usually date — with balanced partition sizes to avoid lots of tiny files, and matching how data arrives. Then add clustering or sort keys for other common filters.\"\n\nTip: Watch the small files problem.", "D", "M"],
+["Small Files", "What is the small files problem?", "**Why they ask:** lake performance.\n\n**Answer:**\n\"Lots of tiny files in a data lake slow down queries and metadata operations. I fix it with compaction — OPTIMIZE in Delta or rewrite in Iceberg — sensible batch sizes and better partition design.\"\n\nTip: Run compaction jobs.", "D", "M"],
+["Observability", "What is data observability?", "**Why they ask:** proactive monitoring.\n\n**Answer:**\n\"Monitoring data health — freshness, volume, schema changes, distribution anomalies and lineage — so problems are caught before users notice. Tools include Monte Carlo, Bigeye, Soda, or custom checks.\"\n\nTip: Know the five pillars.", "D", "M"],
+["Reverse ETL", "What is reverse ETL?", "**Why they ask:** operational analytics.\n\n**Answer:**\n\"Syncing modeled data from the warehouse back into operational tools — CRM, marketing platforms, support systems — so teams act on analytics where they work. Tools include Hightouch and Census. For example, pushing a churn-risk score into Salesforce.\"\n\nTip: Operational analytics.", "D", "M"],
+["Schema Evolution", "How do you handle schema changes in sources?", "**Why they ask:** pipeline resilience.\n\n**Answer:**\n\"Detect them automatically, allow additive changes through schema evolution, alert on breaking changes, version the contracts, and coordinate with source owners.\"\n\nTip: Contracts and alerts.", "D", "M"],
+["Fabric", "What is Microsoft Fabric?", "**Why they ask:** Microsoft platform awareness.\n\n**Answer:**\n\"Microsoft's unified analytics SaaS — data engineering, Data Factory, warehousing, real-time analytics, data science and Power BI — all on OneLake, a single lake using Delta format.\"\n\nTip: Relevant in Microsoft shops.", "D", "M"],
+["Databricks", "What is Unity Catalog?", "**Why they ask:** lakehouse governance.\n\n**Answer:**\n\"Databricks' unified governance layer for data and AI assets — centralized access control, lineage, auditing and discovery across workspaces.\"\n\nTip: Governance in the lakehouse.", "D", "M"]
+]);
