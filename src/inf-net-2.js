@@ -1,18 +1,6 @@
-QB['inf-net'] = (QB['inf-net']||[]).concat([
-["Subnetting", "Split 10.0.0.0/24 into four equal subnets.",
-`**Answer:** Borrow 2 bits to get /26 subnets of 64 addresses each: 10.0.0.0/26 (.1–.62), 10.0.0.64/26 (.65–.126), 10.0.0.128/26 (.129–.190), 10.0.0.192/26 (.193–.254).
-
-Tip: Explain the borrowed bits.`, 'B', 'E'],
-["SASE", "How does SASE change the network engineer's role?",
-`**Answer:** Security moves to cloud points of presence. Engineers manage SD-WAN plus SSE policies (SWG, ZTNA, CASB), focus on identity-based access and internet performance, and backhaul less traffic to the data center.
-
-Tip: Identity-based policy.`, 'D', 'M'],
-["DHCP Snooping", "What are DHCP snooping and Dynamic ARP Inspection?",
-`**Answer:** **DHCP snooping** blocks rogue DHCP servers on untrusted ports and builds a binding table. **DAI** uses that table to drop spoofed ARP packets, preventing man-in-the-middle attacks on the LAN.
-
-Tip: Layer-2 security.`, 'D', 'M'],
-["Behavioral", "Tell me about automating a network process.",
-`**Sample answer:** "Config backups were manual and often missed. I wrote a Python/Netmiko job that backs up 300 devices nightly to Git and flags changes, which gave us an audit trail and faster rollback."
-
-Tip: Measured value.`, 'B', 'M']
+QB["inf-net"] = (QB["inf-net"] || []).concat([
+["Subnetting", "Split 10.0.0.0/24 into four equal subnets.", "**Why they ask:** subnetting practice.\n\n**Answer:**\n\"Borrowing 2 bits gives four /26 subnets of 64 addresses each: 10.0.0.0/26 with hosts .1 to .62, 10.0.0.64/26 with .65 to .126, 10.0.0.128/26 with .129 to .190, and 10.0.0.192/26 with .193 to .254.\"\n\nTip: Explain the borrowed bits.", "B", "E"],
+["SASE", "How does SASE change the network engineer's role?", "**Why they ask:** future direction.\n\n**Answer:**\n\"Security moves to cloud points of presence. Engineers manage SD-WAN plus SSE policies — secure web gateway, ZTNA, CASB — focus on identity-based access and internet performance, and backhaul far less traffic to the data center.\"\n\nTip: Identity-based policy.", "D", "M"],
+["DHCP Snooping", "What are DHCP snooping and Dynamic ARP Inspection?", "**Why they ask:** layer-2 security.\n\n**Answer:**\n\"DHCP snooping blocks rogue DHCP servers on untrusted ports and builds a binding table of which IP belongs to which MAC and port. Dynamic ARP Inspection uses that table to drop spoofed ARP replies, preventing man-in-the-middle attacks on the LAN.\"\n\nTip: Layer-2 security.", "D", "M"],
+["Behavioral", "Tell me about automating a network process.", "**Why they ask:** automation proof.\n\n**Answer:**\n\"Config backups were manual and often missed. I wrote a Python and Netmiko job that backs up 300 devices nightly to Git and flags any changes. That gave us an audit trail and much faster rollback.\"\n\nTip: Measured value.", "B", "M"]
 ]);
