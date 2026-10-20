@@ -1,255 +1,57 @@
 // ea-snow — generated from src/ea-snow-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // ServiceNow Developer / Administrator. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ea-snow'] = [
-["Role", "What does a ServiceNow developer do?",
-`**Why they ask:** scope check.
-
-**Answer:** Configures and develops on the Now Platform: ITSM processes (incident, problem, change, request), catalog items and workflows (Flow Designer), business rules and scripts, UI policies, integrations, portals, reports, and upgrades — following best practices to keep the instance upgradeable.
-
-Tip: Mention modules (ITSM, HRSD, CSM, ITOM).`, 'B', 'E'],
-
-["Scripting", "Client scripts vs business rules?",
-`**Answer:** **Client scripts** run in the browser (onLoad, onChange, onSubmit, onCellEdit) for form behavior. **Business rules** run on the server when records are queried, inserted, updated or deleted (before, after, async, display).
-
-Tip: Prefer UI policies for simple field behavior.`, 'B', 'E'],
-
-["Scripting", "Before vs after vs async business rules?",
-`**Answer:** **Before:** modify the current record before save (no current.update()). **After:** act on related records after save. **Async:** run later in background for heavy or external work. **Display:** populate g_scratchpad for client use.
-
-Tip: Never current.update() in before rules.`, 'B', 'M'],
-
-["Scripting", "What is GlideRecord?",
-`**Answer:** Server-side API for database operations: query (addQuery, addEncodedQuery, query, next), insert, update, delete. GlideAggregate for counts and aggregates. Avoid GlideRecord on the client.
-
-**Example:** var gr = new GlideRecord('incident'); gr.addQuery('priority', 1); gr.addActiveQuery(); gr.query(); while (gr.next()) { ... }
-
-Tip: GlideAggregate for counts.`, 'B', 'E'],
-
-["Scripting", "UI policy vs client script?",
-`**Answer:** **UI policies** declaratively set fields mandatory, visible or read-only based on conditions — preferred for simple cases. **Client scripts** handle complex logic, validation and calls to the server (GlideAjax).
-
-Tip: Declarative first.`, 'B', 'E'],
-
-["Scripting", "How do you call the server from a client script?",
-`**Answer:** GlideAjax calling a client-callable Script Include asynchronously (getXMLAnswer), avoiding synchronous calls and client-side GlideRecord.
-
-Tip: Async GlideAjax.`, 'B', 'M'],
-
-["Script Includes", "What are Script Includes?",
-`**Answer:** Reusable server-side JavaScript classes or functions callable from business rules, other scripts, flows and (if client callable) GlideAjax.
-
-Tip: Reusability.`, 'B', 'E'],
-
-["ACLs", "How do ACLs work?",
-`**Answer:** Access control rules secure tables and fields for read, write, create, delete (and others), evaluated by roles, conditions and scripts. Table-level then field-level rules must both pass; most specific match applies. Use roles primarily and keep scripts efficient.
-
-Tip: Table.* vs table.field.`, 'D', 'M'],
-
-["Flow Designer", "What is Flow Designer and when do you use it?",
-`**Answer:** Low-code automation tool for processes triggered by records, schedules or service catalog, using actions, subflows and spokes (IntegrationHub). It replaces legacy Workflow Editor for new development.
-
-Tip: Spokes for integrations.`, 'B', 'E'],
-
-["Catalog", "How do you build a service catalog item?",
-`**Answer:** Create the item with variables and variable sets, catalog UI policies and client scripts, fulfillment flow (approvals, tasks), pricing if needed, and availability by user criteria — then test the end-to-end request (REQ → RITM → SCTASK).
-
-Tip: REQ/RITM/SCTASK structure.`, 'B', 'M'],
-
-["ITSM", "Incident vs problem vs change?",
-`**Answer:** **Incident:** restore service quickly. **Problem:** find and fix root causes of incidents (known errors, workarounds). **Change:** control modifications to minimize risk (standard, normal, emergency changes with CAB approvals).
-
-Tip: ITIL alignment.`, 'B', 'E'],
-
-["CMDB", "What is the CMDB and why does it matter?",
-`**Answer:** Configuration Management Database storing configuration items and relationships, used for impact analysis, change risk, incident routing and service mapping. Populated by Discovery, Service Graph Connectors and integrations, governed by the IRE and CMDB health dashboards.
-
-Tip: Data quality is everything.`, 'B', 'M'],
-
-["CMDB", "What is the Identification and Reconciliation Engine?",
-`**Answer:** IRE prevents duplicate CIs by applying identification rules and reconciles which data source can update which attributes.
-
-Tip: Avoids duplicates.`, 'D', 'M'],
-
-["Integration", "How do you integrate ServiceNow with other systems?",
-`**Answer:** REST/SOAP APIs (Table API, Scripted REST APIs), IntegrationHub spokes, MID Server for on-prem access, import sets with transform maps, and outbound REST messages.
-
-Tip: MID Server for on-prem.`, 'B', 'M'],
-
-["Integration", "What are import sets and transform maps?",
-`**Answer:** Data lands in a staging import set table, then transform maps define field mappings, coalesce fields (to update existing records) and transform scripts to load target tables.
-
-Tip: Coalesce prevents duplicates.`, 'B', 'M'],
-
-["Upgrades", "How do you keep an instance upgradeable?",
-`**Answer:** Avoid modifying out-of-box code, use configuration over customization, scoped apps, document customizations, review skipped records after upgrades, and test with ATF.
-
-Tip: Skipped records review.`, 'B', 'M'],
-
-["Testing", "What is ATF?",
-`**Answer:** Automated Test Framework for testing forms, server scripts, catalog items and flows automatically, especially before upgrades and deployments.
-
-Tip: Upgrade testing.`, 'B', 'M'],
-
-["Deployment", "How do you move changes between instances?",
-`**Answer:** Update sets (capturing configuration changes), application repository for scoped apps, or source control integration; preview and commit with conflict resolution.
-
-Tip: Update set collisions.`, 'B', 'E'],
-
-["Scoped Apps", "Global vs scoped applications?",
-`**Answer:** Scoped apps isolate code and data with access controls, protecting from conflicts — best practice for custom apps. Global scope is for legacy or platform-wide changes.
-
-Tip: Scoped by default.`, 'B', 'M'],
-
-["Portal", "What is Service Portal / Employee Center?",
-`**Answer:** User-friendly portals for requests, knowledge and support; Service Portal uses widgets (AngularJS), while newer experiences use UI Builder and Employee Center.
-
-Tip: UI Builder is the future.`, 'B', 'M'],
-
-["Performance", "How do you troubleshoot slow forms or scripts?",
-`**Answer:** Check slow transaction logs, script debugger, number of business rules and client scripts, inefficient GlideRecord queries (no limits, nested queries), and missing indexes.
-
-Tip: Avoid nested GlideRecord loops.`, 'D', 'M'],
-
-["SLA", "How do SLAs work in ServiceNow?",
-`**Answer:** SLA definitions with start, pause and stop conditions, schedules and durations; task SLAs track progress and trigger notifications and escalations.
-
-Tip: Pause conditions.`, 'B', 'M'],
-
-["Notifications", "How do you configure notifications?",
-`**Answer:** Define when (events or record conditions), who (users, groups, fields), and what (email templates, scripts); avoid notification spam.
-
-Tip: Events for complex triggers.`, 'B', 'E'],
-
-["AI", "What is Now Assist?",
-`**Answer:** ServiceNow's generative AI capabilities: summarization of incidents and cases, AI search, virtual agent improvements, code generation and AI agents for workflows.
-
-Tip: Agentic workflows.`, 'B', 'M'],
-
-["ITOM", "What is ITOM?",
-`**Answer:** IT Operations Management: Discovery, Service Mapping, Event Management, Cloud Management and AIOps capabilities.
-
-Tip: Discovery feeds CMDB.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a ServiceNow solution you built.",
-`**Sample answer:** "I built an onboarding catalog item with a flow orchestrating tasks across IT, HR and facilities. Onboarding time dropped from 7 days to 2 and missed tasks went to zero."
-
-Tip: Business outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about an upgrade you led.",
-`**Sample answer:** "I led a two-family upgrade, reviewed 300 skipped records, reverted unnecessary customizations, and used ATF for regression. We upgraded with no P1 issues."
-
-Tip: Method.`, 'B', 'M'],
-
-["Behavioral", "How do you push back on unnecessary customization?",
-`**Answer:** Show the out-of-box option, explain upgrade cost and risk, and find a configuration solution that meets the need.
-
-Tip: OOB first.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** Certified System Administrator (CSA), Certified Application Developer (CAD), Certified Implementation Specialist (ITSM, HRSD, CSM), and Certified Technical Architect.
-
-Tip: CSA then CAD.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Technical lead or ServiceNow architect.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build automation that cuts manual work while keeping the instance upgradeable — I've cut onboarding from 7 days to 2 and delivered clean upgrades."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Scripting", "What is g_form?",
-`**Answer:** Client-side API for form manipulation: getValue, setValue, setMandatory, setVisible, setReadOnly, addInfoMessage, showFieldMsg.
-
-Tip: Client-only.`, 'B', 'E'],
-
-["Scripting", "What's current and previous in business rules?",
-`**Answer:** current is the record being processed; previous holds values before the update — used to detect changes (e.g. current.state != previous.state or current.state.changes()).
-
-Tip: .changes().`, 'B', 'E'],
-
-["Data Policy", "UI policy vs data policy?",
-`**Answer:** UI policies enforce on forms only; data policies enforce mandatory/read-only on the server for all inputs (imports, APIs) and can also act as UI policies.
-
-Tip: Data integrity.`, 'D', 'M'],
-
-["Events", "How do events work?",
-`**Answer:** Register events in the registry, queue them with gs.eventQueue from scripts, and respond with notifications or script actions.
-
-Tip: Decoupling.`, 'D', 'M'],
-
-["Scheduled Jobs", "How do you run scheduled scripts?",
-`**Answer:** Scheduled Script Executions or scheduled flows, with careful query limits and logging.
-
-Tip: Avoid heavy work at peak times.`, 'B', 'E'],
-
-["Security", "How do you secure a ServiceNow instance?",
-`**Answer:** SSO and MFA, role-based access, ACL reviews, instance security center hardening settings, encryption, IP restrictions, and audit logs.
-
-Tip: Instance Security Center.`, 'D', 'M'],
-
-["Domain Separation", "What is domain separation?",
-`**Answer:** Separating data, processes and administration into domains within one instance — used by managed service providers serving multiple customers.
-
-Tip: MSP use case.`, 'D', 'S'],
-
-["Scenario", "A catalog item needs approval from the requester's manager and then a group. How?",
-`**Answer:** In the flow: Ask for Approval action with the manager (requested_for.manager), then group approval, with rejection handling and notifications.
-
-Tip: Requested for vs opened by.`, 'B', 'M'],
-
-["Scenario", "Incidents should auto-assign by category. How?",
-`**Answer:** Assignment rules or data lookup rules mapping category/subcategory to assignment groups, or predictive intelligence for AI-based assignment.
-
-Tip: Data lookup tables.`, 'B', 'M'],
-
-["Reporting", "How do you build dashboards in ServiceNow?",
-`**Answer:** Reports and Platform Analytics/Performance Analytics with indicators and breakdowns, shared to roles and groups.
-
-Tip: Performance Analytics trends.`, 'B', 'E'],
-
-["Virtual Agent", "How do you design Virtual Agent conversations?",
-`**Answer:** Identify common requests, build topics with NLU/LLM intents, integrate with catalog and knowledge, handoff to live agents and measure deflection.
-
-Tip: Deflection rate.`, 'D', 'M'],
-
-["Knowledge", "How do you manage knowledge?",
-`**Answer:** Knowledge bases with workflows for review and publishing, templates, feedback, retirement, and linking articles to incidents (KCS practices).
-
-Tip: KCS.`, 'B', 'E'],
-
-["HRSD", "What is HR Service Delivery?",
-`**Answer:** ServiceNow module for HR cases, lifecycle events (onboarding, offboarding), employee center and HR knowledge, with confidential data handling.
-
-Tip: Lifecycle events.`, 'D', 'M'],
-
-["Best Practice", "What coding best practices do you follow?",
-`**Answer:** Use Script Includes, avoid hard-coded sys_ids (use properties), limit queries, use GlideAggregate, log appropriately, and comment.
-
-Tip: No hard-coded sys_ids.`, 'B', 'M']
-];
-
-QB['ea-snow'] = (QB['ea-snow']||[]).concat([
-["Scripting", "What is GlideSystem (gs)?",
-`**Answer:** Server-side utility API: gs.getUserID(), gs.hasRole(), gs.info()/gs.error() logging, gs.addInfoMessage(), gs.eventQueue(), gs.getProperty() and date helpers.
-
-Tip: Use gs.getProperty instead of hard-coded values.`, 'B', 'E'],
-["Change", "How do you configure change management?",
-`**Answer:** Change models (standard, normal, emergency), state flows, risk assessment, approval policies including CAB, conflict detection against blackout and maintenance schedules, and change success scoring for automatic approval of low-risk changes.
-
-Tip: Change success score.`, 'D', 'M'],
-["Problem", "How does problem management work in ServiceNow?",
-`**Answer:** Problems are linked to related incidents. Root cause analysis records known errors and workarounds, which are published to knowledge, and fixes are implemented through change requests. Track problem tasks to closure.
-
-Tip: Known error articles.`, 'B', 'M'],
-["Discovery", "How does ServiceNow Discovery work?",
-`**Answer:** A MID Server scans IP ranges using credentials (SSH, WMI, SNMP, cloud APIs), identifies devices and software through patterns, and populates CIs and relationships in the CMDB via the IRE on a schedule.
-
-Tip: Credentials and MID Server placement.`, 'D', 'M'],
-["Scenario", "Users complain the incident form is slow to load. What do you check?",
-`**Answer:** Number of onLoad client scripts, synchronous GlideAjax or getReference calls, display business rules, heavy related lists, UI formatters, and browser console timings. Then optimize or consolidate.
-
-Tip: Synchronous calls are the usual cause.`, 'B', 'M']
+QB["ea-snow"] = (QB["ea-snow"] || []).concat([
+["Role", "What does a ServiceNow developer do?", "**Why they ask:** scope check.\n\n**Answer:** Configures and develops on the Now Platform: ITSM processes (incident, problem, change, request), catalog items and workflows (Flow Designer), business rules and scripts, UI policies, integrations, portals, reports, and upgrades — following best practices to keep the instance upgradeable.\n\nTip: Mention modules (ITSM, HRSD, CSM, ITOM).", "B", "E"],
+["Scripting", "Client scripts vs business rules?", "**Why they ask:** the core scripting distinction.\n\n**Answer:**\n\"Client scripts run in the browser — onLoad, onChange, onSubmit, onCellEdit — and control form behavior, like showing a message when priority changes. Business rules run on the server when records are queried, inserted, updated or deleted — before, after, async or display — so they apply no matter how the record arrives, including imports and APIs. For simple field behavior like making a field mandatory, I use a UI policy instead of a script.\"\n\nTip: Prefer UI policies for simple field behavior.", "B", "E"],
+["Scripting", "Before vs after vs async business rules?", "**Why they ask:** server-side design.\n\n**Answer:**\n\"Before rules modify the current record before it's saved — no current.update() needed, and calling it causes double saves. After rules act on related records once the save is done. Async rules run later in the background for heavy or external work, like calling another system. Display rules populate g_scratchpad so client scripts get server data without an extra call.\"\n\nTip: Never current.update() in before rules.", "B", "M"],
+["Scripting", "What is GlideRecord?", "**Why they ask:** the main server API.\n\n**Answer:**\n\"The server-side API for database operations: query with addQuery or addEncodedQuery, then query() and next() to loop, plus insert, update and delete. For example: var gr = new GlideRecord('incident'); gr.addQuery('priority', 1); gr.addActiveQuery(); gr.query(); while (gr.next()) { ... }. For counts I use GlideAggregate, which counts in the database instead of looping thousands of records. And never GlideRecord on the client.\"\n\nTip: GlideAggregate for counts.", "B", "E"],
+["Scripting", "UI policy vs client script?", "**Why they ask:** configuration-first thinking.\n\n**Answer:**\n\"UI policies declaratively make fields mandatory, visible or read-only based on conditions — for example, making 'Resolution notes' mandatory when state is Resolved. They're preferred for simple cases because there's no code to maintain. Client scripts handle complex logic, validation and calls to the server through GlideAjax.\"\n\nTip: Declarative first.", "B", "E"],
+["Scripting", "How do you call the server from a client script?", "**Why they ask:** performance-aware scripting.\n\n**Answer:**\n\"GlideAjax calling a client-callable Script Include asynchronously, using getXMLAnswer with a callback. That keeps the form responsive. Synchronous calls and client-side GlideRecord freeze the browser and are a common cause of slow forms.\"\n\nTip: Async GlideAjax.", "B", "M"],
+["Script Includes", "What are Script Includes?", "**Why they ask:** reusable code.\n\n**Answer:**\n\"Reusable server-side JavaScript classes or functions that business rules, other scripts and flows can call — and, if marked client callable, GlideAjax too. Logic like 'find the on-call engineer for this group' lives in one Script Include instead of being copied into five business rules.\"\n\nTip: Reusability.", "B", "E"],
+["ACLs", "How do ACLs work?", "**Why they ask:** platform security.\n\n**Answer:**\n\"Access control rules secure tables and fields for operations like read, write, create and delete, evaluated through roles, conditions and scripts. To read a field, both the table-level rule and the field-level rule must pass, and the most specific matching rule applies — incident.short_description before incident.*. I rely on roles primarily and keep ACL scripts light, because they run constantly.\"\n\nTip: Table.* vs table.field.", "D", "M"],
+["Flow Designer", "What is Flow Designer and when do you use it?", "**Why they ask:** modern automation.\n\n**Answer:**\n\"ServiceNow's low-code automation tool for processes triggered by records, schedules or catalog requests, built from actions, subflows and IntegrationHub spokes. It replaces the legacy Workflow Editor for new development. A spoke for Microsoft Entra ID can create a user account in a flow without any scripting.\"\n\nTip: Spokes for integrations.", "B", "E"],
+["Catalog", "How do you build a service catalog item?", "**Why they ask:** a frequent deliverable.\n\n**Answer:**\n\"Create the item with variables and variable sets, add catalog UI policies and client scripts for form behavior, build the fulfillment flow with approvals and tasks, set pricing if needed and availability through user criteria, then test end to end: the request creates a REQ, each item a RITM, and fulfillment tasks are SCTASKs.\"\n\nTip: REQ/RITM/SCTASK structure.", "B", "M"],
+["ITSM", "Incident vs problem vs change?", "**Why they ask:** ITIL fundamentals.\n\n**Answer:**\n\"An incident is about restoring service as fast as possible. A problem is about finding and fixing the root cause behind incidents, recording known errors and workarounds. A change controls modifications to minimize risk — standard, normal or emergency changes, with CAB approval where needed. If email is down for 200 users, the incident restores it, the problem finds the expired certificate, and a change renews and automates it.\"\n\nTip: ITIL alignment.", "B", "E"],
+["CMDB", "What is the CMDB and why does it matter?", "**Why they ask:** CMDB is central to ServiceNow value.\n\n**Answer:**\n\"The Configuration Management Database stores configuration items and their relationships — servers, applications, services and how they depend on each other. It drives impact analysis, change risk, incident routing and service mapping. It's populated by Discovery, Service Graph Connectors and integrations, governed by the IRE and CMDB health dashboards. A CMDB with bad data is worse than none, because people make decisions on it.\"\n\nTip: Data quality is everything.", "B", "M"],
+["CMDB", "What is the Identification and Reconciliation Engine?", "**Why they ask:** CMDB data integrity.\n\n**Answer:**\n\"The IRE prevents duplicate CIs by applying identification rules — matching on serial number or name plus IP, for example — and reconciles which data source is allowed to update which attributes, so Discovery and an SCCM import don't overwrite each other.\"\n\nTip: Avoids duplicates.", "D", "M"],
+["Integration", "How do you integrate ServiceNow with other systems?", "**Why they ask:** integration skills.\n\n**Answer:**\n\"REST and SOAP APIs — the Table API and Scripted REST APIs for custom endpoints — IntegrationHub spokes, a MID Server to reach on-prem systems behind the firewall, import sets with transform maps for data loads, and outbound REST messages.\"\n\nTip: MID Server for on-prem.", "B", "M"],
+["Integration", "What are import sets and transform maps?", "**Why they ask:** data loading.\n\n**Answer:**\n\"Data lands in a staging import set table, then a transform map defines field mappings, coalesce fields that decide whether to update an existing record or insert a new one, and transform scripts for logic. Coalescing on employee number, for example, means re-running a user import updates people instead of duplicating them.\"\n\nTip: Coalesce prevents duplicates.", "B", "M"],
+["Upgrades", "How do you keep an instance upgradeable?", "**Why they ask:** long-term health.\n\n**Answer:**\n\"Avoid modifying out-of-box code, prefer configuration over customization, build custom work in scoped apps, document customizations, review skipped records after every upgrade, and run ATF regression tests. Every modified OOB script is a decision you have to remake on every upgrade.\"\n\nTip: Skipped records review.", "B", "M"],
+["Testing", "What is ATF?", "**Why they ask:** testing on the platform.\n\n**Answer:**\n\"The Automated Test Framework tests forms, server scripts, catalog items and flows automatically. It's most valuable before upgrades and deployments — a suite of 150 ATF tests turns upgrade regression from a week of manual clicking into an overnight run.\"\n\nTip: Upgrade testing.", "B", "M"],
+["Deployment", "How do you move changes between instances?", "**Why they ask:** release management.\n\n**Answer:**\n\"Update sets capture configuration changes and move them between instances, previewed and committed with collision resolution. Scoped apps can go through the application repository, and source control integration is available for apps. The preview step is where collisions with other developers' changes show up.\"\n\nTip: Update set collisions.", "B", "E"],
+["Scoped Apps", "Global vs scoped applications?", "**Why they ask:** architecture best practice.\n\n**Answer:**\n\"Scoped apps isolate code and data behind a namespace with access controls, protecting them from conflicts with other apps and upgrades — best practice for custom applications. Global scope is for legacy work and changes that genuinely need to be platform-wide.\"\n\nTip: Scoped by default.", "B", "M"],
+["Portal", "What is Service Portal / Employee Center?", "**Why they ask:** user experience.\n\n**Answer:**\n\"User-friendly portals for requests, knowledge and support. Service Portal is built with AngularJS widgets; newer experiences like Employee Center and workspaces are built with UI Builder, which is where ServiceNow is investing.\"\n\nTip: UI Builder is the future.", "B", "M"],
+["Performance", "How do you troubleshoot slow forms or scripts?", "**Why they ask:** performance tuning.\n\n**Answer:**\n\"Check the slow transaction logs, use the script debugger, count the business rules and client scripts on the table, look for inefficient GlideRecord queries — no limits, nested loops querying inside other queries — and missing indexes. A nested GlideRecord loop over 1,000 records can mean 1,000 extra queries.\"\n\nTip: Avoid nested GlideRecord loops.", "D", "M"],
+["SLA", "How do SLAs work in ServiceNow?", "**Why they ask:** service management.\n\n**Answer:**\n\"SLA definitions set start, pause and stop conditions, a schedule and a duration; task SLA records track progress and trigger notifications and escalations at thresholds like 50% and 75%. Pausing while state is 'Awaiting customer' keeps the SLA fair when we're waiting on the user.\"\n\nTip: Pause conditions.", "B", "M"],
+["Notifications", "How do you configure notifications?", "**Why they ask:** communication design.\n\n**Answer:**\n\"Define when — on events or record conditions — who — users, groups or fields like assigned_to — and what — email templates and mail scripts. Then avoid notification spam: people ignore an inbox full of irrelevant updates. Events are cleaner for complex triggers.\"\n\nTip: Events for complex triggers.", "B", "E"],
+["AI", "What is Now Assist?", "**Why they ask:** current product knowledge.\n\n**Answer:**\n\"ServiceNow's generative AI: summarizing incidents and cases, AI search, improved Virtual Agent conversations, code generation for developers, and AI agents that carry out workflow steps. Incident summarization is usually the quickest win for agents picking up a long ticket.\"\n\nTip: Agentic workflows.", "B", "M"],
+["ITOM", "What is ITOM?", "**Why they ask:** product breadth.\n\n**Answer:**\n\"IT Operations Management: Discovery, Service Mapping, Event Management, Cloud Management and AIOps. Discovery feeds the CMDB, and Event Management uses those CIs to group thousands of alerts into a few actionable incidents.\"\n\nTip: Discovery feeds CMDB.", "D", "M"],
+["Behavioral", "Tell me about a ServiceNow solution you built.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built an onboarding catalog item with a flow orchestrating tasks across IT, HR and facilities. Onboarding time dropped from 7 days to 2, and missed tasks went to zero.\"\n\nTip: Business outcome.", "B", "M"],
+["Behavioral", "Tell me about an upgrade you led.", "**Why they ask:** platform maintenance experience.\n\n**Answer:**\n\"I led an upgrade spanning two family releases, reviewed 300 skipped records, reverted customizations we no longer needed, and used ATF for regression. We went live with no P1 issues.\"\n\nTip: Method.", "B", "M"],
+["Behavioral", "How do you push back on unnecessary customization?", "**Why they ask:** protecting the platform.\n\n**Answer:**\n\"Show the out-of-box option, explain the upgrade cost and risk of customizing, and find a configuration that meets the real need. Usually the request is about an outcome, and OOB gets 90% of the way there.\"\n\nTip: OOB first.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Certified System Administrator first, then Certified Application Developer, Certified Implementation Specialist in ITSM, HRSD or CSM, and Certified Technical Architect for senior roles.\"\n\nTip: CSA then CAD.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward technical lead or ServiceNow architect.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build automation that cuts manual work while keeping the instance upgradeable — I cut onboarding from 7 days to 2 and delivered clean upgrades.\"\n\nTip: Proof.", "B", "E"],
+["Scripting", "What is g_form?", "**Why they ask:** client API knowledge.\n\n**Answer:**\n\"The client-side API for manipulating forms: getValue, setValue, setMandatory, setVisible, setReadOnly, addInfoMessage and showFieldMsg. It only exists in the browser, so it can't be used in server scripts.\"\n\nTip: Client-only.", "B", "E"],
+["Scripting", "What's current and previous in business rules?", "**Why they ask:** change detection.\n\n**Answer:**\n\"current is the record being processed; previous holds its values before the update. To detect a state change: current.state != previous.state, or more simply current.state.changes(). For example, notify the caller only when the incident moves to Resolved.\"\n\nTip: .changes().", "B", "E"],
+["Data Policy", "UI policy vs data policy?", "**Why they ask:** data integrity.\n\n**Answer:**\n\"UI policies only apply on forms. Data policies enforce mandatory and read-only rules on the server for every input — imports, APIs, web services — and can also act as UI policies. If a field must always be filled, a data policy guarantees it even for records created through integrations.\"\n\nTip: Data integrity.", "D", "M"],
+["Events", "How do events work?", "**Why they ask:** decoupled design.\n\n**Answer:**\n\"Register the event in the event registry, queue it from a script with gs.eventQueue — passing the record and up to two parameters — and respond with notifications or script actions. The business rule doesn't need to know who's listening.\"\n\nTip: Decoupling.", "D", "M"],
+["Scheduled Jobs", "How do you run scheduled scripts?", "**Why they ask:** background processing.\n\n**Answer:**\n\"Scheduled Script Executions or scheduled flows, with sensible query limits and logging, scheduled outside peak hours — a heavy cleanup at 10 a.m. slows the instance for everyone.\"\n\nTip: Avoid heavy work at peak times.", "B", "E"],
+["Security", "How do you secure a ServiceNow instance?", "**Why they ask:** platform security.\n\n**Answer:**\n\"SSO with MFA, role-based access, regular ACL reviews, hardening settings from the Instance Security Center, encryption, IP address restrictions and audit logs.\"\n\nTip: Instance Security Center.", "D", "M"],
+["Domain Separation", "What is domain separation?", "**Why they ask:** multi-tenant design.\n\n**Answer:**\n\"Separating data, processes and administration into domains within one instance — used mainly by managed service providers serving multiple customers, so each customer only sees their own tickets and processes.\"\n\nTip: MSP use case.", "D", "S"],
+["Scenario", "A catalog item needs approval from the requester's manager and then a group. How?", "**Why they ask:** practical flow design.\n\n**Answer:**\n\"In the fulfillment flow: an Ask for Approval action for the manager of requested_for — not opened_by, since someone may order on another person's behalf — then a group approval, with rejection paths that close the request and notify the requester.\"\n\nTip: Requested for vs opened by.", "B", "M"],
+["Scenario", "Incidents should auto-assign by category. How?", "**Why they ask:** routing design.\n\n**Answer:**\n\"Assignment rules or a data lookup table mapping category and subcategory to assignment groups — maintainable by process owners without code — or Predictive Intelligence for AI-based assignment once there's enough history.\"\n\nTip: Data lookup tables.", "B", "M"],
+["Reporting", "How do you build dashboards in ServiceNow?", "**Why they ask:** reporting.\n\n**Answer:**\n\"Reports plus Platform Analytics or Performance Analytics with indicators and breakdowns, shared with roles and groups. Performance Analytics shows trends over time — like backlog growth week by week — which plain reports can't.\"\n\nTip: Performance Analytics trends.", "B", "E"],
+["Virtual Agent", "How do you design Virtual Agent conversations?", "**Why they ask:** self-service.\n\n**Answer:**\n\"Find the most common requests — password resets, access requests — build topics with NLU or LLM-based intent detection, connect them to catalog items and knowledge, hand off to a live agent when needed, and measure deflection rate.\"\n\nTip: Deflection rate.", "D", "M"],
+["Knowledge", "How do you manage knowledge?", "**Why they ask:** knowledge practices.\n\n**Answer:**\n\"Knowledge bases with review and publishing workflows, templates, feedback, retirement dates, and linking articles to incidents following KCS practices, so agents create and improve articles as part of solving tickets.\"\n\nTip: KCS.", "B", "E"],
+["HRSD", "What is HR Service Delivery?", "**Why they ask:** product breadth.\n\n**Answer:**\n\"ServiceNow's HR module for HR cases, lifecycle events like onboarding and offboarding, Employee Center and HR knowledge, with special handling for confidential data such as employee relations cases.\"\n\nTip: Lifecycle events.", "D", "M"],
+["Best Practice", "What coding best practices do you follow?", "**Why they ask:** code quality.\n\n**Answer:**\n\"Logic in Script Includes, no hard-coded sys_ids — system properties instead — limits on queries, GlideAggregate for counts, appropriate logging, and comments explaining why. A hard-coded group sys_id breaks the moment the group is recreated in another instance.\"\n\nTip: No hard-coded sys_ids.", "B", "M"]
+]);
+
+QB["ea-snow"] = (QB["ea-snow"] || []).concat([
+["Scripting", "What is GlideSystem (gs)?", "**Why they ask:** server API knowledge.\n\n**Answer:**\n\"The server-side utility API: gs.getUserID(), gs.hasRole(), logging with gs.info() and gs.error(), gs.addInfoMessage(), gs.eventQueue(), gs.getProperty() and date helpers. gs.getProperty is how I avoid hard-coding values.\"\n\nTip: Use gs.getProperty instead of hard-coded values.", "B", "E"],
+["Change", "How do you configure change management?", "**Why they ask:** ITSM depth.\n\n**Answer:**\n\"Change models — standard, normal, emergency — with state flows, risk assessment, approval policies including CAB, conflict detection against blackout and maintenance schedules, and change success scoring so teams with a strong track record get low-risk changes approved automatically.\"\n\nTip: Change success score.", "D", "M"],
+["Problem", "How does problem management work in ServiceNow?", "**Why they ask:** ITSM depth.\n\n**Answer:**\n\"Problems link to related incidents; root cause analysis records known errors and workarounds, which are published as knowledge articles so agents can apply them immediately; and the permanent fix goes through a change request. Problem tasks are tracked to closure.\"\n\nTip: Known error articles.", "B", "M"],
+["Discovery", "How does ServiceNow Discovery work?", "**Why they ask:** CMDB population.\n\n**Answer:**\n\"A MID Server scans IP ranges using credentials — SSH, WMI, SNMP, cloud APIs — identifies devices and software through patterns, and writes CIs and relationships into the CMDB through the IRE on a schedule. Credential setup and MID Server placement inside each network segment are usually the hardest parts.\"\n\nTip: Credentials and MID Server placement.", "D", "M"],
+["Scenario", "Users complain the incident form is slow to load. What do you check?", "**Why they ask:** practical troubleshooting.\n\n**Answer:**\n\"The number of onLoad client scripts, synchronous GlideAjax or getReference calls, display business rules, heavy related lists, UI formatters, and browser console timings. Then optimize or consolidate. Replacing two synchronous getReference calls with one async GlideAjax took one form from 6 seconds to under 2.\"\n\nTip: Synchronous calls are the usual cause.", "B", "M"]
 ]);
