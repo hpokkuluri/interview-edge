@@ -1,14 +1,5 @@
-QB['inf-dba'] = (QB['inf-dba']||[]).concat([
-["Query Store", "How do you use Query Store?",
-`**Answer:** It captures query plans and runtime statistics over time. Use it to find regressed queries, compare plans, force a good plan, and analyze workload changes after upgrades. Enable it on all production databases (it's on by default in SQL Server 2022).
-
-Tip: Plan forcing as a quick fix.`, 'B', 'M'],
-["Postgres", "How do you find blocking in PostgreSQL?",
-`**Answer:** Query pg_stat_activity with pg_blocking_pids(pid) to see who blocks whom, check the wait_event types, and terminate a session with pg_terminate_backend if needed. Set lock_timeout and statement_timeout to prevent long waits.
-
-Tip: pg_blocking_pids.`, 'D', 'M'],
-["Sizing", "How do you size memory for a SQL Server?",
-`**Answer:** Leave memory for the OS (for example 4–6 GB, or about 10% on large servers) and set max server memory to the rest. Monitor Page Life Expectancy trends, memory grants and buffer pool usage.
-
-Tip: Never leave max memory at the default.`, 'D', 'M']
+QB["inf-dba"] = (QB["inf-dba"] || []).concat([
+["Query Store", "How do you use Query Store?", "**Why they ask:** modern SQL Server tooling.\n\n**Answer:**\n\"It captures query plans and runtime statistics over time. I use it to find regressed queries, compare plans, force a good plan as a quick fix, and analyze workload changes after upgrades. It's on by default for new databases in SQL Server 2022, and I enable it on every production database.\"\n\nTip: Plan forcing as a quick fix.", "B", "M"],
+["Postgres", "How do you find blocking in PostgreSQL?", "**Why they ask:** Postgres troubleshooting.\n\n**Answer:**\n\"Query pg_stat_activity together with pg_blocking_pids(pid) to see who's blocking whom, check wait_event types, and terminate a session with pg_terminate_backend if needed. Setting lock_timeout and statement_timeout prevents sessions waiting forever.\"\n\nTip: pg_blocking_pids.", "D", "M"],
+["Sizing", "How do you size memory for a SQL Server?", "**Why they ask:** configuration basics.\n\n**Answer:**\n\"Leave memory for the OS — around 4 to 6 GB, or about 10% on large servers — and set max server memory to the rest. On a 128 GB server I'd start around 115 GB. Then watch Page Life Expectancy trends, memory grants and buffer pool usage.\"\n\nTip: Never leave max memory at the default.", "D", "M"]
 ]);

@@ -1,259 +1,57 @@
 // inf-dba — generated from src/inf-dba-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Database Administrator (SQL Server / PostgreSQL). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['inf-dba'] = [
-["Role", "What does a DBA do?",
-`**Why they ask:** baseline.
-
-**Answer:** Keeps databases available, fast, secure and recoverable: installation and upgrades, backups and restores, high availability and DR, performance tuning, security and access, capacity planning, monitoring, and supporting developers with schema and query design.
-
-Tip: Mention the platforms and the size of databases you've run.`, 'B', 'E'],
-
-["Backup", "Explain SQL Server recovery models.",
-`**Answer:** **Simple:** no log backups, so you can only restore to a full or differential backup. **Full:** log backups allow point-in-time recovery, and the log grows until it's backed up. **Bulk-logged:** minimal logging for bulk operations, with limited point-in-time restore during those operations.
-
-Tip: Production OLTP usually uses Full.`, 'B', 'M'],
-
-["Backup", "Design a backup strategy for a critical SQL Server database.",
-`**Answer:** Weekly full, daily differential, and log backups every 15 minutes (RPO 15 minutes). Use backup checksums, keep copies offsite or immutable, set retention by policy, and run automated restore tests (to a test server, plus DBCC CHECKDB).
-
-**Point-in-time restore order:** last full → latest differential → all log backups after it, with STOPAT.
-
-Tip: Test restores, not just backups.`, 'B', 'M'],
-
-["Backup", "How does PostgreSQL backup and point-in-time recovery work?",
-`**Answer:** Logical backups with pg_dump/pg_dumpall (portable, slower for large databases). Physical base backups (pg_basebackup) plus continuous WAL archiving allow point-in-time recovery to a target time. Tools such as pgBackRest and Barman manage this.
-
-Tip: Mention WAL archiving.`, 'B', 'M'],
-
-["HA", "What HA options exist in SQL Server?",
-`**Answer:** Always On Availability Groups (multiple databases fail over together, readable secondaries, synchronous or asynchronous replicas), Failover Cluster Instances (shared storage, instance-level failover), log shipping (simple DR), and replication for specific data distribution needs.
-
-Tip: Sync for HA, async for DR distance.`, 'B', 'M'],
-
-["HA", "How does PostgreSQL high availability work?",
-`**Answer:** Streaming replication to standbys (synchronous or asynchronous), failover management with Patroni (plus etcd/Consul), connection routing through HAProxy or pgBouncer, or managed services (RDS/Aurora, Azure Flexible Server) with built-in failover.
-
-Tip: Patroni is the common choice.`, 'D', 'M'],
-
-["Performance", "A query suddenly became slow. How do you troubleshoot?",
-`**Answer:** Compare current and previous execution plans (Query Store in SQL Server, pg_stat_statements plus EXPLAIN ANALYZE in Postgres). Look for parameter sniffing, stale statistics, missing or changed indexes, blocking, data growth and resource waits. Fix the cause: update statistics, add an index, rewrite the query, or force a known good plan as a stopgap.
-
-Tip: Plan regression is a common cause.`, 'B', 'M'],
-
-["Performance", "What is parameter sniffing?",
-`**Answer:** SQL Server builds a plan using the first parameter values it sees. If later values have very different data distributions, the cached plan can perform poorly. Fixes include OPTION (RECOMPILE), OPTIMIZE FOR, plan guides or Query Store forcing, and SQL Server 2022's parameter-sensitive plan optimization.
-
-Tip: Name PSP optimization in 2022.`, 'D', 'M'],
-
-["Indexes", "Clustered vs non-clustered index?",
-`**Answer:** A **clustered** index defines the physical order of table rows (one per table, usually the primary key). A **non-clustered** index is a separate structure with keys and row pointers, and you can have many. Covering indexes with INCLUDE columns avoid lookups.
-
-Tip: Explain key lookups.`, 'B', 'E'],
-
-["Indexes", "How do you decide which indexes to create?",
-`**Answer:** Base it on the actual workload: frequent WHERE, JOIN and ORDER BY columns, selectivity, and the read/write balance (indexes slow writes). Use missing-index DMVs as hints, not orders. Remove unused or duplicate indexes and test the impact.
-
-Tip: Don't blindly add every missing-index suggestion.`, 'D', 'M'],
-
-["Indexes", "What index types does PostgreSQL offer?",
-`**Answer:** B-tree (default), Hash, GIN (full-text, JSONB, arrays), GiST (geospatial, ranges), BRIN (very large naturally ordered tables), plus partial and expression indexes.
-
-Tip: GIN for JSONB.`, 'D', 'M'],
-
-["Maintenance", "What maintenance do SQL Server databases need?",
-`**Answer:** Integrity checks (DBCC CHECKDB), index maintenance based on fragmentation and page density (less important on SSDs than it used to be), statistics updates, backup verification, and cleanup of history tables. Ola Hallengren's scripts are widely used.
-
-Tip: Statistics matter more than fragmentation.`, 'B', 'M'],
-
-["Maintenance", "What is VACUUM in PostgreSQL?",
-`**Answer:** Because of MVCC, updates and deletes leave dead tuples. VACUUM reclaims that space for reuse and updates visibility maps, and ANALYZE updates statistics. Autovacuum does this automatically, but it may need tuning on busy tables. VACUUM also prevents transaction ID wraparound.
-
-Tip: Wraparound is a serious risk.`, 'B', 'M'],
-
-["Concurrency", "Explain locking, blocking and deadlocks.",
-`**Answer:** Locks protect data consistency. **Blocking** happens when one session waits for another's lock. A **deadlock** is a cycle in which each session waits for the other, and the engine kills one as the victim. Reduce them with short transactions, consistent access order, proper indexes, and row-versioning isolation (RCSI).
-
-Tip: Read deadlock graphs.`, 'B', 'M'],
-
-["Concurrency", "What are isolation levels?",
-`**Answer:** Read uncommitted (dirty reads), read committed (default in SQL Server and Postgres), repeatable read, serializable, and snapshot / read committed snapshot (row versioning, so readers don't block writers).
-
-Tip: RCSI reduces blocking.`, 'D', 'M'],
-
-["Security", "How do you secure databases?",
-`**Answer:** Least-privilege roles, no shared or sa logins in applications, Windows/Entra authentication where possible, encryption in transit (TLS) and at rest (TDE), Always Encrypted or column encryption for sensitive fields, auditing, patching, network restrictions, and dynamic data masking for non-production use.
-
-Tip: Mask data in lower environments.`, 'B', 'M'],
-
-["Monitoring", "What do you monitor on database servers?",
-`**Answer:** Availability, CPU, memory, disk latency and space, wait statistics, blocking, long-running queries, log usage, replication/AG lag, backup success, failed logins and job failures.
-
-Tip: Wait statistics show where time goes.`, 'B', 'M'],
-
-["Waits", "What are common SQL Server wait types?",
-`**Answer:** PAGEIOLATCH (disk reads), WRITELOG (log write latency), CXPACKET/CXCONSUMER (parallelism), LCK_M_* (blocking), SOS_SCHEDULER_YIELD (CPU pressure), RESOURCE_SEMAPHORE (memory grants).
-
-Tip: Waits point you to the bottleneck.`, 'D', 'M'],
-
-["Configuration", "Which SQL Server settings do you change after installation?",
-`**Answer:** Max server memory (leave memory for the OS), MAXDOP and cost threshold for parallelism, tempdb with multiple data files on fast storage, instant file initialization, backup compression, optimize for ad hoc workloads, and alerts for critical errors.
-
-Tip: Cost threshold default of 5 is low.`, 'D', 'M'],
-
-["Postgres", "Which PostgreSQL settings commonly need tuning?",
-`**Answer:** shared_buffers (~25% RAM), effective_cache_size, work_mem (careful: it's per operation), maintenance_work_mem, max_connections (use pgBouncer pooling), WAL settings (max_wal_size, checkpoint_timeout), and autovacuum parameters.
-
-Tip: Connection pooling matters.`, 'D', 'M'],
-
-["Upgrades", "How do you plan a database upgrade?",
-`**Answer:** Check compatibility (deprecated features, the Data Migration Assistant for SQL Server, extension versions in Postgres), test with production-like data, benchmark performance, plan the method (in-place, side-by-side, pg_upgrade, logical replication for minimal downtime), have a rollback plan, and set the compatibility level gradually.
-
-Tip: Compatibility level as a safety net.`, 'D', 'M'],
-
-["Cloud", "What changes when databases move to the cloud?",
-`**Answer:** Managed services (Azure SQL, RDS, Aurora, Cloud SQL) handle patching, backups and HA. The DBA focuses on performance, cost (right-sizing, reserved capacity), security, architecture and automation. Some features and access are limited compared with on-prem.
-
-Tip: Cost becomes a DBA concern.`, 'B', 'M'],
-
-["Migration", "How do you migrate a large database with minimal downtime?",
-`**Answer:** Initial full load, then continuous sync (log shipping, AG seeding, logical replication, or AWS DMS/Azure DMS), validate the data, plan a short cutover (stop writes, final sync, switch connection strings), and keep a rollback path.
-
-Tip: Rehearse the cutover.`, 'D', 'M'],
-
-["Capacity", "How do you plan database capacity?",
-`**Answer:** Track growth trends for data, log, tempdb and backups, plus CPU/memory/IO trends, forecast 12–18 months ahead, and plan archiving, partitioning or scaling before limits are reached.
-
-Tip: Trend-based.`, 'B', 'M'],
-
-["Partitioning", "When do you use table partitioning?",
-`**Answer:** For very large tables, to manage data lifecycle (switch out or drop old partitions quickly), improve maintenance, and sometimes get query benefits through partition elimination. It isn't automatically faster, so test it.
-
-Tip: Lifecycle management benefit.`, 'D', 'M'],
-
-["Replication", "What is logical replication in PostgreSQL?",
-`**Answer:** Publishes changes for selected tables to subscribers using logical decoding. It works across versions, so it's useful for upgrades, migrations and data distribution, unlike physical streaming replication which copies the whole cluster.
-
-Tip: Version upgrades.`, 'D', 'M'],
-
-["Tempdb", "Why does tempdb matter in SQL Server?",
-`**Answer:** It holds temp tables, sorts, hashes, version store and spills. Contention or space problems affect the whole instance. Configure multiple equal-size data files, fast storage and monitoring.
-
-Tip: Multiple data files.`, 'B', 'M'],
-
-["Corruption", "What do you do if DBCC CHECKDB reports corruption?",
-`**Answer:** Don't panic or run repair_allow_data_loss first. Identify the affected objects, check the hardware and storage, restore from clean backups (page-level restore if possible), and use repair only as a last resort while understanding the data loss.
-
-Tip: Restore over repair.`, 'D', 'M'],
-
-["SQL", "How do you find the top resource-consuming queries?",
-`**Answer:** SQL Server: Query Store or sys.dm_exec_query_stats ordered by total CPU/reads/duration. PostgreSQL: pg_stat_statements ordered by total_exec_time.
-
-Tip: Total, not just average.`, 'B', 'M'],
-
-["DevOps", "How do DBAs support DevOps?",
-`**Answer:** Database changes in source control, migration tools (Flyway, Liquibase, SSDT), automated deployments with review, test data management, and performance checks in pipelines.
-
-Tip: Migrations as code.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a performance problem you solved.",
-`**Sample answer:** "Month-end reports took 3 hours. I found a non-sargable date filter and a missing covering index. After rewriting the predicate and adding the index, the run time dropped to 8 minutes."
-
-Tip: Root cause and before/after.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a database recovery you performed.",
-`**Sample answer:** "A developer deleted rows in production. I restored the database side by side to a point just before the delete using log backups and copied the missing rows back within an hour, with no downtime."
-
-Tip: Point-in-time skills.`, 'B', 'M'],
-
-["Behavioral", "How do you work with developers?",
-`**Answer:** Review schema and queries early, share performance guidelines, give them read access to Query Store or monitoring, and pair on tuning instead of just rejecting changes.
-
-Tip: Partnership.`, 'B', 'E'],
-
-["Certifications", "Which certifications are useful?",
-`**Answer:** Microsoft DP-300 (Azure Database Administrator), AWS Database Specialty (retired; Solutions Architect instead), EDB PostgreSQL certifications, and Oracle OCP for Oracle DBAs.
-
-Tip: DP-300 for SQL.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Database architect, data platform engineer, or cloud database specialist.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I keep databases fast and recoverable. I've tuned critical reports from hours to minutes, built tested HA/DR, and recovered data quickly when mistakes happened."
-
-Tip: Proof.`, 'B', 'E'],
-
-["SQL", "What makes a predicate non-sargable?",
-`**Answer:** Wrapping indexed columns in functions or calculations, for example WHERE YEAR(OrderDate) = 2026 or WHERE col + 1 = 5, or implicit conversions. These prevent index seeks.
-
-**Fix:** WHERE OrderDate >= '2026-01-01' AND OrderDate < '2027-01-01'.
-
-Tip: Show the rewrite.`, 'B', 'M'],
-
-["SQL", "Explain execution plan operators you watch for.",
-`**Answer:** Table/index scans on large tables, key lookups with high counts, hash/sort spills (warnings), large estimated vs actual row differences (bad statistics), and implicit conversion warnings.
-
-Tip: Estimates vs actuals.`, 'D', 'M'],
-
-["Log", "Why does a transaction log grow uncontrollably?",
-`**Answer:** In Full recovery without log backups, because of long-running open transactions, replication or AG secondaries falling behind, or large index rebuilds. Check log_reuse_wait_desc in sys.databases.
-
-Tip: log_reuse_wait_desc.`, 'B', 'M'],
-
-["Connections", "Why use connection pooling?",
-`**Answer:** Opening connections is expensive. Pooling reuses them, reducing overhead and protecting the database from too many connections, which is especially important in PostgreSQL where each connection is a process.
-
-Tip: pgBouncer.`, 'B', 'M'],
-
-["Scenario", "The database server CPU is at 100%. What do you do?",
-`**Answer:** Identify the top CPU queries right now (sys.dm_exec_requests or pg_stat_activity), check for plan changes or new deployments, kill runaway queries if needed, fix plans or indexes, and check parallelism settings.
-
-Tip: Find what changed.`, 'B', 'M'],
-
-["Scenario", "An AG secondary is falling behind. What do you check?",
-`**Answer:** Network bandwidth and latency, redo queue size and redo thread speed, disk performance on the secondary, large transactions or index rebuilds on the primary, and the synchronous vs asynchronous mode.
-
-Tip: Redo queue.`, 'D', 'M'],
-
-["Data", "How do you protect production data in test environments?",
-`**Answer:** Masking or synthetic data, access restrictions, and refresh processes that remove sensitive fields, to stay compliant with privacy rules.
-
-Tip: Masking.`, 'B', 'M'],
-
-["Automation", "What DBA tasks do you automate?",
-`**Answer:** Backups and restore tests, health checks, index/statistics maintenance, user provisioning, alerting, and inventory reports, using PowerShell (dbatools), SQL Agent, cron, or Ansible.
-
-Tip: dbatools.`, 'B', 'M'],
-
-["NoSQL", "When would you suggest NoSQL instead of relational?",
-`**Answer:** For flexible schemas, massive scale-out with simple access patterns, key-value caching, or document-centric data. Relational is better for complex transactions and joins. Many systems use both.
-
-Tip: Fit the access pattern.`, 'D', 'M'],
-
-["Audit", "How do you audit database access?",
-`**Answer:** SQL Server Audit or Extended Events, pgAudit for PostgreSQL, monitoring privileged activity, and sending logs to a SIEM.
-
-Tip: pgAudit.`, 'D', 'M'],
-
-["DR", "What's the difference between HA and DR for databases?",
-`**Answer:** HA handles local failures with automatic failover and minimal downtime, usually within a site or region. DR recovers from site or region loss, often asynchronously with a defined RPO/RTO.
-
-Tip: Both are needed.`, 'B', 'E']
-];
-
-QB['inf-dba'] = (QB['inf-dba']||[]).concat([
-["Query Store", "How do you use Query Store?",
-`**Answer:** It captures query plans and runtime statistics over time. Use it to find regressed queries, compare plans, force a good plan, and analyze workload changes after upgrades. Enable it on all production databases (it's on by default in SQL Server 2022).
-
-Tip: Plan forcing as a quick fix.`, 'B', 'M'],
-["Postgres", "How do you find blocking in PostgreSQL?",
-`**Answer:** Query pg_stat_activity with pg_blocking_pids(pid) to see who blocks whom, check the wait_event types, and terminate a session with pg_terminate_backend if needed. Set lock_timeout and statement_timeout to prevent long waits.
-
-Tip: pg_blocking_pids.`, 'D', 'M'],
-["Sizing", "How do you size memory for a SQL Server?",
-`**Answer:** Leave memory for the OS (for example 4–6 GB, or about 10% on large servers) and set max server memory to the rest. Monitor Page Life Expectancy trends, memory grants and buffer pool usage.
-
-Tip: Never leave max memory at the default.`, 'D', 'M']
+QB["inf-dba"] = (QB["inf-dba"] || []).concat([
+["Role", "What does a DBA do?", "**Why they ask:** baseline.\n\n**Answer:** Keeps databases available, fast, secure and recoverable: installation and upgrades, backups and restores, high availability and DR, performance tuning, security and access, capacity planning, monitoring, and supporting developers with schema and query design.\n\nTip: Mention the platforms and the size of databases you've run.", "B", "E"],
+["Backup", "Explain SQL Server recovery models.", "**Why they ask:** recovery fundamentals.\n\n**Answer:**\n\"Simple recovery has no log backups, so you can only restore to the last full or differential backup — fine for dev or a reporting copy. Full recovery keeps the log until it's backed up, which allows point-in-time restore, but the log grows if you forget log backups. Bulk-logged minimally logs bulk operations, and you lose point-in-time restore inside those operations. Production OLTP databases should be in Full.\"\n\nTip: Production OLTP usually uses Full.", "B", "M"],
+["Backup", "Design a backup strategy for a critical SQL Server database.", "**Why they ask:** a core DBA responsibility.\n\n**Answer:**\n\"Start from the RPO and RTO. For a 15-minute RPO: weekly full backups, daily differentials, and log backups every 15 minutes, all with checksums, copies offsite or on immutable storage, and retention set by policy. Then automated restore tests to a separate server with DBCC CHECKDB, because a backup you haven't restored is a hope. For a point-in-time restore the order is the last full, the latest differential, then every log backup after it, with STOPAT on the final one.\"\n\nTip: Test restores, not just backups.", "B", "M"],
+["Backup", "How does PostgreSQL backup and point-in-time recovery work?", "**Why they ask:** Postgres depth.\n\n**Answer:**\n\"Logical backups with pg_dump and pg_dumpall are portable but slow for big databases. For production, physical base backups with pg_basebackup plus continuous WAL archiving let you replay WAL to any target time — restore the base backup and set a recovery target time like 14:32, just before the bad delete. pgBackRest and Barman manage this with compression, retention and parallelism.\"\n\nTip: Mention WAL archiving.", "B", "M"],
+["HA", "What HA options exist in SQL Server?", "**Why they ask:** high availability design.\n\n**Answer:**\n\"Always On Availability Groups — groups of databases that fail over together, with readable secondaries and synchronous or asynchronous replicas. Failover Cluster Instances — shared storage with instance-level failover. Log shipping for simple DR, and replication for specific data distribution. Typically a synchronous AG replica in the same region for HA, and an asynchronous one in another region for DR, because synchronous commit across distance adds latency to every transaction.\"\n\nTip: Sync for HA, async for DR distance.", "B", "M"],
+["HA", "How does PostgreSQL high availability work?", "**Why they ask:** Postgres HA.\n\n**Answer:**\n\"Streaming replication to standbys, synchronous or asynchronous, with failover managed by Patroni using etcd or Consul for consensus, and connections routed through HAProxy or pgBouncer so applications follow the primary. Or managed services — RDS, Aurora, Azure Flexible Server — with built-in failover. Patroni is the most common self-managed choice.\"\n\nTip: Patroni is the common choice.", "D", "M"],
+["Performance", "A query suddenly became slow. How do you troubleshoot?", "**Why they ask:** practical troubleshooting.\n\n**Answer:**\n\"Compare the current execution plan with the previous one — Query Store in SQL Server, pg_stat_statements plus EXPLAIN ANALYZE in Postgres. Then look for parameter sniffing, stale statistics, a missing or changed index, blocking, data growth and resource waits, and fix the actual cause: update statistics, add an index, rewrite the query, or force the known good plan as a stopgap. Most 'it was fine yesterday' cases are plan regressions.\"\n\nTip: Plan regression is a common cause.", "B", "M"],
+["Performance", "What is parameter sniffing?", "**Why they ask:** a classic SQL Server issue.\n\n**Answer:**\n\"SQL Server builds a plan using the parameter values from the first execution and caches it. If the first call was for a customer with 5 orders, the plan uses an index seek; when a customer with 2 million orders runs the same cached plan, it's terrible. Fixes are OPTION (RECOMPILE), OPTIMIZE FOR, forcing a plan in Query Store, and SQL Server 2022's parameter-sensitive plan optimization, which keeps multiple plans per query.\"\n\nTip: Name PSP optimization in 2022.", "D", "M"],
+["Indexes", "Clustered vs non-clustered index?", "**Why they ask:** indexing fundamentals.\n\n**Answer:**\n\"A clustered index defines the order the table's rows are stored in — one per table, usually the primary key. A non-clustered index is a separate structure with its keys and a pointer back to the row, and you can have many. If a query uses a non-clustered index but needs columns not in it, SQL Server does a key lookup for each row; adding those columns with INCLUDE makes it a covering index and removes the lookups.\"\n\nTip: Explain key lookups.", "B", "E"],
+["Indexes", "How do you decide which indexes to create?", "**Why they ask:** indexing judgment.\n\n**Answer:**\n\"From the actual workload: columns used often in WHERE, JOIN and ORDER BY, their selectivity, and the read-write balance, since every index slows inserts and updates. Missing-index DMVs are hints, not orders — they often suggest overlapping indexes. I also remove unused and duplicate indexes and test the impact on both reads and writes.\"\n\nTip: Don't blindly add every missing-index suggestion.", "D", "M"],
+["Indexes", "What index types does PostgreSQL offer?", "**Why they ask:** Postgres depth.\n\n**Answer:**\n\"B-tree by default; Hash; GIN for full-text, JSONB and arrays; GiST for geospatial and range types; BRIN for very large tables with naturally ordered data like time-series; plus partial indexes — say only active orders — and expression indexes like LOWER(email).\"\n\nTip: GIN for JSONB.", "D", "M"],
+["Maintenance", "What maintenance do SQL Server databases need?", "**Why they ask:** operational discipline.\n\n**Answer:**\n\"Integrity checks with DBCC CHECKDB, index maintenance based on fragmentation and page density — less critical on SSDs than it used to be — statistics updates, backup verification, and cleaning up history tables. Ola Hallengren's maintenance solution is the common standard. In practice, fresh statistics matter more than fragmentation.\"\n\nTip: Statistics matter more than fragmentation.", "B", "M"],
+["Maintenance", "What is VACUUM in PostgreSQL?", "**Why they ask:** Postgres-specific operations.\n\n**Answer:**\n\"Because of MVCC, updates and deletes leave dead tuples behind. VACUUM reclaims that space for reuse and updates the visibility map; ANALYZE refreshes statistics. Autovacuum handles it automatically but often needs tuning on busy tables. VACUUM also freezes old transaction IDs — if that falls behind, you risk transaction ID wraparound, which can force the database into protective shutdown.\"\n\nTip: Wraparound is a serious risk.", "B", "M"],
+["Concurrency", "Explain locking, blocking and deadlocks.", "**Why they ask:** concurrency troubleshooting.\n\n**Answer:**\n\"Locks protect consistency. Blocking is one session waiting for another's lock — normal if brief. A deadlock is a cycle: session A holds a lock B needs while B holds one A needs, so the engine kills one as the victim. I reduce them with short transactions, accessing tables in a consistent order, good indexes so fewer rows get locked, and row-versioning isolation like RCSI. Deadlock graphs show exactly which resources were involved.\"\n\nTip: Read deadlock graphs.", "B", "M"],
+["Concurrency", "What are isolation levels?", "**Why they ask:** consistency trade-offs.\n\n**Answer:**\n\"Read uncommitted allows dirty reads; read committed — the default in SQL Server and Postgres — prevents them; repeatable read; serializable; and snapshot or read committed snapshot, which use row versions so readers don't block writers. Turning on RCSI often eliminates most reader-writer blocking in SQL Server.\"\n\nTip: RCSI reduces blocking.", "D", "M"],
+["Security", "How do you secure databases?", "**Why they ask:** data protection.\n\n**Answer:**\n\"Least-privilege roles, no shared or sa logins for applications, Windows or Entra authentication where possible, TLS in transit and TDE at rest, Always Encrypted or column encryption for sensitive fields, auditing, patching, network restrictions, and masked data in non-production environments.\"\n\nTip: Mask data in lower environments.", "B", "M"],
+["Monitoring", "What do you monitor on database servers?", "**Why they ask:** proactive operations.\n\n**Answer:**\n\"Availability, CPU, memory, disk latency and space, wait statistics, blocking, long-running queries, log usage, replication or AG lag, backup success, failed logins and job failures. Wait statistics are the most telling — they show where queries actually spend their time.\"\n\nTip: Wait statistics show where time goes.", "B", "M"],
+["Waits", "What are common SQL Server wait types?", "**Why they ask:** diagnosis skill.\n\n**Answer:**\n\"PAGEIOLATCH means waiting on disk reads; WRITELOG is log write latency; CXPACKET and CXCONSUMER relate to parallelism; LCK_M waits are blocking; SOS_SCHEDULER_YIELD points to CPU pressure; and RESOURCE_SEMAPHORE means queries are waiting for memory grants. High WRITELOG with a slow log disk is fixed by storage, not by query tuning.\"\n\nTip: Waits point you to the bottleneck.", "D", "M"],
+["Configuration", "Which SQL Server settings do you change after installation?", "**Why they ask:** configuration best practices.\n\n**Answer:**\n\"Max server memory, leaving room for the OS; MAXDOP and cost threshold for parallelism — the default threshold of 5 is far too low for modern hardware, I usually start around 50; tempdb with multiple equal-size data files on fast storage; instant file initialization; backup compression; optimize for ad hoc workloads; and alerts for severity 17 to 25 errors.\"\n\nTip: Cost threshold default of 5 is low.", "D", "M"],
+["Postgres", "Which PostgreSQL settings commonly need tuning?", "**Why they ask:** Postgres tuning.\n\n**Answer:**\n\"shared_buffers at about 25% of RAM, effective_cache_size, work_mem — carefully, because it's per sort or hash operation, so 64 MB times many operations times many connections adds up fast — maintenance_work_mem, max_connections with pgBouncer for pooling, WAL settings like max_wal_size and checkpoint_timeout, and autovacuum parameters.\"\n\nTip: Connection pooling matters.", "D", "M"],
+["Upgrades", "How do you plan a database upgrade?", "**Why they ask:** change management.\n\n**Answer:**\n\"Check compatibility — deprecated features through the Data Migration Assistant for SQL Server, extension versions for Postgres — test with production-like data, benchmark performance, choose the method — in-place, side-by-side, pg_upgrade, or logical replication for minimal downtime — and have a rollback plan. In SQL Server I keep the old compatibility level at first and raise it after testing, as a safety net for plan changes.\"\n\nTip: Compatibility level as a safety net.", "D", "M"],
+["Cloud", "What changes when databases move to the cloud?", "**Why they ask:** cloud-era DBA role.\n\n**Answer:**\n\"Managed services — Azure SQL, RDS, Aurora, Cloud SQL — take over patching, backups and HA. The DBA shifts to performance, cost — right-sizing and reserved capacity — security, architecture and automation. Some features and OS-level access aren't available, and cost becomes a daily DBA concern: an oversized instance is now a monthly bill.\"\n\nTip: Cost becomes a DBA concern.", "B", "M"],
+["Migration", "How do you migrate a large database with minimal downtime?", "**Why they ask:** migration experience.\n\n**Answer:**\n\"An initial full load, then continuous sync — log shipping, AG seeding, logical replication, or AWS or Azure DMS — data validation with row counts and checksums, then a short cutover: stop writes, final sync, switch connection strings. Keep a rollback path and rehearse the cutover at least once so the timing is known.\"\n\nTip: Rehearse the cutover.", "D", "M"],
+["Capacity", "How do you plan database capacity?", "**Why they ask:** forward planning.\n\n**Answer:**\n\"Track growth for data, log, tempdb and backups, plus CPU, memory and IO trends, forecast 12 to 18 months ahead, and plan archiving, partitioning or scaling before hitting limits. If data grows 40 GB a month on a 2 TB volume that's 60% full, I have about 20 months — but backups and maintenance headroom shorten that.\"\n\nTip: Trend-based.", "B", "M"],
+["Partitioning", "When do you use table partitioning?", "**Why they ask:** large table management.\n\n**Answer:**\n\"For very large tables, mainly for data lifecycle — switching out or dropping a month of old data instantly instead of a huge DELETE — easier maintenance, and sometimes partition elimination in queries. It's not automatically faster; queries that don't filter on the partition key can get slower, so I test it.\"\n\nTip: Lifecycle management benefit.", "D", "M"],
+["Replication", "What is logical replication in PostgreSQL?", "**Why they ask:** Postgres replication options.\n\n**Answer:**\n\"It publishes changes for selected tables to subscribers using logical decoding. Unlike physical streaming replication, which copies the whole cluster byte for byte and needs the same major version, logical replication works across versions — so it's ideal for near-zero-downtime upgrades, migrations and selective data distribution.\"\n\nTip: Version upgrades.", "D", "M"],
+["Tempdb", "Why does tempdb matter in SQL Server?", "**Why they ask:** instance-wide performance.\n\n**Answer:**\n\"It holds temp tables, sorts, hashes, the version store for snapshot isolation, and spills from queries that ran out of memory. Contention or running out of space affects every database on the instance. Multiple equal-size data files, fast storage and monitoring prevent most issues.\"\n\nTip: Multiple data files.", "B", "M"],
+["Corruption", "What do you do if DBCC CHECKDB reports corruption?", "**Why they ask:** crisis judgment.\n\n**Answer:**\n\"Don't panic, and don't run REPAIR_ALLOW_DATA_LOSS first — the name says it all. Identify the affected objects — sometimes it's just a non-clustered index that can be rebuilt — check hardware and storage logs, restore from clean backups, using page-level restore if possible, and use repair only as a last resort, understanding exactly what data is lost.\"\n\nTip: Restore over repair.", "D", "M"],
+["SQL", "How do you find the top resource-consuming queries?", "**Why they ask:** tuning prioritization.\n\n**Answer:**\n\"In SQL Server, Query Store or sys.dm_exec_query_stats ordered by total CPU, reads or duration. In PostgreSQL, pg_stat_statements ordered by total_exec_time. Total matters more than average: a 50-millisecond query run a million times a day costs far more than a 30-second report run once.\"\n\nTip: Total, not just average.", "B", "M"],
+["DevOps", "How do DBAs support DevOps?", "**Why they ask:** modern ways of working.\n\n**Answer:**\n\"Database changes in source control, migration tools like Flyway, Liquibase or SSDT, automated deployments with review, test data management, and performance checks in pipelines — so schema changes go through the same process as code.\"\n\nTip: Migrations as code.", "D", "M"],
+["Behavioral", "Tell me about a performance problem you solved.", "**Why they ask:** proof.\n\n**Answer:**\n\"Month-end reports took three hours. I found a non-sargable date filter and a missing covering index. After rewriting the predicate and adding the index, the run time dropped to 8 minutes.\"\n\nTip: Root cause and before/after.", "B", "M"],
+["Behavioral", "Tell me about a database recovery you performed.", "**Why they ask:** recovery skills under pressure.\n\n**Answer:**\n\"A developer deleted rows in production. I restored the database side by side to a point just before the delete using log backups, and copied the missing rows back within an hour — with no downtime for the live database.\"\n\nTip: Point-in-time skills.", "B", "M"],
+["Behavioral", "How do you work with developers?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Review schemas and queries early, share performance guidelines, give them read access to Query Store or monitoring, and pair on tuning instead of just rejecting changes.\"\n\nTip: Partnership.", "B", "E"],
+["Certifications", "Which certifications are useful?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Microsoft DP-300 for Azure database administration, EDB PostgreSQL certifications, Oracle OCP for Oracle DBAs, and cloud architect certifications since AWS retired its Database Specialty exam.\"\n\nTip: DP-300 for SQL.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward database architect, data platform engineer, or cloud database specialist.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I keep databases fast and recoverable. I've tuned critical reports from hours to minutes, built tested HA and DR, and recovered data quickly when mistakes happened.\"\n\nTip: Proof.", "B", "E"],
+["SQL", "What makes a predicate non-sargable?", "**Why they ask:** practical tuning knowledge.\n\n**Answer:**\n\"Wrapping an indexed column in a function or calculation — WHERE YEAR(OrderDate) = 2026 or WHERE col + 1 = 5 — or implicit type conversions, all of which prevent index seeks. The fix is a range on the bare column: WHERE OrderDate >= '2026-01-01' AND OrderDate < '2027-01-01'.\"\n\nTip: Show the rewrite.", "B", "M"],
+["SQL", "Explain execution plan operators you watch for.", "**Why they ask:** plan reading skill.\n\n**Answer:**\n\"Scans on large tables, key lookups with high execution counts, hash and sort spill warnings, big differences between estimated and actual rows — which usually means bad statistics — and implicit conversion warnings. An estimate of 10 rows against an actual of 2 million explains most bad plans.\"\n\nTip: Estimates vs actuals.", "D", "M"],
+["Log", "Why does a transaction log grow uncontrollably?", "**Why they ask:** a common incident.\n\n**Answer:**\n\"Usually Full recovery without log backups, a long-running open transaction, replication or an AG secondary falling behind, or large index rebuilds. The log_reuse_wait_desc column in sys.databases tells you exactly what's preventing log reuse.\"\n\nTip: log_reuse_wait_desc.", "B", "M"],
+["Connections", "Why use connection pooling?", "**Why they ask:** scalability.\n\n**Answer:**\n\"Opening connections is expensive, so pooling reuses them, reducing overhead and protecting the database from connection storms. It matters even more in PostgreSQL, where each connection is a separate process — 2,000 direct connections can exhaust memory, while pgBouncer can serve them with 100.\"\n\nTip: pgBouncer.", "B", "M"],
+["Scenario", "The database server CPU is at 100%. What do you do?", "**Why they ask:** live incident response.\n\n**Answer:**\n\"Find the top CPU consumers right now with sys.dm_exec_requests or pg_stat_activity, check for plan changes or a recent deployment, kill a runaway query if necessary, then fix the plan or index and review parallelism settings. The question is always 'what changed?'\"\n\nTip: Find what changed.", "B", "M"],
+["Scenario", "An AG secondary is falling behind. What do you check?", "**Why they ask:** HA troubleshooting.\n\n**Answer:**\n\"Network bandwidth and latency, the redo queue size and how fast the redo thread is applying changes, disk performance on the secondary, large transactions or index rebuilds on the primary, and whether it's in synchronous or asynchronous mode.\"\n\nTip: Redo queue.", "D", "M"],
+["Data", "How do you protect production data in test environments?", "**Why they ask:** privacy compliance.\n\n**Answer:**\n\"Masking or synthetic data, restricted access, and refresh processes that scrub sensitive fields every time production is copied down, to stay compliant with privacy rules.\"\n\nTip: Masking.", "B", "M"],
+["Automation", "What DBA tasks do you automate?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Backups and restore tests, health checks, index and statistics maintenance, user provisioning, alerting and inventory reports — using PowerShell with dbatools, SQL Agent, cron or Ansible. dbatools alone turned our monthly restore-test chore into a scheduled job.\"\n\nTip: dbatools.", "B", "M"],
+["NoSQL", "When would you suggest NoSQL instead of relational?", "**Why they ask:** architectural judgment.\n\n**Answer:**\n\"For flexible schemas, massive scale-out with simple access patterns, key-value caching, or document-centric data. Relational is better for complex transactions and joins. Many systems use both — Postgres for orders, Redis for sessions.\"\n\nTip: Fit the access pattern.", "D", "M"],
+["Audit", "How do you audit database access?", "**Why they ask:** compliance.\n\n**Answer:**\n\"SQL Server Audit or Extended Events, pgAudit for PostgreSQL, monitoring privileged activity, and sending audit logs to the SIEM where the database admins can't alter them.\"\n\nTip: pgAudit.", "D", "M"],
+["DR", "What's the difference between HA and DR for databases?", "**Why they ask:** resilience concepts.\n\n**Answer:**\n\"HA handles local failures — a server or zone — with automatic failover and minimal downtime, usually within a site or region. DR recovers from losing a whole site or region, often with asynchronous replication and a defined RPO and RTO. You need both.\"\n\nTip: Both are needed.", "B", "E"]
+]);
+
+QB["inf-dba"] = (QB["inf-dba"] || []).concat([
+["Query Store", "How do you use Query Store?", "**Why they ask:** modern SQL Server tooling.\n\n**Answer:**\n\"It captures query plans and runtime statistics over time. I use it to find regressed queries, compare plans, force a good plan as a quick fix, and analyze workload changes after upgrades. It's on by default for new databases in SQL Server 2022, and I enable it on every production database.\"\n\nTip: Plan forcing as a quick fix.", "B", "M"],
+["Postgres", "How do you find blocking in PostgreSQL?", "**Why they ask:** Postgres troubleshooting.\n\n**Answer:**\n\"Query pg_stat_activity together with pg_blocking_pids(pid) to see who's blocking whom, check wait_event types, and terminate a session with pg_terminate_backend if needed. Setting lock_timeout and statement_timeout prevents sessions waiting forever.\"\n\nTip: pg_blocking_pids.", "D", "M"],
+["Sizing", "How do you size memory for a SQL Server?", "**Why they ask:** configuration basics.\n\n**Answer:**\n\"Leave memory for the OS — around 4 to 6 GB, or about 10% on large servers — and set max server memory to the rest. On a 128 GB server I'd start around 115 GB. Then watch Page Life Expectancy trends, memory grants and buffer pool usage.\"\n\nTip: Never leave max memory at the default.", "D", "M"]
 ]);
