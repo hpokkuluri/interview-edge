@@ -1,260 +1,52 @@
 // Quality Engineer / Quality Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-qual'] = [
-["QMS", "What are the key elements of ISO 9001:2015?",
-`**Why they ask:** foundation of most quality systems.
-
-**Answer:** Context of the organization and interested parties, leadership commitment and quality policy, **risk-based thinking**, planning and quality objectives, support (resources, competence, documented information), operation (processes, design, purchasing, production, release), performance evaluation (monitoring, **internal audits**, management review), and improvement (**nonconformity and corrective action**, continual improvement). It uses a process approach and the PDCA cycle.
-
-Tip: Mention your certification audits.`, 'B', 'E'],
-
-["QMS", "What other quality standards have you worked with?",
-`**Answer:** IATF 16949 (automotive), AS9100 (aerospace), ISO 13485 (medical devices), 21 CFR Part 820 / QMSR (US medical device), GMP (pharma, 21 CFR 210/211), and ISO 22000/FSSC (food).
-
-Tip: Name the ones relevant to the job.`, 'B', 'M'],
-
-["CAPA", "Explain the CAPA process.",
-`**Answer:** Corrective and preventive action:
-1. Identify and document the problem.
-2. **Contain** — protect customers (quarantine, sort).
-3. Investigate **root cause** (5 Whys, fishbone, data).
-4. Define corrective actions (fix the cause) and preventive actions (stop similar issues elsewhere).
-5. Implement.
-6. **Verify effectiveness** with data over time.
-7. Close and share learnings.
-
-Tip: Effectiveness verification is what auditors check most.`, 'B', 'E'],
-
-["8D", "What is the 8D method?",
-`**Answer:** A structured problem-solving method often required by customers: D1 team, D2 problem description, D3 containment, D4 root cause (including why it escaped), D5 corrective actions, D6 implementation and validation, D7 prevent recurrence (systemic fixes), D8 recognize the team.
-
-Tip: Mention "escape point" analysis in D4.`, 'B', 'M'],
-
-["Root Cause", "Which root cause tools do you use?",
-`**Answer:** 5 Whys, fishbone/Ishikawa (man, machine, method, material, measurement, environment), Pareto analysis, is/is-not analysis, fault tree analysis, and statistical tools (regression, DOE). Choose by complexity.
-
-Tip: Give an example where data disproved the first assumption.`, 'B', 'E'],
-
-["SPC", "What is SPC and how do control charts work?",
-`**Answer:** Statistical process control monitors a process to distinguish **common cause** (normal) variation from **special cause** (assignable) variation. Control charts plot data with a center line and control limits (typically ±3 sigma). Signals: points outside limits, runs of 7+ on one side, trends. Types: X-bar/R, I-MR for variables; p, np, c, u charts for attributes.
-
-Tip: Control limits come from the process, not specifications.`, 'D', 'M'],
-
-["Capability", "What are Cp and Cpk?",
-`**Answer:** **Cp** = (USL − LSL) ÷ 6σ — potential capability if centered. **Cpk** = min[(USL − mean), (mean − LSL)] ÷ 3σ — actual capability considering centering. Cpk ≥ 1.33 is a common requirement; ≥ 1.67 for critical characteristics.
-
-**Example:** spec 10 ± 0.3, mean 10.1, σ = 0.05 → Cpk = min(0.2, 0.4) ÷ 0.15 = 1.33.
-
-Tip: Show the calculation.`, 'D', 'M'],
-
-["MSA", "What is measurement system analysis?",
-`**Answer:** Checking that measurement systems are accurate and precise before trusting data — bias, linearity, stability, and **Gage R&R** (repeatability and reproducibility). Gage R&R under 10% of tolerance is good; 10–30% may be acceptable; over 30% needs improvement.
-
-Tip: "Bad measurement = bad decisions."`, 'D', 'M'],
-
-["FMEA", "What is FMEA?",
-`**Answer:** Failure mode and effects analysis identifies potential failures, their effects and causes, rates **severity, occurrence and detection**, and prioritizes actions. Traditional RPN = S × O × D; the AIAG-VDA FMEA (2019) uses Action Priority (high/medium/low) instead. Types: design FMEA and process FMEA.
-
-Tip: Mention the AIAG-VDA update.`, 'D', 'M'],
-
-["Control Plan", "What is a control plan?",
-`**Answer:** A document listing process steps, key characteristics, specifications, measurement methods, sample sizes and frequencies, control methods and reaction plans. It links FMEA risks to controls on the floor.
-
-Tip: Living document.`, 'D', 'M'],
-
-["APQP", "What are APQP and PPAP?",
-`**Answer:** **APQP** (advanced product quality planning) is a structured process for developing new products and processes (planning, design, process development, validation, launch). **PPAP** (production part approval process) is the evidence package suppliers submit — design records, FMEA, control plan, MSA, capability studies, dimensional results, samples — for customer approval before production.
-
-Tip: Automotive standard, used elsewhere too.`, 'D', 'M'],
-
-["Supplier Quality", "How do you manage supplier quality?",
-`**Answer:** Supplier qualification and audits, PPAP or first article inspection, incoming inspection based on risk (skip-lot for good performers), scorecards (PPM defects, delivery), SCARs for problems, and development programs for key suppliers.
-
-Tip: Risk-based approach.`, 'D', 'M'],
-
-["Supplier Quality", "What is a SCAR?",
-`**Answer:** A supplier corrective action request — formally asking a supplier to investigate a nonconformance, contain it, find root cause and implement corrective actions, usually with an 8D response and deadlines.
-
-Tip: Track closure and effectiveness.`, 'B', 'M'],
-
-["Audits", "How do you conduct an internal audit?",
-`**Answer:** Plan the scope and criteria, review documents, interview and observe, sample records, identify findings (nonconformities, observations), report clearly with evidence, and follow up on corrective actions.
-
-Tip: Process approach — follow the work, not just documents.`, 'B', 'M'],
-
-["Audits", "How do you prepare for a certification or customer audit?",
-`**Answer:** Run internal audits first, close gaps, ensure documents and records are current, brief the team, prepare an audit schedule and escorts, and respond to findings promptly with CAPAs.
-
-Tip: Audit readiness all year.`, 'B', 'M'],
-
-["Nonconformance", "How do you handle nonconforming product?",
-`**Answer:** Identify and segregate it, document the nonconformance, decide disposition through a material review board (use as is, rework, repair, scrap, return to supplier), and trigger CAPA where needed.
-
-Tip: Mention MRB.`, 'B', 'E'],
-
-["Complaints", "How do you handle customer complaints?",
-`**Answer:** Acknowledge quickly, contain (check stock, WIP, shipments), investigate root cause, respond with corrective action (often 8D), verify effectiveness, and track trends.
-
-Tip: Speed of containment matters to customers.`, 'B', 'M'],
-
-["Metrics", "Which quality KPIs do you track?",
-`**Answer:** Customer PPM or complaints, internal scrap and rework, first-pass yield, cost of poor quality, supplier PPM, CAPA closure time and effectiveness, audit findings, and process capability.
-
-Tip: Cost of poor quality speaks to leadership.`, 'B', 'M'],
-
-["Cost of Quality", "What is cost of quality?",
-`**Answer:** **Prevention** (training, planning, FMEA) + **appraisal** (inspection, testing, audits) + **internal failure** (scrap, rework) + **external failure** (returns, warranty, recalls, lost customers). Investing in prevention reduces total cost.
-
-Tip: Use it to justify improvement projects.`, 'D', 'M'],
-
-["Six Sigma", "What is Six Sigma?",
-`**Answer:** A data-driven methodology to reduce variation and defects (target 3.4 defects per million opportunities), using DMAIC (Define, Measure, Analyze, Improve, Control) and statistical tools. Belts (Green, Black) indicate training level.
-
-Tip: Mention your certification.`, 'B', 'M'],
-
-["DOE", "What is design of experiments?",
-`**Answer:** A statistical method to test multiple factors at once and understand their effects and interactions on an outcome — e.g. temperature, pressure and time on seal strength — far more efficient than one-factor-at-a-time.
-
-Tip: Mention a DOE result.`, 'D', 'S'],
-
-["Sampling", "What is acceptance sampling?",
-`**Answer:** Inspecting a sample from a lot to decide acceptance, using standards like ANSI/ASQ Z1.4 with AQL (acceptable quality level). It's cheaper than 100% inspection but carries producer's and consumer's risk.
-
-Tip: Prefer process control over inspection.`, 'D', 'M'],
-
-["Documentation", "How do you manage document control?",
-`**Answer:** Controlled creation, review, approval, distribution and revision of documents; obsolete versions removed; change history; training on changes; and electronic systems (e.g. MasterControl, Veeva, ETQ).
-
-Tip: Uncontrolled copies are a common finding.`, 'B', 'M'],
-
-["Change Control", "Why is change control important?",
-`**Answer:** Changes to products, processes, suppliers or equipment can introduce defects. Change control evaluates risk, approves, validates and communicates changes before implementation.
-
-Tip: Especially critical in regulated industries.`, 'D', 'M'],
-
-["Validation", "What is process validation?",
-`**Answer:** Proving a process consistently produces product meeting requirements — IQ (installation qualification), OQ (operational qualification), PQ (performance qualification). Required in medical device and pharma manufacturing.
-
-Tip: Mention FDA guidance.`, 'D', 'S'],
-
-["Training", "How do you build a quality culture?",
-`**Answer:** Leadership commitment, everyone responsible for quality, training, empowering operators to stop the line, celebrating prevention, and transparent quality data.
-
-Tip: Culture beats inspection.`, 'D', 'M'],
-
-["Regulatory", "What is a recall and how is it managed?",
-`**Answer:** Removing or correcting products in the field due to safety or compliance issues. Manage with traceability data (lots, serials), risk assessment, regulator notification where required, customer communication, effectiveness checks and root cause CAPA.
-
-Tip: Traceability is essential.`, 'D', 'S'],
-
-["Traceability", "Why is traceability important?",
-`**Answer:** It links finished products to materials, processes, equipment and people, enabling targeted containment and recalls and supporting root cause analysis.
-
-Tip: Lot genealogy in MES/ERP.`, 'B', 'M'],
-
-["Scenario", "Scrap rate suddenly doubles. What do you do?",
-`**Answer:** Contain, gather data (when it started, which shift, machine, material lot), check recent changes (suppliers, settings, people, maintenance), run root cause analysis, fix, and verify.
-
-Tip: "What changed?" is the first question.`, 'B', 'M'],
-
-["Scenario", "Production wants to ship product that's slightly out of spec. What do you do?",
-`**Answer:** Evaluate impact on fit, function and safety with engineering; if acceptable, request a formal deviation or customer concession; document it; otherwise hold the product. Don't ship without approval.
-
-Tip: Integrity and process.`, 'B', 'M'],
-
-["Scenario", "An auditor finds a major nonconformance. How do you respond?",
-`**Answer:** Understand the finding, contain any product risk, perform root cause analysis, implement corrective actions with timelines, provide evidence to the auditor, and check for similar issues elsewhere.
-
-Tip: Systemic fixes.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a quality problem you solved.",
-`**Sample answer:** "Customer complaints about cracked housings rose to 800 PPM. Data showed cracks came from one mold cavity after a resin change. We adjusted drying time and mold temperature using a DOE, and complaints fell below 50 PPM."
-
-Tip: Data and results.`, 'B', 'M'],
-
-["Behavioral", "Tell me about influencing production to follow quality procedures.",
-`**Sample answer:** "Operators skipped first-piece checks to save time. I showed how one missed check had caused a $40K scrap event, simplified the checklist, and added it to the start-up routine. Compliance reached 100%."
-
-Tip: Make it easy and meaningful.`, 'B', 'M'],
-
-["Behavioral", "Describe a supplier quality improvement.",
-`**Sample answer:** "A supplier's defect rate was 2,500 PPM. We ran a joint 8D, found their inspection gauges were out of calibration, and helped set up SPC. PPM dropped to 200 in four months."
-
-Tip: Partnership approach.`, 'B', 'M'],
-
-["Leadership", "How would you build a quality department?",
-`**Answer:** Define the QMS and priorities, hire quality engineers and technicians, set KPIs, establish CAPA, audit and supplier quality processes, and partner with operations and engineering.
-
-Tip: Structured plan.`, 'D', 'S'],
-
-["Leadership", "How do you report quality to leadership?",
-`**Answer:** Monthly dashboard: customer complaints and PPM, cost of poor quality, internal scrap, CAPA status, audit results, top issues and actions.
-
-Tip: Financial framing.`, 'D', 'S'],
-
-["Management Review", "What is a management review?",
-`**Answer:** Periodic review by top management of QMS performance — objectives, audit results, customer feedback, process performance, CAPAs, risks and opportunities — leading to decisions and resources for improvement.
-
-Tip: ISO requirement.`, 'B', 'M'],
-
-["Risk", "What is risk-based thinking in quality?",
-`**Answer:** Identifying risks and opportunities in processes and addressing them proactively (FMEA, risk registers), rather than only reacting to problems.
-
-Tip: ISO 9001:2015 concept.`, 'B', 'M'],
-
-["Calibration", "Why is calibration important?",
-`**Answer:** Measuring equipment must be accurate to make correct decisions. Calibration schedules, traceability to standards (NIST), labeling and handling of out-of-tolerance findings (impact assessment on product) are required.
-
-Tip: Out-of-tolerance impact assessment.`, 'B', 'E'],
-
-["Digital", "How is technology changing quality?",
-`**Answer:** Automated inspection with machine vision, real-time SPC from sensors, QMS software, AI for defect detection and predictive quality, and digital traceability.
-
-Tip: Mention a project.`, 'D', 'M'],
-
-["Data", "How do you use data in quality decisions?",
-`**Answer:** Pareto for priorities, SPC for process control, capability studies, hypothesis tests for comparisons, regression and DOE for cause-effect.
-
-Tip: Statistical literacy.`, 'D', 'M'],
-
-["Career", "Why quality?",
-`**Sample answer:** "Quality protects customers and the company's reputation. I enjoy using data to find root causes and building systems that prevent problems."
-
-Tip: Purpose.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I cut customer PPM from 800 to under 50, improved supplier quality, and led clean certification audits. I combine statistical skills with practical problem solving on the floor."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is the difference between quality assurance and quality control?",
-`**Answer:** **QA** focuses on processes and systems that prevent defects (planning, procedures, audits). **QC** focuses on inspecting and testing products to find defects.
-
-Tip: Prevention vs detection.`, 'B', 'E'],
-
-["Technical", "What is a deviation vs a nonconformance?",
-`**Answer:** A **nonconformance** is a failure to meet a requirement discovered after the fact. A **deviation** is a planned, approved temporary departure from a requirement before it happens.
-
-Tip: Common in regulated industries.`, 'D', 'M'],
-
-["Technical", "What is first article inspection?",
-`**Answer:** A full inspection of the first part from a new process, supplier or design change to verify it meets all drawing requirements (AS9102 in aerospace).
-
-Tip: Validates the process setup.`, 'B', 'M'],
-
-["Technical", "What does PPM mean in quality?",
-`**Answer:** Parts per million defective = (defects ÷ total units) × 1,000,000.
-
-**Example:** 25 defects in 50,000 parts = 500 PPM.
-
-Tip: Quick math.`, 'B', 'E'],
-
-["Technical", "What is a material review board?",
-`**Answer:** A cross-functional group (quality, engineering, production, sometimes customer) that decides the disposition of nonconforming material — use as is, rework, scrap or return.
-
-Tip: Formal disposition.`, 'B', 'M'],
-
-["Technical", "What is the difference between a major and minor nonconformity in audits?",
-`**Answer:** **Major:** absence or total breakdown of a required system element, or a situation likely to result in nonconforming product reaching customers. **Minor:** a single lapse that doesn't indicate system failure.
-
-Tip: Majors can block certification.`, 'D', 'M']
-];
+QB["sc-qual"] = (QB["sc-qual"] || []).concat([
+["QMS", "What are the key elements of ISO 9001:2015?", "**Why they ask:** foundation of most quality systems.\n\n**Answer:** Context of the organization and interested parties, leadership commitment and quality policy, **risk-based thinking**, planning and quality objectives, support (resources, competence, documented information), operation (processes, design, purchasing, production, release), performance evaluation (monitoring, **internal audits**, management review), and improvement (**nonconformity and corrective action**, continual improvement). It uses a process approach and the PDCA cycle.\n\nTip: Mention your certification audits.", "B", "E"],
+["QMS", "What other quality standards have you worked with?", "**Why they ask:** industry fit.\n\n**Answer:**\n\"IATF 16949 for automotive, AS9100 for aerospace, ISO 13485 for medical devices, the FDA's QMSR — formerly 21 CFR Part 820 — for US medical devices, GMP under 21 CFR 210 and 211 for pharma, and ISO 22000 or FSSC for food. My deepest experience is with ISO 13485 and FDA medical device requirements.\"\n\nTip: Name the ones relevant to the job.", "B", "M"],
+["CAPA", "Explain the CAPA process.", "**Why they ask:** CAPA is the backbone of any QMS.\n\n**Answer:**\n\"First, identify and document the problem. Then contain it to protect customers — quarantine or sort. Investigate the root cause with 5 Whys, fishbone and data. Define corrective actions that fix the cause, and preventive actions that stop similar issues elsewhere. Implement them. Then verify effectiveness with data over time — say, three months of zero recurrence. Finally, close it and share the learning. Effectiveness verification is what auditors check most.\"\n\nTip: Effectiveness verification is what auditors check most.", "B", "E"],
+["8D", "What is the 8D method?", "**Why they ask:** customers often require 8D.\n\n**Answer:**\n\"It's a structured problem-solving method. D1, form the team. D2, describe the problem. D3, containment. D4, root cause — including why the defect escaped detection. D5, choose corrective actions. D6, implement and validate them. D7, prevent recurrence with systemic fixes. D8, recognize the team. The escape-point analysis in D4 is what separates a good 8D from a weak one.\"\n\nTip: Mention escape-point analysis in D4.", "B", "M"],
+["Root Cause", "Which root cause tools do you use?", "**Why they ask:** problem-solving depth.\n\n**Answer:**\n\"5 Whys, fishbone diagrams covering man, machine, method, material, measurement and environment, Pareto analysis, is/is-not analysis, fault tree analysis, and statistical tools like regression and DOE. I choose by complexity. Once everyone was sure a defect came from a new operator, but the is/is-not analysis showed it only happened on one material lot — the supplier was the cause.\"\n\nTip: Give an example where data disproved the first assumption.", "B", "E"],
+["SPC", "What is SPC and how do control charts work?", "**Why they ask:** a core quality tool.\n\n**Answer:**\n\"Statistical process control monitors a process to tell common-cause variation — normal noise — from special-cause variation that has a real, assignable reason. Control charts plot data with a center line and control limits, usually at plus or minus three sigma. Signals include points outside the limits, seven or more in a row on one side, or a trend. X-bar R and I-MR charts are for measured data; p, np, c and u charts for attribute data. Control limits come from the process itself, not from the specification.\"\n\nTip: Control limits come from the process, not specifications.", "D", "M"],
+["Capability", "What are Cp and Cpk?", "**Why they ask:** capability is a common customer requirement.\n\n**Answer:**\n\"Cp is the spec width divided by six sigma — potential capability if the process were centered. Cpk is the smaller of the distance from the mean to each spec limit, divided by three sigma — actual capability including centering. For example, with a spec of 10 plus or minus 0.3, a mean of 10.1 and sigma of 0.05, the distances are 0.2 and 0.4, so Cpk is 0.2 divided by 0.15 — 1.33. That's a common minimum; critical characteristics often need 1.67.\"\n\nTip: Show the calculation.", "D", "M"],
+["MSA", "What is measurement system analysis?", "**Why they ask:** bad measurement means bad decisions.\n\n**Answer:**\n\"It's checking that a measurement system is accurate and precise before trusting its data — bias, linearity, stability, and Gage R&R for repeatability and reproducibility. A Gage R&R under 10% of tolerance is good, 10 to 30% may be acceptable depending on the application, and over 30% needs improvement. Bad measurement means bad decisions.\"\n\nTip: 'Bad measurement = bad decisions.'", "D", "M"],
+["FMEA", "What is FMEA?", "**Why they ask:** proactive risk management.\n\n**Answer:**\n\"Failure mode and effects analysis identifies potential failures, their effects and causes, rates severity, occurrence and detection, and prioritizes actions. The traditional method multiplies them into an RPN. The 2019 AIAG-VDA FMEA replaced RPN with Action Priority — high, medium or low — so a high-severity issue can't hide behind a low occurrence score. There are design FMEAs and process FMEAs.\"\n\nTip: Mention the AIAG-VDA update.", "D", "M"],
+["Control Plan", "What is a control plan?", "**Why they ask:** linking risk to the floor.\n\n**Answer:**\n\"It's a document listing each process step, its key characteristics and specifications, the measurement method, sample size and frequency, the control method, and the reaction plan if something goes out. It links the risks found in the FMEA to the controls operators actually use. It's a living document — updated when the process or FMEA changes.\"\n\nTip: It's a living document.", "D", "M"],
+["APQP", "What are APQP and PPAP?", "**Why they ask:** new product quality frameworks.\n\n**Answer:**\n\"APQP — advanced product quality planning — is a structured process for developing new products and processes: planning, product design, process design, validation and launch. PPAP — production part approval process — is the evidence package a supplier submits for customer approval before production: design records, FMEA, control plan, MSA, capability studies, dimensional results and samples. They're automotive standards, but used in other industries too.\"\n\nTip: Automotive standard, used elsewhere too.", "D", "M"],
+["Supplier Quality", "How do you manage supplier quality?", "**Why they ask:** many defects start at suppliers.\n\n**Answer:**\n\"Supplier qualification and audits, PPAP or first article inspection, incoming inspection based on risk — with skip-lot for good performers — scorecards on defect PPM and delivery, SCARs when problems occur, and development programs for key suppliers. Effort follows risk.\"\n\nTip: A risk-based approach.", "D", "M"],
+["Supplier Quality", "What is a SCAR?", "**Why they ask:** supplier accountability.\n\n**Answer:**\n\"A supplier corrective action request — formally asking a supplier to investigate a nonconformance, contain it, find the root cause and implement corrective actions, usually as an 8D with deadlines. I track both closure and whether the fix actually worked.\"\n\nTip: Track closure and effectiveness.", "B", "M"],
+["Audits", "How do you conduct an internal audit?", "**Why they ask:** audits keep the QMS honest.\n\n**Answer:**\n\"I plan the scope and criteria, review documents, then interview and observe, and sample records. Findings — nonconformities and observations — are reported clearly with evidence, and I follow up on the corrective actions. I use the process approach — following the work through the floor, not just reading procedures.\"\n\nTip: Follow the work, not just the documents.", "B", "M"],
+["Audits", "How do you prepare for a certification or customer audit?", "**Why they ask:** audit readiness.\n\n**Answer:**\n\"Run internal audits first and close the gaps. Make sure documents and records are current. Brief the team on what to expect, prepare the audit schedule and escorts, and respond to findings promptly with CAPAs. Ideally, we're audit-ready all year, not just the week before.\"\n\nTip: Audit readiness all year.", "B", "M"],
+["Nonconformance", "How do you handle nonconforming product?", "**Why they ask:** controlling bad product.\n\n**Answer:**\n\"Identify and segregate it so it can't be used by mistake, document the nonconformance, and have a material review board decide the disposition — use as is, rework, repair, scrap or return to supplier. If it's systemic, it triggers a CAPA.\"\n\nTip: Mention MRB.", "B", "E"],
+["Complaints", "How do you handle customer complaints?", "**Why they ask:** customer trust.\n\n**Answer:**\n\"Acknowledge it quickly. Contain — check stock, work-in-progress and shipments in transit. Investigate the root cause, respond with corrective action, often as an 8D, verify effectiveness, and track complaint trends. Customers care most about how fast you contain.\"\n\nTip: Speed of containment matters to customers.", "B", "M"],
+["Metrics", "Which quality KPIs do you track?", "**Why they ask:** managing quality by data.\n\n**Answer:**\n\"Customer PPM or complaints, internal scrap and rework, first-pass yield, cost of poor quality, supplier PPM, CAPA closure time and effectiveness, audit findings, and process capability. Cost of poor quality is the one leadership listens to.\"\n\nTip: Cost of poor quality speaks to leadership.", "B", "M"],
+["Cost of Quality", "What is cost of quality?", "**Why they ask:** connects quality to money.\n\n**Answer:**\n\"It has four parts: prevention — training, planning, FMEA; appraisal — inspection, testing and audits; internal failure — scrap and rework; and external failure — returns, warranty, recalls and lost customers. Every dollar spent on prevention usually saves several in failure costs. I use it to justify improvement projects.\"\n\nTip: Use it to justify improvement projects.", "D", "M"],
+["Six Sigma", "What is Six Sigma?", "**Why they ask:** methodology knowledge.\n\n**Answer:**\n\"It's a data-driven method to reduce variation and defects — targeting 3.4 defects per million opportunities — using DMAIC: Define, Measure, Analyze, Improve, Control, with statistical tools throughout. Green and Black Belts show training level. I'm a certified Green Belt with two completed projects.\"\n\nTip: Mention your certification.", "B", "M"],
+["DOE", "What is design of experiments?", "**Why they ask:** advanced problem solving.\n\n**Answer:**\n\"DOE tests several factors at once to understand their effects and interactions — for example, temperature, pressure and time on seal strength. It's far more efficient than changing one factor at a time, and it finds interactions you'd otherwise miss. We used a DOE to find that seal strength depended on temperature and dwell time together, and fixed a 3% failure rate.\"\n\nTip: Mention a DOE result.", "D", "S"],
+["Sampling", "What is acceptance sampling?", "**Why they ask:** inspection strategy.\n\n**Answer:**\n\"It's inspecting a sample from a lot to decide whether to accept the whole lot, using standards like ANSI/ASQ Z1.4 with an AQL — acceptable quality level. It's cheaper than 100% inspection, but there's always some risk of accepting a bad lot or rejecting a good one. I prefer controlling the process over relying on inspection.\"\n\nTip: Prefer process control over inspection.", "D", "M"],
+["Documentation", "How do you manage document control?", "**Why they ask:** a common audit finding.\n\n**Answer:**\n\"Documents go through controlled creation, review, approval, distribution and revision. Obsolete versions are removed, change history is kept, people are trained on changes, and it's managed in an electronic system like MasterControl, Veeva or ETQ. Uncontrolled printed copies on the floor are one of the most common audit findings.\"\n\nTip: Uncontrolled copies are a common finding.", "B", "M"],
+["Change Control", "Why is change control important?", "**Why they ask:** changes cause defects.\n\n**Answer:**\n\"Changes to products, processes, suppliers or equipment can introduce defects. Change control evaluates the risk, gets approval, validates and communicates the change before it's implemented. In regulated industries, an uncontrolled change can mean a recall.\"\n\nTip: Critical in regulated industries.", "D", "M"],
+["Validation", "What is process validation?", "**Why they ask:** regulated manufacturing.\n\n**Answer:**\n\"It's proving that a process consistently produces product that meets requirements. It's done in three stages: IQ — installation qualification, confirming the equipment is installed correctly; OQ — operational qualification, confirming it works across its operating range; and PQ — performance qualification, confirming it consistently makes good product under normal conditions. It's required in medical device and pharma manufacturing, following FDA guidance.\"\n\nTip: Mention FDA guidance.", "D", "S"],
+["Training", "How do you build a quality culture?", "**Why they ask:** culture beats inspection.\n\n**Answer:**\n\"Leadership commitment, making everyone responsible for quality, training, empowering operators to stop the line, celebrating prevention — not just firefighting — and sharing quality data openly.\"\n\nTip: Culture beats inspection.", "D", "M"],
+["Regulatory", "What is a recall and how is it managed?", "**Why they ask:** high-stakes quality events.\n\n**Answer:**\n\"A recall removes or corrects products in the field because of a safety or compliance issue. We use traceability data — lots and serial numbers — to scope it narrowly, assess the risk, notify regulators where required, communicate with customers, check effectiveness — how much product was actually recovered — and run a root-cause CAPA.\"\n\nTip: Traceability is essential.", "D", "S"],
+["Traceability", "Why is traceability important?", "**Why they ask:** containment and recalls depend on it.\n\n**Answer:**\n\"Traceability links finished products back to materials, processes, equipment and people. It lets us contain and recall precisely — one lot instead of a whole year's production — and supports root-cause analysis. It's built through lot genealogy in the MES and ERP.\"\n\nTip: Mention lot genealogy.", "B", "M"],
+["Scenario", "Scrap rate suddenly doubles. What do you do?", "**Why they ask:** structured response.\n\n**Answer:**\n\"Contain first. Then gather data — when it started, which shift, machine and material lot. Check what changed — suppliers, settings, people or maintenance. Run root-cause analysis, fix it and verify. 'What changed?' is always the first question.\"\n\nTip: 'What changed?' is the first question.", "B", "M"],
+["Scenario", "Production wants to ship product that's slightly out of spec. What do you do?", "**Why they ask:** integrity under pressure.\n\n**Answer:**\n\"I evaluate the impact on fit, function and safety with engineering. If it's acceptable, we request a formal deviation or customer concession and document it. If not, the product stays on hold. Nothing ships out of spec without approval — no matter the pressure.\"\n\nTip: Integrity and process.", "B", "M"],
+["Scenario", "An auditor finds a major nonconformance. How do you respond?", "**Why they ask:** response to serious findings.\n\n**Answer:**\n\"I make sure I understand the finding, contain any product risk, perform root-cause analysis, and implement corrective actions with timelines. I provide evidence to the auditor, and check for similar issues in other areas — fixing the system, not just the one instance.\"\n\nTip: Systemic fixes.", "D", "M"],
+["Behavioral", "Tell me about a quality problem you solved.", "**Why they ask:** proof of results.\n\n**Answer:**\n\"Customer complaints about cracked housings rose to 800 PPM. The data showed the cracks came from one mold cavity after a resin change. Using a DOE, we adjusted drying time and mold temperature, and complaints fell below 50 PPM.\"\n\nTip: Data and results.", "B", "M"],
+["Behavioral", "Tell me about influencing production to follow quality procedures.", "**Why they ask:** influence without authority.\n\n**Answer:**\n\"Operators were skipping first-piece checks to save time. I showed them how one missed check had caused a $40,000 scrap event, simplified the checklist, and built it into the start-up routine. Compliance reached 100%.\"\n\nTip: Make it easy and meaningful.", "B", "M"],
+["Behavioral", "Describe a supplier quality improvement.", "**Why they ask:** supplier partnership.\n\n**Answer:**\n\"A supplier's defect rate was 2,500 PPM. We ran a joint 8D and found their inspection gauges were out of calibration. We helped them set up SPC, and PPM dropped to 200 within four months.\"\n\nTip: A partnership approach.", "B", "M"],
+["Leadership", "How would you build a quality department?", "**Why they ask:** leadership scope.\n\n**Answer:**\n\"Define the QMS and priorities, hire quality engineers and technicians, set KPIs, and establish the CAPA, audit and supplier quality processes. And partner closely with operations and engineering, so quality is part of how work gets done.\"\n\nTip: A structured plan.", "D", "S"],
+["Leadership", "How do you report quality to leadership?", "**Why they ask:** communication.\n\n**Answer:**\n\"A monthly dashboard: customer complaints and PPM, cost of poor quality, internal scrap, CAPA status, audit results, and the top issues with actions. I frame it in money where I can.\"\n\nTip: Use financial framing.", "D", "S"],
+["Management Review", "What is a management review?", "**Why they ask:** ISO requirement.\n\n**Answer:**\n\"It's a periodic review by top management of how the QMS is performing — objectives, audit results, customer feedback, process performance, CAPAs, risks and opportunities. It should end in decisions and resources for improvement, not just a presentation.\"\n\nTip: An ISO requirement.", "B", "M"],
+["Risk", "What is risk-based thinking in quality?", "**Why they ask:** a modern QMS concept.\n\n**Answer:**\n\"It's identifying risks and opportunities in processes and addressing them proactively — through FMEA and risk registers — rather than only reacting to problems. It's a core concept of ISO 9001:2015.\"\n\nTip: An ISO 9001:2015 concept.", "B", "M"],
+["Calibration", "Why is calibration important?", "**Why they ask:** measurement integrity.\n\n**Answer:**\n\"Measuring equipment has to be accurate to make correct decisions. That means calibration schedules, traceability to national standards like NIST, labeling, and when a gauge is found out of tolerance, an impact assessment on every product it measured since the last good calibration.\"\n\nTip: Mention the out-of-tolerance impact assessment.", "B", "E"],
+["Digital", "How is technology changing quality?", "**Why they ask:** modern practice.\n\n**Answer:**\n\"Automated inspection with machine vision, real-time SPC from sensors, QMS software, AI for defect detection and predictive quality, and digital traceability. We put a vision system on a labeling line that caught 100% of misprints that manual checks missed.\"\n\nTip: Mention a project.", "D", "M"],
+["Data", "How do you use data in quality decisions?", "**Why they ask:** statistical literacy.\n\n**Answer:**\n\"Pareto to set priorities, SPC for process control, capability studies, hypothesis tests to compare suppliers or shifts, and regression and DOE for cause and effect.\"\n\nTip: Show statistical literacy.", "D", "M"],
+["Career", "Why quality?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Quality protects customers and the company's reputation. I enjoy using data to find root causes and building systems that prevent problems instead of catching them.\"\n\nTip: Show purpose.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I cut customer PPM from 800 to under 50, improved supplier quality, and led clean certification audits. I combine statistical skills with practical problem solving on the floor.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is the difference between quality assurance and quality control?", "**Why they ask:** basic terminology.\n\n**Answer:**\n\"Quality assurance focuses on the processes and systems that prevent defects — planning, procedures and audits. Quality control focuses on inspecting and testing products to find defects. QA is prevention; QC is detection.\"\n\nTip: Prevention versus detection.", "B", "E"],
+["Technical", "What is a deviation vs a nonconformance?", "**Why they ask:** regulated industry terms.\n\n**Answer:**\n\"A nonconformance is a failure to meet a requirement, discovered after the fact. A deviation is a planned, approved, temporary departure from a requirement, decided before it happens — for example, approving an alternate material for one lot.\"\n\nTip: Common in regulated industries.", "D", "M"],
+["Technical", "What is first article inspection?", "**Why they ask:** process setup validation.\n\n**Answer:**\n\"It's a full inspection of the first part from a new process, supplier or design change, to verify every drawing requirement is met. In aerospace it follows AS9102. It validates that the process is set up right before we run volume.\"\n\nTip: It validates the process setup.", "B", "M"],
+["Technical", "What does PPM mean in quality?", "**Why they ask:** a basic metric.\n\n**Answer:**\n\"Parts per million defective — defects divided by total units, times a million. Twenty-five defects in 50,000 parts is 500 PPM.\"\n\nTip: Quick math.", "B", "E"],
+["Technical", "What is a material review board?", "**Why they ask:** formal disposition.\n\n**Answer:**\n\"It's a cross-functional group — quality, engineering, production, and sometimes the customer — that decides what happens to nonconforming material: use as is, rework, scrap or return. It keeps the decision formal and documented.\"\n\nTip: A formal disposition.", "B", "M"],
+["Technical", "What is the difference between a major and minor nonconformity in audits?", "**Why they ask:** audit severity.\n\n**Answer:**\n\"A major is the absence or total breakdown of a required system element, or a situation likely to send nonconforming product to customers. A minor is a single lapse that doesn't show the system has failed. Majors can block or suspend certification until they're closed.\"\n\nTip: Majors can block certification.", "D", "M"]
+]);
