@@ -1,38 +1,11 @@
-QB['ss-sop'] = (QB['ss-sop']||[]).concat([
-["Pre-S&OP", "What happens in the pre-S&OP meeting?",
-`**Answer:** Cross-functional leaders reconcile demand and supply gaps, evaluate scenarios and financial impacts, resolve what they can, and prepare decision options and recommendations for the executive meeting.
-
-Tip: Resolve most issues here.`, 'B', 'E'],
-["Statistical Baseline", "Why start with a statistical baseline?",
-`**Answer:** It is objective, removes bias, and scales across many items. Humans then add the information the model can't know (promotions, customer changes), and forecast value added checks that those overrides actually help.
-
-Tip: Objective start.`, 'B', 'E'],
-["Constrained vs Unconstrained", "What's the difference between unconstrained demand and the constrained plan?",
-`**Answer:** **Unconstrained demand** is what customers would buy if supply were unlimited. The **constrained plan** reflects capacity and material limits. The gap shows lost sales risk and drives capacity decisions.
-
-Tip: Keep both visible.`, 'B', 'M'],
-["Product Families", "How do you design planning hierarchies?",
-`**Answer:** Group SKUs by similar demand drivers, manufacturing resources and financial reporting. Keep the number of families manageable (typically 10–30) so executives can review them.
-
-Tip: Manageable families.`, 'D', 'M'],
-["Inventory Builds", "How do you decide on a pre-build ahead of a peak?",
-`**Answer:** Compare the cost of building early (inventory carrying cost, storage, obsolescence risk) with the cost of overtime, outsourcing or lost sales during the peak. Choose the lowest total cost within service targets.
-
-Tip: Total cost.`, 'D', 'M'],
-["Governance", "Who should own S&OP?",
-`**Answer:** The general manager or CEO owns the executive decisions. A process owner (S&OP manager) runs the cycle, and each function owns its plan (sales owns demand, operations owns supply, finance owns financial reconciliation).
-
-Tip: Executive ownership.`, 'B', 'M'],
-["KPIs", "How do you measure S&OP process health?",
-`**Answer:** Meeting attendance and timeliness, decisions made and executed, forecast accuracy and bias trends, plan stability, and business outcomes (service, inventory, margin).
-
-Tip: Decisions executed.`, 'B', 'M'],
-["Supplier Collaboration", "How do you include suppliers in planning?",
-`**Answer:** Share rolling forecasts with key suppliers, agree capacity reservations, run collaborative reviews for critical materials, and provide visibility through supplier portals.
-
-Tip: Rolling forecasts.`, 'D', 'M'],
-["Scenario", "Finance's revenue forecast differs from the S&OP plan by 8%. What do you do?",
-`**Answer:** Reconcile the assumptions (price, mix, volume, timing), find the drivers of the difference, and agree a single plan in pre-S&OP. Escalate unresolved items to executives.
-
-Tip: One number.`, 'B', 'M']
+QB["ss-sop"] = (QB["ss-sop"] || []).concat([
+["Pre-S&OP", "What happens in the pre-S&OP meeting?", "**Why they ask:** where the real work happens.\n\n**Answer:**\n\"Cross-functional leaders reconcile demand and supply gaps, evaluate scenarios and financial impact, resolve whatever they can, and prepare decision options and recommendations for the executive meeting. Most issues should be resolved here, so executives only see the real decisions.\"\n\nTip: Resolve most issues here.", "B", "E"],
+["Statistical Baseline", "Why start with a statistical baseline?", "**Why they ask:** forecasting discipline.\n\n**Answer:**\n\"It's objective, removes human bias and scales across thousands of items. Then people add what the model can't know — promotions, customer changes — and forecast value added checks those overrides actually help.\"\n\nTip: An objective start.", "B", "E"],
+["Constrained vs Unconstrained", "What's the difference between unconstrained demand and the constrained plan?", "**Why they ask:** core S&OP concept.\n\n**Answer:**\n\"Unconstrained demand is what customers would buy if supply were unlimited. The constrained plan reflects capacity and material limits. The gap between them shows lost-sales risk and drives capacity decisions — so both need to stay visible.\"\n\nTip: Keep both visible.", "B", "M"],
+["Product Families", "How do you design planning hierarchies?", "**Why they ask:** foundation design.\n\n**Answer:**\n\"Group SKUs with similar demand drivers, manufacturing resources and financial reporting. Keep the number of families manageable — usually 10 to 30 — so executives can actually review them.\"\n\nTip: Keep families manageable.", "D", "M"],
+["Inventory Builds", "How do you decide on a pre-build ahead of a peak?", "**Why they ask:** total cost thinking.\n\n**Answer:**\n\"Compare the cost of building early — carrying cost, storage and obsolescence risk — with the cost of overtime, outsourcing or lost sales during the peak. Choose the lowest total cost that still meets service targets.\"\n\nTip: Total cost.", "D", "M"],
+["Governance", "Who should own S&OP?", "**Why they ask:** governance.\n\n**Answer:**\n\"The general manager or CEO owns the executive decisions. An S&OP manager runs the cycle. And each function owns its plan — sales owns demand, operations owns supply, finance owns the financial reconciliation.\"\n\nTip: Executive ownership.", "B", "M"],
+["KPIs", "How do you measure S&OP process health?", "**Why they ask:** continuous improvement.\n\n**Answer:**\n\"Meeting attendance and timeliness, decisions made and actually executed, forecast accuracy and bias trends, plan stability, and business outcomes — service, inventory and margin.\"\n\nTip: Count decisions executed.", "B", "M"],
+["Supplier Collaboration", "How do you include suppliers in planning?", "**Why they ask:** extended planning.\n\n**Answer:**\n\"Share rolling forecasts with key suppliers, agree capacity reservations, run collaborative reviews for critical materials, and give them visibility through supplier portals.\"\n\nTip: Rolling forecasts.", "D", "M"],
+["Scenario", "Finance's revenue forecast differs from the S&OP plan by 8%. What do you do?", "**Why they ask:** one-number discipline.\n\n**Answer:**\n\"Reconcile the assumptions — price, mix, volume and timing — find the drivers of the difference, and agree a single plan in pre-S&OP. Anything we can't resolve goes to executives. The company can't run on two numbers.\"\n\nTip: One number.", "B", "M"]
 ]);

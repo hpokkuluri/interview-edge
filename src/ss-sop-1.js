@@ -1,214 +1,44 @@
 // S&OP / IBP Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ss-sop'] = [
-["Role", "What does an S&OP manager do?",
-`**Why they ask:** S&OP maturity varies widely.
-
-**Answer:** Leads the monthly sales and operations planning process that aligns demand, supply and financial plans across sales, marketing, operations, supply chain and finance — facilitating reviews, analyzing gaps and scenarios, and bringing decisions to the executive meeting.
-
-Tip: Mention process steps you've run.`, 'B', 'E'],
-
-["Process", "Describe the monthly S&OP cycle.",
-`**Answer:**
-1. **Data gathering:** actuals, forecast performance.
-2. **Demand review:** consensus unconstrained demand plan.
-3. **Supply review:** capacity and constraints, constrained supply plan.
-4. **Pre-S&OP / reconciliation:** gaps, scenarios, financial impact, recommendations.
-5. **Executive S&OP:** decisions on trade-offs, approval of the plan.
-
-Tip: Decision-focused executive meeting.`, 'B', 'E'],
-
-["IBP", "S&OP vs integrated business planning?",
-`**Answer:** IBP extends S&OP with deeper financial integration (plans in dollars tied to budgets), longer horizon (24–36 months), portfolio and strategic planning, and stronger executive ownership.
-
-Tip: Financial integration.`, 'B', 'M'],
-
-["Demand", "How do you build a consensus demand plan?",
-`**Answer:** Start with a statistical baseline, add market intelligence (promotions, new products, customer insights), review assumptions with sales and marketing, measure bias and forecast value added, and document assumptions.
-
-Tip: Assumptions documented.`, 'B', 'M'],
-
-["Supply", "How do you run the supply review?",
-`**Answer:** Compare demand to capacity (rough-cut capacity planning) across plants and suppliers, identify constraints, evaluate options (overtime, shifts, outsourcing, inventory builds), and propose a constrained plan with costs.
-
-Tip: Options with costs.`, 'B', 'M'],
-
-["Scenarios", "How do you use scenario planning in S&OP?",
-`**Answer:** Model upside/downside demand, supply disruptions or pricing changes, quantify impacts on service, inventory, cost and profit, and pre-agree response triggers.
-
-Tip: Triggers.`, 'D', 'M'],
-
-["Executive", "What makes a good executive S&OP meeting?",
-`**Answer:** Concise pre-read, focus on gaps and decisions (not data review), clear options with financial impacts, decisions recorded with owners, and follow-up.
-
-Tip: Decisions, not reports.`, 'B', 'M'],
-
-["Metrics", "Which S&OP metrics matter?",
-`**Answer:** Forecast accuracy and bias, plan adherence, service levels/OTIF, inventory vs target, capacity utilization, revenue vs plan, and decision follow-through.
-
-Tip: Bias.`, 'B', 'M'],
-
-["Bias", "How do you handle sales sandbagging or over-forecasting?",
-`**Answer:** Measure bias by person/region, make it visible, discuss the cost of bias (stockouts or excess), separate targets from forecasts, and incentivize accuracy.
-
-Tip: Separate targets from forecasts.`, 'D', 'M'],
-
-["Financial", "How do you integrate financial plans?",
-`**Answer:** Convert volume plans to revenue, margin and inventory dollars, reconcile with budget and finance forecasts, and highlight gaps for decision.
-
-Tip: Single set of numbers.`, 'D', 'M'],
-
-["Horizon", "What time horizons do you plan?",
-`**Answer:** Typically 18–24 months monthly buckets, with frozen/slushy zones in the near term, and longer for capacity investment decisions.
-
-Tip: Time fences.`, 'B', 'E'],
-
-["Aggregation", "At what level do you plan in S&OP?",
-`**Answer:** Product families and aggregate volumes for S&OP, with disaggregation to SKU for detailed planning.
-
-Tip: Families, not SKUs.`, 'B', 'E'],
-
-["NPI", "How do you include new products?",
-`**Answer:** NPI pipeline review with launch dates, ramp assumptions, cannibalization, supply readiness and risks in each cycle.
-
-Tip: Cannibalization.`, 'B', 'M'],
-
-["Tools", "Which planning tools have you used?",
-`**Answer:** SAP IBP, Oracle Supply Chain Planning, Kinaxis Maestro, o9, Blue Yonder, Anaplan, and Excel.
-
-Tip: Tool plus process.`, 'B', 'E'],
-
-["Maturity", "How do you assess S&OP maturity?",
-`**Answer:** Maturity models (e.g. Gartner's 5 stages): from reactive and siloed to integrated, profit-driven orchestration — assessing process, people, data and technology.
-
-Tip: Improvement roadmap.`, 'D', 'M'],
-
-["Change", "How do you get leadership engagement?",
-`**Answer:** Tie S&OP to business outcomes, make meetings decision-focused and efficient, show wins (avoided stockouts, inventory reduction), and secure a CEO/GM sponsor.
-
-Tip: Executive sponsor.`, 'B', 'M'],
-
-["Inventory", "How do inventory targets fit S&OP?",
-`**Answer:** Set targets by family based on service and cost goals; supply plans balance production to hit inventory targets; deviations trigger discussion.
-
-Tip: Build vs reduce decisions.`, 'B', 'M'],
-
-["Capacity", "What is rough-cut capacity planning?",
-`**Answer:** Checking the aggregate plan against key resource capacity (critical lines, labor, suppliers) to find overloads before detailed planning.
-
-Tip: Critical resources.`, 'B', 'M'],
-
-["Disruptions", "How does S&OP respond to sudden disruptions?",
-`**Answer:** Off-cycle scenario reviews, allocation rules for constrained supply, communication with customers, and rapid decisions.
-
-Tip: Allocation rules.`, 'D', 'M'],
-
-["Allocation", "How do you allocate constrained supply?",
-`**Answer:** Agreed rules: strategic customers, contractual commitments, margin, fair share — approved by executives and communicated.
-
-Tip: Pre-agreed rules.`, 'D', 'M'],
-
-["Behavioral", "Tell me about implementing or improving S&OP.",
-`**Sample answer:** "I relaunched S&OP for a $600M business, introduced decision-focused executive meetings and scenario planning. Forecast bias dropped from +12% to +3%, inventory fell $15M and OTIF rose to 96%."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a tough trade-off decision.",
-`**Sample answer:** "Demand exceeded capacity by 15%. I presented options: overtime ($400K), outsourcing ($900K) or allocation. Executives chose overtime plus allocation to low-margin customers, protecting $5M of strategic revenue."
-
-Tip: Options and outcome.`, 'B', 'M'],
-
-["Behavioral", "How do you handle disagreement between sales and operations?",
-`**Answer:** Use data, clarify assumptions, show trade-offs and escalate decisions to executives in the S&OP forum.
-
-Tip: Forum for decisions.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** APICS CPIM, CSCP, IBF CPF (forecasting), and Oliver Wight training.
-
-Tip: IBF.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Director of planning, IBP lead or VP supply chain.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I turn S&OP into a decision-making process — cutting bias, reducing inventory $15M and improving service."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Forecast Value Added", "What is forecast value added?",
-`**Answer:** Comparing accuracy at each step (statistical vs sales override vs consensus) against a naive forecast to see which steps improve or worsen accuracy.
-
-Tip: Eliminate non-value steps.`, 'D', 'M'],
-
-["Demand Sensing", "What is demand sensing?",
-`**Answer:** Using short-term signals (POS, orders, weather, events) with ML to improve near-term forecasts.
-
-Tip: Short horizon.`, 'D', 'M'],
-
-["Portfolio", "How does portfolio management fit IBP?",
-`**Answer:** Review product lifecycle, SKU rationalization, and new product investments within the monthly cycle.
-
-Tip: SKU rationalization.`, 'D', 'M'],
-
-["Gap Closing", "How do you close a gap between plan and budget?",
-`**Answer:** Identify drivers, propose actions (promotions, pricing, new customers, cost reductions), quantify, and agree owners.
-
-Tip: Gap-closing actions.`, 'B', 'M'],
-
-["Calendar", "How do you set an S&OP calendar?",
-`**Answer:** Fixed monthly schedule tied to month-end close: data by day 3, demand review by day 8, supply review by day 12, pre-S&OP by day 15, executive by day 18.
-
-Tip: Consistent cadence.`, 'B', 'E'],
-
-["Communication", "How do you communicate the approved plan?",
-`**Answer:** Publish the one-number plan, decisions and assumptions to all functions, cascade to detailed scheduling and procurement.
-
-Tip: One set of numbers.`, 'B', 'E'],
-
-["Customer Collaboration", "What is CPFR?",
-`**Answer:** Collaborative Planning, Forecasting and Replenishment — sharing forecasts and plans with key customers to improve accuracy and reduce inventory.
-
-Tip: Retail partnerships.`, 'D', 'M'],
-
-["Scenario", "Sales wants to increase the forecast 25% for a big promotion. What do you do?",
-`**Answer:** Review promotion history and lift assumptions, check supply feasibility and costs, agree a risk-adjusted forecast, and plan contingency.
-
-Tip: Historical lift.`, 'B', 'M'],
-
-["Scenario", "Executives skip S&OP meetings. What do you do?",
-`**Answer:** Make meetings shorter and decision-focused, show value with examples, and secure top-leader sponsorship.
-
-Tip: Value proof.`, 'B', 'M'],
-
-["Supply Planning", "What constraints do you consider?",
-`**Answer:** Line capacity, labor, materials and supplier capacity, warehouse space, transportation, and working capital limits.
-
-Tip: Holistic.`, 'B', 'E'],
-
-["Risk", "How do you incorporate risk in S&OP?",
-`**Answer:** Risk register reviewed monthly, scenario plans with triggers, and buffer strategies.
-
-Tip: Triggers.`, 'D', 'M'],
-
-["Data", "What data foundation does S&OP need?",
-`**Answer:** Clean master data, consistent hierarchies, timely actuals, and integrated systems for demand, supply and finance.
-
-Tip: Hierarchies.`, 'B', 'M'],
-
-["AI", "How will AI change S&OP?",
-`**Answer:** Better forecasts, faster scenario simulations, automated insights and agents that propose plan adjustments for human approval.
-
-Tip: Human decisions.`, 'B', 'M'],
-
-["Metrics", "What is plan adherence?",
-`**Answer:** How closely execution (production, purchases) follows the approved plan — measuring discipline.
-
-Tip: Execution discipline.`, 'B', 'E'],
-
-["Time Fences", "What are frozen, slushy and liquid zones?",
-`**Answer:** Near-term frozen (changes need approval), mid-term slushy (limited changes), and long-term liquid (open to change) — balancing stability and flexibility.
-
-Tip: Stability.`, 'B', 'M']
-];
+QB["ss-sop"] = (QB["ss-sop"] || []).concat([
+["Role", "What does an S&OP manager do?", "**Why they ask:** S&OP maturity varies widely.\n\n**Answer:** Leads the monthly sales and operations planning process that aligns demand, supply and financial plans across sales, marketing, operations, supply chain and finance — facilitating reviews, analyzing gaps and scenarios, and bringing decisions to the executive meeting.\n\nTip: Mention process steps you've run.", "B", "E"],
+["Process", "Describe the monthly S&OP cycle.", "**Why they ask:** the core process you'd run.\n\n**Answer:**\n\"It has five steps. Data gathering — actuals and forecast performance. The demand review, which produces a consensus unconstrained demand plan. The supply review, which checks capacity and constraints and produces a constrained supply plan. The pre-S&OP or reconciliation meeting, which works through gaps, scenarios and financial impact and prepares recommendations. And the executive S&OP meeting, where leaders decide the trade-offs and approve the plan. That last meeting should be about decisions, not reviewing data.\"\n\nTip: The executive meeting is decision-focused.", "B", "E"],
+["IBP", "S&OP vs integrated business planning?", "**Why they ask:** maturity awareness.\n\n**Answer:**\n\"IBP extends S&OP. It integrates finance more deeply — plans in dollars tied to budgets — looks further out, 24 to 36 months, includes portfolio and strategic planning, and has stronger executive ownership. S&OP balances supply and demand; IBP runs the business plan.\"\n\nTip: Financial integration is the key difference.", "B", "M"],
+["Demand", "How do you build a consensus demand plan?", "**Why they ask:** demand is the start of everything.\n\n**Answer:**\n\"Start with a statistical baseline, then add market intelligence — promotions, new products, customer insights. Review the assumptions with sales and marketing, measure bias and forecast value added, and document every assumption, so next month we can see which ones were wrong.\"\n\nTip: Document assumptions.", "B", "M"],
+["Supply", "How do you run the supply review?", "**Why they ask:** feasibility check.\n\n**Answer:**\n\"I compare demand to capacity across plants and suppliers using rough-cut capacity planning, identify the constraints, and evaluate options — overtime, extra shifts, outsourcing, inventory builds. Then propose a constrained plan with the cost of each option.\"\n\nTip: Options with costs.", "B", "M"],
+["Scenarios", "How do you use scenario planning in S&OP?", "**Why they ask:** handling uncertainty.\n\n**Answer:**\n\"I model upside and downside demand, supply disruptions or price changes, and quantify the impact on service, inventory, cost and profit. Then we pre-agree triggers — for example, if orders run 10% above plan for two weeks, we add a weekend shift.\"\n\nTip: Agree triggers in advance.", "D", "M"],
+["Executive", "What makes a good executive S&OP meeting?", "**Why they ask:** executive engagement depends on it.\n\n**Answer:**\n\"A concise pre-read, a focus on gaps and decisions instead of reviewing data, clear options with financial impact, decisions recorded with owners, and follow-up the next month. If executives spend the hour reading charts, it's a reporting meeting, and they'll stop coming.\"\n\nTip: Decisions, not reports.", "B", "M"],
+["Metrics", "Which S&OP metrics matter?", "**Why they ask:** process measurement.\n\n**Answer:**\n\"Forecast accuracy and bias, plan adherence, service levels and OTIF, inventory against target, capacity utilization, revenue against plan, and whether decisions were followed through. Bias is especially important — it tells you if the process is honest.\"\n\nTip: Watch bias.", "B", "M"],
+["Bias", "How do you handle sales sandbagging or over-forecasting?", "**Why they ask:** a classic S&OP problem.\n\n**Answer:**\n\"I measure bias by person and region and make it visible. Then show the cost — stockouts from sandbagging, excess from over-forecasting. Separate targets from forecasts — a quota isn't a forecast. And where possible, reward accuracy, not just hitting the number.\"\n\nTip: Separate targets from forecasts.", "D", "M"],
+["Financial", "How do you integrate financial plans?", "**Why they ask:** one set of numbers.\n\n**Answer:**\n\"I convert volume plans into revenue, margin and inventory dollars, reconcile them with the budget and finance's forecast, and highlight gaps for a decision. The company should run on one set of numbers.\"\n\nTip: A single set of numbers.", "D", "M"],
+["Horizon", "What time horizons do you plan?", "**Why they ask:** planning structure.\n\n**Answer:**\n\"Typically 18 to 24 months in monthly buckets, with frozen and slushy zones in the near term, and longer horizons for capacity investment decisions.\"\n\nTip: Mention time fences.", "B", "E"],
+["Aggregation", "At what level do you plan in S&OP?", "**Why they ask:** a common mistake is planning too low.\n\n**Answer:**\n\"Product families and aggregate volumes for S&OP, then disaggregated to SKU for detailed planning. Executives can't make decisions on 5,000 SKUs — they can on 20 families.\"\n\nTip: Families, not SKUs.", "B", "E"],
+["NPI", "How do you include new products?", "**Why they ask:** launches cause big swings.\n\n**Answer:**\n\"Every cycle includes an NPI pipeline review — launch dates, ramp assumptions, cannibalization of existing products, supply readiness and risks. Cannibalization is the one most often forgotten.\"\n\nTip: Don't forget cannibalization.", "B", "M"],
+["Tools", "Which planning tools have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"SAP IBP, Oracle Supply Chain Planning, Kinaxis Maestro, o9, Blue Yonder, Anaplan and Excel. The tool helps, but the process discipline is what makes S&OP work.\"\n\nTip: Tool plus process.", "B", "E"],
+["Maturity", "How do you assess S&OP maturity?", "**Why they ask:** improvement planning.\n\n**Answer:**\n\"Using a maturity model like Gartner's five stages — from reactive and siloed to integrated, profit-driven orchestration — and assessing process, people, data and technology separately. That gives an honest starting point and an improvement roadmap.\"\n\nTip: Build an improvement roadmap.", "D", "M"],
+["Change", "How do you get leadership engagement?", "**Why they ask:** S&OP fails without executives.\n\n**Answer:**\n\"Tie S&OP to business outcomes, make the meetings decision-focused and short, show wins — stockouts avoided, inventory reduced — and secure a CEO or GM sponsor who expects their team to show up.\"\n\nTip: Get an executive sponsor.", "B", "M"],
+["Inventory", "How do inventory targets fit S&OP?", "**Why they ask:** inventory is a decision.\n\n**Answer:**\n\"Targets are set by family based on service and cost goals. The supply plan balances production to hit those targets, and deviations trigger a discussion — build or reduce. Inventory becomes a deliberate decision, not a leftover.\"\n\nTip: Build-versus-reduce decisions.", "B", "M"],
+["Capacity", "What is rough-cut capacity planning?", "**Why they ask:** feasibility check.\n\n**Answer:**\n\"It's checking the aggregate plan against the capacity of key resources — critical lines, labor and suppliers — to find overloads before detailed planning. It catches the obvious problems while there's still time to fix them.\"\n\nTip: Focus on critical resources.", "B", "M"],
+["Disruptions", "How does S&OP respond to sudden disruptions?", "**Why they ask:** agility.\n\n**Answer:**\n\"Off-cycle scenario reviews instead of waiting for the monthly meeting, allocation rules for constrained supply, communication with customers, and fast decisions from a small executive group.\"\n\nTip: Have allocation rules ready.", "D", "M"],
+["Allocation", "How do you allocate constrained supply?", "**Why they ask:** fairness and consistency.\n\n**Answer:**\n\"Using agreed rules — strategic customers, contractual commitments, margin, and fair share — approved by executives in advance and communicated clearly. Rules agreed before a shortage prevent fights during it.\"\n\nTip: Pre-agreed rules.", "D", "M"],
+["Behavioral", "Tell me about implementing or improving S&OP.", "**Why they ask:** proof.\n\n**Answer:**\n\"I relaunched S&OP for a $600 million business, introducing decision-focused executive meetings and scenario planning. Forecast bias dropped from plus 12% to plus 3%, inventory fell $15 million, and OTIF rose to 96%.\"\n\nTip: Show measured results.", "B", "M"],
+["Behavioral", "Tell me about a tough trade-off decision.", "**Why they ask:** decision facilitation.\n\n**Answer:**\n\"Demand exceeded capacity by 15%. I presented three options: overtime at $400,000, outsourcing at $900,000, or allocation. Executives chose overtime plus allocation away from low-margin customers, protecting $5 million of strategic revenue.\"\n\nTip: Options and outcome.", "B", "M"],
+["Behavioral", "How do you handle disagreement between sales and operations?", "**Why they ask:** S&OP is the forum for it.\n\n**Answer:**\n\"Use data, clarify the assumptions on both sides, show the trade-offs, and escalate the decision to executives in the S&OP forum. My job is to make the decision clear, not to make it for them.\"\n\nTip: S&OP is the forum for decisions.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** professional development.\n\n**Answer:**\n\"ASCM's CPIM and CSCP, the IBF's CPF for forecasting, and Oliver Wight training on S&OP and IBP.\"\n\nTip: Mention IBF.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward director of planning, IBP lead, or eventually VP of supply chain.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I turn S&OP into a real decision-making process — cutting bias, reducing inventory by $15 million and improving service at the same time.\"\n\nTip: Proof.", "B", "M"],
+["Forecast Value Added", "What is forecast value added?", "**Why they ask:** process improvement tool.\n\n**Answer:**\n\"It compares accuracy at each step — statistical forecast, sales override, consensus — against a naive forecast, to see which steps improve or worsen accuracy. Steps that don't add value get removed or fixed.\"\n\nTip: Eliminate non-value steps.", "D", "M"],
+["Demand Sensing", "What is demand sensing?", "**Why they ask:** modern capability.\n\n**Answer:**\n\"It uses short-term signals — POS data, orders, weather, events — and machine learning to improve the near-term forecast, days to a few weeks out.\"\n\nTip: It's for the short horizon.", "D", "M"],
+["Portfolio", "How does portfolio management fit IBP?", "**Why they ask:** IBP scope.\n\n**Answer:**\n\"Each monthly cycle reviews the product lifecycle — SKU rationalization, phase-outs, and new product investments — so portfolio decisions are made with supply and financial impact in view.\"\n\nTip: Mention SKU rationalization.", "D", "M"],
+["Gap Closing", "How do you close a gap between plan and budget?", "**Why they ask:** financial alignment.\n\n**Answer:**\n\"Identify the drivers of the gap, propose actions — promotions, pricing, new customers, cost reductions — quantify each, and agree owners. If the gap can't be closed, executives decide whether to change the target.\"\n\nTip: Gap-closing actions.", "B", "M"],
+["Calendar", "How do you set an S&OP calendar?", "**Why they ask:** cadence discipline.\n\n**Answer:**\n\"A fixed monthly schedule tied to month-end close: data ready by day 3, demand review by day 8, supply review by day 12, pre-S&OP by day 15, and the executive meeting by day 18. Same days every month, so nobody has to ask.\"\n\nTip: Keep a consistent cadence.", "B", "E"],
+["Communication", "How do you communicate the approved plan?", "**Why they ask:** execution.\n\n**Answer:**\n\"Publish the one-number plan with decisions and assumptions to all functions, then cascade it into detailed scheduling and procurement.\"\n\nTip: One set of numbers.", "B", "E"],
+["Customer Collaboration", "What is CPFR?", "**Why they ask:** customer collaboration.\n\n**Answer:**\n\"Collaborative planning, forecasting and replenishment — sharing forecasts and plans with key customers to improve accuracy and reduce inventory on both sides. It's common in retail partnerships.\"\n\nTip: Retail partnerships.", "D", "M"],
+["Scenario", "Sales wants to increase the forecast 25% for a big promotion. What do you do?", "**Why they ask:** balancing optimism and risk.\n\n**Answer:**\n\"I'd review the history of similar promotions and their actual lift, check supply feasibility and the cost of building, agree a risk-adjusted forecast — maybe plus 18% — and plan a contingency for the upside, like materials on standby.\"\n\nTip: Use historical lift.", "B", "M"],
+["Scenario", "Executives skip S&OP meetings. What do you do?", "**Why they ask:** a common failure.\n\n**Answer:**\n\"Make the meetings shorter and decision-focused, show value with real examples, and get the top leader to sponsor it. Executives show up when the meeting is where real decisions happen.\"\n\nTip: Prove the value.", "B", "M"],
+["Supply Planning", "What constraints do you consider?", "**Why they ask:** holistic planning.\n\n**Answer:**\n\"Line capacity, labor, materials and supplier capacity, warehouse space, transportation, and working capital limits. Cash is a constraint too.\"\n\nTip: Be holistic.", "B", "E"],
+["Risk", "How do you incorporate risk in S&OP?", "**Why they ask:** resilience.\n\n**Answer:**\n\"A risk register reviewed monthly, scenario plans with triggers, and buffer strategies for the most critical items.\"\n\nTip: Use triggers.", "D", "M"],
+["Data", "What data foundation does S&OP need?", "**Why they ask:** S&OP fails on bad data.\n\n**Answer:**\n\"Clean master data, consistent product and customer hierarchies, timely actuals, and integrated systems for demand, supply and finance. If hierarchies don't match between systems, every meeting starts by arguing about numbers.\"\n\nTip: Consistent hierarchies.", "B", "M"],
+["AI", "How will AI change S&OP?", "**Why they ask:** forward view.\n\n**Answer:**\n\"Better forecasts, much faster scenario simulations, automated insights, and agents that propose plan adjustments for humans to approve. The decisions stay with people; AI makes the options clearer and faster.\"\n\nTip: Humans still decide.", "B", "M"],
+["Metrics", "What is plan adherence?", "**Why they ask:** execution discipline.\n\n**Answer:**\n\"It's how closely execution — production and purchasing — follows the approved plan. Low adherence means the plan isn't trusted, or isn't realistic.\"\n\nTip: It measures execution discipline.", "B", "E"],
+["Time Fences", "What are frozen, slushy and liquid zones?", "**Why they ask:** stability versus flexibility.\n\n**Answer:**\n\"The near-term frozen zone needs approval for any change. The mid-term slushy zone allows limited changes. The long-term liquid zone is open to change. Together they balance stability on the floor with flexibility further out.\"\n\nTip: Stability.", "B", "M"]
+]);
