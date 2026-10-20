@@ -1,255 +1,57 @@
 // da-llm — generated from src/da-llm-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // AI / LLM Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['da-llm'] = [
-["Role", "What does an AI/LLM engineer do?",
-`**Why they ask:** a newer role with varied definitions.
-
-**Answer:** Builds applications on large language models: designing prompts and system instructions, retrieval-augmented generation (RAG), tool use and agents, evaluation pipelines, guardrails and safety, cost and latency optimization, and integrating AI features into products with monitoring — usually using hosted model APIs and sometimes fine-tuned or self-hosted models.
-
-Tip: Emphasize evaluation and production reliability.`, 'B', 'E'],
-
-["LLM Basics", "How do LLMs work at a high level?",
-`**Answer:** Transformer neural networks trained on large text corpora to predict the next token. Pretraining builds general knowledge; post-training (instruction tuning, reinforcement learning from feedback) makes them follow instructions and behave safely. They generate text token by token based on probabilities.
-
-Tip: Mention tokens and context windows.`, 'B', 'E'],
-
-["LLM Basics", "What are tokens and context windows?",
-`**Answer:** Tokens are chunks of text (roughly 3–4 characters of English on average) that models process. The context window is the maximum tokens the model can consider at once (prompt + output). Cost and latency scale with tokens, so manage context carefully.
-
-Tip: Cost awareness.`, 'B', 'E'],
-
-["LLM Basics", "What do temperature and top-p control?",
-`**Answer:** They control randomness in sampling. Low temperature gives more deterministic, focused outputs (extraction, classification); higher values give more varied outputs (creative writing). Top-p limits sampling to the most probable tokens up to a cumulative probability.
-
-Tip: Low temperature for structured tasks.`, 'B', 'M'],
-
-["Prompting", "What makes a good prompt?",
-`**Answer:** Clear role and task, relevant context, explicit constraints and output format (e.g. JSON schema), examples (few-shot) when helpful, step-by-step instructions for complex tasks, and guidance for edge cases ("if the answer isn't in the documents, say so").
-
-Tip: Show a before/after prompt.`, 'B', 'M'],
-
-["Prompting", "How do you get reliable structured output?",
-`**Answer:** Use model features for structured outputs or tool/function calling with JSON schemas, validate output with a schema (Pydantic, Zod), retry or repair on failure, and keep temperature low.
-
-Tip: Schema validation.`, 'B', 'M'],
-
-["RAG", "Explain retrieval-augmented generation.",
-`**Answer:** Instead of relying only on the model's training knowledge, retrieve relevant documents from your data at query time and include them in the prompt so the model answers grounded in that context. Steps: ingest and chunk documents, embed and index them, retrieve top matches for a query (vector, keyword or hybrid search), optionally rerank, and generate with citations.
-
-Tip: Citations build trust.`, 'B', 'M'],
-
-["RAG", "How do you improve RAG quality?",
-`**Answer:** Better chunking (semantic boundaries, overlap, metadata), hybrid search (BM25 + vectors), rerankers, query rewriting or decomposition, metadata filters, permission-aware retrieval, good prompts that require citing sources, and evaluation of retrieval (recall@k) separately from generation.
-
-Tip: Evaluate retrieval and generation separately.`, 'D', 'M'],
-
-["RAG", "How do you handle document permissions in RAG?",
-`**Answer:** Store access control metadata with chunks and filter retrieval by the user's permissions at query time (or use per-tenant indexes), so the model never sees documents the user can't access.
-
-Tip: Critical for enterprise.`, 'D', 'S'],
-
-["Embeddings", "How do you choose an embedding model?",
-`**Answer:** Evaluate on your own data and queries (retrieval benchmarks), consider dimension size (storage and speed), language and domain coverage, cost, hosting (API vs self-hosted) and maximum input length.
-
-Tip: Benchmark on your data.`, 'D', 'M'],
-
-["Agents", "What is an AI agent?",
-`**Answer:** A system where an LLM decides which actions to take — calling tools (APIs, search, code execution, databases) in a loop, observing results, and continuing until the goal is met. Agents need clear tools, limits on steps and permissions, error handling, and human approval for consequential actions.
-
-Tip: Guardrails on actions.`, 'B', 'M'],
-
-["Agents", "How do you design tools for an agent?",
-`**Answer:** Clear names and descriptions, well-defined parameter schemas, focused single-purpose tools, informative error messages, least-privilege access, idempotency for actions, and logging of every call.
-
-Tip: Tool descriptions matter as much as prompts.`, 'D', 'M'],
-
-["Agents", "What is the Model Context Protocol (MCP)?",
-`**Answer:** An open protocol for connecting AI applications to tools and data sources through standardized servers, so the same integrations can be reused across different AI clients and models.
-
-Tip: Interoperability.`, 'D', 'M'],
-
-["Agents", "When should you use an agent vs a fixed workflow?",
-`**Answer:** Use fixed workflows (chains with defined steps) when the process is predictable — more reliable and cheaper. Use agents when steps vary and require dynamic decisions. Often a workflow with a few LLM decision points is the best middle ground.
-
-Tip: "Simplest thing that works."`, 'D', 'M'],
-
-["Evaluation", "How do you evaluate an LLM application?",
-`**Answer:** Build a test set of realistic inputs with expected behaviors; define criteria (correctness, groundedness/faithfulness, relevance, completeness, safety, format, tone); score with code-based checks, LLM-as-judge (calibrated against human ratings) and human review; track results per version; and run regression evals on every prompt, model or retrieval change.
-
-Tip: "Evals are your test suite."`, 'B', 'M'],
-
-["Evaluation", "What is LLM-as-a-judge and its pitfalls?",
-`**Answer:** Using a model to grade outputs against criteria. Pitfalls: position and verbosity bias, self-preference, inconsistent scoring. Mitigate with clear rubrics, pairwise comparisons, calibration against human labels, and spot checks.
-
-Tip: Calibrate with humans.`, 'D', 'S'],
-
-["Hallucination", "How do you reduce hallucinations?",
-`**Answer:** Ground answers in retrieved sources, instruct the model to answer only from context and say when it doesn't know, require citations, use lower temperature for factual tasks, add verification steps, and evaluate groundedness.
-
-Tip: Allowing "I don't know."`, 'B', 'M'],
-
-["Safety", "What is prompt injection and how do you defend against it?",
-`**Answer:** Malicious instructions hidden in user input or retrieved content (web pages, documents, emails) that try to override system instructions or trigger unwanted tool actions. Defenses: treat retrieved content as untrusted data, separate instructions from data, least-privilege tools, human confirmation for sensitive actions, output filtering, and monitoring. No defense is perfect, so limit blast radius.
-
-Tip: Limit what tools can do.`, 'D', 'M'],
-
-["Safety", "What guardrails do you put around an LLM feature?",
-`**Answer:** Input validation and moderation, output filters (PII, harmful content), schema validation, topic restrictions, rate limits, tool permission controls, human review for high-risk outputs, and audit logs.
-
-Tip: Layered defenses.`, 'D', 'M'],
-
-["Privacy", "How do you handle sensitive data with LLM APIs?",
-`**Answer:** Check provider data usage and retention terms, minimize and redact PII where possible, use enterprise agreements or private deployments when required, encrypt in transit, and log carefully without storing sensitive prompts unnecessarily.
-
-Tip: Data processing agreements.`, 'D', 'M'],
-
-["Cost", "How do you control LLM costs?",
-`**Answer:** Choose the smallest model that meets quality (route simple tasks to cheaper models), trim prompts and context, prompt caching where supported, cache responses for repeated queries, batch APIs for offline jobs, limit output length, and monitor cost per feature and per user.
-
-Tip: Model routing.`, 'B', 'M'],
-
-["Latency", "How do you reduce latency in LLM apps?",
-`**Answer:** Stream responses, use smaller/faster models for simple steps, parallelize independent calls, reduce prompt size, cache, and precompute retrieval where possible.
-
-Tip: Streaming improves perceived speed.`, 'B', 'M'],
-
-["Fine-tuning", "When should you fine-tune a model?",
-`**Answer:** When prompting and RAG can't achieve the required format, style or task performance; when you need a smaller cheaper model to match a larger one on a narrow task; or for consistent domain behavior. Requires quality training data and evaluation. Parameter-efficient methods (LoRA) reduce cost.
-
-Tip: Try prompting and RAG first.`, 'D', 'S'],
-
-["Models", "How do you choose between models?",
-`**Answer:** Evaluate on your tasks for quality, latency, cost, context length, tool-use reliability, safety, data privacy terms, and availability. Keep an abstraction so you can switch models.
-
-Tip: Benchmark on your use case.`, 'B', 'M'],
-
-["Architecture", "Design a customer support assistant using LLMs.",
-`**Answer:** RAG over help articles and policies with permission filtering, tools for order lookup and ticket creation (with authentication), conversation memory, escalation to humans when confidence is low or customers ask, guardrails on refunds and sensitive topics, evaluation set from real tickets, analytics on resolution rates, and feedback loops.
-
-Tip: Human escalation path.`, 'D', 'S'],
-
-["Architecture", "What does an LLM gateway do?",
-`**Answer:** A central layer for model access — routing across providers, authentication, rate limiting, caching, cost tracking, logging, fallback when a provider fails, and policy enforcement.
-
-Tip: Central control.`, 'D', 'S'],
-
-["Observability", "What do you monitor in production LLM apps?",
-`**Answer:** Latency, token usage and cost, error rates, tool call success, user feedback (thumbs up/down), quality samples with automated evals, safety events, and drift in query types.
-
-Tip: Tracing tools (LangSmith, Langfuse, Arize).`, 'D', 'M'],
-
-["Frameworks", "What frameworks and tools have you used?",
-`**Sample answer:** "Provider SDKs directly for most production work, LangChain/LlamaIndex for prototyping RAG, pgvector and OpenSearch for retrieval, Pydantic for structured outputs, and Langfuse for tracing and evals."
-
-Tip: Show you understand what frameworks abstract.`, 'B', 'M'],
-
-["Memory", "How do you handle conversation memory?",
-`**Answer:** Keep recent turns in context, summarize older history, store important facts in structured memory with user consent, and retrieve relevant memories when needed — while respecting privacy and context limits.
-
-Tip: Summarization.`, 'D', 'M'],
-
-["Multimodal", "How do you use multimodal models?",
-`**Answer:** For document understanding (invoices, forms), image analysis, charts and screenshots, and voice interfaces — with evaluation for accuracy and fallbacks for low-confidence results.
-
-Tip: Document extraction use case.`, 'D', 'M'],
-
-["Testing", "How do you test non-deterministic outputs?",
-`**Answer:** Test properties rather than exact text (contains required facts, valid schema, no forbidden content), use evaluation scores with thresholds, run multiple samples for variance, and fix temperature for tests where possible.
-
-Tip: Property-based checks.`, 'D', 'M'],
-
-["Behavioral", "Tell me about an LLM feature you shipped.",
-`**Sample answer:** "I built a RAG assistant for internal policy questions with hybrid search, reranking and citations. Our eval set of 300 real questions reached 92% correct with citations; HR tickets dropped 35% in two months."
-
-Tip: Eval numbers and business impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a problem you found through evaluation.",
-`**Sample answer:** "Evals showed the assistant invented policy numbers when documents were missing. We added a 'not found' instruction and retrieval confidence threshold; groundedness rose from 81% to 96%."
-
-Tip: Evaluation-driven improvement.`, 'B', 'M'],
-
-["Behavioral", "How do you explain AI limitations to stakeholders?",
-`**Answer:** Be honest about accuracy, show eval results and failure examples, explain safeguards, and set expectations with human-in-the-loop designs where needed.
-
-Tip: Trust through transparency.`, 'B', 'M'],
-
-["Governance", "How should companies govern AI use?",
-`**Answer:** AI use policy, inventory of AI systems, risk classification, approval process for high-risk uses, evaluation and monitoring requirements, data protections, vendor review, and compliance with laws like the EU AI Act.
-
-Tip: Risk-based governance.`, 'D', 'S'],
-
-["Enterprise", "How do enterprise apps like Oracle or Salesforce embed AI agents?",
-`**Answer:** Vendors provide embedded AI features and agent builders (e.g. Oracle AI Agent Studio, Salesforce Agentforce, ServiceNow AI Agents) that use the application's data, security and workflows — engineers configure tools, prompts and guardrails within those platforms.
-
-Tip: Platform-native agents.`, 'D', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior AI engineer or AI architect — agent systems, evaluation platforms and AI product strategy.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build LLM features that work reliably — grounded RAG, safe agents and rigorous evals — and I've shipped assistants that measurably reduced support volume while controlling cost."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Chunking", "How do you choose a chunking strategy?",
-`**Answer:** Split by document structure (headings, sections) rather than fixed characters when possible, size chunks to balance context and precision (often a few hundred tokens), add overlap, and include metadata (title, section, date). Evaluate retrieval quality to tune.
-
-Tip: Structure-aware chunking.`, 'D', 'M'],
-
-["Reranking", "What does a reranker do?",
-`**Answer:** Takes the top retrieved candidates and reorders them with a more accurate (cross-encoder) model, improving relevance before passing context to the LLM.
-
-Tip: Cheap quality boost.`, 'D', 'M'],
-
-["Hybrid Search", "Why use hybrid search?",
-`**Answer:** Vector search captures meaning; keyword search (BM25) captures exact terms like product codes and names. Combining them (e.g. reciprocal rank fusion) improves recall.
-
-Tip: Exact identifiers.`, 'D', 'M'],
-
-["Caching", "What is semantic caching?",
-`**Answer:** Caching LLM responses keyed by embedding similarity of queries, so similar questions reuse answers — saving cost and latency, with care for personalization and freshness.
-
-Tip: Watch for stale or personalized answers.`, 'D', 'M'],
-
-["Reasoning", "How do you handle complex multi-step tasks?",
-`**Answer:** Break tasks into steps (decomposition), use reasoning-capable models or extended thinking for hard problems, verify intermediate results, and use tools for calculations or lookups instead of relying on the model's memory.
-
-Tip: Use tools for math.`, 'D', 'M'],
-
-["Data", "How do you build a good evaluation dataset?",
-`**Answer:** Sample real user queries (anonymized), include edge cases and adversarial examples, write expected answers or criteria with domain experts, and keep it updated as usage changes.
-
-Tip: Real queries.`, 'D', 'M'],
-
-["Human-in-the-loop", "When do you require human review?",
-`**Answer:** For high-impact actions (payments, account changes, legal or medical advice), low-confidence outputs, and new features during rollout.
-
-Tip: Risk-based.`, 'B', 'M'],
-
-["Cost Example", "Estimate the monthly cost of an LLM feature.",
-`**Answer:** Requests per month × (input tokens × input price + output tokens × output price). **Example:** 100,000 requests × (2,000 input + 300 output tokens) at $3 per million input and $15 per million output ≈ 100k × ($0.006 + $0.0045) ≈ $1,050/month — before caching.
-
-Tip: Show the formula; check current prices.`, 'D', 'M'],
-
-["Versioning", "How do you manage prompt versions?",
-`**Answer:** Store prompts in version control or a prompt registry, tie versions to evaluation results, roll out changes gradually, and log which version produced each output.
-
-Tip: Prompts are code.`, 'B', 'M']
-];
-
-QB['da-llm'] = (QB['da-llm'] || []).concat([
-["Prompting", "What is few-shot prompting and when does it help?",
-`**Answer:** Including a few input-output examples in the prompt to show the desired behavior or format. It helps with consistent formatting, classification boundaries and tone; choose diverse, representative examples and watch token cost.
-
-Tip: Diverse examples.`, 'B', 'M'],
-["RAG", "How do you keep a RAG index up to date?",
-`**Answer:** Incremental ingestion triggered by document changes, re-embedding only changed chunks, deleting removed documents, tracking source versions and timestamps, and periodic full reindexing when embedding models change.
-
-Tip: Handle deletions.`, 'D', 'M'],
-["Product", "How do you measure the business success of an AI feature?",
-`**Answer:** Define outcome metrics before launch — resolution rate, time saved, conversion, satisfaction — alongside quality metrics and cost per task, and use A/B tests or before/after comparisons with controls.
-
-Tip: Outcomes, not just usage.`, 'B', 'M']
+QB["da-llm"] = (QB["da-llm"] || []).concat([
+["Role", "What does an AI/LLM engineer do?", "**Why they ask:** a newer role with varied definitions.\n\n**Answer:** Builds applications on large language models: designing prompts and system instructions, retrieval-augmented generation (RAG), tool use and agents, evaluation pipelines, guardrails and safety, cost and latency optimization, and integrating AI features into products with monitoring — usually using hosted model APIs and sometimes fine-tuned or self-hosted models.\n\nTip: Emphasize evaluation and production reliability.", "B", "E"],
+["LLM Basics", "How do LLMs work at a high level?", "**Why they ask:** foundational understanding.\n\n**Answer:**\n\"They're transformer neural networks trained on huge amounts of text to predict the next token. Pretraining builds broad knowledge; post-training — instruction tuning and reinforcement learning from feedback — teaches them to follow instructions and behave safely. At inference they generate text one token at a time, based on probabilities, within a limited context window.\"\n\nTip: Mention tokens and context windows.", "B", "E"],
+["LLM Basics", "What are tokens and context windows?", "**Why they ask:** cost and design basics.\n\n**Answer:**\n\"Tokens are chunks of text — roughly three to four characters of English on average — that the model processes. The context window is the maximum number of tokens the model can consider at once, prompt plus output. Cost and latency scale with tokens, so stuffing in every document isn't free; I manage context deliberately.\"\n\nTip: Show cost awareness.", "B", "E"],
+["LLM Basics", "What do temperature and top-p control?", "**Why they ask:** generation control.\n\n**Answer:**\n\"Both control randomness in sampling. Low temperature gives more deterministic, focused output — what I want for extraction or classification. Higher temperature gives more variety — useful for brainstorming or creative writing. Top-p limits sampling to the most probable tokens up to a cumulative probability.\"\n\nTip: Low temperature for structured tasks.", "B", "M"],
+["Prompting", "What makes a good prompt?", "**Why they ask:** a core skill.\n\n**Answer:**\n\"A clear role and task, the relevant context, explicit constraints and output format — like a JSON schema — a few examples when they help, step-by-step instructions for complex tasks, and guidance for edge cases, like 'if the answer isn't in the documents, say you don't know.' For example, 'summarize this' becomes 'summarize this contract for a sales manager in five bullets covering price, term, renewal, termination and liability.'\"\n\nTip: Show a before-and-after prompt.", "B", "M"],
+["Prompting", "How do you get reliable structured output?", "**Why they ask:** production reliability.\n\n**Answer:**\n\"Use the model's structured output feature or tool calling with a JSON schema, validate the output with a schema library like Pydantic or Zod, retry or repair on failure, and keep temperature low. Never trust the output format without validation.\"\n\nTip: Schema validation.", "B", "M"],
+["RAG", "Explain retrieval-augmented generation.", "**Why they ask:** the most common enterprise pattern.\n\n**Answer:**\n\"Instead of relying only on what the model learned in training, we retrieve relevant documents from our own data at query time and put them in the prompt, so the answer is grounded in them. The steps: ingest and chunk documents, embed and index them, retrieve the top matches for a question — with vector, keyword or hybrid search — optionally rerank, and generate the answer with citations to the sources.\"\n\nTip: Citations build trust.", "B", "M"],
+["RAG", "How do you improve RAG quality?", "**Why they ask:** practical depth.\n\n**Answer:**\n\"Better chunking — on semantic boundaries, with overlap and metadata. Hybrid search combining BM25 and vectors. Rerankers. Query rewriting or decomposition. Metadata filters. Permission-aware retrieval. Prompts that require citing sources. And I evaluate retrieval — recall at k — separately from generation, because most bad answers come from retrieving the wrong chunks.\"\n\nTip: Evaluate retrieval and generation separately.", "D", "M"],
+["RAG", "How do you handle document permissions in RAG?", "**Why they ask:** critical for enterprise use.\n\n**Answer:**\n\"Store access-control metadata with every chunk and filter retrieval by the user's permissions at query time — or use separate indexes per tenant — so the model never even sees a document the user isn't allowed to read. Filtering after generation is too late.\"\n\nTip: Critical for enterprise.", "D", "S"],
+["Embeddings", "How do you choose an embedding model?", "**Why they ask:** retrieval quality starts here.\n\n**Answer:**\n\"Evaluate on our own data and queries with a retrieval benchmark, then consider dimension size for storage and speed, language and domain coverage, cost, hosting — API or self-hosted — and maximum input length. Public leaderboards are a starting point; our own benchmark decides.\"\n\nTip: Benchmark on your data.", "D", "M"],
+["Agents", "What is an AI agent?", "**Why they ask:** a fast-growing area.\n\n**Answer:**\n\"It's a system where an LLM decides which actions to take — calling tools like APIs, search, code execution or databases — in a loop, observing the results and continuing until the goal is met. Agents need clear tools, limits on steps and permissions, error handling, and human approval for consequential actions like payments or sending emails.\"\n\nTip: Put guardrails on actions.", "B", "M"],
+["Agents", "How do you design tools for an agent?", "**Why they ask:** agent reliability.\n\n**Answer:**\n\"Clear names and descriptions, well-defined parameter schemas, focused single-purpose tools, informative error messages the model can act on, least-privilege access, idempotent actions, and logging of every call. The tool descriptions matter as much as the prompt — the model chooses tools based on them.\"\n\nTip: Tool descriptions matter as much as prompts.", "D", "M"],
+["Agents", "What is the Model Context Protocol (MCP)?", "**Why they ask:** current ecosystem.\n\n**Answer:**\n\"It's an open protocol for connecting AI applications to tools and data sources through standardized servers. Once you build an MCP server for, say, your ticketing system, any MCP-compatible AI client can use it, instead of building a custom integration for each model or app.\"\n\nTip: Interoperability.", "D", "M"],
+["Agents", "When should you use an agent vs a fixed workflow?", "**Why they ask:** design judgment.\n\n**Answer:**\n\"Fixed workflows — defined steps — when the process is predictable; they're more reliable and cheaper. Agents when the steps vary and need dynamic decisions. Often the best answer is in between: a workflow with a few LLM decision points. I use the simplest thing that works.\"\n\nTip: 'Simplest thing that works.'", "D", "M"],
+["Evaluation", "How do you evaluate an LLM application?", "**Why they ask:** the core quality discipline.\n\n**Answer:**\n\"Build a test set of realistic inputs with expected behaviors. Define criteria — correctness, groundedness, relevance, completeness, safety, format and tone. Score with code-based checks, LLM-as-judge calibrated against human ratings, and some human review. Track results per version, and run the evals on every prompt, model or retrieval change. Evals are the test suite for LLM apps.\"\n\nTip: 'Evals are your test suite.'", "B", "M"],
+["Evaluation", "What is LLM-as-a-judge and its pitfalls?", "**Why they ask:** evaluation depth.\n\n**Answer:**\n\"It's using a model to grade outputs against criteria. The pitfalls are position bias, preferring longer answers, preferring its own outputs, and inconsistent scoring. I mitigate with clear rubrics, pairwise comparisons, calibration against human labels, and regular spot checks.\"\n\nTip: Calibrate with humans.", "D", "S"],
+["Hallucination", "How do you reduce hallucinations?", "**Why they ask:** trust.\n\n**Answer:**\n\"Ground answers in retrieved sources, instruct the model to answer only from the context and say when it doesn't know, require citations, use lower temperature for factual tasks, add verification steps, and measure groundedness in evals. Explicitly allowing 'I don't know' makes a big difference.\"\n\nTip: Allow 'I don't know.'", "B", "M"],
+["Safety", "What is prompt injection and how do you defend against it?", "**Why they ask:** a top LLM security risk.\n\n**Answer:**\n\"It's malicious instructions hidden in user input or retrieved content — web pages, documents, emails — that try to override the system instructions or trigger unwanted tool actions. Defenses: treat retrieved content as untrusted data, separate instructions from data, give tools least privilege, require human confirmation for sensitive actions, filter outputs and monitor. No defense is perfect, so I limit the blast radius — an agent that can't send money can't be tricked into sending money.\"\n\nTip: Limit what tools can do.", "D", "M"],
+["Safety", "What guardrails do you put around an LLM feature?", "**Why they ask:** safety.\n\n**Answer:**\n\"Input validation and moderation, output filters for PII and harmful content, schema validation, topic restrictions, rate limits, tool permission controls, human review for high-risk outputs, and audit logs. Layered — no single guardrail catches everything.\"\n\nTip: Layered defenses.", "D", "M"],
+["Privacy", "How do you handle sensitive data with LLM APIs?", "**Why they ask:** privacy and compliance.\n\n**Answer:**\n\"Check the provider's data usage and retention terms, minimize and redact PII where possible, use enterprise agreements or private deployments when required, encrypt in transit, and log carefully — not storing sensitive prompts longer than needed.\"\n\nTip: Check data processing agreements.", "D", "M"],
+["Cost", "How do you control LLM costs?", "**Why they ask:** costs can explode.\n\n**Answer:**\n\"Use the smallest model that meets quality — route simple tasks to cheaper models — trim prompts and context, use prompt caching where supported, cache responses for repeated queries, use batch APIs for offline jobs, limit output length, and monitor cost per feature and per user.\"\n\nTip: Model routing.", "B", "M"],
+["Latency", "How do you reduce latency in LLM apps?", "**Why they ask:** user experience.\n\n**Answer:**\n\"Stream responses, use smaller, faster models for simple steps, run independent calls in parallel, shrink prompts, cache, and precompute retrieval where possible. Streaming especially improves how fast it feels, even if total time is the same.\"\n\nTip: Streaming improves perceived speed.", "B", "M"],
+["Fine-tuning", "When should you fine-tune a model?", "**Why they ask:** cost and complexity judgment.\n\n**Answer:**\n\"When prompting and RAG can't achieve the required format, style or task performance; when you want a smaller, cheaper model to match a larger one on a narrow task; or for consistent domain behavior. It needs quality training data and evaluation. Parameter-efficient methods like LoRA reduce the cost. I try prompting and RAG first.\"\n\nTip: Try prompting and RAG first.", "D", "S"],
+["Models", "How do you choose between models?", "**Why they ask:** model selection.\n\n**Answer:**\n\"Evaluate on our actual tasks for quality, latency, cost, context length, tool-use reliability, safety, data privacy terms and availability. And keep an abstraction layer so we can switch models — the best option changes every few months.\"\n\nTip: Benchmark on your use case.", "B", "M"],
+["Architecture", "Design a customer support assistant using LLMs.", "**Why they ask:** end-to-end design.\n\n**Answer:**\n\"RAG over help articles and policies, filtered by permissions. Tools for order lookup and ticket creation, behind authentication. Conversation memory. Escalation to a human when confidence is low or the customer asks. Guardrails on refunds and sensitive topics. An evaluation set built from real tickets, analytics on resolution rate, and a feedback loop to keep improving.\"\n\nTip: Always include a human escalation path.", "D", "S"],
+["Architecture", "What does an LLM gateway do?", "**Why they ask:** platform architecture.\n\n**Answer:**\n\"It's a central layer for model access — routing across providers, authentication, rate limiting, caching, cost tracking, logging, fallback when a provider fails, and policy enforcement. It gives the company one place to control AI usage.\"\n\nTip: Central control.", "D", "S"],
+["Observability", "What do you monitor in production LLM apps?", "**Why they ask:** operations.\n\n**Answer:**\n\"Latency, token usage and cost, error rates, tool call success, user feedback like thumbs up or down, automated eval scores on sampled traffic, safety events, and drift in the types of questions users ask. Tracing tools like LangSmith, Langfuse or Arize help.\"\n\nTip: Use tracing tools.", "D", "M"],
+["Frameworks", "What frameworks and tools have you used?", "**Why they ask:** practical experience.\n\n**Answer:**\n\"Provider SDKs directly for most production work, LangChain or LlamaIndex for prototyping RAG, pgvector and OpenSearch for retrieval, Pydantic for structured outputs, and Langfuse for tracing and evals. I use frameworks where they help, but I want to understand what they're doing underneath.\"\n\nTip: Show you understand what frameworks abstract.", "B", "M"],
+["Memory", "How do you handle conversation memory?", "**Why they ask:** context management.\n\n**Answer:**\n\"Keep recent turns in context, summarize older history, store important facts in structured memory with the user's consent, and retrieve relevant memories when needed — all while respecting privacy and context limits.\"\n\nTip: Summarization.", "D", "M"],
+["Multimodal", "How do you use multimodal models?", "**Why they ask:** broader capabilities.\n\n**Answer:**\n\"For document understanding like invoices and forms, image analysis, reading charts and screenshots, and voice interfaces — with evaluation for accuracy and fallbacks for low-confidence results. Invoice extraction is a strong use case: it replaces brittle template-based OCR.\"\n\nTip: Document extraction use case.", "D", "M"],
+["Testing", "How do you test non-deterministic outputs?", "**Why they ask:** testing discipline.\n\n**Answer:**\n\"Test properties instead of exact text — does it contain the required facts, is the schema valid, is forbidden content absent. Use evaluation scores with thresholds, run multiple samples to see variance, and fix temperature for tests where possible.\"\n\nTip: Property-based checks.", "D", "M"],
+["Behavioral", "Tell me about an LLM feature you shipped.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built a RAG assistant for internal policy questions with hybrid search, reranking and citations. On our eval set of 300 real questions, it reached 92% correct with citations, and HR tickets dropped 35% within two months.\"\n\nTip: Eval numbers and business impact.", "B", "M"],
+["Behavioral", "Tell me about a problem you found through evaluation.", "**Why they ask:** evaluation-driven development.\n\n**Answer:**\n\"Evals showed the assistant was inventing policy numbers when the relevant document wasn't retrieved. We added a 'not found' instruction and a retrieval confidence threshold, and groundedness rose from 81% to 96%.\"\n\nTip: Evaluation-driven improvement.", "B", "M"],
+["Behavioral", "How do you explain AI limitations to stakeholders?", "**Why they ask:** setting expectations.\n\n**Answer:**\n\"Honestly: show the eval results and real failure examples, explain the safeguards, and set expectations with human-in-the-loop designs where needed. Trust comes from transparency, not from demos.\"\n\nTip: Trust through transparency.", "B", "M"],
+["Governance", "How should companies govern AI use?", "**Why they ask:** governance awareness.\n\n**Answer:**\n\"An AI use policy, an inventory of AI systems, risk classification, an approval process for high-risk uses, evaluation and monitoring requirements, data protections, vendor review, and compliance with laws like the EU AI Act.\"\n\nTip: Risk-based governance.", "D", "S"],
+["Enterprise", "How do enterprise apps like Oracle or Salesforce embed AI agents?", "**Why they ask:** enterprise context.\n\n**Answer:**\n\"Vendors provide embedded AI features and agent builders — Oracle AI Agent Studio, Salesforce Agentforce, ServiceNow AI Agents — that use the application's own data, security and workflows. Engineers configure the tools, prompts and guardrails within those platforms, which inherit the app's role-based access.\"\n\nTip: Platform-native agents.", "D", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior AI engineer or AI architect — agent systems, evaluation platforms and AI product strategy.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build LLM features that work reliably — grounded RAG, safe agents and rigorous evals — and I've shipped assistants that measurably reduced support volume while keeping costs under control.\"\n\nTip: Proof.", "B", "M"],
+["Chunking", "How do you choose a chunking strategy?", "**Why they ask:** RAG fundamentals.\n\n**Answer:**\n\"Split by document structure — headings and sections — rather than fixed character counts when I can. Size chunks to balance context and precision, often a few hundred tokens, add some overlap, and include metadata like title, section and date. Then tune it using retrieval evaluation.\"\n\nTip: Structure-aware chunking.", "D", "M"],
+["Reranking", "What does a reranker do?", "**Why they ask:** retrieval quality.\n\n**Answer:**\n\"It takes the top retrieved candidates — say the top 50 — and reorders them with a more accurate cross-encoder model, so the best few go to the LLM. It's a cheap quality boost.\"\n\nTip: A cheap quality boost.", "D", "M"],
+["Hybrid Search", "Why use hybrid search?", "**Why they ask:** retrieval design.\n\n**Answer:**\n\"Vector search captures meaning; keyword search like BM25 catches exact terms — product codes, names, error numbers. Combining them, for example with reciprocal rank fusion, improves recall. A pure vector search might miss 'error 4031' entirely.\"\n\nTip: Exact identifiers matter.", "D", "M"],
+["Caching", "What is semantic caching?", "**Why they ask:** cost optimization.\n\n**Answer:**\n\"Caching LLM responses keyed by the embedding similarity of queries, so similar questions reuse an answer — saving cost and latency. But I'm careful with personalized or time-sensitive answers, which shouldn't be shared.\"\n\nTip: Watch for stale or personalized answers.", "D", "M"],
+["Reasoning", "How do you handle complex multi-step tasks?", "**Why they ask:** reasoning reliability.\n\n**Answer:**\n\"Break the task into steps, use reasoning-capable models or extended thinking for hard problems, verify intermediate results, and use tools for calculations and lookups instead of relying on the model's memory. Models are much better at deciding to call a calculator than at arithmetic.\"\n\nTip: Use tools for math.", "D", "M"],
+["Data", "How do you build a good evaluation dataset?", "**Why they ask:** quality foundation.\n\n**Answer:**\n\"Sample real user queries, anonymized, include edge cases and adversarial examples, write expected answers or grading criteria with domain experts, and keep it updated as usage changes.\"\n\nTip: Use real queries.", "D", "M"],
+["Human-in-the-loop", "When do you require human review?", "**Why they ask:** risk management.\n\n**Answer:**\n\"For high-impact actions — payments, account changes, legal or medical guidance — for low-confidence outputs, and for new features during rollout until evals and monitoring prove them.\"\n\nTip: Make it risk-based.", "B", "M"],
+["Cost Example", "Estimate the monthly cost of an LLM feature.", "**Why they ask:** cost thinking.\n\n**Answer:**\n\"Requests per month times input tokens times input price, plus output tokens times output price. For example, 100,000 requests with 2,000 input and 300 output tokens, at $3 per million input and $15 per million output: that's $0.006 plus $0.0045 per request — about $1,050 a month before caching. Prices change, so I'd check current rates.\"\n\nTip: Show the formula; check current prices.", "D", "M"],
+["Versioning", "How do you manage prompt versions?", "**Why they ask:** engineering discipline.\n\n**Answer:**\n\"Store prompts in version control or a prompt registry, tie each version to its evaluation results, roll out changes gradually, and log which version produced each output. Prompts are code.\"\n\nTip: Prompts are code.", "B", "M"]
+]);
+
+QB["da-llm"] = (QB["da-llm"] || []).concat([
+["Prompting", "What is few-shot prompting and when does it help?", "**Why they ask:** prompting technique.\n\n**Answer:**\n\"Including a few input-output examples in the prompt to show the desired behavior or format. It helps with consistent formatting, classification boundaries and tone. I choose diverse, representative examples — and watch the token cost, since examples go with every call.\"\n\nTip: Use diverse examples.", "B", "M"],
+["RAG", "How do you keep a RAG index up to date?", "**Why they ask:** production RAG.\n\n**Answer:**\n\"Incremental ingestion triggered by document changes, re-embedding only changed chunks, deleting removed documents, tracking source versions and timestamps, and a full reindex when the embedding model changes. Deletions are the part people forget — a retired policy shouldn't keep answering questions.\"\n\nTip: Handle deletions.", "D", "M"],
+["Product", "How do you measure the business success of an AI feature?", "**Why they ask:** value focus.\n\n**Answer:**\n\"Define outcome metrics before launch — resolution rate, time saved, conversion, satisfaction — alongside quality metrics and cost per task. Then measure with A/B tests or controlled before-and-after comparisons. Usage alone doesn't prove value.\"\n\nTip: Outcomes, not just usage.", "B", "M"]
 ]);

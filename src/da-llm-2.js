@@ -1,14 +1,5 @@
-QB['da-llm'] = (QB['da-llm'] || []).concat([
-["Prompting", "What is few-shot prompting and when does it help?",
-`**Answer:** Including a few input-output examples in the prompt to show the desired behavior or format. It helps with consistent formatting, classification boundaries and tone; choose diverse, representative examples and watch token cost.
-
-Tip: Diverse examples.`, 'B', 'M'],
-["RAG", "How do you keep a RAG index up to date?",
-`**Answer:** Incremental ingestion triggered by document changes, re-embedding only changed chunks, deleting removed documents, tracking source versions and timestamps, and periodic full reindexing when embedding models change.
-
-Tip: Handle deletions.`, 'D', 'M'],
-["Product", "How do you measure the business success of an AI feature?",
-`**Answer:** Define outcome metrics before launch — resolution rate, time saved, conversion, satisfaction — alongside quality metrics and cost per task, and use A/B tests or before/after comparisons with controls.
-
-Tip: Outcomes, not just usage.`, 'B', 'M']
+QB["da-llm"] = (QB["da-llm"] || []).concat([
+["Prompting", "What is few-shot prompting and when does it help?", "**Why they ask:** prompting technique.\n\n**Answer:**\n\"Including a few input-output examples in the prompt to show the desired behavior or format. It helps with consistent formatting, classification boundaries and tone. I choose diverse, representative examples — and watch the token cost, since examples go with every call.\"\n\nTip: Use diverse examples.", "B", "M"],
+["RAG", "How do you keep a RAG index up to date?", "**Why they ask:** production RAG.\n\n**Answer:**\n\"Incremental ingestion triggered by document changes, re-embedding only changed chunks, deleting removed documents, tracking source versions and timestamps, and a full reindex when the embedding model changes. Deletions are the part people forget — a retired policy shouldn't keep answering questions.\"\n\nTip: Handle deletions.", "D", "M"],
+["Product", "How do you measure the business success of an AI feature?", "**Why they ask:** value focus.\n\n**Answer:**\n\"Define outcome metrics before launch — resolution rate, time saved, conversion, satisfaction — alongside quality metrics and cost per task. Then measure with A/B tests or controlled before-and-after comparisons. Usage alone doesn't prove value.\"\n\nTip: Outcomes, not just usage.", "B", "M"]
 ]);
