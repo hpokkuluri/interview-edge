@@ -1,258 +1,57 @@
 // cl-sre — generated from src/cl-sre-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Site Reliability Engineer (SRE). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['cl-sre'] = [
-["SRE Basics", "What is SRE and how does it differ from traditional ops?",
-`**Why they ask:** foundational.
-
-**Answer:** Site Reliability Engineering applies software engineering to operations: defining reliability targets (SLOs), managing error budgets, automating toil, building observability, handling incidents with blameless learning, and improving systems through engineering work rather than manual effort. Traditional ops often focused on manual processes and change avoidance; SRE balances reliability with release velocity using data.
-
-Tip: Mention Google's SRE book origin.`, 'B', 'E'],
-
-["SLOs", "Explain SLI, SLO and SLA.",
-`**Answer:** **SLI** (indicator): a measurement of service behavior, e.g. % of requests under 300 ms or % successful requests. **SLO** (objective): the target for an SLI, e.g. 99.9% availability over 30 days. **SLA** (agreement): a contractual commitment to customers with penalties, usually looser than internal SLOs.
-
-Tip: SLOs should reflect user experience.`, 'B', 'E'],
-
-["SLOs", "How do you choose good SLIs?",
-`**Answer:** Measure what users experience: availability (successful requests ÷ total), latency (percentile under threshold), freshness for data pipelines, correctness, throughput. Measure as close to the user as possible (load balancer or client-side), and keep a small number per service.
-
-Tip: User-centric.`, 'D', 'M'],
-
-["Error Budgets", "What is an error budget and how is it used?",
-`**Answer:** The allowed unreliability implied by the SLO — 99.9% monthly availability allows about 43 minutes of downtime per 30 days. If the budget is healthy, teams can ship faster and take risks; if it's exhausted, focus shifts to reliability work and risky releases pause, per an agreed policy.
-
-**Math:** 30 days × 24 × 60 × 0.001 ≈ 43.2 minutes.
-
-Tip: Show the math.`, 'B', 'M'],
-
-["Error Budgets", "How do you alert on SLOs?",
-`**Answer:** Use burn-rate alerts — how fast the error budget is being consumed — with multiple windows (e.g. fast burn over 1 hour for pages, slow burn over 6 hours/3 days for tickets). This reduces noise and catches real user impact.
-
-Tip: Multi-window burn rate.`, 'D', 'S'],
-
-["Toil", "What is toil and how do you reduce it?",
-`**Answer:** Manual, repetitive, automatable, reactive work that scales with service size and has no lasting value — e.g. manual restarts, ticket-driven provisioning. Measure it, cap it (Google suggests under 50% of time), and eliminate it with automation and better design.
-
-Tip: Measure toil.`, 'B', 'M'],
-
-["Incidents", "Walk me through your incident response process.",
-`**Answer:** Detect (alerts), triage severity, declare an incident and assign roles (incident commander, communications, operations), mitigate first (rollback, failover, scale, disable feature), communicate regularly to stakeholders and status page, resolve, then hold a blameless postmortem with tracked actions.
-
-Tip: Roles and mitigation-first.`, 'B', 'M'],
-
-["Incidents", "What does an incident commander do?",
-`**Answer:** Coordinates the response — sets priorities, delegates tasks, keeps the timeline, ensures communication, decides on escalation, and declares resolution. They don't necessarily fix the problem themselves.
-
-Tip: Coordination over hands-on.`, 'B', 'M'],
-
-["Postmortems", "What should a postmortem include?",
-`**Answer:** Summary, impact (users, duration, SLO budget consumed), timeline, root cause and contributing factors, detection and response analysis, what went well, action items with owners and dates, and lessons learned — blameless and shared widely.
-
-Tip: Detection gaps are often key findings.`, 'B', 'M'],
-
-["Observability", "What are the pillars of observability?",
-`**Answer:** Metrics (aggregated numbers over time), logs (discrete events with context), and traces (requests across services). Increasingly profiles and events too. Correlate them with shared identifiers (trace IDs) — OpenTelemetry standardizes collection.
-
-Tip: OpenTelemetry.`, 'B', 'M'],
-
-["Observability", "What are the RED and USE methods?",
-`**Answer:** **RED** for services: Rate, Errors, Duration. **USE** for resources: Utilization, Saturation, Errors. Together they give a quick health picture. Google's four golden signals: latency, traffic, errors, saturation.
-
-Tip: Golden signals.`, 'B', 'M'],
-
-["Reliability", "How do you design for high availability?",
-`**Answer:** Eliminate single points of failure, redundancy across zones/regions, health checks and automatic failover, stateless services, graceful degradation, load shedding, timeouts and retries with backoff, and capacity headroom.
-
-Tip: Graceful degradation.`, 'B', 'M'],
-
-["Reliability", "What are cascading failures and how do you prevent them?",
-`**Answer:** One failing component overloads others (retries storms, resource exhaustion), spreading the outage. Prevent with timeouts, retry budgets with jitter, circuit breakers, bulkheads, load shedding, rate limiting, and autoscaling limits.
-
-Tip: Retry storms.`, 'D', 'M'],
-
-["Reliability", "Explain circuit breakers.",
-`**Answer:** A pattern that stops calling a failing dependency after errors exceed a threshold (open state), returns fallbacks quickly, then periodically tests recovery (half-open) before resuming (closed). Protects callers and gives the dependency time to recover.
-
-Tip: States explanation.`, 'B', 'M'],
-
-["Capacity", "How do you do capacity planning?",
-`**Answer:** Measure current utilization and demand trends, forecast growth and peaks (launches, seasonality), load test to find limits per instance, plan headroom (e.g. N+1 or 30%), and automate scaling where possible.
-
-Tip: Load test to know limits.`, 'D', 'M'],
-
-["Load Testing", "How do you load test a service?",
-`**Answer:** Define realistic traffic models, use tools (k6, Gatling, Locust), ramp load to and beyond expected peaks, monitor SLIs and resources, find breaking points and bottlenecks, and repeat after changes.
-
-Tip: Test failure modes too.`, 'D', 'M'],
-
-["Chaos", "What is chaos engineering?",
-`**Answer:** Deliberately injecting failures (killing instances, adding latency, failing dependencies) in controlled experiments with hypotheses, to discover weaknesses before real incidents. Start small in staging, then production with blast-radius limits. Tools: Chaos Mesh, Gremlin, AWS FIS, Litmus.
-
-Tip: Hypothesis-driven.`, 'D', 'M'],
-
-["DR", "How do you test disaster recovery?",
-`**Answer:** Scheduled DR drills and game days: fail over regions or databases, restore from backups, measure actual RTO/RPO, document gaps and fix them.
-
-Tip: Untested DR doesn't work.`, 'D', 'M'],
-
-["Releases", "How do SREs make releases safer?",
-`**Answer:** Progressive delivery (canaries with automated analysis), feature flags, automated rollback on SLO regression, release freeze policies tied to error budgets, and small, frequent changes.
-
-Tip: Automated canary analysis.`, 'B', 'M'],
-
-["On-call", "How do you make on-call sustainable?",
-`**Answer:** Actionable alerts only, runbooks, reasonable rotation sizes, follow-the-sun when possible, limits on pages per shift, compensation, and dedicated time to fix recurring issues.
-
-Tip: Alert quality.`, 'B', 'M'],
-
-["Alerting", "What makes a good alert?",
-`**Answer:** Actionable, urgent, user-impacting, with clear context and runbook links. Page for symptoms (SLO burn), ticket for causes (disk filling slowly). Remove alerts that don't lead to action.
-
-Tip: "Every page should require human action."`, 'B', 'M'],
-
-["Kubernetes", "What reliability concerns arise with Kubernetes?",
-`**Answer:** Resource requests/limits (OOMKills, throttling), pod disruption budgets, probes, node pressure and autoscaling, multi-zone spread (topology constraints), control plane upgrades, and noisy neighbors.
-
-Tip: PodDisruptionBudgets.`, 'D', 'M'],
-
-["Databases", "How do you improve database reliability?",
-`**Answer:** Replication and automated failover, backups with tested restores, connection pooling, query performance monitoring, capacity headroom, safe migrations, and read replicas for scaling.
-
-Tip: Restore tests.`, 'D', 'M'],
-
-["Linux", "A server has high load. How do you investigate?",
-`**Answer:** uptime/top for load and CPU, vmstat/iostat for I/O wait, free for memory and swap, ss/netstat for connections, dmesg for kernel issues, and per-process tools (pidstat, strace) — then correlate with application metrics.
-
-Tip: CPU vs I/O wait.`, 'B', 'M'],
-
-["Networking", "How do you debug intermittent latency spikes?",
-`**Answer:** Correlate with traces and metrics (GC pauses, CPU throttling, noisy neighbors, network retransmits, DNS timeouts, connection pool exhaustion), look at percentiles over time, and reproduce under load.
-
-Tip: CPU throttling in containers is common.`, 'D', 'S'],
-
-["Automation", "What would you automate first as a new SRE?",
-`**Answer:** The highest-volume toil: repetitive incident remediations, manual provisioning, certificate renewals, scaling adjustments, and noisy alert handling — measured by time saved.
-
-Tip: Data-driven priorities.`, 'B', 'M'],
-
-["Coding", "What coding do SREs do?",
-`**Answer:** Automation tools, operators/controllers, reliability features in services (timeouts, retries), monitoring exporters, CLIs, and infrastructure as code — in Go, Python or similar.
-
-Tip: Engineering focus.`, 'B', 'M'],
-
-["Culture", "How do you work with development teams?",
-`**Answer:** Shared ownership of reliability, production readiness reviews before launch, embedded SRE support, error budget policies agreed with product, and teaching observability practices.
-
-Tip: Production readiness reviews.`, 'B', 'M'],
-
-["PRR", "What is a production readiness review?",
-`**Answer:** A checklist review before launch: SLOs defined, monitoring and alerts, runbooks, capacity and load testing, dependencies and failure modes, rollback plan, security, on-call coverage.
-
-Tip: Prevents surprises.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a major incident you handled.",
-`**Sample answer:** "A cache cluster failure caused database overload and site-wide errors. As incident commander, I had us shed non-critical traffic, scale the database read replicas and restore the cache. Service recovered in 25 minutes. Postmortem actions added cache redundancy and request coalescing."
-
-Tip: Roles, mitigation, follow-up.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing toil.",
-`**Sample answer:** "Engineers spent 10 hours a week on manual certificate renewals and disk cleanups. I automated both with cert-manager and scheduled jobs plus alerts. Toil dropped by 80%."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "How do you handle disagreement with product about reliability vs features?",
-`**Answer:** Use the error budget policy as an objective framework, show user impact data, and agree priorities together.
-
-Tip: Data over opinion.`, 'B', 'M'],
-
-["AI", "How is AI changing SRE work?",
-`**Answer:** AIOps for anomaly detection and alert correlation, LLM assistants summarizing incidents and suggesting runbook steps, and natural-language querying of observability data — while SREs validate suggestions and own decisions. Also: running reliable AI services with GPU capacity and latency SLOs.
-
-Tip: Validate AI suggestions.`, 'D', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior/staff SRE or reliability leadership — SLO programs, platform reliability and resilience engineering.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I make systems measurably more reliable — SLO programs, faster incident response, less toil — and I've cut MTTR from 90 to 20 minutes while helping teams ship faster."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Availability", "What does 'five nines' mean in downtime?",
-`**Answer:** 99.999% availability ≈ 5.26 minutes of downtime per year (about 26 seconds per month). 99.9% ≈ 8.76 hours per year; 99.99% ≈ 52.6 minutes per year.
-
-Tip: Know these numbers.`, 'B', 'E'],
-
-["Dependencies", "How do you handle unreliable dependencies?",
-`**Answer:** Timeouts, retries with backoff and budgets, circuit breakers, caching and fallbacks, async processing, and SLOs that account for dependency reliability.
-
-Tip: Your SLO can't exceed your critical dependencies.`, 'D', 'M'],
-
-["Load Shedding", "What is load shedding?",
-`**Answer:** Deliberately rejecting some requests (lower priority) when overloaded to keep the system responsive for critical traffic — returning 503/429 early rather than collapsing.
-
-Tip: Prioritization.`, 'D', 'M'],
-
-["Retries", "What are the dangers of retries?",
-`**Answer:** Retries amplify load during outages (retry storms). Use exponential backoff with jitter, retry budgets, only retry idempotent operations, and avoid retries at every layer.
-
-Tip: Jitter.`, 'D', 'M'],
-
-["Logs", "How do you manage log volume and cost?",
-`**Answer:** Structured logging with levels, sampling of high-volume logs, retention tiers, dropping noisy logs at collection, and metrics instead of logs for counting.
-
-Tip: Cost awareness.`, 'D', 'M'],
-
-["Tracing", "How does distributed tracing help?",
-`**Answer:** Follows a request across services with spans showing timing and errors, revealing where latency or failures occur in complex call chains.
-
-Tip: Critical path analysis.`, 'B', 'M'],
-
-["Change Management", "Why are most outages caused by changes?",
-`**Answer:** Deployments and config changes introduce new behavior; mitigate with progressive rollouts, automated testing, change review, monitoring after changes, and easy rollback.
-
-Tip: Config changes too.`, 'B', 'M'],
-
-["Metrics", "MTTR vs MTTD vs MTBF?",
-`**Answer:** MTTD (mean time to detect), MTTR (mean time to restore/recover), MTBF (mean time between failures). SRE focuses on reducing MTTD and MTTR as much as preventing failures.
-
-Tip: Detection matters.`, 'B', 'M'],
-
-["Game Days", "What is a game day?",
-`**Answer:** A planned exercise simulating failures or incidents to practice response, test runbooks and find gaps, involving engineers and sometimes business stakeholders.
-
-Tip: Practice builds confidence.`, 'D', 'M'],
-
-["Status Pages", "How do you communicate during an outage?",
-`**Answer:** Early acknowledgment, regular updates at set intervals, plain language about impact and next update time, and a final summary — internally and on public status pages.
-
-Tip: Regular cadence.`, 'B', 'M'],
-
-["Scenario", "Your service is at 100% error budget consumption mid-month. What do you do?",
-`**Answer:** Follow the error budget policy: pause risky releases, prioritize reliability fixes from recent incidents, review alerting and SLO definitions, and communicate with product leadership.
-
-Tip: Policy agreed in advance.`, 'D', 'M'],
-
-["Scenario", "Alerts fire constantly and people ignore them. How do you fix it?",
-`**Answer:** Audit alerts for actionability, delete or downgrade noisy ones, move to SLO-based alerts, add runbooks, and track page volume per shift.
-
-Tip: Alert hygiene.`, 'B', 'M'],
-
-["Multi-region", "What are the challenges of multi-region active-active?",
-`**Answer:** Data consistency and conflict resolution, latency for cross-region writes, routing and failover logic, cost, and operational complexity. Many services choose active-passive for simplicity.
-
-Tip: Data is the hard part.`, 'D', 'S']
-];
-
-QB['cl-sre'] = (QB['cl-sre'] || []).concat([
-["SLOs", "How do you get teams to adopt SLOs?",
-`**Answer:** Start with one critical user journey, define simple SLIs from existing data, set realistic targets from historical performance, build a dashboard, agree an error budget policy with product, and expand gradually.
-
-Tip: Start small.`, 'D', 'M'],
-["Capacity", "What is headroom and how much do you keep?",
-`**Answer:** Spare capacity above expected peak to absorb spikes and failures — often N+1 (survive losing one instance/zone) or 20–40% over peak depending on scaling speed and criticality.
-
-Tip: Zone failure planning.`, 'D', 'M']
+QB["cl-sre"] = (QB["cl-sre"] || []).concat([
+["SRE Basics", "What is SRE and how does it differ from traditional ops?", "**Why they ask:** foundational.\n\n**Answer:** Site Reliability Engineering applies software engineering to operations: defining reliability targets (SLOs), managing error budgets, automating toil, building observability, handling incidents with blameless learning, and improving systems through engineering work rather than manual effort. Traditional ops often focused on manual processes and change avoidance; SRE balances reliability with release velocity using data.\n\nTip: Mention Google's SRE book origin.", "B", "E"],
+["SLOs", "Explain SLI, SLO and SLA.", "**Why they ask:** the foundation of SRE.\n\n**Answer:**\n\"An SLI is a measurement of service behavior — say, the percentage of requests that succeed, or that complete under 300 milliseconds. An SLO is the target for that SLI — 99.9% successful over 30 days. An SLA is a contractual commitment to customers with penalties, usually looser than the internal SLO — for example an SLA of 99.5% backed by an internal SLO of 99.9%, so we have warning before we owe credits.\"\n\nTip: SLOs should reflect user experience.", "B", "E"],
+["SLOs", "How do you choose good SLIs?", "**Why they ask:** bad SLIs make SLOs meaningless.\n\n**Answer:**\n\"I measure what users experience: availability as successful requests over total, latency as the share of requests under a threshold, freshness for data pipelines, correctness, throughput. I measure as close to the user as possible — at the load balancer or client-side, not CPU on a server — and keep it to two or three per service. For checkout: 99.9% of requests succeed and 99% complete under 500 milliseconds.\"\n\nTip: User-centric.", "D", "M"],
+["Error Budgets", "What is an error budget and how is it used?", "**Why they ask:** the mechanism that balances speed and reliability.\n\n**Answer:**\n\"It's the unreliability the SLO allows. 99.9% over 30 days is 30 times 24 times 60 minutes times 0.001 — about 43 minutes. While budget remains, teams ship fast and take risks. When it's spent, focus shifts to reliability work and risky releases pause, according to a policy agreed with product in advance. It turns 'reliability versus features' from an argument into a number.\"\n\nTip: Show the math.", "B", "M"],
+["Error Budgets", "How do you alert on SLOs?", "**Why they ask:** alerting maturity.\n\n**Answer:**\n\"Burn-rate alerts — how fast the error budget is being consumed — over multiple windows. A fast burn, like 14 times the normal rate over an hour, would spend 2% of the monthly budget in that hour, so it pages someone. A slow burn over six hours or three days opens a ticket. That cuts noise dramatically while still catching real user impact.\"\n\nTip: Multi-window burn rate.", "D", "S"],
+["Toil", "What is toil and how do you reduce it?", "**Why they ask:** SRE's engineering mandate.\n\n**Answer:**\n\"Toil is manual, repetitive, automatable, reactive work that scales with the service and has no lasting value — restarting a stuck process, provisioning by ticket. I measure it, cap it — Google's guideline is under 50% of an SRE's time — and eliminate the biggest chunks with automation or better design.\"\n\nTip: Measure toil.", "B", "M"],
+["Incidents", "Walk me through your incident response process.", "**Why they ask:** structured response under pressure.\n\n**Answer:**\n\"Detect through alerts, triage severity, declare an incident and assign roles — incident commander, communications lead, operations. Mitigate first: roll back, fail over, scale, or disable the feature. Communicate at a regular cadence to stakeholders and the status page. Resolve, then run a blameless postmortem with tracked actions. Root cause can wait until users are okay.\"\n\nTip: Roles and mitigation-first.", "B", "M"],
+["Incidents", "What does an incident commander do?", "**Why they ask:** incident leadership.\n\n**Answer:**\n\"Coordinates the response — sets priorities, delegates tasks, keeps the timeline, makes sure communication happens, decides on escalation and declares resolution. The IC usually isn't typing commands; their job is keeping ten smart people from all debugging the same thing.\"\n\nTip: Coordination over hands-on.", "B", "M"],
+["Postmortems", "What should a postmortem include?", "**Why they ask:** learning culture.\n\n**Answer:**\n\"A summary, impact — users affected, duration, error budget consumed — a timeline, root cause and contributing factors, analysis of detection and response, what went well, action items with owners and dates, and lessons learned. Blameless and shared widely. Often the most valuable finding is that detection took 20 minutes when it should have taken two.\"\n\nTip: Detection gaps are often key findings.", "B", "M"],
+["Observability", "What are the pillars of observability?", "**Why they ask:** telemetry fundamentals.\n\n**Answer:**\n\"Metrics — aggregated numbers over time; logs — discrete events with context; traces — a request's path across services. Increasingly profiles and events too. The value comes from correlating them through shared identifiers like trace IDs, and OpenTelemetry standardizes how they're collected.\"\n\nTip: OpenTelemetry.", "B", "M"],
+["Observability", "What are the RED and USE methods?", "**Why they ask:** quick-diagnosis frameworks.\n\n**Answer:**\n\"RED is for services: Rate, Errors, Duration. USE is for resources: Utilization, Saturation, Errors. Together they give a fast health picture. Google's four golden signals — latency, traffic, errors, saturation — combine the two.\"\n\nTip: Golden signals.", "B", "M"],
+["Reliability", "How do you design for high availability?", "**Why they ask:** reliability design.\n\n**Answer:**\n\"Eliminate single points of failure, spread redundancy across zones or regions, health checks with automatic failover, stateless services, graceful degradation, load shedding, timeouts and retries with backoff, and capacity headroom. Graceful degradation is underrated — if recommendations fail, show bestsellers instead of an error page.\"\n\nTip: Graceful degradation.", "B", "M"],
+["Reliability", "What are cascading failures and how do you prevent them?", "**Why they ask:** large outages are usually cascades.\n\n**Answer:**\n\"One failing component overloads others — through retry storms or resource exhaustion — and the outage spreads. Prevention is timeouts, retry budgets with jitter, circuit breakers, bulkheads to isolate resource pools, load shedding, rate limiting, and autoscaling limits so one service can't consume everything.\"\n\nTip: Retry storms.", "D", "M"],
+["Reliability", "Explain circuit breakers.", "**Why they ask:** a resilience pattern.\n\n**Answer:**\n\"When errors to a dependency exceed a threshold, the breaker opens and calls fail fast with a fallback instead of waiting on timeouts. After a cool-down it goes half-open and lets a few test requests through; if they succeed it closes and normal traffic resumes. It protects the caller's threads and gives the dependency room to recover.\"\n\nTip: States explanation.", "B", "M"],
+["Capacity", "How do you do capacity planning?", "**Why they ask:** avoiding surprise saturation.\n\n**Answer:**\n\"Measure current utilization and demand trends, forecast growth and peaks like launches and seasonality, load test to know the limit per instance, plan headroom — N+1 or around 30% — and automate scaling where possible. If one pod handles 400 requests per second and the forecast peak is 6,000, I need 15 pods plus headroom — say 20.\"\n\nTip: Load test to know limits.", "D", "M"],
+["Load Testing", "How do you load test a service?", "**Why they ask:** practical performance validation.\n\n**Answer:**\n\"Define a realistic traffic model from production patterns, use k6, Gatling or Locust, ramp to and beyond the expected peak, watch SLIs and resources, find the breaking point and the bottleneck, and repeat after changes. I also test failure modes under load — what happens when a dependency slows down at peak.\"\n\nTip: Test failure modes too.", "D", "M"],
+["Chaos", "What is chaos engineering?", "**Why they ask:** proactive resilience.\n\n**Answer:**\n\"Deliberately injecting failures — killing instances, adding latency, failing a dependency — in controlled experiments with a hypothesis, like 'if one zone fails, error rate stays under 1%.' Start small in staging, then production with a limited blast radius. Tools include Chaos Mesh, Gremlin, AWS FIS and Litmus.\"\n\nTip: Hypothesis-driven.", "D", "M"],
+["DR", "How do you test disaster recovery?", "**Why they ask:** DR plans often don't work.\n\n**Answer:**\n\"Scheduled DR drills and game days: actually fail over a region or database, restore from backups, measure the real RTO and RPO against targets, document gaps and fix them. The first drill almost always finds something — a missing DNS change, an expired credential.\"\n\nTip: Untested DR doesn't work.", "D", "M"],
+["Releases", "How do SREs make releases safer?", "**Why they ask:** most outages are changes.\n\n**Answer:**\n\"Progressive delivery with canaries and automated analysis, feature flags, automated rollback when SLIs regress, release freezes tied to error budget policy, and small, frequent changes that are easy to reason about.\"\n\nTip: Automated canary analysis.", "B", "M"],
+["On-call", "How do you make on-call sustainable?", "**Why they ask:** burnout kills reliability.\n\n**Answer:**\n\"Only actionable alerts, good runbooks, rotations big enough — six to eight people — follow-the-sun where possible, a target like under two pages per shift, compensation, and dedicated time to fix recurring issues.\"\n\nTip: Alert quality.", "B", "M"],
+["Alerting", "What makes a good alert?", "**Why they ask:** alert quality.\n\n**Answer:**\n\"It's actionable, urgent and user-impacting, with context and a runbook link. Page on symptoms — SLO burn — and ticket on causes — a disk filling slowly over days. Any alert that doesn't lead to action gets deleted or downgraded.\"\n\nTip: \"Every page should require human action.\"", "B", "M"],
+["Kubernetes", "What reliability concerns arise with Kubernetes?", "**Why they ask:** platform-specific reliability.\n\n**Answer:**\n\"Requests and limits — OOMKills and CPU throttling — PodDisruptionBudgets, probe configuration, node pressure and autoscaling speed, spreading across zones with topology constraints, control plane upgrades, and noisy neighbors.\"\n\nTip: PodDisruptionBudgets.", "D", "M"],
+["Databases", "How do you improve database reliability?", "**Why they ask:** databases are the usual single point of pain.\n\n**Answer:**\n\"Replication with automated failover, backups with tested restores, connection pooling, query performance monitoring, capacity headroom, safe online migrations, and read replicas for scaling reads.\"\n\nTip: Restore tests.", "D", "M"],
+["Linux", "A server has high load. How do you investigate?", "**Why they ask:** Linux troubleshooting.\n\n**Answer:**\n\"uptime and top for load and CPU, vmstat and iostat to see whether it's I/O wait rather than CPU, free for memory and swap, ss for connections, dmesg for kernel issues like OOM kills, and pidstat or strace for a specific process — then correlate with application metrics. High load with idle CPU usually means processes are blocked on disk.\"\n\nTip: CPU vs I/O wait.", "B", "M"],
+["Networking", "How do you debug intermittent latency spikes?", "**Why they ask:** hard real-world debugging.\n\n**Answer:**\n\"Look at percentiles over time and correlate with traces and metrics: GC pauses, CPU throttling in containers, noisy neighbors, TCP retransmits, DNS timeouts, connection pool exhaustion. Then reproduce under load. A recent one was a five-second DNS timeout hitting one in a few hundred requests — the p99 gave it away.\"\n\nTip: CPU throttling in containers is common.", "D", "S"],
+["Automation", "What would you automate first as a new SRE?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"The highest-volume toil, measured by time: repetitive incident remediations, manual provisioning, certificate renewals, scaling tweaks, and noisy alert handling. I'd spend the first weeks measuring where on-call time actually goes.\"\n\nTip: Data-driven priorities.", "B", "M"],
+["Coding", "What coding do SREs do?", "**Why they ask:** SRE is engineering.\n\n**Answer:**\n\"Automation tools, Kubernetes operators and controllers, reliability features in services — timeouts, retries, graceful shutdown — monitoring exporters, CLIs and infrastructure as code, mostly in Go and Python.\"\n\nTip: Engineering focus.", "B", "M"],
+["Culture", "How do you work with development teams?", "**Why they ask:** shared ownership.\n\n**Answer:**\n\"Reliability is shared. I run production readiness reviews before launches, embed with teams on critical services, agree error budget policies with product, and teach observability practices so teams can debug their own services.\"\n\nTip: Production readiness reviews.", "B", "M"],
+["PRR", "What is a production readiness review?", "**Why they ask:** prevention.\n\n**Answer:**\n\"A checklist review before launch: SLOs defined, monitoring and alerts, runbooks, load tested capacity, dependencies and failure modes, a rollback plan, security review, and on-call coverage. It's how you avoid finding out at 2 a.m. that nobody owns the new service.\"\n\nTip: Prevents surprises.", "D", "M"],
+["Behavioral", "Tell me about a major incident you handled.", "**Why they ask:** proof under pressure.\n\n**Answer:**\n\"A cache cluster failure pushed all reads to the database and caused site-wide errors. As incident commander I had us shed non-critical traffic, scale the read replicas and restore the cache. Service recovered in 25 minutes. Postmortem actions added cache redundancy and request coalescing so a cache miss storm can't hit the database again.\"\n\nTip: Roles, mitigation, follow-up.", "B", "M"],
+["Behavioral", "Tell me about reducing toil.", "**Why they ask:** measurable improvement.\n\n**Answer:**\n\"Engineers spent about 10 hours a week on manual certificate renewals and disk cleanups. I automated both with cert-manager and scheduled jobs plus alerts. Toil on those tasks dropped by 80%.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "How do you handle disagreement with product about reliability vs features?", "**Why they ask:** influence.\n\n**Answer:**\n\"I use the error budget policy as the objective framework, show user impact data — failed checkouts, support tickets — and agree priorities together. It's much easier when the policy was agreed before the disagreement.\"\n\nTip: Data over opinion.", "B", "M"],
+["AI", "How is AI changing SRE work?", "**Why they ask:** current trends.\n\n**Answer:**\n\"AIOps for anomaly detection and alert correlation, LLM assistants that summarize incidents and suggest runbook steps, and natural-language queries over observability data — with SREs validating suggestions and owning decisions. And SREs now run AI services themselves, with GPU capacity and latency SLOs.\"\n\nTip: Validate AI suggestions.", "D", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward staff SRE or reliability leadership — SLO programs, platform reliability and resilience engineering across the organization.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I make systems measurably more reliable — SLO programs, faster incident response, less toil. I cut MTTR from 90 to 20 minutes while helping teams ship faster.\"\n\nTip: Proof.", "B", "M"],
+["Availability", "What does 'five nines' mean in downtime?", "**Why they ask:** numeric fluency.\n\n**Answer:**\n\"99.999% allows about 5.26 minutes of downtime a year — roughly 26 seconds a month. For comparison, 99.9% is about 8.76 hours a year and 99.99% about 52.6 minutes. Each extra nine costs dramatically more.\"\n\nTip: Know these numbers.", "B", "E"],
+["Dependencies", "How do you handle unreliable dependencies?", "**Why they ask:** real systems depend on imperfect things.\n\n**Answer:**\n\"Timeouts, retries with backoff and budgets, circuit breakers, caching and fallbacks, async processing where possible, and SLOs that account for dependencies. If a critical dependency is 99.9%, my service can't honestly promise 99.99% without a fallback.\"\n\nTip: Your SLO can't exceed your critical dependencies.", "D", "M"],
+["Load Shedding", "What is load shedding?", "**Why they ask:** overload protection.\n\n**Answer:**\n\"Deliberately rejecting some requests — the lower-priority ones — when overloaded, so the system stays responsive for critical traffic. Returning a fast 503 or 429 is far better than every request timing out and the whole service collapsing.\"\n\nTip: Prioritization.", "D", "M"],
+["Retries", "What are the dangers of retries?", "**Why they ask:** a classic outage amplifier.\n\n**Answer:**\n\"Retries amplify load exactly when a service is struggling — if three layers each retry three times, one user request can become 27 at the bottom. Use exponential backoff with jitter, retry budgets, retry only idempotent operations, and retry at one layer, not all of them.\"\n\nTip: Jitter.", "D", "M"],
+["Logs", "How do you manage log volume and cost?", "**Why they ask:** observability costs grow fast.\n\n**Answer:**\n\"Structured logging with levels, sampling high-volume logs, retention tiers — hot for a week, cheap storage after — dropping noisy logs at the collector, and using metrics instead of logs for counting things.\"\n\nTip: Cost awareness.", "D", "M"],
+["Tracing", "How does distributed tracing help?", "**Why they ask:** microservice debugging.\n\n**Answer:**\n\"It follows one request across services as spans with timing and errors, so in a call chain of 15 services you can see that 900 of 1,000 milliseconds were spent in one slow database call — the critical path becomes obvious.\"\n\nTip: Critical path analysis.", "B", "M"],
+["Change Management", "Why are most outages caused by changes?", "**Why they ask:** change risk awareness.\n\n**Answer:**\n\"Deployments and config changes introduce new behavior into a system that was stable. Mitigation is progressive rollouts, automated testing, change review, closer monitoring after changes, and easy rollback — for config changes as much as code.\"\n\nTip: Config changes too.", "B", "M"],
+["Metrics", "MTTR vs MTTD vs MTBF?", "**Why they ask:** reliability metrics.\n\n**Answer:**\n\"MTTD is mean time to detect, MTTR is mean time to restore, and MTBF is mean time between failures. SRE puts as much effort into shrinking detection and recovery as into preventing failures, because failures will happen.\"\n\nTip: Detection matters.", "B", "M"],
+["Game Days", "What is a game day?", "**Why they ask:** practice culture.\n\n**Answer:**\n\"A planned exercise simulating a failure or incident to practice the response, test runbooks and find gaps — engineers and sometimes business stakeholders together. Teams that practice handle real incidents calmly.\"\n\nTip: Practice builds confidence.", "D", "M"],
+["Status Pages", "How do you communicate during an outage?", "**Why they ask:** stakeholder trust.\n\n**Answer:**\n\"Acknowledge early, update at a set cadence — every 30 minutes, say — in plain language about impact and when the next update comes, and send a final summary, internally and on the public status page. Silence is what destroys trust.\"\n\nTip: Regular cadence.", "B", "M"],
+["Scenario", "Your service is at 100% error budget consumption mid-month. What do you do?", "**Why they ask:** policy in practice.\n\n**Answer:**\n\"Follow the error budget policy: pause risky releases, prioritize the reliability fixes from recent incidents, check whether alerting and the SLO definitions are right, and communicate with product leadership about the trade-off.\"\n\nTip: Policy agreed in advance.", "D", "M"],
+["Scenario", "Alerts fire constantly and people ignore them. How do you fix it?", "**Why they ask:** alert fatigue.\n\n**Answer:**\n\"Audit every alert for actionability, delete or downgrade the noisy ones, move to SLO-based alerts, add runbooks, and track page volume per shift so it doesn't creep back.\"\n\nTip: Alert hygiene.", "B", "M"],
+["Multi-region", "What are the challenges of multi-region active-active?", "**Why they ask:** architecture realism.\n\n**Answer:**\n\"Data consistency and conflict resolution, latency for cross-region writes, routing and failover logic, roughly double the cost, and operational complexity. Many services choose active-passive because it meets the RTO with far less complexity.\"\n\nTip: Data is the hard part.", "D", "S"]
+]);
+
+QB["cl-sre"] = (QB["cl-sre"] || []).concat([
+["SLOs", "How do you get teams to adopt SLOs?", "**Why they ask:** program rollout.\n\n**Answer:**\n\"Start with one critical user journey, define simple SLIs from data we already have, set targets from historical performance, build a dashboard, agree an error budget policy with product, and expand gradually once teams see it working.\"\n\nTip: Start small.", "D", "M"],
+["Capacity", "What is headroom and how much do you keep?", "**Why they ask:** capacity judgment.\n\n**Answer:**\n\"Spare capacity above expected peak to absorb spikes and failures — often N+1, enough to survive losing one instance or zone, or 20 to 40% above peak depending on how fast we can scale and how critical the service is. With three zones, each should handle half the load so losing one is survivable.\"\n\nTip: Zone failure planning.", "D", "M"]
 ]);

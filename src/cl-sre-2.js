@@ -1,10 +1,4 @@
-QB['cl-sre'] = (QB['cl-sre'] || []).concat([
-["SLOs", "How do you get teams to adopt SLOs?",
-`**Answer:** Start with one critical user journey, define simple SLIs from existing data, set realistic targets from historical performance, build a dashboard, agree an error budget policy with product, and expand gradually.
-
-Tip: Start small.`, 'D', 'M'],
-["Capacity", "What is headroom and how much do you keep?",
-`**Answer:** Spare capacity above expected peak to absorb spikes and failures — often N+1 (survive losing one instance/zone) or 20–40% over peak depending on scaling speed and criticality.
-
-Tip: Zone failure planning.`, 'D', 'M']
+QB["cl-sre"] = (QB["cl-sre"] || []).concat([
+["SLOs", "How do you get teams to adopt SLOs?", "**Why they ask:** program rollout.\n\n**Answer:**\n\"Start with one critical user journey, define simple SLIs from data we already have, set targets from historical performance, build a dashboard, agree an error budget policy with product, and expand gradually once teams see it working.\"\n\nTip: Start small.", "D", "M"],
+["Capacity", "What is headroom and how much do you keep?", "**Why they ask:** capacity judgment.\n\n**Answer:**\n\"Spare capacity above expected peak to absorb spikes and failures — often N+1, enough to survive losing one instance or zone, or 20 to 40% above peak depending on how fast we can scale and how critical the service is. With three zones, each should handle half the load so losing one is survivable.\"\n\nTip: Zone failure planning.", "D", "M"]
 ]);
