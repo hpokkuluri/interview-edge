@@ -1,265 +1,57 @@
 // sc-demand — generated from src/sc-demand-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Demand Planner. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-demand'] = [
-["Role", "What does a demand planner do?",
-`**Why they ask:** clarifies your scope.
-
-**Answer:** A demand planner produces the best possible forecast of what customers will buy — by product, location and time period — using history, statistical models and market intelligence from sales and marketing. The forecast drives supply planning, inventory, production, procurement and financial plans. The planner also leads the demand review in S&OP and measures forecast accuracy.
-
-Tip: Mention the business impact of good forecasts — service level and inventory.`, 'B', 'E'],
-
-["Forecasting", "What forecasting methods do you use?",
-`**Answer:** **Statistical:** moving average, exponential smoothing (simple, Holt for trend, Holt-Winters for seasonality), regression with causal factors (price, promotions), ARIMA, and machine learning models. **Qualitative:** sales input, market intelligence, expert judgment. Best practice: a statistical baseline plus informed consensus adjustments.
-
-Tip: Say which model fits which demand pattern.`, 'B', 'E'],
-
-["Forecasting", "How do you choose the right forecasting model?",
-`**Answer:** Look at the demand pattern — level, trend, seasonality, intermittency. Test models on historical data (holdout periods), compare error metrics, and pick the simplest model that performs well. Re-evaluate periodically.
-
-Tip: "Simplest model that works" shows maturity.`, 'D', 'M'],
-
-["Forecasting", "How do you forecast intermittent (lumpy) demand?",
-`**Answer:** Classic models perform poorly on items with many zero periods. Use Croston's method or its variants (SBA), forecast at aggregate levels and disaggregate, or manage with safety stock and reorder points rather than precise forecasts.
-
-Tip: Mentioning Croston shows depth.`, 'D', 'S'],
-
-["Accuracy", "How do you measure forecast accuracy?",
-`**Answer:**
-- **MAPE:** average of |actual − forecast| ÷ actual — distorted by low volumes.
-- **WMAPE:** Σ|actual − forecast| ÷ Σactual — weights by volume, preferred.
-- **Bias:** Σ(forecast − actual) ÷ Σactual — consistent over- or under-forecasting.
-- **Forecast accuracy** often reported as 1 − WMAPE.
-
-**Example:** forecasts 100, 200; actuals 120, 180 → errors 20 + 20 = 40; WMAPE = 40/300 = 13.3%; accuracy 86.7%.
-
-Tip: Show the calculation.`, 'B', 'E'],
-
-["Accuracy", "What is forecast bias and why does it matter?",
-`**Answer:** Bias is systematic over- or under-forecasting. Over-forecasting creates excess inventory and obsolescence; under-forecasting causes stockouts and lost sales. Bias is often more damaging than random error because it accumulates. Track it by product family and by who adjusted the forecast.
-
-Tip: Mention tracking bias by contributor (e.g. sales).`, 'B', 'M'],
-
-["Accuracy", "What is forecast value added (FVA)?",
-`**Answer:** Measures whether each step in the forecasting process improves accuracy compared with a naive or statistical baseline. If sales overrides make the forecast worse, FVA shows it, and you can remove steps that add no value.
-
-Tip: Strong tool for process improvement.`, 'D', 'M'],
-
-["Accuracy", "At what lag and level should accuracy be measured?",
-`**Answer:** At the lead time that matters for decisions — e.g. 2–3 months ahead for production planning — and at the level where decisions are made (SKU-location for replenishment, family for capacity). Accuracy at shorter lags looks better but is less useful.
-
-Tip: Lag awareness is an advanced point.`, 'D', 'S'],
-
-["S&OP", "What is S&OP and the demand planner's role?",
-`**Answer:** Sales and operations planning is a monthly process aligning demand, supply and financial plans. Steps: data gathering → **demand review** → supply review → pre-S&OP (reconciliation) → executive S&OP (decisions). The demand planner leads the demand review, bringing the statistical forecast, assumptions, risks and opportunities, and reaching consensus with sales, marketing and finance.
-
-Tip: Mention a decision S&OP made because of your input.`, 'B', 'E'],
-
-["S&OP", "What is consensus forecasting?",
-`**Answer:** Combining the statistical forecast with inputs from sales, marketing, product management and finance to agree one forecast everyone uses. Each adjustment should have documented assumptions, and FVA checks whether adjustments help.
-
-Tip: "One number" philosophy.`, 'B', 'E'],
-
-["S&OP", "What is IBP and how does it differ from S&OP?",
-`**Answer:** Integrated business planning extends S&OP with deeper financial integration, longer horizons (24–36 months), portfolio and strategy alignment, and scenario planning at executive level.
-
-Tip: Evolution of S&OP.`, 'D', 'S'],
-
-["Data", "How do you clean demand history?",
-`**Answer:** Remove or adjust outliers (one-time orders, data errors), correct for stockouts (lost sales — use orders not shipments where possible), separate promotional lift from baseline, and handle product transitions (supersessions).
-
-Tip: "Garbage in, garbage out."`, 'B', 'M'],
-
-["Data", "Should you forecast orders, shipments or point-of-sale data?",
-`**Answer:** Ideally true demand — customer orders or point-of-sale (POS) data — because shipments are constrained by supply and stockouts. Retail POS data gives earlier signals of consumer demand and reduces the bullwhip effect.
-
-Tip: Mention demand sensing with POS data.`, 'D', 'M'],
-
-["New Products", "How do you forecast a new product launch?",
-`**Answer:** Use analog or like-item modeling (similar past products), market research, sales and marketing launch plans, distribution build (store count), and pre-orders. Review weekly early on and adjust quickly. Plan supply flexibly.
-
-Tip: Mention a launch you forecasted.`, 'D', 'M'],
-
-["Lifecycle", "How do you handle product phase-in and phase-out?",
-`**Answer:** Link the new item to the old item's history, plan cannibalization and transition timing, manage the old item's run-down to avoid obsolescence, and coordinate with supply and marketing.
-
-Tip: Phase-outs often create excess stock.`, 'D', 'M'],
-
-["Promotions", "How do you forecast promotions?",
-`**Answer:** Baseline forecast + promotional lift based on past promotions of similar type, depth and channel. Watch cannibalization of other products, pantry loading and the post-promotion dip. Collaborate with marketing on timing and mechanics.
-
-Tip: Mention post-promotion analysis.`, 'D', 'M'],
-
-["Segmentation", "How do you segment items for planning?",
-`**Answer:** **ABC** by volume or value and **XYZ** by variability. AX items (high value, stable) — automate with good statistical models; AZ (high value, volatile) — most planner attention; CZ — simple rules and safety stock.
-
-Tip: Shows you prioritize effort.`, 'D', 'M'],
-
-["Hierarchy", "What is forecast reconciliation across hierarchies?",
-`**Answer:** Forecasting at different levels (total, family, SKU, customer) and keeping them consistent — top-down (allocate totals), bottom-up (sum SKUs) or middle-out. Aggregate forecasts are usually more accurate.
-
-Tip: Mention which level you usually start from.`, 'D', 'S'],
-
-["Bullwhip", "What is the bullwhip effect?",
-`**Answer:** Small changes in consumer demand get amplified upstream as each tier over-reacts (order batching, forecast updating, price promotions, shortage gaming). Reduce it with shared demand data, smaller batches, stable pricing and collaboration (CPFR).
-
-Tip: Classic supply chain concept.`, 'B', 'M'],
-
-["Collaboration", "What is CPFR?",
-`**Answer:** Collaborative planning, forecasting and replenishment — retailers and suppliers share forecasts and data, agree a joint forecast, and coordinate replenishment and promotions.
-
-Tip: Mention a customer collaboration if you have one.`, 'D', 'M'],
-
-["Demand Sensing", "What is demand sensing?",
-`**Answer:** Using short-term signals (orders, POS, weather, social, web traffic) and machine learning to improve near-term forecasts (days to weeks), helping deployment and replenishment decisions.
-
-Tip: Complements the monthly forecast.`, 'D', 'S'],
-
-["Tools", "Which demand planning tools have you used?",
-`**Sample answer:** "Oracle Demand Management Cloud for statistical forecasting and consensus, SAP IBP on a previous role, Power BI for accuracy dashboards, and Excel for scenario analysis."
-
-Tip: Describe features used.`, 'B', 'E'],
-
-["Stakeholders", "Sales keeps inflating forecasts. What do you do?",
-`**Answer:** Show bias data and its impact (excess inventory, write-offs), require documented assumptions for adjustments, track FVA by contributor, and escalate in S&OP. Sometimes separate "quota" from "forecast" explicitly.
-
-Tip: Data, not opinions.`, 'B', 'M'],
-
-["Stakeholders", "How do you get good input from sales?",
-`**Answer:** Make it easy (simple templates at the right level), focus on key accounts and big changes, explain how forecasts are used, share accuracy feedback, and recognize good input.
-
-Tip: Relationship plus feedback loop.`, 'B', 'M'],
-
-["Finance", "How does the demand plan connect to the financial plan?",
-`**Answer:** Units × price = revenue forecast; finance uses it for budgets and guidance. Gaps between demand plan and financial targets are discussed in S&OP — either actions to close the gap or adjusting targets.
-
-Tip: "One set of numbers."`, 'B', 'M'],
-
-["Scenario", "Demand suddenly spikes 40%. What do you do?",
-`**Answer:** Validate the signal (real demand, one-time order, data error), understand the cause and duration, update the forecast, alert supply planning for capacity and materials, prioritize allocation if supply is short, and communicate with sales and customers.
-
-Tip: Validate before reacting.`, 'D', 'M'],
-
-["Scenario", "Forecast accuracy dropped this quarter. How do you investigate?",
-`**Answer:** Analyze errors by product, customer and region; check for bias; identify causes (promotions, new products, market changes, data issues, model drift); fix and track.
-
-Tip: Root cause, not excuses.`, 'D', 'M'],
-
-["Scenario", "How do you plan for an economic downturn?",
-`**Answer:** Build scenarios (base, downside, upside) with leading indicators, adjust assumptions, agree triggers with S&OP for supply actions, and review more frequently.
-
-Tip: Scenario planning.`, 'D', 'S'],
-
-["External", "What external factors do you include in forecasts?",
-`**Answer:** Seasonality, holidays, weather, economic indicators, pricing changes, competitor actions, promotions, distribution changes and market trends.
-
-Tip: Choose drivers that actually improve accuracy.`, 'D', 'M'],
-
-["Machine Learning", "How is machine learning used in demand planning?",
-`**Answer:** ML models can capture many drivers (price, promotions, weather, events) and non-linear patterns, especially with lots of data. Planners still review outputs, manage exceptions and explain the forecast to stakeholders.
-
-Tip: Mention explainability.`, 'D', 'S'],
-
-["Exceptions", "How do you manage forecast exceptions?",
-`**Answer:** Set alerts for large errors, bias, sudden changes or unusual history; review top exceptions by value; and let stable items run automatically.
-
-Tip: Management by exception.`, 'B', 'M'],
-
-["Inventory", "How does forecast accuracy affect inventory?",
-`**Answer:** Lower forecast error means lower safety stock needed for the same service level. Safety stock is roughly proportional to forecast error × √lead time, so improving accuracy directly frees cash.
-
-Tip: Link accuracy to dollars.`, 'D', 'M'],
-
-["Service Level", "What is the difference between service level and fill rate?",
-`**Answer:** **Cycle service level:** probability of not stocking out in a replenishment cycle. **Fill rate:** percentage of demand filled from stock. Fill rate is usually what customers feel.
-
-Tip: Clear definitions.`, 'D', 'M'],
-
-["Reporting", "What should a monthly demand review pack contain?",
-`**Answer:** Accuracy and bias trends, key changes vs last forecast with reasons, risks and opportunities, new product and promotion updates, gaps to budget, and decisions needed.
-
-Tip: Focus on changes and decisions.`, 'B', 'M'],
-
-["Excel", "Which Excel skills matter for demand planning?",
-`**Answer:** Pivot tables, SUMIFS, XLOOKUP, charts for trends, FORECAST.ETS for quick exponential smoothing, and data cleaning tools like Power Query.
-
-Tip: Practical skills.`, 'B', 'E'],
-
-["Behavioral", "Tell me about improving forecast accuracy.",
-`**Sample answer:** "Our WMAPE was 42%. I cleaned history for stockouts and one-time orders, switched seasonal items to Holt-Winters, introduced FVA tracking, and removed sales overrides that hurt accuracy. WMAPE improved to 28% in six months and inventory dropped by $3M."
-
-Tip: Method and impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a forecast that went badly wrong.",
-`**Sample answer:** "A promotion lift was underestimated by half because the competitor exited the market the same month. We stocked out for two weeks. Afterward, I added a competitor and market check to the promotion planning process."
-
-Tip: Learning focus.`, 'B', 'M'],
-
-["Behavioral", "How do you influence people who don't trust the forecast?",
-`**Answer:** Show accuracy data transparently, explain the method simply, invite their input with documented assumptions, and demonstrate improvements over time.
-
-Tip: Trust through transparency.`, 'B', 'M'],
-
-["Leadership", "How would you set up a demand planning process from scratch?",
-`**Answer:** Clean data, define hierarchy and planning levels, choose tools and models, set the monthly calendar and roles, establish accuracy metrics, and launch the demand review within S&OP.
-
-Tip: Step-by-step.`, 'D', 'S'],
-
-["Leadership", "How do you lead a demand planning team?",
-`**Answer:** Clear portfolio ownership, standard methods, accuracy targets, coaching on analytics and communication, and strong relationships with commercial teams.
-
-Tip: People and process.`, 'D', 'S'],
-
-["Constrained", "What's the difference between unconstrained and constrained demand?",
-`**Answer:** **Unconstrained:** what customers would buy if supply were unlimited. **Constrained:** what can actually be supplied. Planning starts unconstrained; supply gaps are resolved in S&OP with allocation or capacity decisions.
-
-Tip: Key S&OP concept.`, 'B', 'M'],
-
-["Horizon", "What forecast horizons do you plan for?",
-`**Answer:** Short-term (weeks) for deployment and replenishment, mid-term (3–18 months) for production and procurement, long-term (2–5 years) for capacity and strategy. Accuracy expectations differ by horizon.
-
-Tip: Horizons tie to decisions.`, 'B', 'M'],
-
-["Customer", "How do you forecast for key accounts?",
-`**Answer:** Combine customer-specific history, their forecasts or POS data, promotion plans and account manager input; track account-level accuracy and bias.
-
-Tip: Collaborative planning.`, 'D', 'M'],
-
-["Career", "Why demand planning?",
-`**Sample answer:** "I enjoy the mix of data analysis and business conversations. A better forecast helps the whole company — fewer stockouts, less excess inventory, better financial plans."
-
-Tip: Impact-focused.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I improve forecasts with solid analytics and a disciplined consensus process — I cut WMAPE from 42% to 28% and reduced inventory by $3M. I communicate well with sales and finance."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is exponential smoothing?",
-`**Answer:** A forecasting method that weights recent observations more heavily. Simple: F(t+1) = α × A(t) + (1 − α) × F(t), with α between 0 and 1. Higher α reacts faster to changes. Holt adds trend; Holt-Winters adds seasonality.
-
-**Example:** α = 0.3, last forecast 100, actual 120 → next forecast = 0.3×120 + 0.7×100 = 106.
-
-Tip: Show the formula quickly.`, 'D', 'M'],
-
-["Technical", "What is a naive forecast and why use it?",
-`**Answer:** Next period equals the last period (or the same period last year for seasonal data). It's a benchmark — if your sophisticated forecast doesn't beat naive, it's not adding value.
-
-Tip: FVA baseline.`, 'B', 'M'],
-
-["Technical", "What is a tracking signal?",
-`**Answer:** Cumulative forecast error divided by mean absolute deviation. Values beyond about ±4 indicate bias and that the model needs review.
-
-Tip: Useful alert.`, 'D', 'S'],
-
-["Technical", "What is seasonality and how do you model it?",
-`**Answer:** Repeating patterns within a year (e.g. holiday peaks). Model with seasonal indices (average ratio of each period to the annual average) or seasonal models like Holt-Winters. Need at least two years of history.
-
-Tip: Mention holiday shifts (Easter).`, 'D', 'M']
-];
-
-QB['sc-demand'] = (QB['sc-demand'] || []).concat([
-["Communication", "How do you explain a forecast change to leadership?",
-`**Answer:** State the change and its size, the drivers (volume, timing, promotions, market), the confidence level, the impact on supply and financials, and recommended actions — in one page.
-
-Tip: "What changed, why, so what."`, 'B', 'M']
+QB["sc-demand"] = (QB["sc-demand"] || []).concat([
+["Role", "What does a demand planner do?", "**Why they ask:** clarifies your scope.\n\n**Answer:** A demand planner produces the best possible forecast of what customers will buy — by product, location and time period — using history, statistical models and market intelligence from sales and marketing. The forecast drives supply planning, inventory, production, procurement and financial plans. The planner also leads the demand review in S&OP and measures forecast accuracy.\n\nTip: Mention the business impact of good forecasts — service level and inventory.", "B", "E"],
+["Forecasting", "What forecasting methods do you use?", "**Why they ask:** the core technical skill of the role.\n\n**Answer:**\n\"On the statistical side: moving averages, exponential smoothing — simple for level demand, Holt for trend, Holt-Winters for seasonality — regression with causal drivers like price and promotions, ARIMA, and machine learning models. On the qualitative side: sales input, market intelligence and expert judgment. Best practice is a statistical baseline plus documented consensus adjustments. For a steady consumable I'd use simple smoothing; for a seasonal product, Holt-Winters.\"\n\nTip: Say which model fits which demand pattern.", "B", "E"],
+["Forecasting", "How do you choose the right forecasting model?", "**Why they ask:** model selection shows maturity.\n\n**Answer:**\n\"I look at the demand pattern first — level, trend, seasonality or intermittent. Then I test candidate models on historical data with a holdout period, compare error metrics, and pick the simplest model that performs well. I re-check periodically, because patterns change.\"\n\nTip: 'Simplest model that works' shows maturity.", "D", "M"],
+["Forecasting", "How do you forecast intermittent (lumpy) demand?", "**Why they ask:** spare parts and slow movers break normal models.\n\n**Answer:**\n\"Classic models do badly on items with many zero periods — they forecast a small amount every month that never matches reality. I use Croston's method or its variant, SBA, which forecast the size of demand and the interval between demands separately. Or I forecast at an aggregate level and disaggregate, or manage these items with safety stock and reorder points instead of trying to predict each order.\"\n\nTip: Mentioning Croston shows depth.", "D", "S"],
+["Accuracy", "How do you measure forecast accuracy?", "**Why they ask:** you can't improve what you don't measure.\n\n**Answer:**\n\"MAPE averages the absolute percentage errors, but it's distorted by low-volume items. WMAPE — the sum of absolute errors divided by the sum of actuals — weights by volume, so I prefer it. Bias is the sum of forecast minus actual over the sum of actuals, showing consistent over- or under-forecasting. Accuracy is often reported as one minus WMAPE. For example, forecasts of 100 and 200 against actuals of 120 and 180: errors are 20 and 20, so 40 over 300 is 13.3% WMAPE — 86.7% accuracy.\"\n\nTip: Show the calculation.", "B", "E"],
+["Accuracy", "What is forecast bias and why does it matter?", "**Why they ask:** bias is often worse than random error.\n\n**Answer:**\n\"Bias is systematic over- or under-forecasting. Over-forecasting builds excess inventory and obsolescence; under-forecasting causes stockouts and lost sales. It's often more damaging than random error, because random errors cancel out and bias accumulates. I track it by product family and by who adjusted the forecast — so if sales overrides are consistently 15% high, we see it.\"\n\nTip: Mention tracking bias by contributor.", "B", "M"],
+["Accuracy", "What is forecast value added (FVA)?", "**Why they ask:** a powerful process improvement tool.\n\n**Answer:**\n\"FVA measures whether each step in the forecasting process actually improves accuracy compared with a naive or statistical baseline. If the statistical forecast is 75% accurate and the sales-adjusted forecast is 70%, the sales step is adding negative value. FVA makes that visible, so you can remove or fix steps that don't help.\"\n\nTip: A strong tool for process improvement.", "D", "M"],
+["Accuracy", "At what lag and level should accuracy be measured?", "**Why they ask:** an advanced measurement point.\n\n**Answer:**\n\"At the lag that matters for decisions — for example, two to three months ahead if that's the production planning lead time — and at the level where decisions are made: SKU-location for replenishment, product family for capacity. Accuracy measured one week out always looks great, but it's too late to change anything.\"\n\nTip: Lag awareness is an advanced point.", "D", "S"],
+["S&OP", "What is S&OP and the demand planner's role?", "**Why they ask:** demand planning lives inside S&OP.\n\n**Answer:**\n\"Sales and operations planning is the monthly process that aligns demand, supply and financial plans. The steps are data gathering, demand review, supply review, pre-S&OP reconciliation, and the executive S&OP meeting for decisions. The demand planner leads the demand review — bringing the statistical forecast, assumptions, risks and opportunities — and reaches consensus with sales, marketing and finance. Once my demand review flagged a 20% upside in one region, and executives approved overtime early instead of losing sales.\"\n\nTip: Mention a decision S&OP made because of your input.", "B", "E"],
+["S&OP", "What is consensus forecasting?", "**Why they ask:** the 'one number' philosophy.\n\n**Answer:**\n\"It's combining the statistical forecast with input from sales, marketing, product management and finance to agree one forecast that everyone uses. Each adjustment needs a documented assumption — 'new distribution at retailer X, plus 2,000 units from March' — and FVA checks whether the adjustments actually help.\"\n\nTip: The 'one number' philosophy.", "B", "E"],
+["S&OP", "What is IBP and how does it differ from S&OP?", "**Why they ask:** the evolution of S&OP.\n\n**Answer:**\n\"Integrated business planning extends S&OP. It integrates finance more deeply, looks further out — 24 to 36 months — aligns with portfolio and strategy decisions, and runs scenario planning at executive level. S&OP balances supply and demand; IBP manages the whole business plan.\"\n\nTip: It's the evolution of S&OP.", "D", "S"],
+["Data", "How do you clean demand history?", "**Why they ask:** bad history means bad forecasts.\n\n**Answer:**\n\"I remove or adjust outliers — one-time orders and data errors. I correct for stockouts, because shipments during a stockout understate demand, so I use orders where I can. I separate promotional lift from the baseline. And I handle product transitions by linking new items to the history of the items they replaced. Garbage in, garbage out.\"\n\nTip: 'Garbage in, garbage out.'", "B", "M"],
+["Data", "Should you forecast orders, shipments or point-of-sale data?", "**Why they ask:** tests understanding of true demand.\n\n**Answer:**\n\"Ideally true demand — customer orders or point-of-sale data — because shipments are limited by supply and stockouts. Retail POS data gives earlier signals of consumer demand and reduces the bullwhip effect, since we're not just reacting to the retailer's ordering pattern. That's the basis of demand sensing.\"\n\nTip: Mention demand sensing with POS data.", "D", "M"],
+["New Products", "How do you forecast a new product launch?", "**Why they ask:** no history makes this hard.\n\n**Answer:**\n\"I use analog or like-item modeling — similar past products — plus market research, the sales and marketing launch plan, distribution build like store count, and pre-orders. Early on I review weekly and adjust fast, and I ask supply to plan flexibly — smaller first runs with quick replenishment. For one launch, I used two analog products and was within 12% after the first eight weeks.\"\n\nTip: Mention a launch you forecasted.", "D", "M"],
+["Lifecycle", "How do you handle product phase-in and phase-out?", "**Why they ask:** transitions often create excess stock.\n\n**Answer:**\n\"I link the new item to the old item's history so the forecast doesn't start from zero, plan the cannibalization and transition timing, and manage the old item's run-down so we don't end up with obsolete stock. That needs tight coordination with supply and marketing on the cut-over date.\"\n\nTip: Phase-outs often create excess stock.", "D", "M"],
+["Promotions", "How do you forecast promotions?", "**Why they ask:** promotions drive big swings.\n\n**Answer:**\n\"Baseline forecast plus a promotional lift based on past promotions of similar type, discount depth and channel. I also account for cannibalization of other products, pantry loading, and the dip after the promotion ends. And I work closely with marketing on timing and mechanics. After each promotion I compare actual lift to plan to improve the next one.\"\n\nTip: Mention post-promotion analysis.", "D", "M"],
+["Segmentation", "How do you segment items for planning?", "**Why they ask:** shows you prioritize effort.\n\n**Answer:**\n\"ABC by volume or value, crossed with XYZ by variability. AX items — high value and stable — I automate with good statistical models. AZ items — high value and volatile — get the most planner attention. CZ items — low value and volatile — I manage with simple rules and safety stock rather than spending hours forecasting them.\"\n\nTip: Shows you prioritize effort.", "D", "M"],
+["Hierarchy", "What is forecast reconciliation across hierarchies?", "**Why they ask:** forecasts must tie together.\n\n**Answer:**\n\"It's forecasting at different levels — total, family, SKU, customer — and keeping them consistent. Top-down allocates totals down; bottom-up sums the SKUs; middle-out forecasts at family level and goes both ways. Aggregate forecasts are usually more accurate, so I often start at family level and disaggregate by mix.\"\n\nTip: Mention which level you usually start from.", "D", "S"],
+["Bullwhip", "What is the bullwhip effect?", "**Why they ask:** a classic supply chain concept.\n\n**Answer:**\n\"Small changes in consumer demand get amplified as you move upstream, because each tier over-reacts — through order batching, re-forecasting, price promotions and shortage gaming. A 5% rise in store sales can become a 40% swing in orders at the factory. We reduce it with shared demand data, smaller batches, stable pricing and collaboration like CPFR.\"\n\nTip: A classic concept — give the amplification example.", "B", "M"],
+["Collaboration", "What is CPFR?", "**Why they ask:** customer collaboration.\n\n**Answer:**\n\"Collaborative planning, forecasting and replenishment. Retailers and suppliers share forecasts and data, agree a joint forecast, and coordinate replenishment and promotions. It cuts both stockouts and excess inventory because both sides plan from the same number.\"\n\nTip: Mention a customer collaboration if you have one.", "D", "M"],
+["Demand Sensing", "What is demand sensing?", "**Why they ask:** a modern capability.\n\n**Answer:**\n\"It uses short-term signals — orders, POS, weather, social media, web traffic — and machine learning to improve the near-term forecast, days to a few weeks out. It helps deployment and replenishment decisions, and complements the monthly forecast rather than replacing it.\"\n\nTip: It complements the monthly forecast.", "D", "S"],
+["Tools", "Which demand planning tools have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Oracle Demand Management Cloud for statistical forecasting and consensus, SAP IBP in a previous role, Power BI for accuracy dashboards, and Excel for scenario analysis. In Oracle, I tuned the forecasting profiles and used the causal factors for promotions.\"\n\nTip: Describe features used — swap in your own tools.", "B", "E"],
+["Stakeholders", "Sales keeps inflating forecasts. What do you do?", "**Why they ask:** a very common conflict.\n\n**Answer:**\n\"I show the bias data and its impact — excess inventory and write-offs — in their terms. I require documented assumptions for every adjustment, track forecast value added by contributor, and raise it in S&OP if it continues. Often the fix is separating the sales quota from the forecast explicitly — the quota is a target, the forecast is what we expect.\"\n\nTip: Data, not opinions.", "B", "M"],
+["Stakeholders", "How do you get good input from sales?", "**Why they ask:** sales input is valuable but hard to get.\n\n**Answer:**\n\"I make it easy — simple templates at the right level, focused on key accounts and big changes, not every SKU. I explain how the forecast is used, give them accuracy feedback, and recognize good input. When they see their input matters, they give better input.\"\n\nTip: Relationship plus a feedback loop.", "B", "M"],
+["Finance", "How does the demand plan connect to the financial plan?", "**Why they ask:** one set of numbers.\n\n**Answer:**\n\"Units times price gives the revenue forecast, which finance uses for budgets and guidance. If the demand plan and financial targets don't match, we discuss it in S&OP — either agree actions to close the gap or adjust the targets. The company should run on one set of numbers.\"\n\nTip: 'One set of numbers.'", "B", "M"],
+["Scenario", "Demand suddenly spikes 40%. What do you do?", "**Why they ask:** tests judgment under surprise.\n\n**Answer:**\n\"First I validate the signal — is it real demand, a one-time order, or a data error? Then understand the cause and how long it'll last. I update the forecast, alert supply planning about capacity and materials, prioritize allocation if supply is short, and keep sales and customers informed. Reacting to a data error can be as costly as missing a real spike.\"\n\nTip: Validate before reacting.", "D", "M"],
+["Scenario", "Forecast accuracy dropped this quarter. How do you investigate?", "**Why they ask:** root-cause discipline.\n\n**Answer:**\n\"I analyze errors by product, customer and region, and check for bias. Then identify the causes — promotions, new products, market changes, data issues or a model that has drifted — fix them and keep tracking. No excuses, just root cause.\"\n\nTip: Root cause, not excuses.", "D", "M"],
+["Scenario", "How do you plan for an economic downturn?", "**Why they ask:** scenario thinking.\n\n**Answer:**\n\"I build base, downside and upside scenarios linked to leading indicators, adjust the assumptions, agree triggers in S&OP for supply actions — like 'if orders drop 10% for two months, cut the build plan' — and review more often.\"\n\nTip: Scenario planning.", "D", "S"],
+["External", "What external factors do you include in forecasts?", "**Why they ask:** causal forecasting.\n\n**Answer:**\n\"Seasonality, holidays, weather, economic indicators, price changes, competitor actions, promotions, distribution changes and market trends. But I only keep drivers that actually improve accuracy — adding variables that don't help just adds noise.\"\n\nTip: Choose drivers that actually improve accuracy.", "D", "M"],
+["Machine Learning", "How is machine learning used in demand planning?", "**Why they ask:** current technology.\n\n**Answer:**\n\"ML models can handle many drivers at once — price, promotions, weather, events — and non-linear patterns, especially with lots of data. Planners still review the outputs, manage exceptions, and explain the forecast to stakeholders. Explainability matters — sales won't trust a number nobody can explain.\"\n\nTip: Mention explainability.", "D", "S"],
+["Exceptions", "How do you manage forecast exceptions?", "**Why they ask:** planner time is limited.\n\n**Answer:**\n\"I set alerts for large errors, bias, sudden changes or unusual history, and review the top exceptions by value. Stable items run automatically. That way I spend time on the 10% of items that need judgment.\"\n\nTip: Management by exception.", "B", "M"],
+["Inventory", "How does forecast accuracy affect inventory?", "**Why they ask:** linking accuracy to money.\n\n**Answer:**\n\"Lower forecast error means you need less safety stock for the same service level. Safety stock is roughly proportional to forecast error times the square root of lead time. So cutting forecast error by a quarter cuts safety stock by about a quarter — which frees real cash.\"\n\nTip: Link accuracy to dollars.", "D", "M"],
+["Service Level", "What is the difference between service level and fill rate?", "**Why they ask:** clear definitions.\n\n**Answer:**\n\"Cycle service level is the probability of not stocking out during a replenishment cycle. Fill rate is the percentage of demand filled from stock. A 95% cycle service level can still mean a much higher fill rate, because a stockout may only short a few units. Fill rate is usually what customers actually feel.\"\n\nTip: Clear definitions.", "D", "M"],
+["Reporting", "What should a monthly demand review pack contain?", "**Why they ask:** effective meetings.\n\n**Answer:**\n\"Accuracy and bias trends, the key changes versus last month's forecast with reasons, risks and opportunities, new product and promotion updates, gaps to budget, and decisions needed. Focus on what changed and what needs deciding.\"\n\nTip: Focus on changes and decisions.", "B", "M"],
+["Excel", "Which Excel skills matter for demand planning?", "**Why they ask:** practical skills.\n\n**Answer:**\n\"Pivot tables, SUMIFS, XLOOKUP, charts for trends, FORECAST.ETS for quick exponential smoothing, and Power Query for cleaning data.\"\n\nTip: Practical skills.", "B", "E"],
+["Behavioral", "Tell me about improving forecast accuracy.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"Our WMAPE was 42%. I cleaned the history for stockouts and one-time orders, switched seasonal items to Holt-Winters, introduced FVA tracking, and removed sales overrides that were making things worse. WMAPE improved to 28% in six months, and inventory dropped by $3 million.\"\n\nTip: Method and impact.", "B", "M"],
+["Behavioral", "Tell me about a forecast that went badly wrong.", "**Why they ask:** learning from mistakes.\n\n**Answer:**\n\"We underestimated a promotion's lift by half because a competitor exited the market the same month. We stocked out for two weeks. Afterward, I added a competitor and market check to the promotion planning process.\"\n\nTip: Focus on what you learned.", "B", "M"],
+["Behavioral", "How do you influence people who don't trust the forecast?", "**Why they ask:** trust is earned.\n\n**Answer:**\n\"I show the accuracy data openly, explain the method simply, invite their input with documented assumptions, and show improvement over time. Trust comes from transparency, not from defending the number.\"\n\nTip: Trust through transparency.", "B", "M"],
+["Leadership", "How would you set up a demand planning process from scratch?", "**Why they ask:** process design.\n\n**Answer:**\n\"Clean the data first. Define the product hierarchy and planning levels. Choose tools and models. Set the monthly calendar and roles. Establish accuracy metrics. Then launch the demand review as part of S&OP and improve it month by month.\"\n\nTip: Step by step.", "D", "S"],
+["Leadership", "How do you lead a demand planning team?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Clear portfolio ownership for each planner, standard methods, accuracy targets, coaching on both analytics and communication, and strong relationships with the commercial teams.\"\n\nTip: People and process.", "D", "S"],
+["Constrained", "What's the difference between unconstrained and constrained demand?", "**Why they ask:** a key S&OP concept.\n\n**Answer:**\n\"Unconstrained demand is what customers would buy if supply were unlimited. Constrained is what we can actually supply. Planning starts with unconstrained demand so we see the true opportunity; then S&OP resolves the gap with allocation or capacity decisions.\"\n\nTip: A key S&OP concept.", "B", "M"],
+["Horizon", "What forecast horizons do you plan for?", "**Why they ask:** horizons tie to decisions.\n\n**Answer:**\n\"Short-term — weeks — for deployment and replenishment. Mid-term — 3 to 18 months — for production and procurement. Long-term — 2 to 5 years — for capacity and strategy. Accuracy expectations differ: I'd expect much better accuracy next month than three years out.\"\n\nTip: Horizons tie to decisions.", "B", "M"],
+["Customer", "How do you forecast for key accounts?", "**Why they ask:** account-level collaboration.\n\n**Answer:**\n\"I combine the customer's own history, their forecasts or POS data, promotion plans and the account manager's input, and track accuracy and bias at account level. For the biggest accounts, a monthly call with their planner is worth more than any model.\"\n\nTip: Collaborative planning.", "D", "M"],
+["Career", "Why demand planning?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I enjoy the mix of data analysis and business conversations. A better forecast helps the whole company — fewer stockouts, less excess inventory, and better financial plans.\"\n\nTip: Impact-focused.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I improve forecasts with solid analytics and a disciplined consensus process — I cut WMAPE from 42% to 28% and reduced inventory by $3 million. And I communicate well with sales and finance, which is half the job.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is exponential smoothing?", "**Why they ask:** a basic model check.\n\n**Answer:**\n\"It's a forecasting method that weights recent data more heavily. Simple exponential smoothing says the next forecast equals alpha times the latest actual plus one minus alpha times the last forecast, with alpha between 0 and 1. A higher alpha reacts faster. With alpha 0.3, a last forecast of 100 and an actual of 120, the next forecast is 0.3 times 120 plus 0.7 times 100 — 106. Holt adds trend; Holt-Winters adds seasonality.\"\n\nTip: Show the formula quickly.", "D", "M"],
+["Technical", "What is a naive forecast and why use it?", "**Why they ask:** baseline thinking.\n\n**Answer:**\n\"A naive forecast says next period equals last period — or the same period last year for seasonal items. It's a benchmark: if your sophisticated forecast can't beat naive, it isn't adding value. It's the baseline for forecast value added.\"\n\nTip: It's the FVA baseline.", "B", "M"],
+["Technical", "What is a tracking signal?", "**Why they ask:** a bias alert.\n\n**Answer:**\n\"It's the cumulative forecast error divided by the mean absolute deviation. If it goes beyond about plus or minus 4, the forecast is consistently biased in one direction and the model needs review. I set it as an automatic alert.\"\n\nTip: A useful alert.", "D", "S"],
+["Technical", "What is seasonality and how do you model it?", "**Why they ask:** a common pattern.\n\n**Answer:**\n\"Seasonality is a repeating pattern within the year, like holiday peaks. I model it with seasonal indices — the average ratio of each period to the annual average — or with seasonal models like Holt-Winters. It needs at least two years of history. I also watch moving holidays like Easter, which shift between March and April.\"\n\nTip: Mention moving holidays like Easter.", "D", "M"]
+]);
+
+QB["sc-demand"] = (QB["sc-demand"] || []).concat([
+["Communication", "How do you explain a forecast change to leadership?", "**Why they ask:** communication.\n\n**Answer:**\n\"I state the change and its size, the drivers — volume, timing, promotions or market — how confident we are, the impact on supply and financials, and what I recommend. All on one page: what changed, why, and so what.\"\n\nTip: 'What changed, why, so what.'", "B", "M"]
 ]);
