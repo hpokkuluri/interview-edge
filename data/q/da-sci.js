@@ -1,259 +1,57 @@
 // da-sci — generated from src/da-sci-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Data Scientist. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['da-sci'] = [
-["Role", "What does a data scientist do?",
-`**Why they ask:** roles vary widely — show you understand business impact.
-
-**Answer:** Uses statistics, machine learning and experimentation to answer business questions and build predictive or decision models: framing the problem, exploring data, engineering features, building and validating models, running experiments, and communicating results — then working with engineers to deploy and monitor models that drive decisions.
-
-Tip: Emphasize business outcomes over algorithms.`, 'B', 'E'],
-
-["ML Basics", "Supervised vs unsupervised learning?",
-`**Answer:** **Supervised** learns from labeled examples to predict outcomes — classification (churn yes/no) and regression (price). **Unsupervised** finds structure in unlabeled data — clustering (customer segments), dimensionality reduction (PCA), anomaly detection. Semi-supervised and reinforcement learning are other types.
-
-Tip: Business example for each.`, 'B', 'E'],
-
-["ML Basics", "Explain the bias-variance trade-off.",
-`**Answer:** **Bias** is error from overly simple models that underfit; **variance** is error from overly complex models that overfit training data. Good models balance both. Reduce variance with more data, regularization, simpler models or ensembling; reduce bias with richer features or more flexible models.
-
-Tip: Link to over/underfitting.`, 'B', 'M'],
-
-["ML Basics", "How do you prevent overfitting?",
-`**Answer:** Cross-validation, holdout test sets, regularization (L1/L2, dropout), simpler models, early stopping, more data, feature selection, and ensembling. Always evaluate on data the model hasn't seen.
-
-Tip: Mention data leakage too.`, 'B', 'M'],
-
-["ML Basics", "What is data leakage?",
-`**Answer:** When information unavailable at prediction time leaks into training — e.g. using a "cancellation date" feature to predict churn, or scaling with statistics from the full dataset before splitting. It produces unrealistically good offline results that fail in production. Prevent with time-based splits and careful feature review.
-
-Tip: A real example impresses.`, 'D', 'M'],
-
-["Evaluation", "Which metrics do you use for classification?",
-`**Answer:** Accuracy (misleading with imbalance), precision (of predicted positives, how many are right), recall (of actual positives, how many we catch), F1 (balance), ROC-AUC and PR-AUC, log loss, and calibration. Choose based on business costs of false positives vs false negatives.
-
-**Example:** fraud detection prioritizes recall; spam filtering may prioritize precision.
-
-Tip: Tie metrics to costs.`, 'B', 'M'],
-
-["Evaluation", "How do you handle imbalanced classes?",
-`**Answer:** Use appropriate metrics (PR-AUC, recall at fixed precision), class weights, resampling (undersampling, oversampling, SMOTE with care), threshold tuning based on business costs, and stratified splits.
-
-Tip: Threshold tuning is often the biggest lever.`, 'D', 'M'],
-
-["Evaluation", "Which metrics do you use for regression?",
-`**Answer:** MAE (average absolute error, robust), RMSE (penalizes large errors), MAPE (percentage, problematic near zero), R² (variance explained). Choose based on what matters to the business.
-
-Tip: MAE vs RMSE trade-off.`, 'B', 'M'],
-
-["Models", "How does a random forest work?",
-`**Answer:** An ensemble of decision trees trained on bootstrap samples with random feature subsets at each split; predictions are averaged (regression) or voted (classification). Reduces variance compared with single trees, handles non-linearity, and gives feature importance.
-
-Tip: Bagging concept.`, 'B', 'M'],
-
-["Models", "What is gradient boosting?",
-`**Answer:** Builds trees sequentially, each correcting the errors of the previous ones by fitting residuals/gradients. Implementations like XGBoost, LightGBM and CatBoost are top performers on tabular data. Tune learning rate, depth, number of trees and regularization; use early stopping.
-
-Tip: Often the best choice for tabular data.`, 'B', 'M'],
-
-["Models", "Explain logistic regression.",
-`**Answer:** A linear model for binary classification that passes a weighted sum of features through the sigmoid function to output probabilities. Coefficients are interpretable as log-odds changes. Simple, fast and a strong baseline.
-
-Tip: Interpretability.`, 'B', 'E'],
-
-["Models", "When would you choose a simple model over a complex one?",
-`**Answer:** When interpretability matters (regulated decisions, stakeholder trust), data is limited, latency or cost constraints exist, or the complex model's gain is marginal. Start simple as a baseline.
-
-Tip: "Baseline first."`, 'B', 'M'],
-
-["Features", "What is feature engineering? Give examples.",
-`**Answer:** Creating informative inputs from raw data: aggregates (purchases in last 30 days), ratios, time since last event, encodings for categories (one-hot, target encoding with care), text features, interactions, and date features (day of week, seasonality).
-
-Tip: Domain knowledge drives features.`, 'B', 'M'],
-
-["Validation", "How do you validate a model properly?",
-`**Answer:** Train/validation/test splits or cross-validation; time-based splits for temporal data; check performance by segment; compare to baselines; and validate on recent out-of-time data before deployment.
-
-Tip: Time-based splits for forecasting/churn.`, 'B', 'M'],
-
-["Statistics", "What is a p-value and its common misinterpretation?",
-`**Answer:** The probability of observing data at least as extreme as yours if the null hypothesis were true. It's not the probability the null is true, and it doesn't measure effect size. Combine with confidence intervals and practical significance.
-
-Tip: Correct interpretation matters.`, 'B', 'M'],
-
-["Statistics", "Explain Type I and Type II errors.",
-`**Answer:** Type I (false positive): rejecting a true null — concluding an effect exists when it doesn't (rate α). Type II (false negative): missing a real effect (rate β; power = 1 − β).
-
-Tip: Business framing.`, 'B', 'M'],
-
-["Experimentation", "How do you design an A/B test?",
-`**Answer:** Define hypothesis, primary metric and guardrails; calculate sample size (baseline, minimum detectable effect, α, power); randomize at the right unit (user vs session); run for full business cycles; avoid peeking (or use sequential methods); check sample ratio mismatch; analyze with confidence intervals; and decide based on pre-registered criteria.
-
-Tip: Sample ratio mismatch check.`, 'D', 'M'],
-
-["Experimentation", "What do you do when you can't run an A/B test?",
-`**Answer:** Use causal inference methods: difference-in-differences, regression discontinuity, synthetic control, instrumental variables, or propensity score matching — with clear assumptions and sensitivity checks.
-
-Tip: Name methods and assumptions.`, 'D', 'S'],
-
-["Experimentation", "What is CUPED?",
-`**Answer:** A variance reduction technique using pre-experiment data (e.g. prior spend) as a covariate to reduce noise in experiment metrics, allowing smaller samples or faster tests.
-
-Tip: Advanced experimentation knowledge.`, 'D', 'S'],
-
-["Clustering", "How does k-means work and how do you choose k?",
-`**Answer:** Assigns points to the nearest of k centroids and updates centroids iteratively. Choose k with the elbow method, silhouette scores, and business usefulness. Scale features first; k-means assumes roughly spherical clusters.
-
-Tip: Business interpretability of clusters.`, 'B', 'M'],
-
-["Time Series", "How do you forecast a time series?",
-`**Answer:** Explore trend, seasonality and anomalies; start with baselines (naive, seasonal naive); then exponential smoothing/ETS, ARIMA, Prophet, or gradient boosting with lag features; validate with rolling-origin backtests; and provide prediction intervals.
-
-Tip: Backtesting.`, 'D', 'M'],
-
-["NLP", "How would you build a text classification model today?",
-`**Answer:** Start with a baseline (TF-IDF + logistic regression), then fine-tune a pretrained transformer or use embeddings from a foundation model with a lightweight classifier; or prompt an LLM for low-data cases — comparing quality, cost and latency.
-
-Tip: Cost/latency trade-offs.`, 'D', 'M'],
-
-["Interpretability", "How do you explain model predictions?",
-`**Answer:** Global: feature importance, partial dependence plots. Local: SHAP values, LIME. Communicate in business terms ("customers with declining logins are 3× more likely to churn").
-
-Tip: SHAP is standard.`, 'D', 'M'],
-
-["Deployment", "How do you take a model to production?",
-`**Answer:** Package the model and preprocessing together, version data and models (MLflow), deploy as batch scoring or real-time API, monitor performance, data drift and latency, and set up retraining. Work with ML engineers on infrastructure.
-
-Tip: Training-serving consistency.`, 'D', 'M'],
-
-["Monitoring", "What is model drift?",
-`**Answer:** **Data drift**: input distributions change. **Concept drift**: the relationship between inputs and outcomes changes. Monitor feature distributions (PSI), prediction distributions and actual performance when labels arrive; retrain when degraded.
-
-Tip: PSI mention.`, 'D', 'M'],
-
-["Business", "How do you frame a business problem as a data science problem?",
-`**Answer:** Understand the decision and its value, define the target and how predictions will be used, identify available data and constraints, define success metrics (business and model), and plan how to measure impact (experiment).
-
-**Example:** "Reduce churn" → predict 60-day churn probability to prioritize retention offers; measure via a controlled test.
-
-Tip: Decision-first framing.`, 'B', 'M'],
-
-["Business", "How do you estimate the business value of a model?",
-`**Answer:** Translate model performance into outcomes: e.g. targeting the top 10% churn-risk customers catches 40% of churners; with a 20% save rate and $500 annual value, that's revenue saved minus offer costs. Validate with an experiment.
-
-Tip: Show the math.`, 'D', 'M'],
-
-["Python", "Which Python libraries do you use?",
-`**Answer:** pandas/polars, NumPy, scikit-learn, XGBoost/LightGBM, statsmodels, matplotlib/seaborn/plotly, PyTorch for deep learning, and MLflow for tracking.
-
-Tip: Depth in scikit-learn.`, 'B', 'E'],
-
-["SQL", "Why do data scientists need strong SQL?",
-`**Answer:** Most data lives in warehouses; extracting and aggregating features efficiently in SQL (window functions, joins) saves time and avoids errors.
-
-Tip: Expect SQL questions.`, 'B', 'E'],
-
-["Communication", "How do you explain a model to executives?",
-`**Answer:** Focus on the decision it improves, expected impact in dollars or KPIs, how reliable it is, key drivers in plain language, risks and how it's monitored.
-
-Tip: No jargon.`, 'B', 'M'],
-
-["Ethics", "How do you ensure models are fair?",
-`**Answer:** Check performance and outcomes across groups, avoid proxies for protected attributes, use fairness metrics appropriate to the use case, document limitations, and involve legal/compliance for high-stakes decisions.
-
-Tip: Responsible AI.`, 'D', 'M'],
-
-["Recommendation", "How would you build a recommendation system?",
-`**Answer:** Start with popularity and simple rules as baselines, then collaborative filtering (matrix factorization), content-based features, or two-tower embedding models; handle cold start; evaluate offline (precision@k, NDCG) and online (A/B test CTR, revenue).
-
-Tip: Offline vs online evaluation.`, 'D', 'S'],
-
-["Behavioral", "Tell me about a model that drove business impact.",
-`**Sample answer:** "I built a churn model with gradient boosting on usage and support features. Targeting the top decile with retention offers in a controlled test reduced churn by 12% in that segment, worth about $1.8M annually."
-
-Tip: Measured impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a project that failed.",
-`**Sample answer:** "A demand model performed well offline but failed live because a key feature arrived a day late in production. I now validate feature availability timing before building models."
-
-Tip: Learning.`, 'B', 'M'],
-
-["Behavioral", "How do you handle stakeholders who want a model when a simple analysis would do?",
-`**Answer:** Clarify the decision, show that a simpler analysis or rule answers it, and propose a model only if it adds measurable value.
-
-Tip: Pragmatism.`, 'B', 'M'],
-
-["GenAI", "How has generative AI changed data science work?",
-`**Answer:** LLMs handle many text tasks with little training data, speed up coding and analysis, and enable new products (RAG assistants). Data scientists now evaluate LLM outputs, design prompts and retrieval, and measure quality and cost — while classic ML still dominates structured prediction.
-
-Tip: Balanced view.`, 'D', 'M'],
-
-["GenAI", "How do you evaluate an LLM application?",
-`**Answer:** Build a representative test set, define criteria (correctness, groundedness, relevance, safety, format), score with automated checks and LLM-as-judge calibrated against human ratings, and run evaluations on every change.
-
-Tip: Evaluation sets are key.`, 'D', 'S'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior/staff data scientist — owning high-impact problem areas, experimentation strategy and mentoring.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I combine rigorous statistics and ML with business sense — my models have delivered measured impact like a 12% churn reduction — and I communicate clearly with stakeholders."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Statistics", "What is the central limit theorem?",
-`**Answer:** The distribution of sample means approaches a normal distribution as sample size grows, regardless of the population's distribution (with finite variance). It justifies many confidence intervals and tests.
-
-Tip: Practical implication.`, 'B', 'M'],
-
-["Statistics", "What is Bayesian vs frequentist thinking?",
-`**Answer:** Frequentist statistics treats parameters as fixed and uses long-run frequencies (p-values, confidence intervals). Bayesian statistics treats parameters as distributions, updating prior beliefs with data to get posteriors — intuitive for decision-making.
-
-Tip: Use case examples.`, 'D', 'S'],
-
-["Regularization", "L1 vs L2 regularization?",
-`**Answer:** L1 (lasso) adds absolute coefficient penalties and can shrink some to zero (feature selection). L2 (ridge) adds squared penalties, shrinking coefficients smoothly. Elastic net combines both.
-
-Tip: Feature selection with L1.`, 'B', 'M'],
-
-["Cross-validation", "What is k-fold cross-validation?",
-`**Answer:** Splitting data into k folds, training on k−1 and validating on the remaining fold, rotating k times and averaging results — giving a more reliable estimate than a single split. Use time-series CV for temporal data.
-
-Tip: Stratified for classification.`, 'B', 'E'],
-
-["Deep Learning", "When would you use deep learning?",
-`**Answer:** For unstructured data (images, audio, text) and very large datasets where neural networks excel; for tabular data, gradient boosting often wins with less effort.
-
-Tip: Right tool for the data.`, 'B', 'M'],
-
-["Data", "How do you deal with limited labeled data?",
-`**Answer:** Transfer learning, pretrained embeddings, data augmentation, active learning, weak supervision, LLM-assisted labeling with human review, or simpler models.
-
-Tip: LLM-assisted labeling.`, 'D', 'M'],
-
-["Metrics", "What is lift and how is it used?",
-`**Answer:** How much better a model's targeted group performs vs random selection — e.g. top 10% of scores containing 3× the average churn rate (lift of 3). Used to decide targeting depth.
-
-Tip: Business-friendly metric.`, 'D', 'M'],
-
-["Process", "How do you make your work reproducible?",
-`**Answer:** Version control for code, tracked experiments (MLflow), versioned data snapshots, fixed random seeds, environment files, and documented decisions.
-
-Tip: MLflow tracking.`, 'B', 'M']
-];
-
-QB['da-sci'] = (QB['da-sci'] || []).concat([
-["Models", "How does a decision tree decide splits?",
-`**Answer:** It chooses the feature and threshold that best separate the target — maximizing information gain (entropy) or minimizing Gini impurity for classification, or minimizing variance/MSE for regression. Depth limits and minimum leaf sizes prevent overfitting.
-
-Tip: Gini vs entropy.`, 'B', 'M'],
-["Uplift", "What is uplift modeling?",
-`**Answer:** Predicting the incremental effect of an action (e.g. a discount) on each individual — who will respond because of the treatment — rather than who will respond at all. It targets persuadable customers and avoids wasting offers. Requires experimental data.
-
-Tip: Persuadables vs sure things.`, 'D', 'S'],
-["Communication", "How do you write up an analysis for stakeholders?",
-`**Answer:** Executive summary with the recommendation first, the business question, approach in plain terms, key findings with visuals, expected impact, limitations and next steps — with technical details in an appendix.
-
-Tip: Recommendation first.`, 'B', 'M']
+QB["da-sci"] = (QB["da-sci"] || []).concat([
+["Role", "What does a data scientist do?", "**Why they ask:** roles vary widely — show you understand business impact.\n\n**Answer:** Uses statistics, machine learning and experimentation to answer business questions and build predictive or decision models: framing the problem, exploring data, engineering features, building and validating models, running experiments, and communicating results — then working with engineers to deploy and monitor models that drive decisions.\n\nTip: Emphasize business outcomes over algorithms.", "B", "E"],
+["ML Basics", "Supervised vs unsupervised learning?", "**Why they ask:** a basic ML check.\n\n**Answer:**\n\"Supervised learning learns from labeled examples to predict an outcome — classification, like will this customer churn, or regression, like predicting a house price. Unsupervised learning finds structure in unlabeled data — clustering customers into segments, reducing dimensions with PCA, or detecting anomalies. There's also semi-supervised and reinforcement learning.\"\n\nTip: Give a business example for each.", "B", "E"],
+["ML Basics", "Explain the bias-variance trade-off.", "**Why they ask:** core ML theory.\n\n**Answer:**\n\"Bias is error from a model that's too simple and underfits — a straight line through curved data. Variance is error from a model that's too complex and overfits the training data's noise. Good models balance both. I reduce variance with more data, regularization, simpler models or ensembling, and reduce bias with richer features or more flexible models.\"\n\nTip: Link it to over- and underfitting.", "B", "M"],
+["ML Basics", "How do you prevent overfitting?", "**Why they ask:** practical model building.\n\n**Answer:**\n\"Cross-validation, a holdout test set, regularization like L1, L2 or dropout, simpler models, early stopping, more data, feature selection and ensembling. And always evaluating on data the model hasn't seen. I'd add: check for data leakage, because that makes a model look great offline for the wrong reasons.\"\n\nTip: Mention data leakage too.", "B", "M"],
+["ML Basics", "What is data leakage?", "**Why they ask:** a common real-world failure.\n\n**Answer:**\n\"It's when information that won't be available at prediction time leaks into training. Using a 'cancellation date' feature to predict churn is the classic example — the model is learning from the answer. Another is scaling with statistics from the full dataset before splitting. It gives unrealistically good offline results that fail in production. I prevent it with time-based splits and reviewing each feature's availability.\"\n\nTip: A real example impresses.", "D", "M"],
+["Evaluation", "Which metrics do you use for classification?", "**Why they ask:** metric choice reflects business sense.\n\n**Answer:**\n\"Accuracy — misleading with imbalanced classes. Precision — of predicted positives, how many are right. Recall — of actual positives, how many we catch. F1 balances them. ROC-AUC and PR-AUC, log loss, and calibration. I choose based on the business cost of false positives versus false negatives. Fraud detection usually prioritizes recall; a spam filter may prioritize precision so real email isn't lost.\"\n\nTip: Tie metrics to business costs.", "B", "M"],
+["Evaluation", "How do you handle imbalanced classes?", "**Why they ask:** a common challenge.\n\n**Answer:**\n\"Use the right metrics — PR-AUC, or recall at a fixed precision — class weights, resampling like undersampling or oversampling, SMOTE used carefully, threshold tuning based on business costs, and stratified splits. Threshold tuning is often the biggest lever — the default 0.5 is rarely the right cutoff.\"\n\nTip: Threshold tuning is often the biggest lever.", "D", "M"],
+["Evaluation", "Which metrics do you use for regression?", "**Why they ask:** metric judgment.\n\n**Answer:**\n\"MAE — average absolute error, robust and easy to explain. RMSE — penalizes large errors more. MAPE — percentage error, but it breaks near zero. And R², variance explained. If a few big misses are very costly, RMSE fits; if every unit of error costs the same, MAE.\"\n\nTip: Explain the MAE versus RMSE trade-off.", "B", "M"],
+["Models", "How does a random forest work?", "**Why they ask:** a common algorithm.\n\n**Answer:**\n\"It's an ensemble of decision trees, each trained on a bootstrap sample of the data with a random subset of features considered at each split. Predictions are averaged for regression or voted for classification. That reduces variance compared with a single tree, handles non-linearity, and gives feature importance. It's bagging.\"\n\nTip: Explain bagging.", "B", "M"],
+["Models", "What is gradient boosting?", "**Why they ask:** the workhorse of tabular ML.\n\n**Answer:**\n\"It builds trees sequentially, each one correcting the errors of the previous ones by fitting the residuals or gradients. XGBoost, LightGBM and CatBoost are the top performers on tabular data. I tune learning rate, depth, number of trees and regularization, and use early stopping on a validation set.\"\n\nTip: Often the best choice for tabular data.", "B", "M"],
+["Models", "Explain logistic regression.", "**Why they ask:** a fundamental model.\n\n**Answer:**\n\"It's a linear model for binary classification. It takes a weighted sum of features and passes it through the sigmoid function to output a probability between 0 and 1. Coefficients are interpretable as changes in log-odds. It's simple, fast and a strong baseline — and regulators like that it's explainable.\"\n\nTip: Highlight interpretability.", "B", "E"],
+["Models", "When would you choose a simple model over a complex one?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"When interpretability matters — regulated decisions or stakeholder trust — when data is limited, when latency or cost is constrained, or when the complex model only adds a marginal gain. I always start with a simple baseline, and the complex model has to earn its place.\"\n\nTip: 'Baseline first.'", "B", "M"],
+["Features", "What is feature engineering? Give examples.", "**Why they ask:** where most model value comes from.\n\n**Answer:**\n\"It's creating informative inputs from raw data: aggregates like purchases in the last 30 days, ratios, time since the last event, category encodings — one-hot, or target encoding used carefully — text features, interactions, and date features like day of week and seasonality. Domain knowledge drives the best features.\"\n\nTip: Domain knowledge drives features.", "B", "M"],
+["Validation", "How do you validate a model properly?", "**Why they ask:** trustworthy evaluation.\n\n**Answer:**\n\"Train, validation and test splits or cross-validation; time-based splits for anything temporal; checking performance by segment, not just overall; comparing to baselines; and validating on recent out-of-time data before deployment.\"\n\nTip: Time-based splits for forecasting and churn.", "B", "M"],
+["Statistics", "What is a p-value and its common misinterpretation?", "**Why they ask:** statistical literacy.\n\n**Answer:**\n\"It's the probability of observing data at least as extreme as ours if the null hypothesis were true. The common mistake is reading it as the probability that the null is true — it isn't. And it doesn't measure effect size. So I always pair it with a confidence interval and practical significance.\"\n\nTip: The correct interpretation matters.", "B", "M"],
+["Statistics", "Explain Type I and Type II errors.", "**Why they ask:** testing fundamentals.\n\n**Answer:**\n\"A Type I error is a false positive — concluding an effect exists when it doesn't; its rate is alpha. A Type II error is a false negative — missing a real effect; its rate is beta, and power is one minus beta. In business terms: Type I means shipping a feature that does nothing; Type II means killing one that worked.\"\n\nTip: Use business framing.", "B", "M"],
+["Experimentation", "How do you design an A/B test?", "**Why they ask:** experimentation rigor.\n\n**Answer:**\n\"Define the hypothesis, primary metric and guardrails. Calculate sample size from the baseline, minimum detectable effect, alpha and power. Randomize at the right unit — user, not session, usually. Run for full business cycles, don't peek — or use sequential methods — check for sample ratio mismatch, analyze with confidence intervals, and decide on pre-registered criteria.\"\n\nTip: Check for sample ratio mismatch.", "D", "M"],
+["Experimentation", "What do you do when you can't run an A/B test?", "**Why they ask:** causal inference depth.\n\n**Answer:**\n\"Use causal inference methods: difference-in-differences, regression discontinuity, synthetic control, instrumental variables, or propensity score matching. Each has assumptions — like parallel trends for difference-in-differences — so I state them clearly and run sensitivity checks.\"\n\nTip: Name methods and their assumptions.", "D", "S"],
+["Experimentation", "What is CUPED?", "**Why they ask:** advanced experimentation.\n\n**Answer:**\n\"It's a variance reduction technique that uses pre-experiment data — like each user's prior spend — as a covariate to remove noise from the experiment metric. Less noise means smaller samples or faster tests for the same power.\"\n\nTip: Shows advanced experimentation knowledge.", "D", "S"],
+["Clustering", "How does k-means work and how do you choose k?", "**Why they ask:** clustering basics.\n\n**Answer:**\n\"It assigns each point to the nearest of k centroids, then moves each centroid to the mean of its points, and repeats until stable. I choose k using the elbow method, silhouette scores, and — most importantly — whether the clusters are useful to the business. Features must be scaled first, and k-means assumes roughly spherical clusters.\"\n\nTip: Business interpretability of clusters.", "B", "M"],
+["Time Series", "How do you forecast a time series?", "**Why they ask:** a common task.\n\n**Answer:**\n\"Explore trend, seasonality and anomalies first. Start with baselines — naive and seasonal naive — then try ETS, ARIMA, Prophet, or gradient boosting with lag features. Validate with rolling-origin backtests, and always provide prediction intervals, not just a single line.\"\n\nTip: Backtesting.", "D", "M"],
+["NLP", "How would you build a text classification model today?", "**Why they ask:** current NLP judgment.\n\n**Answer:**\n\"Start with a baseline — TF-IDF and logistic regression. Then either fine-tune a pretrained transformer, or use embeddings from a foundation model with a lightweight classifier on top. For very little labeled data, prompting an LLM can work. I compare all of them on quality, cost and latency — an LLM call per document can be expensive at scale.\"\n\nTip: Weigh cost and latency.", "D", "M"],
+["Interpretability", "How do you explain model predictions?", "**Why they ask:** trust and adoption.\n\n**Answer:**\n\"Globally, with feature importance and partial dependence plots. Locally, for individual predictions, with SHAP values or LIME. Then I translate into business terms — 'customers whose logins dropped in the last month are three times more likely to churn.'\"\n\nTip: SHAP is standard.", "D", "M"],
+["Deployment", "How do you take a model to production?", "**Why they ask:** beyond notebooks.\n\n**Answer:**\n\"Package the model and its preprocessing together so training and serving match, version data and models with something like MLflow, deploy as batch scoring or a real-time API, monitor performance, data drift and latency, and set up retraining. I work with ML engineers on the infrastructure.\"\n\nTip: Training-serving consistency.", "D", "M"],
+["Monitoring", "What is model drift?", "**Why they ask:** production reality.\n\n**Answer:**\n\"Data drift is when input distributions change. Concept drift is when the relationship between inputs and outcomes changes — like customer behavior after a price change. I monitor feature distributions with PSI, prediction distributions, and actual performance once labels arrive, and retrain when it degrades.\"\n\nTip: Mention PSI.", "D", "M"],
+["Business", "How do you frame a business problem as a data science problem?", "**Why they ask:** problem framing.\n\n**Answer:**\n\"Understand the decision and its value, define the target and how predictions will be used, identify data and constraints, define success metrics for both the business and the model, and plan how to measure impact. For example, 'reduce churn' becomes 'predict 60-day churn probability to prioritize retention offers,' measured with a controlled test.\"\n\nTip: Decision-first framing.", "B", "M"],
+["Business", "How do you estimate the business value of a model?", "**Why they ask:** ROI thinking.\n\n**Answer:**\n\"Translate model performance into outcomes. Say targeting the top 10% churn-risk customers catches 40% of churners. If 10,000 customers would churn, that's 4,000 reached; with a 20% save rate that's 800 saved, at $500 a year each — $400,000 — minus the cost of offers. Then validate it with an experiment.\"\n\nTip: Show the math.", "D", "M"],
+["Python", "Which Python libraries do you use?", "**Why they ask:** tool depth.\n\n**Answer:**\n\"pandas or Polars, NumPy, scikit-learn, XGBoost and LightGBM, statsmodels, matplotlib, seaborn and plotly, PyTorch for deep learning, and MLflow for experiment tracking.\"\n\nTip: Show depth in scikit-learn.", "B", "E"],
+["SQL", "Why do data scientists need strong SQL?", "**Why they ask:** practical skill.\n\n**Answer:**\n\"Most data lives in warehouses. Extracting and aggregating features efficiently in SQL — window functions, joins — saves a lot of time and avoids errors from pulling raw data into Python. I expect SQL questions in any data science interview.\"\n\nTip: Expect SQL questions.", "B", "E"],
+["Communication", "How do you explain a model to executives?", "**Why they ask:** communication.\n\n**Answer:**\n\"Focus on the decision it improves, the expected impact in dollars or KPIs, how reliable it is, the key drivers in plain language, and the risks and how we monitor them. No jargon — 'AUC of 0.82' means nothing to most executives.\"\n\nTip: No jargon.", "B", "M"],
+["Ethics", "How do you ensure models are fair?", "**Why they ask:** responsible AI.\n\n**Answer:**\n\"Check performance and outcomes across groups, avoid features that act as proxies for protected attributes — like zip code standing in for race — use fairness metrics appropriate to the use case, document limitations, and involve legal and compliance for high-stakes decisions like lending or hiring.\"\n\nTip: Responsible AI.", "D", "M"],
+["Recommendation", "How would you build a recommendation system?", "**Why they ask:** a common product problem.\n\n**Answer:**\n\"Start with popularity and simple rules as a baseline. Then collaborative filtering like matrix factorization, content-based features, or two-tower embedding models. Handle cold start for new users and items. Evaluate offline with precision at k or NDCG, then online with an A/B test on click-through and revenue — offline gains don't always transfer.\"\n\nTip: Offline versus online evaluation.", "D", "S"],
+["Behavioral", "Tell me about a model that drove business impact.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built a churn model with gradient boosting on usage and support features. Targeting the top decile with retention offers in a controlled test reduced churn by 12% in that segment — worth about $1.8 million a year.\"\n\nTip: Measured impact.", "B", "M"],
+["Behavioral", "Tell me about a project that failed.", "**Why they ask:** learning.\n\n**Answer:**\n\"A demand model performed well offline but failed live, because a key feature arrived a day late in production — so the model never had it at prediction time. Now I validate when each feature is actually available before building with it.\"\n\nTip: Show the learning.", "B", "M"],
+["Behavioral", "How do you handle stakeholders who want a model when a simple analysis would do?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Clarify the decision they're trying to make, show that a simpler analysis or rule answers it, and propose a model only if it adds measurable value. Sometimes a well-chosen threshold beats a three-month ML project.\"\n\nTip: Be pragmatic.", "B", "M"],
+["GenAI", "How has generative AI changed data science work?", "**Why they ask:** current view.\n\n**Answer:**\n\"LLMs handle many text tasks with little training data, speed up coding and analysis, and enable new products like RAG assistants. Data scientists now evaluate LLM outputs, design prompts and retrieval, and measure quality and cost. But classic ML still dominates structured prediction — churn, fraud, forecasting.\"\n\nTip: Keep a balanced view.", "D", "M"],
+["GenAI", "How do you evaluate an LLM application?", "**Why they ask:** a new core skill.\n\n**Answer:**\n\"Build a representative test set, define criteria — correctness, groundedness, relevance, safety and format — score with automated checks and an LLM-as-judge that's been calibrated against human ratings, and run the evaluation on every change to prompts, models or retrieval.\"\n\nTip: Evaluation sets are key.", "D", "S"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior or staff data scientist — owning high-impact problem areas, experimentation strategy and mentoring.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I combine rigorous statistics and ML with business sense — my models have delivered measured impact like a 12% churn reduction — and I communicate clearly with stakeholders.\"\n\nTip: Proof.", "B", "M"],
+["Statistics", "What is the central limit theorem?", "**Why they ask:** statistical foundation.\n\n**Answer:**\n\"The distribution of sample means approaches a normal distribution as the sample size grows, no matter what the underlying distribution looks like — as long as variance is finite. That's why we can build confidence intervals and run t-tests on skewed data like revenue per user, given enough samples.\"\n\nTip: Give the practical implication.", "B", "M"],
+["Statistics", "What is Bayesian vs frequentist thinking?", "**Why they ask:** statistical philosophy.\n\n**Answer:**\n\"Frequentist statistics treats parameters as fixed and reasons about long-run frequencies — p-values and confidence intervals. Bayesian statistics treats parameters as distributions and updates prior beliefs with data to get a posterior. Bayesian results are intuitive for decisions — 'there's a 92% chance B beats A' — which is why some experimentation platforms use them.\"\n\nTip: Use case examples.", "D", "S"],
+["Regularization", "L1 vs L2 regularization?", "**Why they ask:** model tuning.\n\n**Answer:**\n\"L1, or lasso, penalizes the absolute size of coefficients and can shrink some to exactly zero, so it does feature selection. L2, or ridge, penalizes squared coefficients and shrinks them smoothly without zeroing. Elastic net combines both.\"\n\nTip: L1 does feature selection.", "B", "M"],
+["Cross-validation", "What is k-fold cross-validation?", "**Why they ask:** validation method.\n\n**Answer:**\n\"Split the data into k folds, train on k minus one and validate on the remaining fold, rotate k times, and average the results. It's more reliable than a single split. I use stratified folds for classification and time-series splits for temporal data.\"\n\nTip: Stratify for classification.", "B", "E"],
+["Deep Learning", "When would you use deep learning?", "**Why they ask:** tool selection.\n\n**Answer:**\n\"For unstructured data — images, audio, text — and very large datasets where neural networks excel. For tabular business data, gradient boosting usually wins with less effort and cost.\"\n\nTip: Right tool for the data.", "B", "M"],
+["Data", "How do you deal with limited labeled data?", "**Why they ask:** a common constraint.\n\n**Answer:**\n\"Transfer learning, pretrained embeddings, data augmentation, active learning to label the most useful examples, weak supervision, LLM-assisted labeling with human review, or simpler models that need less data.\"\n\nTip: Mention LLM-assisted labeling.", "D", "M"],
+["Metrics", "What is lift and how is it used?", "**Why they ask:** a business-friendly metric.\n\n**Answer:**\n\"Lift is how much better a model's targeted group performs than random selection. If the top 10% of scores contains three times the average churn rate, that's a lift of 3. We use it to decide how deep to target — where lift drops off, the offers stop paying.\"\n\nTip: A business-friendly metric.", "D", "M"],
+["Process", "How do you make your work reproducible?", "**Why they ask:** engineering discipline.\n\n**Answer:**\n\"Version control for code, tracked experiments in MLflow, versioned data snapshots, fixed random seeds, environment files, and documented decisions. Anyone should be able to rerun my model and get the same result.\"\n\nTip: MLflow tracking.", "B", "M"]
+]);
+
+QB["da-sci"] = (QB["da-sci"] || []).concat([
+["Models", "How does a decision tree decide splits?", "**Why they ask:** algorithm understanding.\n\n**Answer:**\n\"It picks the feature and threshold that best separate the target — maximizing information gain using entropy, or minimizing Gini impurity, for classification, and minimizing variance or MSE for regression. Depth limits and minimum leaf sizes stop it from overfitting.\"\n\nTip: Gini versus entropy.", "B", "M"],
+["Uplift", "What is uplift modeling?", "**Why they ask:** advanced targeting.\n\n**Answer:**\n\"It predicts the incremental effect of an action — like a discount — on each individual: who will respond because of the treatment, not who would respond anyway. It targets the 'persuadables' and avoids wasting offers on 'sure things' who'd buy regardless. It needs experimental data to train.\"\n\nTip: Persuadables versus sure things.", "D", "S"],
+["Communication", "How do you write up an analysis for stakeholders?", "**Why they ask:** communication.\n\n**Answer:**\n\"An executive summary with the recommendation first, then the business question, the approach in plain terms, key findings with visuals, expected impact, limitations and next steps — with technical details in an appendix.\"\n\nTip: Recommendation first.", "B", "M"]
 ]);
