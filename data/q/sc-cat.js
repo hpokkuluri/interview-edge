@@ -1,269 +1,57 @@
 // sc-cat — generated from src/sc-cat-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Category Manager / Strategic Sourcing. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-cat'] = [
-["Strategy", "How do you build a category strategy?",
-`**Why they ask:** the core skill of the role.
-
-**Answer:**
-1. **Spend analysis** — who buys what, from whom, at what price, under which contracts.
-2. **Internal needs** — stakeholder requirements, specifications, future demand.
-3. **Market analysis** — supply base, cost drivers, capacity, risks, trends, Porter's five forces.
-4. **Strategy options** — consolidate, competitive bid, renegotiate, redesign demand, partner, dual source.
-5. **Implementation plan** — sourcing events, timeline, savings targets, risks.
-6. **Supplier relationship plan** and KPIs.
-
-Tip: Give a category example with numbers.`, 'D', 'M'],
-
-["Tools", "Explain the Kraljic matrix.",
-`**Answer:** Classifies categories by **profit impact** and **supply risk**:
-- **Strategic** (high/high): partnerships, long-term contracts, joint improvement.
-- **Leverage** (high impact/low risk): competitive bidding, volume consolidation.
-- **Bottleneck** (low impact/high risk): secure supply, safety stock, alternatives.
-- **Non-critical** (low/low): simplify, catalogs, automation.
-
-Tip: Place a real category in each quadrant.`, 'B', 'M'],
-
-["Tools", "What is Porter's five forces and how does it apply to sourcing?",
-`**Answer:** Supplier power, buyer power, threat of substitutes, threat of new entrants and competitive rivalry. In sourcing it tells you your negotiating leverage — e.g. few suppliers and high switching costs mean high supplier power, so focus on partnership or alternatives.
-
-Tip: Link the analysis to your strategy choice.`, 'D', 'M'],
-
-["Cost", "What is total cost of ownership (TCO)?",
-`**Answer:** All costs over the life of a purchase: price, freight, duties, inventory carrying, quality costs, installation, training, maintenance, energy, downtime, and disposal.
-
-**Example:** Printer A costs $2,000 but $0.08/page; Printer B costs $3,000 at $0.04/page. At 50,000 pages/year over 3 years, B is $3,000 cheaper overall.
-
-Tip: The example shows practical use.`, 'B', 'M'],
-
-["Cost", "What is should-cost analysis?",
-`**Answer:** Building up what a product should cost: materials (weight × price), labor (time × rate), overhead, scrap, logistics and a fair margin. Used to challenge supplier quotes with facts and find cost-reduction ideas.
-
-Tip: Mention working with engineering on should-cost.`, 'D', 'S'],
-
-["Cost", "How do you use commodity indices in contracts?",
-`**Answer:** Link part of the price to published indices (e.g. steel, resin, copper, diesel) with a formula and review frequency, so price moves both up and down fairly. It reduces renegotiation and risk premiums.
-
-Tip: Mention caps and collars.`, 'D', 'S'],
-
-["Sourcing", "Walk me through running an RFP.",
-`**Answer:** Define requirements and evaluation criteria with stakeholders, identify and pre-qualify suppliers, issue the RFP with clear timelines and pricing templates, hold Q&A, evaluate responses with a weighted scorecard, shortlist and negotiate, run due diligence, award, and plan implementation and transition.
-
-Tip: Mention a scoring model (e.g. 40% price, 30% capability, 20% service, 10% risk).`, 'B', 'M'],
-
-["Sourcing", "When would you use a reverse auction?",
-`**Answer:** For well-specified, commoditized items with several qualified suppliers where price is the main differentiator. Not suitable for complex services or strategic partnerships where relationships matter.
-
-Tip: Mention supplier relationship risk.`, 'D', 'M'],
-
-["Negotiation", "How do you prepare a negotiation strategy for a major contract?",
-`**Answer:** Define objectives and priorities, understand the supplier's position and pressures, know your BATNA and theirs, set target and walk-away points, prepare data (should-cost, benchmarks, competing bids), plan concessions and trade-offs, and agree team roles.
-
-Tip: Mention role-playing with your team.`, 'D', 'M'],
-
-["Negotiation", "How do you negotiate with a sole-source supplier?",
-`**Answer:** Use total relationship value (volume, future business, references), long-term commitments, should-cost data, joint cost reduction ideas, executive relationships, and work in parallel on qualifying alternatives or redesigning to reduce dependency.
-
-Tip: Leverage is created over time.`, 'D', 'S'],
-
-["Risk", "How do you manage supplier risk?",
-`**Answer:** Identify risks (financial, geographic, single source, cyber, ESG, geopolitical, capacity), monitor them (risk platforms, financials, news), and mitigate (dual sourcing, safety stock, contracts, business continuity plans). Tier critical suppliers and map sub-tier suppliers for key components.
-
-Tip: Mention a tool like Interos, Resilinc or riskmethods.`, 'D', 'M'],
-
-["Risk", "How do you approach nearshoring or reshoring decisions?",
-`**Answer:** Compare total landed cost, lead times and inventory, tariff exposure, quality, supply risk, capacity and labor availability. Model scenarios and include transition costs.
-
-Tip: Very current topic.`, 'D', 'S'],
-
-["Contracts", "What key clauses do you focus on in supply agreements?",
-`**Answer:** Pricing and adjustment mechanisms, volume commitments, payment terms, service levels and penalties, quality and warranties, liability caps and indemnities, IP and confidentiality, termination and transition assistance, force majeure, and audit rights.
-
-Tip: Work closely with legal.`, 'D', 'M'],
-
-["SRM", "What is supplier relationship management?",
-`**Answer:** Segment suppliers and manage strategic ones actively: scorecards (quality, delivery, cost, innovation), quarterly business reviews, joint improvement projects, executive sponsors, and development plans.
-
-Tip: Give an innovation example from a supplier partnership.`, 'B', 'M'],
-
-["SRM", "What goes into a supplier scorecard?",
-`**Answer:** On-time delivery, quality (PPM defects, returns), cost competitiveness and savings delivered, responsiveness, innovation, and compliance/ESG — weighted by category importance.
-
-Tip: Share how scorecards changed supplier behavior.`, 'B', 'M'],
-
-["Stakeholders", "How do you work with stakeholders who prefer their current supplier?",
-`**Answer:** Understand their reasons (quality, service, relationships), include their criteria in the evaluation, involve them in the process, share data transparently, and plan the transition carefully if changing suppliers.
-
-Tip: Stakeholder buy-in decides success.`, 'B', 'M'],
-
-["Stakeholders", "Engineering insists on a single supplier. How do you handle it?",
-`**Answer:** Understand the technical reasons, quantify supply and cost risk, propose qualifying a second source or design flexibility, or contract protections (capacity commitments, price controls). Make it a joint decision with data.
-
-Tip: Partnership with engineering.`, 'D', 'S'],
-
-["Savings", "How do you ensure savings actually hit the P&L?",
-`**Answer:** Agree baselines and methodology with finance, track price compliance on POs and invoices, monitor demand changes, and report realized vs negotiated savings.
-
-Tip: Savings leakage is common — show you track it.`, 'D', 'M'],
-
-["Demand", "What is demand management in procurement?",
-`**Answer:** Reducing or changing what is bought — specification changes, standardization, consumption policies, and challenging needs. Often saves more than price negotiation.
-
-**Example:** standardizing laptops to three models cut prices 12% and support costs.
-
-Tip: "The cheapest purchase is the one you don't make."`, 'D', 'M'],
-
-["Market", "How do you stay informed about your category market?",
-`**Answer:** Industry reports, commodity indices, supplier meetings and trade shows, market intelligence providers, news alerts and peer networks.
-
-Tip: Name sources specific to your category.`, 'B', 'M'],
-
-["IT Category", "How would you source IT/SaaS software?",
-`**Answer:** Define requirements and users, compare vendors, negotiate subscription pricing, multi-year terms, price caps on renewals, usage flexibility, SLAs, data protection and exit terms. Watch auto-renewals and shelfware.
-
-Tip: Renewal price caps are a big lever.`, 'D', 'M'],
-
-["Services", "How do you source professional services?",
-`**Answer:** Clear scope and SOW, competitive bids, rate cards by role, fixed price vs time and materials, deliverables and acceptance, performance measures, and controls on scope creep.
-
-Tip: SOW quality drives results.`, 'D', 'M'],
-
-["Logistics", "How would you source logistics services?",
-`**Answer:** Analyze lanes and volumes, run RFQs by lane or region, evaluate service levels and capacity, consider fuel surcharges and accessorial charges, balance cost and resilience with a carrier mix.
-
-Tip: Data-driven lane analysis.`, 'D', 'M'],
-
-["Global", "What challenges come with global sourcing?",
-`**Answer:** Currency, longer lead times, quality control, tariffs and trade compliance, cultural differences, IP protection and logistics risk. Mitigate with landed cost analysis, local quality checks, and clear contracts.
-
-Tip: Experience examples help.`, 'D', 'M'],
-
-["ESG", "How do you integrate ESG into category strategy?",
-`**Answer:** Supplier sustainability assessments, emissions data (Scope 3), human rights and conflict minerals compliance, sustainable materials and packaging, and diversity spend goals — included in evaluation criteria.
-
-Tip: Mention regulatory drivers.`, 'D', 'S'],
-
-["Technology", "Which sourcing tools have you used?",
-`**Sample answer:** "Coupa Sourcing and SAP Ariba for RFx and auctions, Oracle Fusion Sourcing for negotiations and awards, spend analytics dashboards in Power BI, and contract management in Icertis."
-
-Tip: Name what you did with each.`, 'B', 'M'],
-
-["AI", "How can AI help category managers?",
-`**Answer:** Spend classification, market intelligence summaries, bid analysis, contract clause review, risk prediction and negotiation preparation. Humans make strategic calls and manage relationships.
-
-Tip: Balanced view.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a major sourcing event you led.",
-`**Sample answer:** "I led a $12M packaging RFP across 6 plants. After spend analysis and specification standardization, we invited 8 suppliers, shortlisted 3 and negotiated a 3-year deal with index-based pricing. Savings were $1.4M a year (11.7%) and on-time delivery improved to 98%."
-
-Tip: Scope, process, outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a supplier transition you managed.",
-`**Sample answer:** "Moving a component to a new supplier, I set up a transition plan with first-article approvals, safety stock built by the old supplier, and staged volume shifts. The switch completed with no production disruption."
-
-Tip: Risk management during transition.`, 'B', 'M'],
-
-["Behavioral", "Describe a time a negotiation failed.",
-`**Sample answer:** "A logistics provider refused our terms and we walked away. We moved to our second choice with slightly higher cost but better service. I learned to qualify alternatives earlier so walking away is credible."
-
-Tip: Honest lessons.`, 'B', 'M'],
-
-["Behavioral", "How do you handle a stakeholder bypassing procurement?",
-`**Answer:** Understand why (speed, ease, relationships), fix the process pain point, explain the risks and benefits of involving procurement, and escalate repeated non-compliance through leadership.
-
-Tip: Make the right path easy.`, 'B', 'M'],
-
-["Metrics", "Which KPIs would you report for your categories?",
-`**Answer:** Savings (hard and avoidance), spend under management, contract coverage, supplier performance, risk exposure, stakeholder satisfaction and working capital impact (payment terms).
-
-Tip: Balanced scorecard.`, 'D', 'M'],
-
-["Working Capital", "How can category managers improve working capital?",
-`**Answer:** Negotiate longer payment terms, consignment or VMI, supply chain finance programs, and lower inventory through shorter lead times and smaller MOQs.
-
-Tip: Quantify the cash impact.`, 'D', 'S'],
-
-["Innovation", "How do you drive innovation from suppliers?",
-`**Answer:** Share business challenges, run supplier innovation days, reward ideas with business, co-develop products, and include innovation in scorecards.
-
-Tip: Suppliers know their field best.`, 'D', 'S'],
-
-["Make vs Buy", "How do you support make-vs-buy decisions?",
-`**Answer:** Compare full internal cost vs external quotes, capacity, quality, IP and strategic importance, and transition risks.
-
-Tip: Partner with finance and operations.`, 'D', 'S'],
-
-["Leadership", "How do you lead a cross-functional sourcing team?",
-`**Answer:** Clear goals and roles, involve engineering, quality, finance and operations early, regular updates, and shared credit for results.
-
-Tip: Influence without authority.`, 'B', 'S'],
-
-["Pricing", "What pricing models do you use in contracts?",
-`**Answer:** Fixed price, index-linked, cost-plus, tiered volume pricing, open-book with target pricing, and gain-sharing for improvement projects.
-
-Tip: Choose based on risk and market.`, 'D', 'S'],
-
-["Benchmarking", "How do you benchmark prices?",
-`**Answer:** Competitive bids, market indices, industry benchmarks, internal comparisons across sites, and should-cost models.
-
-Tip: Multiple sources.`, 'B', 'M'],
-
-["Category Plan", "How often do you update a category strategy?",
-`**Answer:** Annually as part of planning, plus when market conditions change significantly (price spikes, disruptions, new regulations).
-
-Tip: Living document.`, 'B', 'M'],
-
-["Compliance", "How do you ensure contract compliance after award?",
-`**Answer:** Load prices into ERP/catalogs, monitor PO and invoice prices against contract, track off-contract spend, and review supplier performance against terms regularly.
-
-Tip: Award is the start, not the end.`, 'D', 'M'],
-
-["Career", "Why category management?",
-`**Sample answer:** "It combines strategy, market analysis and negotiation with real business impact. I like owning a category end to end and building partnerships that deliver value beyond price."
-
-Tip: Strategic mindset.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build data-driven category strategies, run sourcing events that deliver double-digit savings, and manage supply risk proactively. My last packaging strategy saved $1.4M a year while improving service."
-
-Tip: Proof points.`, 'B', 'M'],
-
-["Tools", "What is a supplier preferencing model?",
-`**Answer:** It shows how attractive your business is to a supplier (account value vs attractiveness): core, develop, exploitable or nuisance. If you're a "nuisance" customer to a key supplier, you have little leverage — useful context for negotiation.
-
-Tip: Complements Kraljic.`, 'D', 'S'],
-
-["Risk", "What is a business continuity plan for a supplier?",
-`**Answer:** A documented plan for disruptions: alternative sources, safety stock levels, contacts and escalation, qualified substitutes, and recovery timelines.
-
-Tip: Critical for strategic categories.`, 'D', 'M'],
-
-["Specifications", "Why do specifications matter in sourcing?",
-`**Answer:** Over-specified requirements limit competition and increase cost. Working with engineering to standardize or relax specs can widen the supplier base and save money.
-
-Tip: Value engineering example.`, 'D', 'M'],
-
-["Tariffs", "How do you respond to new tariffs on your category?",
-`**Answer:** Assess exposure by country of origin and HS code, model landed cost impact, negotiate cost sharing, explore alternative origins and free trade agreements, review contract terms, and update budgets.
-
-Tip: Current and practical.`, 'D', 'S'],
-
-["Data", "How do you clean spend data for analysis?",
-`**Answer:** Normalize supplier names and parent companies, classify spend into categories, fix coding errors, and combine PO, invoice and p-card data.
-
-Tip: Clean data drives credible strategy.`, 'D', 'M']
-];
-
-QB['sc-cat'] = (QB['sc-cat'] || []).concat([
-["Strategy", "How do you segment suppliers within a category?",
-`**Answer:** By spend and strategic importance vs risk: strategic partners (joint plans, executive sponsors), preferred suppliers (competitive, managed by scorecards), approved/transactional (minimal management), and exit candidates. Effort follows segment.
-
-Tip: Tie to Kraljic and supplier preferencing.`, 'D', 'M'],
-["Negotiation", "What is your approach to multi-year agreements?",
-`**Answer:** Lock in favorable pricing and capacity with index-linked adjustments, volume tiers, productivity commitments (e.g. 2% annual cost reduction), service levels, and exit/benchmarking clauses so terms stay competitive.
-
-Tip: Annual productivity clauses add value over time.`, 'D', 'S'],
-["Stakeholders", "How do you build credibility with senior business stakeholders?",
-`**Answer:** Understand their business goals, bring market insight they don't have, deliver results on early projects, communicate clearly in business terms, and involve them in key decisions.
-
-Tip: Insight earns a seat at the table.`, 'B', 'M']
+QB["sc-cat"] = (QB["sc-cat"] || []).concat([
+["Strategy", "How do you build a category strategy?", "**Why they ask:** the core skill of the role.\n\n**Answer:**\n1. **Spend analysis** — who buys what, from whom, at what price, under which contracts.\n2. **Internal needs** — stakeholder requirements, specifications, future demand.\n3. **Market analysis** — supply base, cost drivers, capacity, risks, trends, Porter's five forces.\n4. **Strategy options** — consolidate, competitive bid, renegotiate, redesign demand, partner, dual source.\n5. **Implementation plan** — sourcing events, timeline, savings targets, risks.\n6. **Supplier relationship plan** and KPIs.\n\nTip: Give a category example with numbers.", "D", "M"],
+["Tools", "Explain the Kraljic matrix.", "**Why they ask:** the classic category segmentation tool.\n\n**Answer:**\n\"It classifies categories by profit impact and supply risk. Strategic — high impact, high risk — needs partnerships, long-term contracts and joint improvement; for example, a custom component. Leverage — high impact, low risk — is where you run competitive bids and consolidate volume, like corrugated packaging. Bottleneck — low impact, high risk — you secure supply with safety stock and alternatives, like a specialty adhesive from one source. Non-critical — low and low — you simplify with catalogs and automation, like office supplies.\"\n\nTip: Place a real category in each quadrant.", "B", "M"],
+["Tools", "What is Porter's five forces and how does it apply to sourcing?", "**Why they ask:** market analysis drives strategy.\n\n**Answer:**\n\"The five forces are supplier power, buyer power, the threat of substitutes, the threat of new entrants, and competitive rivalry. In sourcing, they tell me my negotiating leverage. If there are few suppliers and high switching costs, supplier power is high, so I'd focus on partnership or on developing alternatives rather than a hard bid. If there are many suppliers and low switching costs, I can run a competitive event.\"\n\nTip: Link the analysis to your strategy choice.", "D", "M"],
+["Cost", "What is total cost of ownership (TCO)?", "**Why they ask:** shows you look beyond unit price.\n\n**Answer:**\n\"It's every cost over the life of a purchase — price, freight, duties, inventory carrying, quality costs, installation, training, maintenance, energy, downtime and disposal. For example, printer A costs $2,000 and 8 cents a page; printer B costs $3,000 and 4 cents a page. At 50,000 pages a year for three years, A costs $14,000 in total and B costs $9,000 — so B is $5,000 cheaper even though it's more expensive upfront.\"\n\nTip: A worked example shows practical use.", "B", "M"],
+["Cost", "What is should-cost analysis?", "**Why they ask:** fact-based negotiation.\n\n**Answer:**\n\"It's building up what a product should cost: materials — weight times price — labor — time times rate — plus overhead, scrap, logistics and a fair margin. If a supplier quotes $12 and my should-cost says $9.50, I can challenge specific elements with facts. It also surfaces cost-reduction ideas. I build these with engineering, because they know the process steps.\"\n\nTip: Mention working with engineering.", "D", "S"],
+["Cost", "How do you use commodity indices in contracts?", "**Why they ask:** managing volatile input costs.\n\n**Answer:**\n\"I link part of the price to a published index — steel, resin, copper or diesel — with a formula and a review frequency, so price moves fairly in both directions. If resin is 40% of the part cost and the index rises 10%, the price rises 4%. It cuts renegotiation and removes the risk premium suppliers otherwise build in. I often add caps and collars to limit extreme moves.\"\n\nTip: Mention caps and collars.", "D", "S"],
+["Sourcing", "Walk me through running an RFP.", "**Why they ask:** the core sourcing process.\n\n**Answer:**\n\"I define requirements and evaluation criteria with stakeholders, then identify and pre-qualify suppliers. The RFP goes out with clear timelines and a standard pricing template so bids are comparable. We hold a Q&A, evaluate responses with a weighted scorecard — say 40% price, 30% capability, 20% service and 10% risk — shortlist, negotiate, run due diligence, award, and plan the implementation and transition.\"\n\nTip: Mention a scoring model.", "B", "M"],
+["Sourcing", "When would you use a reverse auction?", "**Why they ask:** tests tool judgment.\n\n**Answer:**\n\"For well-specified, commodity-type items with several qualified suppliers, where price really is the main difference — like standard packaging or MRO supplies. Not for complex services or strategic partnerships, because the auction can damage relationships you depend on.\"\n\nTip: Mention supplier relationship risk.", "D", "M"],
+["Negotiation", "How do you prepare a negotiation strategy for a major contract?", "**Why they ask:** big contracts need planning.\n\n**Answer:**\n\"I define our objectives and priorities and study the supplier's position and pressures. I know my BATNA and estimate theirs. I set target and walk-away points, prepare data — should-cost, benchmarks, competing bids — plan which concessions to trade for what, and agree team roles. For major deals, we role-play the negotiation beforehand.\"\n\nTip: Mention role-playing with your team.", "D", "M"],
+["Negotiation", "How do you negotiate with a sole-source supplier?", "**Why they ask:** a hard leverage problem.\n\n**Answer:**\n\"I use the total value of the relationship — volume, future business, being a reference customer — plus long-term commitments, should-cost data, joint cost-reduction ideas, and executive relationships. In parallel, I work on qualifying an alternative or redesigning to reduce dependency. Leverage is created over time, so that work starts long before the next negotiation.\"\n\nTip: Leverage is created over time.", "D", "S"],
+["Risk", "How do you manage supplier risk?", "**Why they ask:** disruptions are constant.\n\n**Answer:**\n\"I identify the risks — financial, geographic, single-source, cyber, ESG, geopolitical and capacity. I monitor them through risk platforms, supplier financials and news alerts. And I mitigate with dual sourcing, safety stock, contract terms and business continuity plans. Critical suppliers are tiered, and for key components I map the sub-tier suppliers too, because that's often where the surprise comes from.\"\n\nTip: Mention a tool like Interos, Resilinc or riskmethods.", "D", "M"],
+["Risk", "How do you approach nearshoring or reshoring decisions?", "**Why they ask:** a very current topic.\n\n**Answer:**\n\"I compare total landed cost, lead times and the inventory they require, tariff exposure, quality, supply risk, capacity and labor availability. I model scenarios and include transition costs — qualification, tooling and dual running. Often nearshoring wins on total cost once you count inventory and tariff risk, even if unit price is higher.\"\n\nTip: Very current — strong to mention.", "D", "S"],
+["Contracts", "What key clauses do you focus on in supply agreements?", "**Why they ask:** contracts protect value.\n\n**Answer:**\n\"Pricing and adjustment mechanisms, volume commitments, payment terms, service levels and penalties, quality and warranties, liability caps and indemnities, IP and confidentiality, termination and transition assistance, force majeure, and audit rights. I lead the commercial terms and work closely with legal.\"\n\nTip: Work closely with legal.", "D", "M"],
+["SRM", "What is supplier relationship management?", "**Why they ask:** value continues after award.\n\n**Answer:**\n\"It means segmenting suppliers and actively managing the strategic ones — scorecards on quality, delivery, cost and innovation, quarterly business reviews, joint improvement projects, executive sponsors on both sides, and development plans. One supplier partnership produced a packaging redesign that cut our freight cost 8%.\"\n\nTip: Give an innovation example.", "B", "M"],
+["SRM", "What goes into a supplier scorecard?", "**Why they ask:** measurement drives behavior.\n\n**Answer:**\n\"On-time delivery, quality — defect PPM and returns — cost competitiveness and savings delivered, responsiveness, innovation, and compliance and ESG, weighted by how important each is for the category. When we started sharing scorecards quarterly with ranking against peers, two suppliers' on-time delivery jumped within a quarter.\"\n\nTip: Share how scorecards changed behavior.", "B", "M"],
+["Stakeholders", "How do you work with stakeholders who prefer their current supplier?", "**Why they ask:** stakeholder buy-in decides success.\n\n**Answer:**\n\"I understand their reasons — quality, service or relationships — and include their criteria in the evaluation. I involve them in the process, share the data openly, and if we do change suppliers, plan the transition carefully with them.\"\n\nTip: Stakeholder buy-in decides success.", "B", "M"],
+["Stakeholders", "Engineering insists on a single supplier. How do you handle it?", "**Why they ask:** a classic procurement–engineering tension.\n\n**Answer:**\n\"I understand the technical reasons first. Then quantify the supply and cost risk of single-sourcing, and propose options — qualifying a second source, design flexibility, or contract protections like capacity commitments and price controls. The goal is a joint decision based on data, not a turf fight.\"\n\nTip: Partnership with engineering.", "D", "S"],
+["Savings", "How do you ensure savings actually hit the P&L?", "**Why they ask:** savings leakage is common.\n\n**Answer:**\n\"I agree the baseline and method with finance upfront, track price compliance on POs and invoices, watch for demand changes that hide or inflate savings, and report realized savings against negotiated savings. Often 20 to 30% of negotiated savings leak if no one tracks it.\"\n\nTip: Show you track savings leakage.", "D", "M"],
+["Demand", "What is demand management in procurement?", "**Why they ask:** often saves more than negotiation.\n\n**Answer:**\n\"It's reducing or changing what we buy — specification changes, standardization, consumption policies, and challenging whether a need is real. For example, standardizing laptops from fourteen models to three cut prices 12% and lowered support costs. The cheapest purchase is the one you don't make.\"\n\nTip: 'The cheapest purchase is the one you don't make.'", "D", "M"],
+["Market", "How do you stay informed about your category market?", "**Why they ask:** category managers must be market experts.\n\n**Answer:**\n\"Industry reports, commodity indices, supplier meetings and trade shows, market intelligence providers, news alerts and peer networks. For packaging, for example, I follow pulp and paper indices weekly and attend one industry show a year.\"\n\nTip: Name sources specific to your category.", "B", "M"],
+["IT Category", "How would you source IT/SaaS software?", "**Why they ask:** a large and growing category.\n\n**Answer:**\n\"I define requirements and user counts, compare vendors, and negotiate subscription pricing, multi-year terms, caps on renewal increases, flexibility to adjust licenses, SLAs, data protection and exit terms. I watch auto-renewals and shelfware — licenses nobody uses. Renewal price caps are one of the biggest levers.\"\n\nTip: Renewal price caps are a big lever.", "D", "M"],
+["Services", "How do you source professional services?", "**Why they ask:** services are hard to control.\n\n**Answer:**\n\"A clear scope and statement of work, competitive bids, rate cards by role, a deliberate choice between fixed price and time and materials, defined deliverables and acceptance, performance measures, and controls on scope creep. The quality of the SOW drives the results.\"\n\nTip: SOW quality drives results.", "D", "M"],
+["Logistics", "How would you source logistics services?", "**Why they ask:** a data-heavy category.\n\n**Answer:**\n\"I'd analyze lanes and volumes, then run RFQs by lane or region. I evaluate service levels and capacity, not just rate — and include fuel surcharges and accessorial charges, which can add 15 to 20%. Then balance cost and resilience with a carrier mix rather than putting everything with one carrier.\"\n\nTip: Data-driven lane analysis.", "D", "M"],
+["Global", "What challenges come with global sourcing?", "**Why they ask:** global sourcing has hidden risks.\n\n**Answer:**\n\"Currency, longer lead times, quality control, tariffs and trade compliance, cultural differences, IP protection and logistics risk. I mitigate with landed cost analysis, local quality checks or third-party inspection, and clear contracts.\"\n\nTip: Use experience examples.", "D", "M"],
+["ESG", "How do you integrate ESG into category strategy?", "**Why they ask:** a growing requirement.\n\n**Answer:**\n\"Supplier sustainability assessments, emissions data for Scope 3, human rights and conflict minerals compliance, sustainable materials and packaging, and supplier diversity goals — all built into the evaluation criteria, not added afterward. Regulations like forced-labor import rules and EU due diligence laws are pushing this.\"\n\nTip: Mention regulatory drivers.", "D", "S"],
+["Technology", "Which sourcing tools have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Coupa Sourcing and SAP Ariba for RFx events and auctions, Oracle Fusion Sourcing for negotiations and awards, Power BI spend dashboards, and Icertis for contract management.\"\n\nTip: Name what you did with each — swap in your own.", "B", "M"],
+["AI", "How can AI help category managers?", "**Why they ask:** a modern, balanced view.\n\n**Answer:**\n\"Spend classification, market intelligence summaries, bid analysis, contract clause review, risk prediction and negotiation preparation. It speeds up the analysis a lot. But people still make the strategic calls and manage the relationships.\"\n\nTip: Balanced view.", "D", "M"],
+["Behavioral", "Tell me about a major sourcing event you led.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"I led a $12 million packaging RFP across six plants. After spend analysis and standardizing specifications, we invited eight suppliers, shortlisted three and negotiated a three-year deal with index-based pricing. Savings were $1.4 million a year — about 11.7% — and on-time delivery improved to 98%.\"\n\nTip: Scope, process, outcome.", "B", "M"],
+["Behavioral", "Tell me about a supplier transition you managed.", "**Why they ask:** transitions are risky.\n\n**Answer:**\n\"Moving a component to a new supplier, I set up a transition plan with first-article approvals, a safety stock built by the old supplier, and staged volume shifts — 20%, then 50%, then 100%. The switch completed with no production disruption.\"\n\nTip: Risk management during the transition.", "B", "M"],
+["Behavioral", "Describe a time a negotiation failed.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"A logistics provider refused our terms and we walked away. We moved to our second choice at slightly higher cost but better service. What I learned: qualify alternatives earlier, so walking away is a credible option rather than a risk.\"\n\nTip: Honest lessons.", "B", "M"],
+["Behavioral", "How do you handle a stakeholder bypassing procurement?", "**Why they ask:** compliance through influence.\n\n**Answer:**\n\"I find out why — speed, ease or an existing relationship. Then fix the pain point in our process, explain the risks and what procurement adds, and escalate repeated non-compliance through leadership. The best fix is making the right path the easy path.\"\n\nTip: Make the right path easy.", "B", "M"],
+["Metrics", "Which KPIs would you report for your categories?", "**Why they ask:** a balanced scorecard.\n\n**Answer:**\n\"Savings, both hard and avoidance. Spend under management. Contract coverage. Supplier performance. Risk exposure. Stakeholder satisfaction. And working capital impact from payment terms.\"\n\nTip: A balanced scorecard.", "D", "M"],
+["Working Capital", "How can category managers improve working capital?", "**Why they ask:** procurement affects cash.\n\n**Answer:**\n\"Negotiate longer payment terms, consignment or VMI, supply chain finance programs, and lower inventory through shorter lead times and smaller MOQs. For example, moving a $10 million category from net 45 to net 75 frees about $820,000 of cash.\"\n\nTip: Quantify the cash impact.", "D", "S"],
+["Innovation", "How do you drive innovation from suppliers?", "**Why they ask:** suppliers know their field best.\n\n**Answer:**\n\"I share our business challenges openly, run supplier innovation days, reward good ideas with business, co-develop products, and include innovation in the scorecard. Suppliers often know solutions we haven't thought of.\"\n\nTip: Suppliers know their field best.", "D", "S"],
+["Make vs Buy", "How do you support make-vs-buy decisions?", "**Why they ask:** cross-functional analysis.\n\n**Answer:**\n\"I compare full internal cost with external quotes, then factor in capacity, quality, IP and strategic importance, and transition risk. I partner with finance and operations so everyone trusts the numbers.\"\n\nTip: Partner with finance and operations.", "D", "S"],
+["Leadership", "How do you lead a cross-functional sourcing team?", "**Why they ask:** influence without authority.\n\n**Answer:**\n\"Clear goals and roles from the start. I involve engineering, quality, finance and operations early, give regular updates, and share credit for the results. People commit when they helped shape the decision.\"\n\nTip: Influence without authority.", "B", "S"],
+["Pricing", "What pricing models do you use in contracts?", "**Why they ask:** pricing structure is a strategic choice.\n\n**Answer:**\n\"Fixed price, index-linked, cost-plus, tiered volume pricing, open-book with target pricing, and gain-sharing for improvement projects. I choose based on market volatility and who should carry the risk.\"\n\nTip: Choose based on risk and market.", "D", "S"],
+["Benchmarking", "How do you benchmark prices?", "**Why they ask:** knowing a good price.\n\n**Answer:**\n\"Competitive bids, market indices, industry benchmarks, comparing what different sites pay for the same item, and should-cost models. I use several sources, because any one of them can mislead.\"\n\nTip: Use multiple sources.", "B", "M"],
+["Category Plan", "How often do you update a category strategy?", "**Why they ask:** strategy discipline.\n\n**Answer:**\n\"Every year as part of planning, and any time market conditions change significantly — price spikes, disruptions or new regulations. It's a living document, not a binder on a shelf.\"\n\nTip: A living document.", "B", "M"],
+["Compliance", "How do you ensure contract compliance after award?", "**Why they ask:** award is the start, not the end.\n\n**Answer:**\n\"Load the prices into the ERP and catalogs, monitor PO and invoice prices against the contract, track off-contract spend, and review supplier performance against the terms regularly.\"\n\nTip: Award is the start, not the end.", "D", "M"],
+["Career", "Why category management?", "**Why they ask:** motivation.\n\n**Answer:**\n\"It combines strategy, market analysis and negotiation with real business impact. I like owning a category end to end and building partnerships that deliver value beyond price.\"\n\nTip: A strategic mindset.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build data-driven category strategies, run sourcing events that deliver double-digit savings, and manage supply risk before it becomes a crisis. My last packaging strategy saved $1.4 million a year while improving service.\"\n\nTip: Proof points.", "B", "M"],
+["Tools", "What is a supplier preferencing model?", "**Why they ask:** understanding your leverage from the supplier's side.\n\n**Answer:**\n\"It shows how attractive your business is to the supplier, based on account value and how pleasant you are to work with. Suppliers see customers as core, develop, exploitable or nuisance. If you're a 'nuisance' customer to a key supplier, you have little leverage — and they'll deprioritize you in a shortage. It complements the Kraljic matrix.\"\n\nTip: It complements Kraljic.", "D", "S"],
+["Risk", "What is a business continuity plan for a supplier?", "**Why they ask:** resilience for critical categories.\n\n**Answer:**\n\"It's a documented plan for disruptions: alternative sources, safety stock levels, contacts and escalation paths, qualified substitutes, and recovery timelines. For strategic categories, I want one for every critical supplier and test it once a year.\"\n\nTip: Critical for strategic categories.", "D", "M"],
+["Specifications", "Why do specifications matter in sourcing?", "**Why they ask:** specs drive cost.\n\n**Answer:**\n\"Over-specified requirements limit competition and drive up cost. Working with engineering to standardize or relax specs can widen the supplier base and save money. For example, we accepted a standard grade of steel instead of a custom one, which opened three new suppliers and cut cost 9%.\"\n\nTip: Give a value engineering example.", "D", "M"],
+["Tariffs", "How do you respond to new tariffs on your category?", "**Why they ask:** current and practical.\n\n**Answer:**\n\"I assess exposure by country of origin and HS code, model the landed cost impact, and negotiate cost sharing with suppliers. Then explore alternative origins and free trade agreements, review contract terms on who pays, and update budgets.\"\n\nTip: Current and practical.", "D", "S"],
+["Data", "How do you clean spend data for analysis?", "**Why they ask:** credible strategy needs clean data.\n\n**Answer:**\n\"I normalize supplier names and roll them up to parent companies, classify spend into categories, fix coding errors, and combine PO, invoice and p-card data into one view. Until that's done, the analysis isn't credible.\"\n\nTip: Clean data drives credible strategy.", "D", "M"]
+]);
+
+QB["sc-cat"] = (QB["sc-cat"] || []).concat([
+["Strategy", "How do you segment suppliers within a category?", "**Why they ask:** effort should follow value.\n\n**Answer:**\n\"By spend and strategic importance against risk. Strategic partners get joint plans and executive sponsors. Preferred suppliers are competitive and managed by scorecards. Approved or transactional suppliers get minimal management. And some are exit candidates. Effort follows the segment.\"\n\nTip: Tie it to Kraljic and supplier preferencing.", "D", "M"],
+["Negotiation", "What is your approach to multi-year agreements?", "**Why they ask:** long contracts must stay competitive.\n\n**Answer:**\n\"I lock in favorable pricing and capacity, with index-linked adjustments, volume tiers, productivity commitments — for example, 2% annual cost reduction — service levels, and benchmarking and exit clauses so the terms stay competitive over the full term.\"\n\nTip: Annual productivity clauses add value over time.", "D", "S"],
+["Stakeholders", "How do you build credibility with senior business stakeholders?", "**Why they ask:** a seat at the table.\n\n**Answer:**\n\"I understand their business goals, bring market insight they don't have, deliver results on early projects, communicate in business terms, and involve them in key decisions. Insight earns the seat at the table.\"\n\nTip: Insight earns a seat at the table.", "B", "M"]
 ]);
