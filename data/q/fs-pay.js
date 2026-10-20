@@ -1,254 +1,57 @@
 // fs-pay — generated from src/fs-pay-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Payroll Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fs-pay'] = [
-["Role", "What does a payroll manager do?",
-`**Why they ask:** scope of responsibility.
-
-**Answer:** Ensures employees are paid accurately and on time while complying with tax and labor laws: manages payroll processing, taxes and filings, deductions and benefits, time and attendance integration, audits and controls, year-end (W-2s), payroll systems, and a payroll team.
-
-Tip: Mention employee count, states/countries and systems.`, 'B', 'E'],
-
-["Process", "Walk through a payroll cycle.",
-`**Answer:** Collect inputs (new hires, terminations, changes, time, bonuses, deductions) → validate → calculate gross pay → pre-tax deductions → taxes → post-tax deductions → net pay → preview and audit reports → approve → fund and pay (direct deposit) → post GL journal → remit taxes and deductions → reconcile.
-
-Tip: Controls at each step.`, 'B', 'E'],
-
-["Taxes", "Which payroll taxes do employers handle in the US?",
-`**Answer:** Federal income tax withholding, FICA (Social Security 6.2% up to the wage base and Medicare 1.45%, plus 0.9% additional Medicare above $200K withheld from employees), employer FICA match, FUTA, state income tax, SUTA, and local taxes — with filings like Form 941 quarterly and 940 annually.
-
-Tip: Know the main forms.`, 'B', 'M'],
-
-["FLSA", "What does the FLSA require?",
-`**Answer:** Federal minimum wage, overtime at 1.5× regular rate for non-exempt employees over 40 hours/week, recordkeeping and child labor rules. Exempt status depends on salary level and duties tests.
-
-Tip: Regular rate includes certain bonuses.`, 'B', 'M'],
-
-["Overtime", "How do nondiscretionary bonuses affect overtime?",
-`**Answer:** They must be included in the regular rate, requiring additional overtime pay for the period earned.
-
-**Example:** 45 hours at $20, $90 production bonus → regular rate = ($900 + $90)/45 = $22; overtime premium = 5 × $11 = $55 extra.
-
-Tip: Common compliance issue.`, 'D', 'M'],
-
-["Multi-state", "What challenges come with multi-state payroll?",
-`**Answer:** Different state income tax rules, reciprocity agreements, remote worker taxation, local taxes, state unemployment registration, paid leave laws, final pay timing rules, and pay frequency requirements.
-
-Tip: Remote work complexity.`, 'D', 'M'],
-
-["Deductions", "Pre-tax vs post-tax deductions?",
-`**Answer:** **Pre-tax** (401(k) traditional, Section 125 health premiums, HSA, FSA) reduce taxable wages (some still subject to FICA, like 401(k)). **Post-tax** (Roth 401(k), garnishments, union dues, some insurance) are taken after taxes.
-
-Tip: 401(k) is FICA taxable.`, 'B', 'M'],
-
-["Garnishments", "How do you handle wage garnishments?",
-`**Answer:** Follow court/agency orders, apply federal (CCPA) and state limits, priority rules (child support first), calculate disposable earnings, remit timely, and communicate with employees respectfully.
-
-Tip: Priority and limits.`, 'D', 'M'],
-
-["Controls", "What payroll controls do you implement?",
-`**Answer:** Segregation of duties (HR changes vs payroll processing vs approval), pre- and post-payroll audit reports (variance, large payments, new hires, terminations), bank reconciliation, access controls, and change approvals.
-
-Tip: Ghost employee prevention.`, 'B', 'M'],
-
-["Audit Reports", "What do you review before approving payroll?",
-`**Answer:** Gross-to-net variance vs prior period, employees with no pay or unusually high pay, new hires and terminations, negative net pays, tax changes, off-cycle checks, and deduction exceptions.
-
-Tip: Variance thresholds.`, 'B', 'E'],
-
-["Year-end", "What are payroll year-end tasks?",
-`**Answer:** Reconcile wages and taxes (quarterly 941s vs W-2 totals), verify employee data (SSNs, addresses), taxable fringe benefits, W-2 and W-3 filing, state reconciliations, 1099s if applicable, and set up new-year tax rates and limits.
-
-Tip: Reconciliation.`, 'B', 'M'],
-
-["Fringe Benefits", "How are taxable fringe benefits handled?",
-`**Answer:** Add value to wages for taxation — e.g. personal use of company car, group term life over $50K, gift cards, certain relocation payments — and include on W-2.
-
-Tip: GTL over $50K.`, 'D', 'M'],
-
-["GL", "How do payroll journals work?",
-`**Answer:** Dr salary/wages expense by cost center, Dr employer tax expense; Cr cash/net pay, Cr withholding liabilities, Cr benefits deductions payable. Reconcile liabilities monthly.
-
-Tip: Liability reconciliations.`, 'B', 'M'],
-
-["Accruals", "How do you calculate payroll accruals at month-end?",
-`**Answer:** Accrue wages earned but unpaid (days worked since last pay date × daily payroll cost) plus employer taxes and benefits, reversing next month.
-
-Tip: Days-based calculation.`, 'B', 'E'],
-
-["Systems", "Which payroll systems have you used?",
-`**Answer:** ADP (Workforce Now, Vantage), Workday Payroll, UKG, Paylocity, Oracle Payroll, SAP Payroll, Ceridian Dayforce.
-
-Tip: Integration experience.`, 'B', 'E'],
-
-["Implementation", "How do you lead a payroll system implementation?",
-`**Answer:** Requirements, configuration (earnings, deductions, taxes), data conversion including YTD balances, integrations (HR, time, GL, benefits), multiple parallel payroll runs reconciling to the penny, training and cutover at a quarter or year start.
-
-Tip: Parallel runs.`, 'D', 'M'],
-
-["Global", "What's different about global payroll?",
-`**Answer:** Country-specific tax and social security, statutory reporting, 13th-month pay, data privacy, currency and in-country providers or global payroll platforms (e.g. Deel, ADP Global).
-
-Tip: Local compliance.`, 'D', 'M'],
-
-["Final Pay", "What are final pay considerations?",
-`**Answer:** State timing laws (some require immediate payment on termination), PTO payout rules, severance taxation (supplemental wages), and benefits deductions.
-
-Tip: State timing laws.`, 'B', 'M'],
-
-["Supplemental", "How are bonuses taxed?",
-`**Answer:** As supplemental wages: flat 22% federal withholding (37% over $1 million) or aggregate method, plus FICA and state rules.
-
-Tip: 22% flat rate.`, 'B', 'M'],
-
-["Errors", "How do you handle a payroll error?",
-`**Answer:** Assess impact, correct quickly (off-cycle payment for underpayment), handle overpayments per state laws, communicate transparently, document root cause and fix the process.
-
-Tip: Speed and empathy.`, 'B', 'E'],
-
-["Behavioral", "Tell me about improving payroll accuracy.",
-`**Sample answer:** "Errors averaged 1.2% of checks. I introduced pre-payroll variance audits and automated time integration validations. Errors dropped to 0.1% within six months."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a difficult payroll situation.",
-`**Sample answer:** "A bank file failed on payday. I coordinated with the bank to resend, communicated with employees hourly, and arranged emergency payments for affected employees — and added file confirmation checks."
-
-Tip: Calm under pressure.`, 'B', 'M'],
-
-["Behavioral", "How do you keep up with changing regulations?",
-`**Answer:** Payroll associations (PayrollOrg), vendor updates, IRS and state notices, legal counsel and newsletters.
-
-Tip: PayrollOrg.`, 'B', 'E'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** CPP (Certified Payroll Professional) and FPC (Fundamental Payroll Certification) from PayrollOrg.
-
-Tip: CPP.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Payroll director, global payroll lead, or HR operations leadership.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I run accurate, compliant payroll with strong controls — I cut errors from 1.2% to 0.1% and led clean system implementations."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Time", "How does time and attendance integrate with payroll?",
-`**Answer:** Approved time flows with pay codes (regular, overtime, PTO, shift differential) into payroll; validate missing punches and approvals before processing.
-
-Tip: Approval deadlines.`, 'B', 'E'],
-
-["PTO", "How do you handle PTO accruals and payout?",
-`**Answer:** Accrual rules by policy and tenure, caps and carryover, state laws (some treat accrued vacation as wages payable at termination) and balance sheet liability.
-
-Tip: State payout laws.`, 'B', 'M'],
-
-["Paid Leave", "How do state paid leave programs affect payroll?",
-`**Answer:** States like NJ, NY, CA, WA, MA and others have paid family/medical leave or disability programs funded via payroll contributions with specific rates and wage caps.
-
-Tip: State contributions.`, 'D', 'M'],
-
-["Benefits", "How do you reconcile benefit deductions?",
-`**Answer:** Compare payroll deductions to carrier invoices and enrollment records, investigate differences, and correct missed or incorrect deductions.
-
-Tip: Monthly reconciliation.`, 'B', 'M'],
-
-["401k", "What are 401(k) payroll responsibilities?",
-`**Answer:** Correct deferrals and employer match, timely remittance (as soon as administratively feasible), annual limits, catch-up contributions, and data feeds to the recordkeeper.
-
-Tip: Timely deposits.`, 'B', 'M'],
-
-["Reporting", "Which payroll reports go to finance and HR?",
-`**Answer:** Labor cost by department, overtime trends, headcount and turnover inputs, tax liability reports, and accrual support.
-
-Tip: Overtime trends.`, 'B', 'E'],
-
-["Security", "How do you protect payroll data?",
-`**Answer:** Role-based access, MFA, encryption, verified direct deposit change processes (to prevent fraud), and audits.
-
-Tip: Direct deposit fraud.`, 'B', 'M'],
-
-["Fraud", "How do you prevent direct deposit fraud?",
-`**Answer:** Require changes through authenticated self-service with MFA, notify employees of changes, verify suspicious requests by phone, and hold first payments to new accounts when risky.
-
-Tip: Phishing targets payroll.`, 'B', 'M'],
-
-["Scenario", "An employee says their paycheck is wrong on payday. What do you do?",
-`**Answer:** Listen and gather details, check pay stub vs time and rates, fix quickly with an off-cycle payment if underpaid, explain clearly and document.
-
-Tip: Empathy and speed.`, 'B', 'E'],
-
-["Scenario", "A state tax notice arrives with a penalty. What do you do?",
-`**Answer:** Review the notice, reconcile filings and payments, respond by deadline with documentation, request penalty abatement if appropriate, and fix the root cause.
-
-Tip: Respond on time.`, 'B', 'M'],
-
-["Contractors", "Employee vs contractor classification?",
-`**Answer:** Based on control, financial relationship and integration — IRS common-law tests, DOL economic reality test and stricter state tests (e.g. ABC test in CA, NJ). Misclassification leads to taxes and penalties.
-
-Tip: ABC test.`, 'D', 'M'],
-
-["Retro Pay", "How do you calculate retro pay?",
-`**Answer:** Difference between new and old rate × hours worked during the retro period, including overtime recalculation, taxed as supplemental or regular wages.
-
-Tip: Include overtime.`, 'B', 'M'],
-
-["Off-cycle", "When do you run off-cycle payrolls?",
-`**Answer:** For corrections, terminations requiring immediate pay, bonuses and commissions — with the same controls.
-
-Tip: Same controls.`, 'B', 'E'],
-
-["Escheatment", "What is escheatment for payroll?",
-`**Answer:** Uncashed paychecks must be reported and remitted to the state as unclaimed property after dormancy periods.
-
-Tip: Unclaimed property.`, 'D', 'M'],
-
-["Team", "How do you manage a payroll team?",
-`**Answer:** Clear calendars and checklists, cross-training, backup coverage, quality reviews and development.
-
-Tip: Cross-training.`, 'B', 'E'],
-
-["Automation", "What payroll processes have you automated?",
-`**Answer:** Input validations, audit reports, GL journal uploads, reconciliations, and employee self-service for changes.
-
-Tip: Validation automation.`, 'B', 'M'],
-
-["Communication", "How do you communicate payroll changes to employees?",
-`**Answer:** Advance notice, clear explanations (e.g. benefit rate changes), FAQs and a support channel.
-
-Tip: Advance notice.`, 'B', 'E'],
-
-["Calendar", "Why is a payroll calendar critical?",
-`**Answer:** It aligns input deadlines, processing, approval, funding and tax deadlines across pay groups and holidays.
-
-Tip: Holiday adjustments.`, 'B', 'E']
-];
-
-QB['fs-pay'] = (QB['fs-pay']||[]).concat([
-["Gross-to-Net", "Walk through a gross-to-net calculation.",
-`**Answer:** Gross $4,000 biweekly. Pre-tax 401(k) 6% = $240 and medical $150. Federal taxable = $3,610 (401(k) and Section 125 removed). FICA wages = $3,850 (only Section 125 removed). Social Security 6.2% = $238.70, Medicare 1.45% = $55.83. Federal income tax per W-4 and tables, then state tax, then post-tax deductions. Net = gross minus all of these.
-
-Tip: 401(k) still has FICA.`, 'B', 'M'],
-["W-4", "How has the W-4 changed?",
-`**Answer:** Since 2020 there are no withholding allowances. Employees enter filing status, multiple jobs, dependents credits and other adjustments. Payroll uses IRS Publication 15-T methods.
-
-Tip: No more allowances.`, 'B', 'E'],
-["Tips", "How are tips and commissions handled?",
-`**Answer:** Reported tips are taxable wages subject to withholding and FICA, and tip credit rules apply in some states. Commissions are supplemental or regular wages depending on how they're paid. Track recent federal changes to tip and overtime tax treatment.
-
-Tip: Stay current on changes.`, 'D', 'M'],
-["Deposits", "What are federal tax deposit schedules?",
-`**Answer:** Monthly or semiweekly depositor status, based on the lookback period, with deposits made via EFTPS. The $100,000 next-day deposit rule applies when liability reaches that amount on any day.
-
-Tip: Next-day rule.`, 'D', 'M'],
-["Audit", "How do you prepare for a payroll audit?",
-`**Answer:** Have documentation ready: registers, tax filings, reconciliations, approvals, change logs and control evidence. Test samples internally first and resolve exceptions beforehand.
-
-Tip: Self-test first.`, 'B', 'E'],
-["Scenario", "Payroll needs to support a new state where the company hired remote employees. What do you do?",
-`**Answer:** Register for state withholding and unemployment accounts, configure tax setup and local taxes, review state wage laws (pay frequency, final pay, paid leave contributions), and update the employee onboarding forms.
-
-Tip: Register before the first payroll.`, 'B', 'M']
+QB["fs-pay"] = (QB["fs-pay"] || []).concat([
+["Role", "What does a payroll manager do?", "**Why they ask:** scope of responsibility.\n\n**Answer:** Ensures employees are paid accurately and on time while complying with tax and labor laws: manages payroll processing, taxes and filings, deductions and benefits, time and attendance integration, audits and controls, year-end (W-2s), payroll systems, and a payroll team.\n\nTip: Mention employee count, states/countries and systems.", "B", "E"],
+["Process", "Walk through a payroll cycle.", "**Why they ask:** the core process.\n\n**Answer:**\n\"Collect the inputs — new hires, terminations, changes, time, bonuses and deductions — and validate them. Calculate gross pay, then pre-tax deductions, taxes, post-tax deductions and net pay. Run preview and audit reports, get approval, fund and pay by direct deposit, post the GL journal, remit taxes and deductions, and reconcile. Each step has a control — for example, nothing is approved until the variance report is reviewed.\"\n\nTip: Name controls at each step.", "B", "E"],
+["Taxes", "Which payroll taxes do employers handle in the US?", "**Why they ask:** a compliance basic.\n\n**Answer:**\n\"Federal income tax withholding. FICA — Social Security at 6.2% up to the wage base and Medicare at 1.45%, plus the additional 0.9% Medicare withheld from employees above $200,000 — and the employer's matching FICA. FUTA, state income tax, SUTA, and local taxes. Key filings are Form 941 quarterly and Form 940 annually.\"\n\nTip: Know the main forms.", "B", "M"],
+["FLSA", "What does the FLSA require?", "**Why they ask:** wage and hour compliance.\n\n**Answer:**\n\"The federal minimum wage, overtime at one and a half times the regular rate for non-exempt employees over 40 hours a week, recordkeeping, and child labor rules. Exempt status depends on both a salary level test and a duties test — job title alone doesn't make someone exempt. And the regular rate includes certain bonuses, which trips up a lot of companies.\"\n\nTip: The regular rate includes certain bonuses.", "B", "M"],
+["Overtime", "How do nondiscretionary bonuses affect overtime?", "**Why they ask:** a common compliance miss.\n\n**Answer:**\n\"They must be included in the regular rate, which means extra overtime pay for the period they were earned. Say someone works 45 hours at $20 and earns a $90 production bonus. Total straight-time pay is $900 plus $90 — $990 over 45 hours, so the regular rate is $22. They're owed an extra half-time premium of $11 on the 5 overtime hours — $55 — not just $10 per hour based on the $20 rate.\"\n\nTip: A common compliance issue.", "D", "M"],
+["Multi-state", "What challenges come with multi-state payroll?", "**Why they ask:** remote work complexity.\n\n**Answer:**\n\"Different state income tax rules, reciprocity agreements, taxing remote workers, local taxes, state unemployment registration, paid leave laws, final pay timing rules, and pay frequency requirements. Remote work multiplied all of this — one hire in a new state means a new set of registrations and rules.\"\n\nTip: Remote work adds complexity.", "D", "M"],
+["Deductions", "Pre-tax vs post-tax deductions?", "**Why they ask:** gross-to-net accuracy.\n\n**Answer:**\n\"Pre-tax deductions — traditional 401(k), Section 125 health premiums, HSA and FSA — reduce taxable wages. But they're not all the same: 401(k) still counts for FICA, while Section 125 deductions are exempt from FICA too. Post-tax deductions — Roth 401(k), garnishments, union dues, some insurance — come out after taxes.\"\n\nTip: 401(k) is still FICA-taxable.", "B", "M"],
+["Garnishments", "How do you handle wage garnishments?", "**Why they ask:** legal compliance.\n\n**Answer:**\n\"Follow the court or agency order, apply the federal CCPA limits and any stricter state limits, follow priority rules — child support comes first — calculate disposable earnings correctly, remit on time, and handle it respectfully with the employee, because it's a sensitive situation.\"\n\nTip: Know priority and limits.", "D", "M"],
+["Controls", "What payroll controls do you implement?", "**Why they ask:** payroll is a fraud target.\n\n**Answer:**\n\"Segregation of duties — HR makes changes, payroll processes, someone else approves. Pre- and post-payroll audit reports — variances, large payments, new hires, terminations. Bank reconciliation, access controls and approved changes. These together prevent ghost employees and unauthorized pay.\"\n\nTip: Ghost employee prevention.", "B", "M"],
+["Audit Reports", "What do you review before approving payroll?", "**Why they ask:** quality control.\n\n**Answer:**\n\"The gross-to-net variance against the prior period, employees with no pay or unusually high pay, new hires and terminations, negative net pay, tax changes, off-cycle checks and deduction exceptions. I set variance thresholds — any employee whose pay moved more than, say, 20% gets a look.\"\n\nTip: Use variance thresholds.", "B", "E"],
+["Year-end", "What are payroll year-end tasks?", "**Why they ask:** a high-pressure period.\n\n**Answer:**\n\"Reconcile wages and taxes — the quarterly 941s against W-2 totals — verify employee data like SSNs and addresses, add taxable fringe benefits, file W-2s and the W-3, do state reconciliations and any 1099s, and set up the new year's tax rates and limits.\"\n\nTip: Reconciliation is the core.", "B", "M"],
+["Fringe Benefits", "How are taxable fringe benefits handled?", "**Why they ask:** a common gap.\n\n**Answer:**\n\"Their value is added to wages for taxation — personal use of a company car, group term life coverage above $50,000, gift cards, certain relocation payments — and reported on the W-2. Gift cards are always taxable, no matter how small.\"\n\nTip: Mention group term life over $50,000.", "D", "M"],
+["GL", "How do payroll journals work?", "**Why they ask:** accounting link.\n\n**Answer:**\n\"Debit salary and wages expense by cost center and debit employer tax expense. Credit cash for net pay, and credit the liabilities for withholdings and benefit deductions. Those liabilities get reconciled every month so nothing sits uncleared.\"\n\nTip: Reconcile liabilities monthly.", "B", "M"],
+["Accruals", "How do you calculate payroll accruals at month-end?", "**Why they ask:** close support.\n\n**Answer:**\n\"Accrue wages earned but not yet paid — days worked since the last pay date times the daily payroll cost — plus employer taxes and benefits, and reverse it next month. If the month ends four working days after the last pay date on a $500,000 biweekly payroll, that's 4/10 of $500,000 — $200,000 plus taxes.\"\n\nTip: Use a days-based calculation.", "B", "E"],
+["Systems", "Which payroll systems have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"ADP Workforce Now and Vantage, Workday Payroll, UKG, Paylocity, Oracle Payroll, SAP Payroll and Ceridian Dayforce. I've also built the integrations between payroll, time, benefits and the GL.\"\n\nTip: Highlight integration experience.", "B", "E"],
+["Implementation", "How do you lead a payroll system implementation?", "**Why they ask:** high-risk projects.\n\n**Answer:**\n\"Gather requirements, configure earnings, deductions and taxes, convert data including year-to-date balances, and build integrations to HR, time, GL and benefits. Then run multiple parallel payrolls, reconciling to the penny against the old system, train people, and cut over at a quarter or year start to keep tax reporting clean.\"\n\nTip: Parallel runs are essential.", "D", "M"],
+["Global", "What's different about global payroll?", "**Why they ask:** international scope.\n\n**Answer:**\n\"Country-specific tax and social security, statutory reporting, things like 13th-month pay, strict data privacy rules, currency, and in-country providers or global payroll platforms like Deel or ADP Global. Local compliance drives everything.\"\n\nTip: Local compliance.", "D", "M"],
+["Final Pay", "What are final pay considerations?", "**Why they ask:** state law risk.\n\n**Answer:**\n\"State timing laws — some, like California, require immediate payment at termination. PTO payout rules. Severance, taxed as supplemental wages. And benefits deductions. Missing a state final-pay deadline can trigger penalties of a day's wages per day late.\"\n\nTip: Know state timing laws.", "B", "M"],
+["Supplemental", "How are bonuses taxed?", "**Why they ask:** supplemental wages.\n\n**Answer:**\n\"As supplemental wages — either a flat 22% federal withholding, or 37% on the amount over $1 million in a year — or the aggregate method. Plus FICA and state rules.\"\n\nTip: The 22% flat rate.", "B", "M"],
+["Errors", "How do you handle a payroll error?", "**Why they ask:** speed and empathy.\n\n**Answer:**\n\"Assess the impact, and correct quickly — an off-cycle payment for an underpayment, often the same day. Overpayments are recovered following state laws. I communicate transparently, document the root cause and fix the process.\"\n\nTip: Speed and empathy.", "B", "E"],
+["Behavioral", "Tell me about improving payroll accuracy.", "**Why they ask:** proof.\n\n**Answer:**\n\"Errors averaged 1.2% of checks. I introduced pre-payroll variance audits and automated validations on the time integration. Errors dropped to 0.1% within six months.\"\n\nTip: Measured results.", "B", "M"],
+["Behavioral", "Tell me about a difficult payroll situation.", "**Why they ask:** calm under pressure.\n\n**Answer:**\n\"A bank file failed on payday. I worked with the bank to resend it, updated employees every hour, and arranged emergency payments for anyone who needed money immediately. Afterward, I added a file confirmation check so we'd know within minutes if it failed again.\"\n\nTip: Calm under pressure.", "B", "M"],
+["Behavioral", "How do you keep up with changing regulations?", "**Why they ask:** constant change.\n\n**Answer:**\n\"PayrollOrg — formerly the American Payroll Association — vendor updates, IRS and state notices, legal counsel and newsletters.\"\n\nTip: PayrollOrg.", "B", "E"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"The CPP — Certified Payroll Professional — and the FPC — Fundamental Payroll Certification — from PayrollOrg.\"\n\nTip: CPP.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward payroll director, global payroll lead, or HR operations leadership.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I run accurate, compliant payroll with strong controls — I cut errors from 1.2% to 0.1% and led clean system implementations.\"\n\nTip: Proof.", "B", "E"],
+["Time", "How does time and attendance integrate with payroll?", "**Why they ask:** a common error source.\n\n**Answer:**\n\"Approved time flows into payroll with pay codes — regular, overtime, PTO, shift differential. Before processing, I validate missing punches and unapproved timecards, with firm approval deadlines for managers.\"\n\nTip: Enforce approval deadlines.", "B", "E"],
+["PTO", "How do you handle PTO accruals and payout?", "**Why they ask:** liability and law.\n\n**Answer:**\n\"Accrual rules by policy and tenure, caps and carryover, and state laws — some states treat accrued vacation as wages that must be paid at termination. It's also a balance sheet liability that finance needs each month.\"\n\nTip: Know state payout laws.", "B", "M"],
+["Paid Leave", "How do state paid leave programs affect payroll?", "**Why they ask:** growing state programs.\n\n**Answer:**\n\"States like New Jersey, New York, California, Washington, Massachusetts and others run paid family or medical leave and disability programs funded through payroll contributions, each with its own rates and wage caps, which change every year.\"\n\nTip: State contributions change yearly.", "D", "M"],
+["Benefits", "How do you reconcile benefit deductions?", "**Why they ask:** a common leak.\n\n**Answer:**\n\"Compare payroll deductions to carrier invoices and enrollment records every month, investigate differences, and correct missed or wrong deductions before they pile up.\"\n\nTip: Reconcile monthly.", "B", "M"],
+["401k", "What are 401(k) payroll responsibilities?", "**Why they ask:** ERISA risk.\n\n**Answer:**\n\"Correct deferrals and employer match, timely remittance — as soon as administratively feasible, which the DOL treats strictly — annual limits, catch-up contributions, and accurate data feeds to the recordkeeper.\"\n\nTip: Deposit on time.", "B", "M"],
+["Reporting", "Which payroll reports go to finance and HR?", "**Why they ask:** business partnering.\n\n**Answer:**\n\"Labor cost by department, overtime trends, headcount and turnover inputs, tax liability reports, and accrual support. Overtime trends are often an early sign of staffing problems.\"\n\nTip: Overtime trends.", "B", "E"],
+["Security", "How do you protect payroll data?", "**Why they ask:** sensitive data.\n\n**Answer:**\n\"Role-based access, MFA, encryption, a verified process for direct deposit changes to prevent fraud, and regular access audits.\"\n\nTip: Watch direct deposit fraud.", "B", "M"],
+["Fraud", "How do you prevent direct deposit fraud?", "**Why they ask:** a common attack.\n\n**Answer:**\n\"Changes only through authenticated self-service with MFA, automatic notification to the employee when a change is made, phone verification of suspicious requests, and holding the first payment to a new account when it looks risky. Phishing emails asking payroll to 'update my bank account' are one of the most common scams.\"\n\nTip: Payroll is a phishing target.", "B", "M"],
+["Scenario", "An employee says their paycheck is wrong on payday. What do you do?", "**Why they ask:** service and accuracy.\n\n**Answer:**\n\"Listen and get the details, then check the pay stub against their time and rate. If they're underpaid, fix it quickly with an off-cycle payment. Explain clearly what happened and document it.\"\n\nTip: Empathy and speed.", "B", "E"],
+["Scenario", "A state tax notice arrives with a penalty. What do you do?", "**Why they ask:** compliance handling.\n\n**Answer:**\n\"Review the notice, reconcile our filings and payments, and respond by the deadline with documentation. Request penalty abatement if it's appropriate, and fix the root cause so it doesn't recur.\"\n\nTip: Respond on time.", "B", "M"],
+["Contractors", "Employee vs contractor classification?", "**Why they ask:** misclassification risk.\n\n**Answer:**\n\"It depends on control, the financial relationship and integration into the business — the IRS common-law test, the DOL economic reality test, and stricter state tests like the ABC test in California and New Jersey. Misclassification leads to back taxes and penalties.\"\n\nTip: Know the ABC test.", "D", "M"],
+["Retro Pay", "How do you calculate retro pay?", "**Why they ask:** a common calculation.\n\n**Answer:**\n\"The difference between the new rate and the old rate, times hours worked in the retro period — including recalculated overtime at the new rate. It's taxed as supplemental or regular wages.\"\n\nTip: Include overtime.", "B", "M"],
+["Off-cycle", "When do you run off-cycle payrolls?", "**Why they ask:** control discipline.\n\n**Answer:**\n\"For corrections, terminations that need immediate pay, and bonuses or commissions. They go through the same controls as regular payroll — off-cycle runs are where fraud likes to hide.\"\n\nTip: Same controls apply.", "B", "E"],
+["Escheatment", "What is escheatment for payroll?", "**Why they ask:** unclaimed property.\n\n**Answer:**\n\"Uncashed paychecks must be reported and remitted to the state as unclaimed property after the dormancy period, after due-diligence letters to the employee.\"\n\nTip: It's unclaimed property.", "D", "M"],
+["Team", "How do you manage a payroll team?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Clear calendars and checklists, cross-training so every task has a backup, quality reviews and development. Payroll can never miss, so no one person can be a single point of failure.\"\n\nTip: Cross-training.", "B", "E"],
+["Automation", "What payroll processes have you automated?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Input validations, audit reports, GL journal uploads, reconciliations, and employee self-service for changes. The validations saved the most — they catch errors before payroll runs.\"\n\nTip: Validation automation.", "B", "M"],
+["Communication", "How do you communicate payroll changes to employees?", "**Why they ask:** employee experience.\n\n**Answer:**\n\"Advance notice, a clear explanation — for example, why a benefit rate is changing — FAQs and a support channel. Surprises on a paycheck generate a flood of tickets.\"\n\nTip: Give advance notice.", "B", "E"],
+["Calendar", "Why is a payroll calendar critical?", "**Why they ask:** operational discipline.\n\n**Answer:**\n\"It aligns input deadlines, processing, approval, funding and tax deposit deadlines across all pay groups, and adjusts for holidays — a bank holiday on payday has to be planned weeks ahead.\"\n\nTip: Plan for holidays.", "B", "E"]
+]);
+
+QB["fs-pay"] = (QB["fs-pay"] || []).concat([
+["Gross-to-Net", "Walk through a gross-to-net calculation.", "**Why they ask:** a hands-on test.\n\n**Answer:**\n\"Say gross pay is $4,000 biweekly, with a 6% 401(k) — $240 — and $150 of medical premiums. Federal taxable wages are $3,610, because both are removed. FICA wages are $3,850, because only the Section 125 medical is removed — 401(k) is still subject to FICA. Social Security at 6.2% is $238.70 and Medicare at 1.45% is $55.83. Then federal income tax from the W-4 and tables, state tax, and post-tax deductions. Net pay is gross minus all of these.\"\n\nTip: 401(k) still has FICA.", "B", "M"],
+["W-4", "How has the W-4 changed?", "**Why they ask:** current rules.\n\n**Answer:**\n\"Since 2020 there are no withholding allowances. Employees enter their filing status, multiple jobs, dependent credits and other adjustments, and payroll uses the methods in IRS Publication 15-T.\"\n\nTip: No more allowances.", "B", "E"],
+["Tips", "How are tips and commissions handled?", "**Why they ask:** special wage types.\n\n**Answer:**\n\"Reported tips are taxable wages subject to withholding and FICA, and tip credit rules apply in some states. Commissions are supplemental or regular wages depending on how they're paid. Recent federal legislation created new deductions for qualified tips and overtime with new reporting requirements, so I'd check the current rules.\"\n\nTip: Stay current on recent changes.", "D", "M"],
+["Deposits", "What are federal tax deposit schedules?", "**Why they ask:** deposit compliance.\n\n**Answer:**\n\"Employers are monthly or semiweekly depositors based on their lookback period, and deposit through EFTPS. And under the $100,000 next-day rule, if liability reaches $100,000 on any day, it's due the next business day.\"\n\nTip: Know the next-day rule.", "D", "M"],
+["Audit", "How do you prepare for a payroll audit?", "**Why they ask:** audit readiness.\n\n**Answer:**\n\"Have the documentation ready — registers, tax filings, reconciliations, approvals, change logs and control evidence. Test samples internally first and resolve exceptions before the auditors find them.\"\n\nTip: Self-test first.", "B", "E"],
+["Scenario", "Payroll needs to support a new state where the company hired remote employees. What do you do?", "**Why they ask:** practical expansion.\n\n**Answer:**\n\"Register for state withholding and unemployment accounts, configure state and local tax setup, review the state's wage laws — pay frequency, final pay, paid leave contributions — and update the onboarding forms. All before the first payroll, because registrations can take weeks.\"\n\nTip: Register before the first payroll.", "B", "M"]
 ]);
