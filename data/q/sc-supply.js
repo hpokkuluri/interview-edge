@@ -1,267 +1,57 @@
 // sc-supply — generated from src/sc-supply-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Supply / Materials Planner. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-supply'] = [
-["Role", "What does a supply or materials planner do?",
-`**Why they ask:** confirms scope.
-
-**Answer:** Turns the demand plan into supply: plans production and purchases so materials arrive on time, at the right quantity and cost. Runs and reviews MRP, manages safety stock and lead times, resolves shortages and excess, coordinates with buyers, production and suppliers, and reports material availability and inventory KPIs.
-
-Tip: Mention the balance of service, inventory and cost.`, 'B', 'E'],
-
-["MRP", "Explain how MRP works.",
-`**Answer:** Inputs: master production schedule or demand, **bill of materials**, **inventory** (on hand and on order), **lead times**, lot-sizing rules and safety stock. MRP explodes demand through the BOM level by level, nets against available inventory and scheduled receipts, and offsets by lead time to create **planned orders** (buy and make) with dates. It also generates exception messages (reschedule in/out, cancel, expedite).
-
-**Example:** 100 bikes due week 10 → each needs 2 wheels → 200 wheels; 50 on hand → 150 net; 2-week lead time → planned order in week 8.
-
-Tip: A quick example impresses.`, 'B', 'E'],
-
-["MRP", "What causes bad MRP output?",
-`**Answer:** Inaccurate inventory, wrong BOMs or routings, outdated lead times, incorrect lot sizes or MOQs, unrealistic forecasts, and open orders that should have been closed. "Garbage in, garbage out."
-
-Tip: Data quality ownership is part of the job.`, 'B', 'M'],
-
-["MRP", "What is the master production schedule (MPS)?",
-`**Answer:** The plan of what finished goods will be produced, in what quantities and when, balancing demand with capacity. It drives MRP for components. Time fences protect near-term stability.
-
-Tip: Mention rough-cut capacity planning.`, 'B', 'M'],
-
-["MRP", "What are time fences?",
-`**Answer:** **Demand time fence:** inside it, only firm customer orders drive planning (forecast ignored). **Planning time fence:** inside it, the system won't automatically change planned orders; planners must decide. They prevent nervous plans and constant changes.
-
-Tip: Stability vs responsiveness.`, 'D', 'M'],
-
-["Safety Stock", "How do you calculate safety stock?",
-`**Answer:** A common formula with stable lead time: **SS = Z × σd × √LT**, where Z is from the service level (1.65 for 95%), σd is demand standard deviation per period, LT is lead time in periods. With variable lead time: SS = Z × √(LT × σd² + d² × σLT²).
-
-**Example:** Z = 1.65, σd = 40/week, LT = 4 weeks → SS = 1.65 × 40 × 2 = 132 units.
-
-Tip: Show the calculation.`, 'D', 'M'],
-
-["Safety Stock", "How often should safety stock be reviewed?",
-`**Answer:** At least quarterly, and when demand variability, lead times or service targets change. Static safety stocks drift out of date quickly.
-
-Tip: Mention automated recalculation in planning tools.`, 'B', 'M'],
-
-["Inventory", "What is a reorder point?",
-`**Answer:** ROP = average demand during lead time + safety stock. When inventory falls to the ROP, place an order.
-
-**Example:** 50 units/day × 10 days + 150 safety stock = 650 units.
-
-Tip: Simple and quick.`, 'B', 'E'],
-
-["Lot Sizing", "What lot sizing methods exist?",
-`**Answer:** Lot-for-lot (order exactly what's needed), fixed order quantity, economic order quantity (EOQ), period order quantity (cover N periods), and min-max. Choice balances ordering/setup cost vs holding cost and supplier constraints.
-
-Tip: Mention which you use for which items.`, 'B', 'M'],
-
-["Lot Sizing", "What is EOQ?",
-`**Answer:** Economic order quantity minimizes total ordering and holding cost: **EOQ = √(2DS/H)** where D = annual demand, S = cost per order, H = annual holding cost per unit.
-
-**Example:** D = 10,000, S = $50, H = $2 → EOQ = √(1,000,000/2) ≈ 707 units.
-
-Tip: Mention its assumptions (steady demand).`, 'D', 'M'],
-
-["Shortages", "You have a shortage that will stop production. What do you do?",
-`**Answer:** Confirm actual inventory and requirement timing; expedite with the supplier (partial shipments, air freight); check other sites, substitutes or alternate suppliers; work with scheduling to resequence production; inform sales and customers early if needed; and do root cause analysis after.
-
-Tip: Communication speed is key.`, 'B', 'E'],
-
-["Shortages", "How do you prioritize allocation when supply is short?",
-`**Answer:** Agree rules with sales and leadership — strategic customers, contractual commitments, margin, order date — and apply them consistently. Communicate transparently.
-
-Tip: Rules agreed in advance avoid conflict.`, 'D', 'M'],
-
-["Exceptions", "How do you manage MRP exception messages?",
-`**Answer:** Prioritize by impact (critical items, near-term dates, high value), act on reschedule-in/out, cancel and expedite messages, fix master data errors causing false messages, and avoid overreacting to small changes (use dampening and time fences).
-
-Tip: Management by exception.`, 'D', 'M'],
-
-["Excess", "How do you reduce excess and obsolete inventory?",
-`**Answer:** Identify slow movers and coverage beyond need; cancel or push out open orders; return to supplier; transfer to other sites; rework or substitute into other products; sell at discount; and fix root causes (forecast bias, large MOQs, engineering changes).
-
-Tip: Prevention matters most.`, 'D', 'M'],
-
-["DDMRP", "What is DDMRP?",
-`**Answer:** Demand Driven MRP places strategic **decoupling point buffers** in the supply chain. Buffers are sized with red, yellow and green zones based on usage, lead time and variability. Replenishment is triggered by actual demand (net flow position), reducing the bullwhip effect and MRP nervousness.
-
-Tip: Mention where it suits (variable demand, long lead times).`, 'D', 'S'],
-
-["Capacity", "What is capacity planning and how does it relate to materials planning?",
-`**Answer:** Checking that production resources (machines, labor) can meet the plan — rough-cut capacity planning at MPS level, detailed capacity requirements planning (CRP) at work center level. Material plans must align with available capacity.
-
-Tip: Material + capacity = feasible plan.`, 'D', 'M'],
-
-["Lead Times", "How do you manage supplier lead times?",
-`**Answer:** Keep ERP lead times accurate using actual receipt history, monitor variability, share forecasts with suppliers to reduce lead times, and adjust safety stock when lead times change.
-
-Tip: Outdated lead times are a top MRP problem.`, 'B', 'M'],
-
-["Suppliers", "How do you work with suppliers as a planner?",
-`**Answer:** Share forecasts and firm orders, confirm delivery dates, track on-time performance, collaborate on capacity and lead times, and use supplier portals or VMI for key items.
-
-Tip: Collaboration reduces surprises.`, 'B', 'E'],
-
-["VMI", "What is vendor-managed inventory?",
-`**Answer:** The supplier monitors your inventory levels and replenishes within agreed min/max levels. It reduces your planning effort and can lower inventory, but requires data sharing and trust.
-
-Tip: Mention consignment as a related model.`, 'D', 'M'],
-
-["Kanban", "What is kanban replenishment?",
-`**Answer:** A pull system where consumption triggers replenishment via cards or signals. Number of kanbans = (demand during lead time + safety) ÷ container quantity. Works well for stable, repetitive demand.
-
-Tip: Lean link.`, 'D', 'M'],
-
-["BOM", "Why is BOM accuracy important?",
-`**Answer:** MRP uses the BOM to calculate component requirements. Wrong quantities or missing parts cause shortages or excess. Engineering change management must update BOMs on time.
-
-Tip: Mention working with engineering on ECOs.`, 'B', 'E'],
-
-["Engineering Changes", "How do you handle an engineering change in planning?",
-`**Answer:** Plan the effectivity date, use up old components (run-out) where possible, coordinate new component procurement, update BOMs and routings, and avoid obsolete stock.
-
-Tip: Effectivity planning.`, 'D', 'M'],
-
-["Metrics", "Which KPIs does a supply planner own?",
-`**Answer:** Material availability or shortages, on-time delivery to production, supplier on-time delivery, inventory turns or days of supply, excess and obsolete value, schedule adherence and expedite costs.
-
-Tip: Mention your numbers.`, 'B', 'M'],
-
-["Metrics", "How do you calculate inventory turns and days of supply?",
-`**Answer:** Turns = annual COGS ÷ average inventory. Days of supply = average inventory ÷ average daily usage (or 365 ÷ turns).
-
-**Example:** COGS $24M, average inventory $4M → 6 turns → about 61 days.
-
-Tip: Quick math.`, 'B', 'E'],
-
-["S&OP", "What is the supply planner's role in S&OP?",
-`**Answer:** Lead the supply review: assess the demand plan against capacity and materials, identify constraints and options (overtime, outsourcing, pre-build, allocation), quantify costs, and bring recommendations to the pre-S&OP and executive meetings.
-
-Tip: Options with costs.`, 'B', 'M'],
-
-["Tools", "Which planning tools have you used?",
-`**Sample answer:** "Oracle Supply Planning Cloud for MRP and exceptions, SAP MRP on a previous job, Kinaxis RapidResponse for what-if scenarios, and Excel for supplier follow-up."
-
-Tip: Name tasks.`, 'B', 'E'],
-
-["Scenario", "Your top supplier announces a 6-week delay. What do you do?",
-`**Answer:** Assess impact on production and customers by item and date, check inventory, alternative suppliers and substitutes, reprioritize production, expedite partial shipments, inform stakeholders, and update plans and safety stock.
-
-Tip: Structured response.`, 'D', 'M'],
-
-["Scenario", "Inventory is too high but shortages are also frequent. Why?",
-`**Answer:** Wrong inventory mix — too much of slow movers and too little of key items. Causes: poor segmentation, inaccurate forecasts by SKU, wrong safety stock settings, large MOQs, and poor data. Fix by segmenting and resetting parameters item by item.
-
-Tip: Classic interview question.`, 'D', 'M'],
-
-["Scenario", "Leadership wants inventory cut by 20% without hurting service. How?",
-`**Answer:** Segment items, recalculate safety stocks, reduce lead times and MOQs with suppliers, eliminate excess and obsolete stock, improve forecast accuracy, and push out or cancel unnecessary orders. Track service weekly.
-
-Tip: Quantify each lever.`, 'D', 'S'],
-
-["Multi-site", "How do you plan across multiple sites or warehouses?",
-`**Answer:** Distribution requirements planning (DRP), sourcing rules, inter-site transfers, centralized vs local stock decisions, and balancing inventory between sites.
-
-Tip: Network view.`, 'D', 'M'],
-
-["Make vs Buy", "How do planners handle outsourced manufacturing?",
-`**Answer:** Plan contract manufacturer orders with lead times, supply components if consigned, track capacity commitments, and monitor quality and delivery performance.
-
-Tip: Mention component consignment.`, 'D', 'M'],
-
-["Data", "How do you keep planning parameters accurate?",
-`**Answer:** Regular reviews of lead times, safety stock, MOQs and lot sizes against actual data; reports flagging outdated parameters; and clear ownership.
-
-Tip: Parameter hygiene.`, 'B', 'M'],
-
-["Communication", "How do you communicate supply risks to sales?",
-`**Answer:** Early, specific and with options — affected items, customers and dates, alternatives, and expected recovery.
-
-Tip: No surprises for customers.`, 'B', 'E'],
-
-["Behavioral", "Tell me about reducing inventory without hurting service.",
-`**Sample answer:** "I segmented 4,000 SKUs, recalculated safety stocks with actual variability, and negotiated smaller MOQs on 30 key items. Inventory fell $2.1M (18%) while fill rate held at 97%."
-
-Tip: Numbers.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a shortage you solved.",
-`**Sample answer:** "A connector shortage threatened a $1M order. I found stock at a sister plant, arranged an air shipment of partials, and resequenced production. We shipped on time."
-
-Tip: Creativity and coordination.`, 'B', 'E'],
-
-["Behavioral", "How do you handle constant schedule changes?",
-`**Answer:** Push for frozen windows, understand root causes of changes, communicate impacts clearly, and keep flexibility where it matters (safety stock, capacity buffers).
-
-Tip: Balanced.`, 'B', 'M'],
-
-["Planning", "What is available-to-promise (ATP)?",
-`**Answer:** The quantity of a product not yet committed to orders and available to promise to new customers, by date — based on on-hand inventory, scheduled receipts and existing commitments. CTP (capable-to-promise) also considers capacity.
-
-Tip: Order promising concept.`, 'D', 'M'],
-
-["Planning", "What is pegging?",
-`**Answer:** Linking supply orders to the demands they satisfy, so planners can see which customer orders are affected if a supply is late.
-
-Tip: Useful for shortage impact analysis.`, 'D', 'M'],
-
-["Planning", "What is the difference between push and pull planning?",
-`**Answer:** **Push:** produce based on forecasts (MRP). **Pull:** produce based on actual consumption (kanban). Many companies use hybrids — push for long lead-time items, pull for repetitive items.
-
-Tip: Show when each fits.`, 'B', 'M'],
-
-["Risk", "How do you build resilience into supply plans?",
-`**Answer:** Strategic buffers for critical items, dual sourcing, monitoring supplier risk, scenario planning, and visibility into sub-tier suppliers.
-
-Tip: Lessons from recent disruptions.`, 'D', 'S'],
-
-["Cost", "How do expedite costs reflect planning quality?",
-`**Answer:** Frequent premium freight and overtime signal poor planning, data or supplier performance. Track expedite spend and root causes to improve.
-
-Tip: Good metric to mention.`, 'D', 'M'],
-
-["Leadership", "How would you improve a struggling planning function?",
-`**Answer:** Assess data quality, parameters, processes and skills; fix master data; define clear roles and KPIs; implement S&OP discipline; and train planners.
-
-Tip: Foundation first.`, 'D', 'S'],
-
-["Career", "Why supply planning?",
-`**Sample answer:** "I like solving puzzles under pressure — balancing customer service, inventory and cost while things change daily. Planning has a direct impact on the business."
-
-Tip: Energy for problem solving.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I keep production supplied while reducing inventory — I cut $2.1M of stock with no service loss and handle shortages calmly and creatively. I know MRP deeply and keep planning data clean."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is a planning BOM?",
-`**Answer:** An artificial BOM used to forecast options or families (e.g. 60% of bikes have model A wheels, 40% model B), so you can plan components without forecasting every configuration.
-
-Tip: Useful for configurable products.`, 'D', 'S'],
-
-["Technical", "What is the difference between gross and net requirements?",
-`**Answer:** Gross requirements are total needs from demand or parent items. Net requirements = gross − on hand − scheduled receipts + safety stock. Planned orders cover net requirements.
-
-Tip: Basic MRP math.`, 'B', 'E'],
-
-["Technical", "What is MRP nervousness and how do you reduce it?",
-`**Answer:** Frequent changes in planned orders caused by small changes in demand or data. Reduce it with time fences, lot sizing, dampening rules, firm planned orders and stable forecasts.
-
-Tip: Practical controls.`, 'D', 'M'],
-
-["Technical", "What is a firm planned order?",
-`**Answer:** A planned order that the planner locks so MRP won't change its quantity or date automatically — useful for stability in the near term.
-
-Tip: Quick definition.`, 'B', 'M'],
-
-["Technical", "What is days of coverage and how do you use it?",
-`**Answer:** How many days current inventory will last at forecasted usage. Planners use it to spot shortages (low coverage) and excess (very high coverage) quickly.
-
-Tip: Simple and practical.`, 'B', 'E']
-];
-
-QB['sc-supply'] = (QB['sc-supply'] || []).concat([
-["Planning", "What is distribution requirements planning (DRP)?",
-`**Answer:** Planning replenishment across a distribution network — calculating what each DC needs based on forecasts, inventory and safety stock, then generating transfer or purchase orders back through the network to the source.
-
-Tip: MRP logic applied to distribution.`, 'D', 'M']
+QB["sc-supply"] = (QB["sc-supply"] || []).concat([
+["Role", "What does a supply or materials planner do?", "**Why they ask:** confirms scope.\n\n**Answer:** Turns the demand plan into supply: plans production and purchases so materials arrive on time, at the right quantity and cost. Runs and reviews MRP, manages safety stock and lead times, resolves shortages and excess, coordinates with buyers, production and suppliers, and reports material availability and inventory KPIs.\n\nTip: Mention the balance of service, inventory and cost.", "B", "E"],
+["MRP", "Explain how MRP works.", "**Why they ask:** MRP is the planner's core engine.\n\n**Answer:**\n\"MRP takes the master schedule or demand, the bill of materials, inventory on hand and on order, lead times, lot-sizing rules and safety stock. It explodes demand through the BOM level by level, nets it against available inventory and scheduled receipts, and offsets by lead time to create planned buy and make orders with dates. It also produces exception messages — reschedule in, reschedule out, cancel, expedite. For example: 100 bikes due in week 10 need 200 wheels; we have 50, so we need 150; with a two-week lead time, the planned order is released in week 8.\"\n\nTip: A quick example impresses.", "B", "E"],
+["MRP", "What causes bad MRP output?", "**Why they ask:** planners own data quality.\n\n**Answer:**\n\"Inaccurate inventory, wrong BOMs or routings, outdated lead times, wrong lot sizes or MOQs, unrealistic forecasts, and old open orders that should have been closed. MRP is just math — garbage in, garbage out. Keeping that data clean is part of my job, not someone else's.\"\n\nTip: Data quality ownership is part of the job.", "B", "M"],
+["MRP", "What is the master production schedule (MPS)?", "**Why they ask:** the link between demand and materials.\n\n**Answer:**\n\"The MPS is the plan of which finished goods we'll produce, how many and when, balancing demand against capacity. It drives MRP for all the components. Rough-cut capacity planning checks it's feasible on key resources, and time fences protect near-term stability.\"\n\nTip: Mention rough-cut capacity planning.", "B", "M"],
+["MRP", "What are time fences?", "**Why they ask:** stability versus responsiveness.\n\n**Answer:**\n\"Inside the demand time fence, only firm customer orders drive planning — the forecast is ignored. Inside the planning time fence, the system won't automatically change planned orders; a planner has to decide. Together they stop the plan from changing every time demand twitches.\"\n\nTip: Stability versus responsiveness.", "D", "M"],
+["Safety Stock", "How do you calculate safety stock?", "**Why they ask:** a core planning calculation.\n\n**Answer:**\n\"With a stable lead time, a common formula is Z times the demand standard deviation times the square root of lead time. Z comes from the service level — 1.65 for 95%. If demand varies by 40 units a week and lead time is 4 weeks, that's 1.65 times 40 times 2 — 132 units. If the lead time also varies, the formula adds a term for lead-time variability.\"\n\nTip: Show the calculation.", "D", "M"],
+["Safety Stock", "How often should safety stock be reviewed?", "**Why they ask:** static parameters drift.\n\n**Answer:**\n\"At least quarterly, and whenever demand variability, lead times or service targets change. Static safety stocks go out of date fast. Most planning tools can recalculate automatically — I set that up and review the big changes.\"\n\nTip: Mention automated recalculation.", "B", "M"],
+["Inventory", "What is a reorder point?", "**Why they ask:** a basic replenishment trigger.\n\n**Answer:**\n\"The reorder point is average demand during the lead time plus safety stock. At 50 units a day with a 10-day lead time and 150 of safety stock, that's 500 plus 150 — 650 units. When inventory falls to 650, we order.\"\n\nTip: Simple and quick.", "B", "E"],
+["Lot Sizing", "What lot sizing methods exist?", "**Why they ask:** order quantity decisions.\n\n**Answer:**\n\"Lot-for-lot orders exactly what's needed. Fixed order quantity uses a set amount. Economic order quantity balances ordering and holding cost. Period order quantity covers a set number of periods. And min-max. The choice balances setup or ordering cost against holding cost and supplier constraints. I use lot-for-lot for expensive A items and period quantities for cheap C items.\"\n\nTip: Say which you use for which items.", "B", "M"],
+["Lot Sizing", "What is EOQ?", "**Why they ask:** a classic formula.\n\n**Answer:**\n\"Economic order quantity minimizes total ordering and holding cost. It's the square root of two times annual demand times cost per order, divided by annual holding cost per unit. With demand of 10,000, $50 per order and $2 holding cost, that's the square root of 500,000 — about 707 units. It assumes steady demand, so I treat it as a starting point.\"\n\nTip: Mention its assumptions.", "D", "M"],
+["Shortages", "You have a shortage that will stop production. What do you do?", "**Why they ask:** crisis handling.\n\n**Answer:**\n\"First confirm the actual inventory and exactly when it's needed. Then expedite with the supplier — partial shipments or air freight — and check other sites, substitutes and alternate suppliers. I work with scheduling to resequence production, and tell sales and customers early if needed. After it's resolved, I do a root-cause analysis.\"\n\nTip: Communication speed is key.", "B", "E"],
+["Shortages", "How do you prioritize allocation when supply is short?", "**Why they ask:** fair, consistent decisions.\n\n**Answer:**\n\"I agree the rules with sales and leadership in advance — strategic customers, contractual commitments, margin, order date — and apply them consistently. And I communicate transparently with everyone affected. Rules agreed before the crisis avoid fights during it.\"\n\nTip: Rules agreed in advance avoid conflict.", "D", "M"],
+["Exceptions", "How do you manage MRP exception messages?", "**Why they ask:** daily planner work.\n\n**Answer:**\n\"I prioritize by impact — critical items, near-term dates and high value. I act on reschedule-in, reschedule-out, cancel and expedite messages, fix master data errors that cause false messages, and avoid overreacting to small changes by using dampening and time fences.\"\n\nTip: Management by exception.", "D", "M"],
+["Excess", "How do you reduce excess and obsolete inventory?", "**Why they ask:** cash and waste.\n\n**Answer:**\n\"I identify slow movers and anything with coverage far beyond need. Then cancel or push out open orders, return to suppliers, transfer to other sites, rework or substitute into other products, or sell at a discount. And fix the root causes — forecast bias, big MOQs, and engineering changes without run-out plans. Prevention matters most.\"\n\nTip: Prevention matters most.", "D", "M"],
+["DDMRP", "What is DDMRP?", "**Why they ask:** a modern planning method.\n\n**Answer:**\n\"Demand Driven MRP places strategic decoupling buffers in the supply chain. Each buffer has red, yellow and green zones sized on usage, lead time and variability. Replenishment is triggered by actual demand through the net flow position, which reduces the bullwhip effect and MRP nervousness. It suits variable demand and long lead times.\"\n\nTip: Mention where it suits.", "D", "S"],
+["Capacity", "What is capacity planning and how does it relate to materials planning?", "**Why they ask:** feasible plans need both.\n\n**Answer:**\n\"Capacity planning checks whether machines and labor can meet the plan — rough-cut capacity at MPS level, and detailed capacity requirements planning at work center level. A material plan is useless if the line can't run it, so materials and capacity have to align.\"\n\nTip: Material plus capacity equals a feasible plan.", "D", "M"],
+["Lead Times", "How do you manage supplier lead times?", "**Why they ask:** lead times drive MRP.\n\n**Answer:**\n\"I keep ERP lead times accurate using actual receipt history, monitor variability, share forecasts with suppliers to help shorten lead times, and adjust safety stock when lead times change. Outdated lead times are one of the top causes of bad MRP plans.\"\n\nTip: Outdated lead times are a top MRP problem.", "B", "M"],
+["Suppliers", "How do you work with suppliers as a planner?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"I share forecasts and firm orders, confirm delivery dates, track on-time performance, collaborate on capacity and lead times, and use supplier portals or VMI for key items. Collaboration reduces surprises on both sides.\"\n\nTip: Collaboration reduces surprises.", "B", "E"],
+["VMI", "What is vendor-managed inventory?", "**Why they ask:** a supplier collaboration model.\n\n**Answer:**\n\"The supplier monitors our inventory levels and replenishes within agreed min and max levels. It cuts our planning effort and can lower inventory, but it needs data sharing and trust. Consignment is a related model, where the supplier owns the stock until we use it.\"\n\nTip: Mention consignment as a related model.", "D", "M"],
+["Kanban", "What is kanban replenishment?", "**Why they ask:** Lean planning.\n\n**Answer:**\n\"It's a pull system where consumption triggers replenishment through cards or signals. The number of kanbans is demand during lead time plus safety, divided by the container quantity. It works well for stable, repetitive demand and takes those items out of MRP noise.\"\n\nTip: The Lean link.", "D", "M"],
+["BOM", "Why is BOM accuracy important?", "**Why they ask:** BOM errors cause shortages.\n\n**Answer:**\n\"MRP uses the BOM to calculate every component requirement. A wrong quantity or a missing part causes shortages or excess. So engineering changes have to update BOMs on time, and I work closely with engineering on ECOs.\"\n\nTip: Mention working with engineering on ECOs.", "B", "E"],
+["Engineering Changes", "How do you handle an engineering change in planning?", "**Why they ask:** changes create obsolete stock.\n\n**Answer:**\n\"I plan the effectivity date so we use up the old components first where possible, coordinate procurement of the new ones, make sure BOMs and routings are updated, and avoid leaving obsolete stock behind.\"\n\nTip: Effectivity planning.", "D", "M"],
+["Metrics", "Which KPIs does a supply planner own?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Material availability or shortages, on-time delivery to production, supplier on-time delivery, inventory turns or days of supply, excess and obsolete value, schedule adherence and expedite costs. In my last role, I cut production shortages by 60% while reducing inventory.\"\n\nTip: Mention your numbers.", "B", "M"],
+["Metrics", "How do you calculate inventory turns and days of supply?", "**Why they ask:** basic metrics.\n\n**Answer:**\n\"Turns are annual COGS divided by average inventory. Days of supply is average inventory divided by average daily usage, or 365 divided by turns. With $24 million of COGS and $4 million of inventory, that's 6 turns — about 61 days.\"\n\nTip: Quick math.", "B", "E"],
+["S&OP", "What is the supply planner's role in S&OP?", "**Why they ask:** planners lead the supply review.\n\n**Answer:**\n\"I lead the supply review — checking the demand plan against capacity and materials, identifying constraints, and laying out options like overtime, outsourcing, pre-building or allocation, each with its cost. Then I bring recommendations to the pre-S&OP and executive meetings.\"\n\nTip: Options with costs.", "B", "M"],
+["Tools", "Which planning tools have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Oracle Supply Planning Cloud for MRP and exceptions, SAP MRP in a previous job, Kinaxis RapidResponse for what-if scenarios, and Excel for supplier follow-up.\"\n\nTip: Name tasks — swap in your own tools.", "B", "E"],
+["Scenario", "Your top supplier announces a 6-week delay. What do you do?", "**Why they ask:** structured response.\n\n**Answer:**\n\"I assess the impact by item and date on production and customers, check inventory, alternative suppliers and substitutes, reprioritize production, expedite partial shipments, tell stakeholders, and update plans and safety stock for the new reality.\"\n\nTip: A structured response.", "D", "M"],
+["Scenario", "Inventory is too high but shortages are also frequent. Why?", "**Why they ask:** a classic interview question.\n\n**Answer:**\n\"It's a mix problem — too much of the slow movers and too little of the key items. Usually caused by poor segmentation, inaccurate SKU-level forecasts, wrong safety stock settings, big MOQs and bad data. The fix is segmenting the items and resetting parameters item by item, not changing everything by the same percentage.\"\n\nTip: A classic interview question.", "D", "M"],
+["Scenario", "Leadership wants inventory cut by 20% without hurting service. How?", "**Why they ask:** a common goal.\n\n**Answer:**\n\"Segment the items, recalculate safety stocks from actual variability, negotiate shorter lead times and smaller MOQs, clear excess and obsolete stock, improve forecast accuracy, and push out or cancel orders we don't need. Each lever gets a dollar target, and I track service weekly.\"\n\nTip: Quantify each lever.", "D", "S"],
+["Multi-site", "How do you plan across multiple sites or warehouses?", "**Why they ask:** network planning.\n\n**Answer:**\n\"Distribution requirements planning, sourcing rules, inter-site transfers, deciding what to stock centrally versus locally, and rebalancing inventory between sites before buying more.\"\n\nTip: Take a network view.", "D", "M"],
+["Make vs Buy", "How do planners handle outsourced manufacturing?", "**Why they ask:** contract manufacturing.\n\n**Answer:**\n\"I plan contract manufacturer orders with their lead times, supply components if we consign them, track their capacity commitments, and monitor quality and delivery performance like any other supplier.\"\n\nTip: Mention component consignment.", "D", "M"],
+["Data", "How do you keep planning parameters accurate?", "**Why they ask:** parameter hygiene.\n\n**Answer:**\n\"Regular reviews of lead times, safety stock, MOQs and lot sizes against actual data, reports that flag outdated parameters, and clear ownership for each item.\"\n\nTip: Parameter hygiene.", "B", "M"],
+["Communication", "How do you communicate supply risks to sales?", "**Why they ask:** no surprises.\n\n**Answer:**\n\"Early, specific and with options — which items, customers and dates are affected, what the alternatives are, and when we expect recovery.\"\n\nTip: No surprises for customers.", "B", "E"],
+["Behavioral", "Tell me about reducing inventory without hurting service.", "**Why they ask:** proof.\n\n**Answer:**\n\"I segmented 4,000 SKUs, recalculated safety stocks using actual variability, and negotiated smaller MOQs on 30 key items. Inventory fell $2.1 million — 18% — and fill rate held at 97%.\"\n\nTip: Numbers.", "B", "M"],
+["Behavioral", "Tell me about a shortage you solved.", "**Why they ask:** creativity under pressure.\n\n**Answer:**\n\"A connector shortage threatened a $1 million order. I found stock at a sister plant, arranged an air shipment of partials, and worked with scheduling to resequence production. We shipped on time.\"\n\nTip: Creativity and coordination.", "B", "E"],
+["Behavioral", "How do you handle constant schedule changes?", "**Why they ask:** a planner's daily reality.\n\n**Answer:**\n\"I push for frozen windows, dig into why changes keep happening, communicate the impact of each change clearly, and keep flexibility where it matters — safety stock and capacity buffers on the critical items.\"\n\nTip: A balanced approach.", "B", "M"],
+["Planning", "What is available-to-promise (ATP)?", "**Why they ask:** order promising.\n\n**Answer:**\n\"ATP is the quantity not yet committed to orders and available to promise new customers, by date — based on on-hand inventory, scheduled receipts and existing commitments. Capable-to-promise goes further and also checks capacity to make more.\"\n\nTip: An order promising concept.", "D", "M"],
+["Planning", "What is pegging?", "**Why they ask:** shortage impact analysis.\n\n**Answer:**\n\"Pegging links each supply order to the demands it satisfies. So if a PO is late, I can see exactly which customer orders are affected.\"\n\nTip: Useful for shortage impact analysis.", "D", "M"],
+["Planning", "What is the difference between push and pull planning?", "**Why they ask:** method choice.\n\n**Answer:**\n\"Push produces based on forecasts — that's MRP. Pull produces based on actual consumption — that's kanban. Most companies use a hybrid: push for long lead-time items and pull for repetitive ones.\"\n\nTip: Show when each fits.", "B", "M"],
+["Risk", "How do you build resilience into supply plans?", "**Why they ask:** disruption readiness.\n\n**Answer:**\n\"Strategic buffers for critical items, dual sourcing, monitoring supplier risk, scenario planning, and visibility into sub-tier suppliers — recent disruptions showed that's often where the problem starts.\"\n\nTip: Lessons from recent disruptions.", "D", "S"],
+["Cost", "How do expedite costs reflect planning quality?", "**Why they ask:** a planning health metric.\n\n**Answer:**\n\"Frequent premium freight and overtime signal problems with planning, data or supplier performance. I track expedite spend with root causes, because each one points to something to fix.\"\n\nTip: A good metric to mention.", "D", "M"],
+["Leadership", "How would you improve a struggling planning function?", "**Why they ask:** leadership thinking.\n\n**Answer:**\n\"Assess data quality, parameters, processes and skills. Fix master data first, define clear roles and KPIs, put S&OP discipline in place, and train the planners. Without the foundation, nothing else holds.\"\n\nTip: Foundation first.", "D", "S"],
+["Career", "Why supply planning?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I like solving puzzles under pressure — balancing customer service, inventory and cost while things change every day. And planning has a direct, visible impact on the business.\"\n\nTip: Show energy for problem solving.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I keep production supplied while reducing inventory — I cut $2.1 million of stock with no service loss — and I handle shortages calmly and creatively. I know MRP deeply and keep planning data clean.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is a planning BOM?", "**Why they ask:** configurable products.\n\n**Answer:**\n\"It's an artificial BOM used to forecast options or families. For example, if 60% of bikes use model A wheels and 40% model B, a planning BOM splits the bike forecast that way. You can plan components without forecasting every configuration.\"\n\nTip: Useful for configurable products.", "D", "S"],
+["Technical", "What is the difference between gross and net requirements?", "**Why they ask:** basic MRP math.\n\n**Answer:**\n\"Gross requirements are the total needs from demand or parent items. Net requirements are gross minus on-hand minus scheduled receipts, plus safety stock. Planned orders cover the net requirements.\"\n\nTip: Basic MRP math.", "B", "E"],
+["Technical", "What is MRP nervousness and how do you reduce it?", "**Why they ask:** plan stability.\n\n**Answer:**\n\"It's planned orders changing constantly because of small changes in demand or data. Suppliers lose trust when every order moves. I reduce it with time fences, sensible lot sizing, dampening rules, firm planned orders, and a stable forecast.\"\n\nTip: Practical controls.", "D", "M"],
+["Technical", "What is a firm planned order?", "**Why they ask:** a quick definition.\n\n**Answer:**\n\"It's a planned order the planner locks so MRP won't change its quantity or date automatically — useful for stability in the near term.\"\n\nTip: Quick definition.", "B", "M"],
+["Technical", "What is days of coverage and how do you use it?", "**Why they ask:** a practical metric.\n\n**Answer:**\n\"It's how many days current inventory will last at forecast usage. Low coverage flags a coming shortage; very high coverage flags excess. I sort by it every morning to see where to look first.\"\n\nTip: Simple and practical.", "B", "E"]
+]);
+
+QB["sc-supply"] = (QB["sc-supply"] || []).concat([
+["Planning", "What is distribution requirements planning (DRP)?", "**Why they ask:** network planning logic.\n\n**Answer:**\n\"DRP plans replenishment across a distribution network. It calculates what each DC needs from forecasts, inventory and safety stock, then generates transfer or purchase orders back through the network to the source. It's MRP logic applied to distribution.\"\n\nTip: MRP logic applied to distribution.", "D", "M"]
 ]);
