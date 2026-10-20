@@ -1,238 +1,47 @@
 // Supply Chain Analyst. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ss-analyst'] = [
-["Role", "What does a supply chain analyst do?",
-`**Why they ask:** baseline.
-
-**Answer:** Analyzes supply chain data to improve cost, service and inventory: KPI reporting, inventory analysis, demand and supply analysis, supplier performance, transportation cost analysis, network and scenario modeling, and recommending improvements to planning, procurement and logistics teams.
-
-Tip: Mention tools (Excel, SQL, Power BI, ERP).`, 'B', 'E'],
-
-["KPIs", "Which supply chain KPIs do you track?",
-`**Answer:** OTIF (on time in full), fill rate, forecast accuracy/bias, inventory turns and days of supply, perfect order rate, cash-to-cash cycle, freight cost per unit, supplier on-time delivery, backorders, and order cycle time.
-
-Tip: Define each precisely.`, 'B', 'E'],
-
-["Inventory", "How do you calculate inventory turns and days of supply?",
-`**Answer:** Turns = COGS / average inventory. Days of supply = average inventory / (COGS / 365).
-
-**Example:** COGS $24M, average inventory $4M → 6 turns, ~61 days.
-
-Tip: Benchmark vs industry.`, 'B', 'E'],
-
-["Inventory", "What is ABC analysis?",
-`**Answer:** Classify items by annual value: A (top ~80% of value, ~20% of items), B (next 15%), C (last 5%). Focus control, counting and planning effort on A items. XYZ adds demand variability.
-
-Tip: ABC-XYZ matrix.`, 'B', 'E'],
-
-["Safety Stock", "How do you calculate safety stock?",
-`**Answer:** SS = z × σ_demand × √(lead time) for demand variability (add lead time variability term if needed: z × √(LT × σd² + d² × σLT²)).
-
-**Example:** 95% service (z = 1.65), σ daily demand 20, lead time 9 days → 1.65 × 20 × 3 = 99 units.
-
-Tip: Service level drives z.`, 'B', 'M'],
-
-["Reorder", "What is a reorder point?",
-`**Answer:** ROP = average daily demand × lead time + safety stock.
-
-**Example:** 50/day × 9 days + 99 = 549 units.
-
-Tip: Simple formula.`, 'B', 'E'],
-
-["EOQ", "What is EOQ?",
-`**Answer:** Economic Order Quantity = √(2 × annual demand × order cost / holding cost per unit).
-
-**Example:** demand 12,000, order cost $100, holding $4 → √(600,000) ≈ 775 units.
-
-Tip: Trade-off ordering vs holding.`, 'B', 'M'],
-
-["Forecasting", "How do you measure forecast accuracy?",
-`**Answer:** MAPE (mean absolute percentage error), weighted MAPE (WMAPE) for portfolio, bias (forecast − actual tendency), and forecast value added (FVA) vs naive forecast.
-
-**WMAPE:** Σ|A − F| / ΣA.
-
-Tip: Bias matters as much as error.`, 'B', 'M'],
-
-["Analysis", "OTIF dropped from 95% to 88%. How do you investigate?",
-`**Answer:** Split into on-time vs in-full failures, segment by customer, product, warehouse and carrier, identify top causes (stockouts, late pick, carrier delays, order changes), quantify each, and recommend fixes with owners.
-
-Tip: Pareto of causes.`, 'B', 'M'],
-
-["Transportation", "How do you analyze freight costs?",
-`**Answer:** Cost per unit, per lb, per shipment by lane, mode and carrier; identify accessorials, expedites, LTL vs FTL opportunities, consolidation, and rate benchmarking.
-
-Tip: Expedite costs.`, 'B', 'M'],
-
-["Network", "What is network optimization?",
-`**Answer:** Modeling facilities, flows, costs and service levels to determine the optimal number and location of plants and DCs, using tools like Coupa Supply Chain Design (LLamasoft), AIMMS or optimization in Python.
-
-Tip: Cost vs service trade-off.`, 'D', 'M'],
-
-["Tools", "Which tools do you use?",
-`**Answer:** Excel (advanced), SQL, Power BI/Tableau, Python, ERP (SAP, Oracle), planning systems (Kinaxis, o9, Blue Yonder, IBP) and TMS/WMS data.
-
-Tip: SQL + BI.`, 'B', 'E'],
-
-["SQL", "Write a query for top 10 SKUs by backorder value.",
-`**Answer:** SELECT sku, SUM(backorder_qty * unit_price) AS bo_value FROM order_lines WHERE status = 'BACKORDER' GROUP BY sku ORDER BY bo_value DESC LIMIT 10;
-
-Tip: Clear and correct.`, 'B', 'M'],
-
-["Excel", "Which Excel skills are essential?",
-`**Answer:** XLOOKUP/INDEX-MATCH, pivot tables, SUMIFS, data tables and scenario analysis, Solver for optimization, Power Query for data cleansing.
-
-Tip: Solver.`, 'B', 'E'],
-
-["Supplier", "How do you build a supplier scorecard?",
-`**Answer:** Metrics: on-time delivery, quality (PPM, defects), lead time adherence, cost competitiveness, responsiveness, and compliance — weighted, reviewed quarterly with suppliers.
-
-Tip: Weighted.`, 'B', 'E'],
-
-["Cash-to-Cash", "What is the cash-to-cash cycle?",
-`**Answer:** DIO + DSO − DPO — days cash is tied up in operations.
-
-**Example:** DIO 60 + DSO 45 − DPO 40 = 65 days.
-
-Tip: Working capital link.`, 'B', 'M'],
-
-["Bullwhip", "What is the bullwhip effect?",
-`**Answer:** Demand variability amplifies moving upstream because of order batching, forecast updating, price promotions and shortage gaming. Reduce via information sharing, smaller batches, stable pricing and collaborative planning.
-
-Tip: Causes and fixes.`, 'B', 'M'],
-
-["Scenario Modeling", "How do you model the impact of a tariff increase?",
-`**Answer:** Identify affected items and suppliers by country of origin, calculate landed cost changes, model alternative sourcing options and pricing impacts, and summarize margin effects.
-
-Tip: Landed cost.`, 'D', 'M'],
-
-["Data Quality", "How do you deal with poor master data?",
-`**Answer:** Identify issues (lead times, lot sizes, units of measure), quantify impact, work with owners to fix at source, and set governance.
-
-Tip: Lead time accuracy.`, 'B', 'M'],
-
-["Dashboards", "How do you design a supply chain dashboard?",
-`**Answer:** Focus on key decisions, top KPIs with targets, trends, drill-down by dimension, exception highlights, and refresh automation.
-
-Tip: Exceptions.`, 'B', 'E'],
-
-["AI", "How is AI used in supply chain analytics?",
-`**Answer:** Machine learning demand forecasting, anomaly detection, predictive ETAs, inventory optimization, and AI assistants for querying data.
-
-Tip: ML forecasting.`, 'B', 'M'],
-
-["Behavioral", "Tell me about an analysis that saved money.",
-`**Sample answer:** "I analyzed expedited freight and found 40% came from late POs for 30 SKUs. Adjusting reorder points and lead times cut expedites $650K annually."
-
-Tip: Quantified.`, 'B', 'M'],
-
-["Behavioral", "Tell me about influencing a decision with data.",
-`**Sample answer:** "I showed slow-moving inventory at one DC worth $2.1M; leadership approved rebalancing and SKU rationalization."
-
-Tip: Data to decision.`, 'B', 'M'],
-
-["Behavioral", "How do you handle conflicting data sources?",
-`**Answer:** Trace definitions and timing, reconcile, document the source of truth, and communicate assumptions.
-
-Tip: Definitions.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** APICS CPIM, CSCP, CLTD, and Six Sigma Green Belt.
-
-Tip: CSCP.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior analyst, planning manager, or supply chain strategy roles.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I turn supply chain data into savings and better service — cutting expedites $650K and highlighting $2M of excess inventory."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Service Level", "Cycle service level vs fill rate?",
-`**Answer:** **Cycle service level** is the probability of not stocking out during a replenishment cycle; **fill rate** is the percentage of demand met from stock. Fill rate is usually higher than CSL.
-
-Tip: Different measures.`, 'D', 'M'],
-
-["Lead Time", "Why does lead time variability matter?",
-`**Answer:** It increases safety stock needs, often more than demand variability; reducing it lowers inventory.
-
-Tip: Supplier reliability.`, 'B', 'M'],
-
-["Landed Cost", "How do you calculate landed cost?",
-`**Answer:** Product cost + freight + insurance + duties and tariffs + brokerage + handling, allocated per unit.
-
-Tip: Duty rates by HTS code.`, 'B', 'E'],
-
-["Simulation", "When would you use simulation?",
-`**Answer:** For complex systems with variability (warehouse throughput, inventory policies) where analytical formulas are insufficient.
-
-Tip: Variability.`, 'D', 'M'],
-
-["Benchmarking", "How do you benchmark supply chain performance?",
-`**Answer:** Industry reports (Gartner, APQC), peer data, and frameworks like SCOR metrics.
-
-Tip: SCOR.`, 'D', 'M'],
-
-["SCOR", "What is the SCOR model?",
-`**Answer:** Supply Chain Operations Reference model with processes (plan, source, make, deliver, return, enable — updated as SCOR Digital Standard) and standard metrics.
-
-Tip: Common language.`, 'D', 'M'],
-
-["Excess", "How do you identify excess and obsolete inventory?",
-`**Answer:** Compare on-hand to forecast demand over a horizon, flag items with no movement, and calculate value at risk.
-
-Tip: Value at risk.`, 'B', 'E'],
-
-["Scenario", "Leadership wants to cut inventory 20% without hurting service. How do you approach it?",
-`**Answer:** Segment inventory (cycle, safety, excess), remove excess, right-size safety stock by service targets, reduce lead times and lot sizes, and simulate service impacts.
-
-Tip: Segment first.`, 'B', 'M'],
-
-["Scenario", "A supplier's lead time doubles. What analysis do you do?",
-`**Answer:** Identify impacted items and stock coverage, recalculate reorder points and safety stock, assess shortage risk, and evaluate alternate suppliers or expediting.
-
-Tip: Coverage analysis.`, 'B', 'M'],
-
-["Python", "How might you use Python?",
-`**Answer:** Cleaning large datasets with pandas, forecasting with statsmodels/Prophet, optimization with PuLP, and automating reports.
-
-Tip: Automation.`, 'D', 'M'],
-
-["Perfect Order", "What is the perfect order rate?",
-`**Answer:** Percentage of orders delivered on time, complete, damage-free and with correct documentation — the product of component rates.
-
-**Example:** 95% × 98% × 99% × 99% ≈ 91%.
-
-Tip: Multiplicative.`, 'B', 'M'],
-
-["Communication", "How do you present analysis to leadership?",
-`**Answer:** Lead with the conclusion and impact, show key supporting data, recommend actions, and keep details in backup.
-
-Tip: Answer first.`, 'B', 'E'],
-
-["Risk", "How do you analyze supply chain risk?",
-`**Answer:** Map single-source and geographic concentrations, supplier financial health, lead times and inventory coverage, and quantify revenue at risk.
-
-Tip: Revenue at risk.`, 'D', 'M'],
-
-["Sustainability", "How do analysts support sustainability?",
-`**Answer:** Measure emissions by mode and lane, model mode shifts and network changes, and track supplier sustainability data.
-
-Tip: Scope 3.`, 'D', 'M'],
-
-["MRP", "What is MRP?",
-`**Answer:** Material Requirements Planning calculates net requirements for components from the master schedule and BOMs, considering inventory and lead times, generating planned orders.
-
-Tip: Dependent demand.`, 'B', 'E'],
-
-["Ad hoc", "How do you handle urgent ad hoc requests?",
-`**Answer:** Clarify the question and decision, deliver a quick directional answer, then refine; reuse queries and templates.
-
-Tip: Clarify the decision.`, 'B', 'E'],
-
-["Seasonality", "How do you handle seasonality in analysis?",
-`**Answer:** Compare year-over-year same periods, use seasonal indices and decomposition, and plan inventory builds ahead of peaks.
-
-Tip: Seasonal indices.`, 'B', 'M']
-];
+QB["ss-analyst"] = (QB["ss-analyst"] || []).concat([
+["Role", "What does a supply chain analyst do?", "**Why they ask:** baseline.\n\n**Answer:** Analyzes supply chain data to improve cost, service and inventory: KPI reporting, inventory analysis, demand and supply analysis, supplier performance, transportation cost analysis, network and scenario modeling, and recommending improvements to planning, procurement and logistics teams.\n\nTip: Mention tools (Excel, SQL, Power BI, ERP).", "B", "E"],
+["KPIs", "Which supply chain KPIs do you track?", "**Why they ask:** analysts live in the metrics.\n\n**Answer:**\n\"OTIF — on time in full — fill rate, forecast accuracy and bias, inventory turns and days of supply, perfect order rate, the cash-to-cash cycle, freight cost per unit, supplier on-time delivery, backorders and order cycle time. And I define each one precisely, because OTIF can mean very different things at different companies — against requested date or promised date, by line or by order.\"\n\nTip: Define each precisely.", "B", "E"],
+["Inventory", "How do you calculate inventory turns and days of supply?", "**Why they ask:** a basic analytical check.\n\n**Answer:**\n\"Turns are cost of goods sold divided by average inventory. Days of supply is average inventory divided by daily COGS — COGS over 365. With $24 million of COGS and $4 million of average inventory, that's 6 turns and about 61 days. Then I benchmark against the industry, because 6 turns is great for heavy equipment and poor for grocery.\"\n\nTip: Benchmark against the industry.", "B", "E"],
+["Inventory", "What is ABC analysis?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"It classifies items by annual value. A items are the top 80% or so of value from about 20% of items, B the next 15%, C the last 5%. You focus control, counting and planning effort on the A items. Adding XYZ for demand variability gives a nine-box matrix — AX items can be automated, AZ items need the most attention.\"\n\nTip: Mention the ABC-XYZ matrix.", "B", "E"],
+["Safety Stock", "How do you calculate safety stock?", "**Why they ask:** a core calculation.\n\n**Answer:**\n\"For demand variability, safety stock is z times the standard deviation of demand times the square root of lead time. If lead time also varies, there's an extra term for that. At a 95% service level, z is 1.65. With daily demand variation of 20 units and a 9-day lead time, that's 1.65 times 20 times 3 — 99 units. The service level target drives z, so it's really a business decision.\"\n\nTip: The service level drives z.", "B", "M"],
+["Reorder", "What is a reorder point?", "**Why they ask:** a replenishment basic.\n\n**Answer:**\n\"The reorder point is average daily demand times lead time, plus safety stock. At 50 a day with a 9-day lead time and 99 units of safety stock, it's 450 plus 99 — 549 units.\"\n\nTip: A simple formula.", "B", "E"],
+["EOQ", "What is EOQ?", "**Why they ask:** a classic formula.\n\n**Answer:**\n\"Economic order quantity is the square root of two times annual demand times order cost, divided by holding cost per unit. With 12,000 units of demand, $100 per order and $4 holding cost, it's the square root of 600,000 — about 775 units. It's the trade-off point between ordering too often and holding too much.\"\n\nTip: The ordering-versus-holding trade-off.", "B", "M"],
+["Forecasting", "How do you measure forecast accuracy?", "**Why they ask:** forecast quality drives everything.\n\n**Answer:**\n\"MAPE for individual items, weighted MAPE for a portfolio — the sum of absolute errors divided by the sum of actuals — bias, to see if we're consistently high or low, and forecast value added against a naive forecast. Bias matters as much as error: a forecast that's always 10% high builds inventory every single month.\"\n\nTip: Bias matters as much as error.", "B", "M"],
+["Analysis", "OTIF dropped from 95% to 88%. How do you investigate?", "**Why they ask:** a classic analyst problem.\n\n**Answer:**\n\"First I split failures into on-time misses versus in-full misses. Then segment by customer, product, warehouse and carrier, identify the top causes — stockouts, late picks, carrier delays, order changes — and quantify each one. Usually a Pareto shows two or three causes drive most of the drop. Then I recommend fixes with owners.\"\n\nTip: Use a Pareto of causes.", "B", "M"],
+["Transportation", "How do you analyze freight costs?", "**Why they ask:** a common analysis area.\n\n**Answer:**\n\"I look at cost per unit, per pound and per shipment by lane, mode and carrier. Then dig into accessorials, expedites, LTL loads that could be consolidated into truckloads, and benchmark our rates. Expedites are usually the first place I look — they're expensive and they point to planning problems.\"\n\nTip: Start with expedite costs.", "B", "M"],
+["Network", "What is network optimization?", "**Why they ask:** strategic analysis.\n\n**Answer:**\n\"It's modeling facilities, flows, costs and service levels to find the best number and location of plants and DCs. Tools like Coupa Supply Chain Design, AIMMS, or optimization code in Python solve it. The output is a cost-versus-service trade-off curve leadership can choose from.\"\n\nTip: The cost-versus-service trade-off.", "D", "M"],
+["Tools", "Which tools do you use?", "**Why they ask:** technical skills.\n\n**Answer:**\n\"Advanced Excel, SQL, Power BI or Tableau, Python, ERP data from SAP and Oracle, planning systems like Kinaxis, o9, Blue Yonder or IBP, and TMS and WMS data. SQL and BI are the ones I use every day.\"\n\nTip: SQL plus BI.", "B", "E"],
+["SQL", "Write a query for top 10 SKUs by backorder value.", "**Why they ask:** a live SQL check.\n\n**Answer:**\n\"I'd select the SKU and the sum of backorder quantity times unit price as backorder value, from the order lines table where status equals 'BACKORDER', group by SKU, order by backorder value descending, and limit to 10:\n\nSELECT sku, SUM(backorder_qty * unit_price) AS bo_value FROM order_lines WHERE status = 'BACKORDER' GROUP BY sku ORDER BY bo_value DESC LIMIT 10;\n\nOn SQL Server I'd use TOP 10 instead of LIMIT.\"\n\nTip: Clear and correct — mention dialect differences.", "B", "M"],
+["Excel", "Which Excel skills are essential?", "**Why they ask:** daily tools.\n\n**Answer:**\n\"XLOOKUP or INDEX-MATCH, pivot tables, SUMIFS, data tables and scenario analysis, Solver for optimization, and Power Query for cleaning data. Solver is underrated — I've used it to optimize truck loads and allocation.\"\n\nTip: Mention Solver.", "B", "E"],
+["Supplier", "How do you build a supplier scorecard?", "**Why they ask:** supplier performance analysis.\n\n**Answer:**\n\"Metrics for on-time delivery, quality — defect PPM — lead time adherence, cost competitiveness, responsiveness and compliance, each weighted by importance, and reviewed quarterly with the suppliers. For example, 40% delivery, 30% quality, 20% cost, 10% responsiveness.\"\n\nTip: Make it weighted.", "B", "E"],
+["Cash-to-Cash", "What is the cash-to-cash cycle?", "**Why they ask:** working capital link.\n\n**Answer:**\n\"It's days inventory outstanding plus days sales outstanding minus days payables outstanding — how many days cash is tied up in operations. With 60 days of inventory, 45 of receivables and 40 of payables, it's 65 days.\"\n\nTip: The working capital link.", "B", "M"],
+["Bullwhip", "What is the bullwhip effect?", "**Why they ask:** a classic concept.\n\n**Answer:**\n\"Demand variability gets amplified as you move upstream, because of order batching, forecast updating, price promotions and shortage gaming. A small change at the store becomes a big swing at the factory. You reduce it with information sharing, smaller batches, stable pricing and collaborative planning.\"\n\nTip: Give causes and fixes.", "B", "M"],
+["Scenario Modeling", "How do you model the impact of a tariff increase?", "**Why they ask:** a current analysis.\n\n**Answer:**\n\"I identify the affected items and suppliers by country of origin, calculate the change in landed cost, model alternative sourcing options and pricing impacts, and summarize the margin effect for leadership. For example, a 25% tariff on a $10 part adds $2.50 — then I'd show which alternative sources beat that.\"\n\nTip: Work from landed cost.", "D", "M"],
+["Data Quality", "How do you deal with poor master data?", "**Why they ask:** analysts find data problems first.\n\n**Answer:**\n\"I identify the issues — wrong lead times, lot sizes, units of measure — quantify their impact, work with the owners to fix them at the source, and push for governance so they stay fixed. Lead time accuracy is usually the most valuable fix.\"\n\nTip: Lead time accuracy matters most.", "B", "M"],
+["Dashboards", "How do you design a supply chain dashboard?", "**Why they ask:** communication through data.\n\n**Answer:**\n\"I start with the decisions it supports. Then show the top KPIs with targets and trends, drill-down by dimension, highlighted exceptions, and automated refresh. The exceptions are what make people act — a wall of green numbers gets ignored.\"\n\nTip: Highlight exceptions.", "B", "E"],
+["AI", "How is AI used in supply chain analytics?", "**Why they ask:** current skills.\n\n**Answer:**\n\"Machine learning demand forecasting, anomaly detection, predictive ETAs, inventory optimization, and AI assistants that let people query data in plain language. I've used gradient boosting models for forecasting with promotions and weather as features.\"\n\nTip: Mention ML forecasting.", "B", "M"],
+["Behavioral", "Tell me about an analysis that saved money.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"I analyzed expedited freight and found 40% came from late POs on just 30 SKUs, because their lead times in the system were wrong. Adjusting reorder points and lead times cut expedites by $650,000 a year.\"\n\nTip: Quantify it.", "B", "M"],
+["Behavioral", "Tell me about influencing a decision with data.", "**Why they ask:** analysis must lead to action.\n\n**Answer:**\n\"I showed leadership that one DC was holding $2.1 million of slow-moving inventory while other sites were short. They approved rebalancing and a SKU rationalization, which freed most of that cash within two quarters.\"\n\nTip: Data to decision.", "B", "M"],
+["Behavioral", "How do you handle conflicting data sources?", "**Why they ask:** a daily reality.\n\n**Answer:**\n\"I trace the definitions and timing behind each — often one is shipped date and the other is invoice date. Then reconcile, document which source is the truth for that metric, and communicate the assumptions clearly.\"\n\nTip: Check definitions first.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** professional development.\n\n**Answer:**\n\"ASCM's CPIM for planning, CSCP for end-to-end supply chain, CLTD for logistics, and a Six Sigma Green Belt. CSCP gives the broadest view.\"\n\nTip: CSCP is the broadest.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior analyst, then planning manager or supply chain strategy roles — using analytics to shape bigger decisions.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I turn supply chain data into savings and better service — I cut expedites by $650,000 a year and highlighted $2 million of excess inventory that leadership acted on.\"\n\nTip: Proof.", "B", "E"],
+["Service Level", "Cycle service level vs fill rate?", "**Why they ask:** precise definitions.\n\n**Answer:**\n\"Cycle service level is the probability of not stocking out during a replenishment cycle. Fill rate is the percentage of demand met from stock. Fill rate is usually higher, because even when you stock out, you've usually filled most of the demand in that cycle.\"\n\nTip: Different measures.", "D", "M"],
+["Lead Time", "Why does lead time variability matter?", "**Why they ask:** inventory drivers.\n\n**Answer:**\n\"It increases safety stock needs — often more than demand variability does. A supplier who's sometimes a week late forces you to hold a week of extra stock. So improving supplier reliability can cut inventory significantly.\"\n\nTip: Supplier reliability matters.", "B", "M"],
+["Landed Cost", "How do you calculate landed cost?", "**Why they ask:** sourcing analysis.\n\n**Answer:**\n\"Product cost plus freight, insurance, duties and tariffs, brokerage and handling, allocated per unit. Duty rates come from the HTS code, so classification accuracy matters.\"\n\nTip: Duty rates come from the HTS code.", "B", "E"],
+["Simulation", "When would you use simulation?", "**Why they ask:** analytical method choice.\n\n**Answer:**\n\"For complex systems with a lot of variability — like warehouse throughput or testing inventory policies — where formulas aren't enough. Simulation shows how the system behaves across thousands of random scenarios, not just the average.\"\n\nTip: Use it when variability matters.", "D", "M"],
+["Benchmarking", "How do you benchmark supply chain performance?", "**Why they ask:** context for metrics.\n\n**Answer:**\n\"Industry reports from Gartner and APQC, peer data, and frameworks like SCOR metrics, which give standard definitions so comparisons are fair.\"\n\nTip: Mention SCOR.", "D", "M"],
+["SCOR", "What is the SCOR model?", "**Why they ask:** a common framework.\n\n**Answer:**\n\"The Supply Chain Operations Reference model defines standard processes — plan, source, make, deliver, return and enable — and standard metrics. It's been updated as the SCOR Digital Standard. Its value is a common language across companies and functions.\"\n\nTip: A common language.", "D", "M"],
+["Excess", "How do you identify excess and obsolete inventory?", "**Why they ask:** cash recovery.\n\n**Answer:**\n\"I compare on-hand inventory to forecast demand over a horizon, flag items with no movement, and calculate the value at risk. For example, anything with more than 18 months of coverage or no usage in 12 months goes on the list with its dollar value.\"\n\nTip: Show the value at risk.", "B", "E"],
+["Scenario", "Leadership wants to cut inventory 20% without hurting service. How do you approach it?", "**Why they ask:** a common project.\n\n**Answer:**\n\"Segment inventory into cycle stock, safety stock and excess. Remove the excess, right-size safety stock to service targets, reduce lead times and lot sizes, and simulate the service impact before changing anything. Segmenting first shows where the 20% can safely come from.\"\n\nTip: Segment first.", "B", "M"],
+["Scenario", "A supplier's lead time doubles. What analysis do you do?", "**Why they ask:** quick risk analysis.\n\n**Answer:**\n\"I identify the impacted items and how many weeks of coverage we have, recalculate reorder points and safety stock, assess the shortage risk by date, and evaluate alternate suppliers or expediting.\"\n\nTip: Start with coverage analysis.", "B", "M"],
+["Python", "How might you use Python?", "**Why they ask:** technical depth.\n\n**Answer:**\n\"Cleaning large datasets with pandas, forecasting with statsmodels or Prophet, optimization with PuLP, and automating recurring reports. I automated a weekly inventory report that used to take four hours by hand.\"\n\nTip: Highlight automation.", "D", "M"],
+["Perfect Order", "What is the perfect order rate?", "**Why they ask:** a composite metric.\n\n**Answer:**\n\"It's the percentage of orders delivered on time, complete, undamaged and with correct documentation. It's the product of the component rates — 95% on time times 98% complete times 99% damage-free times 99% correct paperwork is about 91%. Small gaps multiply.\"\n\nTip: It's multiplicative.", "B", "M"],
+["Communication", "How do you present analysis to leadership?", "**Why they ask:** communication.\n\n**Answer:**\n\"Lead with the conclusion and its impact, show the key supporting data, recommend actions, and keep the detail in backup. Answer first.\"\n\nTip: Answer first.", "B", "E"],
+["Risk", "How do you analyze supply chain risk?", "**Why they ask:** resilience analysis.\n\n**Answer:**\n\"Map single-source suppliers and geographic concentration, check supplier financial health, lead times and inventory coverage, and quantify revenue at risk — how much revenue depends on each risky supplier.\"\n\nTip: Quantify revenue at risk.", "D", "M"],
+["Sustainability", "How do analysts support sustainability?", "**Why they ask:** a growing area.\n\n**Answer:**\n\"Measuring emissions by mode and lane, modeling mode shifts and network changes, and tracking supplier sustainability data for Scope 3 reporting.\"\n\nTip: Mention Scope 3.", "D", "M"],
+["MRP", "What is MRP?", "**Why they ask:** planning basics.\n\n**Answer:**\n\"Material requirements planning calculates net requirements for components from the master schedule and bills of materials, accounting for inventory and lead times, and generates planned orders. It handles dependent demand — components whose demand depends on what we're building.\"\n\nTip: Dependent demand.", "B", "E"],
+["Ad hoc", "How do you handle urgent ad hoc requests?", "**Why they ask:** analysts get pulled everywhere.\n\n**Answer:**\n\"I clarify the question and the decision behind it first, deliver a quick directional answer, then refine. I keep reusable queries and templates so most requests take minutes, not days.\"\n\nTip: Clarify the decision.", "B", "E"],
+["Seasonality", "How do you handle seasonality in analysis?", "**Why they ask:** avoiding false conclusions.\n\n**Answer:**\n\"Compare the same periods year over year, use seasonal indices and decomposition, and plan inventory builds ahead of peaks. Comparing December to November tells you nothing useful in a seasonal business.\"\n\nTip: Use seasonal indices.", "B", "M"]
+]);

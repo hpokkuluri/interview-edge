@@ -1,28 +1,8 @@
-QB['ss-analyst'] = (QB['ss-analyst']||[]).concat([
-["Forecasting", "Which forecasting methods do you know?",
-`**Answer:** Naive and moving averages, exponential smoothing (simple, Holt for trend, Holt-Winters for seasonality), ARIMA, regression with drivers, and machine learning models (gradient boosting) for many SKUs with external features. Choose based on the demand pattern.
-
-Tip: Holt-Winters for seasonality.`, 'B', 'M'],
-["Intermittent Demand", "How do you forecast intermittent demand?",
-`**Answer:** Standard methods perform poorly on demand that is mostly zero. Use Croston's method or its variants, bootstrapping, or set stocking policies directly from the demand distribution. Measure with appropriate error metrics.
-
-Tip: Croston's method.`, 'D', 'M'],
-["Carrying Cost", "What is inventory carrying cost?",
-`**Answer:** The annual cost of holding inventory, typically 20–30% of inventory value: capital cost, storage, insurance, taxes, obsolescence and shrinkage.
-
-**Example:** $10M of inventory at 25% → $2.5M a year.
-
-Tip: Use it to justify reductions.`, 'B', 'E'],
-["Pareto", "How do you use Pareto analysis?",
-`**Answer:** Rank causes or items by impact to find the vital few. For example, 20% of SKUs causing 80% of stockouts, or 3 carriers causing most late deliveries. Then focus action there.
-
-Tip: Focus.`, 'B', 'E'],
-["Automation", "How have you automated reporting?",
-`**Answer:** Power Query and Power BI refreshes from ERP extracts, SQL views, Python scripts for data cleaning, and scheduled distribution. This saves hours each week and reduces errors.
-
-Tip: Hours saved.`, 'B', 'E'],
-["Scenario", "A planner disputes your recommendation. What do you do?",
-`**Answer:** Listen to their operational context, re-check the data and assumptions together, adjust if they're right, and agree a test or pilot to validate.
-
-Tip: Collaborate.`, 'B', 'E']
+QB["ss-analyst"] = (QB["ss-analyst"] || []).concat([
+["Forecasting", "Which forecasting methods do you know?", "**Why they ask:** analytical toolkit.\n\n**Answer:**\n\"Naive and moving averages, exponential smoothing — simple, Holt for trend, Holt-Winters for seasonality — ARIMA, regression with drivers, and machine learning like gradient boosting for many SKUs with external features. I choose based on the demand pattern.\"\n\nTip: Holt-Winters for seasonality.", "B", "M"],
+["Intermittent Demand", "How do you forecast intermittent demand?", "**Why they ask:** spare parts and slow movers.\n\n**Answer:**\n\"Standard methods do badly when demand is mostly zeros. I use Croston's method or its variants, bootstrapping, or set stocking policies directly from the demand distribution. And use error metrics that make sense for intermittent demand — MAPE breaks when actuals are zero.\"\n\nTip: Mention Croston's method.", "D", "M"],
+["Carrying Cost", "What is inventory carrying cost?", "**Why they ask:** justifies reductions.\n\n**Answer:**\n\"It's the annual cost of holding inventory, typically 20 to 30% of its value — capital, storage, insurance, taxes, obsolescence and shrinkage. $10 million of inventory at 25% costs $2.5 million a year.\"\n\nTip: Use it to justify reductions.", "B", "E"],
+["Pareto", "How do you use Pareto analysis?", "**Why they ask:** focus.\n\n**Answer:**\n\"I rank causes or items by impact to find the vital few — for example, 20% of SKUs causing 80% of stockouts, or three carriers causing most late deliveries. Then focus action there first.\"\n\nTip: It's about focus.", "B", "E"],
+["Automation", "How have you automated reporting?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Power Query and Power BI refreshes from ERP extracts, SQL views, Python scripts for data cleaning, and scheduled distribution. My last automation saved about six hours a week and removed copy-paste errors.\"\n\nTip: Quantify hours saved.", "B", "E"],
+["Scenario", "A planner disputes your recommendation. What do you do?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"I listen to their operational context — they often know something the data doesn't. Then re-check the data and assumptions together, adjust if they're right, and if we still disagree, agree a small test or pilot to settle it.\"\n\nTip: Collaborate.", "B", "E"]
 ]);
