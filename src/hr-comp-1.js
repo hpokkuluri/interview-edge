@@ -1,211 +1,44 @@
 // Compensation & Benefits Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['hr-comp'] = [
-["Role", "What does a compensation manager do?",
-`**Why they ask:** scope.
-
-**Answer:** Designs and manages pay programs that attract, retain and motivate employees while controlling costs: job architecture and leveling, salary structures, market pricing, merit and bonus programs, sales compensation, equity, pay equity analysis, compliance and manager guidance — often with benefits responsibilities.
-
-Tip: Mention programs you've owned.`, 'B', 'E'],
-
-["Market Pricing", "How do you price a job against the market?",
-`**Answer:** Match the job to survey benchmarks by content (not title) and level, use reputable surveys (Radford, Mercer, WTW, Payscale), age data to a common date, blend sources, choose percentile based on pay philosophy (e.g. 50th), and adjust for geography.
-
-Tip: Match by content.`, 'B', 'M'],
-
-["Structures", "How do you build salary ranges?",
-`**Answer:** Set midpoints from market data per grade, choose range spreads (e.g. 40–60% for professional roles: min = mid/1.25, max = mid × 1.25 for 50% spread), set midpoint progression between grades (10–15%), and review annually.
-
-**Example:** midpoint $100K, 50% spread → min $80K, max $120K.
-
-Tip: Show math.`, 'B', 'M'],
-
-["Compa-ratio", "What is compa-ratio?",
-`**Answer:** Salary / range midpoint. $90K salary in a $100K-midpoint range → 0.90. Used to assess positioning and guide merit increases.
-
-Tip: Simple.`, 'B', 'E'],
-
-["Range Penetration", "What is range penetration?",
-`**Answer:** (Salary − min) / (max − min). $90K in $80–120K range → 25%.
-
-Tip: Position in range.`, 'B', 'M'],
-
-["Merit", "How do you design a merit matrix?",
-`**Answer:** Increases vary by performance rating and position in range (compa-ratio), so high performers low in range get the largest increases, within the overall budget (e.g. 3.5%).
-
-Tip: Performance × position.`, 'B', 'M'],
-
-["Job Architecture", "What is job architecture?",
-`**Answer:** A framework of job families, levels and career tracks (individual contributor vs management) with leveling criteria — the foundation for pay, careers and equity.
-
-Tip: Dual career tracks.`, 'B', 'M'],
-
-["Job Evaluation", "How do you evaluate jobs?",
-`**Answer:** Market-based pricing primarily, with point-factor methods (Hay, Mercer IPE) for internal leveling considering knowledge, problem solving, accountability and scope.
-
-Tip: Market + internal.`, 'D', 'M'],
-
-["Incentives", "How do you design an annual bonus plan?",
-`**Answer:** Define eligibility and target percentages by level, funding mechanism (company performance), performance measures (financial, team, individual), payout curve (threshold, target, maximum), and governance.
-
-Tip: Line of sight.`, 'D', 'M'],
-
-["Sales Comp", "How do you design sales compensation?",
-`**Answer:** Set target total cash and pay mix (e.g. 60/40 base/variable), quotas, measures aligned to strategy (revenue, margin, new logos), accelerators above quota, caps (or not), crediting rules and clawbacks.
-
-Tip: Pay mix by role.`, 'D', 'M'],
-
-["Equity", "What are common equity vehicles?",
-`**Answer:** RSUs (shares vesting over time), stock options (right to buy at strike price — ISOs/NSOs), performance shares (vesting based on goals), and ESPP.
-
-Tip: Vesting schedules.`, 'B', 'M'],
-
-["Pay Equity", "How do you conduct a pay equity analysis?",
-`**Answer:** Group comparable employees, run regression controlling for legitimate factors (level, tenure, performance, location), identify unexplained gaps by gender/race, investigate outliers, remediate, and conduct under legal privilege.
-
-Tip: Attorney privilege.`, 'D', 'M'],
-
-["Pay Transparency", "How do you prepare for pay transparency laws?",
-`**Answer:** Defensible ranges for all jobs, consistent posting practices, manager training to explain pay, and pay equity remediation before disclosure.
-
-Tip: Fix inequities first.`, 'B', 'M'],
-
-["FLSA", "How do you determine exempt vs non-exempt status?",
-`**Answer:** Salary basis and level test plus duties tests (executive, administrative, professional, computer, outside sales), and state rules with higher thresholds.
-
-Tip: Duties matter.`, 'B', 'M'],
-
-["Benefits", "What benefits programs have you managed?",
-`**Answer:** Medical, dental, vision, life and disability, retirement (401(k) with match), HSA/FSA, wellness, leave programs, EAP and voluntary benefits.
-
-Tip: Cost management.`, 'B', 'E'],
-
-["Benefits Cost", "How do you manage rising healthcare costs?",
-`**Answer:** Plan design changes, HSA-eligible plans, contribution strategy, wellness and care navigation, pharmacy management, vendor negotiations, and self-funding analysis for larger employers.
-
-Tip: Data-driven.`, 'D', 'M'],
-
-["Open Enrollment", "How do you run open enrollment?",
-`**Answer:** Finalize plans and rates, configure systems, communicate early with clear comparisons, provide decision tools and support, monitor enrollment, and audit results.
-
-Tip: Clear communication.`, 'B', 'E'],
-
-["Retirement", "What are 401(k) plan compliance considerations?",
-`**Answer:** Nondiscrimination testing (ADP/ACP), contribution limits, timely deposits, fiduciary duties (fees, investment oversight), Form 5500, and safe harbor designs to avoid testing.
-
-Tip: Fiduciary.`, 'D', 'M'],
-
-["Total Rewards", "What is a total rewards strategy?",
-`**Answer:** Combining pay, benefits, wellbeing, development and recognition into a value proposition aligned with business goals and talent needs.
-
-Tip: Holistic.`, 'B', 'M'],
-
-["Communication", "How do you help managers communicate pay?",
-`**Answer:** Training, talking points, total compensation statements, and clear explanations of ranges and decisions.
-
-Tip: Manager enablement.`, 'B', 'E'],
-
-["Behavioral", "Tell me about redesigning a pay program.",
-`**Sample answer:** "I rebuilt our salary structure with new market data and job architecture for 3,000 employees. We fixed 400 below-minimum salaries, introduced transparent ranges, and voluntary turnover dropped 4 points."
-
-Tip: Outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a pay equity finding you addressed.",
-`**Sample answer:** "Analysis found a 6% unexplained gap in one engineering group. We remediated $480K over two cycles and added controls in offer approvals."
-
-Tip: Remediation and prevention.`, 'B', 'M'],
-
-["Behavioral", "Tell me about denying a manager's pay request.",
-`**Sample answer:** "A manager wanted 25% above range for a hire, creating inequity. I proposed a sign-on bonus and higher level evaluation; he hired the candidate without disrupting equity."
-
-Tip: Alternatives.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** WorldatWork CCP (Certified Compensation Professional), CBP (benefits), GRP (global), and CEBS.
-
-Tip: CCP.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Director of total rewards.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I design fair, market-competitive pay programs that reduce turnover and pass scrutiny — fixing equity gaps and building transparent structures."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Geo Pay", "How do you handle geographic pay differentials?",
-`**Answer:** Location-based structures or differentials using cost-of-labor data, with policies for remote employees and relocations.
-
-Tip: Cost of labor, not cost of living.`, 'D', 'M'],
-
-["Compression", "What is pay compression and how do you fix it?",
-`**Answer:** When new hires earn close to or more than tenured employees due to market increases; address with targeted adjustments, structure updates and market reviews.
-
-Tip: Market adjustments.`, 'B', 'M'],
-
-["Promotions", "How should promotion increases work?",
-`**Answer:** Move salary to at least the new range minimum with guidelines (e.g. 8–12%), considering position in new range and equity.
-
-Tip: Guidelines.`, 'B', 'E'],
-
-["Executive Comp", "What is unique about executive compensation?",
-`**Answer:** Heavy long-term incentive mix, peer group benchmarking, board compensation committee approval, proxy disclosure, say-on-pay votes, and clawback policies (SEC rule).
-
-Tip: Clawback rule.`, 'D', 'S'],
-
-["Budget", "How do you set the annual merit budget?",
-`**Answer:** Market movement surveys (e.g. ~3.5% projected), company performance and affordability, turnover data, and competitive position.
-
-Tip: Survey data.`, 'B', 'M'],
-
-["Data", "Which tools do you use?",
-`**Answer:** HRIS compensation modules (Workday, SuccessFactors), survey platforms, Excel modeling, and comp planning tools like Pave or Payfactors.
-
-Tip: Modeling.`, 'B', 'E'],
-
-["Retention", "How do you use retention bonuses?",
-`**Answer:** For critical employees during transitions (acquisitions, projects), with vesting or clawback conditions, targeted and time-limited.
-
-Tip: Clawback.`, 'B', 'M'],
-
-["Recognition", "How do recognition programs fit total rewards?",
-`**Answer:** Spot bonuses and non-cash recognition reinforce behaviors and engagement at lower cost.
-
-Tip: Timeliness.`, 'B', 'E'],
-
-["Global", "What's different about global compensation?",
-`**Answer:** Local market practices (13th month, allowances), statutory benefits, currency, tax and legal requirements, and global grading consistency.
-
-Tip: Local practices.`, 'D', 'M'],
-
-["Scenario", "A key employee says a competitor offered 30% more. What do you advise?",
-`**Answer:** Check market data and internal equity, understand non-pay factors, consider targeted adjustment or retention bonus if justified, and avoid reactive pay inflation.
-
-Tip: Data first.`, 'B', 'M'],
-
-["Scenario", "Leadership wants to cut benefits costs 10%. What do you propose?",
-`**Answer:** Analyze claims and plan design, consider contribution changes, HSA plans, network or pharmacy strategies, and vendor renegotiation — weighing employee impact.
-
-Tip: Employee impact.`, 'D', 'M'],
-
-["Analytics", "Which compensation metrics do you report?",
-`**Answer:** Compa-ratio distribution, below-minimum and above-maximum counts, pay equity gaps, merit spend vs budget, pay mix and market position.
-
-Tip: Market position.`, 'B', 'E'],
-
-["Leave", "How do leave programs fit benefits?",
-`**Answer:** Paid parental leave, PTO policies, and compliance with state paid leave laws — balancing cost, competitiveness and compliance.
-
-Tip: State laws.`, 'B', 'E'],
-
-["ACA", "What ACA requirements matter for employers?",
-`**Answer:** Applicable large employers (50+ FTEs) must offer affordable minimum value coverage to full-time employees or face penalties, and file Forms 1094-C/1095-C.
-
-Tip: Affordability.`, 'D', 'M'],
-
-["Philosophy", "What is a compensation philosophy?",
-`**Answer:** A statement defining market position (e.g. 50th percentile base, 75th for total with incentives), pay mix, peer groups and principles like pay for performance and equity.
-
-Tip: Guides decisions.`, 'B', 'E']
-];
+QB["hr-comp"] = (QB["hr-comp"] || []).concat([
+["Role", "What does a compensation manager do?", "**Why they ask:** scope.\n\n**Answer:** Designs and manages pay programs that attract, retain and motivate employees while controlling costs: job architecture and leveling, salary structures, market pricing, merit and bonus programs, sales compensation, equity, pay equity analysis, compliance and manager guidance — often with benefits responsibilities.\n\nTip: Mention programs you've owned.", "B", "E"],
+["Market Pricing", "How do you price a job against the market?", "**Why they ask:** the core comp skill.\n\n**Answer:**\n\"Match the job to survey benchmarks by its actual content and level, not its title — a 'Senior Analyst' at one company may be another's 'Analyst II'. I use reputable surveys like Radford, Mercer, WTW or Payscale, age all data to a common effective date — at 3.5% a year, data from nine months ago gets about 2.6% added — blend sources, pick the percentile our pay philosophy targets, usually the 50th, and adjust for geography.\"\n\nTip: Match by content.", "B", "M"],
+["Structures", "How do you build salary ranges?", "**Why they ask:** structure design.\n\n**Answer:**\n\"Set midpoints from market data for each grade, choose a range spread — 40 to 60% for professional roles — and keep midpoint progression between grades around 10 to 15%. With a $100K midpoint and a 50% spread, the minimum is $80K and the maximum $120K — the max is 50% above the min. I review the structure annually against market movement.\"\n\nTip: Show math.", "B", "M"],
+["Compa-ratio", "What is compa-ratio?", "**Why they ask:** a basic comp metric.\n\n**Answer:**\n\"Salary divided by the range midpoint. A $90K salary in a range with a $100K midpoint is a compa-ratio of 0.90 — 10% below market midpoint. It shows how someone is positioned and guides merit increases: an experienced strong performer at 0.85 is likely underpaid.\"\n\nTip: Simple.", "B", "E"],
+["Range Penetration", "What is range penetration?", "**Why they ask:** positioning within range.\n\n**Answer:**\n\"Salary minus range minimum, divided by maximum minus minimum. $90K in an $80K-to-$120K range is $10K over $40K — 25% of the way through the range. It complements compa-ratio by showing room left to grow.\"\n\nTip: Position in range.", "B", "M"],
+["Merit", "How do you design a merit matrix?", "**Why they ask:** pay-for-performance design.\n\n**Answer:**\n\"Increases vary by performance rating and by position in range, so a top performer at a 0.85 compa-ratio might get 6%, while a top performer at 1.15 gets 3.5% — both within an overall budget of, say, 3.5%. That moves strong performers toward market faster and slows growth for people already high in the range.\"\n\nTip: Performance × position.", "B", "M"],
+["Job Architecture", "What is job architecture?", "**Why they ask:** foundation knowledge.\n\n**Answer:**\n\"A framework of job families, levels and career tracks — individual contributor and management — with clear leveling criteria. It's the foundation for pay ranges, career paths and pay equity analysis. Dual career tracks let a strong engineer reach a senior level without having to manage people.\"\n\nTip: Dual career tracks.", "B", "M"],
+["Job Evaluation", "How do you evaluate jobs?", "**Why they ask:** internal and external equity.\n\n**Answer:**\n\"Primarily market pricing, combined with a point-factor method like Hay or Mercer IPE for internal leveling, scoring knowledge, problem solving, accountability and scope. Market data says what the outside pays; job evaluation keeps internal relationships logical, especially for unique roles without good benchmarks.\"\n\nTip: Market + internal.", "D", "M"],
+["Incentives", "How do you design an annual bonus plan?", "**Why they ask:** incentive design.\n\n**Answer:**\n\"Define eligibility and target percentages by level, a funding mechanism tied to company performance, the measures — financial, team and individual — a payout curve with threshold, target and maximum — say 50% payout at 90% of goal, 100% at target, 200% at 120% — and governance. Employees need line of sight: they should see how their work moves the measures.\"\n\nTip: Line of sight.", "D", "M"],
+["Sales Comp", "How do you design sales compensation?", "**Why they ask:** specialized comp design.\n\n**Answer:**\n\"Set target total cash and the pay mix — a hunter might be 50/50 base to variable, an account manager 70/30 — quotas, measures aligned to strategy like revenue, margin or new logos, accelerators above quota, caps or no caps, crediting rules, and clawbacks for cancelled deals. If strategy is margin but the plan pays only on revenue, reps will discount.\"\n\nTip: Pay mix by role.", "D", "M"],
+["Equity", "What are common equity vehicles?", "**Why they ask:** LTI knowledge.\n\n**Answer:**\n\"RSUs, which are shares that vest over time and always have value; stock options — ISOs or NSOs — the right to buy at a fixed strike price, valuable only if the price rises; performance shares that vest based on goals like TSR or revenue; and an ESPP letting employees buy shares at a discount.\"\n\nTip: Vesting schedules.", "B", "M"],
+["Pay Equity", "How do you conduct a pay equity analysis?", "**Why they ask:** fairness and legal risk.\n\n**Answer:**\n\"Group comparable employees, run a regression controlling for legitimate factors — level, tenure, performance, location — and look for unexplained gaps by gender and race. Then investigate outliers individually, remediate, and fix the processes that caused the gaps. It's done under attorney-client privilege so findings can be addressed candidly.\"\n\nTip: Attorney privilege.", "D", "M"],
+["Pay Transparency", "How do you prepare for pay transparency laws?", "**Why they ask:** current regulatory change.\n\n**Answer:**\n\"Make sure every job has a defensible range, set consistent posting practices, train managers to explain pay decisions, and remediate pay equity issues before ranges become visible — because posting a range immediately exposes anyone paid outside it.\"\n\nTip: Fix inequities first.", "B", "M"],
+["FLSA", "How do you determine exempt vs non-exempt status?", "**Why they ask:** wage and hour compliance.\n\n**Answer:**\n\"Under the FLSA, an exempt role must meet the salary basis and salary level tests plus a duties test — executive, administrative, professional, computer or outside sales — and many states, like California and New York, set higher salary thresholds. Job title alone never decides it; actual duties do.\"\n\nTip: Duties matter.", "B", "M"],
+["Benefits", "What benefits programs have you managed?", "**Why they ask:** breadth of experience.\n\n**Answer:**\n\"Medical, dental, vision, life and disability, a 401(k) with match, HSA and FSA, wellness, leave programs, EAP and voluntary benefits — with a big focus on cost management, since medical costs have been rising well above inflation.\"\n\nTip: Cost management.", "B", "E"],
+["Benefits Cost", "How do you manage rising healthcare costs?", "**Why they ask:** cost control.\n\n**Answer:**\n\"Plan design changes, HSA-eligible plans with employer seed money, contribution strategy, wellness and care navigation, pharmacy benefit management — specialty drugs drive much of the increase — vendor negotiations, and for larger employers, analysis of self-funding. All driven by claims data, not guesswork.\"\n\nTip: Data-driven.", "D", "M"],
+["Open Enrollment", "How do you run open enrollment?", "**Why they ask:** execution.\n\n**Answer:**\n\"Finalize plans and rates, configure the systems, communicate early with clear side-by-side comparisons, provide decision tools and support channels, monitor enrollment progress, and audit results — including carrier file feeds — before January 1.\"\n\nTip: Clear communication.", "B", "E"],
+["Retirement", "What are 401(k) plan compliance considerations?", "**Why they ask:** ERISA knowledge.\n\n**Answer:**\n\"Nondiscrimination testing — ADP and ACP tests — annual contribution limits, timely deposit of employee deferrals, fiduciary duties over fees and investment oversight, Form 5500 filing, and safe harbor designs that avoid testing in exchange for a required employer contribution.\"\n\nTip: Fiduciary.", "D", "M"],
+["Total Rewards", "What is a total rewards strategy?", "**Why they ask:** holistic thinking.\n\n**Answer:**\n\"Combining pay, benefits, wellbeing, development and recognition into one value proposition aligned with business goals and the talent we need. A startup might lead with equity and growth; an established company with stability and strong benefits.\"\n\nTip: Holistic.", "B", "M"],
+["Communication", "How do you help managers communicate pay?", "**Why they ask:** manager enablement.\n\n**Answer:**\n\"Training, talking points, total compensation statements, and clear explanations of ranges and how decisions were made. Managers who can explain 'where you are in the range and why' prevent most pay complaints.\"\n\nTip: Manager enablement.", "B", "E"],
+["Behavioral", "Tell me about redesigning a pay program.", "**Why they ask:** proof.\n\n**Answer:**\n\"I rebuilt our salary structure with new market data and job architecture for 3,000 employees. We fixed 400 salaries below range minimum, introduced transparent ranges, and voluntary turnover dropped 4 points.\"\n\nTip: Outcome.", "B", "M"],
+["Behavioral", "Tell me about a pay equity finding you addressed.", "**Why they ask:** fairness in action.\n\n**Answer:**\n\"Analysis found a 6% unexplained gap in one engineering group. We remediated $480K over two cycles and added controls in offer approvals so new gaps didn't open.\"\n\nTip: Remediation and prevention.", "B", "M"],
+["Behavioral", "Tell me about denying a manager's pay request.", "**Why they ask:** judgment and influence.\n\n**Answer:**\n\"A manager wanted to offer 25% above range for a hire, which would have created inequity with the existing team. I proposed a sign-on bonus and a review of whether the role was really a level higher. He hired the candidate without disrupting equity.\"\n\nTip: Alternatives.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"WorldatWork's CCP for compensation, CBP for benefits, GRP for global remuneration, and CEBS.\"\n\nTip: CCP.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward director of total rewards.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I design fair, market-competitive pay programs that reduce turnover and stand up to scrutiny — fixing equity gaps and building transparent structures.\"\n\nTip: Proof.", "B", "E"],
+["Geo Pay", "How do you handle geographic pay differentials?", "**Why they ask:** remote-era pay.\n\n**Answer:**\n\"Location-based structures or differentials built on cost-of-labor data — what employers pay in that market — not cost of living, with clear policies for remote employees and relocations. San Francisco might be 120% of the national structure and a lower-cost metro 90%.\"\n\nTip: Cost of labor, not cost of living.", "D", "M"],
+["Compression", "What is pay compression and how do you fix it?", "**Why they ask:** common problem.\n\n**Answer:**\n\"When new hires earn close to or more than tenured employees because the market rose faster than internal increases. I fix it with targeted adjustments for affected tenured employees, structure updates and regular market reviews.\"\n\nTip: Market adjustments.", "B", "M"],
+["Promotions", "How should promotion increases work?", "**Why they ask:** policy design.\n\n**Answer:**\n\"Move the salary to at least the new range minimum, with guidelines — typically 8 to 12% — adjusted for where that lands in the new range and for equity with peers.\"\n\nTip: Guidelines.", "B", "E"],
+["Executive Comp", "What is unique about executive compensation?", "**Why they ask:** executive comp knowledge.\n\n**Answer:**\n\"A heavy long-term incentive mix, peer group benchmarking, compensation committee approval, proxy disclosure, say-on-pay votes, and clawback policies required under the SEC's rule for recovering erroneously awarded incentive pay.\"\n\nTip: Clawback rule.", "D", "S"],
+["Budget", "How do you set the annual merit budget?", "**Why they ask:** budgeting.\n\n**Answer:**\n\"Market movement surveys — salary increase budgets have been running around 3.5% — combined with company performance and affordability, turnover data, and our competitive position against the market.\"\n\nTip: Survey data.", "B", "M"],
+["Data", "Which tools do you use?", "**Why they ask:** tooling.\n\n**Answer:**\n\"HRIS compensation modules in Workday or SuccessFactors, survey platforms, a lot of Excel modeling, and comp planning tools like Pave or Payfactors.\"\n\nTip: Modeling.", "B", "E"],
+["Retention", "How do you use retention bonuses?", "**Why they ask:** targeted rewards.\n\n**Answer:**\n\"For critical employees during transitions like acquisitions or key projects — targeted, time-limited, and with vesting or clawback conditions, such as half paid at closing and half after six months.\"\n\nTip: Clawback.", "B", "M"],
+["Recognition", "How do recognition programs fit total rewards?", "**Why they ask:** non-cash rewards.\n\n**Answer:**\n\"Spot bonuses and non-cash recognition reinforce behaviors and engagement at much lower cost than base pay increases — and timeliness matters more than size.\"\n\nTip: Timeliness.", "B", "E"],
+["Global", "What's different about global compensation?", "**Why they ask:** global experience.\n\n**Answer:**\n\"Local market practices like 13th-month pay and allowances, statutory benefits, currency, tax and legal requirements, and keeping global grading consistent so a level 5 means the same thing everywhere.\"\n\nTip: Local practices.", "D", "M"],
+["Scenario", "A key employee says a competitor offered 30% more. What do you advise?", "**Why they ask:** retention judgment.\n\n**Answer:**\n\"Check market data and internal equity first, understand the non-pay factors in their decision, consider a targeted adjustment or retention bonus if the data justifies it, and avoid reactive pay inflation that creates inequity with equally strong peers who didn't threaten to leave.\"\n\nTip: Data first.", "B", "M"],
+["Scenario", "Leadership wants to cut benefits costs 10%. What do you propose?", "**Why they ask:** balancing cost and impact.\n\n**Answer:**\n\"Analyze claims and plan design first, then options: contribution changes, adding or promoting HSA plans, narrow network or pharmacy strategies, and vendor renegotiation — modeling the impact on employees by income band so lower-paid employees aren't hit hardest.\"\n\nTip: Employee impact.", "D", "M"],
+["Analytics", "Which compensation metrics do you report?", "**Why they ask:** measurement.\n\n**Answer:**\n\"Compa-ratio distribution, counts of employees below minimum and above maximum, pay equity gaps, merit spend against budget, pay mix, and market position by job family.\"\n\nTip: Market position.", "B", "E"],
+["Leave", "How do leave programs fit benefits?", "**Why they ask:** leave compliance.\n\n**Answer:**\n\"Paid parental leave, PTO policy, and compliance with the growing number of state paid family and sick leave laws — balancing cost, competitiveness and compliance across every state we operate in.\"\n\nTip: State laws.", "B", "E"],
+["ACA", "What ACA requirements matter for employers?", "**Why they ask:** compliance knowledge.\n\n**Answer:**\n\"Applicable large employers — 50 or more full-time equivalents — must offer affordable, minimum value coverage to full-time employees or risk penalties, and file Forms 1094-C and 1095-C each year.\"\n\nTip: Affordability.", "D", "M"],
+["Philosophy", "What is a compensation philosophy?", "**Why they ask:** strategic foundation.\n\n**Answer:**\n\"A statement of our market position — say 50th percentile base and 75th percentile total cash with incentives — pay mix, peer groups and principles like pay for performance and internal equity. It's what decisions get checked against.\"\n\nTip: Guides decisions.", "B", "E"]
+]);

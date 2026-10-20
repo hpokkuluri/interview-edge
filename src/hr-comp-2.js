@@ -1,38 +1,11 @@
-QB['hr-comp'] = (QB['hr-comp']||[]).concat([
-["Calibration", "How do you calibrate merit and bonus decisions?",
-`**Answer:** Review the proposed distributions by manager and department, check alignment with performance ratings, budget and equity (including demographic checks), challenge outliers, and finalize with leadership approval.
-
-Tip: Check equity in calibration.`, 'B', 'M'],
-["Long-term Incentives", "How do you set equity grant guidelines?",
-`**Answer:** Base them on market LTI values by level, express them as dollar values converted to shares, decide new-hire versus refresh grants, set vesting schedules (for example 4 years with a 1-year cliff for options, or quarterly vesting for RSUs), and model burn rate and dilution.
-
-Tip: Burn rate.`, 'D', 'M'],
-["Survey Participation", "Why participate in salary surveys?",
-`**Answer:** Participants get access to more detailed, accurate market data at lower cost. It requires matching your jobs to the survey benchmarks carefully.
-
-Tip: Data access.`, 'B', 'E'],
-["Hourly", "How do you set hourly pay rates?",
-`**Answer:** Local market data, competitor postings, minimum wage laws (state and local), shift differentials, overtime costs and retention data. Review more often in tight labor markets.
-
-Tip: Local laws.`, 'B', 'E'],
-["Off-cycle", "How do you handle off-cycle adjustment requests?",
-`**Answer:** Have clear criteria (market, retention risk, equity, promotion), require justification and approvals, track the budget impact, and avoid creating new inequities.
-
-Tip: Criteria.`, 'B', 'M'],
-["Bonus Math", "Calculate a bonus payout.",
-`**Answer:** Salary $120K, target 15%, company funding 110%, individual modifier 1.2 → $120K × 15% × 1.10 × 1.2 = $23,760.
-
-Tip: Show the formula.`, 'B', 'E'],
-["Benefits Benchmarking", "How do you benchmark benefits?",
-`**Answer:** Benefits surveys (Mercer, KFF), broker data and peer comparisons on plan design, employee cost share and value, alongside employee feedback.
-
-Tip: Employee feedback.`, 'B', 'E'],
-["Wellbeing ROI", "How do you evaluate wellbeing program ROI?",
-`**Answer:** Participation, health outcomes and claims trends, absenteeism, engagement and retention. Be careful about causation claims.
-
-Tip: Be honest about causation.`, 'D', 'M'],
-["Scenario", "Market data shows engineering pay jumped 8% while the merit budget is 3.5%. What do you do?",
-`**Answer:** Prioritize market adjustments for critical, below-market roles, use differentiated merit, consider a separate market adjustment pool, and present the cost and risk trade-offs to leadership.
-
-Tip: Targeted adjustments.`, 'D', 'M']
+QB["hr-comp"] = (QB["hr-comp"] || []).concat([
+["Calibration", "How do you calibrate merit and bonus decisions?", "**Why they ask:** fairness process.\n\n**Answer:**\n\"Review proposed distributions by manager and department, check alignment with performance ratings, budget and equity — including demographic checks — challenge outliers, and finalize with leadership approval.\"\n\nTip: Check equity in calibration.", "B", "M"],
+["Long-term Incentives", "How do you set equity grant guidelines?", "**Why they ask:** LTI program design.\n\n**Answer:**\n\"Base them on market LTI values by level, express them as dollar values converted to shares at grant, decide new-hire versus refresh grants, set vesting — for example four years with a one-year cliff, or quarterly RSU vesting — and model burn rate and dilution against shareholder guidelines.\"\n\nTip: Burn rate.", "D", "M"],
+["Survey Participation", "Why participate in salary surveys?", "**Why they ask:** data strategy.\n\n**Answer:**\n\"Participants get more detailed, accurate market data at lower cost. It requires careful job matching to the survey's benchmarks, which is real work but pays off in data quality.\"\n\nTip: Data access.", "B", "E"],
+["Hourly", "How do you set hourly pay rates?", "**Why they ask:** hourly workforce knowledge.\n\n**Answer:**\n\"Local market data, competitor postings, state and local minimum wage laws, shift differentials, overtime costs and retention data — reviewed more often in tight labor markets, sometimes quarterly.\"\n\nTip: Local laws.", "B", "E"],
+["Off-cycle", "How do you handle off-cycle adjustment requests?", "**Why they ask:** governance.\n\n**Answer:**\n\"Clear criteria — market, retention risk, equity, promotion — required justification and approvals, budget tracking, and checking that the adjustment doesn't create a new inequity with peers.\"\n\nTip: Criteria.", "B", "M"],
+["Bonus Math", "Calculate a bonus payout.", "**Why they ask:** numeracy.\n\n**Answer:**\n\"Salary times target percentage times company funding times individual modifier. With a $120K salary, a 15% target, company funding at 110% and an individual modifier of 1.2: $120K times 0.15 is $18,000, times 1.10 is $19,800, times 1.2 is $23,760.\"\n\nTip: Show the formula.", "B", "E"],
+["Benefits Benchmarking", "How do you benchmark benefits?", "**Why they ask:** competitiveness.\n\n**Answer:**\n\"Benefits surveys like Mercer and KFF, broker data and peer comparisons on plan design, employee cost share and overall value — alongside employee feedback on what they actually value.\"\n\nTip: Employee feedback.", "B", "E"],
+["Wellbeing ROI", "How do you evaluate wellbeing program ROI?", "**Why they ask:** analytical honesty.\n\n**Answer:**\n\"Participation, health outcomes and claims trends, absenteeism, engagement and retention — while being careful about causation, because healthier people are more likely to join wellness programs in the first place.\"\n\nTip: Be honest about causation.", "D", "M"],
+["Scenario", "Market data shows engineering pay jumped 8% while the merit budget is 3.5%. What do you do?", "**Why they ask:** practical trade-offs.\n\n**Answer:**\n\"Prioritize market adjustments for critical roles that are now below market, use differentiated merit, propose a separate market adjustment pool — maybe 1 to 2% of engineering payroll — and present the cost against the risk of losing engineers, whose replacement costs far more.\"\n\nTip: Targeted adjustments.", "D", "M"]
 ]);
