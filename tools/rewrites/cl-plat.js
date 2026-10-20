@@ -1,0 +1,396 @@
+// Rewritten Cloud & DevOps — Platform Engineer (Why they ask → Answer → Tip). Apply with rewrite.js (prefix cl-plat-).
+module.exports = {
+
+'How do you treat the platform as a product?':
+`**Why they ask:** platform teams fail when they build what nobody uses.
+
+**Answer:**
+"Developers are my customers. I interview them and look at data — tickets, CI times, onboarding time — to find the real pain, keep a public roadmap, measure adoption and satisfaction, write good docs, offer support, and iterate on feedback. I avoid mandating tools people hate. Success is developers choosing the platform because it's genuinely the easiest way to ship."
+
+Tip: Developer interviews.`,
+
+'What is a golden path?':
+`**Why they ask:** a core platform concept.
+
+**Answer:**
+"An opinionated, supported, well-documented way to do a common task. For example: create a new service from a template and get the repo, CI/CD, observability, security scanning and deployment already wired up. Teams can deviate when they have a reason, but the golden path is the easiest road, so most take it."
+
+Tip: Opinionated but optional.`,
+
+'What is Backstage and why use a developer portal?':
+`**Why they ask:** portal experience.
+
+**Answer:**
+"Backstage is the CNCF open-source developer portal framework: a software catalog of services, owners, docs and APIs; software templates for scaffolding; TechDocs; and plugins for CI, cloud and monitoring. A portal answers 'who owns this service and where are its docs?' in seconds and makes self-service discoverable. Commercial alternatives include Port, Cortex and OpsLevel."
+
+Tip: Software catalog.`,
+
+'How do you design a multi-tenant Kubernetes platform?':
+`**Why they ask:** shared platform design.
+
+**Answer:**
+"A namespace per team with RBAC, resource quotas and limit ranges, default-deny network policies, policy enforcement with Kyverno or Gatekeeper, separate node pools for sensitive workloads, cost allocation by namespace, and GitOps for all configuration. That's soft multi-tenancy; for strong isolation — regulated data or untrusted code — separate clusters."
+
+Tip: Soft vs hard multi-tenancy.`,
+
+'How do you manage many clusters?':
+`**Why they ask:** fleet operations.
+
+**Answer:**
+"Provision clusters with IaC — Terraform or Cluster API — install add-ons consistently with Argo CD ApplicationSets or Flux, centralize observability and policy, and automate upgrades. Clusters should be cattle: if one is broken, we can rebuild it from code in under an hour."
+
+Tip: Cluster as cattle.`,
+
+'How do you handle Kubernetes upgrades?':
+`**Why they ask:** a constant platform chore.
+
+**Answer:**
+"Track each version's support window, scan for deprecated APIs with pluto or kubent, test in non-prod, upgrade the control plane then node pools with surge settings and PodDisruptionBudgets, update add-ons, and automate as much as possible. Kubernetes ships three minor versions a year, so upgrades have to be routine, not projects."
+
+Tip: Deprecated APIs.`,
+
+'Why use GitOps for a platform?':
+`**Why they ask:** delivery model.
+
+**Answer:**
+"Declarative desired state in Git, automatic reconciliation by Argo CD or Flux, an audit trail through pull requests, rollback by revert, drift detection when someone changes things by hand, and consistent management across many clusters."
+
+Tip: Drift detection.`,
+
+'How do you offer infrastructure self-service?':
+`**Why they ask:** removing ticket queues.
+
+**Answer:**
+"Reusable Terraform modules or Crossplane compositions exposed through templates or the portal — 'give me a Postgres database' — with policy checks, automated provisioning pipelines, and guardrails like approved sizes and regions. A request that used to take a week of tickets takes ten minutes."
+
+Tip: Crossplane for Kubernetes-native IaC.`,
+
+'How do you build security into the platform?':
+`**Why they ask:** secure by default.
+
+**Answer:**
+"Secure defaults in every template — non-root containers, network policies — image scanning and signing, admission policies, secrets management built in, least-privilege workload identity, SBOMs, and vulnerability dashboards per team. If the template is secure, every new service starts secure without the team thinking about it."
+
+Tip: Secure by default.`,
+
+'How do you provide observability as a platform capability?':
+`**Why they ask:** zero-effort telemetry.
+
+**Answer:**
+"Auto-instrumentation with OpenTelemetry, standardized logging, metrics and tracing pipelines, default dashboards and SLO templates per service, and alerting wired to the on-call tool. A team deploys a new service and already has a dashboard and basic alerts without doing anything."
+
+Tip: Defaults matter.`,
+
+'How do you standardize CI/CD across teams?':
+`**Why they ask:** consistency without rigidity.
+
+**Answer:**
+"Reusable pipeline templates or workflows, shared actions, centrally maintained runners, built-in security scanning and deployment strategies — with extension points for team-specific steps. Teams inherit improvements automatically when we update the template."
+
+Tip: Templates with extension points.`,
+
+'How do you measure platform success?':
+`**Why they ask:** proving value.
+
+**Answer:**
+"Adoption — the share of services on golden paths — DORA metrics for teams on the platform, time to first deploy for a new service, developer satisfaction through surveys or NPS, support ticket volume, and the reliability of platform components. Time to first deploy is the one leadership remembers."
+
+Tip: Time to first deploy.`,
+
+'What is cognitive load and why does it matter?':
+`**Why they ask:** the why behind platforms.
+
+**Answer:**
+"It's the mental effort a task demands. When product developers must understand Kubernetes, Terraform, IAM and observability tooling just to ship, that effort is taken from product work. Platforms reduce it by abstracting the complexity — the Team Topologies idea of platform teams serving stream-aligned teams."
+
+Tip: Team Topologies.`,
+
+'Explain Team Topologies.':
+`**Why they ask:** organizational design literacy.
+
+**Answer:**
+"Four team types: stream-aligned teams that deliver business value, platform teams that provide internal services, enabling teams that help others adopt new skills, and complicated-subsystem teams for deep specialties. And three interaction modes: collaboration, X-as-a-service, and facilitating. A mature platform team mostly works X-as-a-service."
+
+Tip: Platform team as X-as-a-service.`,
+
+'How does a platform help control costs?':
+`**Why they ask:** cost governance.
+
+**Answer:**
+"Cost visibility per team and service, right-sized defaults in templates, autoscaling, scheduled shutdown of non-prod, spot where suitable, and showback or chargeback reports. When teams see their own spend, behavior changes quickly."
+
+Tip: Showback.`,
+
+'How much should a platform abstract?':
+`**Why they ask:** abstraction judgment.
+
+**Answer:**
+"Enough to remove repetitive complexity, not so much that teams can't debug or customize. I provide escape hatches and transparency into the underlying resources — a team should be able to see the actual Kubernetes objects when something goes wrong."
+
+Tip: Avoid leaky or rigid abstractions.`,
+
+'How do you drive platform adoption?':
+`**Why they ask:** influence without authority.
+
+**Answer:**
+"Start with the teams feeling the most pain, deliver quick wins, help with migrations hands-on, publish docs and examples, run office hours, and showcase success stories — 'Team X cut deploy time from an hour to eight minutes.'"
+
+Tip: Earn adoption.`,
+
+'What are service scorecards?':
+`**Why they ask:** maturity tracking.
+
+**Answer:**
+"Portal views showing whether each service meets standards — owner, docs, on-call, security scans, SLOs, dependency updates. They make maturity visible and a little competitive, which nudges teams to improve without mandates."
+
+Tip: Gamify standards.`,
+
+'How do you provide ephemeral environments?':
+`**Why they ask:** developer velocity.
+
+**Answer:**
+"A preview environment per pull request — a Kubernetes namespace deployed by GitOps or a platform tool — with seeded test data, automatic teardown on merge or after a timeout, and cost limits. Without teardown automation, preview environments quietly become a big bill."
+
+Tip: Teardown automation.`,
+
+'How do you integrate secrets management into the platform?':
+`**Why they ask:** secrets at scale.
+
+**Answer:**
+"The External Secrets Operator or a CSI driver syncs secrets from Vault or the cloud secret manager, workload identity controls access, rotation is supported, and no secrets ever go in Git."
+
+Tip: External Secrets.`,
+
+'How do you enforce standards without blocking teams?':
+`**Why they ask:** governance with empathy.
+
+**Answer:**
+"Policy as code in warn mode first, then enforce after teams have had time to fix. Clear error messages that say how to fix it, an exceptions process, and automated fixes where possible. A policy that just says 'denied' generates tickets and resentment."
+
+Tip: Warn before enforce.`,
+
+'Should a platform offer databases as a service?':
+`**Why they ask:** scope judgment.
+
+**Answer:**
+"Often yes — managed cloud databases provisioned through templates with backups, monitoring and security defaults. I'd avoid running databases on Kubernetes unless the team has strong expertise and a real reason."
+
+Tip: Prefer managed services.`,
+
+'What networking capabilities does a platform provide?':
+`**Why they ask:** platform scope.
+
+**Answer:**
+"Ingress or Gateway API, DNS automation with ExternalDNS, TLS certificates with cert-manager, service-to-service security through network policies and mTLS where needed, and egress controls."
+
+Tip: Gateway API.`,
+
+'How do you document a platform?':
+`**Why they ask:** docs drive adoption.
+
+**Answer:**
+"Getting-started guides, golden-path tutorials, reference docs, architecture overviews, FAQs and troubleshooting — written as docs-as-code next to the platform code and surfaced in the portal."
+
+Tip: Docs as code.`,
+
+'How do you support platform users?':
+`**Why they ask:** customer mindset.
+
+**Answer:**
+"Clear support channels, SLAs for platform issues, office hours, a feedback loop into the roadmap, and self-service troubleshooting guides."
+
+Tip: Treat developers as customers.`,
+
+'How do you ensure platform reliability?':
+`**Why they ask:** platform outages hit everyone.
+
+**Answer:**
+"SLOs for platform services — CI availability, deployment success rate, cluster API availability — redundancy, careful change management for shared components with staged rollouts, and a proper incident process. A platform outage stops every team at once."
+
+Tip: Blast radius.`,
+
+'Tell me about a platform capability you built.':
+`**Why they ask:** proof.
+
+**Answer:**
+"I built a Backstage service template that created the repo, CI pipeline, Kubernetes manifests, dashboards and alerts in five minutes. Time to first production deploy for new services fell from two weeks to one day, and 80% of new services used it."
+
+Tip: Adoption and time saved.`,
+
+'Tell me about a platform decision developers pushed back on.':
+`**Why they ask:** learning from resistance.
+
+**Answer:**
+"We mandated a new deployment tool and adoption stalled. We made it optional, improved the templates and offered migration help, and adoption grew organically to 70%."
+
+Tip: Learning about mandates.`,
+
+'How do you prioritize platform work?':
+`**Why they ask:** roadmap discipline.
+
+**Answer:**
+"By developer pain and impact — from surveys, tickets and metrics — alignment with company priorities, and effort, with capacity reserved for reliability and upgrades so the foundation doesn't rot."
+
+Tip: Data-driven roadmap.`,
+
+'How is AI affecting platform engineering?':
+`**Why they ask:** current trends.
+
+**Answer:**
+"AI assistants in portals that answer platform questions and generate configs, AI-assisted incident triage, and platforms offering AI capabilities as self-service — model gateways, GPU scheduling, vector databases."
+
+Tip: AI platforms as a product.`,
+
+'Where do you want to grow?':
+`**Why they ask:** career fit.
+
+**Answer:**
+"Toward staff platform engineer or platform product lead — setting developer experience strategy at scale."
+
+Tip: Direction.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I build platforms developers actually choose — golden paths that cut time to first deploy from weeks to a day — with security and cost controls built in."
+
+Tip: Proof.`,
+
+'What is a Kubernetes operator?':
+`**Why they ask:** extensibility.
+
+**Answer:**
+"A controller with custom resources that automates operational knowledge for an application — provisioning a database, backups, upgrades — continuously reconciling desired state with actual state."
+
+Tip: Custom resources.`,
+
+'How do you design a platform across multiple clouds?':
+`**Why they ask:** multi-cloud reality.
+
+**Answer:**
+"Abstract the common capabilities — Kubernetes, GitOps, observability, and IaC modules with a backend per cloud — keep cloud-specific managed services where they add real value, and standardize the developer interface so a team requests 'a database' the same way everywhere."
+
+Tip: Common interface, cloud-specific backends.`,
+
+'How do you measure developer experience?':
+`**Why they ask:** DX measurement.
+
+**Answer:**
+"Surveys using frameworks like SPACE or DX, build and CI times, onboarding time, time spent waiting on others, deployment frequency, and qualitative feedback. Pairing survey sentiment with system data shows where friction actually is."
+
+Tip: SPACE framework.`,
+
+'How can a platform speed up developer onboarding?':
+`**Why they ask:** day-one productivity.
+
+**Answer:**
+"Automated access provisioning, one-command dev environment setup with dev containers or cloud dev environments, templates, a catalog with docs, and starter tasks. The goal is a new hire shipping a small change on day one or two."
+
+Tip: Day-one productivity.`,
+
+'What are cloud development environments?':
+`**Why they ask:** tooling awareness.
+
+**Answer:**
+"Preconfigured, reproducible development environments running in the cloud — GitHub Codespaces, Gitpod, Coder, or dev containers. Everyone gets the same setup, which ends 'works on my machine' and speeds onboarding."
+
+Tip: Consistency.`,
+
+'How do platforms help with compliance?':
+`**Why they ask:** regulated environments.
+
+**Answer:**
+"Built-in controls — audit logging, encryption, access policies — automated evidence collection, policy checks in pipelines, and standardized configurations that already meet requirements. Teams on the golden path are compliant by default."
+
+Tip: Compliance by default.`,
+
+'How do you version and roll out platform changes?':
+`**Why they ask:** change management.
+
+**Answer:**
+"Semantic versioning for templates and modules, changelogs, staged rollouts across environments and teams, deprecation notices with timelines, and migration guides."
+
+Tip: Communicate changes.`,
+
+'How do you speed up builds across the organization?':
+`**Why they ask:** developer productivity.
+
+**Answer:**
+"Remote caching with Bazel, Nx, Turborepo or Gradle, faster runners, dependency caching, incremental builds and container layer caching. Remote caching alone can cut monorepo builds by more than half, because most code didn't change."
+
+Tip: Remote caching.`,
+
+'Why is a service catalog with ownership important?':
+`**Why they ask:** accountability.
+
+**Answer:**
+"It shows who owns each service, its dependencies, docs and on-call. During an incident or a critical CVE, knowing exactly who to call for 400 services is the difference between hours and days."
+
+Tip: Ownership drives accountability.`,
+
+'Teams are building their own CI pipelines differently. What do you do?':
+`**Why they ask:** standardization approach.
+
+**Answer:**
+"Understand why first, build shared templates that cover the common needs with room for flexibility, migrate willing teams first, and show the benefits — less maintenance, built-in security."
+
+Tip: Carrot over stick.`,
+
+'Leadership wants the platform team to cut costs by 20%. How?':
+`**Why they ask:** cost delivery.
+
+**Answer:**
+"Start with data — cost visibility by team and service. Then right-size defaults, autoscaling, spot for non-critical workloads, cleanup automation, consolidating underused clusters, and commitments for the steady baseline."
+
+Tip: Data first.`,
+
+'What is a thinnest viable platform?':
+`**Why they ask:** avoiding over-building.
+
+**Answer:**
+"Start with the smallest set of capabilities that meaningfully helps teams — sometimes just documentation and a couple of templates — and grow based on demand, instead of building a huge platform up front that nobody asked for."
+
+Tip: Avoid over-building.`,
+
+'Why should platforms offer APIs, not just UIs?':
+`**Why they ask:** design philosophy.
+
+**Answer:**
+"APIs enable automation, integration with other tools and infrastructure as code; UIs help discovery. Good platforms offer both, API first."
+
+Tip: API-first.`,
+
+'What would you ask about our platform needs?':
+`**Why they ask:** diagnostic curiosity.
+
+**Answer:**
+"What slows developers down today? How many teams and services do you have? What's the cloud and Kubernetes footprint? How will you measure platform success?"
+
+Tip: Diagnostic questions.`,
+
+'How do you handle a platform outage affecting all teams?':
+`**Why they ask:** incident leadership.
+
+**Answer:**
+"Declare a high-severity incident, communicate broadly and early, mitigate fast, offer workarounds, and run a postmortem focused on reducing blast radius next time."
+
+Tip: Communication.`,
+
+'What should a service template include?':
+`**Why they ask:** golden path depth.
+
+**Answer:**
+"Repo structure and language scaffolding, Dockerfile, CI/CD pipeline, deployment manifests, observability — logging, metrics, tracing, dashboards, alerts — security scanning, ownership metadata for the catalog, and a docs skeleton. Everything a service needs on day one."
+
+Tip: Everything needed for day one.`,
+
+'How do you collect developer feedback?':
+`**Why they ask:** product discipline.
+
+**Answer:**
+"Regular surveys, interviews, usage analytics, support ticket analysis, office hours, and platform champions embedded in product teams."
+
+Tip: Multiple channels.`,
+
+};

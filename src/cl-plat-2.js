@@ -1,10 +1,4 @@
-QB['cl-plat'] = (QB['cl-plat'] || []).concat([
-["Templates", "What should a service template include?",
-`**Answer:** Repository structure, language scaffolding, Dockerfile, CI/CD pipeline, Kubernetes/deployment manifests, observability (logging, metrics, tracing, dashboards, alerts), security scanning, ownership metadata for the catalog, and documentation skeleton.
-
-Tip: Everything needed for day one.`, 'B', 'M'],
-["Feedback", "How do you collect developer feedback?",
-`**Answer:** Regular surveys, interviews, usage analytics, support ticket analysis, office hours and embedded "platform champions" in product teams.
-
-Tip: Multiple channels.`, 'B', 'M']
+QB["cl-plat"] = (QB["cl-plat"] || []).concat([
+["Templates", "What should a service template include?", "**Why they ask:** golden path depth.\n\n**Answer:**\n\"Repo structure and language scaffolding, Dockerfile, CI/CD pipeline, deployment manifests, observability — logging, metrics, tracing, dashboards, alerts — security scanning, ownership metadata for the catalog, and a docs skeleton. Everything a service needs on day one.\"\n\nTip: Everything needed for day one.", "B", "M"],
+["Feedback", "How do you collect developer feedback?", "**Why they ask:** product discipline.\n\n**Answer:**\n\"Regular surveys, interviews, usage analytics, support ticket analysis, office hours, and platform champions embedded in product teams.\"\n\nTip: Multiple channels.", "B", "M"]
 ]);
