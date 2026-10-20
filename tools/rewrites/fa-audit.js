@@ -1,0 +1,396 @@
+// Rewritten Finance & Accounting — Internal Audit (Why they ask → Answer → Tip). Apply with rewrite.js (prefix fa-audit-).
+module.exports = {
+
+'What are the IIA Standards?':
+`**Why they ask:** the professional framework for internal audit.
+
+**Answer:**
+"They're the Institute of Internal Auditors' Global Internal Audit Standards, updated in 2024. They set the requirements for independence, objectivity and proficiency, quality assurance, and how audits are planned, performed and reported. They're the professional rulebook for internal audit, and our charter and methodology should be built on them."
+
+Tip: Mention the CIA certification if you have it or plan to.`,
+
+'What is SOX 404?':
+`**Why they ask:** SOX drives much of internal audit's work.
+
+**Answer:**
+"Section 404 of Sarbanes-Oxley requires management to assess internal control over financial reporting every year. 404(a) is management's own assessment. 404(b) requires the external auditor to attest to it for accelerated filers. In practice it drives documentation, testing and remediation of key controls. It sits alongside SOX 302, where the CEO and CFO certify each filing."
+
+Tip: Mention SOX 302 as related.`,
+
+'Walk me through a SOX testing cycle.':
+`**Why they ask:** a core process for SOX auditors.
+
+**Answer:**
+"It starts with scoping — choosing significant accounts, locations and processes using materiality. Then documentation: process narratives or flowcharts, and a risk and control matrix. Walkthroughs confirm the process and test design. Then operating effectiveness testing — interim testing, usually in Q3, and roll-forward testing in Q4. Deficiencies are evaluated and remediated, and management reaches its conclusion in coordination with the external auditor."
+
+Tip: Mention the timeline — interim in Q3, roll-forward in Q4.`,
+
+'How do you test a control?':
+`**Why they ask:** the core auditor skill.
+
+**Answer:**
+"First I understand the control: who does it, what, when, how, and what evidence it leaves. A walkthrough tests the design. Then I test operating effectiveness with a sample based on frequency — one for an annual control, two for quarterly, two to five for monthly, five to fifteen for weekly, twenty to forty for daily. I combine inquiry — never on its own — with observation, inspection and reperformance, and document results and exceptions. Reperformance is the strongest evidence."
+
+Tip: Say that reperformance is the strongest evidence.`,
+
+'What is the difference between control design and operating effectiveness?':
+`**Why they ask:** a basic concept that trips people up.
+
+**Answer:**
+"Design asks: if the control is done as described, would it actually prevent or detect the risk? Operating effectiveness asks: did it actually work, consistently, all period? Either can fail. A well-designed bank reconciliation that's skipped in two months fails on operation. A manager review with no threshold that only looks at totals fails on design, even if it's signed every month."
+
+Tip: Give an example of each failure.`,
+
+'Preventive vs detective controls — give examples.':
+`**Why they ask:** control basics.
+
+**Answer:**
+"Preventive controls stop errors before they happen — approval workflows, segregation of duties, system access restrictions, three-way match. Detective controls find errors after they happen — reconciliations, management reviews, exception reports. A good process uses both. And automated preventive controls are usually the most reliable."
+
+Tip: Mention that automated controls are often more reliable.`,
+
+'What is an automated control and how is it tested?':
+`**Why they ask:** connects business controls to IT controls.
+
+**Answer:**
+"It's a control the system performs — like a three-way match tolerance or a mandatory field check. If the ITGCs over change management and access are effective, I can test it once — called benchmarking — because the system will behave the same way every time. The evidence is the configuration screenshot plus a test transaction showing it works. If ITGCs fail, that shortcut is gone."
+
+Tip: The link to ITGCs is the classic follow-up.`,
+
+'What are ITGCs and why do they matter?':
+`**Why they ask:** without ITGCs, system controls can't be relied on.
+
+**Answer:**
+"IT general controls support the reliability of systems and data. There are four areas: access to programs and data — provisioning, terminations, privileged access and periodic reviews; program change management — testing, approval and keeping developers out of production; computer operations — job scheduling, backups and incidents; and program development for new systems. If ITGCs fail, auditors can't rely on automated controls or system reports. For cloud systems, we lean on the vendor's SOC 1 report."
+
+Tip: Mention SOC 1 reports for SaaS.`,
+
+'What is a SOC 1 report and how do you use it?':
+`**Why they ask:** almost every company relies on service providers.
+
+**Answer:**
+"It's a report from a service organization's auditor on controls that matter for its customers' financial reporting — like a payroll provider or a cloud ERP. A Type 2 report covers operating effectiveness over a period. I check the scope and the period covered, review any exceptions, and test the complementary user entity controls — the CUECs — that we're responsible for on our side. If the report period doesn't reach our year-end, a bridge letter covers the gap."
+
+Tip: CUECs are what interviewers want to hear.`,
+
+'What is IPE and why do auditors care?':
+`**Why they ask:** IPE failures are a common deficiency.
+
+**Answer:**
+"IPE is information produced by the entity — reports or data used in a control, like an aging report used in the bad-debt reserve review. Auditors test that it's complete and accurate: the report logic is right, the parameters were correct, and the data wasn't altered. If the control relies on bad data, the control fails no matter how carefully it was performed. I test it by reperforming the report parameters and tracing totals to the GL."
+
+Tip: Explain how you test IPE.`,
+
+'Explain deficiency, significant deficiency and material weakness.':
+`**Why they ask:** you must classify findings correctly.
+
+**Answer:**
+"A deficiency is when a control doesn't allow timely prevention or detection of misstatements. A significant deficiency is less severe than a material weakness but important enough for the audit committee. A material weakness means there's a reasonable possibility a material misstatement won't be prevented or detected on time, and it must be disclosed. I evaluate severity by the size of the potential misstatement, the likelihood, and any compensating controls — and several deficiencies in one area can aggregate into a material weakness."
+
+Tip: Mention aggregation.`,
+
+'A control failed in 2 of 25 samples. What do you do?':
+`**Why they ask:** a realistic testing scenario.
+
+**Answer:**
+"I find the root cause of each exception first. Depending on our methodology, I may expand the sample. Then I assess whether the exceptions caused an actual misstatement, whether compensating controls exist, and how severe the deficiency is. I communicate it to the control owner and agree a remediation plan, then retest after it's fixed. For a key control, I'd also discuss severity with the external auditor."
+
+Tip: Mention discussing severity with the external auditor.`,
+
+'How do you build a risk-based audit plan?':
+`**Why they ask:** planning is where audit adds or wastes value.
+
+**Answer:**
+"I start with strategy and objectives and interview leadership. I review prior findings, incidents, regulatory changes and emerging risks — cyber, AI, third parties. I score risks by impact and likelihood, map them to auditable areas, prioritize the high-risk ones within our resources, and get audit committee approval. And I keep flexibility for new risks during the year — ideally a rolling plan updated quarterly."
+
+Tip: Mention a dynamic or rolling plan.`,
+
+'How do you plan an individual audit engagement?':
+`**Why they ask:** shows engagement discipline.
+
+**Answer:**
+"I learn the process through documents, walkthroughs and interviews, identify the key risks and controls, and define the objectives and scope. Then I design the test procedures, set the timeline and resources, and send an engagement letter or kickoff memo to management. Before fieldwork, I run some data analysis so testing focuses on where the risk actually is."
+
+Tip: Mention pre-audit data analysis.`,
+
+'How do you write a good audit finding?':
+`**Why they ask:** findings are audit's product.
+
+**Answer:**
+"Five parts: condition, criteria, cause, effect and recommendation — then an agreed management action plan with an owner and due date. For example: 12 of 40 terminated users still had ERP access — that's the condition — beyond the three-day policy — the criteria — because HR terminations weren't being sent to IT — the cause — which risks unauthorized transactions — the effect. The recommendation is an automated feed from HR to IT."
+
+Tip: A full example is persuasive.`,
+
+'How do you rate audit findings?':
+`**Why they ask:** consistency matters.
+
+**Answer:**
+"By impact — financial, regulatory, reputational or operational — and likelihood, usually as high, medium or low. High findings go to the audit committee with tight remediation deadlines. We calibrate ratings across the team so the same issue gets the same rating no matter who audited it."
+
+Tip: Mention calibration across auditors.`,
+
+'Management disagrees with your finding. What do you do?':
+`**Why they ask:** tests independence and fairness together.
+
+**Answer:**
+"I listen and revisit the evidence objectively — they may know something I missed. If the facts change, I adjust the finding. If they don't, I explain the risk clearly and calmly. If we still disagree, I escalate under the audit charter and report management's view alongside the finding, so the audit committee sees both."
+
+Tip: Independence plus fairness.`,
+
+'How do you track remediation of findings?':
+`**Why they ask:** findings without follow-up are worthless.
+
+**Answer:**
+"I keep a findings tracker with owners and due dates, ask for evidence when items are marked complete, retest the high-risk ones to validate the fix, and report overdue items to the audit committee. That overdue report is what creates accountability."
+
+Tip: Overdue reporting creates accountability.`,
+
+'What are common red flags of fraud?':
+`**Why they ask:** auditors must recognize fraud signals.
+
+**Answer:**
+"Overrides of controls. Unusual journal entries — round amounts, weekend postings, top-side entries. Vendors sharing an employee's address or bank account. Unexplained inventory losses. Employees who never take vacation. Lifestyle beyond their means. And heavy pressure to hit targets. Underneath it all is the fraud triangle: pressure, opportunity and rationalization."
+
+Tip: Mention using data analytics to detect them.`,
+
+'What do you do if you suspect fraud during an audit?':
+`**Why they ask:** wrong handling can ruin an investigation.
+
+**Answer:**
+"I stop and don't alert the suspect. I preserve the evidence. I inform the chief audit executive and follow the fraud response plan, which usually brings in legal, HR and possibly forensic investigators. I don't investigate beyond my authority."
+
+Tip: Confidentiality and process are key.`,
+
+'How do you use data analytics in audit?':
+`**Why they ask:** modern audit relies on data.
+
+**Answer:**
+"I test full populations instead of samples — duplicate payments, segregation of duties conflicts, journal entry analysis, vendor-employee matches, access reviews, inventory movements. I use SQL, Python, ACL or IDEA, and Power BI, and set up continuous monitoring for key risks. For example, a duplicate payment analysis on two years of AP found $180,000 we recovered."
+
+Tip: A real result makes it concrete.`,
+
+'How do you test journal entries?':
+`**Why they ask:** a core audit standard procedure.
+
+**Answer:**
+"I extract all journals for the period and confirm completeness by tying them to the trial balance. Then I filter for risk: manual entries, weekend or holiday postings, round amounts, entries by unusual users, rarely used accounts, and entries just before or after period end. I select from those and test them for support and approval."
+
+Tip: Show you know it's a required procedure.`,
+
+'How do you audit an operational process, like procurement?':
+`**Why they ask:** internal audit goes beyond SOX.
+
+**Answer:**
+"I map the process from requisition to payment and identify the risks — unauthorized purchases, poor supplier selection, overpayment and fraud. I test the controls: approvals, competitive bids, contract compliance, three-way match and vendor master changes. And I look at efficiency too — spend outside contracts, cycle time, and savings that never reach the P&L."
+
+Tip: Mention value-for-money findings, not just compliance.`,
+
+'How do you audit compliance with a regulation?':
+`**Why they ask:** compliance audits are common.
+
+**Answer:**
+"I identify the requirements, map each one to company processes and owners, test that controls meet each requirement, and check the evidence and monitoring. Examples include FCPA, GDPR and privacy laws, export controls, and industry rules like FDA or HIPAA."
+
+Tip: Mention the company's specific regulatory environment.`,
+
+'What would you look at in a cybersecurity audit?':
+`**Why they ask:** cyber is a top board concern.
+
+**Answer:**
+"Governance and policies, asset inventory, access management and MFA, patching and vulnerability management, logging and monitoring, incident response testing, backups and recovery, third-party risk and security awareness. I'd use frameworks like NIST CSF, ISO 27001 or the CIS Controls, and partner with IT audit specialists for the technical testing."
+
+Tip: Mention partnering with IT audit specialists.`,
+
+'How would you audit the use of AI in a company?':
+`**Why they ask:** a new and growing audit area.
+
+**Answer:**
+"I'd start with an inventory of AI use cases, then review the governance and approval process, data privacy and security, how accuracy and bias are tested, human review over key decisions, vendor terms, and monitoring of AI outputs. Frameworks like the NIST AI Risk Management Framework and ISO/IEC 42001 give the structure."
+
+Tip: Shows you're current.`,
+
+'How do you assess third-party risk?':
+`**Why they ask:** vendor failures and breaches are common.
+
+**Answer:**
+"Inventory the critical vendors and risk-rate them by data access, financial impact and regulatory exposure. Review the due diligence — SOC reports, security questionnaires, financial stability. Check contract terms like right to audit and SLAs. And confirm there's ongoing monitoring, not just checks at onboarding. For security-focused vendors, the SOC 2 report matters most."
+
+Tip: Mention SOC 2 for security-focused vendors.`,
+
+'What are the five components of COSO 2013?':
+`**Why they ask:** a framework check.
+
+**Answer:**
+"Control environment — tone at the top, integrity and oversight. Risk assessment. Control activities. Information and communication. And monitoring activities. They're supported by 17 principles. Entity-level controls mainly tie to the control environment."
+
+Tip: Mention that entity-level controls tie to the control environment.`,
+
+'What are entity-level controls?':
+`**Why they ask:** they set the foundation for everything else.
+
+**Answer:**
+"They're controls that operate across the whole organization — the code of conduct, the whistleblower hotline, board and audit committee oversight, the risk assessment process, period-end financial reporting controls, and IT governance. Process-level controls sit on top of them. I test tone at the top through surveys and interviews, not just by reading the code of conduct."
+
+Tip: Mention testing tone at the top.`,
+
+'How do you choose a sample?':
+`**Why they ask:** sampling errors invalidate testing.
+
+**Answer:**
+"Random or systematic selection when I want unbiased results; judgmental when I'm targeting risk. Size depends on control frequency, risk and the confidence we need. And I document the population, how I verified it was complete, and how I selected. Verifying population completeness is the step people most often skip."
+
+Tip: Population completeness is a frequent gap.`,
+
+'How do you present audit results to the audit committee?':
+`**Why they ask:** audit's main stakeholder.
+
+**Answer:**
+"A summary of audits completed against plan, key findings with their ratings, themes across audits, remediation status with overdue items, and emerging risks. Concise and risk-focused, with clear asks. Themes matter more than a list — 'access removal is weak in three systems' tells them more than three separate findings."
+
+Tip: Themes matter more than lists.`,
+
+'How do you build good relationships with auditees?':
+`**Why they ask:** cooperative auditees make better audits.
+
+**Answer:**
+"I explain the purpose and process upfront, respect their time, share preliminary observations early so there are no surprises, recognize what they do well, and make recommendations practical. 'No surprises' builds more trust than anything else."
+
+Tip: 'No surprises' builds trust.`,
+
+'How do you maintain independence?':
+`**Why they ask:** independence is internal audit's foundation.
+
+**Answer:**
+"Internal audit reports functionally to the audit committee. I don't audit areas I recently worked in or helped design — there's a cooling-off period. I don't take operational responsibility, and I disclose any conflicts. Advisory work is fine with safeguards, but management makes the decisions, not me."
+
+Tip: Mention the cooling-off period.`,
+
+'Tell me about a significant finding you raised.':
+`**Why they ask:** proof of impact.
+
+**Answer:**
+"During a procure-to-pay audit, analytics showed 14 vendors sharing bank accounts with employees. Two were legitimate — disclosed employee-owned contractors. But one was a fictitious vendor that had received $95,000. We recovered the funds, tightened vendor setup controls, and implemented quarterly vendor-employee matching."
+
+Tip: Method, finding, impact, fix.`,
+
+'Tell me about a time you had to deliver bad news.':
+`**Why they ask:** auditors deliver bad news constantly.
+
+**Answer:**
+"I had to tell a finance director that their reconciliation control had failed testing three quarters in a row, and would likely be reported as a significant deficiency. I showed them the evidence privately first, explained the impact, and worked with their team on a remediation plan before the audit committee meeting — so they walked in with a fix, not just a problem."
+
+Tip: Private first, solution-focused.`,
+
+'How do you handle a tight audit deadline?':
+`**Why they ask:** audits always run tight.
+
+**Answer:**
+"I prioritize the highest-risk tests, request documents early, use analytics to cut manual testing, keep management informed on timing, and escalate early if evidence is late. Early requests prevent most delays."
+
+Tip: Early requests prevent most delays.`,
+
+'How would you lead an internal audit team?':
+`**Why they ask:** a leadership question.
+
+**Answer:**
+"A clear methodology with quality reviews. Skill development in data analytics, IT audit and certifications. Fair assignments and rotation. Coaching on communication. And a culture of independence and curiosity. For specialized areas, I'd use guest auditors from the business or co-sourcing."
+
+Tip: Mention guest auditors or co-sourcing.`,
+
+'How do you add value beyond compliance?':
+`**Why they ask:** they want a partner, not a checklist.
+
+**Answer:**
+"I focus on business risks and objectives, not just controls. I bring insights on efficiency and cost, use analytics for continuous monitoring, give advisory input on new systems and processes, and share themes that help management decide. For example, an audit recommendation to consolidate 30 freight contracts saved about $400,000 a year."
+
+Tip: Give an example of an efficiency recommendation adopted.`,
+
+'How do you audit an ERP implementation?':
+`**Why they ask:** ERP projects carry big control risks.
+
+**Answer:**
+"I review governance and project risks, data conversion controls — the reconciliation of migrated data — security design and segregation of duties, testing and UAT evidence, cutover and go-live readiness, and controls after go-live. Getting involved early is much better than auditing after go-live, when fixing role design is expensive."
+
+Tip: Mention role design and SoD in the new system.`,
+
+'How do you analyze segregation of duties conflicts in an ERP?':
+`**Why they ask:** SoD is a top ERP risk.
+
+**Answer:**
+"I define a ruleset of conflicting functions — like creating a vendor and paying that vendor. Then extract user roles and privileges and run the analysis with a tool like Oracle Advanced Controls, SAP GRC or Fastpath. Conflicts get remediated by changing roles; where that's not possible, we add compensating controls like reviewing that user's transactions. I analyze at privilege level, not just role names, because role names can hide what access really does."
+
+Tip: Mention privilege-level versus role-level analysis.`,
+
+'Which audit tools have you used?':
+`**Why they ask:** practical skills.
+
+**Answer:**
+"AuditBoard for SOX documentation and the testing workflow, ACL and SQL for analytics, Power BI for dashboards, and Excel for testing workpapers. I've also reviewed SoD reports from Oracle Advanced Controls."
+
+Tip: Name what you used each for — swap in your own.`,
+
+'Which certifications are valuable in audit?':
+`**Why they ask:** shows professional development.
+
+**Answer:**
+"The CIA — Certified Internal Auditor — is the core one. Then CPA, CISA for IT audit, CFE for fraud, and CRMA for risk. I'd choose based on focus area; I'm currently working on the CIA."
+
+Tip: Mention your own plan.`,
+
+'A process owner keeps missing remediation deadlines. What do you do?':
+`**Why they ask:** follow-through with diplomacy.
+
+**Answer:**
+"I find out what's blocking them — resources, competing priorities, complexity. I offer practical help or an interim control, and agree a realistic date. If it keeps slipping, I escalate to their leadership and report it to the audit committee."
+
+Tip: Supportive first, then escalate.`,
+
+'You\'re auditing a process you know little about. How do you prepare?':
+`**Why they ask:** auditors constantly face new areas.
+
+**Answer:**
+"I read the policies and prior audits, interview the process owners, do walkthroughs, review industry guidance, and run analytics on the data to see how the process really works — not just how it's described. And I keep asking 'why' until the risks are clear."
+
+Tip: Curiosity is a core audit skill.`,
+
+'A senior executive asks you to soften a finding. What do you do?':
+`**Why they ask:** an independence test.
+
+**Answer:**
+"I listen to their concerns and correct any factual errors. But the rating and substance have to reflect the evidence. I explain that the audit committee depends on accurate information. If the pressure continues, I tell the chief audit executive and the audit committee."
+
+Tip: Calm and firm.`,
+
+'What emerging risks should internal audit focus on now?':
+`**Why they ask:** they want forward-looking auditors.
+
+**Answer:**
+"Cybersecurity and ransomware, AI governance, third-party and supply chain risk, data privacy, regulatory change like climate disclosures, fraud through digital channels, and talent and culture risks. I'd prioritize the ones most relevant to this industry."
+
+Tip: Pick the ones relevant to the industry.`,
+
+'Why internal audit?':
+`**Why they ask:** motivation.
+
+**Answer:**
+"I like understanding how the whole business works and making it better. Audit gives exposure to every function and to leadership. I want to build a strong foundation in controls and risk before moving into a broader finance or risk leadership role."
+
+Tip: Be honest about the career path.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch for audit.
+
+**Answer:**
+"I test efficiently, write clear findings that management agrees with, and use analytics to find real issues — like the fictitious vendor I uncovered. I understand SOX and ERP controls, which fits your environment."
+
+Tip: Proof and fit.`,
+
+'What is continuous auditing or monitoring?':
+`**Why they ask:** the direction audit is moving.
+
+**Answer:**
+"It's using automated analytics to test transactions and controls on an ongoing basis — daily checks for duplicate payments, SoD conflicts or unusual journals — instead of only during periodic audits. Management owns continuous monitoring; internal audit may run continuous auditing and use the results to decide where to audit. The first analytic I'd automate is duplicate payment detection — easy to build and it pays for itself."
+
+Tip: Name one analytic you'd automate first.`,
+
+};
