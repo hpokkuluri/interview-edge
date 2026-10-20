@@ -1,14 +1,5 @@
-QB['cl-k8s'] = (QB['cl-k8s'] || []).concat([
-["Scaling", "What is Karpenter?",
-`**Answer:** An open-source node autoscaler (originating at AWS) that provisions right-sized nodes directly based on pending pod requirements, faster and more flexibly than the Cluster Autoscaler's fixed node groups, with consolidation to reduce cost.
-
-Tip: Consolidation feature.`, 'D', 'M'],
-["Quotas", "What are ResourceQuotas and LimitRanges?",
-`**Answer:** ResourceQuotas cap total resources (CPU, memory, object counts) per namespace; LimitRanges set default and min/max requests and limits for containers in a namespace.
-
-Tip: Multi-tenancy controls.`, 'B', 'M'],
-["Policy", "Kyverno vs OPA Gatekeeper?",
-`**Answer:** Both enforce policies via admission control. Kyverno uses Kubernetes-native YAML policies and can mutate and generate resources; Gatekeeper uses Rego (OPA) for flexible, powerful policies across systems.
-
-Tip: Team skills decide.`, 'D', 'M']
+QB["cl-k8s"] = (QB["cl-k8s"] || []).concat([
+["Scaling", "What is Karpenter?", "**Why they ask:** modern node autoscaling.\n\n**Answer:**\n\"An open-source node autoscaler, originally from AWS, that provisions right-sized nodes directly from pending pods' requirements instead of scaling fixed node groups. It's faster and more flexible than Cluster Autoscaler, and its consolidation feature replaces under-used nodes with cheaper ones.\"\n\nTip: Consolidation feature.", "D", "M"],
+["Quotas", "What are ResourceQuotas and LimitRanges?", "**Why they ask:** multi-tenancy controls.\n\n**Answer:**\n\"ResourceQuotas cap totals per namespace — CPU, memory, object counts. LimitRanges set default and min/max requests and limits for containers in a namespace, so a pod deployed without requests still gets sensible ones.\"\n\nTip: Multi-tenancy controls.", "B", "M"],
+["Policy", "Kyverno vs OPA Gatekeeper?", "**Why they ask:** policy tooling.\n\n**Answer:**\n\"Both enforce policy through admission control. Kyverno uses Kubernetes-native YAML and can also mutate and generate resources, so it's easy for platform teams. Gatekeeper uses Rego, which is more powerful and reusable beyond Kubernetes but has a learning curve. Team skills usually decide.\"\n\nTip: Team skills decide.", "D", "M"]
 ]);

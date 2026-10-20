@@ -1,255 +1,57 @@
 // cl-k8s — generated from src/cl-k8s-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Kubernetes Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['cl-k8s'] = [
-["Architecture", "Explain Kubernetes architecture.",
-`**Why they ask:** foundational.
-
-**Answer:** **Control plane:** kube-apiserver (front door for all operations), etcd (cluster state store), kube-scheduler (assigns pods to nodes), controller-manager (reconciliation loops), cloud-controller-manager. **Nodes:** kubelet (runs pods), container runtime (containerd), kube-proxy (service networking) or eBPF-based alternatives. Everything works by declaring desired state and controllers reconciling actual state.
-
-Tip: Reconciliation loop concept.`, 'B', 'E'],
-
-["Objects", "Deployment vs StatefulSet vs DaemonSet?",
-`**Answer:** **Deployment:** stateless replicas with rolling updates. **StatefulSet:** stable identities, ordered deployment and persistent volumes per pod — databases, Kafka. **DaemonSet:** one pod per node — logging agents, monitoring, CNI.
-
-Tip: Examples for each.`, 'B', 'E'],
-
-["Networking", "How does Kubernetes networking work?",
-`**Answer:** Every pod gets its own IP; pods communicate without NAT (flat network via the CNI plugin — Calico, Cilium, cloud CNIs). Services provide stable virtual IPs and DNS names load-balancing to pods (ClusterIP, NodePort, LoadBalancer). Ingress or Gateway API route external HTTP traffic.
-
-Tip: CNI plugins.`, 'B', 'M'],
-
-["Networking", "Explain Service types.",
-`**Answer:** **ClusterIP:** internal-only virtual IP (default). **NodePort:** exposes on each node's port. **LoadBalancer:** provisions a cloud load balancer. **ExternalName:** DNS alias. Headless services (clusterIP: None) give direct pod DNS for StatefulSets.
-
-Tip: Headless services.`, 'B', 'M'],
-
-["Networking", "Ingress vs Gateway API?",
-`**Answer:** Ingress is the older API for HTTP routing via controllers (NGINX, cloud). Gateway API is the newer, more expressive standard with role separation (GatewayClass, Gateway, HTTPRoute), supporting richer traffic management.
-
-Tip: Gateway API is the future.`, 'D', 'M'],
-
-["Networking", "What are network policies?",
-`**Answer:** Rules controlling pod-to-pod and pod-to-external traffic by labels and namespaces. By default all traffic is allowed; apply default-deny policies and allow only required flows. Requires a CNI that supports them.
-
-Tip: Default deny.`, 'D', 'M'],
-
-["Storage", "How does persistent storage work in Kubernetes?",
-`**Answer:** PersistentVolumeClaims request storage; StorageClasses define provisioners (CSI drivers for cloud disks, file storage) and parameters; PersistentVolumes are bound to claims. Access modes (ReadWriteOnce, ReadWriteMany) and reclaim policies matter.
-
-Tip: CSI drivers.`, 'B', 'M'],
-
-["Config", "ConfigMaps vs Secrets?",
-`**Answer:** ConfigMaps hold non-sensitive configuration; Secrets hold sensitive data (base64-encoded, not encrypted by default — enable encryption at rest and use external secret managers). Mount as files or environment variables.
-
-Tip: Secrets aren't encrypted by default.`, 'B', 'E'],
-
-["Resources", "What are requests and limits?",
-`**Answer:** **Requests** are guaranteed resources used for scheduling. **Limits** cap usage — exceeding memory limits causes OOMKill; CPU limits cause throttling. Set requests based on actual usage; be careful with CPU limits on latency-sensitive services. QoS classes: Guaranteed, Burstable, BestEffort.
-
-Tip: CPU throttling issue.`, 'B', 'M'],
-
-["Scheduling", "How do you control where pods run?",
-`**Answer:** nodeSelector, node affinity/anti-affinity, pod affinity/anti-affinity, taints and tolerations (dedicate nodes), topology spread constraints (spread across zones), and priority classes.
-
-Tip: Topology spread for HA.`, 'D', 'M'],
-
-["Scaling", "How does autoscaling work in Kubernetes?",
-`**Answer:** **HPA** scales pod replicas based on CPU, memory or custom metrics. **VPA** adjusts requests. **Cluster Autoscaler** or **Karpenter** adds/removes nodes when pods can't be scheduled. **KEDA** scales on event sources (queue length).
-
-Tip: Karpenter and KEDA.`, 'B', 'M'],
-
-["Health", "Explain liveness, readiness and startup probes.",
-`**Answer:** Readiness controls whether a pod receives traffic; liveness restarts stuck containers; startup protects slow-starting apps from premature liveness failures. Bad liveness probes cause restart loops during dependency outages — don't check external dependencies in liveness.
-
-Tip: Liveness shouldn't check dependencies.`, 'B', 'M'],
-
-["Troubleshooting", "A pod is Pending. What do you check?",
-`**Answer:** kubectl describe pod events: insufficient CPU/memory, node selectors/affinity not matching, taints without tolerations, PVC not bound, quota exceeded, or image pull secrets. Check cluster autoscaler status.
-
-Tip: Events tell the story.`, 'B', 'M'],
-
-["Troubleshooting", "How do you debug CrashLoopBackOff?",
-`**Answer:** kubectl logs --previous, describe for exit codes (137 = OOMKilled), check config and secrets, command/entrypoint, probes, and dependencies at startup. Use ephemeral debug containers (kubectl debug).
-
-Tip: Exit code 137.`, 'B', 'M'],
-
-["Troubleshooting", "A service isn't reachable. How do you troubleshoot?",
-`**Answer:** Check pod readiness and endpoints (kubectl get endpoints), selector labels match, service ports/targetPort, DNS resolution from a debug pod, network policies, and ingress/gateway configuration.
-
-Tip: Endpoints empty = selector mismatch.`, 'B', 'M'],
-
-["Security", "How do you secure a Kubernetes cluster?",
-`**Answer:** RBAC with least privilege, no cluster-admin for users, Pod Security Standards (restricted), network policies, image scanning and signed images, admission policies (Kyverno/OPA), secrets encryption and external secret stores, private API endpoint, audit logging, regular upgrades, and runtime security (Falco).
-
-Tip: Pod Security Standards.`, 'D', 'M'],
-
-["Security", "What is RBAC in Kubernetes?",
-`**Answer:** Roles/ClusterRoles define permissions (verbs on resources); RoleBindings/ClusterRoleBindings grant them to users, groups or service accounts. Scope permissions to namespaces wherever possible.
-
-Tip: Namespace scoping.`, 'B', 'M'],
-
-["Security", "How do pods access cloud resources securely?",
-`**Answer:** Workload identity (IRSA/EKS Pod Identity on AWS, Azure Workload Identity, GKE Workload Identity) mapping service accounts to cloud IAM roles — no static credentials.
-
-Tip: No secrets for cloud access.`, 'D', 'M'],
-
-["Helm", "What is Helm and how do you use it?",
-`**Answer:** A package manager for Kubernetes: charts template manifests with values for environments, manage releases, upgrades and rollbacks. Keep charts simple, version them, and lint/test.
-
-Tip: Values per environment.`, 'B', 'M'],
-
-["GitOps", "How do you deploy to Kubernetes with GitOps?",
-`**Answer:** Store manifests/Helm values in Git; Argo CD or Flux syncs the cluster to Git, detects drift, and supports progressive delivery (Argo Rollouts, Flagger). Changes happen via pull requests.
-
-Tip: Argo Rollouts for canaries.`, 'B', 'M'],
-
-["Upgrades", "How do you upgrade a cluster safely?",
-`**Answer:** Review release notes and deprecated APIs, upgrade non-prod first, upgrade control plane then node pools (surge/blue-green node groups), respect PodDisruptionBudgets, update add-ons, and monitor.
-
-Tip: PDBs.`, 'D', 'M'],
-
-["Availability", "What is a PodDisruptionBudget?",
-`**Answer:** Limits how many pods of an application can be voluntarily disrupted at once (during node drains/upgrades), ensuring minimum availability.
-
-Tip: Upgrade safety.`, 'B', 'M'],
-
-["Observability", "How do you monitor Kubernetes?",
-`**Answer:** Prometheus (kube-state-metrics, node-exporter, cAdvisor) with Grafana, logs via Fluent Bit to a backend, traces with OpenTelemetry, alerts on node pressure, pod restarts, pending pods, API server latency, and application SLOs.
-
-Tip: kube-state-metrics.`, 'B', 'M'],
-
-["Operators", "What is an operator?",
-`**Answer:** A custom controller with custom resources encoding operational knowledge (deploy, scale, back up, upgrade) for complex apps like databases. Built with Operator SDK or Kubebuilder.
-
-Tip: Custom resources.`, 'D', 'M'],
-
-["etcd", "Why is etcd critical and how do you protect it?",
-`**Answer:** It stores all cluster state; losing it loses the cluster configuration. Back up regularly (managed services handle this), encrypt secrets at rest, run with odd-numbered members for quorum, and monitor latency.
-
-Tip: Quorum.`, 'D', 'M'],
-
-["Multi-tenancy", "How do you isolate teams in a shared cluster?",
-`**Answer:** Namespaces with RBAC, resource quotas and limit ranges, network policies, policy enforcement, separate node pools for sensitive workloads, and cost allocation labels. Use separate clusters for strong isolation needs.
-
-Tip: Soft vs hard isolation.`, 'D', 'M'],
-
-["Service Mesh", "When would you use a service mesh?",
-`**Answer:** For mTLS everywhere, fine-grained traffic management (canaries, retries, timeouts), and consistent telemetry across many services. Istio (including ambient mode) or Linkerd. Avoid if the complexity outweighs the benefits.
-
-Tip: Ambient mode reduces sidecar overhead.`, 'D', 'S'],
-
-["Cost", "How do you reduce Kubernetes costs?",
-`**Answer:** Right-size requests (VPA recommendations), bin-packing, cluster autoscaler/Karpenter with spot instances, remove idle workloads, scale non-prod down off-hours, and cost visibility (Kubecost/OpenCost).
-
-Tip: Requests drive cost.`, 'D', 'M'],
-
-["Jobs", "How do you run batch jobs in Kubernetes?",
-`**Answer:** Jobs and CronJobs with backoff limits, activeDeadlineSeconds, concurrency policies, resource requests, and cleanup (ttlSecondsAfterFinished). For complex workflows, Argo Workflows.
-
-Tip: Concurrency policy.`, 'B', 'M'],
-
-["Stateful", "Should you run databases on Kubernetes?",
-`**Answer:** Possible with mature operators (CloudNativePG, Strimzi for Kafka) and strong expertise, but managed cloud databases are usually simpler and more reliable for most teams.
-
-Tip: Pragmatic answer.`, 'D', 'M'],
-
-["Images", "How do you manage container images securely?",
-`**Answer:** Minimal base images, scanning in CI and registry, signing (cosign) with admission verification, pinned digests, private registries with access control, and regular rebuilds for patches.
-
-Tip: Image signing.`, 'D', 'M'],
-
-["CKA", "Which certifications are valuable?",
-`**Answer:** CKA (administrator), CKAD (application developer), CKS (security specialist) from CNCF/Linux Foundation — hands-on exams.
-
-Tip: Performance-based exams.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a Kubernetes problem you solved.",
-`**Sample answer:** "Latency spikes came from CPU throttling due to tight CPU limits. I analyzed throttling metrics, removed CPU limits for latency-sensitive services while keeping requests accurate, and p99 latency dropped 60%."
-
-Tip: Metrics-driven.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a cluster migration or upgrade you led.",
-`**Sample answer:** "I migrated 120 services from self-managed clusters to EKS with Karpenter and Argo CD. Using blue-green cluster cutover by namespace, we finished with zero customer-facing downtime and cut node costs 35%."
-
-Tip: Scale and safety.`, 'B', 'M'],
-
-["Behavioral", "How do you help developers use Kubernetes effectively?",
-`**Answer:** Templates and Helm charts, documentation, sane defaults (probes, resources), dashboards, office hours, and abstracting complexity through a platform.
-
-Tip: Enablement.`, 'B', 'M'],
-
-["AI", "How do you run AI/GPU workloads on Kubernetes?",
-`**Answer:** GPU node pools with device plugins (NVIDIA), scheduling with taints/tolerations, GPU sharing (MIG, time-slicing), autoscaling, model serving frameworks (KServe, vLLM), and queueing for training jobs (Kueue).
-
-Tip: GPU utilization is costly.`, 'D', 'S'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Platform engineering or SRE leadership — multi-cluster platforms and developer experience.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I run secure, reliable, cost-efficient Kubernetes platforms — migrations with zero downtime, 35% cost reduction, and developer-friendly templates."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Labels", "What are labels and selectors?",
-`**Answer:** Key-value metadata on objects; selectors match labels to connect Services to pods, Deployments to ReplicaSets, and policies to targets. Use consistent labeling standards (app.kubernetes.io/*).
-
-Tip: Standard labels.`, 'B', 'E'],
-
-["Rollouts", "How does a rolling update work?",
-`**Answer:** The Deployment creates a new ReplicaSet and gradually shifts pods according to maxSurge and maxUnavailable, waiting for readiness. kubectl rollout undo reverts to the previous ReplicaSet.
-
-Tip: maxSurge/maxUnavailable.`, 'B', 'M'],
-
-["Namespaces", "What are namespaces used for?",
-`**Answer:** Logical isolation of resources for teams, environments or apps, with scoped RBAC, quotas and policies. Not a hard security boundary on their own.
-
-Tip: Not hard isolation.`, 'B', 'E'],
-
-["Init Containers", "What are init and sidecar containers?",
-`**Answer:** Init containers run to completion before app containers start (setup tasks, waiting for dependencies). Sidecars run alongside the app (proxies, log shippers); Kubernetes now has native sidecar support.
-
-Tip: Native sidecars.`, 'B', 'M'],
-
-["DNS", "How does DNS work in Kubernetes?",
-`**Answer:** CoreDNS resolves service names like my-svc.my-namespace.svc.cluster.local to ClusterIPs; pods get DNS config automatically. DNS issues often appear as intermittent failures.
-
-Tip: ndots and search domains can affect performance.`, 'D', 'M'],
-
-["Admission", "What are admission controllers?",
-`**Answer:** Plugins that intercept API requests to validate or mutate objects before they're stored — e.g. Pod Security Admission, policy engines (Kyverno, Gatekeeper), and mutating webhooks injecting sidecars.
-
-Tip: Policy enforcement point.`, 'D', 'M'],
-
-["Backups", "How do you back up Kubernetes workloads?",
-`**Answer:** Velero for resources and volume snapshots, GitOps repos for manifests, and application-level backups for databases. Test restores.
-
-Tip: Restore testing.`, 'D', 'M'],
-
-["Scenario", "Nodes keep running out of memory. What do you do?",
-`**Answer:** Identify pods without memory requests/limits or with leaks, set accurate requests, use limit ranges, monitor eviction events, right-size node types, and fix leaking applications.
-
-Tip: Requests discipline.`, 'D', 'M'],
-
-["Scenario", "Deployments are slow because images are huge. How do you fix it?",
-`**Answer:** Slim images with multi-stage builds, smaller base images, image caching/pre-pulling on nodes, registry close to clusters, and lazy-loading technologies.
-
-Tip: Image size matters.`, 'B', 'M']
-];
-
-QB['cl-k8s'] = (QB['cl-k8s'] || []).concat([
-["Scaling", "What is Karpenter?",
-`**Answer:** An open-source node autoscaler (originating at AWS) that provisions right-sized nodes directly based on pending pod requirements, faster and more flexibly than the Cluster Autoscaler's fixed node groups, with consolidation to reduce cost.
-
-Tip: Consolidation feature.`, 'D', 'M'],
-["Quotas", "What are ResourceQuotas and LimitRanges?",
-`**Answer:** ResourceQuotas cap total resources (CPU, memory, object counts) per namespace; LimitRanges set default and min/max requests and limits for containers in a namespace.
-
-Tip: Multi-tenancy controls.`, 'B', 'M'],
-["Policy", "Kyverno vs OPA Gatekeeper?",
-`**Answer:** Both enforce policies via admission control. Kyverno uses Kubernetes-native YAML policies and can mutate and generate resources; Gatekeeper uses Rego (OPA) for flexible, powerful policies across systems.
-
-Tip: Team skills decide.`, 'D', 'M']
+QB["cl-k8s"] = (QB["cl-k8s"] || []).concat([
+["Architecture", "Explain Kubernetes architecture.", "**Why they ask:** foundational.\n\n**Answer:** **Control plane:** kube-apiserver (front door for all operations), etcd (cluster state store), kube-scheduler (assigns pods to nodes), controller-manager (reconciliation loops), cloud-controller-manager. **Nodes:** kubelet (runs pods), container runtime (containerd), kube-proxy (service networking) or eBPF-based alternatives. Everything works by declaring desired state and controllers reconciling actual state.\n\nTip: Reconciliation loop concept.", "B", "E"],
+["Objects", "Deployment vs StatefulSet vs DaemonSet?", "**Why they ask:** choosing the right workload controller.\n\n**Answer:**\n\"A Deployment runs stateless, interchangeable replicas with rolling updates — web APIs. A StatefulSet gives each pod a stable identity, ordered rollout and its own persistent volume — Postgres, Kafka, Elasticsearch, where pod-0 must stay pod-0 with its data. A DaemonSet runs exactly one pod per node — log shippers like Fluent Bit, node exporters, the CNI agent.\"\n\nTip: Examples for each.", "B", "E"],
+["Networking", "How does Kubernetes networking work?", "**Why they ask:** networking is where most debugging happens.\n\n**Answer:**\n\"Every pod gets its own IP, and pods talk to each other without NAT across a flat network that the CNI plugin provides — Calico, Cilium or a cloud CNI. Services give a stable virtual IP and DNS name that load-balances to healthy pods — ClusterIP, NodePort or LoadBalancer. Ingress or the Gateway API route external HTTP traffic into Services.\"\n\nTip: CNI plugins.", "B", "M"],
+["Networking", "Explain Service types.", "**Why they ask:** exposure basics.\n\n**Answer:**\n\"ClusterIP is the default — an internal-only virtual IP. NodePort exposes the service on a port on every node. LoadBalancer provisions a cloud load balancer in front. ExternalName is just a DNS alias to something outside. And a headless service — clusterIP set to None — returns pod IPs directly, which StatefulSets use so clients can reach postgres-0 specifically.\"\n\nTip: Headless services.", "B", "M"],
+["Networking", "Ingress vs Gateway API?", "**Why they ask:** current direction of the ecosystem.\n\n**Answer:**\n\"Ingress is the older, simpler API for HTTP routing, implemented by controllers like NGINX or cloud load balancers, with lots of features hidden in annotations. Gateway API is the newer standard: it separates roles — the platform team owns GatewayClass and Gateway, app teams own HTTPRoutes — and natively supports header matching, traffic splitting and more protocols. New platforms should start with Gateway API.\"\n\nTip: Gateway API is the future.", "D", "M"],
+["Networking", "What are network policies?", "**Why they ask:** cluster segmentation.\n\n**Answer:**\n\"Rules that control pod-to-pod and pod-to-external traffic using labels and namespaces. By default everything can talk to everything, so I apply a default-deny policy per namespace and then allow only required flows — the frontend can reach the API on 8080, the API can reach the database on 5432. It needs a CNI that enforces them, like Calico or Cilium.\"\n\nTip: Default deny.", "D", "M"],
+["Storage", "How does persistent storage work in Kubernetes?", "**Why they ask:** stateful workloads.\n\n**Answer:**\n\"An app requests storage with a PersistentVolumeClaim. A StorageClass defines the provisioner — a CSI driver for cloud disks or file storage — and parameters like disk type. The volume is provisioned and bound to the claim. Access modes matter — ReadWriteOnce for a block disk on one node, ReadWriteMany for shared file storage — and so does the reclaim policy: Retain keeps the data if the claim is deleted, Delete removes it.\"\n\nTip: CSI drivers.", "B", "M"],
+["Config", "ConfigMaps vs Secrets?", "**Why they ask:** config hygiene.\n\n**Answer:**\n\"ConfigMaps hold non-sensitive configuration; Secrets hold sensitive data. But Secrets are only base64-encoded, not encrypted by default — so I enable encryption at rest for etcd and usually pull real secrets from an external manager through the External Secrets Operator or the CSI secrets driver. Both can be mounted as files or environment variables; files update without a restart.\"\n\nTip: Secrets aren't encrypted by default.", "B", "E"],
+["Resources", "What are requests and limits?", "**Why they ask:** resource management affects stability and cost.\n\n**Answer:**\n\"Requests are the guaranteed amount the scheduler uses to place pods. Limits cap usage: exceed the memory limit and the container is OOMKilled; hit the CPU limit and it's throttled. I set requests from actual usage and I'm careful with CPU limits on latency-sensitive services because throttling causes latency spikes even when the node has spare CPU. QoS classes follow: Guaranteed when requests equal limits, Burstable, and BestEffort with neither.\"\n\nTip: CPU throttling issue.", "B", "M"],
+["Scheduling", "How do you control where pods run?", "**Why they ask:** scheduling control.\n\n**Answer:**\n\"nodeSelector for simple matching, node affinity for richer rules, pod anti-affinity to keep replicas apart, taints and tolerations to dedicate nodes — GPU nodes only accept GPU workloads — topology spread constraints to spread replicas evenly across zones, and priority classes so critical pods can preempt others. Topology spread is the one I set on every production deployment.\"\n\nTip: Topology spread for HA.", "D", "M"],
+["Scaling", "How does autoscaling work in Kubernetes?", "**Why they ask:** elasticity at both layers.\n\n**Answer:**\n\"Horizontal Pod Autoscaler adds pod replicas based on CPU, memory or custom metrics. Vertical Pod Autoscaler adjusts requests. Cluster Autoscaler or Karpenter adds nodes when pods can't be scheduled and removes empty ones. KEDA scales on event sources like queue length — even down to zero. A typical worker setup is KEDA on SQS depth plus Karpenter for nodes.\"\n\nTip: Karpenter and KEDA.", "B", "M"],
+["Health", "Explain liveness, readiness and startup probes.", "**Why they ask:** probes cause many self-inflicted outages.\n\n**Answer:**\n\"Readiness controls whether a pod gets traffic. Liveness restarts a stuck container. Startup protects slow-starting apps from being killed by liveness before they're up. The key rule: liveness should never check external dependencies — if the database blips and every pod's liveness fails, Kubernetes restarts the whole fleet and turns a blip into an outage.\"\n\nTip: Liveness shouldn't check dependencies.", "B", "M"],
+["Troubleshooting", "A pod is Pending. What do you check?", "**Why they ask:** troubleshooting method.\n\n**Answer:**\n\"kubectl describe pod — the events usually say it directly: insufficient CPU or memory, a node selector or affinity nothing matches, taints without tolerations, an unbound PVC — often a zone mismatch — a namespace quota exceeded, or image pull secrets. Then I check the cluster autoscaler or Karpenter logs to see why it didn't add a node.\"\n\nTip: Events tell the story.", "B", "M"],
+["Troubleshooting", "How do you debug CrashLoopBackOff?", "**Why they ask:** daily reality.\n\n**Answer:**\n\"kubectl logs --previous for the crashed container's output, kubectl describe for the exit code — 137 means OOMKilled, 1 usually an app error — then config and secrets, the command and entrypoint, probes, and startup dependencies. If the image has no shell, kubectl debug attaches an ephemeral debug container.\"\n\nTip: Exit code 137.", "B", "M"],
+["Troubleshooting", "A service isn't reachable. How do you troubleshoot?", "**Why they ask:** layered debugging.\n\n**Answer:**\n\"Check pods are Ready, then kubectl get endpoints — empty endpoints almost always means the Service selector doesn't match the pod labels. Then port versus targetPort, DNS resolution from a debug pod, network policies blocking traffic, and finally the ingress or gateway routing.\"\n\nTip: Endpoints empty = selector mismatch.", "B", "M"],
+["Security", "How do you secure a Kubernetes cluster?", "**Why they ask:** security depth.\n\n**Answer:**\n\"RBAC with least privilege and no cluster-admin for humans day to day, Pod Security Standards at the restricted level, network policies, scanned and signed images, admission policies with Kyverno or OPA, secrets encryption plus an external secret store, a private API endpoint, audit logging, regular upgrades, and runtime detection with Falco.\"\n\nTip: Pod Security Standards.", "D", "M"],
+["Security", "What is RBAC in Kubernetes?", "**Why they ask:** access control basics.\n\n**Answer:**\n\"Roles and ClusterRoles define permissions as verbs on resources — get, list, create on pods. RoleBindings and ClusterRoleBindings grant them to users, groups or service accounts. I scope to namespaces wherever possible — a team gets edit in its own namespace, not cluster-wide — and bind to groups from the identity provider, not individuals.\"\n\nTip: Namespace scoping.", "B", "M"],
+["Security", "How do pods access cloud resources securely?", "**Why they ask:** credential hygiene.\n\n**Answer:**\n\"Workload identity — IRSA or EKS Pod Identity on AWS, Azure Workload Identity, GKE Workload Identity — maps a Kubernetes service account to a cloud IAM role. The pod gets short-lived credentials automatically; no static keys in Secrets.\"\n\nTip: No secrets for cloud access.", "D", "M"],
+["Helm", "What is Helm and how do you use it?", "**Why they ask:** packaging.\n\n**Answer:**\n\"Helm is Kubernetes' package manager. Charts template the manifests, values files customize them per environment, and Helm manages releases with upgrades and rollbacks. I keep charts simple — heavy templating logic becomes unreadable — version them, and run helm lint plus template rendering tests in CI.\"\n\nTip: Values per environment.", "B", "M"],
+["GitOps", "How do you deploy to Kubernetes with GitOps?", "**Why they ask:** modern delivery.\n\n**Answer:**\n\"Manifests or Helm values live in Git. Argo CD or Flux syncs the cluster to Git, flags drift, and with Argo Rollouts or Flagger does progressive delivery. Every change is a pull request, so rollback is a revert.\"\n\nTip: Argo Rollouts for canaries.", "B", "M"],
+["Upgrades", "How do you upgrade a cluster safely?", "**Why they ask:** upgrades are routine risk.\n\n**Answer:**\n\"Read the release notes and scan for deprecated APIs with a tool like Pluto, upgrade non-prod first, then the control plane, then node pools with surge or blue-green node groups, respecting PodDisruptionBudgets. Update add-ons — CNI, CoreDNS, ingress controller — and watch dashboards throughout.\"\n\nTip: PDBs.", "D", "M"],
+["Availability", "What is a PodDisruptionBudget?", "**Why they ask:** availability during maintenance.\n\n**Answer:**\n\"It limits how many pods of an app can be voluntarily disrupted at once during drains and upgrades — for example minAvailable 2 out of 3 replicas — so a node upgrade never takes the whole service down.\"\n\nTip: Upgrade safety.", "B", "M"],
+["Observability", "How do you monitor Kubernetes?", "**Why they ask:** operability.\n\n**Answer:**\n\"Prometheus with kube-state-metrics, node-exporter and cAdvisor, Grafana dashboards, logs through Fluent Bit to a backend, traces with OpenTelemetry. Alerts on node pressure, restart loops, pending pods, API server latency and application SLOs.\"\n\nTip: kube-state-metrics.", "B", "M"],
+["Operators", "What is an operator?", "**Why they ask:** extending Kubernetes.\n\n**Answer:**\n\"A custom controller plus custom resources that encode operational knowledge — deploying, scaling, backing up, upgrading — for complex apps like databases. You declare 'a Postgres cluster with three replicas and nightly backups' and the operator makes it so. Built with Operator SDK or Kubebuilder.\"\n\nTip: Custom resources.", "D", "M"],
+["etcd", "Why is etcd critical and how do you protect it?", "**Why they ask:** control plane understanding.\n\n**Answer:**\n\"etcd stores all cluster state; lose it and you lose the cluster's configuration. Back it up regularly — managed services do this for you — encrypt secrets at rest, run an odd number of members, usually three or five, for quorum, and monitor disk latency because etcd is very sensitive to slow disks.\"\n\nTip: Quorum.", "D", "M"],
+["Multi-tenancy", "How do you isolate teams in a shared cluster?", "**Why they ask:** multi-tenancy.\n\n**Answer:**\n\"Namespaces with RBAC, resource quotas and limit ranges, network policies, policy enforcement, separate node pools for sensitive workloads, and cost allocation labels. That's soft isolation; for strong isolation — untrusted code or strict compliance — separate clusters.\"\n\nTip: Soft vs hard isolation.", "D", "M"],
+["Service Mesh", "When would you use a service mesh?", "**Why they ask:** complexity judgment.\n\n**Answer:**\n\"When we need mTLS everywhere, fine-grained traffic management — canaries, retries, timeouts — and consistent telemetry across many services. Istio, including ambient mode without sidecars, or Linkerd for simplicity. If we have ten services and no mTLS requirement, the complexity isn't worth it.\"\n\nTip: Ambient mode reduces sidecar overhead.", "D", "S"],
+["Cost", "How do you reduce Kubernetes costs?", "**Why they ask:** cost ownership.\n\n**Answer:**\n\"Right-size requests using VPA recommendations, improve bin-packing, use Karpenter or the cluster autoscaler with spot instances, remove idle workloads, scale non-prod down off-hours, and give teams visibility with Kubecost or OpenCost. On one cluster, average CPU requests were 4x actual usage; right-sizing cut the node count by 40%.\"\n\nTip: Requests drive cost.", "D", "M"],
+["Jobs", "How do you run batch jobs in Kubernetes?", "**Why they ask:** non-web workloads.\n\n**Answer:**\n\"Jobs and CronJobs with backoff limits, activeDeadlineSeconds so nothing runs forever, a concurrency policy — Forbid if two runs mustn't overlap — resource requests, and ttlSecondsAfterFinished for cleanup. For multi-step workflows, Argo Workflows.\"\n\nTip: Concurrency policy.", "B", "M"],
+["Stateful", "Should you run databases on Kubernetes?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"It's possible with mature operators — CloudNativePG, Strimzi for Kafka — and real expertise. But for most teams a managed cloud database is simpler and more reliable, so that's my default unless there's a portability or cost reason.\"\n\nTip: Pragmatic answer.", "D", "M"],
+["Images", "How do you manage container images securely?", "**Why they ask:** supply chain.\n\n**Answer:**\n\"Minimal base images, scanning in CI and in the registry, signing with cosign and verifying signatures at admission, pinning by digest, private registries with access control, and regular rebuilds to pick up patches.\"\n\nTip: Image signing.", "D", "M"],
+["CKA", "Which certifications are valuable?", "**Why they ask:** credentials.\n\n**Answer:**\n\"CKA for administrators, CKAD for application developers, and CKS for security, from the CNCF and Linux Foundation. They're hands-on, performance-based exams, which is why they're respected.\"\n\nTip: Performance-based exams.", "B", "E"],
+["Behavioral", "Tell me about a Kubernetes problem you solved.", "**Why they ask:** proof.\n\n**Answer:**\n\"Latency spikes turned out to be CPU throttling from tight CPU limits. I analyzed the throttling metrics, removed CPU limits for latency-sensitive services while keeping requests accurate, and p99 latency dropped 60%.\"\n\nTip: Metrics-driven.", "B", "M"],
+["Behavioral", "Tell me about a cluster migration or upgrade you led.", "**Why they ask:** delivery at scale.\n\n**Answer:**\n\"I migrated 120 services from self-managed clusters to EKS with Karpenter and Argo CD. With a blue-green cluster cutover namespace by namespace, we had zero customer-facing downtime and cut node costs 35%.\"\n\nTip: Scale and safety.", "B", "M"],
+["Behavioral", "How do you help developers use Kubernetes effectively?", "**Why they ask:** enablement.\n\n**Answer:**\n\"Templates and Helm charts with sane defaults for probes and resources, documentation, dashboards per service, office hours, and ideally a platform that hides most of Kubernetes so developers think in services, not YAML.\"\n\nTip: Enablement.", "B", "M"],
+["AI", "How do you run AI/GPU workloads on Kubernetes?", "**Why they ask:** growing demand.\n\n**Answer:**\n\"GPU node pools with the NVIDIA device plugin, taints and tolerations so only GPU workloads land there, GPU sharing with MIG or time-slicing, autoscaling, model serving with KServe or vLLM, and job queueing for training with Kueue. Idle GPUs are very expensive, so utilization monitoring matters.\"\n\nTip: GPU utilization is costly.", "D", "S"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward platform engineering or SRE leadership — multi-cluster platforms and developer experience.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I run secure, reliable, cost-efficient Kubernetes platforms — a zero-downtime migration of 120 services, 35% lower node costs, and templates developers actually like using.\"\n\nTip: Proof.", "B", "M"],
+["Labels", "What are labels and selectors?", "**Why they ask:** the glue of Kubernetes.\n\n**Answer:**\n\"Labels are key-value metadata on objects; selectors match them to connect Services to pods, Deployments to ReplicaSets, and policies to targets. I use the standard app.kubernetes.io labels — name, instance, version, part-of — so tooling works consistently.\"\n\nTip: Standard labels.", "B", "E"],
+["Rollouts", "How does a rolling update work?", "**Why they ask:** deployment mechanics.\n\n**Answer:**\n\"The Deployment creates a new ReplicaSet and shifts pods gradually according to maxSurge — how many extra pods are allowed — and maxUnavailable — how many can be down — waiting for readiness at each step. kubectl rollout undo goes back to the previous ReplicaSet.\"\n\nTip: maxSurge/maxUnavailable.", "B", "M"],
+["Namespaces", "What are namespaces used for?", "**Why they ask:** organization basics.\n\n**Answer:**\n\"Logical isolation of resources by team, environment or app, with scoped RBAC, quotas and policies. On their own they're not a hard security boundary — pods in different namespaces can still talk unless network policies stop them.\"\n\nTip: Not hard isolation.", "B", "E"],
+["Init Containers", "What are init and sidecar containers?", "**Why they ask:** pod patterns.\n\n**Answer:**\n\"Init containers run to completion before the app starts — running migrations or waiting for a dependency. Sidecars run alongside the app — proxies, log shippers. Kubernetes now has native sidecars, which start before and stop after the main container, fixing old issues like Jobs never completing.\"\n\nTip: Native sidecars.", "B", "M"],
+["DNS", "How does DNS work in Kubernetes?", "**Why they ask:** a common source of intermittent failures.\n\n**Answer:**\n\"CoreDNS resolves names like my-svc.my-namespace.svc.cluster.local to ClusterIPs, and pods get their DNS config automatically. The default ndots of 5 means an external name like api.stripe.com is tried against several search domains first, multiplying lookups — lowering ndots or using fully qualified names with a trailing dot fixes a lot of latency.\"\n\nTip: ndots and search domains can affect performance.", "D", "M"],
+["Admission", "What are admission controllers?", "**Why they ask:** policy enforcement.\n\n**Answer:**\n\"Plugins that intercept API requests and validate or mutate objects before they're stored — Pod Security Admission, policy engines like Kyverno or Gatekeeper, and mutating webhooks that inject sidecars. It's the enforcement point for 'no privileged pods' or 'every pod needs resource requests'.\"\n\nTip: Policy enforcement point.", "D", "M"],
+["Backups", "How do you back up Kubernetes workloads?", "**Why they ask:** recovery.\n\n**Answer:**\n\"Velero for cluster resources and volume snapshots, the GitOps repo as the source of manifests, and application-level backups for databases. And restore tests — a backup nobody has restored is unproven.\"\n\nTip: Restore testing.", "D", "M"],
+["Scenario", "Nodes keep running out of memory. What do you do?", "**Why they ask:** stability troubleshooting.\n\n**Answer:**\n\"Find pods without memory requests or limits and pods that leak, set accurate requests, add LimitRanges so new pods get defaults, watch eviction events, right-size node types, and get the leaking applications fixed.\"\n\nTip: Requests discipline.", "D", "M"],
+["Scenario", "Deployments are slow because images are huge. How do you fix it?", "**Why they ask:** practical performance.\n\n**Answer:**\n\"Slim the images with multi-stage builds and smaller bases, cache or pre-pull common images on nodes, keep the registry in the same region as the clusters, and consider lazy-loading image technologies. Going from 2 GB to 200 MB images cut our pod start time from minutes to seconds.\"\n\nTip: Image size matters.", "B", "M"]
+]);
+
+QB["cl-k8s"] = (QB["cl-k8s"] || []).concat([
+["Scaling", "What is Karpenter?", "**Why they ask:** modern node autoscaling.\n\n**Answer:**\n\"An open-source node autoscaler, originally from AWS, that provisions right-sized nodes directly from pending pods' requirements instead of scaling fixed node groups. It's faster and more flexible than Cluster Autoscaler, and its consolidation feature replaces under-used nodes with cheaper ones.\"\n\nTip: Consolidation feature.", "D", "M"],
+["Quotas", "What are ResourceQuotas and LimitRanges?", "**Why they ask:** multi-tenancy controls.\n\n**Answer:**\n\"ResourceQuotas cap totals per namespace — CPU, memory, object counts. LimitRanges set default and min/max requests and limits for containers in a namespace, so a pod deployed without requests still gets sensible ones.\"\n\nTip: Multi-tenancy controls.", "B", "M"],
+["Policy", "Kyverno vs OPA Gatekeeper?", "**Why they ask:** policy tooling.\n\n**Answer:**\n\"Both enforce policy through admission control. Kyverno uses Kubernetes-native YAML and can also mutate and generate resources, so it's easy for platform teams. Gatekeeper uses Rego, which is more powerful and reusable beyond Kubernetes but has a learning curve. Team skills usually decide.\"\n\nTip: Team skills decide.", "D", "M"]
 ]);
