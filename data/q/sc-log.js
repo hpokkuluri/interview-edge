@@ -1,263 +1,54 @@
 // sc-log — generated from src/sc-log-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Logistics & Transportation Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-log'] = [
-["Modes", "Compare FTL, LTL, parcel and intermodal.",
-`**Why they ask:** mode selection is the core of transportation cost.
-
-**Answer:**
-- **FTL (full truckload):** one shipper's goods; fastest and cheapest per unit for large volumes.
-- **LTL (less-than-truckload):** shared trailers; priced by freight class, weight and distance; more handling.
-- **Parcel:** small packages (UPS, FedEx, USPS).
-- **Intermodal:** containers on rail plus truck; cheaper than FTL for long distances, slower.
-
-Tip: Mention the weight break where LTL becomes more expensive than FTL (often ~10–15 pallets).`, 'B', 'E'],
-
-["Cost", "How do you reduce freight costs?",
-`**Answer:** Consolidate shipments, optimize mode (LTL to FTL, truck to intermodal), improve load planning (cube utilization), run carrier bids, negotiate accessorials and fuel surcharges, use a TMS for routing optimization, audit freight bills, and reduce expedites through better planning.
-
-**Example:** consolidating three weekly LTL shipments into one FTL saved $180,000 a year.
-
-Tip: Give a real number.`, 'B', 'M'],
-
-["Cost", "What are accessorial charges?",
-`**Answer:** Extra fees beyond base freight — liftgate, inside delivery, residential delivery, detention (waiting time), redelivery, limited access, and reweigh/reclass fees. They can add 10–20% to freight costs; negotiate and prevent them through good data and scheduling.
-
-Tip: Detention is a common avoidable cost.`, 'B', 'M'],
-
-["Cost", "How does freight class work in LTL?",
-`**Answer:** NMFC freight classes (50 to 500) based on density, stowability, handling and liability. Higher class = higher rate. Accurate classification and density avoid reclass charges. FAK (freight all kinds) agreements simplify pricing.
-
-Tip: Density drives class.`, 'D', 'M'],
-
-["Metrics", "Which logistics KPIs matter?",
-`**Answer:** OTIF (on time in full), freight cost per unit or % of sales, transit time, carrier on-time pickup and delivery, damage and claims rate, load/cube utilization, tender acceptance rate, and invoice accuracy.
-
-Tip: Mention customer-facing vs cost metrics.`, 'B', 'E'],
-
-["OTIF", "How do you improve OTIF?",
-`**Answer:** Measure by root cause (late pickup, carrier delay, warehouse delay, incomplete order), work with warehouse on cutoffs, choose carriers by performance, plan capacity for peaks, and provide tracking visibility to customers.
-
-Tip: Root-cause by segment.`, 'D', 'M'],
-
-["TMS", "What does a TMS do?",
-`**Answer:** Plans and optimizes shipments (consolidation, mode, routing), tenders loads to carriers, tracks shipments, manages rates and contracts, audits freight bills, and reports. Examples: Oracle Transportation Management, SAP TM, Blue Yonder, Manhattan, MercuryGate.
-
-Tip: Mention the savings from implementing one.`, 'B', 'M'],
-
-["Carriers", "How do you select and manage carriers?",
-`**Answer:** Evaluate rates, coverage, capacity, service performance, safety ratings (FMCSA), insurance, technology and financial stability. Manage with scorecards, quarterly reviews, fair volume allocation and timely payment.
-
-Tip: Mix of asset carriers and brokers.`, 'B', 'M'],
-
-["Carriers", "How do you run a freight bid?",
-`**Answer:** Analyze 12 months of lane data, define lanes and volumes, invite carriers and brokers, collect rates through a bid tool, model award scenarios (cost vs service vs capacity), award by lane with primary and backup carriers, and load rates into the TMS.
-
-Tip: Mention scenario optimization.`, 'D', 'M'],
-
-["Market", "How do spot and contract rates differ?",
-`**Answer:** Contract rates are agreed for a period (often a year) for committed lanes; spot rates are bought per load at market prices. In tight markets, carriers reject contract tenders and spot rates rise; in loose markets, spot can be cheaper. Balance with routing guides and backup carriers.
-
-Tip: Mention tender acceptance tracking.`, 'D', 'M'],
-
-["International", "What documents do international shipments need?",
-`**Answer:** Commercial invoice, packing list, bill of lading or air waybill, certificate of origin, export declarations (EEI in the US), import entry documents, and licenses or permits for controlled goods.
-
-Tip: Mention customs brokers.`, 'B', 'M'],
-
-["International", "What are HS codes and why do they matter?",
-`**Answer:** Harmonized System codes classify products for customs and determine duty rates, quotas and trade agreement eligibility. Misclassification can mean overpaying duties or penalties.
-
-Tip: Classification accuracy is a compliance issue.`, 'B', 'M'],
-
-["International", "Explain key Incoterms for logistics.",
-`**Answer:** Incoterms 2020 define responsibilities: EXW (buyer handles all), FCA (seller delivers to buyer's carrier), FOB (sea — seller loads on vessel), CIF (seller pays freight and insurance to destination port), DAP (seller delivers to destination, buyer pays duties), DDP (seller pays everything including duties).
-
-Tip: Explain where risk transfers.`, 'B', 'M'],
-
-["Ocean", "How does ocean freight work?",
-`**Answer:** FCL (full container) vs LCL (shared container); booking with carriers or forwarders; port-to-port or door-to-door; charges include base rate, bunker surcharges, terminal handling, demurrage and detention. Transit times are long, so plan ahead.
-
-Tip: Demurrage and detention can be very costly.`, 'D', 'M'],
-
-["Ocean", "What are demurrage and detention?",
-`**Answer:** **Demurrage:** fees for leaving a container at the port terminal beyond free time. **Detention:** fees for keeping the carrier's container outside the terminal beyond free time. Avoid with timely customs clearance, pickups and returns.
-
-Tip: Practical cost knowledge.`, 'D', 'M'],
-
-["Customs", "What is the role of a customs broker?",
-`**Answer:** Licensed brokers file import entries, classify goods, calculate duties, handle documentation and communicate with customs. Companies remain responsible for accuracy.
-
-Tip: Importer of record responsibility.`, 'B', 'M'],
-
-["Tariffs", "How do tariffs affect logistics decisions?",
-`**Answer:** Tariffs change landed costs, which can shift sourcing countries, routes and inventory positioning. Logistics teams use free trade agreements, foreign trade zones, duty drawback and accurate classification to reduce duties.
-
-Tip: Current and relevant.`, 'D', 'S'],
-
-["FTZ", "What is a foreign trade zone?",
-`**Answer:** A designated area where goods can be stored or processed with customs duties deferred until they enter the domestic market — or avoided if re-exported. Useful for importers with re-exports or inverted tariffs.
-
-Tip: Duty savings tool.`, 'D', 'S'],
-
-["Network", "How do you approach logistics network design?",
-`**Answer:** Analyze demand by location, service requirements, transport and facility costs, and inventory; model scenarios (number and location of DCs) with optimization software; consider risk and flexibility; and plan phased implementation.
-
-Tip: Mention a tool (Coupa Supply Chain Guru, AIMMS, Optilogic).`, 'D', 'S'],
-
-["Routing", "How do you optimize delivery routes?",
-`**Answer:** Use route optimization software considering stops, time windows, vehicle capacity, driver hours and traffic; consolidate deliveries; and review results against plans.
-
-Tip: Hours-of-service compliance matters.`, 'D', 'M'],
-
-["Fleet", "Private fleet vs outsourced carriers — how do you decide?",
-`**Answer:** Private fleet gives control and service consistency for dense, regular routes but has fixed costs and management burden. Outsourcing offers flexibility and variable cost. Compare total cost per mile and service needs.
-
-Tip: Dedicated contract carriage is a middle option.`, 'D', 'S'],
-
-["Compliance", "What transportation regulations do you manage?",
-`**Answer:** DOT and FMCSA rules (hours of service, ELDs, safety ratings), hazmat shipping rules, weight limits, and customs and export controls for international.
-
-Tip: Compliance awareness.`, 'D', 'M'],
-
-["Claims", "How do you handle freight damage claims?",
-`**Answer:** Document damage at delivery (note on proof of delivery, photos), file the claim with the carrier within the deadline (generally 9 months under Carmack for US domestic), provide invoices and evidence, and track recovery. Analyze root causes (packaging, handling).
-
-Tip: Prevention through packaging.`, 'B', 'M'],
-
-["Visibility", "Why is shipment visibility important?",
-`**Answer:** Real-time tracking lets you warn customers of delays, plan receiving, reduce detention, and measure carrier performance. Visibility platforms (project44, FourKites) aggregate carrier data.
-
-Tip: Proactive communication.`, 'B', 'M'],
-
-["Freight Audit", "What is freight audit and payment?",
-`**Answer:** Checking carrier invoices against contracted rates, accessorials and shipment data before paying, often outsourced or done in the TMS. Typically recovers 1–5% of freight spend.
-
-Tip: Easy savings.`, 'D', 'M'],
-
-["Sustainability", "How can logistics reduce emissions?",
-`**Answer:** Mode shift (truck to rail/intermodal), better load utilization, route optimization, alternative fuels and EVs, SmartWay carriers, and fewer expedited air shipments.
-
-Tip: Cost and carbon often align.`, 'D', 'M'],
-
-["Disruption", "A port strike delays your containers. What do you do?",
-`**Answer:** Identify affected shipments and priorities, reroute to other ports, use air for critical items, draw on safety stock, communicate with customers and sales, and update plans.
-
-Tip: Structured response.`, 'D', 'M'],
-
-["Disruption", "Truck capacity is tight and carriers reject tenders. What do you do?",
-`**Answer:** Go deeper in the routing guide, use brokers and spot market selectively, offer longer lead times and flexible pickup windows, become a "shipper of choice" (fast loading, no detention, fair payment), and consider dedicated capacity contracts.
-
-Tip: Shipper of choice concept.`, 'D', 'S'],
-
-["Last Mile", "What challenges exist in last-mile delivery?",
-`**Answer:** High cost per stop, failed deliveries, customer time windows, urban congestion and returns. Solutions: route optimization, delivery windows, lockers and pickup points, crowd-sourced delivery and better address data.
-
-Tip: E-commerce focus.`, 'D', 'M'],
-
-["Budget", "How do you build a freight budget?",
-`**Answer:** Forecast volumes by lane and mode, apply contracted rates and fuel assumptions, add accessorials and expedite allowance, and track actual cost per unit monthly.
-
-Tip: Fuel is a big variable.`, 'D', 'S'],
-
-["Data", "What data do you analyze to improve logistics?",
-`**Answer:** Shipment history (lanes, weights, modes, costs), carrier performance, accessorial trends, order profiles, and customer delivery requirements.
-
-Tip: Data-driven decisions.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a logistics cost saving you delivered.",
-`**Sample answer:** "I analyzed lanes and found many partial LTL shipments to the same region. We created a weekly consolidation schedule and moved two lanes to intermodal, saving $420,000 a year (9%) with no service loss."
-
-Tip: Numbers.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a crisis shipment you rescued.",
-`**Sample answer:** "A customer's critical order missed the truck due to a production delay. I arranged a team-driver expedited load, coordinated weekend receiving, and it arrived in time. Then we added a production-to-shipping checkpoint for key orders."
-
-Tip: Solve, then prevent.`, 'B', 'E'],
-
-["Behavioral", "Describe a difficult carrier negotiation.",
-`**Sample answer:** "A carrier wanted a 12% increase. I showed market data, their on-time performance and our volume growth; we agreed 4% with improved service commitments."
-
-Tip: Data and leverage.`, 'B', 'M'],
-
-["Leadership", "How do you lead a logistics team?",
-`**Answer:** Clear KPIs, daily huddles, cross-training, empowering coordinators to solve problems, and recognizing performance.
-
-Tip: Team development.`, 'B', 'S'],
-
-["Leadership", "How would you set up a transportation function from scratch?",
-`**Answer:** Analyze spend and lanes, implement a TMS, run a carrier bid and routing guide, set KPIs and freight audit, define processes for tendering, tracking and claims.
-
-Tip: Structured setup.`, 'D', 'S'],
-
-["Strategy", "What is a 3PL vs 4PL?",
-`**Answer:** A **3PL** performs logistics services (warehousing, transportation). A **4PL** manages and integrates multiple 3PLs and logistics processes on your behalf, acting as a lead logistics provider.
-
-Tip: Clear distinction.`, 'B', 'M'],
-
-["Strategy", "When would you outsource logistics?",
-`**Answer:** When a 3PL offers better cost, flexibility, expertise or network coverage than in-house; when volumes are volatile; or when entering new markets. Keep strategy and performance management in-house.
-
-Tip: Strategic control.`, 'D', 'S'],
-
-["Air", "When is air freight justified?",
-`**Answer:** For urgent, high-value or perishable goods where speed outweighs cost, or to recover from disruptions. Track air spend as a planning failure indicator.
-
-Tip: Air is expensive — control it.`, 'B', 'M'],
-
-["Packaging", "How does packaging affect logistics cost?",
-`**Answer:** Packaging size affects cube utilization, dimensional weight pricing (parcel), damage rates and handling. Right-sizing packaging cuts freight and damage.
-
-Tip: Dimensional weight example.`, 'D', 'M'],
-
-["Parcel", "What is dimensional weight?",
-`**Answer:** Parcel carriers charge on the greater of actual weight and dimensional weight (length × width × height ÷ a divisor, e.g. 139 for UPS/FedEx domestic). Oversized boxes with light products cost more.
-
-**Example:** 20×16×12 inch box = 3,840 ÷ 139 ≈ 28 lb billed even if it weighs 10 lb.
-
-Tip: Show the calculation.`, 'D', 'M'],
-
-["Export Controls", "What are export controls?",
-`**Answer:** Laws restricting export of certain goods, technology and destinations (EAR, ITAR in the US), plus sanctions screening of parties. Require classification (ECCN), licenses and denied party screening.
-
-Tip: Compliance risk is serious.`, 'D', 'S'],
-
-["Reverse Logistics", "How do you manage reverse logistics?",
-`**Answer:** Return authorization, return shipping options, consolidation, inspection and disposition, refurbishment or recycling, and tracking cost and recovery value.
-
-Tip: Growing with e-commerce.`, 'D', 'M'],
-
-["Technology", "How is AI changing logistics?",
-`**Answer:** Predictive ETAs, dynamic routing, automated tendering, freight rate forecasting, demand-based capacity planning, and automated document processing.
-
-Tip: Practical uses.`, 'D', 'M'],
-
-["Career", "Why logistics?",
-`**Sample answer:** "Logistics connects the whole supply chain to the customer. I enjoy solving daily puzzles — capacity, cost, timing — and seeing the impact immediately."
-
-Tip: Energy.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I cut freight cost while improving service — $420K annual savings and OTIF from 91% to 97% in my last role. I'm strong with TMS, carrier management and international shipping."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is a bill of lading?",
-`**Answer:** A legal document between shipper and carrier detailing the goods, quantities and destination; it serves as a receipt, contract of carriage and (for ocean, negotiable B/L) a document of title.
-
-Tip: Quick definition.`, 'B', 'E'],
-
-["Technical", "What is a routing guide?",
-`**Answer:** A ranked list of carriers for each lane with rates; the TMS tenders loads to carriers in order. It enforces contract compliance and controls cost.
-
-Tip: Track compliance to routing guide.`, 'B', 'M'],
-
-["Technical", "What is tender acceptance rate?",
-`**Answer:** The percentage of loads accepted by the primary carrier. Low acceptance signals tight capacity or uncompetitive rates and leads to higher spot costs.
-
-Tip: Market indicator.`, 'D', 'M'],
-
-["Technical", "What is cube utilization?",
-`**Answer:** How much of a trailer's or container's space is filled. Higher utilization reduces cost per unit. Improve with better load planning, pallet configurations and mixed loads.
-
-Tip: Load planning software.`, 'B', 'M']
-];
+QB["sc-log"] = (QB["sc-log"] || []).concat([
+["Modes", "Compare FTL, LTL, parcel and intermodal.", "**Why they ask:** mode selection is the core of transportation cost.\n\n**Answer:**\n- **FTL (full truckload):** one shipper's goods; fastest and cheapest per unit for large volumes.\n- **LTL (less-than-truckload):** shared trailers; priced by freight class, weight and distance; more handling.\n- **Parcel:** small packages (UPS, FedEx, USPS).\n- **Intermodal:** containers on rail plus truck; cheaper than FTL for long distances, slower.\n\nTip: Mention the weight break where LTL becomes more expensive than FTL (often ~10–15 pallets).", "B", "E"],
+["Cost", "How do you reduce freight costs?", "**Why they ask:** freight is often the biggest logistics cost.\n\n**Answer:**\n\"Consolidate shipments, and optimize mode — LTL to full truckload, truck to intermodal. Improve load planning and cube utilization. Run carrier bids, negotiate accessorials and fuel surcharges, use a TMS for routing optimization, audit freight bills, and cut expedites through better planning. For example, consolidating three weekly LTL shipments to one region into a single truckload saved $180,000 a year.\"\n\nTip: Give a real number.", "B", "M"],
+["Cost", "What are accessorial charges?", "**Why they ask:** hidden freight cost.\n\n**Answer:**\n\"They're fees beyond the base freight rate — liftgate, inside delivery, residential delivery, detention for waiting time, redelivery, limited access, and reweigh or reclass fees. They can add 10 to 20% to freight cost. I negotiate them in contracts and prevent them with good data and scheduling — detention especially is usually avoidable.\"\n\nTip: Detention is a common avoidable cost.", "B", "M"],
+["Cost", "How does freight class work in LTL?", "**Why they ask:** LTL pricing basics.\n\n**Answer:**\n\"NMFC freight classes run from 50 to 500, based on density, stowability, handling and liability. A higher class means a higher rate. Accurate classification and real density measurements avoid reclass charges. FAK — freight all kinds — agreements simplify pricing by applying one class to a range of products. Density is the biggest driver.\"\n\nTip: Density drives class.", "D", "M"],
+["Metrics", "Which logistics KPIs matter?", "**Why they ask:** managing by numbers.\n\n**Answer:**\n\"OTIF, freight cost per unit or as a percentage of sales, transit time, carrier on-time pickup and delivery, damage and claims rate, load or cube utilization, tender acceptance rate and freight invoice accuracy. I separate customer-facing measures, like OTIF, from cost measures, so one isn't improved at the other's expense.\"\n\nTip: Mention customer-facing versus cost metrics.", "B", "E"],
+["OTIF", "How do you improve OTIF?", "**Why they ask:** customers measure you on OTIF.\n\n**Answer:**\n\"I measure misses by root cause — late pickup, carrier delay, warehouse delay or incomplete order. Then work with the warehouse on cut-off times, choose carriers based on performance, plan capacity ahead of peaks, and give customers tracking visibility. Looking at it by customer and lane usually shows that a few lanes cause most misses.\"\n\nTip: Root-cause by segment.", "D", "M"],
+["TMS", "What does a TMS do?", "**Why they ask:** core logistics technology.\n\n**Answer:**\n\"A transportation management system plans and optimizes shipments — consolidation, mode and routing — tenders loads to carriers, tracks shipments, manages rates and contracts, audits freight bills and reports. Examples include Oracle Transportation Management, SAP TM, Blue Yonder, Manhattan and MercuryGate. Implementations typically save 5 to 10% of freight spend.\"\n\nTip: Mention the savings from implementing one.", "B", "M"],
+["Carriers", "How do you select and manage carriers?", "**Why they ask:** carriers deliver your service.\n\n**Answer:**\n\"I evaluate rates, coverage, capacity, service performance, FMCSA safety ratings, insurance, technology and financial stability. Then manage with scorecards, quarterly reviews, fair volume allocation and paying on time. I usually keep a mix of asset carriers for core lanes and brokers for flexibility.\"\n\nTip: A mix of asset carriers and brokers.", "B", "M"],
+["Carriers", "How do you run a freight bid?", "**Why they ask:** a key cost lever.\n\n**Answer:**\n\"I analyze 12 months of lane data, define the lanes and volumes, and invite carriers and brokers. Rates come in through a bid tool. Then I model award scenarios — cost versus service versus capacity — award by lane with a primary and backup carrier, and load the rates into the TMS. Scenario optimization matters: the cheapest award can leave you without capacity in peak.\"\n\nTip: Mention scenario optimization.", "D", "M"],
+["Market", "How do spot and contract rates differ?", "**Why they ask:** market awareness.\n\n**Answer:**\n\"Contract rates are agreed for a period, usually a year, on committed lanes. Spot rates are bought per load at the market price. When the market is tight, carriers reject contract tenders and spot rates jump; when it's loose, spot can be cheaper than contract. I balance it with routing guides, backup carriers and tracking tender acceptance.\"\n\nTip: Mention tender acceptance tracking.", "D", "M"],
+["International", "What documents do international shipments need?", "**Why they ask:** international basics.\n\n**Answer:**\n\"A commercial invoice, packing list, bill of lading or air waybill, certificate of origin, export declaration — the EEI in the US — import entry documents, and licenses or permits for controlled goods. A customs broker files most of the import side, but we're responsible for accuracy.\"\n\nTip: Mention customs brokers.", "B", "M"],
+["International", "What are HS codes and why do they matter?", "**Why they ask:** compliance and cost.\n\n**Answer:**\n\"Harmonized System codes classify products for customs. They determine duty rates, quotas and whether a product qualifies for a trade agreement. Misclassification can mean overpaying duty, or underpaying and facing penalties. So classification accuracy is a compliance issue, not just paperwork.\"\n\nTip: Classification accuracy is a compliance issue.", "B", "M"],
+["International", "Explain key Incoterms for logistics.", "**Why they ask:** responsibility and risk.\n\n**Answer:**\n\"Incoterms 2020 define who does what. EXW — the buyer handles everything from the seller's door. FCA — the seller delivers to the buyer's carrier. FOB — for sea, the seller loads onto the vessel. CIF — the seller pays freight and insurance to the destination port. DAP — the seller delivers to destination and the buyer pays duties. DDP — the seller pays everything, including duties. The key is where risk transfers: under FOB and CIF, risk passes once goods are on board at origin.\"\n\nTip: Explain where risk transfers.", "B", "M"],
+["Ocean", "How does ocean freight work?", "**Why they ask:** global logistics knowledge.\n\n**Answer:**\n\"You ship either FCL — a full container — or LCL, sharing a container. Bookings go through carriers or forwarders, port-to-port or door-to-door. Charges include the base rate, bunker surcharges, terminal handling, and demurrage and detention if you're slow. Transit takes weeks, so planning ahead matters.\"\n\nTip: Demurrage and detention can be very costly.", "D", "M"],
+["Ocean", "What are demurrage and detention?", "**Why they ask:** costly and avoidable.\n\n**Answer:**\n\"Demurrage is charged for leaving a container at the port terminal beyond the free time. Detention is charged for keeping the carrier's container outside the terminal beyond free time — at our warehouse, for example. Both can run hundreds of dollars a day per container. We avoid them with fast customs clearance, timely pickups and prompt returns.\"\n\nTip: Practical cost knowledge.", "D", "M"],
+["Customs", "What is the role of a customs broker?", "**Why they ask:** import responsibility.\n\n**Answer:**\n\"A licensed broker files import entries, classifies goods, calculates duties, handles documentation and communicates with customs. But the importer of record — our company — remains legally responsible for accuracy, so we still need to check their work.\"\n\nTip: Importer of record responsibility.", "B", "M"],
+["Tariffs", "How do tariffs affect logistics decisions?", "**Why they ask:** current and relevant.\n\n**Answer:**\n\"Tariffs change landed costs, which can shift sourcing countries, routes and where we hold inventory. Logistics teams reduce duty through free trade agreements, foreign trade zones, duty drawback and accurate classification.\"\n\nTip: Current and relevant.", "D", "S"],
+["FTZ", "What is a foreign trade zone?", "**Why they ask:** a duty savings tool.\n\n**Answer:**\n\"It's a designated area where goods can be stored or processed with customs duty deferred until they enter the domestic market — or avoided altogether if they're re-exported. It's useful for importers who re-export, or who face inverted tariffs, where components carry higher duty than the finished product.\"\n\nTip: A duty savings tool.", "D", "S"],
+["Network", "How do you approach logistics network design?", "**Why they ask:** strategic logistics.\n\n**Answer:**\n\"I analyze demand by location, service requirements, transport and facility costs, and inventory. Then model scenarios — number and location of DCs — in optimization software, consider risk and flexibility, and plan a phased implementation. Tools like Coupa Supply Chain Guru or Optilogic do the heavy modeling.\"\n\nTip: Mention a modeling tool.", "D", "S"],
+["Routing", "How do you optimize delivery routes?", "**Why they ask:** operational efficiency.\n\n**Answer:**\n\"I use route optimization software that considers stops, time windows, vehicle capacity, driver hours and traffic. I consolidate deliveries and review actual results against the plan. Hours-of-service compliance has to be built in, not checked afterward.\"\n\nTip: Hours-of-service compliance matters.", "D", "M"],
+["Fleet", "Private fleet vs outsourced carriers — how do you decide?", "**Why they ask:** a make-vs-buy decision.\n\n**Answer:**\n\"A private fleet gives control and consistent service on dense, regular routes, but comes with fixed costs and the management burden. Outsourcing gives flexibility and variable cost. I compare total cost per mile and service needs. Dedicated contract carriage is a good middle option — a carrier's trucks and drivers assigned to us.\"\n\nTip: Dedicated contract carriage is a middle option.", "D", "S"],
+["Compliance", "What transportation regulations do you manage?", "**Why they ask:** compliance awareness.\n\n**Answer:**\n\"DOT and FMCSA rules — hours of service, electronic logging devices, safety ratings — plus hazmat shipping rules and weight limits. For international, customs and export controls.\"\n\nTip: Show compliance awareness.", "D", "M"],
+["Claims", "How do you handle freight damage claims?", "**Why they ask:** recovery discipline.\n\n**Answer:**\n\"Document damage at delivery — note it on the proof of delivery and take photos. File the claim with the carrier within the deadline, which is generally nine months under the Carmack Amendment for US domestic freight. Provide invoices and evidence and track recovery. Then analyze root causes — often packaging or handling — and fix them.\"\n\nTip: Prevention through packaging.", "B", "M"],
+["Visibility", "Why is shipment visibility important?", "**Why they ask:** proactive service.\n\n**Answer:**\n\"Real-time tracking lets us warn customers about delays before they call, plan receiving, reduce detention, and measure carrier performance with facts. Visibility platforms like project44 and FourKites pull carrier data into one view.\"\n\nTip: Proactive communication.", "B", "M"],
+["Freight Audit", "What is freight audit and payment?", "**Why they ask:** easy savings.\n\n**Answer:**\n\"It's checking carrier invoices against contracted rates, accessorials and shipment data before paying — often outsourced, or done in the TMS. It typically recovers 1 to 5% of freight spend, which on a $20 million budget is real money.\"\n\nTip: Easy savings.", "D", "M"],
+["Sustainability", "How can logistics reduce emissions?", "**Why they ask:** sustainability.\n\n**Answer:**\n\"Shift modes — truck to rail or intermodal. Improve load utilization and route optimization. Use alternative fuels and EVs where it makes sense, SmartWay carriers, and cut expedited air shipments. Most of these save money too.\"\n\nTip: Cost and carbon often align.", "D", "M"],
+["Disruption", "A port strike delays your containers. What do you do?", "**Why they ask:** disruption response.\n\n**Answer:**\n\"I identify which shipments are affected and prioritize them by customer and production impact. Then reroute to other ports where possible, use air freight for the critical items, draw on safety stock, and keep customers and sales informed. And update the plans as the situation develops.\"\n\nTip: Show a structured response.", "D", "M"],
+["Disruption", "Truck capacity is tight and carriers reject tenders. What do you do?", "**Why they ask:** market resilience.\n\n**Answer:**\n\"Go deeper into the routing guide, use brokers and the spot market selectively, offer longer lead times and flexible pickup windows, and become a 'shipper of choice' — fast loading, no detention, fair and prompt payment. For core lanes, consider dedicated capacity contracts.\"\n\nTip: The shipper-of-choice concept.", "D", "S"],
+["Last Mile", "What challenges exist in last-mile delivery?", "**Why they ask:** e-commerce logistics.\n\n**Answer:**\n\"High cost per stop, failed deliveries, customer time windows, urban congestion and returns. Solutions include route optimization, delivery windows, lockers and pickup points, crowd-sourced delivery, and better address data.\"\n\nTip: An e-commerce focus.", "D", "M"],
+["Budget", "How do you build a freight budget?", "**Why they ask:** financial ownership.\n\n**Answer:**\n\"I forecast volumes by lane and mode, apply contracted rates and a fuel assumption, add accessorials and an expedite allowance, and then track actual cost per unit every month. Fuel is the biggest variable, so I show sensitivity to diesel prices.\"\n\nTip: Fuel is a big variable.", "D", "S"],
+["Data", "What data do you analyze to improve logistics?", "**Why they ask:** data-driven decisions.\n\n**Answer:**\n\"Shipment history — lanes, weights, modes and costs — carrier performance, accessorial trends, order profiles and customer delivery requirements. Most savings ideas come from that shipment history.\"\n\nTip: Data-driven decisions.", "B", "M"],
+["Behavioral", "Tell me about a logistics cost saving you delivered.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"I analyzed our lanes and found many partial LTL shipments going to the same region. We set up a weekly consolidation schedule and moved two lanes to intermodal. That saved $420,000 a year — about 9% — with no loss of service.\"\n\nTip: Numbers.", "B", "M"],
+["Behavioral", "Tell me about a crisis shipment you rescued.", "**Why they ask:** problem solving under pressure.\n\n**Answer:**\n\"A customer's critical order missed the truck because of a production delay. I arranged an expedited team-driver load, coordinated weekend receiving with the customer, and it arrived on time. Then we added a production-to-shipping checkpoint for key orders so it wouldn't happen again.\"\n\nTip: Solve, then prevent.", "B", "E"],
+["Behavioral", "Describe a difficult carrier negotiation.", "**Why they ask:** negotiation skill.\n\n**Answer:**\n\"A carrier wanted a 12% increase. I showed market rate data, their own on-time performance, and our volume growth. We agreed on 4%, with improved service commitments.\"\n\nTip: Data and leverage.", "B", "M"],
+["Leadership", "How do you lead a logistics team?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Clear KPIs, daily huddles, cross-training, empowering coordinators to solve problems on their own, and recognizing good performance.\"\n\nTip: Team development.", "B", "S"],
+["Leadership", "How would you set up a transportation function from scratch?", "**Why they ask:** structured setup.\n\n**Answer:**\n\"Analyze spend and lanes, implement a TMS, run a carrier bid and build a routing guide, set KPIs and freight audit, and define processes for tendering, tracking and claims.\"\n\nTip: A structured setup.", "D", "S"],
+["Strategy", "What is a 3PL vs 4PL?", "**Why they ask:** outsourcing terms.\n\n**Answer:**\n\"A 3PL performs logistics services — warehousing and transportation. A 4PL manages and integrates multiple 3PLs and logistics processes on your behalf, acting as a lead logistics provider.\"\n\nTip: A clear distinction.", "B", "M"],
+["Strategy", "When would you outsource logistics?", "**Why they ask:** strategic choices.\n\n**Answer:**\n\"When a 3PL offers better cost, flexibility, expertise or network coverage than we can in-house; when volumes are volatile; or when entering new markets. Strategy and performance management stay in-house.\"\n\nTip: Keep strategic control.", "D", "S"],
+["Air", "When is air freight justified?", "**Why they ask:** cost control.\n\n**Answer:**\n\"For urgent, high-value or perishable goods where speed outweighs cost, or to recover from a disruption. Air can cost five to ten times ocean, so I track air spend as an indicator of planning failures.\"\n\nTip: Air is expensive — control it.", "B", "M"],
+["Packaging", "How does packaging affect logistics cost?", "**Why they ask:** a hidden lever.\n\n**Answer:**\n\"Package size affects cube utilization, dimensional weight pricing for parcel, damage rates and handling. Right-sizing packaging cuts freight and damage at the same time.\"\n\nTip: Give a dimensional weight example.", "D", "M"],
+["Parcel", "What is dimensional weight?", "**Why they ask:** parcel cost knowledge.\n\n**Answer:**\n\"Parcel carriers charge on whichever is greater: actual weight or dimensional weight — length times width times height divided by a divisor, like 139 for UPS and FedEx domestic. A 20 by 16 by 12-inch box is 3,840 cubic inches, divided by 139 is about 28 pounds — so you're billed for 28 pounds even if it weighs 10.\"\n\nTip: Show the calculation.", "D", "M"],
+["Export Controls", "What are export controls?", "**Why they ask:** compliance risk.\n\n**Answer:**\n\"Laws restricting exports of certain goods, technology and destinations — the EAR and ITAR in the US — plus sanctions screening of the parties involved. They require product classification with an ECCN, licenses where needed, and denied-party screening on every shipment. Violations carry serious penalties.\"\n\nTip: Compliance risk is serious.", "D", "S"],
+["Reverse Logistics", "How do you manage reverse logistics?", "**Why they ask:** growing with e-commerce.\n\n**Answer:**\n\"Return authorization, return shipping options, consolidation, inspection and disposition, refurbishment or recycling, and tracking both the cost and the recovery value.\"\n\nTip: Growing with e-commerce.", "D", "M"],
+["Technology", "How is AI changing logistics?", "**Why they ask:** modern practice.\n\n**Answer:**\n\"Predictive ETAs, dynamic routing, automated tendering, freight rate forecasting, demand-based capacity planning and automated document processing — like reading bills of lading and invoices.\"\n\nTip: Practical uses.", "D", "M"],
+["Career", "Why logistics?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Logistics connects the whole supply chain to the customer. I enjoy solving the daily puzzle — capacity, cost and timing — and seeing the impact immediately.\"\n\nTip: Show energy.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I cut freight cost while improving service — $420,000 of annual savings and OTIF from 91% to 97% in my last role. And I'm strong with TMS, carrier management and international shipping.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is a bill of lading?", "**Why they ask:** a basic document.\n\n**Answer:**\n\"It's a legal document between shipper and carrier listing the goods, quantities and destination. It serves as a receipt and the contract of carriage, and for ocean shipments a negotiable bill of lading is also a document of title — whoever holds it can claim the goods.\"\n\nTip: Quick definition.", "B", "E"],
+["Technical", "What is a routing guide?", "**Why they ask:** cost control tool.\n\n**Answer:**\n\"It's a ranked list of carriers and rates for each lane. The TMS tenders each load to the carriers in order. It enforces contract compliance and controls cost — so I track how often loads go off-guide.\"\n\nTip: Track compliance to the routing guide.", "B", "M"],
+["Technical", "What is tender acceptance rate?", "**Why they ask:** a market indicator.\n\n**Answer:**\n\"It's the percentage of loads the primary carrier accepts. A falling rate signals tight capacity or uncompetitive rates, and it leads to higher spot costs. If it drops below about 85% on a lane, I revisit the rate or carrier.\"\n\nTip: A market indicator.", "D", "M"],
+["Technical", "What is cube utilization?", "**Why they ask:** efficiency basics.\n\n**Answer:**\n\"It's how much of a trailer's or container's space is filled. Higher utilization means lower cost per unit. I improve it with load planning software, better pallet configurations and mixed loads.\"\n\nTip: Mention load planning software.", "B", "M"]
+]);
