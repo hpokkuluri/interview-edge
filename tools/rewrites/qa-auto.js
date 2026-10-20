@@ -1,0 +1,396 @@
+// Rewritten QA & Testing — Automation Engineer (Why they ask → Answer → Tip). Apply with rewrite.js (prefix qa-auto-).
+module.exports = {
+
+'How do you decide what to automate?':
+`**Why they ask:** automation that costs more than it saves is common.
+
+**Answer:**
+"I automate stable, repetitive, high-value tests: regression of critical flows, smoke tests, data-driven cases, API checks and cross-browser runs. I don't automate one-off tests, UIs that change weekly, or usability and exploratory testing. Then a quick ROI check: a 20-minute manual checkout test run 3 times a week is about 50 hours a year; if automating it takes 6 hours plus 4 hours a year of maintenance, it pays back in a couple of months."
+
+Tip: Show you think about maintenance cost, not just coverage.`,
+
+'How do you build an automation strategy from scratch?':
+`**Why they ask:** strategic thinking, not just scripting.
+
+**Answer:**
+"Assess the application and the team's skills, agree goals with the team — faster regression, feedback in CI — and pick tools that fit the tech stack, like Playwright with TypeScript for a React app. Then build a lean framework with a small set of high-value tests, wire it into CI from week one, measure stability and time saved, and scale from there. Developers are involved from the start so tests become part of the definition of done."
+
+Tip: "Start small, prove value, then scale."`,
+
+'Explain Selenium WebDriver architecture.':
+`**Why they ask:** foundational tool knowledge.
+
+**Answer:**
+"Test code in Java, Python, C# or JavaScript calls the WebDriver client library, which sends commands over the W3C WebDriver protocol to a browser-specific driver — chromedriver or geckodriver — which controls the real browser. Selenium Grid distributes those sessions across machines and browsers in parallel. Selenium 4 moved fully to the W3C standard and added relative locators like 'above' and 'near'."
+
+Tip: Mention Selenium 4's W3C standard and relative locators.`,
+
+'Which locator strategies do you use and why?':
+`**Why they ask:** locators decide how flaky a suite is.
+
+**Answer:**
+"In order: dedicated test attributes like data-testid, stable IDs, accessible roles and names, CSS selectors, and XPath only when I need text matching or to walk up to a parent. I avoid absolute XPath, index-based locators and auto-generated class names. In Playwright that looks like page.getByRole('button', { name: 'Submit' }); in Selenium, By.cssSelector with a data-testid attribute. Asking developers to add test IDs was the single biggest stability win on my last project."
+
+Tip: Ask developers to add test IDs — it's the biggest stability win.`,
+
+'How do you handle synchronization and waits?':
+`**Why they ask:** waits cause most flakiness.
+
+**Answer:**
+"Never fixed sleeps. In Selenium, explicit waits — WebDriverWait with conditions like visibility or clickability — and I don't mix them with implicit waits, which causes unpredictable timeouts. In Playwright, auto-waiting and web-first assertions like expect(locator).toBeVisible(), which retry until the condition holds. And I wait for real application signals — the spinner gone, a specific API response — rather than guessing a time."
+
+Tip: Poor waits cause most flaky tests — say so.`,
+
+'Why are teams moving from Selenium to Playwright?':
+`**Why they ask:** tool judgment.
+
+**Answer:**
+"Auto-waiting and web-first assertions cut flakiness; one API drives Chromium, Firefox and WebKit; browser contexts make parallel runs fast; tracing, screenshots and video are built in; it intercepts network calls and does API testing; and it supports TypeScript, Python, Java and .NET. Selenium still has the widest language support, Grid and a huge community, so for a large Java suite that works well, migrating may not be worth it."
+
+Tip: Show balanced judgment rather than tool fandom.`,
+
+'What is a browser context in Playwright?':
+`**Why they ask:** Playwright depth.
+
+**Answer:**
+"An isolated, incognito-like session inside one browser, with its own cookies, storage and cache. Many tests run in parallel contexts in a single browser, which is much faster than launching browsers. I log in once in a setup project, save storageState to a file, and every test starts already authenticated — that cut about 8 seconds off each test in one suite."
+
+Tip: Mention storageState for faster tests.`,
+
+'Describe an automation framework you built.':
+`**Why they ask:** proof of design skill.
+
+**Answer:**
+"TypeScript with Playwright Test: page objects for the UI, API helpers to create test data, environment configs for dev, QA and staging, fixtures for logged-in users by role, tags for smoke and regression, and Allure reports with traces attached to failures. GitHub Actions ran smoke on every pull request and full regression nightly across 4 parallel shards. Regression runtime dropped from 3 hours to 25 minutes."
+
+Tip: Structure + CI + results.`,
+
+'What is the Page Object Model?':
+`**Why they ask:** a core pattern.
+
+**Answer:**
+"Each page or component is a class holding its locators and actions — loginPage.login(user) — so tests read like user intent rather than raw selectors. When the login form changes, I update one class instead of 40 tests. I keep assertions in the tests, not in page objects, and use component objects for reusable widgets like a date picker or data grid."
+
+Tip: Mention component objects for reusable widgets.`,
+
+'What design patterns are useful in test automation?':
+`**Why they ask:** engineering maturity.
+
+**Answer:**
+"Page and component objects, Factory for creating drivers or test data, Builder for complex test data, Singleton for config — carefully — Strategy for environment-specific behavior, and Screenplay for actor-based readable tests. I've used Builder the most: new OrderBuilder().withItems(3).withCoupon('SAVE10').build() makes a test's intent obvious and keeps defaults in one place."
+
+Tip: Pick two and explain where you used them.`,
+
+'Data-driven vs keyword-driven vs BDD frameworks?':
+`**Why they ask:** framework literacy.
+
+**Answer:**
+"Data-driven runs the same test with many data sets from CSV, JSON or parameterized tests — great for validation rules. Keyword-driven builds tests from reusable keywords, often by non-programmers, as in Robot Framework. BDD writes tests in Gherkin — Given, When, Then — with Cucumber or SpecFlow, linking business language to code. BDD only pays off if business people actually read and help write the scenarios."
+
+Tip: Say BDD helps only if business people actually read the scenarios.`,
+
+'When is Cucumber/BDD a good choice?':
+`**Why they ask:** avoiding misuse.
+
+**Answer:**
+"When product owners and testers collaborate on scenarios and the feature files serve as living documentation. If only engineers ever read them, it's an extra layer for nothing. Scenarios should be declarative — 'When the customer checks out with a saved card' — not imperative steps like 'When I click the button with id pay-btn.'"
+
+Tip: Show you know the common misuse.`,
+
+'How do you automate API tests?':
+`**Why they ask:** API tests give the best return.
+
+**Answer:**
+"REST Assured in Java, Playwright's request context, pytest with requests, Postman with Newman, or Karate. I validate status codes, response bodies, JSON schema, headers and response time, chain flows — create, get, update, delete — parameterize data and clean up. For example: POST /orders returns 201 with an ID, then GET /orders/{id} returns the same items and the correct total. API tests run in seconds and rarely flake."
+
+Tip: API tests give the best return — fast and stable.`,
+
+'How do you handle authentication in API tests?':
+`**Why they ask:** practical setup.
+
+**Answer:**
+"Get tokens programmatically in setup — OAuth client credentials or the login endpoint — cache them for the run, keep secrets in the CI secret store, never in code, and test the negative cases: expired token returns 401, missing token returns 401, wrong scope returns 403. Plus role-based tests: a regular user calling an admin endpoint must be refused."
+
+Tip: Mention role-based tests (user vs admin).`,
+
+'How do you deal with flaky tests?':
+`**Why they ask:** flakiness destroys trust.
+
+**Answer:**
+"Track flakiness from rerun statistics, quarantine flaky tests so they don't block pipelines, and fix the root cause: bad waits, shared test data, order dependence, unstable environments, animations, third-party calls. Retries are a temporary crutch. One test failed about 1 run in 15 because two tests used the same customer account in parallel; giving each test its own generated customer fixed it permanently."
+
+Tip: Share a flaky test you fixed and the cause.`,
+
+'How do you integrate tests into CI/CD?':
+`**Why they ask:** automation only matters if it runs.
+
+**Answer:**
+"Unit and API tests on every pull request, UI smoke on merge to main, full regression nightly or before release. Tests run in containers with parallel shards, publish reports and artifacts — screenshots and traces — and critical failures fail the build. I've done this in GitHub Actions, Jenkins and Azure DevOps. Pull request checks should finish in about 10 minutes or developers stop waiting for them."
+
+Tip: Mention keeping PR checks under ~10 minutes.`,
+
+'How do you run tests in parallel safely?':
+`**Why they ask:** speed without chaos.
+
+**Answer:**
+"Tests must be independent — each creates its own data and doesn't rely on run order. No shared accounts, or a pool of users handed out per worker. Isolated browser contexts, sharding across CI machines, and care with shared resources like a database table that all tests count rows in."
+
+Tip: Independence is the precondition.`,
+
+'How do you manage test data for automation?':
+`**Why they ask:** data causes many failures.
+
+**Answer:**
+"Create data through APIs or database scripts before the test rather than clicking through the UI, use unique values like timestamps or UUIDs to avoid collisions, clean up afterward or use disposable environments, use factories or builders for complex objects, and mask any production data. Creating an order through the API takes 200 milliseconds; through the UI it takes 30 seconds."
+
+Tip: "Never depend on data another test created."`,
+
+'When do you mock services in automated tests?':
+`**Why they ask:** balance between speed and realism.
+
+**Answer:**
+"When a dependency is slow, unreliable, costly or not built yet — payment gateways, third-party APIs, email. I use Playwright's route interception, WireMock or service virtualization; mocking a payment decline is also the only practical way to test that path. But I keep some end-to-end tests with real integrations, because over-mocking hides contract changes."
+
+Tip: Balance — over-mocking hides real bugs.`,
+
+'Which programming skills does an automation engineer need?':
+`**Why they ask:** automation is software engineering.
+
+**Answer:**
+"Solid fundamentals in one language — Java, TypeScript, Python or C#: object-oriented design, collections, exceptions, async/await in JavaScript, file and JSON handling, and string manipulation. Plus Git, code reviews and clean code. Automation code is production code and deserves the same standards."
+
+Tip: Expect a coding exercise — practice string and array problems.`,
+
+'Write logic to check whether a list of prices on a page is sorted ascending.':
+`**Why they ask:** a common coding exercise.
+
+**Answer:**
+"First collect the price texts and convert them to numbers — '$1,299.00' must become 1299, so I strip the dollar sign and commas and parseFloat. Then check each price against the previous one: prices.every((p, i) => i === 0 || prices[i - 1] <= p). Comparing the raw strings is the classic bug — as text, '$1,299' sorts before '$199'. I'd also test descending sort, ties, and sorting across paginated pages."
+
+Tip: Mention the number-parsing step — many candidates compare strings.`,
+
+'How do you reverse a string or find duplicates in an array?':
+`**Why they ask:** basic coding fluency.
+
+**Answer:**
+"Reverse: in JavaScript, s.split('').reverse().join(''); in Python, s[::-1]. Duplicates: loop through once with a Set — if the item's already in the set, it's a duplicate, otherwise add it. That's O(n) time, versus O(n squared) for nested loops comparing every pair."
+
+Tip: Explain complexity briefly — interviewers like it.`,
+
+'How do you use Git in automation work?':
+`**Why they ask:** team workflow.
+
+**Answer:**
+"Feature branches, small commits with clear messages, pull requests with code review, regularly bringing in changes from main, and resolving conflicts. Test code follows the same standards as application code, and I review developers' test code too."
+
+Tip: Mention reviewing developers' test code too.`,
+
+'What should a good automation report show?':
+`**Why they ask:** fast diagnosis.
+
+**Answer:**
+"A pass/fail summary, trends over time, failure details with screenshots, traces, video and logs, durations, flaky-test indicators, and links to the build and commit. Allure, the Playwright HTML report or ReportPortal. A good report lets someone diagnose a failure in two minutes without rerunning anything."
+
+Tip: Make failures quick to diagnose.`,
+
+'How do you keep an automation suite maintainable?':
+`**Why they ask:** suites rot without discipline.
+
+**Answer:**
+"Clear structure with page objects and helpers, stable locators, no duplicated logic, code reviews, regular removal of obsolete tests, tags and ownership, and fixing broken tests immediately rather than letting failures pile up."
+
+Tip: "A red suite everyone ignores is worse than no suite."`,
+
+'What is visual regression testing?':
+`**Why they ask:** UI quality coverage.
+
+**Answer:**
+"Comparing screenshots against approved baselines to catch unintended layout or styling changes. Playwright's toHaveScreenshot, Percy, or Applitools with AI-based comparison. To avoid false positives, I mask dynamic content like dates and ads, freeze animations, and use consistent test data and fonts in CI containers."
+
+Tip: Mention reducing false positives.`,
+
+'How do you automate mobile apps?':
+`**Why they ask:** mobile coverage.
+
+**Answer:**
+"Appium for cross-platform using the WebDriver protocol, or Espresso on Android and XCUITest on iOS, which are faster and more stable. Accessibility IDs as locators, emulators and simulators in CI, and real devices in a device cloud like BrowserStack or Sauce Labs. I also handle permission dialogs and app states — fresh install, upgrade, backgrounded."
+
+Tip: Mention handling permissions and app states.`,
+
+'Can automation engineers help with performance testing?':
+`**Why they ask:** breadth.
+
+**Answer:**
+"Yes — writing load scripts in k6, JMeter or Gatling for key APIs, adding lightweight performance checks to pipelines — for example, failing the build if p95 latency for search goes above 500 milliseconds — and capturing frontend metrics with Lighthouse in CI."
+
+Tip: Shows breadth.`,
+
+'What is contract testing?':
+`**Why they ask:** microservice testing.
+
+**Answer:**
+"Verifying that a consumer and a provider agree on request and response shapes, without a full end-to-end environment. The consumer records its expectations — 'GET /users/1 returns id, name and email' — and the provider verifies them in its own pipeline, with Pact for example. A provider renaming a field fails its own build before it breaks the consumer."
+
+Tip: Useful in microservice architectures.`,
+
+'How do you validate database changes in automated tests?':
+`**Why they ask:** backend verification.
+
+**Answer:**
+"Connect with a database client library, query after the action to verify inserts or updates, and clean up. I prefer verifying through the API when possible, and use direct database checks for things the API doesn't expose — like an audit row — with a least-privilege, read-mostly test database user."
+
+Tip: Mention least-privilege test DB users.`,
+
+'What security checks can be automated?':
+`**Why they ask:** shift-left security.
+
+**Answer:**
+"Dependency vulnerability scans, static analysis, DAST scans with OWASP ZAP in pipelines, and authorization tests — logged in as user A, request user B's order by ID and expect 403 or 404. That last one catches broken access control, the top item on the OWASP Top 10."
+
+Tip: Mention the OWASP Top 10.`,
+
+'How do you measure automation success?':
+`**Why they ask:** proving value.
+
+**Answer:**
+"Regression time saved, the share of regression automated, pipeline pass rate and flakiness, defects caught before production, and release frequency. 'Regression went from four days to 40 minutes and we moved to weekly releases' is the kind of outcome leadership cares about."
+
+Tip: Tie metrics to business outcomes.`,
+
+'How is AI changing test automation?':
+`**Why they ask:** current trends.
+
+**Answer:**
+"AI assistants speed up writing tests, and tools offer self-healing locators, test generation from requirements or recorded flows, visual AI comparison and failure triage. Engineers still own the strategy and review generated tests — AI often writes tests that click everything and assert nothing meaningful."
+
+Tip: Show you'd validate AI-generated tests.`,
+
+'How would you test an AI chatbot feature?':
+`**Why they ask:** a new testing frontier.
+
+**Answer:**
+"Build an evaluation set of prompts with expected behaviors, then check accuracy and grounding in source documents, safety — prompt injection, harmful content, PII leakage — consistency across repeated runs since outputs vary, latency and cost, and regressions whenever the model or prompt changes. Automated scoring, sometimes using a model as a judge, combined with human review of a sample."
+
+Tip: Very current topic — good differentiator.`,
+
+'How do you convince a team to invest in automation?':
+`**Why they ask:** influence.
+
+**Answer:**
+"Show data — manual regression hours, release delays, escaped defects. Propose a pilot on the highest-value flows with a clear target, like regression from three days to four hours, deliver it quickly, and involve developers so ownership is shared."
+
+Tip: A pilot with measurable results wins support.`,
+
+'How do you mentor manual testers moving into automation?':
+`**Why they ask:** team building.
+
+**Answer:**
+"Programming basics in the team's language first, then pairing on real tests, small tasks with supportive code review, templates and helpers that make the first test easy, and celebrating first merged contributions. Manual testers bring great test design instincts — the code is the learnable part."
+
+Tip: Supportive and structured.`,
+
+'Tell me about automation that saved significant time.':
+`**Why they ask:** proof.
+
+**Answer:**
+"Release regression took three testers four days. I automated 220 critical scenarios with Playwright and API-based setup, ran them in six parallel shards in CI, and cut regression to 40 minutes. We moved from monthly to weekly releases."
+
+Tip: Before/after numbers.`,
+
+'Tell me about a time your tests missed a bug.':
+`**Why they ask:** accountability.
+
+**Answer:**
+"A currency rounding bug reached production because our tests only used USD. I added data-driven tests for five currencies, reviewed other areas with similar gaps, and added a 'data variety' item to our test review checklist."
+
+Tip: Own it and show the systemic fix.`,
+
+"How do you handle a pipeline that's red because of your tests?":
+`**Why they ask:** ownership.
+
+**Answer:**
+"Investigate immediately — real defect, test bug or environment issue. If it's my test, fix or quarantine it fast so the team isn't blocked, and post an update in the team channel so nobody wastes time on it."
+
+Tip: Ownership and speed.`,
+
+'How do you handle tests across dev, QA and staging environments?':
+`**Why they ask:** configuration discipline.
+
+**Answer:**
+"Externalize configuration — URLs, credentials, feature flags — per environment, inject it through environment variables in CI, and tag tests that only make sense in certain environments, like a payment sandbox test that can't run in dev."
+
+Tip: Never hard-code URLs.`,
+
+'How do containers help test automation?':
+`**Why they ask:** modern infrastructure.
+
+**Answer:**
+"Identical environments locally and in CI, easy parallel browsers with the official Playwright or Selenium Docker images, dependencies spun up with Docker Compose or Testcontainers, and clean state for every run. A docker-compose stack with the app, database and a mock payment service lets anyone run the full suite with one command."
+
+Tip: Mention a docker-compose test stack.`,
+
+'What are cloud testing platforms used for?':
+`**Why they ask:** coverage strategy.
+
+**Answer:**
+"Running tests across many browsers, OS versions and real mobile devices without maintaining a device lab — BrowserStack, Sauce Labs, LambdaTest. Costs scale with parallel sessions, so I pick the coverage matrix from analytics: if 92% of users are on the latest Chrome, Safari and Edge, that's where most runs go."
+
+Tip: Mention choosing a coverage matrix from analytics.`,
+
+'Can accessibility checks be automated?':
+`**Why they ask:** accessibility awareness.
+
+**Answer:**
+"Partly. axe-core integrated into Playwright or Selenium catches roughly a third to half of WCAG issues automatically — missing labels, contrast, invalid ARIA. Keyboard flow and the real screen reader experience still need manual testing."
+
+Tip: Balanced view.`,
+
+"What do you look for when reviewing someone's test code?":
+`**Why they ask:** quality standards.
+
+**Answer:**
+"Meaningful assertions, independence from other tests, no hard-coded waits or data, clear naming, reuse of helpers and page objects, proper cleanup and readability. A test that navigates five pages and asserts only that the page loaded proves very little."
+
+Tip: "A test without a good assertion is just a script."`,
+
+'Where do you want to grow as an automation engineer?':
+`**Why they ask:** career fit.
+
+**Answer:**
+"Toward SDET or quality engineering leadership — test architecture, CI/CD, performance and security testing, and coaching teams on testability."
+
+Tip: Show direction.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I build automation teams trust — stable, fast and wired into CI. I've cut regression from days to under an hour, kept flakiness below 1%, and helped developers own tests. I'm strong in TypeScript and Java across UI and API layers."
+
+Tip: Reliability and impact.`,
+
+'How do you handle frames, multiple windows and alerts in Selenium?':
+`**Why they ask:** practical Selenium knowledge.
+
+**Answer:**
+"Frames: driver.switchTo().frame(...) and then defaultContent() to come back. Windows: getWindowHandles(), switch to the new handle, do the work, close it and switch back. Alerts: driver.switchTo().alert() then accept, dismiss or getText. In Playwright it's simpler: frameLocator for frames, context.waitForEvent('page') for new tabs, and page.on('dialog') for alerts."
+
+Tip: Showing both tools' approaches stands out.`,
+
+'What is Selenium Grid and when do you need it?':
+`**Why they ask:** scaling execution.
+
+**Answer:**
+"Grid distributes tests across machines, browsers and OS versions in parallel — a router receives sessions and sends them to nodes. I'd use it to cut runtime and cover browser combinations, though often a cloud grid like BrowserStack, or Docker-based Selenium images, is cheaper than maintaining our own. Selenium 4 split Grid into distributed components that scale better."
+
+Tip: Mention Selenium 4's distributed Grid components.`,
+
+'What would you automate first in a brand-new project?':
+`**Why they ask:** prioritization.
+
+**Answer:**
+"A smoke suite of the most critical journeys — login, the core transaction, payment — API tests for the core services, and a CI job running them on every build. That gives fast, visible value in the first couple of weeks; then I expand regression by risk."
+
+Tip: Quick wins build trust in automation.`,
+
+};

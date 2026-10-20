@@ -1,14 +1,5 @@
-QB['qa-auto'] = (QB['qa-auto'] || []).concat([
-["Selenium", "How do you handle frames, multiple windows and alerts in Selenium?",
-`**Answer:** Frames: \`driver.switchTo().frame(...)\` then \`defaultContent()\` to return. Windows: get \`getWindowHandles()\`, switch to the new handle, close it and switch back. Alerts: \`driver.switchTo().alert()\` then accept/dismiss/getText. In Playwright, frames use \`frameLocator\`, new pages come from \`context.waitForEvent('page')\`, and dialogs are handled with \`page.on('dialog')\`.
-
-Tip: Showing both tools' approaches stands out.`, 'B', 'M'],
-["Selenium", "What is Selenium Grid and when do you need it?",
-`**Answer:** Grid distributes tests across multiple machines, browsers and OS versions in parallel. A hub/router receives sessions and sends them to nodes. Use it to cut run time and cover browser combinations — or use cloud grids (BrowserStack, Sauce Labs) or Docker-based Selenoid/Selenium images instead of maintaining your own.
-
-Tip: Mention Selenium 4's distributed Grid components.`, 'D', 'M'],
-["Strategy", "What would you automate first in a brand-new project?",
-`**Answer:** A smoke suite of the most critical journeys (login, core transaction, payment), API tests for core services, and a CI job that runs them on every build. That gives fast, visible value; then expand to regression by risk.
-
-Tip: Quick wins build trust in automation.`, 'B', 'M']
+QB["qa-auto"] = (QB["qa-auto"] || []).concat([
+["Selenium", "How do you handle frames, multiple windows and alerts in Selenium?", "**Why they ask:** practical Selenium knowledge.\n\n**Answer:**\n\"Frames: driver.switchTo().frame(...) and then defaultContent() to come back. Windows: getWindowHandles(), switch to the new handle, do the work, close it and switch back. Alerts: driver.switchTo().alert() then accept, dismiss or getText. In Playwright it's simpler: frameLocator for frames, context.waitForEvent('page') for new tabs, and page.on('dialog') for alerts.\"\n\nTip: Showing both tools' approaches stands out.", "B", "M"],
+["Selenium", "What is Selenium Grid and when do you need it?", "**Why they ask:** scaling execution.\n\n**Answer:**\n\"Grid distributes tests across machines, browsers and OS versions in parallel — a router receives sessions and sends them to nodes. I'd use it to cut runtime and cover browser combinations, though often a cloud grid like BrowserStack, or Docker-based Selenium images, is cheaper than maintaining our own. Selenium 4 split Grid into distributed components that scale better.\"\n\nTip: Mention Selenium 4's distributed Grid components.", "D", "M"],
+["Strategy", "What would you automate first in a brand-new project?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"A smoke suite of the most critical journeys — login, the core transaction, payment — API tests for the core services, and a CI job running them on every build. That gives fast, visible value in the first couple of weeks; then I expand regression by risk.\"\n\nTip: Quick wins build trust in automation.", "B", "M"]
 ]);
