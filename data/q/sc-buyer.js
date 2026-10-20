@@ -1,269 +1,54 @@
 // sc-buyer — generated from src/sc-buyer-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Buyer / Procurement Specialist. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-buyer'] = [
-["P2P", "Walk me through the procure-to-pay process.",
-`**Why they ask:** buyers sit in the middle of P2P; they want end-to-end understanding.
-
-**Answer:** A need is raised as a **requisition** → approved by budget owner → the buyer **sources** it (catalog, contract or quotes) → creates the **purchase order** → supplier acknowledges → goods/services are **received** → supplier **invoices** → AP **matches** invoice to PO and receipt → **payment** by terms. The buyer owns sourcing, PO accuracy and supplier follow-up, and helps resolve invoice holds.
-
-Tip: Mention where buyers commonly cause downstream problems — wrong prices on POs cause AP holds.`, 'B', 'E'],
-
-["P2P", "What makes a purchase order accurate and complete?",
-`**Answer:** Correct supplier and site, item or clear description, quantity, unit of measure, agreed price, need-by date, ship-to and bill-to, payment and delivery terms (Incoterms), account coding or project, tax handling, and reference to a contract or quote. Accurate POs prevent receipt and invoice problems.
-
-Tip: Price and UOM errors are the top causes of invoice holds.`, 'B', 'E'],
-
-["Sourcing", "What are RFI, RFQ and RFP?",
-`**Answer:** **RFI** (request for information): learn about suppliers and capabilities. **RFQ** (request for quotation): price for clearly specified items — usually lowest compliant price wins. **RFP** (request for proposal): solutions for complex needs, evaluated on price plus quality, capability, service and risk.
-
-Tip: Give an example of when you used each.`, 'B', 'E'],
-
-["Sourcing", "How many quotes do you get and when?",
-`**Answer:** Follow the company's policy — often three competitive quotes above a threshold (e.g. $10,000), with sole-source justification documented when competition isn't possible (proprietary item, emergency, unique capability). Below threshold, use catalogs or preferred suppliers.
-
-Tip: Mention sole-source justification forms.`, 'B', 'E'],
-
-["Suppliers", "How do you evaluate and select a supplier?",
-`**Answer:** Weighted scorecard: total cost (not just price), quality record and certifications (ISO 9001), delivery performance and lead times, capacity, financial stability, location and risk, service and communication, and compliance (ethics, ESG, sanctions). Samples or audits for critical items.
-
-Tip: "Total cost, not just price" is the key phrase.`, 'B', 'E'],
-
-["Suppliers", "How do you onboard a new supplier?",
-`**Answer:** Collect required documents (W-9 or tax forms, banking details, insurance certificates, certifications), run sanctions and risk checks, get internal approvals, set up in the ERP with correct terms and contacts, and communicate PO and invoicing requirements.
-
-Tip: Mention the separation between buyer and supplier master data team for fraud control.`, 'B', 'E'],
-
-["Negotiation", "How do you prepare for a negotiation?",
-`**Answer:** Know requirements, volumes and budget; research market prices and should-cost; review supplier performance; define target, opening and walk-away positions; know your **BATNA** (best alternative); list tradeable items beyond price (terms, lead time, volume commitments, rebates, warranty, inventory holding). Aim for a sustainable agreement.
-
-Tip: Mention a real negotiation and the result.`, 'B', 'E'],
-
-["Negotiation", "What can you negotiate besides price?",
-`**Answer:** Payment terms (net 60 instead of net 30), volume discounts and rebates, lead times, minimum order quantities, consignment or vendor-managed inventory, freight terms, warranty, price-hold periods, quality guarantees and service levels.
-
-**Example:** moving from net 30 to net 60 on $2M annual spend frees about $165,000 of cash.
-
-Tip: Quantify the value of non-price terms.`, 'B', 'M'],
-
-["Negotiation", "A supplier announces a 12% price increase. What do you do?",
-`**Answer:** Ask for justification (cost breakdown, index data), check market indices and competitor prices, review contract terms on price changes, negotiate a smaller or phased increase, ask for offsets (longer terms, rebates), and get alternative quotes to strengthen your position. Inform stakeholders of budget impact.
-
-Tip: Data-based pushback.`, 'D', 'M'],
-
-["Expediting", "A critical part is going to be late. What do you do?",
-`**Answer:** Confirm the new date and root cause, escalate with the supplier, ask for partial shipments or expedited freight, look for alternatives (other suppliers, substitutes, stock at other sites), inform planning and production immediately, and record it on the supplier scorecard.
-
-Tip: Speed of communication matters most.`, 'B', 'E'],
-
-["Expediting", "How do you prevent late deliveries proactively?",
-`**Answer:** Get order acknowledgments with confirmed dates, follow up on high-risk orders before due dates, track open PO reports, share forecasts with key suppliers, and review lead times regularly.
-
-Tip: Proactive follow-up beats firefighting.`, 'B', 'E'],
-
-["Terms", "What are Incoterms? Give examples.",
-`**Answer:** International trade terms (Incoterms 2020) defining who pays for transport, insurance and duties, and where risk transfers.
-- **EXW:** buyer handles everything from seller's premises.
-- **FCA:** seller hands goods to buyer's carrier.
-- **FOB:** seller loads on vessel (sea freight only).
-- **CIF:** seller pays cost, insurance and freight to destination port.
-- **DAP:** seller delivers to destination, buyer pays import duties.
-- **DDP:** seller delivers duty paid.
-
-Tip: Explain risk transfer point for FOB vs CIF.`, 'B', 'M'],
-
-["Terms", "What payment terms are common and what do they mean?",
-`**Answer:** Net 30/45/60/90 (pay within days of invoice), 2/10 net 30 (2% discount if paid in 10 days), payment in advance, letters of credit for international trade, and milestone payments for projects.
-
-Tip: Mention the annualized value of early-pay discounts (~37% for 2/10 net 30).`, 'B', 'E'],
-
-["Contracts", "What are blanket purchase orders and contract agreements?",
-`**Answer:** A **blanket PO** (or blanket purchase agreement) sets prices and terms for repeated purchases over a period; releases are issued as needed. A **contract purchase agreement** sets terms without items, referenced by standard POs. They reduce paperwork and lock in pricing.
-
-Tip: In Oracle, mention BPAs and invoice matching considerations.`, 'B', 'M'],
-
-["Metrics", "Which procurement KPIs do you track?",
-`**Answer:** Cost savings and avoidance, PO cycle time (requisition to PO), supplier on-time delivery and quality, spend under management, contract compliance, maverick spend, PO accuracy (invoice holds caused by PO errors), and purchase price variance.
-
-Tip: Mention your own numbers.`, 'B', 'M'],
-
-["Savings", "How do you calculate cost savings?",
-`**Answer:** **Hard savings:** (old price − new price) × annual volume. **Cost avoidance:** preventing a price increase or avoiding a purchase. Use agreed baselines and validate with finance so savings are credible.
-
-**Example:** price cut from $8.00 to $7.20 on 50,000 units = $40,000 hard savings.
-
-Tip: Finance-validated savings are more credible.`, 'B', 'M'],
-
-["Systems", "Which procurement systems have you used?",
-`**Sample answer:** "Oracle Fusion Procurement for requisitions, POs, BPAs and supplier management; Coupa for catalogs and approvals; and Excel for quote comparisons. I've also used supplier portals for order acknowledgments."
-
-Tip: Describe tasks, not just names.`, 'B', 'E'],
-
-["Catalogs", "What are punchout catalogs and why use them?",
-`**Answer:** A punchout lets users shop on a supplier's website from within the procurement system, then return the cart as a requisition with contract pricing. It increases compliance, speeds buying and reduces buyer workload for routine items.
-
-Tip: Mention reducing maverick spend.`, 'B', 'M'],
-
-["Ethics", "A supplier offers you an expensive gift. What do you do?",
-`**Answer:** Decline politely, following the gifts and entertainment policy, and report it if required. Keep supplier selection objective and documented. Small token gifts may be allowed under policy limits.
-
-Tip: Integrity questions need clear answers.`, 'B', 'E'],
-
-["Ethics", "What is a conflict of interest in procurement?",
-`**Answer:** When personal relationships or interests could influence purchasing decisions — e.g. buying from a relative's company. Disclose it, step away from the decision, and follow policy.
-
-Tip: Disclosure is the key word.`, 'B', 'E'],
-
-["Risk", "How do you reduce supply risk for critical items?",
-`**Answer:** Dual or multi-sourcing, safety stock, long-term agreements with capacity commitments, monitoring supplier financial health, regional diversification, and clear escalation contacts.
-
-Tip: Mention a single-source risk you addressed.`, 'D', 'M'],
-
-["Quality", "A supplier keeps shipping defective parts. What do you do?",
-`**Answer:** Quarantine and return defective goods, request a corrective action (SCAR / 8D) with root cause, increase incoming inspection, track defect rates on the scorecard, recover costs per contract, and qualify an alternate supplier if no improvement.
-
-Tip: Work with the quality team.`, 'B', 'M'],
-
-["Inventory", "How does purchasing affect inventory levels?",
-`**Answer:** Order quantities, timing, lead times and MOQs drive inventory. Over-ordering ties up cash; under-ordering causes shortages. Buyers work with planners on MRP suggestions, safety stock and supplier lead times.
-
-Tip: Show you balance cost, service and cash.`, 'B', 'E'],
-
-["MRP", "How do buyers use MRP output?",
-`**Answer:** Convert planned orders into POs, act on reschedule-in/out and cancel messages, check supplier capacity and lead times, and update ERP data (lead times, MOQs) so future plans are accurate.
-
-Tip: Bad lead-time data ruins MRP.`, 'D', 'M'],
-
-["Tail Spend", "What is tail spend and how do you manage it?",
-`**Answer:** The many small, low-value purchases from many suppliers — often 20% of spend but 80% of suppliers and transactions. Manage with catalogs, purchasing cards, consolidating suppliers, marketplaces and spot-buy tools.
-
-Tip: Reduces admin cost.`, 'D', 'M'],
-
-["Spend Analysis", "How do you analyze spend?",
-`**Answer:** Extract AP and PO data, clean and classify by supplier and category (e.g. UNSPSC), find top suppliers and categories, fragmentation, off-contract spend and price variances, then prioritize sourcing opportunities.
-
-Tip: Mention Excel pivot tables or spend analytics tools.`, 'D', 'M'],
-
-["Communication", "How do you work with internal requesters?",
-`**Answer:** Understand their needs early, explain policies and lead times, offer options, keep them updated on status, and push back respectfully when requests aren't compliant.
-
-Tip: Service mindset with control.`, 'B', 'E'],
-
-["Communication", "How do you handle a requester who bought without a PO?",
-`**Answer:** Explain the risks (no negotiated price, accrual and payment issues, control breaches), help process an after-the-fact PO with approval if policy allows, and help them plan future purchases correctly. Track repeat cases for management.
-
-Tip: Educate, don't scold.`, 'B', 'E'],
-
-["Supplier Relations", "How do you build strong supplier relationships?",
-`**Answer:** Clear expectations, timely payments, regular performance reviews, honest communication about issues, sharing forecasts, and treating suppliers as partners.
-
-Tip: Good relationships help in shortages.`, 'B', 'E'],
-
-["International", "What should you consider when buying from overseas suppliers?",
-`**Answer:** Longer lead times, Incoterms, freight and duties (total landed cost), currency risk, quality control at source, import compliance (HS codes, country of origin), and communication/time zones.
-
-Tip: Total landed cost comparison.`, 'D', 'M'],
-
-["Landed Cost", "How do you calculate total landed cost?",
-`**Answer:** Product price + freight + insurance + duties and tariffs + customs brokerage + handling + inventory carrying cost for longer lead times.
-
-**Example:** $10.00 unit price + $1.20 freight + $0.80 duty + $0.30 other = $12.30 landed vs $11.50 domestic quote — domestic is cheaper.
-
-Tip: Examples show business sense.`, 'D', 'M'],
-
-["Tariffs", "How do tariffs affect purchasing decisions?",
-`**Answer:** Tariffs raise landed cost and can shift the best source country. Buyers review HS classification, country of origin, free trade agreements, alternative sources and contract clauses on who pays tariff changes.
-
-Tip: Very current topic.`, 'D', 'M'],
-
-["Services", "How is buying services different from buying goods?",
-`**Answer:** Requires clear statements of work, deliverables and acceptance criteria, rate cards, insurance and liability terms, time-and-materials vs fixed-price decisions, and receipt by milestone or timesheet approval.
-
-Tip: SOW clarity prevents disputes.`, 'D', 'M'],
-
-["Contracts", "What key clauses should a supply contract include?",
-`**Answer:** Scope and specifications, pricing and adjustments, payment terms, delivery and Incoterms, quality and warranties, liability and indemnity, confidentiality, IP, termination, force majeure, and dispute resolution.
-
-Tip: Work with legal.`, 'D', 'M'],
-
-["Approvals", "Why are approval limits important?",
-`**Answer:** They ensure spending is authorized at the right level, reduce fraud and enforce budgets. Buyers check approvals are complete before issuing POs.
-
-Tip: Control awareness.`, 'B', 'E'],
-
-["Invoice Holds", "How do buyers help resolve invoice holds?",
-`**Answer:** Correct PO prices or quantities with approval when the supplier is right, request credit memos when the supplier is wrong, chase receipts with requesters, and fix root causes like outdated catalog prices.
-
-Tip: AP and procurement must work together.`, 'B', 'E'],
-
-["Sustainability", "How do you consider sustainability in purchasing?",
-`**Answer:** Supplier ESG assessments (e.g. EcoVadis), environmental certifications, packaging reduction, local sourcing where sensible, and lower-carbon transport — balanced with cost and quality.
-
-Tip: Growing priority for many companies.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a time you saved money on a purchase.",
-`**Sample answer:** "We bought packaging from four suppliers at different prices. I consolidated volume to two suppliers through an RFQ, negotiated tiered pricing, and saved $85,000 a year (14%) with the same quality and better lead times."
-
-Tip: Numbers and method.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a supply disruption you handled.",
-`**Sample answer:** "Our only resin supplier had a plant fire. Within 24 hours I contacted three alternative suppliers, expedited samples through quality, and placed bridge orders. Production continued with a two-day impact instead of weeks."
-
-Tip: Speed and coordination.`, 'B', 'M'],
-
-["Behavioral", "Describe a difficult negotiation.",
-`**Sample answer:** "A key supplier demanded 15% more. I prepared index data showing raw materials up only 6%, and a competing quote. We agreed 5% with a 12-month price hold and extended payment terms to net 60."
-
-Tip: Preparation and data.`, 'B', 'M'],
-
-["Behavioral", "How do you handle many urgent requests at once?",
-`**Answer:** Prioritize by production impact, customer commitments and risk; communicate expected timelines; and escalate if conflicts can't be resolved.
-
-Tip: Prioritization framework.`, 'B', 'E'],
-
-["Compliance", "What procurement compliance rules are important?",
-`**Answer:** Competitive bidding thresholds, approval limits, conflict of interest rules, anti-bribery (FCPA), sanctions screening, record keeping for audits, and government contract rules if applicable.
-
-Tip: Show awareness.`, 'B', 'E'],
-
-["Technology", "How is AI changing procurement?",
-`**Answer:** AI classifies spend, drafts RFQs and contracts, compares quotes, predicts supplier risk and delivery delays, and supports guided buying. Buyers spend more time on strategy and relationships.
-
-Tip: Show openness and judgment.`, 'D', 'M'],
-
-["Career", "Where do you want to grow in procurement?",
-`**Answer:** Toward strategic sourcing or category management, owning categories end to end. I'm building skills in negotiation, market analysis and contracts — and considering certifications like CPSM or CIPS.
-
-Tip: Clear path.`, 'B', 'E'],
-
-["Closing", "Why should we hire you as a buyer?",
-`**Sample answer:** "I keep supply flowing while saving money — I've delivered double-digit savings, handled disruptions quickly, and kept PO accuracy high so AP rarely has holds. I build good relationships on both sides."
-
-Tip: Supply, savings, accuracy.`, 'B', 'E'],
-
-["Indirect", "What's the difference between direct and indirect procurement?",
-`**Answer:** **Direct** buys materials that go into products (raw materials, components) — affects COGS and production. **Indirect** buys goods and services to run the business (IT, office supplies, facilities, marketing). Different priorities: direct focuses on supply continuity and quality; indirect on compliance and cost.
-
-Tip: Say which you've done.`, 'B', 'E'],
-
-["MOQ", "How do you handle supplier minimum order quantities that exceed your needs?",
-`**Answer:** Negotiate lower MOQs, consolidate demand across sites, use blanket orders with scheduled releases, consider consignment or supplier-held stock, or evaluate the carrying cost vs higher unit price of smaller lots.
-
-Tip: Trade-off thinking.`, 'D', 'M'],
-
-["Forecast", "Why share forecasts with suppliers?",
-`**Answer:** It helps suppliers plan capacity and materials, reduces lead times and shortages, and can improve pricing. Share rolling forecasts with clear firm vs indicative periods.
-
-Tip: Collaboration benefits both sides.`, 'B', 'M'],
-
-["Documentation", "What documentation do you keep for audit?",
-`**Answer:** Quotes and bid comparisons, sole-source justifications, approvals, contracts, PO change history, and supplier communications on key decisions.
-
-Tip: "If it isn't documented, it didn't happen."`, 'B', 'E'],
-
-["Price Variance", "What is purchase price variance (PPV)?",
-`**Answer:** The difference between actual purchase price and standard cost × quantity. Favorable PPV means you bought below standard. It's tracked in standard-cost companies to measure purchasing performance.
-
-**Example:** standard $5.00, paid $4.70 on 10,000 units = $3,000 favorable PPV.
-
-Tip: Mention it's watched by finance.`, 'D', 'M']
-];
+QB["sc-buyer"] = (QB["sc-buyer"] || []).concat([
+["P2P", "Walk me through the procure-to-pay process.", "**Why they ask:** buyers sit in the middle of P2P; they want end-to-end understanding.\n\n**Answer:** A need is raised as a **requisition** → approved by budget owner → the buyer **sources** it (catalog, contract or quotes) → creates the **purchase order** → supplier acknowledges → goods/services are **received** → supplier **invoices** → AP **matches** invoice to PO and receipt → **payment** by terms. The buyer owns sourcing, PO accuracy and supplier follow-up, and helps resolve invoice holds.\n\nTip: Mention where buyers commonly cause downstream problems — wrong prices on POs cause AP holds.", "B", "E"],
+["P2P", "What makes a purchase order accurate and complete?", "**Why they ask:** PO errors cause receiving and invoice problems downstream.\n\n**Answer:**\n\"The right supplier and supplier site, the item number or a clear description, quantity and unit of measure, the agreed price, need-by date, ship-to and bill-to, payment and delivery terms including Incoterms, account coding or project, tax handling, and a reference to the contract or quote. In my experience, wrong prices and wrong units of measure cause most invoice holds — ordering 'each' when the supplier bills by the box of 12.\"\n\nTip: Price and UOM errors are the top causes of invoice holds.", "B", "E"],
+["Sourcing", "What are RFI, RFQ and RFP?", "**Why they ask:** basic sourcing vocabulary.\n\n**Answer:**\n\"An RFI — request for information — is for learning about suppliers and what they can do. An RFQ — request for quotation — asks for prices on clearly specified items, and usually the lowest compliant price wins. An RFP — request for proposal — is for complex needs where suppliers propose a solution, and we evaluate price plus quality, capability, service and risk. I'd use an RFQ for fasteners, but an RFP for a new warehouse management service.\"\n\nTip: Give an example of when you used each.", "B", "E"],
+["Sourcing", "How many quotes do you get and when?", "**Why they ask:** competitive bidding is a core control.\n\n**Answer:**\n\"I follow the company's policy — typically three competitive quotes above a threshold like $10,000. When competition isn't possible — a proprietary part, an emergency, or a unique capability — I document a sole-source justification and get it approved. Below the threshold, I use catalogs or preferred suppliers.\"\n\nTip: Mention sole-source justification forms.", "B", "E"],
+["Suppliers", "How do you evaluate and select a supplier?", "**Why they ask:** supplier choice drives cost, quality and risk.\n\n**Answer:**\n\"I use a weighted scorecard. Total cost, not just unit price. Quality record and certifications like ISO 9001. Delivery performance and lead times. Capacity. Financial stability. Location and risk. Service and communication. And compliance — ethics, ESG and sanctions. For critical items, I add samples or a site audit before awarding.\"\n\nTip: 'Total cost, not just price' is the key phrase.", "B", "E"],
+["Suppliers", "How do you onboard a new supplier?", "**Why they ask:** onboarding is where fraud and data errors start.\n\n**Answer:**\n\"I collect the required documents — W-9 or tax forms, banking details, insurance certificates, certifications. Then run sanctions and risk checks and get internal approvals. A separate master data team sets them up in the ERP with the right terms and contacts — the buyer shouldn't create the supplier record, for fraud control. Finally, I tell the supplier our PO and invoicing requirements.\"\n\nTip: Mention separating buyers from supplier master data.", "B", "E"],
+["Negotiation", "How do you prepare for a negotiation?", "**Why they ask:** preparation wins negotiations.\n\n**Answer:**\n\"I make sure I know our requirements, volumes and budget. I research market prices and build a should-cost estimate, and review the supplier's performance. I set my target, opening and walk-away positions, and know my BATNA — my best alternative if we don't agree. And I list what we can trade besides price: terms, lead time, volume commitments, rebates, warranty, inventory holding. The goal is an agreement that lasts, not a win that breaks the supplier.\"\n\nTip: Mention a real negotiation and the result.", "B", "E"],
+["Negotiation", "What can you negotiate besides price?", "**Why they ask:** good buyers create value beyond unit price.\n\n**Answer:**\n\"Payment terms, volume discounts and rebates, lead times, minimum order quantities, consignment or vendor-managed inventory, freight terms, warranty, price-hold periods, quality guarantees and service levels. Terms can be worth a lot — moving from net 30 to net 60 on $2 million of annual spend frees about $165,000 of cash.\"\n\nTip: Quantify the value of non-price terms.", "B", "M"],
+["Negotiation", "A supplier announces a 12% price increase. What do you do?", "**Why they ask:** a common real-world scenario.\n\n**Answer:**\n\"I ask for justification — a cost breakdown and the index data behind it. I check market indices and competitor prices myself, and review what the contract says about price changes. Then negotiate a smaller or phased increase, ask for offsets like longer terms or a rebate, and get alternative quotes so I have leverage. And I tell stakeholders the budget impact early.\"\n\nTip: Data-based pushback.", "D", "M"],
+["Expediting", "A critical part is going to be late. What do you do?", "**Why they ask:** tests urgency and coordination.\n\n**Answer:**\n\"First I confirm the new date and the cause. I escalate with the supplier and ask for a partial shipment or expedited freight. In parallel, I look for alternatives — another supplier, an approved substitute, or stock at another site. I tell planning and production immediately so they can adjust the schedule. And it goes on the supplier scorecard.\"\n\nTip: Speed of communication matters most.", "B", "E"],
+["Expediting", "How do you prevent late deliveries proactively?", "**Why they ask:** they want prevention, not firefighting.\n\n**Answer:**\n\"I require order acknowledgments with confirmed dates, follow up on high-risk orders before they're due, and work the open PO report every week. I share forecasts with key suppliers and review lead times regularly so the ERP reflects reality.\"\n\nTip: Proactive follow-up beats firefighting.", "B", "E"],
+["Terms", "What are Incoterms? Give examples.", "**Why they ask:** essential for international buying.\n\n**Answer:**\n\"Incoterms 2020 are international trade terms that define who pays for transport, insurance and duties, and where risk passes from seller to buyer. EXW — the buyer handles everything from the seller's door. FCA — the seller hands goods to the buyer's carrier. FOB — the seller loads onto the vessel, for sea freight only. CIF — the seller pays cost, insurance and freight to the destination port. DAP — the seller delivers to destination, buyer pays import duties. DDP — the seller delivers with duty paid. One subtle point: under both FOB and CIF, risk passes when goods are loaded on the vessel — even though under CIF the seller pays freight to destination.\"\n\nTip: Explain the risk transfer point for FOB versus CIF.", "B", "M"],
+["Terms", "What payment terms are common and what do they mean?", "**Why they ask:** terms affect cash and supplier relationships.\n\n**Answer:**\n\"Net 30, 45, 60 or 90 mean paying within that many days of invoice. 2/10 net 30 means a 2% discount if we pay within 10 days, otherwise full amount in 30. Then there's payment in advance, letters of credit for international trade, and milestone payments for projects. That 2% discount is worth about 37% annualized, so it's usually worth taking.\"\n\nTip: Mention the annualized value of early-pay discounts.", "B", "E"],
+["Contracts", "What are blanket purchase orders and contract agreements?", "**Why they ask:** efficient buying for repeat purchases.\n\n**Answer:**\n\"A blanket purchase order, or blanket purchase agreement, sets prices and terms for repeated purchases over a period, and we issue releases against it as needed. A contract purchase agreement sets terms without specific items, and standard POs reference it. Both cut paperwork and lock in pricing. In Oracle, it's worth checking the invoice match option on BPAs — matching to PO versus receipt changes how AP handles invoices.\"\n\nTip: In Oracle, mention BPAs and invoice matching.", "B", "M"],
+["Metrics", "Which procurement KPIs do you track?", "**Why they ask:** they want measurable performance.\n\n**Answer:**\n\"Cost savings and avoidance. PO cycle time from requisition to PO. Supplier on-time delivery and quality. Spend under management and contract compliance. Maverick spend. PO accuracy — invoice holds caused by PO errors. And purchase price variance. In my last role I got PO cycle time from five days to two.\"\n\nTip: Mention your own numbers.", "B", "M"],
+["Savings", "How do you calculate cost savings?", "**Why they ask:** savings claims must be credible.\n\n**Answer:**\n\"Hard savings are the old price minus the new price, times annual volume. Cost avoidance is preventing an increase or avoiding a purchase altogether. Both need an agreed baseline and finance validation. For example, cutting a price from $8.00 to $7.20 on 50,000 units is $40,000 of hard savings.\"\n\nTip: Finance-validated savings are more credible.", "B", "M"],
+["Systems", "Which procurement systems have you used?", "**Why they ask:** system familiarity.\n\n**Answer:**\n\"I've used Oracle Fusion Procurement for requisitions, POs, blanket agreements and supplier management; Coupa for catalogs and approvals; and Excel for quote comparisons. I've also worked with supplier portals for order acknowledgments.\"\n\nTip: Describe tasks, not just names — swap in your own tools.", "B", "E"],
+["Catalogs", "What are punchout catalogs and why use them?", "**Why they ask:** a common efficiency tool.\n\n**Answer:**\n\"A punchout lets users shop on a supplier's website from inside our procurement system, then bring the cart back as a requisition with our contract pricing. It increases compliance, speeds up buying, and takes routine items off buyers' desks. It also cuts maverick spend, because the easy path is the compliant path.\"\n\nTip: Mention reducing maverick spend.", "B", "M"],
+["Ethics", "A supplier offers you an expensive gift. What do you do?", "**Why they ask:** an integrity check.\n\n**Answer:**\n\"I decline politely, following the gifts and entertainment policy, and report it if the policy requires. Supplier selection has to stay objective and documented. Small token gifts may be allowed within policy limits, but anything expensive I turn down.\"\n\nTip: Integrity questions need clear answers.", "B", "E"],
+["Ethics", "What is a conflict of interest in procurement?", "**Why they ask:** a compliance basic.\n\n**Answer:**\n\"It's when a personal relationship or interest could influence a purchasing decision — for example, buying from a relative's company. The right response is to disclose it, step away from the decision, and follow the policy.\"\n\nTip: Disclosure is the key word.", "B", "E"],
+["Risk", "How do you reduce supply risk for critical items?", "**Why they ask:** supply continuity is the buyer's first job.\n\n**Answer:**\n\"Dual or multi-sourcing, safety stock, long-term agreements with capacity commitments, monitoring supplier financial health, spreading sources across regions, and clear escalation contacts. At my last company, one sensor came from a single supplier; I qualified a second source, and six months later it saved us during a shortage.\"\n\nTip: Mention a single-source risk you addressed.", "D", "M"],
+["Quality", "A supplier keeps shipping defective parts. What do you do?", "**Why they ask:** quality and supplier management.\n\n**Answer:**\n\"I quarantine and return the defective goods and issue a supplier corrective action request — a SCAR or 8D — asking for the root cause. Incoming inspection goes up for that part. Defect rates go on the scorecard, and we recover costs as the contract allows. If they don't improve, I qualify an alternate supplier. I work with the quality team throughout.\"\n\nTip: Work with the quality team.", "B", "M"],
+["Inventory", "How does purchasing affect inventory levels?", "**Why they ask:** buyers drive working capital.\n\n**Answer:**\n\"Order quantities, timing, lead times and MOQs all drive inventory. Over-ordering ties up cash and space; under-ordering causes shortages. So I work with planners on MRP suggestions, safety stock and accurate lead times, balancing cost, service and cash.\"\n\nTip: Show you balance cost, service and cash.", "B", "E"],
+["MRP", "How do buyers use MRP output?", "**Why they ask:** MRP is a buyer's daily tool.\n\n**Answer:**\n\"I convert planned orders into POs and act on the exception messages — reschedule in, reschedule out and cancel. I check supplier capacity and lead times before committing. And I keep the ERP data current — lead times and MOQs — because bad lead-time data ruins every MRP run after it.\"\n\nTip: Bad lead-time data ruins MRP.", "D", "M"],
+["Tail Spend", "What is tail spend and how do you manage it?", "**Why they ask:** a common efficiency opportunity.\n\n**Answer:**\n\"Tail spend is the long tail of small, low-value purchases from many suppliers — often about 20% of spend but 80% of suppliers and transactions. I manage it with catalogs, purchasing cards, supplier consolidation, marketplaces and spot-buy tools. The main win is lower admin cost per transaction.\"\n\nTip: The main benefit is lower admin cost.", "D", "M"],
+["Spend Analysis", "How do you analyze spend?", "**Why they ask:** spend analysis finds sourcing opportunities.\n\n**Answer:**\n\"I extract AP and PO data, clean it and classify it by supplier and category, often using UNSPSC codes. Then I look for top suppliers and categories, fragmentation — the same item from many suppliers — off-contract spend and price variances. That points to the best sourcing opportunities. I usually start with Excel pivot tables or a spend analytics tool.\"\n\nTip: Mention the tools you use.", "D", "M"],
+["Communication", "How do you work with internal requesters?", "**Why they ask:** buyers serve internal customers.\n\n**Answer:**\n\"I try to understand their needs early, explain policies and lead times, offer options, and keep them updated on status. When a request isn't compliant, I push back respectfully and help them find the right path.\"\n\nTip: Service mindset with control.", "B", "E"],
+["Communication", "How do you handle a requester who bought without a PO?", "**Why they ask:** a constant control problem.\n\n**Answer:**\n\"I explain the risks — no negotiated price, accrual and payment problems, and a control breach. If policy allows, I help process an after-the-fact PO with approval. Then I help them plan future purchases correctly, and track repeat cases for management.\"\n\nTip: Educate, don't scold.", "B", "E"],
+["Supplier Relations", "How do you build strong supplier relationships?", "**Why they ask:** relationships matter in shortages.\n\n**Answer:**\n\"Clear expectations, paying on time, regular performance reviews, honest communication about issues, sharing forecasts, and treating suppliers as partners. When supply gets tight, suppliers allocate to the customers they like working with.\"\n\nTip: Good relationships help in shortages.", "B", "E"],
+["International", "What should you consider when buying from overseas suppliers?", "**Why they ask:** global sourcing has hidden costs.\n\n**Answer:**\n\"Longer lead times, Incoterms, freight and duties — so total landed cost — currency risk, quality control at the source, import compliance like HS codes and country of origin, and communication across time zones. The unit price often looks great until you add everything else.\"\n\nTip: Compare total landed cost.", "D", "M"],
+["Landed Cost", "How do you calculate total landed cost?", "**Why they ask:** tests business sense.\n\n**Answer:**\n\"Product price plus freight, insurance, duties and tariffs, customs brokerage, handling, and the inventory carrying cost of a longer lead time. For example, a $10.00 overseas price plus $1.20 freight, $0.80 duty and $0.30 other costs is $12.30 landed — more than an $11.50 domestic quote. So domestic wins.\"\n\nTip: Examples show business sense.", "D", "M"],
+["Tariffs", "How do tariffs affect purchasing decisions?", "**Why they ask:** a very current topic.\n\n**Answer:**\n\"Tariffs raise landed cost and can change which country is the best source. I review the HS classification and country of origin, check free trade agreements, look at alternative sources, and check contract clauses on who absorbs tariff changes. With tariffs changing often, I keep scenarios ready for key items.\"\n\nTip: Very current — strong to mention.", "D", "M"],
+["Services", "How is buying services different from buying goods?", "**Why they ask:** services need different controls.\n\n**Answer:**\n\"Services need a clear statement of work with deliverables and acceptance criteria, rate cards, insurance and liability terms, and a choice between time-and-materials and fixed price. Receipt is by milestone or approved timesheets, not a dock receipt. A vague SOW is the main cause of disputes.\"\n\nTip: SOW clarity prevents disputes.", "D", "M"],
+["Contracts", "What key clauses should a supply contract include?", "**Why they ask:** contract basics.\n\n**Answer:**\n\"Scope and specifications, pricing and how prices adjust, payment terms, delivery and Incoterms, quality and warranties, liability and indemnity, confidentiality, intellectual property, termination, force majeure, and dispute resolution. I draft the commercial terms and work with legal on the rest.\"\n\nTip: Work with legal.", "D", "M"],
+["Approvals", "Why are approval limits important?", "**Why they ask:** control awareness.\n\n**Answer:**\n\"They make sure spending is authorized at the right level, reduce fraud and enforce budgets. Before issuing a PO, I check that the approvals are complete for that amount.\"\n\nTip: Control awareness.", "B", "E"],
+["Invoice Holds", "How do buyers help resolve invoice holds?", "**Why they ask:** procurement and AP must work together.\n\n**Answer:**\n\"If the supplier is right — the price really changed — I correct the PO price or quantity with approval. If the supplier is wrong, I ask them for a credit memo. I chase missing receipts with requesters. And I fix root causes, like outdated catalog prices, so the same hold doesn't repeat.\"\n\nTip: AP and procurement must work together.", "B", "E"],
+["Sustainability", "How do you consider sustainability in purchasing?", "**Why they ask:** a growing priority.\n\n**Answer:**\n\"Supplier ESG assessments, like EcoVadis ratings. Environmental certifications. Reducing packaging. Local sourcing where it makes sense. And lower-carbon transport. Always balanced against cost and quality.\"\n\nTip: A growing priority for many companies.", "D", "M"],
+["Behavioral", "Tell me about a time you saved money on a purchase.", "**Why they ask:** proof of savings.\n\n**Answer:**\n\"We bought packaging from four suppliers at different prices. I consolidated the volume to two suppliers through an RFQ and negotiated tiered pricing. We saved $85,000 a year — 14% — with the same quality and better lead times.\"\n\nTip: Numbers and method.", "B", "M"],
+["Behavioral", "Tell me about a supply disruption you handled.", "**Why they ask:** crisis handling.\n\n**Answer:**\n\"Our only resin supplier had a plant fire. Within 24 hours I contacted three alternative suppliers, expedited samples through quality, and placed bridge orders. Production lost two days instead of weeks. Afterward, we kept one alternate permanently qualified.\"\n\nTip: Speed and coordination.", "B", "M"],
+["Behavioral", "Describe a difficult negotiation.", "**Why they ask:** negotiation skill.\n\n**Answer:**\n\"A key supplier demanded 15% more. I prepared index data showing their raw materials were up only 6%, plus a competing quote. We agreed on 5%, with a 12-month price hold and payment terms extended to net 60.\"\n\nTip: Preparation and data.", "B", "M"],
+["Behavioral", "How do you handle many urgent requests at once?", "**Why they ask:** prioritization under pressure.\n\n**Answer:**\n\"I prioritize by production impact, customer commitments and risk. I tell each requester a realistic timeline, and if conflicts can't be resolved, I escalate to my manager to set the priority.\"\n\nTip: Show a prioritization framework.", "B", "E"],
+["Compliance", "What procurement compliance rules are important?", "**Why they ask:** compliance awareness.\n\n**Answer:**\n\"Competitive bidding thresholds, approval limits, conflict of interest rules, anti-bribery under the FCPA, sanctions screening, record keeping for audits, and government contract rules if we sell to the government.\"\n\nTip: Show awareness.", "B", "E"],
+["Technology", "How is AI changing procurement?", "**Why they ask:** they want an open, modern buyer.\n\n**Answer:**\n\"AI classifies spend, drafts RFQs and contracts, compares quotes, predicts supplier risk and delivery delays, and powers guided buying for requesters. That frees buyers to spend more time on strategy and supplier relationships. I'd still check its quote comparisons — it's a fast assistant, not the decision-maker.\"\n\nTip: Show openness and judgment.", "D", "M"],
+["Career", "Where do you want to grow in procurement?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward strategic sourcing or category management — owning categories end to end. I'm building my negotiation, market analysis and contract skills, and I'm considering certifications like CPSM or CIPS.\"\n\nTip: Show a clear path.", "B", "E"],
+["Closing", "Why should we hire you as a buyer?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I keep supply flowing while saving money. I've delivered double-digit savings, handled disruptions quickly, and kept PO accuracy high so AP rarely has holds. And I build good relationships with both suppliers and internal teams.\"\n\nTip: Supply, savings, accuracy.", "B", "E"],
+["Indirect", "What's the difference between direct and indirect procurement?", "**Why they ask:** shows the type of buying you know.\n\n**Answer:**\n\"Direct procurement buys materials that go into products — raw materials and components — so it affects COGS and production. Indirect buys goods and services to run the business — IT, office supplies, facilities, marketing. Direct focuses on supply continuity and quality; indirect focuses more on compliance and cost. Most of my experience is in direct.\"\n\nTip: Say which you've done.", "B", "E"],
+["MOQ", "How do you handle supplier minimum order quantities that exceed your needs?", "**Why they ask:** trade-off thinking.\n\n**Answer:**\n\"I'd first try to negotiate a lower MOQ, or consolidate demand across sites to meet it. Other options are a blanket order with scheduled releases, consignment or supplier-held stock. Or I compare the carrying cost of the extra inventory against the higher unit price of smaller lots and pick the cheaper total.\"\n\nTip: Trade-off thinking.", "D", "M"],
+["Forecast", "Why share forecasts with suppliers?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"It helps suppliers plan capacity and materials, which cuts lead times and shortages and can improve pricing. I share a rolling forecast with clear firm and indicative periods — for example, the next four weeks firm, the following eight indicative.\"\n\nTip: Collaboration benefits both sides.", "B", "M"],
+["Documentation", "What documentation do you keep for audit?", "**Why they ask:** auditability.\n\n**Answer:**\n\"Quotes and bid comparisons, sole-source justifications, approvals, contracts, PO change history, and supplier communications on key decisions. If it isn't documented, it didn't happen.\"\n\nTip: 'If it isn't documented, it didn't happen.'", "B", "E"],
+["Price Variance", "What is purchase price variance (PPV)?", "**Why they ask:** a key buyer metric in standard-cost companies.\n\n**Answer:**\n\"PPV is the difference between the actual purchase price and the standard cost, times quantity. Favorable means we bought below standard. For example, standard is $5.00, we paid $4.70 on 10,000 units — that's $3,000 favorable. Finance watches it closely as a measure of purchasing performance.\"\n\nTip: Mention that finance watches it.", "D", "M"]
+]);
