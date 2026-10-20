@@ -1,271 +1,55 @@
 // fa-cfo — generated from src/fa-cfo-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Chief Financial Officer. Format: [topic, question, answer, 'B'|'D']
-QB['fa-cfo'] = [
-["Role", "How do you define the role of a modern CFO?",
-`**Why they ask:** to hear your leadership philosophy.
-
-**Answer:** Four roles at once:
-- **Steward** — integrity of reporting, controls, risk.
-- **Operator** — an efficient finance function and business processes.
-- **Strategist** — capital allocation, growth, M&A, funding.
-- **Catalyst** — driving performance and change across the company.
-The modern CFO also owns data, technology and often IT or procurement.
-
-Tip: Say which of the four you lean toward and how you cover the others.`, 'B'],
-
-["Role", "What would your first 100 days as CFO look like?",
-`**Answer:** Meet the CEO, board, audit committee chair, executives, finance team, auditors, banks and major investors. Assess financial health, cash and liquidity, forecast credibility, controls, talent and systems. Agree priorities with the CEO and board, deliver early credibility wins (e.g. a clearer forecast and liquidity view), and set a 1–3 year finance agenda.
-
-Tip: Mention protecting cash and credibility first.`, 'B'],
-
-["CEO", "How do you partner with the CEO?",
-`**Answer:** Shared view of strategy and priorities; honest challenge in private and full support in public; translating strategy into the financial plan and metrics; managing board and investor expectations together; and being the CEO's most trusted sounding board on trade-offs.
-
-Tip: Give a time you changed a CEO's mind.`, 'B'],
-
-["Board", "How do you work with the board and audit committee?",
-`**Answer:** Transparent, timely reporting; no surprises; clear framing of decisions; strong relationships with the audit committee chair; open discussion of judgments, risks and control matters; and executive sessions with auditors respected.
-
-Tip: "No surprises" is the golden rule.`, 'B'],
-
-["Strategy", "How does the CFO shape strategy?",
-`**Answer:** By clarifying where the company creates value (profitability by segment, ROIC), modeling strategic options and their risks, setting capital allocation discipline, funding the plan, and holding the company accountable for results. The CFO is the honest broker of trade-offs.
-
-Tip: Share a strategic pivot you led.`, 'D'],
-
-["Capital", "How do you approach capital allocation?",
-`**Answer:** Rank uses of capital — organic investment, M&A, debt reduction, dividends, buybacks — by expected return vs cost of capital and strategic fit, while protecting liquidity and ratings. Use a consistent investment framework and post-investment reviews.
-
-Tip: ROIC > WACC as the anchor.`, 'D'],
-
-["Capital", "How do you decide on the capital structure?",
-`**Answer:** Balance cost of capital, financial flexibility and risk. Consider cash flow stability, growth needs, ratings targets, covenants and market access. Return excess capital when there's no better use.
-
-Tip: Tie to the company's cycle and growth stage.`, 'D'],
-
-["Capital", "When would you return capital to shareholders?",
-`**Answer:** When the company has more cash than needed for high-return investments and a prudent liquidity buffer. Dividends signal sustainable cash flow; buybacks are flexible and make sense when shares are undervalued. Communicate the policy clearly.
-
-Tip: Mention discipline — don't buy back at any price.`, 'D'],
-
-["Investors", "How do you manage investor relations?",
-`**Answer:** A clear equity story, consistent KPIs, credible guidance (avoid both overpromising and sandbagging), transparency in good and bad times, Regulation FD compliance, and listening to investor feedback to inform strategy.
-
-Tip: Credibility compounds.`, 'D'],
-
-["Investors", "How do you set guidance?",
-`**Answer:** Base it on a well-tested forecast with identifiable drivers, leave reasonable room for risk, provide ranges, update when facts change materially, and explain the drivers. Consistent delivery builds valuation over time.
-
-Tip: Mention beat-and-raise culture risks.`, 'D'],
-
-["Value", "Which metrics best show value creation?",
-`**Answer:** Revenue growth, margins, free cash flow, ROIC vs WACC, and EPS growth. For subscription businesses: ARR growth, net revenue retention, Rule of 40. The right set depends on the business model and stage.
-
-Tip: Tailor to the company.`, 'D'],
-
-["Funding", "How do you ensure the company is properly funded?",
-`**Answer:** Long-term funding plan aligned with strategy, committed facilities and a liquidity buffer, staggered debt maturities, diversified funding sources, and strong relationships with banks and investors before funding is needed.
-
-Tip: "Raise money when you can, not when you must."`, 'D'],
-
-["Risk", "How do you oversee enterprise risk?",
-`**Answer:** An ERM framework with risk owners, regular reviews with the executive team and board, risk appetite statements, and key risk indicators. Major risks: cyber, liquidity, regulatory, supply chain, geopolitical, talent and AI. Mitigate with controls, insurance, hedging and scenario planning.
-
-Tip: Mention board-level risk reporting.`, 'D'],
-
-["Risk", "How do you prepare the company for a recession?",
-`**Answer:** Scenario plans with triggers and pre-approved actions, strong liquidity (cash plus committed facilities), flexible cost structure, working capital discipline, and continued investment in strategic priorities where possible.
-
-Tip: Mention playing offense in downturns — acquisitions or talent.`, 'D'],
-
-["Controls", "How do you ensure the integrity of financial reporting?",
-`**Answer:** Strong tone at the top, a capable controller and team, effective internal controls (SOX), internal audit, a disclosure committee, and an open culture where issues are raised early. The CFO signs certifications — integrity is personal.
-
-Tip: Mention SOX 302/906 certifications.`, 'B'],
-
-["Operating Model", "How would you shape the finance organization?",
-`**Answer:** Business partners aligned to business units, centers of excellence (tax, treasury, FP&A, technical accounting, investor relations), shared services or global business services for transactions, and a finance data and technology team. Clear career paths and a strong leadership bench.
-
-Tip: Mention succession planning.`, 'D'],
-
-["Transformation", "How would you lead finance transformation?",
-`**Answer:** Clear vision and business case, standard processes, modern cloud ERP and EPM, automation and AI for transactional work, self-service analytics, and investment in people's skills. Deliver in phases with visible wins and strong change management.
-
-Tip: Share a transformation you led with numbers.`, 'D'],
-
-["AI", "How would you use AI across finance and the company?",
-`**Answer:** In finance: close automation, AP/AR, reconciliations, forecasting baselines, anomaly detection, contract review, board pack drafting. Company-wide: funding the AI roadmap with clear ROI criteria. Governance: data security, accuracy, controls over AI outputs, and accountability. Measure value and scale what works.
-
-Tip: Balanced — enthusiastic but disciplined.`, 'D'],
-
-["Technology", "Many CFOs now oversee IT. How would you approach that?",
-`**Answer:** Align technology investment with business strategy, prioritize cyber security and resilience, rationalize applications, manage vendors and costs, and build strong IT leadership. Measure IT by business outcomes, not just uptime.
-
-Tip: Show you'd rely on a strong CIO/CTO.`, 'D'],
-
-["M&A", "What is your approach to M&A?",
-`**Answer:** Start from strategy (what capabilities or markets do we need?), keep a pipeline, use disciplined valuation with clear walk-away prices, do rigorous diligence, plan integration before signing, and track synergies afterward. Most deal value is lost in integration.
-
-Tip: Share a deal and the lesson.`, 'D'],
-
-["M&A", "How do you decide whether to sell a business unit?",
-`**Answer:** Assess strategic fit, performance vs potential, capital needs, and whether another owner would value it more. Compare hold value vs sale proceeds after tax, separation costs and stranded costs.
-
-Tip: Mention stranded cost planning.`, 'D'],
-
-["Performance", "How do you drive performance accountability across the company?",
-`**Answer:** Clear targets linked to strategy, consistent monthly business reviews, forecasts owned by business leaders, incentives aligned with value drivers (including cash and ROIC), and early intervention when results slip.
-
-Tip: Mention incentive design.`, 'D'],
-
-["Compensation", "How should executive incentives be designed?",
-`**Answer:** A balance of short-term (revenue, profit, cash) and long-term (TSR, ROIC, strategic milestones) measures; challenging but achievable targets; alignment with shareholders; and avoidance of metrics that encourage short-term behavior or risk-taking.
-
-Tip: Mention working with the compensation committee.`, 'D'],
-
-["Tax", "How do you approach tax strategy?",
-`**Answer:** Compliance first, sustainable planning tied to real business substance, management of the effective tax rate and cash taxes, attention to global changes (Pillar Two), and transparency with the board.
-
-Tip: Responsible tone.`, 'D'],
-
-["Treasury", "What are your treasury priorities?",
-`**Answer:** Liquidity and visibility, funding resilience, risk management (FX, rates, counterparty), efficient cash pooling and repatriation, and strong payment controls against fraud.
-
-Tip: Cash is oxygen.`, 'D'],
-
-["Culture", "How do you build culture in the finance team?",
-`**Answer:** Integrity, curiosity and service to the business. Lead by example, recognize people who raise issues and improve processes, invest in development, and remove drudgery through technology.
-
-Tip: Specific actions, not slogans.`, 'B'],
-
-["Talent", "How do you build your leadership team?",
-`**Answer:** Hire leaders stronger than me in their areas, define clear accountabilities, empower them, coach and give feedback, and build succession for every key role. Diversity of experience strengthens decisions.
-
-Tip: Name a leader you hired or grew.`, 'B'],
-
-["Communication", "How do you communicate bad news?",
-`**Answer:** Early, clearly and with a plan: what happened, why, the impact, what we're doing and when we'll update. To the board, investors and employees with consistent messaging.
-
-Tip: Speed and honesty preserve trust.`, 'B'],
-
-["Scenario", "The company is about to miss guidance. What do you do?",
-`**Answer:** Validate the forecast quickly, identify any legitimate levers, then prepare the communication — guidance update with clear drivers and actions, aligned with the CEO, board and legal. Avoid aggressive accounting or short-term actions that destroy value.
-
-Tip: Integrity over optics.`, 'D'],
-
-["Scenario", "Activist investors are pushing for a breakup. How do you respond?",
-`**Answer:** Engage constructively, analyze the proposal objectively (sum-of-the-parts value, dis-synergies, separation costs), work with advisers and the board, and communicate the company's value-creation plan clearly. Be open to good ideas.
-
-Tip: Objective analysis, not defensiveness.`, 'D'],
-
-["Scenario", "A major cyberattack halts operations. What does the CFO do?",
-`**Answer:** Protect liquidity and payments (manual backup processes, bank coordination), support incident response and insurance claims, assess financial impact and disclosure obligations (SEC 8-K within four business days if material), and communicate with stakeholders.
-
-Tip: Mention the SEC cyber disclosure rule.`, 'D'],
-
-["Scenario", "Your largest customer is in financial trouble. What do you do?",
-`**Answer:** Assess exposure (receivables, revenue, inventory), tighten credit terms or require security, model the impact of losing them, accelerate diversification, and inform the board.
-
-Tip: Concentration risk management.`, 'D'],
-
-["Scenario", "The board asks you to cut costs by 20%. How do you approach it?",
-`**Answer:** Understand the objective (margin, cash, valuation), build a fact base, separate strategic from non-strategic spend, design structural actions (operating model, footprint, procurement, automation) over cuts that damage growth, phase them, and track delivery. Communicate with care.
-
-Tip: Structural, not across-the-board.`, 'D'],
-
-["Behavioral", "Tell me about the hardest decision you made as a finance leader.",
-`**Sample answer:** "I recommended closing a plant that employed 300 people because it had lost money for five years with no turnaround path. We worked with the community on retraining and severance, consolidated production, and the company returned to profitability. It was right for the business but personally difficult."
-
-Tip: Show judgment and humanity.`, 'B'],
-
-["Behavioral", "Tell me about a time you led a company through a crisis.",
-`**Sample answer:** "When our main lender exited the market, we had 90 days to refinance. I ran daily cash management, opened talks with six lenders, and closed a new facility with better covenants in 60 days while keeping the business informed."
-
-Tip: Speed, calm, outcome.`, 'B'],
-
-["Behavioral", "Tell me about a time you disagreed with the board.",
-`**Sample answer:** "The board wanted a large buyback. I presented a plan showing we'd need that cash for a capacity expansion with a 20% ROIC within 18 months. We agreed to a smaller buyback and funded the expansion, which delivered."
-
-Tip: Data-driven, respectful.`, 'D'],
-
-["Behavioral", "What is your biggest professional failure?",
-`**Sample answer:** "I underestimated integration complexity in an acquisition; synergies came a year late. Since then I insist on integration planning before signing and a dedicated integration leader."
-
-Tip: Honest and reflective.`, 'B'],
-
-["Values", "How do you handle pressure to meet expectations?",
-`**Answer:** I look for legitimate ways to improve results, but never compromise accounting integrity. I make sure the CEO and board understand the facts and that we communicate honestly with investors.
-
-Tip: Short and firm.`, 'B'],
-
-["ESG", "How should a CFO approach sustainability?",
-`**Answer:** Integrate material sustainability risks and opportunities into strategy and capital allocation, ensure reliable, controlled ESG data for disclosure requirements, and communicate credibly. Requirements are evolving, so track regulations closely.
-
-Tip: Balanced and practical.`, 'D'],
-
-["Growth", "How do you balance growth investment and profitability?",
-`**Answer:** Fund growth where unit economics and returns are proven, set clear milestones and gates, keep an eye on cash runway and ROIC, and adjust as data comes in. Metrics like Rule of 40 help frame the trade-off.
-
-Tip: Gates and milestones.`, 'D'],
-
-["IPO", "What does a company need to be IPO-ready?",
-`**Answer:** Audited financials (often 2–3 years) under the right standards, SOX-ready controls, timely close (quarterly in weeks), strong FP&A and guidance process, public company reporting capabilities, governance (independent board, committees), investor relations, and a compelling equity story.
-
-Tip: Mention readiness takes 12–24 months.`, 'D'],
-
-["Private Equity", "How is being CFO in a PE-backed company different?",
-`**Answer:** Sharper focus on cash generation, EBITDA growth and value creation plan; leverage and covenant management; frequent lender and sponsor reporting; faster pace; and planning for exit within a defined horizon.
-
-Tip: Mention the value creation plan.`, 'D'],
-
-["Interview", "What would you ask the CEO in this interview?",
-`**Answer:**
-- "What does success look like for the CFO in the first year and in three years?"
-- "Where do you want finance to challenge you most?"
-- "What's the biggest risk to the strategy?"
-
-Tip: Candid and strategic.`, 'B'],
-
-["Interview", "What would you ask the board?",
-`**Answer:**
-- "What concerns you most about the company's financial position?"
-- "How do you see the company's capital needs over the next three years?"
-- "What do you expect from the CFO in board discussions?"
-
-Tip: Shows governance awareness.`, 'B'],
-
-["Career", "Why do you want to be our CFO?",
-`**Sample answer:** "Your company is at an inflection point — growth, a system transformation and capital decisions ahead. I've led finance through exactly that, and I want to partner with you to build a finance function that drives the strategy."
-
-Tip: Tie to their moment.`, 'B'],
-
-["Closing", "Why should we hire you as CFO?",
-`**Sample answer:** "I bring a track record of value creation — refinancing, a transformation that halved the close, and capital allocation that lifted ROIC — plus strong board and investor relationships and leaders I've developed. I'm a candid partner to CEOs."
-
-Tip: Proof points with numbers.`, 'B'],
-
-["Technical", "What is economic value added?",
-`**Answer:** EVA = NOPAT − (invested capital × WACC). Positive EVA means the business earns more than its cost of capital. It's useful for performance measurement and incentives.
-
-Tip: Link to ROIC.`, 'D'],
-
-["Technical", "How do you think about working capital at the enterprise level?",
-`**Answer:** Working capital is a strategic lever: set targets for DSO, DIO and DPO by business, embed them in incentives and S&OP, use supply chain finance thoughtfully, and treat cash conversion as a core KPI.
-
-Tip: Quantify a past improvement.`, 'D'],
-
-["Technical", "What is the role of the disclosure committee?",
-`**Answer:** A management committee (finance, legal, IR, business leaders) that reviews public disclosures for accuracy and completeness before filing and supports CEO/CFO certifications.
-
-Tip: Governance knowledge.`, 'B'],
-
-["Technical", "How do you evaluate a large capital project's risks?",
-`**Answer:** Sensitivity and scenario analysis, Monte Carlo for key uncertainties, stage-gated funding, contingency, independent review, and post-investment audits.
-
-Tip: Stage gates control risk.`, 'D'],
-
-["Technical", "How do you think about the cost of capital in a high-rate environment?",
-`**Answer:** Higher rates raise WACC, so hurdle rates rise and fewer projects qualify. Prioritize projects with faster paybacks, revisit capital structure and refinancing timing, and reassess valuations in M&A.
-
-Tip: Current and practical.`, 'D']
-];
+QB["fa-cfo"] = (QB["fa-cfo"] || []).concat([
+["Role", "How do you define the role of a modern CFO?", "**Why they ask:** to hear your leadership philosophy.\n\n**Answer:** Four roles at once:\n- **Steward** — integrity of reporting, controls, risk.\n- **Operator** — an efficient finance function and business processes.\n- **Strategist** — capital allocation, growth, M&A, funding.\n- **Catalyst** — driving performance and change across the company.\nThe modern CFO also owns data, technology and often IT or procurement.\n\nTip: Say which of the four you lean toward and how you cover the others.", "B"],
+["Role", "What would your first 100 days as CFO look like?", "**Why they ask:** CFO starts set the tone with the board and CEO.\n\n**Answer:**\n\"I'd meet the CEO, the board, the audit committee chair, the executive team, my finance team, the auditors, our banks and major investors. In parallel I'd assess financial health — cash and liquidity, forecast credibility, controls, talent and systems. Then agree priorities with the CEO and board, deliver early credibility wins — usually a clearer forecast and a reliable liquidity view — and set a one-to-three-year finance agenda. Cash and credibility come first.\"\n\nTip: Mention protecting cash and credibility first.", "B"],
+["CEO", "How do you partner with the CEO?", "**Why they ask:** the CEO–CFO relationship defines the role.\n\n**Answer:**\n\"We need a shared view of strategy and priorities. I challenge honestly in private and support fully in public. I translate strategy into the financial plan and metrics, manage board and investor expectations together with the CEO, and act as their most trusted sounding board on trade-offs. Once I talked a CEO out of entering a market by showing it would take five years to earn its cost of capital — he later thanked me.\"\n\nTip: Give a time you changed a CEO's mind.", "B"],
+["Board", "How do you work with the board and audit committee?", "**Why they ask:** CFOs answer to the board.\n\n**Answer:**\n\"Transparent, timely reporting with no surprises. Decisions framed clearly. A strong relationship with the audit committee chair. Open discussion of judgments, risks and control matters. And I fully respect the committee's executive sessions with the auditors — that independence protects everyone.\"\n\nTip: 'No surprises' is the golden rule.", "B"],
+["Strategy", "How does the CFO shape strategy?", "**Why they ask:** modern CFOs are strategists.\n\n**Answer:**\n\"By clarifying where the company actually creates value — profitability by segment and ROIC. By modeling strategic options and their risks, setting capital allocation discipline, funding the plan, and holding the company accountable for results. The CFO is the honest broker of trade-offs.\"\n\nTip: Share a strategic pivot you led.", "D"],
+["Capital", "How do you approach capital allocation?", "**Why they ask:** the CFO's most important job.\n\n**Answer:**\n\"I rank the uses of capital — organic investment, M&A, debt reduction, dividends and buybacks — by expected return against the cost of capital and by strategic fit, while protecting liquidity and our credit rating. Every investment goes through the same framework, and big ones get a post-investment review. The anchor is simple: ROIC above WACC creates value.\"\n\nTip: ROIC greater than WACC as the anchor.", "D"],
+["Capital", "How do you decide on the capital structure?", "**Why they ask:** a strategic finance decision.\n\n**Answer:**\n\"I balance cost of capital, financial flexibility and risk. I look at how stable our cash flows are, our growth needs, rating targets, covenants and market access. A mature, steady business can carry more leverage; one in heavy growth or a cyclical industry should keep more room. And when there's excess capital with no better use, we return it.\"\n\nTip: Tie it to the company's cycle and growth stage.", "D"],
+["Capital", "When would you return capital to shareholders?", "**Why they ask:** tests capital discipline.\n\n**Answer:**\n\"When we have more cash than we need for high-return investments and a prudent liquidity buffer. Dividends signal sustainable cash flow, so they should be a level we can maintain through a downturn. Buybacks are more flexible and make sense when the shares are undervalued — not at any price. And the policy should be communicated clearly.\"\n\nTip: Mention discipline — don't buy back at any price.", "D"],
+["Investors", "How do you manage investor relations?", "**Why they ask:** CFOs are a primary voice to investors.\n\n**Answer:**\n\"A clear equity story, consistent KPIs, credible guidance — neither overpromising nor sandbagging — and transparency in good times and bad. Strict Regulation FD compliance. And listening: investor feedback often tells you something useful about strategy. Credibility compounds over time.\"\n\nTip: Credibility compounds.", "D"],
+["Investors", "How do you set guidance?", "**Why they ask:** guidance misses destroy value.\n\n**Answer:**\n\"I base it on a well-tested forecast with identifiable drivers, leave reasonable room for risk, and give ranges rather than a point. When facts change materially, we update, and we explain the drivers. Consistent delivery builds valuation over time. I also watch for a 'beat-and-raise' culture that pressures the business into short-term decisions.\"\n\nTip: Mention beat-and-raise culture risks.", "D"],
+["Value", "Which metrics best show value creation?", "**Why they ask:** what you'd steer the company by.\n\n**Answer:**\n\"Revenue growth, margins, free cash flow, ROIC against WACC, and EPS growth. For a subscription business, add ARR growth, net revenue retention and the Rule of 40. The right set depends on the business model and stage — an early-stage company leans on growth and unit economics; a mature one on cash and returns.\"\n\nTip: Tailor to the company.", "D"],
+["Funding", "How do you ensure the company is properly funded?", "**Why they ask:** running out of cash ends companies.\n\n**Answer:**\n\"A long-term funding plan aligned with strategy. Committed facilities and a liquidity buffer. Staggered debt maturities so we never face a wall. Diversified funding sources. And strong relationships with banks and investors well before we need them. Raise money when you can, not when you must.\"\n\nTip: 'Raise money when you can, not when you must.'", "D"],
+["Risk", "How do you oversee enterprise risk?", "**Why they ask:** CFOs often own ERM.\n\n**Answer:**\n\"An ERM framework with named risk owners, regular reviews with the executive team and board, risk appetite statements and key risk indicators. The major risks today are cyber, liquidity, regulation, supply chain, geopolitics, talent and AI. We mitigate with controls, insurance, hedging and scenario planning, and report to the board at least quarterly.\"\n\nTip: Mention board-level risk reporting.", "D"],
+["Risk", "How do you prepare the company for a recession?", "**Why they ask:** resilience planning.\n\n**Answer:**\n\"Scenario plans with triggers and pre-approved actions. Strong liquidity — cash plus committed facilities. A flexible cost structure. Working capital discipline. And we keep investing in strategic priorities where we can. Downturns are also when you can play offense — acquire assets or hire talent that's suddenly available.\"\n\nTip: Mention playing offense in downturns.", "D"],
+["Controls", "How do you ensure the integrity of financial reporting?", "**Why they ask:** the CFO personally certifies the numbers.\n\n**Answer:**\n\"Strong tone at the top. A capable controller and team. Effective SOX controls. Internal audit. A disclosure committee. And an open culture where issues get raised early. I sign the SOX 302 and 906 certifications personally — for me integrity isn't a process, it's personal.\"\n\nTip: Mention SOX 302 and 906 certifications.", "B"],
+["Operating Model", "How would you shape the finance organization?", "**Why they ask:** organizational leadership.\n\n**Answer:**\n\"Business partners aligned to business units. Centers of excellence for tax, treasury, FP&A, technical accounting and investor relations. Shared services or global business services for transactions. And a finance data and technology team. With clear career paths, a strong leadership bench, and a successor identified for every key role.\"\n\nTip: Mention succession planning.", "D"],
+["Transformation", "How would you lead finance transformation?", "**Why they ask:** transformation is expected.\n\n**Answer:**\n\"A clear vision and business case. Standard processes, a modern cloud ERP and EPM, automation and AI for transactional work, self-service analytics, and investment in people's skills. Delivered in phases with visible wins and strong change management. My last one cut the close from 12 days to 6 and kept finance headcount flat through 40% revenue growth.\"\n\nTip: Share a transformation with numbers.", "D"],
+["AI", "How would you use AI across finance and the company?", "**Why they ask:** CFOs fund and govern AI.\n\n**Answer:**\n\"Within finance: close automation, AP and AR, reconciliations, forecast baselines, anomaly detection, contract review and drafting the board pack. Across the company, I'd fund the AI roadmap with clear ROI criteria. Governance covers data security, accuracy, controls over AI outputs and who's accountable. Then measure value and scale what works.\"\n\nTip: Balanced — enthusiastic but disciplined.", "D"],
+["Technology", "Many CFOs now oversee IT. How would you approach that?", "**Why they ask:** a common expanded remit.\n\n**Answer:**\n\"I'd align technology investment with business strategy, prioritize cybersecurity and resilience, rationalize applications, and manage vendors and costs. Most importantly, I'd rely on a strong CIO or CTO and measure IT by business outcomes, not just uptime.\"\n\nTip: Show you'd rely on a strong CIO or CTO.", "D"],
+["M&A", "What is your approach to M&A?", "**Why they ask:** CFOs lead deals.\n\n**Answer:**\n\"Start from strategy — what capabilities or markets do we need? Keep a pipeline. Use disciplined valuation with a clear walk-away price. Do rigorous diligence. Plan integration before signing. And track synergies afterward. Most deal value is lost in integration, not at signing.\"\n\nTip: Share a deal and the lesson.", "D"],
+["M&A", "How do you decide whether to sell a business unit?", "**Why they ask:** portfolio decisions.\n\n**Answer:**\n\"I assess strategic fit, performance against potential, capital needs, and whether another owner would value it more. Then compare the value of holding it against the after-tax sale proceeds, minus separation costs and stranded costs — the shared overhead that stays behind. Stranded costs are often underestimated.\"\n\nTip: Mention stranded cost planning.", "D"],
+["Performance", "How do you drive performance accountability across the company?", "**Why they ask:** CFOs drive execution.\n\n**Answer:**\n\"Clear targets linked to strategy. Consistent monthly business reviews. Forecasts owned by business leaders. Incentives aligned with value drivers, including cash and ROIC. And early intervention when results slip, not at year-end.\"\n\nTip: Mention incentive design.", "D"],
+["Compensation", "How should executive incentives be designed?", "**Why they ask:** incentives drive behavior.\n\n**Answer:**\n\"A balance of short-term measures — revenue, profit and cash — and long-term ones like TSR, ROIC and strategic milestones. Targets should be challenging but achievable and aligned with shareholders. And avoid metrics that reward short-term behavior or excessive risk. I'd work closely with the compensation committee on this.\"\n\nTip: Mention working with the compensation committee.", "D"],
+["Tax", "How do you approach tax strategy?", "**Why they ask:** tax is large and visible.\n\n**Answer:**\n\"Compliance first. Then sustainable planning tied to real business substance. Manage the effective tax rate and cash taxes, keep up with global changes like Pillar Two, and keep the board informed about significant positions.\"\n\nTip: Keep a responsible tone.", "D"],
+["Treasury", "What are your treasury priorities?", "**Why they ask:** liquidity and risk.\n\n**Answer:**\n\"Liquidity and visibility. Funding resilience. Managing FX, interest rate and counterparty risk. Efficient cash pooling and repatriation. And strong payment controls against fraud. Cash is oxygen.\"\n\nTip: Cash is oxygen.", "D"],
+["Culture", "How do you build culture in the finance team?", "**Why they ask:** CFOs shape culture.\n\n**Answer:**\n\"Integrity, curiosity and service to the business. I lead by example, recognize people who raise issues and improve processes, invest in development, and remove drudgery through technology so people do work they're proud of.\"\n\nTip: Specific actions, not slogans.", "B"],
+["Talent", "How do you build your leadership team?", "**Why they ask:** CFOs succeed through leaders.\n\n**Answer:**\n\"I hire leaders who are stronger than me in their areas, define clear accountabilities and empower them. I coach and give feedback, and build succession for every key role. Diversity of experience makes our decisions better. The treasurer I hired at my last company is now a CFO herself.\"\n\nTip: Name a leader you hired or grew.", "B"],
+["Communication", "How do you communicate bad news?", "**Why they ask:** trust is built in bad times.\n\n**Answer:**\n\"Early, clearly and with a plan: what happened, why, the impact, what we're doing, and when we'll update. The message to the board, investors and employees stays consistent. Speed and honesty preserve trust.\"\n\nTip: Speed and honesty preserve trust.", "B"],
+["Scenario", "The company is about to miss guidance. What do you do?", "**Why they ask:** integrity under market pressure.\n\n**Answer:**\n\"I validate the forecast quickly and look for any legitimate levers. Then I prepare the communication — a guidance update with clear drivers and actions — aligned with the CEO, the board and legal. What I won't do is use aggressive accounting or short-term actions that destroy value just to hit a number.\"\n\nTip: Integrity over optics.", "D"],
+["Scenario", "Activist investors are pushing for a breakup. How do you respond?", "**Why they ask:** a high-stakes CFO scenario.\n\n**Answer:**\n\"I'd engage constructively and analyze the proposal objectively — sum-of-the-parts value, dis-synergies, separation costs and tax. I'd work with advisers and the board, and communicate our own value-creation plan clearly. And stay open — activists sometimes have good ideas.\"\n\nTip: Objective analysis, not defensiveness.", "D"],
+["Scenario", "A major cyberattack halts operations. What does the CFO do?", "**Why they ask:** cyber is a CFO concern now.\n\n**Answer:**\n\"Protect liquidity and payments first — switch to manual backup processes and coordinate with the banks. Support incident response and insurance claims. Assess the financial impact and disclosure obligations — under the SEC rule, a material cyber incident needs an 8-K within four business days of determining materiality. And communicate with customers, employees and investors.\"\n\nTip: Mention the SEC cyber disclosure rule.", "D"],
+["Scenario", "Your largest customer is in financial trouble. What do you do?", "**Why they ask:** concentration risk.\n\n**Answer:**\n\"I assess our exposure — receivables, revenue at risk, and inventory built for them. Then tighten credit terms or require security, model the impact of losing them, accelerate diversification, and inform the board.\"\n\nTip: Concentration risk management.", "D"],
+["Scenario", "The board asks you to cut costs by 20%. How do you approach it?", "**Why they ask:** tests structural thinking.\n\n**Answer:**\n\"First understand the objective — margin, cash or valuation. Then build a fact base and separate strategic from non-strategic spend. I'd design structural actions — operating model, footprint, procurement, automation — rather than across-the-board cuts that damage growth. Phase it, track delivery, and communicate with care, because how people are treated matters for everyone who stays.\"\n\nTip: Structural, not across-the-board.", "D"],
+["Behavioral", "Tell me about the hardest decision you made as a finance leader.", "**Why they ask:** judgment and humanity.\n\n**Answer:**\n\"I recommended closing a plant that employed 300 people. It had lost money for five years with no turnaround path. We worked with the community on retraining and severance and consolidated production. The company returned to profitability. It was right for the business, but personally it was very difficult.\"\n\nTip: Show judgment and humanity.", "B"],
+["Behavioral", "Tell me about a time you led a company through a crisis.", "**Why they ask:** crisis leadership proof.\n\n**Answer:**\n\"Our main lender exited the market, and we had 90 days to refinance. I ran daily cash management, opened talks with six lenders, and closed a new facility with better covenants in 60 days — while keeping the business and the board informed throughout.\"\n\nTip: Speed, calm, outcome.", "B"],
+["Behavioral", "Tell me about a time you disagreed with the board.", "**Why they ask:** courage with governance.\n\n**Answer:**\n\"The board wanted a large buyback. I showed that we'd need that cash for a capacity expansion projected to earn a 20% ROIC within 18 months. We agreed to a smaller buyback and funded the expansion, which delivered.\"\n\nTip: Data-driven and respectful.", "D"],
+["Behavioral", "What is your biggest professional failure?", "**Why they ask:** self-awareness at the top.\n\n**Answer:**\n\"I underestimated integration complexity in an acquisition, and the synergies arrived a year late. Since then I insist on integration planning before signing and a dedicated integration leader on every deal.\"\n\nTip: Honest and reflective.", "B"],
+["Values", "How do you handle pressure to meet expectations?", "**Why they ask:** integrity test.\n\n**Answer:**\n\"I look for legitimate ways to improve results, but I never compromise accounting integrity. I make sure the CEO and board understand the facts, and that we communicate honestly with investors.\"\n\nTip: Short and firm.", "B"],
+["ESG", "How should a CFO approach sustainability?", "**Why they ask:** a growing board topic.\n\n**Answer:**\n\"Integrate the material sustainability risks and opportunities into strategy and capital allocation. Make sure ESG data is reliable and controlled for disclosure requirements, and communicate credibly. The requirements keep changing, so we track regulations closely.\"\n\nTip: Balanced and practical.", "D"],
+["Growth", "How do you balance growth investment and profitability?", "**Why they ask:** a core strategic tension.\n\n**Answer:**\n\"Fund growth where the unit economics and returns are proven, with clear milestones and gates before more money goes in. Watch cash runway and ROIC, and adjust as data comes in. Metrics like the Rule of 40 help frame the trade-off with the board.\"\n\nTip: Gates and milestones.", "D"],
+["IPO", "What does a company need to be IPO-ready?", "**Why they ask:** a CFO-led milestone.\n\n**Answer:**\n\"Audited financials, usually two to three years, under the right standards. SOX-ready controls. A fast close — quarterly results within weeks. Strong FP&A and a guidance process. Public company reporting capability. Governance — an independent board and committees. Investor relations. And a compelling equity story. Getting ready typically takes 12 to 24 months.\"\n\nTip: Mention that readiness takes 12–24 months.", "D"],
+["Private Equity", "How is being CFO in a PE-backed company different?", "**Why they ask:** a very different operating rhythm.\n\n**Answer:**\n\"A sharper focus on cash generation, EBITDA growth and the value creation plan. Managing leverage and covenants closely. Frequent reporting to lenders and the sponsor. A faster pace. And everything is planned toward an exit within a defined horizon — usually three to seven years.\"\n\nTip: Mention the value creation plan.", "D"],
+["Interview", "What would you ask the CEO in this interview?", "**Why they ask:** your questions show judgment.\n\n**Answer:**\n\"'What does success look like for the CFO in the first year, and in three years?' 'Where do you want finance to challenge you most?' And 'What's the biggest risk to the strategy?'\"\n\nTip: Candid and strategic.", "B"],
+["Interview", "What would you ask the board?", "**Why they ask:** governance awareness.\n\n**Answer:**\n\"'What concerns you most about the company's financial position?' 'How do you see our capital needs over the next three years?' And 'What do you expect from the CFO in board discussions?'\"\n\nTip: Shows governance awareness.", "B"],
+["Career", "Why do you want to be our CFO?", "**Why they ask:** fit and motivation.\n\n**Answer:**\n\"You're at an inflection point — growth, a systems transformation and big capital decisions ahead. I've led finance through exactly that, and I want to partner with you to build a finance function that drives the strategy, not just reports on it.\"\n\nTip: Tie it to their moment.", "B"],
+["Closing", "Why should we hire you as CFO?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I bring a track record of value creation — a refinancing on better terms, a transformation that halved the close, and capital allocation that lifted ROIC. I have strong board and investor relationships, and I've developed leaders who went on to big roles. And I'm a candid partner to CEOs.\"\n\nTip: Proof points with numbers.", "B"],
+["Technical", "What is economic value added?", "**Why they ask:** a value-creation metric.\n\n**Answer:**\n\"EVA is NOPAT minus a charge for capital — invested capital times WACC. If a business earns $30 million of NOPAT on $200 million of capital with a 10% WACC, its EVA is $10 million. Positive EVA means it earns more than its cost of capital. It's useful for performance measurement and incentives, and it's closely linked to ROIC.\"\n\nTip: Link it to ROIC.", "D"],
+["Technical", "How do you think about working capital at the enterprise level?", "**Why they ask:** cash discipline at scale.\n\n**Answer:**\n\"Working capital is a strategic lever. I set DSO, DIO and DPO targets by business, build them into incentives and S&OP, use supply chain finance thoughtfully, and treat cash conversion as a core KPI. At my last company that released about $40 million over two years.\"\n\nTip: Quantify a past improvement.", "D"],
+["Technical", "What is the role of the disclosure committee?", "**Why they ask:** public company governance.\n\n**Answer:**\n\"It's a management committee — finance, legal, investor relations and business leaders — that reviews public disclosures for accuracy and completeness before filing. It supports the CEO and CFO certifications by making sure nothing material is missed.\"\n\nTip: Shows governance knowledge.", "B"],
+["Technical", "How do you evaluate a large capital project's risks?", "**Why they ask:** big projects fail often.\n\n**Answer:**\n\"Sensitivity and scenario analysis, Monte Carlo simulation for the key uncertainties, stage-gated funding so money is released as milestones are hit, a contingency, an independent review, and a post-investment audit.\"\n\nTip: Stage gates control risk.", "D"],
+["Technical", "How do you think about the cost of capital in a high-rate environment?", "**Why they ask:** current economic judgment.\n\n**Answer:**\n\"Higher rates raise WACC, so hurdle rates go up and fewer projects qualify. I'd prioritize projects with faster paybacks, revisit the capital structure and refinancing timing, and reassess valuations in M&A — a target's price should reflect the higher discount rate.\"\n\nTip: Current and practical.", "D"]
+]);
