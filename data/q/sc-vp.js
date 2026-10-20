@@ -1,257 +1,57 @@
 // sc-vp — generated from src/sc-vp-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // VP Supply Chain / Operations. Format: [topic, question, answer, 'B'|'D']
-QB['sc-vp'] = [
-["Vision", "What would your supply chain vision be for the next 3–5 years?",
-`**Why they ask:** VPs set long-term direction.
-
-**Answer:** A customer-centric supply chain that's resilient and cost-competitive: segmented service models, integrated business planning, a regionalized and flexible network, digital visibility and AI-assisted planning, automation in warehouses and plants, measurable sustainability progress (including Scope 3), and a strong talent bench. Tie each to business outcomes: growth, margin and cash.
-
-Tip: End with 3 measurable targets.`, 'B'],
-
-["Strategy", "How do you make supply chain a competitive advantage?",
-`**Answer:** Deliver faster and more reliably than competitors, at lower cost-to-serve, with flexibility to launch products and enter markets quickly, and resilience that keeps customers supplied during disruptions. Communicate this as part of the company's value proposition.
-
-Tip: Example of winning business through supply chain.`, 'D'],
-
-["Network", "How do you approach network design?",
-`**Answer:** Model demand, service requirements, transport, facility, labor and inventory costs; evaluate scenarios (number and location of plants and DCs, nearshoring, automation); include risk, tariffs and carbon; use optimization tools; and phase implementation with clear business cases.
-
-Tip: Mention a network redesign you led.`, 'D'],
-
-["Network", "How do you evaluate nearshoring or reshoring?",
-`**Answer:** Total landed cost (not just unit cost), lead time and inventory impact, tariff exposure, supply risk, quality, labor availability and automation potential, customer responsiveness, and transition costs.
-
-Tip: Very current topic.`, 'D'],
-
-["Cost", "How would you take 10% out of supply chain cost?",
-`**Answer:** Procurement savings and specification changes, freight optimization and network changes, warehouse and plant productivity (lean, automation), inventory reduction (carrying cost), fewer expedites through better planning, and footprint consolidation — protecting service and safety. Track savings with finance.
-
-Tip: Portfolio of levers with values.`, 'D'],
-
-["Planning", "How would you implement integrated business planning?",
-`**Answer:** Executive sponsorship, monthly cycle covering portfolio, demand, supply and financial reconciliation, 24–36 month horizon, scenario planning, one set of numbers, and decisions documented. Supported by planning technology and clear roles.
-
-Tip: IBP maturity journey.`, 'D'],
-
-["Resilience", "How do you build supply chain resilience at enterprise level?",
-`**Answer:** Multi-tier supplier mapping, risk scoring and monitoring, dual sourcing and regional options for critical items, strategic inventory, flexible capacity agreements, playbooks for disruption scenarios, and stress testing.
-
-Tip: Board-level risk topic.`, 'D'],
-
-["Sustainability", "How do you integrate sustainability into supply chain?",
-`**Answer:** Measure emissions including supplier Scope 3, set science-based targets, mode shift and route optimization, packaging reduction, supplier engagement programs, circular economy (returns, refurbishment), and reporting aligned with regulations.
-
-Tip: Link to cost savings and customer requirements.`, 'D'],
-
-["Digital", "What is your digital supply chain roadmap?",
-`**Answer:** Clean master data and integrated ERP foundation; advanced planning and IBP; control tower visibility; WMS/TMS modernization; automation and robotics; AI for forecasting, inventory optimization and risk; and analytics for decision-making. Phase by value.
-
-Tip: Value-driven roadmap.`, 'D'],
-
-["AI", "How would you use AI across operations?",
-`**Answer:** Demand sensing, inventory optimization, predictive maintenance, quality inspection with computer vision, dynamic routing, supplier risk prediction, and planning copilots — with governance and measurable ROI.
-
-Tip: Practical, measured.`, 'D'],
-
-["Executive", "How do you work with the executive team and board?",
-`**Answer:** Present supply chain in business terms (growth, margin, cash, risk), make trade-offs explicit, bring clear recommendations and asks, and provide transparent performance reporting.
-
-Tip: No surprises.`, 'B'],
-
-["Executive", "How do you present a major investment to the board?",
-`**Answer:** Strategic rationale, financial case (NPV, payback), risks and mitigations, alternatives considered, implementation plan and milestones, and how success will be measured.
-
-Tip: Structured business case.`, 'D'],
-
-["Finance", "How do you partner with the CFO?",
-`**Answer:** Shared view of cost, working capital and capex; joint ownership of inventory and freight targets; transparent savings tracking; and aligned planning through IBP.
-
-Tip: Cash and margin focus.`, 'B'],
-
-["Commercial", "How do you partner with sales and marketing?",
-`**Answer:** Customer-segmented service models, joint demand planning, launch coordination, cost-to-serve insights for pricing, and quick escalation paths for key accounts.
-
-Tip: Growth enabler.`, 'B'],
-
-["Organization", "How would you organize the supply chain function?",
-`**Answer:** End-to-end supply chain under one leader (plan, source, make, deliver, return), with centers of excellence (planning, procurement, logistics, analytics) and regional execution teams. Clear decision rights and KPIs.
-
-Tip: End-to-end ownership.`, 'D'],
-
-["Talent", "How do you build supply chain leadership talent?",
-`**Answer:** Succession planning, rotations across functions and regions, leadership development, analytics skills, diverse hiring, and mentoring.
-
-Tip: Name leaders you developed.`, 'B'],
-
-["Culture", "How do you build an operational excellence culture?",
-`**Answer:** Lean and continuous improvement deployed across sites, daily management systems, leaders at the gemba, recognition, and capability building.
-
-Tip: Culture over projects.`, 'D'],
-
-["Safety", "How do you lead safety at enterprise level?",
-`**Answer:** Safety as a core value with visible leadership, consistent standards across sites, leading indicators, serious injury and fatality (SIF) prevention focus, and sharing learnings across the network.
-
-Tip: SIF prevention is advanced.`, 'B'],
-
-["M&A", "How do you integrate supply chains after an acquisition?",
-`**Answer:** Day-1 continuity, quick wins (procurement synergies, freight consolidation), network rationalization, system and process harmonization over time, and talent retention.
-
-Tip: Synergy capture plan.`, 'D'],
-
-["Customers", "How do you improve customer experience through supply chain?",
-`**Answer:** Reliable delivery promises (available-to-promise), order visibility, faster lead times, easy returns, and segmented service for key accounts.
-
-Tip: Customer-centric metrics.`, 'D'],
-
-["Working Capital", "How do you reduce working capital in operations?",
-`**Answer:** Inventory optimization, longer supplier terms or supply chain finance, faster order-to-cash, and reducing obsolete stock through lifecycle management.
-
-Tip: Cash conversion cycle.`, 'D'],
-
-["Tariffs", "How would you lead the response to major tariff changes?",
-`**Answer:** Rapid exposure analysis, sourcing and routing scenarios, trade program optimization (FTZ, drawback, FTAs), pricing strategy with commercial teams, and communication to leadership and customers.
-
-Tip: Cross-functional war room.`, 'D'],
-
-["Scenario", "A major disruption shuts down your largest supplier region. What do you do?",
-`**Answer:** Activate the crisis team, assess exposure and inventory, allocate supply to priority customers, activate alternate suppliers and logistics routes, communicate with customers and leadership, and later strengthen resilience.
-
-Tip: Crisis leadership.`, 'D'],
-
-["Scenario", "Margins are under pressure from rising input costs. What do you do?",
-`**Answer:** Procurement levers (renegotiation, alternative materials and sources, hedging), productivity improvements, network and freight optimization, and working with commercial teams on pricing.
-
-Tip: Holistic response.`, 'D'],
-
-["Scenario", "The CEO wants delivery in two days instead of five. How do you evaluate it?",
-`**Answer:** Model cost and service trade-offs — inventory placement, more DCs, faster transport, order processing changes — compare with revenue and retention benefits, and propose a segmented approach (fast delivery for key products or customers).
-
-Tip: Business case thinking.`, 'D'],
-
-["Behavioral", "Tell me about a supply chain transformation you led.",
-`**Sample answer:** "I led a transformation combining four regional supply chains into one end-to-end organization with IBP, a redesigned DC network, and a new TMS. Over two years, OTIF rose from 87% to 96%, logistics cost fell 12%, and inventory dropped $40M."
-
-Tip: Scope and numbers.`, 'B'],
-
-["Behavioral", "Tell me about a tough decision you made.",
-`**Sample answer:** "I closed an underperforming DC affecting 120 employees. We offered transfers and severance, consolidated volume into two automated sites, and saved $8M a year while improving service."
-
-Tip: Judgment and humanity.`, 'B'],
-
-["Behavioral", "Tell me about leading through a crisis.",
-`**Sample answer:** "During a semiconductor shortage, I set up daily allocation meetings, secured supply through broker purchases and redesigns, and communicated weekly with top customers. We maintained 90% of shipments while peers dropped further."
-
-Tip: Leadership under pressure.`, 'B'],
-
-["Metrics", "Which few metrics would you use to run supply chain?",
-`**Answer:** Safety (TRIR), customer OTIF, total supply chain cost as % of sales, inventory days, forecast accuracy, and carbon intensity — reviewed monthly with trends.
-
-Tip: Balanced scorecard.`, 'D'],
-
-["Governance", "How do you govern a global supply chain?",
-`**Answer:** Global standards and processes with regional execution, monthly performance reviews, IBP, risk management, and clear escalation paths.
-
-Tip: Global-local balance.`, 'D'],
-
-["Technology", "How do you avoid failed technology investments?",
-`**Answer:** Start with business problems and process design, clean data, executive ownership, phased delivery, user involvement, and benefit tracking.
-
-Tip: Lessons learned.`, 'D'],
-
-["Automation", "How do you decide on warehouse or plant automation?",
-`**Answer:** Volume stability and growth, labor availability and cost, accuracy and speed needs, payback period, flexibility for future products, and vendor reliability.
-
-Tip: Business case.`, 'D'],
-
-["Supplier Strategy", "How do you build strategic supplier partnerships?",
-`**Answer:** Segment suppliers, executive sponsors, joint business plans, innovation programs, long-term agreements, and shared KPIs.
-
-Tip: Partnership value beyond price.`, 'D'],
-
-["Customers", "How do you use cost-to-serve in decisions?",
-`**Answer:** Understand profitability by customer and channel, redesign service models, adjust minimum order sizes or delivery frequency, and inform pricing.
-
-Tip: Profit-focused decisions.`, 'D'],
-
-["Interview", "What would you ask the CEO?",
-`**Answer:** "Where does supply chain help or hold back growth today?", "What does success look like in two years?", "What investment appetite exists?", "What's the biggest risk you worry about?"
-
-Tip: Strategic questions.`, 'B'],
-
-["Career", "Why VP Supply Chain here?",
-`**Sample answer:** "You're growing into new markets and need a supply chain that scales resiliently. I've built exactly that, and I want to make supply chain a competitive advantage for you."
-
-Tip: Tie to their stage.`, 'B'],
-
-["Closing", "Why are you the right VP of Supply Chain for us?",
-`**Sample answer:** "I've led end-to-end transformations delivering service, cost and cash results together — 96% OTIF, 12% lower logistics cost and $40M less inventory — built resilient networks through crises, and developed leaders."
-
-Tip: Proof points.`, 'B'],
-
-["Planning", "What is the role of scenario planning at VP level?",
-`**Answer:** Preparing for uncertainty — demand swings, disruptions, cost changes — with pre-agreed responses and triggers, so the organization acts quickly.
-
-Tip: Strategic agility.`, 'D'],
-
-["Sustainability", "How do you balance sustainability with cost?",
-`**Answer:** Prioritize initiatives that reduce both cost and emissions (load optimization, mode shift, packaging), invest strategically in longer-term changes, and make trade-offs transparent.
-
-Tip: Win-win first.`, 'D'],
-
-["Innovation", "How do you drive innovation in operations?",
-`**Answer:** Pilot new technologies, partner with startups and suppliers, encourage employee ideas, and scale what proves value.
-
-Tip: Test and learn.`, 'D'],
-
-["Risk", "How do you report supply chain risk to the board?",
-`**Answer:** Top risks with likelihood and impact, mitigation status, key risk indicators, and scenario results.
-
-Tip: Board-level clarity.`, 'D'],
-
-["Global", "What are the challenges of managing a global supply chain?",
-`**Answer:** Long lead times, geopolitical and trade risks, currency, regulatory differences, cultural differences, and coordination across time zones.
-
-Tip: Mitigation examples.`, 'D'],
-
-["Customer", "How do you handle a major customer threatening to leave over service?",
-`**Answer:** Meet them quickly with facts, own the issues, present a recovery plan with milestones, assign a dedicated team, and report progress until stable.
-
-Tip: Accountability.`, 'B'],
-
-["Strategy", "How do you decide what to keep in-house vs outsource?",
-`**Answer:** Keep core capabilities that differentiate (strategic sourcing, planning, key manufacturing), outsource non-core or where partners are better (transport, some warehousing), and manage partners closely.
-
-Tip: Strategic focus.`, 'D'],
-
-["Strategy", "What is a segmented supply chain?",
-`**Answer:** Different supply chain models for different product or customer segments — e.g. lean make-to-stock for stable high volume, agile postponement for customized products, and premium service for strategic accounts.
-
-Tip: Fit-for-purpose design.`, 'D'],
-
-["Data", "How do you build a data-driven supply chain organization?",
-`**Answer:** Master data governance, single source of truth, analytics talent, dashboards for decision-making, and leaders who use data in reviews.
-
-Tip: Data culture.`, 'D'],
-
-["Metrics", "How do you balance service, cost and inventory?",
-`**Answer:** Make the trade-offs visible with data, agree targets by segment in IBP, and optimize together rather than one at a time.
-
-Tip: The supply chain triangle.`, 'B'],
-
-["Leadership", "What is your leadership style?",
-`**Answer:** Clear direction and expectations, empowering leaders, data-driven decisions, visible presence in operations, and genuine care for people and safety.
-
-Tip: Examples behind each trait.`, 'B'],
-
-["Future", "Where is supply chain heading in the next five years?",
-`**Answer:** Regionalization and resilience, autonomous planning with AI, automation, sustainability requirements, and real-time end-to-end visibility.
-
-Tip: Forward-looking.`, 'D']
-];
-
-QB['sc-vp'] = (QB['sc-vp'] || []).concat([
-["Strategy", "How do you build a business case for a supply chain transformation?",
-`**Answer:** Baseline current performance (service, cost, inventory, risk), quantify benefits by lever (freight, labor, inventory carrying cost, revenue from better service), estimate investments and one-time costs, show NPV and payback, risks and phasing, and how benefits will be tracked.
-
-Tip: CFO-ready numbers.`, 'D']
+QB["sc-vp"] = (QB["sc-vp"] || []).concat([
+["Vision", "What would your supply chain vision be for the next 3–5 years?", "**Why they ask:** VPs set long-term direction.\n\n**Answer:** A customer-centric supply chain that's resilient and cost-competitive: segmented service models, integrated business planning, a regionalized and flexible network, digital visibility and AI-assisted planning, automation in warehouses and plants, measurable sustainability progress (including Scope 3), and a strong talent bench. Tie each to business outcomes: growth, margin and cash.\n\nTip: End with 3 measurable targets.", "B"],
+["Strategy", "How do you make supply chain a competitive advantage?", "**Why they ask:** VPs must link supply chain to strategy.\n\n**Answer:**\n\"By delivering faster and more reliably than competitors, at a lower cost-to-serve, with the flexibility to launch products and enter markets quickly, and the resilience to keep customers supplied when others can't. And by making that part of the company's value proposition — sales should be able to sell it. During the last shortage, our 95% OTIF won us two major accounts from a competitor who couldn't deliver.\"\n\nTip: Give an example of winning business through supply chain.", "D"],
+["Network", "How do you approach network design?", "**Why they ask:** a strategic VP decision.\n\n**Answer:**\n\"I model demand, service requirements, and transport, facility, labor and inventory costs. Then evaluate scenarios — number and location of plants and DCs, nearshoring, automation — including risk, tariffs and carbon, using optimization tools. And phase the implementation, each step with a clear business case. My last redesign cut from five DCs to three automated ones and saved $8 million a year.\"\n\nTip: Mention a network redesign you led.", "D"],
+["Network", "How do you evaluate nearshoring or reshoring?", "**Why they ask:** a very current topic.\n\n**Answer:**\n\"Total landed cost, not unit cost. Lead time and the inventory it requires. Tariff exposure. Supply risk. Quality. Labor availability and how much can be automated. Responsiveness to customers. And the transition costs. A part that's 15% cheaper offshore can easily be more expensive once you add freight, duty, eight weeks of extra inventory and disruption risk.\"\n\nTip: Very current — strong to mention.", "D"],
+["Cost", "How would you take 10% out of supply chain cost?", "**Why they ask:** cost leadership.\n\n**Answer:**\n\"A portfolio of levers, each with a value: procurement savings and specification changes, freight and network optimization, warehouse and plant productivity through Lean and automation, inventory reduction to cut carrying cost, fewer expedites through better planning, and footprint consolidation. All while protecting service and safety, with savings tracked jointly with finance.\"\n\nTip: A portfolio of levers with values.", "D"],
+["Planning", "How would you implement integrated business planning?", "**Why they ask:** IBP is a VP-led process.\n\n**Answer:**\n\"Executive sponsorship first. Then a monthly cycle covering portfolio, demand, supply and financial reconciliation, on a 24 to 36 month horizon, with scenario planning, one set of numbers and documented decisions. It needs planning technology and clear roles. Most companies take two to three years to mature it, so I'd plan it as a journey.\"\n\nTip: Describe IBP as a maturity journey.", "D"],
+["Resilience", "How do you build supply chain resilience at enterprise level?", "**Why they ask:** a board-level risk.\n\n**Answer:**\n\"Multi-tier supplier mapping, risk scoring and monitoring, dual sourcing and regional options for critical items, strategic inventory, flexible capacity agreements, playbooks for disruption scenarios, and stress testing the network — 'what if our largest port closes for a month?'\"\n\nTip: A board-level risk topic.", "D"],
+["Sustainability", "How do you integrate sustainability into supply chain?", "**Why they ask:** customer and regulatory pressure.\n\n**Answer:**\n\"Measure emissions, including supplier Scope 3, and set science-based targets. Shift transport modes, optimize routes, reduce packaging, run supplier engagement programs, build circular economy options like returns and refurbishment, and report in line with regulations. Many of these also cut cost, and big customers increasingly require them.\"\n\nTip: Link to cost savings and customer requirements.", "D"],
+["Digital", "What is your digital supply chain roadmap?", "**Why they ask:** technology leadership.\n\n**Answer:**\n\"Foundation first — clean master data and an integrated ERP. Then advanced planning and IBP, a control tower for visibility, modern WMS and TMS, automation and robotics, AI for forecasting, inventory optimization and risk, and analytics for decisions. Each phase sequenced by value, so it pays for the next.\"\n\nTip: A value-driven roadmap.", "D"],
+["AI", "How would you use AI across operations?", "**Why they ask:** a measured AI view.\n\n**Answer:**\n\"Demand sensing, inventory optimization, predictive maintenance, quality inspection with computer vision, dynamic routing, supplier risk prediction, and planning copilots that explain exceptions. All with governance and measurable ROI — I'd pilot, measure and scale only what proves itself.\"\n\nTip: Practical and measured.", "D"],
+["Executive", "How do you work with the executive team and board?", "**Why they ask:** executive presence.\n\n**Answer:**\n\"I present supply chain in business terms — growth, margin, cash and risk. I make trade-offs explicit, bring clear recommendations and asks, and report performance transparently. No surprises.\"\n\nTip: No surprises.", "B"],
+["Executive", "How do you present a major investment to the board?", "**Why they ask:** capital requests.\n\n**Answer:**\n\"The strategic rationale, the financial case with NPV and payback, risks and mitigations, alternatives considered, the implementation plan and milestones, and exactly how success will be measured and reported back.\"\n\nTip: A structured business case.", "D"],
+["Finance", "How do you partner with the CFO?", "**Why they ask:** cash and margin.\n\n**Answer:**\n\"A shared view of cost, working capital and capex. Joint ownership of inventory and freight targets. Transparent savings tracking that finance validates. And aligned planning through IBP, so the operating plan and financial plan are the same plan.\"\n\nTip: Cash and margin focus.", "B"],
+["Commercial", "How do you partner with sales and marketing?", "**Why they ask:** supply chain as a growth enabler.\n\n**Answer:**\n\"Segmented service models by customer, joint demand planning, coordinated launches, cost-to-serve insights to inform pricing, and fast escalation paths for key accounts.\"\n\nTip: A growth enabler.", "B"],
+["Organization", "How would you organize the supply chain function?", "**Why they ask:** organization design.\n\n**Answer:**\n\"End-to-end supply chain under one leader — plan, source, make, deliver and return — with centers of excellence for planning, procurement, logistics and analytics, and regional execution teams. Clear decision rights and KPIs, so nobody optimizes their piece at the expense of the whole.\"\n\nTip: End-to-end ownership.", "D"],
+["Talent", "How do you build supply chain leadership talent?", "**Why they ask:** succession.\n\n**Answer:**\n\"Succession plans for every key role, rotations across functions and regions, leadership development, analytics skills, diverse hiring and mentoring. Three of my former managers now run supply chains of their own.\"\n\nTip: Name leaders you developed.", "B"],
+["Culture", "How do you build an operational excellence culture?", "**Why they ask:** sustained performance.\n\n**Answer:**\n\"Lean and continuous improvement deployed across every site, daily management systems, leaders at the gemba, recognition, and capability building. Culture lasts longer than any project.\"\n\nTip: Culture over projects.", "D"],
+["Safety", "How do you lead safety at enterprise level?", "**Why they ask:** safety at scale.\n\n**Answer:**\n\"Safety as a core value with visible leadership, consistent standards across sites, leading indicators, a focus on preventing serious injuries and fatalities — SIF prevention — and sharing learnings across the network so one site's near miss prevents another site's injury.\"\n\nTip: SIF prevention is an advanced point.", "B"],
+["M&A", "How do you integrate supply chains after an acquisition?", "**Why they ask:** M&A integration.\n\n**Answer:**\n\"Day-one continuity first — nothing stops shipping. Then quick wins like procurement synergies and freight consolidation, followed by network rationalization, harmonizing systems and processes over time, and retaining key talent.\"\n\nTip: Have a synergy capture plan.", "D"],
+["Customers", "How do you improve customer experience through supply chain?", "**Why they ask:** customer focus.\n\n**Answer:**\n\"Reliable delivery promises through available-to-promise, order visibility, faster lead times, easy returns, and segmented service for key accounts. Customers remember the promise you kept more than the speed.\"\n\nTip: Customer-centric metrics.", "D"],
+["Working Capital", "How do you reduce working capital in operations?", "**Why they ask:** cash generation.\n\n**Answer:**\n\"Inventory optimization, longer supplier terms or supply chain finance, a faster order-to-cash cycle, and reducing obsolete stock through product lifecycle management. I manage it through the cash conversion cycle.\"\n\nTip: Use the cash conversion cycle.", "D"],
+["Tariffs", "How would you lead the response to major tariff changes?", "**Why they ask:** current crisis leadership.\n\n**Answer:**\n\"Stand up a cross-functional war room. Rapid exposure analysis, sourcing and routing scenarios, optimizing trade programs — foreign trade zones, duty drawback, free trade agreements — a pricing strategy with the commercial teams, and clear communication to leadership and customers.\"\n\nTip: A cross-functional war room.", "D"],
+["Scenario", "A major disruption shuts down your largest supplier region. What do you do?", "**Why they ask:** crisis leadership.\n\n**Answer:**\n\"Activate the crisis team, assess exposure and inventory, allocate supply to priority customers, activate alternate suppliers and logistics routes, and communicate with customers and leadership on a fixed rhythm. Afterward, strengthen resilience so we're less exposed next time.\"\n\nTip: Crisis leadership.", "D"],
+["Scenario", "Margins are under pressure from rising input costs. What do you do?", "**Why they ask:** holistic response.\n\n**Answer:**\n\"Procurement levers — renegotiation, alternative materials and sources, hedging where possible. Productivity improvements in plants and warehouses. Network and freight optimization. And working with commercial teams on pricing, using cost-to-serve data.\"\n\nTip: A holistic response.", "D"],
+["Scenario", "The CEO wants delivery in two days instead of five. How do you evaluate it?", "**Why they ask:** business case thinking.\n\n**Answer:**\n\"I'd model the trade-offs — inventory placement, more DCs, faster transport, order processing changes — and compare the cost against the revenue and retention benefits. Usually the answer is segmented: two-day delivery for the key products or customers where it wins business, and standard service elsewhere.\"\n\nTip: Business case thinking.", "D"],
+["Behavioral", "Tell me about a supply chain transformation you led.", "**Why they ask:** proof at scale.\n\n**Answer:**\n\"I combined four regional supply chains into one end-to-end organization with IBP, a redesigned DC network and a new TMS. Over two years, OTIF rose from 87% to 96%, logistics cost fell 12%, and inventory dropped $40 million.\"\n\nTip: Scope and numbers.", "B"],
+["Behavioral", "Tell me about a tough decision you made.", "**Why they ask:** judgment and humanity.\n\n**Answer:**\n\"I closed an underperforming DC that affected 120 employees. We offered transfers and fair severance, consolidated volume into two automated sites, and saved $8 million a year while improving service. It was the right decision, and how we treated people mattered as much as the savings.\"\n\nTip: Judgment and humanity.", "B"],
+["Behavioral", "Tell me about leading through a crisis.", "**Why they ask:** leadership under pressure.\n\n**Answer:**\n\"During a semiconductor shortage, I set up daily allocation meetings, secured supply through broker purchases and product redesigns, and communicated weekly with our top customers. We kept 90% of shipments going while peers fell further.\"\n\nTip: Leadership under pressure.", "B"],
+["Metrics", "Which few metrics would you use to run supply chain?", "**Why they ask:** focus.\n\n**Answer:**\n\"Safety — TRIR. Customer OTIF. Total supply chain cost as a percentage of sales. Inventory days. Forecast accuracy. And carbon intensity. Reviewed monthly with trends.\"\n\nTip: A balanced scorecard.", "D"],
+["Governance", "How do you govern a global supply chain?", "**Why they ask:** global-local balance.\n\n**Answer:**\n\"Global standards and processes with regional execution, monthly performance reviews, IBP, risk management and clear escalation paths. Regions own execution; the center owns standards and the network.\"\n\nTip: The global-local balance.", "D"],
+["Technology", "How do you avoid failed technology investments?", "**Why they ask:** costly failures are common.\n\n**Answer:**\n\"Start with the business problem and process design, clean the data, give an executive clear ownership, deliver in phases, involve users, and track benefits after go-live. I've seen projects fail when IT owned them and the business didn't.\"\n\nTip: Share lessons learned.", "D"],
+["Automation", "How do you decide on warehouse or plant automation?", "**Why they ask:** capital judgment.\n\n**Answer:**\n\"Volume stability and growth, labor availability and cost, accuracy and speed needs, payback period, flexibility for future products, and vendor reliability. Automation pays off with stable, high volume — and becomes a trap if the product mix changes every two years.\"\n\nTip: Make the business case.", "D"],
+["Supplier Strategy", "How do you build strategic supplier partnerships?", "**Why they ask:** value beyond price.\n\n**Answer:**\n\"Segment suppliers, assign executive sponsors, build joint business plans, run innovation programs, sign long-term agreements and share KPIs. Strategic suppliers should be invested in our success.\"\n\nTip: Partnership value beyond price.", "D"],
+["Customers", "How do you use cost-to-serve in decisions?", "**Why they ask:** profit-focused operations.\n\n**Answer:**\n\"To understand profitability by customer and channel, redesign service models, adjust minimum order sizes or delivery frequency, and inform pricing. One analysis showed our smallest 30% of customers cost more to serve than they earned — we moved them to a distributor.\"\n\nTip: Profit-focused decisions.", "D"],
+["Interview", "What would you ask the CEO?", "**Why they ask:** strategic curiosity.\n\n**Answer:**\n\"'Where does supply chain help or hold back growth today?' 'What does success look like in two years?' 'What's the appetite for investment?' And 'What's the biggest risk you worry about?'\"\n\nTip: Strategic questions.", "B"],
+["Career", "Why VP Supply Chain here?", "**Why they ask:** fit.\n\n**Answer:**\n\"You're growing into new markets and need a supply chain that scales resiliently. I've built exactly that, and I want to make supply chain a competitive advantage for you, not just a cost.\"\n\nTip: Tie it to their stage.", "B"],
+["Closing", "Why are you the right VP of Supply Chain for us?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I've led end-to-end transformations that delivered service, cost and cash together — 96% OTIF, 12% lower logistics cost and $40 million less inventory. I've built resilient networks through crises and developed leaders who went on to big roles.\"\n\nTip: Proof points.", "B"],
+["Planning", "What is the role of scenario planning at VP level?", "**Why they ask:** strategic agility.\n\n**Answer:**\n\"It's preparing for uncertainty — demand swings, disruptions, cost changes — with pre-agreed responses and triggers, so the organization acts in days instead of debating for weeks when something happens.\"\n\nTip: Strategic agility.", "D"],
+["Sustainability", "How do you balance sustainability with cost?", "**Why they ask:** practical sustainability.\n\n**Answer:**\n\"Start with initiatives that cut both cost and emissions — load optimization, mode shift, packaging. Invest strategically in longer-term changes, and make the trade-offs transparent when they don't align.\"\n\nTip: Win-win first.", "D"],
+["Innovation", "How do you drive innovation in operations?", "**Why they ask:** test-and-learn mindset.\n\n**Answer:**\n\"Pilot new technologies, partner with startups and suppliers, encourage employee ideas, and scale only what proves its value. Small pilots fail cheaply; that's the point.\"\n\nTip: Test and learn.", "D"],
+["Risk", "How do you report supply chain risk to the board?", "**Why they ask:** board clarity.\n\n**Answer:**\n\"The top risks with likelihood and impact, mitigation status, key risk indicators, and results of scenario tests — on one page, with detail available.\"\n\nTip: Board-level clarity.", "D"],
+["Global", "What are the challenges of managing a global supply chain?", "**Why they ask:** global experience.\n\n**Answer:**\n\"Long lead times, geopolitical and trade risk, currency, regulatory differences, cultural differences, and coordination across time zones. I mitigate with regional buffers, strong local leaders and a fixed global meeting rhythm.\"\n\nTip: Give mitigation examples.", "D"],
+["Customer", "How do you handle a major customer threatening to leave over service?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Meet them quickly with facts, own the issues, present a recovery plan with milestones, assign a dedicated team, and report progress until performance is stable. Excuses lose customers; accountability keeps them.\"\n\nTip: Accountability.", "B"],
+["Strategy", "How do you decide what to keep in-house vs outsource?", "**Why they ask:** strategic focus.\n\n**Answer:**\n\"Keep the core capabilities that differentiate us — strategic sourcing, planning and key manufacturing. Outsource non-core work, or where partners are better, like transport and some warehousing. And manage those partners closely.\"\n\nTip: Strategic focus.", "D"],
+["Strategy", "What is a segmented supply chain?", "**Why they ask:** fit-for-purpose design.\n\n**Answer:**\n\"Different supply chain models for different product or customer segments — lean make-to-stock for stable high volume, agile postponement for customized products, and premium service for strategic accounts. One model for everything overserves some and underserves others.\"\n\nTip: Fit-for-purpose design.", "D"],
+["Data", "How do you build a data-driven supply chain organization?", "**Why they ask:** data culture.\n\n**Answer:**\n\"Master data governance, a single source of truth, analytics talent, dashboards built for decisions, and leaders who actually use data in their reviews. The culture follows what leaders ask for.\"\n\nTip: Data culture.", "D"],
+["Metrics", "How do you balance service, cost and inventory?", "**Why they ask:** the supply chain triangle.\n\n**Answer:**\n\"Make the trade-offs visible with data, agree targets by segment in IBP, and optimize them together rather than one at a time. Push one corner hard and the other two pay for it.\"\n\nTip: The supply chain triangle.", "B"],
+["Leadership", "What is your leadership style?", "**Why they ask:** fit with the team.\n\n**Answer:**\n\"Clear direction and expectations, empowered leaders, data-driven decisions, a visible presence in operations, and genuine care for people and safety. For example, I visit every site at least twice a year and start every review with safety.\"\n\nTip: Give examples behind each trait.", "B"],
+["Future", "Where is supply chain heading in the next five years?", "**Why they ask:** vision.\n\n**Answer:**\n\"Regionalization and resilience, more autonomous planning with AI, automation in plants and warehouses, rising sustainability requirements, and real-time end-to-end visibility.\"\n\nTip: Be forward-looking.", "D"]
+]);
+
+QB["sc-vp"] = (QB["sc-vp"] || []).concat([
+["Strategy", "How do you build a business case for a supply chain transformation?", "**Why they ask:** CFO-ready thinking.\n\n**Answer:**\n\"I baseline current performance — service, cost, inventory and risk. Then quantify benefits by lever — freight, labor, inventory carrying cost, and revenue from better service — estimate investments and one-time costs, show NPV and payback, risks and phasing, and how the benefits will be tracked. If finance can't validate it, it's not a business case.\"\n\nTip: CFO-ready numbers.", "D"]
 ]);
