@@ -1,6 +1,3 @@
-QB['fa-treas'] = (QB['fa-treas'] || []).concat([
-["Cash", "What is trapped cash and how do you deal with it?",
-`**Answer:** Cash held in foreign subsidiaries that can't easily be moved to where it's needed because of currency controls, withholding taxes on dividends, or legal restrictions. Options: intercompany loans, royalties or service fees (arm's length), dividends when tax-efficient, and planning funding so cash isn't stuck in the wrong place.
-
-Tip: Mention checking local currency controls before entering new countries.`, 'D', 'S']
+QB["fa-treas"] = (QB["fa-treas"] || []).concat([
+["Cash", "What is trapped cash and how do you deal with it?", "**Why they ask:** a real multinational problem.\n\n**Answer:**\n\"It's cash sitting in a foreign subsidiary that can't easily move to where it's needed — because of currency controls, withholding tax on dividends, or legal limits. Options include intercompany loans, royalties or service fees at arm's length, dividends when they're tax-efficient, and planning funding so cash doesn't pile up in the wrong place to begin with.\"\n\nTip: Mention checking local currency controls before entering new countries.", "D", "S"]
 ]);
