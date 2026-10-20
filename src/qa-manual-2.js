@@ -1,6 +1,3 @@
-QB['qa-manual'] = (QB['qa-manual'] || []).concat([
-["Test Design", "How would you test a login page?",
-`**Answer:** Functional: valid login, invalid password, unknown user, empty fields, case sensitivity of username/password, "remember me", forgot password, account lockout after N failed attempts, logout and session timeout. Security: password masked, no credentials in URL, HTTPS, generic error messages ("invalid username or password"), brute-force protection, SQL injection attempts. Usability/accessibility: keyboard navigation, screen reader labels, error visibility. Compatibility: browsers and mobile.
-
-Tip: Organize your answer by category — that's what interviewers look for.`, 'B', 'E']
+QB["qa-manual"] = (QB["qa-manual"] || []).concat([
+["Test Design", "How would you test a login page?", "**Why they ask:** the most common test design question.\n\n**Answer:**\n\"I'd organize by category. Functional: valid login, wrong password, unknown user, empty fields, case sensitivity, 'remember me', forgot password, lockout after five failed attempts, logout and session timeout. Security: password masked, no credentials in the URL, HTTPS only, a generic 'invalid username or password' message so attackers can't discover valid usernames, brute-force protection, and SQL injection attempts. Usability and accessibility: keyboard navigation, screen reader labels, visible errors. Compatibility: major browsers and mobile.\"\n\nTip: Organize your answer by category — that's what interviewers look for.", "B", "E"]
 ]);

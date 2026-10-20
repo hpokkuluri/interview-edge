@@ -1,297 +1,57 @@
 // qa-manual — generated from src/qa-manual-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // QA Analyst / Manual Tester. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['qa-manual'] = [
-["Fundamentals", "What is the difference between QA, QC and testing?",
-`**Why they ask:** a basic check that you understand your role's purpose.
-
-**Answer:** **Quality Assurance** is process-focused — preventing defects through good standards, reviews and practices across the lifecycle. **Quality Control** is product-focused — finding defects in what was built. **Testing** is an activity within QC: executing the software to find defects and confirm it meets requirements.
-
-Tip: Add that modern QA is about preventing defects early, not just finding them at the end.`, 'B', 'E'],
-
-["Fundamentals", "Explain the software testing life cycle (STLC).",
-`**Answer:**
-1. **Requirement analysis** — understand what to test; raise questions on unclear requirements.
-2. **Test planning** — scope, approach, resources, schedule, risks, entry/exit criteria.
-3. **Test design** — test cases, test data, traceability to requirements.
-4. **Environment setup** — test environment and data ready.
-5. **Test execution** — run tests, log defects, retest fixes.
-6. **Test closure** — summary report, metrics, lessons learned.
-
-Tip: Mention that in agile these phases happen inside each sprint.`, 'B', 'E'],
-
-["Fundamentals", "What are the levels of testing?",
-`**Answer:**
-- **Unit testing** — individual functions, usually by developers.
-- **Integration testing** — interfaces between modules or systems.
-- **System testing** — the complete system against requirements.
-- **Acceptance testing (UAT)** — business users confirm it meets their needs.
-
-Tip: Mention who usually owns each level.`, 'B', 'E'],
-
-["Fundamentals", "What is the difference between functional and non-functional testing?",
-`**Answer:** **Functional** testing checks what the system does — features, business rules, calculations (e.g. "an order total includes tax"). **Non-functional** testing checks how well it does it — performance, security, usability, accessibility, compatibility, reliability.
-
-Tip: Give one example of each from a real project.`, 'B', 'E'],
-
-["Fundamentals", "Smoke vs sanity vs regression testing?",
-`**Answer:**
-- **Smoke:** a quick, broad check that a new build's critical functions work — is it stable enough to test?
-- **Sanity:** a quick, narrow check that a specific fix or change works.
-- **Regression:** broad re-testing to make sure changes didn't break existing functionality.
-
-**Example:** after a login bug fix — sanity-test login; smoke-test the build's main flows; run regression before release.
-
-Tip: Mention which of these you automate.`, 'B', 'E'],
-
-["Fundamentals", "Verification vs validation?",
-`**Answer:** **Verification:** "Are we building the product right?" — reviews, walkthroughs, inspections of documents and code against specs. **Validation:** "Are we building the right product?" — testing the working software against user needs.
-
-Tip: A short, crisp answer is enough.`, 'B', 'E'],
-
-["Fundamentals", "Black-box, white-box and grey-box testing?",
-`**Answer:** **Black-box:** test inputs and outputs without knowing the internal code. **White-box:** test with knowledge of the code — paths, branches, conditions. **Grey-box:** partial knowledge, such as knowing the database schema or APIs while testing through the UI.
-
-Tip: Mention you use grey-box techniques like checking the database after a UI action.`, 'B', 'E'],
-
-["Test Design", "Explain equivalence partitioning and boundary value analysis.",
-`**Answer:** **Equivalence partitioning** divides inputs into groups that should behave the same, so you test one value per group (valid and invalid). **Boundary value analysis** tests at the edges, where defects cluster.
-
-**Example:** an age field accepting 18–65 → partitions: below 18, 18–65, above 65. Boundaries: 17, 18, 65, 66 (plus a middle value like 40).
-
-Tip: Do the example out loud — it's the most common test design question.`, 'B', 'E'],
-
-["Test Design", "What is a decision table and when do you use it?",
-`**Answer:** A table that lists combinations of conditions and the expected action for each — useful for complex business rules.
-
-**Example:** discount rules — member (Y/N) × order over $100 (Y/N) gives four combinations: member + over $100 = 15%, member only = 10%, over $100 only = 5%, neither = 0%. Each column becomes a test case.
-
-Tip: It shows you test logic systematically, not randomly.`, 'D', 'M'],
-
-["Test Design", "What is state transition testing?",
-`**Answer:** Testing how a system moves between states based on events, including invalid transitions.
-
-**Example:** an order goes Draft → Submitted → Approved → Shipped → Closed. Test each valid transition, and invalid ones like Draft → Shipped or editing a Closed order.
-
-Tip: Great for workflows like approvals, tickets and orders.`, 'D', 'M'],
-
-["Test Design", "What is pairwise testing?",
-`**Answer:** A technique that tests every pair of input values at least once instead of every combination, cutting test cases dramatically while catching most interaction defects.
-
-**Example:** 3 browsers × 3 operating systems × 3 languages = 27 combinations; pairwise covers all pairs in about 9 tests. Tools: PICT, AllPairs.
-
-Tip: Mention it for compatibility testing.`, 'D', 'M'],
-
-["Test Design", "What is exploratory testing and how do you structure it?",
-`**Answer:** Simultaneous learning, test design and execution, guided by the tester's skill. Structure it with **charters** (a mission like "explore checkout with expired cards"), a time box (60–90 minutes), notes of what you tried, and a debrief of defects, questions and risks.
-
-Tip: Mention it finds issues scripted tests miss — especially in new features.`, 'B', 'M'],
-
-["Test Design", "What is error guessing?",
-`**Answer:** Using experience to anticipate where defects are likely — empty fields, special characters, very long input, double-clicks, back button after submit, network drops, time zones, leap years. It complements formal techniques.
-
-Tip: Give a real bug you found this way.`, 'B', 'E'],
-
-["Test Cases", "What makes a good test case?",
-`**Answer:** A clear title and objective linked to a requirement; preconditions and test data; numbered steps; an expected result for each step; independent and repeatable; one purpose per case; and priority/tags (smoke, regression).
-
-**Example title:** "Checkout — applies 10% member discount on orders over $100."
-
-Tip: Mention you write cases someone else can run without asking you.`, 'B', 'E'],
-
-["Test Cases", "How do you write test cases when there are no detailed requirements?",
-`**Answer:** Talk to the product owner, BA and developers; use the existing application, user stories, designs and similar features as references; write high-level scenarios first; document assumptions and get them confirmed; and use exploratory testing to learn.
-
-Tip: "Document assumptions and confirm them" is the key phrase.`, 'B', 'M'],
-
-["Test Cases", "What is a requirements traceability matrix?",
-`**Answer:** A table that maps each requirement to its test cases (and often defects). It shows coverage — every requirement has tests — and impact — which tests to rerun when a requirement changes.
-
-Tip: Mention tools that do this automatically (Jira with Xray/Zephyr, Azure DevOps).`, 'B', 'E'],
-
-["Defects", "What should a good defect report include?",
-`**Answer:** A specific title (what fails, where), steps to reproduce, test data, environment and build, expected vs actual result, severity and priority, and evidence (screenshots, logs, video).
-
-**Example title:** "Checkout: 500 error when applying a discount code to a cart with 0-priced item."
-
-Tip: A developer should reproduce it without contacting you.`, 'B', 'E'],
-
-["Defects", "What is the difference between severity and priority?",
-`**Answer:** **Severity** is the impact on the system; **priority** is how urgently it must be fixed.
-
-**Examples:**
-- Logo misspelled on the home page — low severity, high priority.
-- Crash in a rarely used admin report — high severity, lower priority.
-- Payment failure for all users — high and high.
-
-Tip: The examples are what interviewers want.`, 'B', 'E'],
-
-["Defects", "Explain the defect life cycle.",
-`**Answer:** New → Assigned/Open → In Progress → Fixed → Ready for Retest → Retest → Closed (or Reopened if it still fails). Other states: Rejected (not a bug), Duplicate, Deferred (fix later), Cannot Reproduce.
-
-Tip: Mention triage meetings where priority is agreed.`, 'B', 'E'],
-
-["Defects", "A developer says your defect is 'not a bug'. What do you do?",
-`**Answer:** Recheck the requirement or acceptance criteria. If I'm right, share clear evidence — steps, screenshots, the requirement text. If the requirement is unclear, bring in the product owner to decide. Accept the decision and document it; keep it professional, not personal.
-
-Tip: Calm, evidence-based, and let the product owner decide.`, 'B', 'E'],
-
-["Defects", "What do you do if you can't reproduce a defect?",
-`**Answer:** Check environment differences (browser, data, user role, build), logs and timing. Try to narrow conditions. If still not reproducible, document what was tried, keep it open as "cannot reproduce" with monitoring, and capture more evidence next time (logs, video).
-
-Tip: Intermittent bugs often relate to data, timing or concurrency.`, 'D', 'M'],
-
-["Agile", "How does testing work in an agile team?",
-`**Answer:** Testers join refinement to clarify acceptance criteria, design tests while code is written, test stories within the sprint, pair with developers, automate regression where possible, and contribute to the definition of done. Quality is a team responsibility.
-
-Tip: "Testing is part of the sprint, not after it."`, 'B', 'E'],
-
-["Agile", "What are acceptance criteria and how do you test them?",
-`**Answer:** Conditions a story must meet to be accepted, often in Given/When/Then format.
-
-**Example:** "Given a member with an order over $100, when they check out, then a 10% discount is applied."
-I derive positive tests from each criterion, plus negative and edge cases (exactly $100, non-member, expired membership).
-
-Tip: Mention you help write acceptance criteria during refinement.`, 'B', 'E'],
-
-["Agile", "What is the definition of done and how does QA contribute?",
-`**Answer:** The team's agreed checklist for a story to be complete — e.g. code reviewed, unit tests passing, acceptance tests passed, no open high-severity defects, documentation updated. QA ensures testing criteria are included and met.
-
-Tip: Shows process maturity.`, 'B', 'M'],
-
-["Agile", "What is shift-left testing?",
-`**Answer:** Moving testing activities earlier — reviewing requirements, testing APIs before the UI exists, writing tests alongside code, static analysis. Defects found early are much cheaper to fix.
-
-Tip: Give an example of a requirement gap you caught in refinement.`, 'B', 'M'],
-
-["Regression", "How do you decide what goes into a regression suite?",
-`**Answer:** Critical business flows, high-risk and frequently changed areas, past defect hotspots, and integrations. Prioritize into tiers — P1 smoke, P2 core regression, P3 extended. Automate stable, repetitive cases and review the suite regularly to remove obsolete tests.
-
-Tip: Mention impact analysis for each release.`, 'D', 'M'],
-
-["Regression", "You have one day to test a release that normally takes a week. What do you do?",
-`**Answer:** Do risk-based testing: identify what changed and its impact, prioritize critical business flows and changed areas, run automated regression, do focused exploratory testing on new features, and clearly communicate what wasn't tested and the residual risk.
-
-Tip: Transparency about risk is the key point.`, 'D', 'M'],
-
-["SQL", "Why do testers need SQL? Give examples.",
-`**Answer:** To verify data behind the UI, set up test data and investigate defects.
-- Check an order saved: \`SELECT status, total FROM orders WHERE order_id = 1001;\`
-- Find duplicates: \`SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1;\`
-- Join to verify related records: orders and order_lines totals match.
-
-Tip: Be ready to write a JOIN and GROUP BY on a whiteboard.`, 'B', 'E'],
-
-["SQL", "Write a query to find customers with no orders.",
-`**Answer:**
-\`SELECT c.customer_id, c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.customer_id WHERE o.order_id IS NULL;\`
-A LEFT JOIN keeps all customers; those without a matching order have NULL order columns.
-
-Tip: Mention NOT EXISTS as an alternative.`, 'D', 'M'],
-
-["API", "How do you test an API manually?",
-`**Answer:** Use Postman (or similar) to send requests with different methods, headers, auth and payloads. Check status codes, response body and schema, error messages and response times. Negative tests: missing or invalid fields, wrong types, unauthorized access, large payloads. Save collections with environments for reuse.
-
-Tip: Mention chaining requests (create → get → update → delete).`, 'B', 'M'],
-
-["API", "What HTTP status codes should a tester know?",
-`**Answer:** 200 OK, 201 Created, 204 No Content; 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Unprocessable; 429 Too Many Requests; 500 Internal Server Error, 502/503/504 gateway or availability errors.
-
-Tip: Explain 401 vs 403 — a common follow-up.`, 'B', 'E'],
-
-["UAT", "What is UAT and how does QA support it?",
-`**Answer:** User acceptance testing is where business users confirm the system supports their real work. QA supports it by preparing environments and data, providing scenarios or scripts, training users on logging defects, triaging issues, and tracking sign-off.
-
-Tip: Mention UAT is not a repeat of system testing.`, 'B', 'E'],
-
-["Mobile", "What is different about testing mobile apps?",
-`**Answer:** Device and OS fragmentation, screen sizes and orientation, interruptions (calls, notifications), network changes and offline mode, battery and performance, permissions, gestures, and app store rules. Use real devices plus device clouds (BrowserStack, Sauce Labs).
-
-Tip: Mention testing upgrades from the previous app version.`, 'D', 'M'],
-
-["Web", "How do you do cross-browser testing?",
-`**Answer:** Identify target browsers and versions from analytics, test key flows on each (Chrome, Safari, Edge, Firefox, mobile browsers), use cloud tools for coverage, and watch for layout, JavaScript and date/time differences — Safari is often the odd one out.
-
-Tip: Prioritize by user traffic.`, 'B', 'E'],
-
-["Accessibility", "What is accessibility testing?",
-`**Answer:** Checking that people with disabilities can use the product — screen readers, keyboard-only navigation, color contrast, text alternatives for images, captions, focus order. Standard: WCAG 2.1/2.2 AA. Tools: axe, Lighthouse, WAVE, plus manual screen reader testing (NVDA, VoiceOver).
-
-Tip: Mention it's a legal requirement in many contexts.`, 'D', 'M'],
-
-["Security", "What basic security checks can a manual tester do?",
-`**Answer:** Try accessing pages without login or with another user's ID in the URL (broken access control), check input fields for script injection, verify passwords and sensitive data aren't exposed in URLs or logs, check session timeout and logout, and confirm error messages don't reveal technical details.
-
-Tip: Mention OWASP Top 10 awareness.`, 'D', 'M'],
-
-["Tools", "Which test management and defect tools have you used?",
-`**Sample answer:** "Jira with Xray for test cases and defects, Azure DevOps Test Plans on another project, and TestRail for a client. I've built dashboards showing execution progress and defect trends."
-
-Tip: Mention what you did with each tool.`, 'B', 'E'],
-
-["Metrics", "Which testing metrics do you report?",
-`**Answer:** Test execution progress (planned vs executed, pass/fail), defects by severity and status, defect trends (opened vs closed), requirements coverage, and defect leakage (bugs found in production). Metrics guide decisions — not blame.
-
-Tip: Mention a go/no-go summary.`, 'B', 'M'],
-
-["Environments", "What do you do when the test environment is unstable?",
-`**Answer:** Report the impact clearly (blocked tests, hours lost), work with DevOps to fix root causes, use mocks or stubs where possible, prioritize tests that can run, and adjust the plan and communicate schedule risk.
-
-Tip: Quantify the impact.`, 'B', 'M'],
-
-["Test Data", "How do you manage test data?",
-`**Answer:** Prepare data for each scenario (valid, invalid, edge cases), use scripts or APIs to create it repeatably, keep sensitive production data masked, and reset data between runs where possible.
-
-Tip: Mention test data is often the biggest bottleneck.`, 'B', 'E'],
-
-["ERP", "How is testing an ERP or business application different?",
-`**Answer:** You test end-to-end business processes across modules (order-to-cash, procure-to-pay), verify accounting and reports, deal with configuration-driven behavior, roles and approvals, batch jobs, integrations and regular vendor updates.
-
-Tip: Good to mention if applying to enterprise roles.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a critical defect you found.",
-`**Sample answer:** "While testing a refund feature, I noticed refunds could exceed the original payment if you edited the cart after a partial refund. I reproduced it with exact steps and data. It would have let customers get more money back than they paid. It was fixed before release, and I added it to regression."
-
-Tip: Business impact makes the story strong.`, 'B', 'E'],
-
-["Behavioral", "How do you handle pressure to sign off a release with open defects?",
-`**Answer:** Lay out the open defects, their severity and business impact, and options (fix, workaround, defer with monitoring). The business owner decides with full information; I document the decision. I don't hide or downgrade defects to make a release look clean.
-
-Tip: Integrity plus helpfulness.`, 'B', 'M'],
-
-["Behavioral", "How do you handle changing requirements late in a sprint?",
-`**Answer:** Assess the testing impact, update tests, communicate the effect on scope or timeline, and prioritize the most important tests. Raise it in the retrospective if it keeps happening.
-
-Tip: Flexible but transparent.`, 'B', 'E'],
-
-["Behavioral", "Describe a time you improved a testing process.",
-`**Sample answer:** "Regression took three days because test cases were duplicated and outdated. I cleaned the suite from 900 to 520 cases, tagged them by priority, and worked with an automation engineer to automate the top 150. Regression dropped to one day."
-
-Tip: Numbers make it memorable.`, 'B', 'M'],
-
-["Behavioral", "How do you work with developers?",
-`**Answer:** Collaborate early (refinement, design discussions), share defects with clear evidence, pair on tricky issues, and respect their time. We share the goal of quality software.
-
-Tip: "We're on the same team" mindset.`, 'B', 'E'],
-
-["Career", "How do you plan to grow from manual testing?",
-`**Answer:** Learn automation (Playwright or Selenium with a language like TypeScript, Java or Python), API testing and automation, SQL, CI/CD basics, and performance or security basics. Deepen domain knowledge (finance, healthcare, ERP). Certifications: ISTQB Foundation, then Advanced.
-
-Tip: Show a concrete learning plan.`, 'B', 'E'],
-
-["AI", "How is AI changing manual testing?",
-`**Answer:** AI tools help generate test ideas and cases from requirements, create test data, summarize defects, and suggest regression scope. Testers still need judgment — understanding users, risks and edge cases — and must review AI output.
-
-Tip: Show you use it as an assistant.`, 'D', 'M'],
-
-["Closing", "Why should we hire you as a QA analyst?",
-`**Sample answer:** "I'm thorough and practical — I test what matters most to users, write defects developers can act on quickly, and I've found serious issues before release. I'm comfortable with SQL and API testing and I'm growing my automation skills."
-
-Tip: Thoroughness plus impact.`, 'B', 'E']
-];
-
-QB['qa-manual'] = (QB['qa-manual'] || []).concat([
-["Test Design", "How would you test a login page?",
-`**Answer:** Functional: valid login, invalid password, unknown user, empty fields, case sensitivity of username/password, "remember me", forgot password, account lockout after N failed attempts, logout and session timeout. Security: password masked, no credentials in URL, HTTPS, generic error messages ("invalid username or password"), brute-force protection, SQL injection attempts. Usability/accessibility: keyboard navigation, screen reader labels, error visibility. Compatibility: browsers and mobile.
-
-Tip: Organize your answer by category — that's what interviewers look for.`, 'B', 'E']
+QB["qa-manual"] = (QB["qa-manual"] || []).concat([
+["Fundamentals", "What is the difference between QA, QC and testing?", "**Why they ask:** a basic check that you understand your role's purpose.\n\n**Answer:** **Quality Assurance** is process-focused — preventing defects through good standards, reviews and practices across the lifecycle. **Quality Control** is product-focused — finding defects in what was built. **Testing** is an activity within QC: executing the software to find defects and confirm it meets requirements.\n\nTip: Add that modern QA is about preventing defects early, not just finding them at the end.", "B", "E"],
+["Fundamentals", "Explain the software testing life cycle (STLC).", "**Why they ask:** testing process fundamentals.\n\n**Answer:**\n\"Six phases. Requirement analysis — understand what to test and raise questions on anything unclear. Test planning — scope, approach, resources, schedule, risks, entry and exit criteria. Test design — test cases, test data, traceability to requirements. Environment setup — test environment and data ready. Execution — run tests, log defects, retest fixes. Closure — summary report, metrics, lessons learned. In agile, all of these happen inside each sprint rather than as long separate phases.\"\n\nTip: Mention that in agile these phases happen inside each sprint.", "B", "E"],
+["Fundamentals", "What are the levels of testing?", "**Why they ask:** basic structure of testing.\n\n**Answer:**\n\"Unit testing of individual functions, usually by developers. Integration testing of interfaces between modules or systems — say, checkout calling the payment service. System testing of the complete application against requirements, mostly by QA. And acceptance testing, where business users confirm it meets their needs.\"\n\nTip: Mention who usually owns each level.", "B", "E"],
+["Fundamentals", "What is the difference between functional and non-functional testing?", "**Why they ask:** testing scope.\n\n**Answer:**\n\"Functional testing checks what the system does — features, business rules, calculations. For example, an order total includes the right sales tax. Non-functional testing checks how well it does it — performance, security, usability, accessibility, compatibility, reliability. For example, checkout still responds in under 2 seconds with 500 users at once.\"\n\nTip: Give one example of each from a real project.", "B", "E"],
+["Fundamentals", "Smoke vs sanity vs regression testing?", "**Why they ask:** a classic definitions question.\n\n**Answer:**\n\"Smoke is a quick, broad check that a new build's critical functions work — is it stable enough to test at all? Sanity is a quick, narrow check that a specific fix or change works. Regression is broad re-testing to make sure changes didn't break existing features. After a login bug fix: I sanity-test login, smoke-test the build's main flows, and run regression before release. Smoke and the core regression are the ones worth automating.\"\n\nTip: Mention which of these you automate.", "B", "E"],
+["Fundamentals", "Verification vs validation?", "**Why they ask:** quality concepts.\n\n**Answer:**\n\"Verification asks 'are we building the product right?' — reviews and inspections of documents and code against specifications. Validation asks 'are we building the right product?' — testing the working software against what users actually need.\"\n\nTip: A short, crisp answer is enough.", "B", "E"],
+["Fundamentals", "Black-box, white-box and grey-box testing?", "**Why they ask:** testing approaches.\n\n**Answer:**\n\"Black-box tests inputs and outputs without knowing the code. White-box tests with knowledge of the code — paths, branches, conditions. Grey-box is partial knowledge — for example, I test through the UI but check the database afterward to confirm the order status and total were saved correctly.\"\n\nTip: Mention you use grey-box techniques like checking the database after a UI action.", "B", "E"],
+["Test Design", "Explain equivalence partitioning and boundary value analysis.", "**Why they ask:** the most common test design question.\n\n**Answer:**\n\"Equivalence partitioning splits inputs into groups that should behave the same, so I test one value per group, valid and invalid. Boundary value analysis tests the edges, where defects cluster. Take an age field accepting 18 to 65: the partitions are below 18, 18 to 65, and above 65, so I might test 10, 40 and 70. The boundaries are 17, 18, 65 and 66 — 17 and 66 should be rejected, 18 and 65 accepted. A developer writing 'greater than 18' instead of 'greater than or equal' fails exactly at 18.\"\n\nTip: Do the example out loud — it's the most common test design question.", "B", "E"],
+["Test Design", "What is a decision table and when do you use it?", "**Why they ask:** systematic testing of rules.\n\n**Answer:**\n\"A table listing combinations of conditions and the expected outcome for each — ideal for business rules. For discounts based on membership and order size: member and over $100 gets 15%, member only gets 10%, over $100 only gets 5%, neither gets 0%. Four columns, four test cases, and no combination gets forgotten.\"\n\nTip: It shows you test logic systematically, not randomly.", "D", "M"],
+["Test Design", "What is state transition testing?", "**Why they ask:** workflow testing.\n\n**Answer:**\n\"Testing how a system moves between states based on events, including transitions that shouldn't be allowed. An order goes Draft, Submitted, Approved, Shipped, Closed. I test each valid transition and the invalid ones — can a Draft jump straight to Shipped? Can someone edit a Closed order? It's great for approvals, tickets and orders.\"\n\nTip: Great for workflows like approvals, tickets and orders.", "D", "M"],
+["Test Design", "What is pairwise testing?", "**Why they ask:** efficient coverage.\n\n**Answer:**\n\"Testing every pair of input values at least once instead of every combination, which cuts test cases dramatically while catching most interaction bugs. Three browsers, three operating systems and three languages make 27 combinations; pairwise covers every pair in 9 tests. Tools like PICT generate the set. I use it for compatibility and configuration testing.\"\n\nTip: Mention it for compatibility testing.", "D", "M"],
+["Test Design", "What is exploratory testing and how do you structure it?", "**Why they ask:** skill beyond scripts.\n\n**Answer:**\n\"Learning, designing and executing tests at the same time, guided by the tester's skill. I structure it with a charter — a mission like 'explore checkout with expired and declined cards' — a time box of 60 to 90 minutes, notes of what I tried, and a debrief of bugs, questions and risks. It finds things scripted tests miss, especially in new features.\"\n\nTip: Mention it finds issues scripted tests miss — especially in new features.", "B", "M"],
+["Test Design", "What is error guessing?", "**Why they ask:** tester intuition.\n\n**Answer:**\n\"Using experience to anticipate where bugs hide — empty fields, special characters, very long input, double-clicking submit, pressing back after paying, losing network mid-action, time zones, leap years. Once, double-clicking 'Place order' created two orders because the button wasn't disabled; no written test case covered that.\"\n\nTip: Give a real bug you found this way.", "B", "E"],
+["Test Cases", "What makes a good test case?", "**Why they ask:** core craft.\n\n**Answer:**\n\"A clear title and objective linked to a requirement, preconditions and test data, numbered steps with an expected result for each, independent and repeatable, one purpose per case, and a priority or tag like smoke or regression. For example: 'Checkout — applies 10% member discount on orders over $100.' Someone else should be able to run it without asking me anything.\"\n\nTip: Mention you write cases someone else can run without asking you.", "B", "E"],
+["Test Cases", "How do you write test cases when there are no detailed requirements?", "**Why they ask:** real projects often lack documentation.\n\n**Answer:**\n\"Talk to the product owner, BA and developers; use the existing application, user stories, designs and similar features as references; write high-level scenarios first; document my assumptions and get them confirmed; and use exploratory testing to learn the behavior. Confirmed assumptions become the requirements.\"\n\nTip: \"Document assumptions and confirm them\" is the key phrase.", "B", "M"],
+["Test Cases", "What is a requirements traceability matrix?", "**Why they ask:** coverage control.\n\n**Answer:**\n\"A table mapping each requirement to its test cases and often its defects. It proves coverage — every requirement has tests — and shows impact — which tests to rerun when a requirement changes. Jira with Xray or Zephyr, or Azure DevOps, maintains it automatically when tests are linked to stories.\"\n\nTip: Mention tools that do this automatically (Jira with Xray/Zephyr, Azure DevOps).", "B", "E"],
+["Defects", "What should a good defect report include?", "**Why they ask:** communication quality.\n\n**Answer:**\n\"A specific title — what fails and where — steps to reproduce, test data, environment and build, expected versus actual result, severity and priority, and evidence like screenshots, logs or a short video. For example: 'Checkout: 500 error when applying a discount code to a cart containing a zero-priced item.' A developer should be able to reproduce it without contacting me.\"\n\nTip: A developer should reproduce it without contacting you.", "B", "E"],
+["Defects", "What is the difference between severity and priority?", "**Why they ask:** a classic question.\n\n**Answer:**\n\"Severity is the impact on the system; priority is how urgently it must be fixed. A misspelled company name on the home page is low severity but high priority — it's embarrassing. A crash in a rarely used admin report is high severity but lower priority. Payments failing for everyone is high on both.\"\n\nTip: The examples are what interviewers want.", "B", "E"],
+["Defects", "Explain the defect life cycle.", "**Why they ask:** process knowledge.\n\n**Answer:**\n\"New, then Assigned or Open, In Progress, Fixed, Ready for Retest, then Closed — or Reopened if it still fails. Other outcomes are Rejected if it's not a bug, Duplicate, Deferred to a later release, and Cannot Reproduce. Priority usually gets agreed in a triage meeting with product and development.\"\n\nTip: Mention triage meetings where priority is agreed.", "B", "E"],
+["Defects", "A developer says your defect is 'not a bug'. What do you do?", "**Why they ask:** professionalism.\n\n**Answer:**\n\"Recheck the requirement or acceptance criteria first. If I'm right, I share clear evidence — steps, screenshots, the requirement text. If the requirement is unclear, I bring in the product owner to decide what the behavior should be. Then I accept the decision and document it. It's about the product, not about being right.\"\n\nTip: Calm, evidence-based, and let the product owner decide.", "B", "E"],
+["Defects", "What do you do if you can't reproduce a defect?", "**Why they ask:** investigation skills.\n\n**Answer:**\n\"Check environment differences — browser, data, user role, build — look at logs and timing, and narrow the conditions. If it still won't reproduce, I document everything I tried, keep it as 'cannot reproduce' with monitoring, and capture more evidence next time. Intermittent bugs usually come down to data, timing or two things happening at once.\"\n\nTip: Intermittent bugs often relate to data, timing or concurrency.", "D", "M"],
+["Agile", "How does testing work in an agile team?", "**Why they ask:** modern ways of working.\n\n**Answer:**\n\"I join refinement to clarify acceptance criteria, design tests while the code is being written, test stories within the sprint, pair with developers, automate regression where possible, and help define the definition of done. Quality is the whole team's responsibility, and testing is part of the sprint, not something that happens after it.\"\n\nTip: \"Testing is part of the sprint, not after it.\"", "B", "E"],
+["Agile", "What are acceptance criteria and how do you test them?", "**Why they ask:** story-level testing.\n\n**Answer:**\n\"They're the conditions a story must meet to be accepted, often in Given/When/Then form: 'Given a member with an order over $100, when they check out, then a 10% discount is applied.' I derive a positive test from each criterion, then negative and edge cases — exactly $100, a non-member, an expired membership. I also help write them during refinement.\"\n\nTip: Mention you help write acceptance criteria during refinement.", "B", "E"],
+["Agile", "What is the definition of done and how does QA contribute?", "**Why they ask:** process maturity.\n\n**Answer:**\n\"The team's agreed checklist for a story to count as complete — code reviewed, unit tests passing, acceptance tests passed, no open high-severity defects, documentation updated. QA makes sure the testing criteria are in it and actually met before a story is closed.\"\n\nTip: Shows process maturity.", "B", "M"],
+["Agile", "What is shift-left testing?", "**Why they ask:** prevention mindset.\n\n**Answer:**\n\"Moving testing earlier — reviewing requirements, testing APIs before the UI exists, writing tests alongside code, static analysis. Bugs found early are far cheaper to fix. In one refinement I asked what happens if a coupon expires during checkout; nobody had decided, and settling it then saved a defect later.\"\n\nTip: Give an example of a requirement gap you caught in refinement.", "B", "M"],
+["Regression", "How do you decide what goes into a regression suite?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"Critical business flows, high-risk and frequently changed areas, past defect hotspots and integrations. I tier them — P1 smoke, P2 core regression, P3 extended — automate the stable, repetitive ones, and review the suite regularly to remove obsolete tests. For each release, impact analysis tells me which tiers to run.\"\n\nTip: Mention impact analysis for each release.", "D", "M"],
+["Regression", "You have one day to test a release that normally takes a week. What do you do?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"Risk-based testing: find out exactly what changed and what it touches, prioritize critical business flows and the changed areas, run the automated regression, do focused exploratory testing on new features, and clearly communicate what wasn't tested and the remaining risk, so the release decision is informed.\"\n\nTip: Transparency about risk is the key point.", "D", "M"],
+["SQL", "Why do testers need SQL? Give examples.", "**Why they ask:** a key technical skill for testers.\n\n**Answer:**\n\"To verify data behind the UI, set up test data and investigate defects. To check an order saved correctly: SELECT status, total FROM orders WHERE order_id = 1001. To find duplicate users: SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1. And joins to confirm related records match — like the order total equaling the sum of its order lines.\"\n\nTip: Be ready to write a JOIN and GROUP BY on a whiteboard.", "B", "E"],
+["SQL", "Write a query to find customers with no orders.", "**Why they ask:** a common SQL test.\n\n**Answer:**\n\"SELECT c.customer_id, c.name FROM customers c LEFT JOIN orders o ON o.customer_id = c.customer_id WHERE o.order_id IS NULL. The LEFT JOIN keeps every customer; customers with no matching order get NULLs in the order columns, and the WHERE keeps just those. NOT EXISTS with a subquery is an equally good alternative.\"\n\nTip: Mention NOT EXISTS as an alternative.", "D", "M"],
+["API", "How do you test an API manually?", "**Why they ask:** API testing basics.\n\n**Answer:**\n\"With Postman: send requests with different methods, headers, auth and payloads, then check status codes, response body and schema, error messages and response times. Negative tests: missing or invalid fields, wrong data types, no token or another user's token, oversized payloads. I chain requests — create, get, update, delete — and save collections with environments so anyone can rerun them.\"\n\nTip: Mention chaining requests (create → get → update → delete).", "B", "M"],
+["API", "What HTTP status codes should a tester know?", "**Why they ask:** API fluency.\n\n**Answer:**\n\"200 OK, 201 Created, 204 No Content; 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Unprocessable; 429 Too Many Requests; 500 Internal Server Error, and 502, 503 and 504 for gateway and availability problems. 401 means 'we don't know who you are'; 403 means 'we know, and you're not allowed.'\"\n\nTip: Explain 401 vs 403 — a common follow-up.", "B", "E"],
+["UAT", "What is UAT and how does QA support it?", "**Why they ask:** stakeholder collaboration.\n\n**Answer:**\n\"User acceptance testing is where business users confirm the system supports their real work. QA supports it by preparing environments and data, providing scenarios or scripts, training users on logging defects, triaging what they find, and tracking sign-off. UAT shouldn't repeat system testing — it's about fitness for real use.\"\n\nTip: Mention UAT is not a repeat of system testing.", "B", "E"],
+["Mobile", "What is different about testing mobile apps?", "**Why they ask:** mobile coverage.\n\n**Answer:**\n\"Device and OS fragmentation, screen sizes and rotation, interruptions like calls and notifications, network changes and offline mode, battery and performance, permissions, gestures, and app store rules. I use real devices plus device clouds like BrowserStack, and always test upgrading from the previous app version, not just fresh installs.\"\n\nTip: Mention testing upgrades from the previous app version.", "D", "M"],
+["Web", "How do you do cross-browser testing?", "**Why they ask:** compatibility.\n\n**Answer:**\n\"Pick target browsers and versions from analytics, test key flows on each — Chrome, Safari, Edge, Firefox and mobile browsers — use cloud tools for coverage, and watch for layout, JavaScript and date-handling differences. Safari is usually the odd one out.\"\n\nTip: Prioritize by user traffic.", "B", "E"],
+["Accessibility", "What is accessibility testing?", "**Why they ask:** inclusive quality.\n\n**Answer:**\n\"Checking that people with disabilities can use the product — screen readers, keyboard-only navigation, color contrast, text alternatives for images, captions, logical focus order. The standard is WCAG 2.1 or 2.2 at level AA. I use axe, Lighthouse and WAVE, plus manual testing with NVDA and VoiceOver. It's a legal requirement in many places.\"\n\nTip: Mention it's a legal requirement in many contexts.", "D", "M"],
+["Security", "What basic security checks can a manual tester do?", "**Why they ask:** security awareness.\n\n**Answer:**\n\"Change the ID in a URL — /orders/1001 to /orders/1002 — to see if I can view someone else's data; open pages without logging in; try script injection in input fields; check passwords and sensitive data don't appear in URLs or logs; verify session timeout and logout; and confirm error messages don't reveal stack traces. Those map to the OWASP Top 10.\"\n\nTip: Mention OWASP Top 10 awareness.", "D", "M"],
+["Tools", "Which test management and defect tools have you used?", "**Why they ask:** tool experience.\n\n**Answer:**\n\"Jira with Xray for test cases and defects, Azure DevOps Test Plans on another project, and TestRail for a client. In Jira I built dashboards showing execution progress and defect trends for the team's stand-ups.\"\n\nTip: Mention what you did with each tool.", "B", "E"],
+["Metrics", "Which testing metrics do you report?", "**Why they ask:** reporting skills.\n\n**Answer:**\n\"Execution progress — planned versus executed, pass and fail — defects by severity and status, defect trends of opened versus closed, requirements coverage, and defect leakage into production. At release, a short go/no-go summary. Metrics guide decisions; they're never for blaming people.\"\n\nTip: Mention a go/no-go summary.", "B", "M"],
+["Environments", "What do you do when the test environment is unstable?", "**Why they ask:** handling blockers.\n\n**Answer:**\n\"Report the impact clearly — '14 tests blocked, 9 hours lost this week' — work with DevOps on the root cause, use mocks or stubs where possible, prioritize tests that can still run, and update the plan and timeline so the risk is visible.\"\n\nTip: Quantify the impact.", "B", "M"],
+["Test Data", "How do you manage test data?", "**Why they ask:** a common bottleneck.\n\n**Answer:**\n\"Prepare data for each scenario — valid, invalid and edge cases — create it repeatably with scripts or APIs, keep any production-derived data masked, and reset data between runs where possible. Test data is often the biggest bottleneck, so I plan it as early as the test cases.\"\n\nTip: Mention test data is often the biggest bottleneck.", "B", "E"],
+["ERP", "How is testing an ERP or business application different?", "**Why they ask:** enterprise testing awareness.\n\n**Answer:**\n\"You test end-to-end business processes across modules — order-to-cash, procure-to-pay — verify the accounting and reports, deal with behavior driven by configuration, roles and approvals, background batch jobs, integrations, and regular vendor updates that need regression.\"\n\nTip: Good to mention if applying to enterprise roles.", "D", "M"],
+["Behavioral", "Tell me about a critical defect you found.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"Testing a refund feature, I found that if you edited the cart after a partial refund, the next refund could exceed what the customer originally paid. I reproduced it with exact steps and data. Customers could have been refunded more than they spent. It was fixed before release, and I added the scenario to regression.\"\n\nTip: Business impact makes the story strong.", "B", "E"],
+["Behavioral", "How do you handle pressure to sign off a release with open defects?", "**Why they ask:** integrity.\n\n**Answer:**\n\"I lay out the open defects, their severity and business impact, and the options — fix, workaround, or defer with monitoring. The business owner decides with full information, and I document the decision. I never hide or downgrade defects to make a release look clean.\"\n\nTip: Integrity plus helpfulness.", "B", "M"],
+["Behavioral", "How do you handle changing requirements late in a sprint?", "**Why they ask:** flexibility.\n\n**Answer:**\n\"Assess the testing impact, update the tests, tell the team how it affects scope or timeline, and prioritize the most important tests. If it keeps happening, I raise it in the retrospective.\"\n\nTip: Flexible but transparent.", "B", "E"],
+["Behavioral", "Describe a time you improved a testing process.", "**Why they ask:** initiative.\n\n**Answer:**\n\"Regression took three days because test cases were duplicated and outdated. I cleaned the suite from 900 cases to 520, tagged them by priority, and worked with an automation engineer to automate the top 150. Regression dropped to one day.\"\n\nTip: Numbers make it memorable.", "B", "M"],
+["Behavioral", "How do you work with developers?", "**Why they ask:** teamwork.\n\n**Answer:**\n\"Collaborate early in refinement and design discussions, share defects with clear evidence, pair on tricky issues, and respect their time. We share the same goal — software that works for users.\"\n\nTip: \"We're on the same team\" mindset.", "B", "E"],
+["Career", "How do you plan to grow from manual testing?", "**Why they ask:** growth mindset.\n\n**Answer:**\n\"I'm learning Playwright with TypeScript and automating our smoke tests, plus API automation and CI/CD basics, building on my SQL. Next I want performance and security basics, and deeper domain knowledge in finance. I passed ISTQB Foundation and plan to take the Advanced level.\"\n\nTip: Show a concrete learning plan.", "B", "E"],
+["AI", "How is AI changing manual testing?", "**Why they ask:** current awareness.\n\n**Answer:**\n\"AI tools help generate test ideas and cases from requirements, create test data, summarize defects and suggest regression scope. Testers still bring judgment — understanding users, risks and edge cases — and must review the output, because AI-generated cases often miss the business-specific edge cases.\"\n\nTip: Show you use it as an assistant.", "D", "M"],
+["Closing", "Why should we hire you as a QA analyst?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I'm thorough and practical — I test what matters most to users, write defects developers can act on quickly, and I've found serious issues before release. I'm comfortable with SQL and API testing, and I'm actively building my automation skills.\"\n\nTip: Thoroughness plus impact.", "B", "E"]
+]);
+
+QB["qa-manual"] = (QB["qa-manual"] || []).concat([
+["Test Design", "How would you test a login page?", "**Why they ask:** the most common test design question.\n\n**Answer:**\n\"I'd organize by category. Functional: valid login, wrong password, unknown user, empty fields, case sensitivity, 'remember me', forgot password, lockout after five failed attempts, logout and session timeout. Security: password masked, no credentials in the URL, HTTPS only, a generic 'invalid username or password' message so attackers can't discover valid usernames, brute-force protection, and SQL injection attempts. Usability and accessibility: keyboard navigation, screen reader labels, visible errors. Compatibility: major browsers and mobile.\"\n\nTip: Organize your answer by category — that's what interviewers look for.", "B", "E"]
 ]);
