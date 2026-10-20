@@ -1,254 +1,57 @@
 // sec-iam — generated from src/sec-iam-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // IAM Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sec-iam'] = [
-["Fundamentals", "What is identity and access management?",
-`**Why they ask:** baseline.
-
-**Answer:** The policies, processes and technologies that ensure the right people and systems have the right access to the right resources at the right time — covering identity lifecycle (joiner, mover, leaver), authentication (SSO, MFA), authorization (roles, policies), privileged access, governance (access reviews, SoD) and auditing.
-
-Tip: Mention JML lifecycle.`, 'B', 'E'],
-
-["Fundamentals", "Authentication vs authorization?",
-`**Answer:** **Authentication** proves who you are (password, MFA, certificate). **Authorization** determines what you're allowed to do (roles, permissions, policies).
-
-Tip: Simple and clear.`, 'B', 'E'],
-
-["Protocols", "Explain SAML.",
-`**Answer:** An XML-based federation standard for SSO. The identity provider (IdP) authenticates the user and sends a signed assertion to the service provider (SP) with identity and attributes. Common for enterprise web apps. Flows: SP-initiated and IdP-initiated.
-
-Tip: Assertion signing and certificates.`, 'B', 'M'],
-
-["Protocols", "Explain OAuth 2.0 and OIDC.",
-`**Answer:** **OAuth 2.0** is an authorization framework issuing access tokens so apps can call APIs on a user's behalf without sharing passwords. **OpenID Connect** adds an identity layer (ID token) for authentication. Use the authorization code flow with PKCE for web/mobile apps; client credentials for service-to-service.
-
-Tip: PKCE.`, 'B', 'M'],
-
-["Protocols", "What is SCIM?",
-`**Answer:** System for Cross-domain Identity Management — a standard REST API for automating user and group provisioning and deprovisioning between identity providers and SaaS apps.
-
-Tip: Automated deprovisioning.`, 'B', 'M'],
-
-["Protocols", "What is Kerberos?",
-`**Answer:** A ticket-based authentication protocol used by Active Directory: users get a ticket-granting ticket (TGT) from the KDC, then service tickets for specific services — avoiding sending passwords over the network. Attacks include Kerberoasting and golden tickets.
-
-Tip: Know common attacks.`, 'D', 'M'],
-
-["MFA", "Which MFA methods do you recommend?",
-`**Answer:** Phishing-resistant methods: FIDO2 security keys, passkeys, Windows Hello for Business, certificate-based authentication. Avoid SMS/voice where possible; use number matching for push notifications to prevent MFA fatigue attacks.
-
-Tip: Phishing resistance.`, 'B', 'M'],
-
-["Passwordless", "How would you roll out passwordless authentication?",
-`**Answer:** Assess app compatibility, start with IT and pilot groups, deploy passkeys/Windows Hello/FIDO2 keys, provide recovery methods, train users and helpdesk, then expand and reduce password usage over time.
-
-Tip: Recovery processes.`, 'D', 'M'],
-
-["Lifecycle", "Describe the joiner-mover-leaver process.",
-`**Answer:** **Joiner:** HR system triggers account creation with role-based access. **Mover:** role change updates access, removing old rights. **Leaver:** termination triggers immediate disablement and access removal across systems. Automate via HR-driven provisioning and IGA tools.
-
-Tip: Movers accumulate access if not handled.`, 'B', 'E'],
-
-["Governance", "What is identity governance and administration (IGA)?",
-`**Answer:** Tools and processes for access requests and approvals, provisioning, role management, access certifications/reviews, segregation of duties, and audit reporting. Examples: SailPoint, Saviynt, Microsoft Entra ID Governance, Omada.
-
-Tip: Access certifications.`, 'B', 'M'],
-
-["Governance", "How do you run effective access reviews?",
-`**Answer:** Focus on high-risk access, give reviewers clear context (what the access means, last used), use manager and app owner reviews, automate revocation, track completion, and reduce rubber-stamping with risk scoring.
-
-Tip: Context reduces rubber-stamping.`, 'D', 'M'],
-
-["RBAC", "RBAC vs ABAC?",
-`**Answer:** **RBAC** assigns permissions to roles and roles to users — simple, auditable. **ABAC** uses attributes (department, location, data classification, time) in policies — flexible and fine-grained. Many organizations combine them.
-
-Tip: Role explosion is RBAC's weakness.`, 'B', 'M'],
-
-["Roles", "How do you design roles?",
-`**Answer:** Analyze existing access (role mining), define business roles from job functions, keep roles coarse enough to manage, separate SoD-conflicting permissions, assign owners, and review regularly.
-
-Tip: Role mining.`, 'D', 'M'],
-
-["SoD", "What is segregation of duties?",
-`**Answer:** Preventing one person from controlling conflicting steps — e.g. creating a vendor and approving payments. Define SoD rules, check at provisioning, and review conflicts with mitigating controls.
-
-Tip: ERP relevance.`, 'B', 'M'],
-
-["PAM", "What is privileged access management?",
-`**Answer:** Controls for admin and privileged accounts: vaulting credentials, just-in-time elevation, session recording, password rotation, approval workflows, and monitoring. Tools: CyberArk, BeyondTrust, Delinea, Entra PIM.
-
-Tip: No standing privilege.`, 'B', 'M'],
-
-["PAM", "What is just-in-time access?",
-`**Answer:** Granting privileged access only when needed, for a limited time, with approval and logging — removing standing admin rights that attackers can abuse.
-
-Tip: Reduces attack surface.`, 'B', 'M'],
-
-["Directory", "How do you secure Active Directory and Entra ID?",
-`**Answer:** Tiered admin model, PIM for privileged roles, conditional access, phishing-resistant MFA for admins, disabling legacy authentication, monitoring risky sign-ins, protecting AD Connect/cloud sync servers as tier 0, and regular security assessments.
-
-Tip: Disable legacy auth.`, 'D', 'M'],
-
-["Conditional Access", "What is conditional access?",
-`**Answer:** Policies that evaluate signals (user, group, device compliance, location, risk, app) to allow, block or require extra controls (MFA, compliant device) — central to zero trust in Entra ID and similar platforms.
-
-Tip: Device compliance.`, 'B', 'M'],
-
-["Service Accounts", "How do you manage service accounts and non-human identities?",
-`**Answer:** Inventory them, assign owners, use managed identities and workload identity federation instead of static secrets, rotate credentials, least privilege, monitor usage, and remove unused accounts. Non-human identities now outnumber humans in many environments.
-
-Tip: Ownership.`, 'D', 'M'],
-
-["Cloud", "How does IAM work across cloud providers?",
-`**Answer:** Federate the corporate IdP to AWS IAM Identity Center, Azure (Entra ID native), and GCP; map groups to roles/permission sets; use least privilege and permission boundaries; manage workload identities per cloud.
-
-Tip: Central federation.`, 'D', 'M'],
-
-["CIAM", "What is customer identity and access management?",
-`**Answer:** Identity for external customers — registration, social login, passwordless, MFA, consent and privacy management, account recovery, fraud protection and scale. Examples: Auth0/Okta CIAM, Entra External ID, Amazon Cognito.
-
-Tip: User experience matters.`, 'D', 'M'],
-
-["Federation", "How do you troubleshoot a SAML SSO failure?",
-`**Answer:** Capture the SAML response (browser tools), check signature and certificate validity, clock skew, audience/entity IDs, ACS URL, NameID format and attribute mappings, and IdP/SP logs.
-
-Tip: Certificate expiry is common.`, 'D', 'M'],
-
-["Tokens", "What are access tokens, refresh tokens and ID tokens?",
-`**Answer:** **Access tokens** authorize API calls (short-lived). **Refresh tokens** obtain new access tokens without re-login (longer-lived, protect carefully). **ID tokens** (OIDC) carry identity claims for the client app.
-
-Tip: Token lifetimes.`, 'B', 'M'],
-
-["JWT", "What is a JWT and how should it be validated?",
-`**Answer:** A JSON Web Token with header, payload (claims) and signature. Validate signature with the issuer's keys, issuer, audience, expiry and not-before, and reject unsigned or "none" algorithm tokens.
-
-Tip: Validate audience.`, 'D', 'M'],
-
-["Attacks", "What are common identity attacks?",
-`**Answer:** Phishing and credential theft, password spraying, credential stuffing, MFA fatigue, session/token theft (adversary-in-the-middle), consent phishing (malicious OAuth apps), Kerberoasting and privilege escalation.
-
-Tip: Token theft is rising.`, 'B', 'M'],
-
-["ITDR", "What is identity threat detection and response?",
-`**Answer:** Detecting and responding to identity-based attacks — anomalous sign-ins, privilege escalation, suspicious directory changes — using identity telemetry and automated responses (session revocation, account disablement).
-
-Tip: Identity is the new perimeter.`, 'D', 'M'],
-
-["ERP", "What's special about IAM for ERP systems like Oracle or SAP?",
-`**Answer:** Complex role models, fine-grained privileges, strong SoD requirements (SOX), approval workflows, and integration with HR for provisioning. Tools like SAP GRC, Oracle Advanced Access Controls or IGA connectors help.
-
-Tip: SOX compliance.`, 'D', 'M'],
-
-["Metrics", "Which IAM metrics would you report?",
-`**Answer:** MFA and phishing-resistant MFA coverage, orphaned accounts, time to deprovision leavers, privileged accounts count, access review completion, SoD violations, and stale accounts.
-
-Tip: Deprovisioning time.`, 'B', 'M'],
-
-["Behavioral", "Tell me about an IAM project you led.",
-`**Sample answer:** "I implemented HR-driven provisioning with SCIM to 40 SaaS apps and automated leaver deprovisioning. Time to remove access dropped from 5 days to under 1 hour, and audit findings on orphaned accounts went to zero."
-
-Tip: Measured outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling resistance to MFA.",
-`**Sample answer:** "Field staff resisted MFA due to poor connectivity. We provided FIDO2 keys and passkeys that worked offline-friendly and ran short training; adoption reached 99%."
-
-Tip: User empathy.`, 'B', 'M'],
-
-["Behavioral", "How do you balance security and user experience in IAM?",
-`**Answer:** Use SSO and passwordless to reduce friction, apply risk-based step-up rather than constant prompts, and gather user feedback.
-
-Tip: Security can improve UX.`, 'B', 'M'],
-
-["Certifications", "Which certifications are useful?",
-`**Answer:** Microsoft SC-300 (Identity and Access Administrator), Okta certifications, CyberArk/SailPoint certifications, CISSP, and IDPro's CIDPRO.
-
-Tip: Vendor + general.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** IAM architect or identity program lead.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I automate identity lifecycle and strengthen authentication — I cut deprovisioning from days to an hour and rolled out phishing-resistant MFA with high adoption."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Zero Trust", "How does IAM support zero trust?",
-`**Answer:** Strong authentication, continuous evaluation of risk and device posture, least-privilege authorization, just-in-time access, and identity-based segmentation.
-
-Tip: Identity is central.`, 'B', 'M'],
-
-["Recovery", "How do you design secure account recovery?",
-`**Answer:** Avoid weak knowledge questions, use verified methods (backup passkeys, helpdesk identity verification with strong checks), monitor recovery events, and protect helpdesk from social engineering.
-
-Tip: Helpdesk is a target.`, 'D', 'M'],
-
-["Helpdesk", "How do attackers abuse helpdesks and how do you prevent it?",
-`**Answer:** Social engineering to reset passwords or MFA. Prevent with strict identity verification procedures, callback to known numbers, manager approval for sensitive resets, and alerts on MFA changes.
-
-Tip: Recent high-profile breaches.`, 'D', 'M'],
-
-["Directories", "What is LDAP?",
-`**Answer:** Lightweight Directory Access Protocol for querying and managing directory information (users, groups). Active Directory supports LDAP; use LDAPS (encrypted) and signing.
-
-Tip: LDAPS.`, 'B', 'E'],
-
-["Hybrid", "How do you handle hybrid identity (on-prem AD + cloud)?",
-`**Answer:** Sync identities with Entra Connect/Cloud Sync, choose authentication method (password hash sync, pass-through, federation), protect sync servers as tier 0, and plan migration to cloud-native identity.
-
-Tip: Password hash sync resilience.`, 'D', 'M'],
-
-["Consent", "What is OAuth consent phishing?",
-`**Answer:** Attackers trick users into granting a malicious app permissions to their data. Mitigate by restricting user consent, admin approval workflows, and monitoring app grants.
-
-Tip: Restrict user consent.`, 'D', 'M'],
-
-["Audit", "What do auditors look for in IAM?",
-`**Answer:** Timely deprovisioning, access approvals, periodic access reviews, privileged access controls, SoD enforcement, and logging.
-
-Tip: Evidence trails.`, 'B', 'M'],
-
-["Scenario", "An employee leaves and still has access to a SaaS app a month later. What do you do?",
-`**Answer:** Revoke access, check activity since termination, identify why deprovisioning failed (no SCIM, manual process), fix integration, and review other apps for similar gaps.
-
-Tip: Root cause.`, 'B', 'M'],
-
-["Scenario", "Too many people have global admin. How do you fix it?",
-`**Answer:** Inventory admins, define least-privilege roles, move to PIM with just-in-time activation, keep a few break-glass accounts, and monitor privileged role assignments.
-
-Tip: PIM.`, 'B', 'M'],
-
-["Machine Identity", "How do you manage machine identities like certificates?",
-`**Answer:** Inventory, automated issuance and renewal, short lifetimes, secure key storage, and monitoring for expiry and misuse.
-
-Tip: Expired certificates cause outages.`, 'D', 'M'],
-
-["API Security", "How does IAM protect APIs?",
-`**Answer:** OAuth scopes and audience checks, token validation, mutual TLS for service-to-service, API gateways enforcing policies, and least-privilege client credentials.
-
-Tip: Scopes.`, 'D', 'M'],
-
-["AI Agents", "How should AI agents be handled in IAM?",
-`**Answer:** Treat them as non-human identities with owners, least-privilege scoped tokens, delegated authorization on behalf of users where appropriate, logging of actions, and approval for sensitive operations.
-
-Tip: Emerging area.`, 'D', 'S']
-];
-
-QB['sec-iam'] = (QB['sec-iam']||[]).concat([
-["Okta", "How would you compare Okta and Microsoft Entra ID?",
-`**Answer:** **Okta** is a vendor-neutral identity platform with a broad app integration catalog and strong workflows. **Entra ID** is integrated with Microsoft 365 and Azure, and offers conditional access, PIM and governance in its licensing tiers. Many companies use Entra for Microsoft workloads, and some federate the two.
-
-Tip: Stay neutral and explain the trade-offs.`, 'B', 'M'],
-["Session", "How do you defend against session token theft?",
-`**Answer:** Short token lifetimes, continuous access evaluation, token binding where supported, compliant-device requirements, phishing-resistant MFA (which defeats adversary-in-the-middle phishing kits), and detecting anomalous token use.
-
-Tip: Phishing-resistant MFA stops AiTM kits.`, 'D', 'M'],
-["Passkeys", "What are passkeys?",
-`**Answer:** FIDO2 credentials using public-key cryptography, stored on a device or synced through a platform provider. They are phishing-resistant because they're bound to the website's domain, and the user unlocks them with biometrics or a PIN.
-
-Tip: Synced vs device-bound passkeys.`, 'B', 'M'],
-["Entitlements", "What is entitlement creep and how do you stop it?",
-`**Answer:** Users build up access as they change roles. Stop it with mover processes that remove old access, birthright roles, periodic access reviews, and automatic removal of unused access.
-
-Tip: Movers are the usual cause.`, 'B', 'E']
+QB["sec-iam"] = (QB["sec-iam"] || []).concat([
+["Fundamentals", "What is identity and access management?", "**Why they ask:** baseline.\n\n**Answer:** The policies, processes and technologies that ensure the right people and systems have the right access to the right resources at the right time — covering identity lifecycle (joiner, mover, leaver), authentication (SSO, MFA), authorization (roles, policies), privileged access, governance (access reviews, SoD) and auditing.\n\nTip: Mention JML lifecycle.", "B", "E"],
+["Fundamentals", "Authentication vs authorization?", "**Why they ask:** the most basic IAM distinction.\n\n**Answer:**\n\"Authentication proves who you are — a password, MFA, a certificate. Authorization decides what you're allowed to do once we know who you are — roles, permissions, policies. Logging into the ERP is authentication; being allowed to approve invoices over $10,000 is authorization.\"\n\nTip: Simple and clear.", "B", "E"],
+["Protocols", "Explain SAML.", "**Why they ask:** a core federation protocol.\n\n**Answer:**\n\"SAML is an XML-based standard for single sign-on. The identity provider authenticates the user and sends a signed assertion to the service provider containing the user's identity and attributes, like email and groups. The SP trusts it because it verifies the signature with the IdP's certificate. It can start from the app — SP-initiated — or from the IdP portal — IdP-initiated. Expiring signing certificates are the classic cause of SSO outages.\"\n\nTip: Assertion signing and certificates.", "B", "M"],
+["Protocols", "Explain OAuth 2.0 and OIDC.", "**Why they ask:** modern identity protocols.\n\n**Answer:**\n\"OAuth 2.0 is an authorization framework: it issues access tokens so an app can call APIs on a user's behalf without ever seeing their password. OpenID Connect adds an identity layer on top — an ID token — so the app also knows who the user is. For web and mobile apps I use the authorization code flow with PKCE, which stops intercepted codes being reused; for service-to-service, the client credentials flow.\"\n\nTip: PKCE.", "B", "M"],
+["Protocols", "What is SCIM?", "**Why they ask:** automation of the identity lifecycle.\n\n**Answer:**\n\"System for Cross-domain Identity Management — a standard REST API that lets the identity provider create, update and deactivate users and groups in SaaS apps automatically. Its biggest value is deprovisioning: when someone leaves, access disappears from every connected app within minutes.\"\n\nTip: Automated deprovisioning.", "B", "M"],
+["Protocols", "What is Kerberos?", "**Why they ask:** Active Directory fundamentals.\n\n**Answer:**\n\"A ticket-based authentication protocol used by Active Directory. The user gets a ticket-granting ticket from the Key Distribution Center at login, then requests service tickets for specific services, so passwords never cross the network. Common attacks are Kerberoasting — cracking service account passwords offline from service tickets — and golden tickets, forged with the krbtgt account's hash.\"\n\nTip: Know common attacks.", "D", "M"],
+["MFA", "Which MFA methods do you recommend?", "**Why they ask:** a high-impact decision.\n\n**Answer:**\n\"Phishing-resistant methods: FIDO2 security keys, passkeys, Windows Hello for Business and certificate-based authentication — they're bound to the real domain, so a phishing proxy can't relay them. I avoid SMS and voice where possible, and if push is used it must have number matching to prevent MFA fatigue attacks.\"\n\nTip: Phishing resistance.", "B", "M"],
+["Passwordless", "How would you roll out passwordless authentication?", "**Why they ask:** program execution.\n\n**Answer:**\n\"Assess app compatibility, start with IT and a pilot group, deploy passkeys, Windows Hello or FIDO2 keys, set up recovery methods before anyone needs them, train users and the helpdesk, then expand in waves and gradually reduce password usage. Recovery is where passwordless projects stumble — a lost key at 8 a.m. shouldn't mean a lost day.\"\n\nTip: Recovery processes.", "D", "M"],
+["Lifecycle", "Describe the joiner-mover-leaver process.", "**Why they ask:** the identity lifecycle.\n\n**Answer:**\n\"Joiner: the HR system triggers account creation with birthright and role-based access, ready on day one. Mover: a role change updates access and removes what's no longer needed. Leaver: termination triggers immediate disablement and access removal everywhere. All automated through HR-driven provisioning and an IGA tool. Movers are the weak spot — people quietly keep their old access with every transfer.\"\n\nTip: Movers accumulate access if not handled.", "B", "E"],
+["Governance", "What is identity governance and administration (IGA)?", "**Why they ask:** governance tooling.\n\n**Answer:**\n\"Tools and processes for access requests and approvals, provisioning, role management, access certifications, segregation of duties, and audit reporting. Examples are SailPoint, Saviynt, Microsoft Entra ID Governance and Omada.\"\n\nTip: Access certifications.", "B", "M"],
+["Governance", "How do you run effective access reviews?", "**Why they ask:** reviews are often rubber stamps.\n\n**Answer:**\n\"Focus on high-risk access instead of reviewing everything, give reviewers context — what the entitlement means and when it was last used — combine manager and app-owner reviews, automate revocation of rejected access, track completion, and use risk scoring. When reviewers see 'not used in 180 days,' they actually remove access.\"\n\nTip: Context reduces rubber-stamping.", "D", "M"],
+["RBAC", "RBAC vs ABAC?", "**Why they ask:** access model design.\n\n**Answer:**\n\"RBAC assigns permissions to roles and roles to users — simple and auditable. ABAC evaluates attributes — department, location, data classification, time — in policies, which is flexible and fine-grained. Many organizations combine them: roles for the baseline, attributes for conditions like 'only from a managed device.' RBAC's weakness is role explosion — thousands of near-duplicate roles.\"\n\nTip: Role explosion is RBAC's weakness.", "B", "M"],
+["Roles", "How do you design roles?", "**Why they ask:** role engineering.\n\n**Answer:**\n\"Start with role mining on existing access, define business roles from job functions, keep them coarse enough to manage, keep SoD-conflicting permissions in separate roles, assign each role an owner, and review regularly. Mining often shows 80% of a department has identical access, which becomes the base role.\"\n\nTip: Role mining.", "D", "M"],
+["SoD", "What is segregation of duties?", "**Why they ask:** fraud prevention.\n\n**Answer:**\n\"Preventing one person from controlling conflicting steps — for example, creating a vendor and approving payments to that vendor. Define SoD rules, check them at provisioning time, and review existing conflicts with mitigating controls where they can't be removed. It's central in ERP and SOX environments.\"\n\nTip: ERP relevance.", "B", "M"],
+["PAM", "What is privileged access management?", "**Why they ask:** privileged accounts are the crown jewels.\n\n**Answer:**\n\"Controls for admin and privileged accounts: vaulted credentials, just-in-time elevation, session recording, automatic password rotation, approval workflows and monitoring. Tools include CyberArk, BeyondTrust, Delinea and Entra PIM. The goal is no standing privilege.\"\n\nTip: No standing privilege.", "B", "M"],
+["PAM", "What is just-in-time access?", "**Why they ask:** modern privilege control.\n\n**Answer:**\n\"Granting privileged access only when needed, for a limited time — say two hours — with approval and logging. When nobody holds standing admin rights, a stolen credential is worth far less to an attacker.\"\n\nTip: Reduces attack surface.", "B", "M"],
+["Directory", "How do you secure Active Directory and Entra ID?", "**Why they ask:** directory security.\n\n**Answer:**\n\"A tiered admin model, PIM for privileged roles, conditional access, phishing-resistant MFA for admins, disabling legacy authentication that bypasses MFA, monitoring risky sign-ins, protecting Entra Connect or Cloud Sync servers as tier 0, and regular security assessments.\"\n\nTip: Disable legacy auth.", "D", "M"],
+["Conditional Access", "What is conditional access?", "**Why they ask:** zero trust in practice.\n\n**Answer:**\n\"Policies that evaluate signals — user, group, device compliance, location, sign-in risk, the app being accessed — and then allow, block or require extra controls like MFA or a compliant device. For example: finance apps require a compliant device and phishing-resistant MFA; sign-ins from unusual countries are blocked.\"\n\nTip: Device compliance.", "B", "M"],
+["Service Accounts", "How do you manage service accounts and non-human identities?", "**Why they ask:** a fast-growing risk.\n\n**Answer:**\n\"Inventory them, give each an owner, use managed identities and workload identity federation instead of static secrets, rotate whatever credentials remain, apply least privilege, monitor usage, and remove unused ones. In many environments non-human identities outnumber humans many times over, and they rarely have MFA.\"\n\nTip: Ownership.", "D", "M"],
+["Cloud", "How does IAM work across cloud providers?", "**Why they ask:** multi-cloud identity.\n\n**Answer:**\n\"Federate the corporate IdP to AWS IAM Identity Center, Azure natively through Entra ID, and GCP; map groups to roles or permission sets; apply least privilege and permission boundaries; and manage workload identities per cloud. One identity source, many targets.\"\n\nTip: Central federation.", "D", "M"],
+["CIAM", "What is customer identity and access management?", "**Why they ask:** CIAM is a distinct discipline.\n\n**Answer:**\n\"Identity for external customers: registration, social login, passwordless, MFA, consent and privacy management, account recovery, fraud protection, and scale to millions of users. Examples include Auth0 and Okta CIAM, Entra External ID and Amazon Cognito. Unlike workforce IAM, every extra step costs conversions, so user experience is a primary requirement.\"\n\nTip: User experience matters.", "D", "M"],
+["Federation", "How do you troubleshoot a SAML SSO failure?", "**Why they ask:** practical troubleshooting.\n\n**Answer:**\n\"Capture the SAML response with browser tools and decode it, then check the signature and certificate validity, clock skew, audience and entity IDs, the ACS URL, NameID format and attribute mappings, and both IdP and SP logs. Expired certificates and mismatched entity IDs cause most failures.\"\n\nTip: Certificate expiry is common.", "D", "M"],
+["Tokens", "What are access tokens, refresh tokens and ID tokens?", "**Why they ask:** token literacy.\n\n**Answer:**\n\"Access tokens authorize API calls and are short-lived — often an hour. Refresh tokens get new access tokens without re-login, last longer, and must be protected carefully. ID tokens, from OIDC, carry identity claims for the client app and shouldn't be sent to APIs as access tokens.\"\n\nTip: Token lifetimes.", "B", "M"],
+["JWT", "What is a JWT and how should it be validated?", "**Why they ask:** a common implementation flaw.\n\n**Answer:**\n\"A JSON Web Token has a header, a payload of claims and a signature. Validate the signature with the issuer's published keys, then the issuer, audience, expiry and not-before claims, and reject unsigned tokens or the 'none' algorithm. Skipping the audience check lets a token meant for one API be replayed against another.\"\n\nTip: Validate audience.", "D", "M"],
+["Attacks", "What are common identity attacks?", "**Why they ask:** threat awareness.\n\n**Answer:**\n\"Phishing and credential theft, password spraying, credential stuffing with breached passwords, MFA fatigue, session and token theft through adversary-in-the-middle kits, consent phishing with malicious OAuth apps, Kerberoasting and privilege escalation. Token theft is rising because it bypasses MFA entirely.\"\n\nTip: Token theft is rising.", "B", "M"],
+["ITDR", "What is identity threat detection and response?", "**Why they ask:** detection for identity.\n\n**Answer:**\n\"Detecting and responding to identity-based attacks — anomalous sign-ins, privilege escalation, suspicious directory changes like a new member of Domain Admins — using identity telemetry, with automated responses such as revoking sessions or disabling the account.\"\n\nTip: Identity is the new perimeter.", "D", "M"],
+["ERP", "What's special about IAM for ERP systems like Oracle or SAP?", "**Why they ask:** enterprise application depth.\n\n**Answer:**\n\"Complex role models, very fine-grained privileges, strict SoD requirements for SOX, approval workflows, and HR integration for provisioning. Tools like SAP GRC Access Control, Oracle Advanced Access Controls or IGA connectors help detect conflicts — like one user who can both create suppliers and pay them.\"\n\nTip: SOX compliance.", "D", "M"],
+["Metrics", "Which IAM metrics would you report?", "**Why they ask:** measurement.\n\n**Answer:**\n\"MFA and phishing-resistant MFA coverage, orphaned accounts, time to deprovision leavers, number of privileged accounts, access review completion, SoD violations and stale accounts.\"\n\nTip: Deprovisioning time.", "B", "M"],
+["Behavioral", "Tell me about an IAM project you led.", "**Why they ask:** proof.\n\n**Answer:**\n\"I implemented HR-driven provisioning with SCIM to 40 SaaS apps and automated leaver deprovisioning. Time to remove access dropped from five days to under an hour, and audit findings on orphaned accounts went to zero.\"\n\nTip: Measured outcome.", "B", "M"],
+["Behavioral", "Tell me about handling resistance to MFA.", "**Why they ask:** change management.\n\n**Answer:**\n\"Field staff resisted MFA because of poor connectivity, and push notifications kept failing. We gave them FIDO2 keys and passkeys that don't depend on a network connection to the phone, ran 15-minute training sessions, and adoption reached 99%.\"\n\nTip: User empathy.", "B", "M"],
+["Behavioral", "How do you balance security and user experience in IAM?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"SSO and passwordless actually reduce friction, risk-based step-up means prompts only when something looks unusual instead of constantly, and I gather user feedback. Done well, security improves the experience.\"\n\nTip: Security can improve UX.", "B", "M"],
+["Certifications", "Which certifications are useful?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Microsoft SC-300, Okta certifications, CyberArk and SailPoint certifications, CISSP, and IDPro's CIDPRO.\"\n\nTip: Vendor + general.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward IAM architect or identity program lead.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I automate the identity lifecycle and strengthen authentication — I cut deprovisioning from days to an hour and rolled out phishing-resistant MFA with 99% adoption.\"\n\nTip: Proof.", "B", "M"],
+["Zero Trust", "How does IAM support zero trust?", "**Why they ask:** strategic context.\n\n**Answer:**\n\"Strong authentication, continuous evaluation of risk and device posture, least-privilege authorization, just-in-time access and identity-based segmentation. Identity is the policy engine of zero trust.\"\n\nTip: Identity is central.", "B", "M"],
+["Recovery", "How do you design secure account recovery?", "**Why they ask:** recovery is a back door.\n\n**Answer:**\n\"No weak knowledge questions, verified methods like backup passkeys or helpdesk verification with strong checks, monitoring of recovery events, and protecting the helpdesk from social engineering — because attackers target recovery when authentication is strong.\"\n\nTip: Helpdesk is a target.", "D", "M"],
+["Helpdesk", "How do attackers abuse helpdesks and how do you prevent it?", "**Why they ask:** recent breach patterns.\n\n**Answer:**\n\"They call pretending to be an employee and ask for a password or MFA reset — several high-profile breaches started this way. Prevention: strict identity verification, callback to a number on file, manager approval for sensitive resets, and alerts whenever MFA methods change.\"\n\nTip: Recent high-profile breaches.", "D", "M"],
+["Directories", "What is LDAP?", "**Why they ask:** directory basics.\n\n**Answer:**\n\"Lightweight Directory Access Protocol — the protocol for querying and managing directory information like users and groups. Active Directory supports it; use LDAPS or signing and channel binding so credentials aren't exposed.\"\n\nTip: LDAPS.", "B", "E"],
+["Hybrid", "How do you handle hybrid identity (on-prem AD + cloud)?", "**Why they ask:** most enterprises are hybrid.\n\n**Answer:**\n\"Sync identities with Entra Connect or Cloud Sync, choose the authentication method — password hash sync, pass-through or federation — protect the sync servers as tier 0, and plan a path to cloud-native identity. Password hash sync is the most resilient: sign-in keeps working even if on-prem is down.\"\n\nTip: Password hash sync resilience.", "D", "M"],
+["Consent", "What is OAuth consent phishing?", "**Why they ask:** a modern attack.\n\n**Answer:**\n\"Attackers trick users into granting a malicious app permissions to their mail or files — no password stolen, so MFA doesn't help. Mitigate by restricting user consent, requiring admin approval workflows, and monitoring app grants.\"\n\nTip: Restrict user consent.", "D", "M"],
+["Audit", "What do auditors look for in IAM?", "**Why they ask:** compliance readiness.\n\n**Answer:**\n\"Timely deprovisioning, documented access approvals, periodic access reviews, privileged access controls, SoD enforcement and logging — all with evidence trails.\"\n\nTip: Evidence trails.", "B", "M"],
+["Scenario", "An employee leaves and still has access to a SaaS app a month later. What do you do?", "**Why they ask:** incident and root cause.\n\n**Answer:**\n\"Revoke access immediately, check activity since termination, find why deprovisioning failed — usually no SCIM and a manual process — fix the integration, and review other apps for the same gap.\"\n\nTip: Root cause.", "B", "M"],
+["Scenario", "Too many people have global admin. How do you fix it?", "**Why they ask:** privilege reduction.\n\n**Answer:**\n\"Inventory the admins, define least-privilege roles for what each person actually does, move to PIM with just-in-time activation, keep two break-glass accounts, and monitor privileged role assignments. We took one tenant from 38 global admins to 4 eligible ones.\"\n\nTip: PIM.", "B", "M"],
+["Machine Identity", "How do you manage machine identities like certificates?", "**Why they ask:** machine identity hygiene.\n\n**Answer:**\n\"Inventory, automated issuance and renewal, short lifetimes, secure key storage, and monitoring for expiry and misuse.\"\n\nTip: Expired certificates cause outages.", "D", "M"],
+["API Security", "How does IAM protect APIs?", "**Why they ask:** API security.\n\n**Answer:**\n\"OAuth scopes and audience checks, proper token validation, mutual TLS for service-to-service, API gateways enforcing policies, and least-privilege client credentials.\"\n\nTip: Scopes.", "D", "M"],
+["AI Agents", "How should AI agents be handled in IAM?", "**Why they ask:** an emerging area.\n\n**Answer:**\n\"Treat them as non-human identities with owners, least-privilege scoped tokens, delegated authorization on behalf of users where appropriate, logging of every action, and human approval for sensitive operations.\"\n\nTip: Emerging area.", "D", "S"]
+]);
+
+QB["sec-iam"] = (QB["sec-iam"] || []).concat([
+["Okta", "How would you compare Okta and Microsoft Entra ID?", "**Why they ask:** platform knowledge.\n\n**Answer:**\n\"Okta is vendor-neutral, with a very broad app integration catalog and strong workflows. Entra ID is integrated with Microsoft 365 and Azure and includes conditional access, PIM and governance in its licensing tiers. Many companies use Entra for Microsoft workloads, and some federate the two. The right choice depends on the estate.\"\n\nTip: Stay neutral and explain the trade-offs.", "B", "M"],
+["Session", "How do you defend against session token theft?", "**Why they ask:** a current attack trend.\n\n**Answer:**\n\"Short token lifetimes, continuous access evaluation, token binding where supported, compliant-device requirements, phishing-resistant MFA — which defeats adversary-in-the-middle phishing kits — and detecting anomalous token use like the same session from two countries.\"\n\nTip: Phishing-resistant MFA stops AiTM kits.", "D", "M"],
+["Passkeys", "What are passkeys?", "**Why they ask:** the future of authentication.\n\n**Answer:**\n\"FIDO2 credentials using public-key cryptography, stored on a device or synced through a platform provider like Apple, Google or Microsoft. They're phishing-resistant because they're bound to the website's domain, and the user unlocks them with a fingerprint, face or PIN. Synced passkeys are convenient; device-bound ones suit high-security roles.\"\n\nTip: Synced vs device-bound passkeys.", "B", "M"],
+["Entitlements", "What is entitlement creep and how do you stop it?", "**Why they ask:** access hygiene.\n\n**Answer:**\n\"Users accumulating access as they change roles. Stop it with mover processes that remove old access, birthright roles, periodic access reviews, and automatic removal of unused access.\"\n\nTip: Movers are the usual cause.", "B", "E"]
 ]);
