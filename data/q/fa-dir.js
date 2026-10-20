@@ -1,265 +1,54 @@
 // fa-dir — generated from src/fa-dir-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Director of Finance. Format: [topic, question, answer, 'B'|'D']
-QB['fa-dir'] = [
-["Role", "How do you see the Director of Finance role?",
-`**Why they ask:** directors sit between execution and strategy; they want to see you understand both.
-
-**Answer:** Three jobs at once: **owner of the numbers** for my area (accurate close, forecasts, controls), **business partner** to operating leaders (decisions on pricing, investment, cost), and **team builder** (developing analysts and accountants). The role succeeds when leaders make better decisions because finance is in the room.
-
-Tip: Give one example of a decision you influenced.`, 'B'],
-
-["Role", "What would your first 90 days look like?",
-`**Answer:**
-- **Days 1–30:** meet the CFO, business leaders, team and auditors; review recent results, forecasts, the close and open issues.
-- **Days 31–60:** diagnose — forecast accuracy, close quality, reporting gaps, team capacity; agree top priorities with the CFO.
-- **Days 61–90:** deliver quick wins (e.g. a cleaner monthly business review pack), present a 12-month plan, and set team goals.
-
-Tip: Listening first earns credibility for the changes that follow.`, 'B'],
-
-["Planning", "How do you align the budget with strategy?",
-`**Answer:** Start from strategic priorities and translate them into financial targets and investments. Fund the initiatives that drive the strategy first, then baseline run costs. Use driver-based plans so leaders see how operational choices affect results. Review progress monthly against the strategic KPIs, not just the P&L.
-
-Tip: "Budget follows strategy, not last year" is a strong line.`, 'D'],
-
-["Planning", "How do you run an effective monthly business review?",
-`**Answer:** One consistent pack: results vs plan and forecast, 3–5 key drivers, KPIs, full-year outlook, risks and opportunities, and decisions needed. Pre-read sent in advance; the meeting focuses on actions and owners, not reading slides. Track actions to completion.
-
-Tip: Mention reducing the pack size while increasing insight.`, 'B'],
-
-["Performance", "Margins are declining. How do you investigate?",
-`**Answer:** Break margin down by product, customer, channel and region; separate price, volume, mix and cost (materials, labor, freight, overhead). Check for one-offs. Identify actions — price increases, sourcing, productivity, mix shift, exiting unprofitable business — with quantified impact and owners, then track.
-
-**Example:** "Gross margin fell 3 points: 1.5 from freight, 1 from mix toward lower-margin SKUs, 0.5 from discounts. We renegotiated freight and tightened discount approvals."
-
-Tip: Decomposition plus actions.`, 'D'],
-
-["Performance", "How do you drive accountability for financial results?",
-`**Answer:** Clear targets with owners, monthly reviews with consistent metrics, forecast commitments that leaders own, recognition for delivery, and early escalation when gaps appear. Finance provides transparency; leaders own outcomes.
-
-Tip: Mention a forecast "commit vs stretch" approach.`, 'D'],
-
-["Cost", "How would you reduce costs without hurting growth?",
-`**Answer:** Separate strategic investments from run costs. Target non-strategic spend — vendor consolidation and renegotiation, process automation, real estate, discretionary spend, low-value activities. Protect customer-facing and growth investments. Track savings to the P&L and avoid cuts that create bigger costs later.
-
-Tip: Quantify a past program.`, 'D'],
-
-["Working Capital", "How would you free up cash from working capital?",
-`**Answer:** Receivables: billing accuracy, collections process, payment terms discipline. Payables: standard longer terms, supply chain finance, discount capture where returns are high. Inventory: SKU rationalization, better planning, consignment. Set targets per lever with owners and track weekly.
-
-**Example:** "Cutting DSO by 6 days on $200M revenue freed about $3.3M."
-
-Tip: Show the math.`, 'D'],
-
-["Investment", "How do you evaluate a major investment proposal?",
-`**Answer:** Review strategic fit, assumptions (volume, price, cost, timing), NPV/IRR/payback, sensitivity and downside cases, execution risk and capacity, and alternatives (including doing nothing). Recommend with conditions and milestones, and track results after approval.
-
-Tip: Post-investment reviews show discipline.`, 'D'],
-
-["Pricing", "How does finance support pricing decisions?",
-`**Answer:** Provide cost-to-serve and margin by customer/product, model price-volume scenarios, set discount guardrails and approval levels, and track price realization after increases. Finance should make the trade-offs visible.
-
-Tip: Mention price realization tracking — many companies miss it.`, 'D'],
-
-["Forecasting", "How do you improve forecast accuracy across the business?",
-`**Answer:** Driver-based models, accountability for forecasts by business owners, tracking accuracy and bias each month, separating run-rate from one-offs, rolling forecasts, and post-mortems on big misses.
-
-Tip: Share an accuracy improvement.`, 'D'],
-
-["Close", "How do you oversee the close and reporting quality?",
-`**Answer:** Monitor close KPIs (days to close, adjustments, reconciliation status), review flux analysis personally for key accounts, ensure controls are working, and push automation. Resolve cross-team blockers quickly.
-
-Tip: Directors shouldn't do the close but must ensure it's reliable.`, 'B'],
-
-["Controls", "How do you maintain strong controls while moving fast?",
-`**Answer:** Build controls into systems (approvals, segregation of duties), focus on key risks rather than paperwork, automate evidence collection, and train teams on why controls matter. Speed comes from good design, not skipping steps.
-
-Tip: Mention SOX experience if relevant.`, 'D'],
-
-["Team", "How do you build a high-performing finance team?",
-`**Answer:** Hire for curiosity and communication as well as technical skill, define roles clearly, invest in development (rotations, certifications, systems skills), give regular feedback, remove low-value work through automation, and recognize results.
-
-Tip: Mention someone you developed into a manager.`, 'B'],
-
-["Team", "How do you handle a high performer who wants a promotion you can't give yet?",
-`**Answer:** Be honest about the constraints, agree what the next level requires, give stretch assignments to build and show those skills, advocate for them in the next cycle, and look for interim recognition (title, compensation, visibility).
-
-Tip: Retention through clarity and growth.`, 'D'],
-
-["Team", "How do you manage underperformance?",
-`**Answer:** Address it early and privately with specific examples, understand causes, agree clear expectations and support, follow up regularly and document. If no improvement, follow HR process fairly.
-
-Tip: Fair and timely.`, 'B'],
-
-["Partnership", "How do you build credibility with operations leaders?",
-`**Answer:** Learn how their business works (visit sites, understand KPIs), be responsive, bring insights that help them hit targets, explain finance in their language, and be consistent — no surprises.
-
-Tip: Credibility comes from helping them win.`, 'B'],
-
-["Partnership", "A business leader wants to spend beyond budget. What do you do?",
-`**Answer:** Understand the business case and urgency. Look for offsets within their budget or elsewhere. If the investment is compelling, take it to the CFO with a recommendation and impact on the full-year forecast. Don't approve unbudgeted spend silently.
-
-Tip: Enable good decisions, protect the plan.`, 'D'],
-
-["Systems", "How do you approach finance systems and automation?",
-`**Answer:** Fix processes before automating; prioritize by pain and value (close, planning, reporting, AP); build a business case; involve users early; and measure benefits (hours saved, cycle time, accuracy).
-
-Tip: Mention ERP, EPM or BI projects you led.`, 'D'],
-
-["Systems", "What role should finance play in an ERP implementation?",
-`**Answer:** Own finance design decisions (chart of accounts, close, reporting, controls), provide strong subject matter experts, lead data conversion validation and UAT, and decide go-live readiness. Finance leadership must stay engaged, not delegate fully to IT or consultants.
-
-Tip: Mention a lesson learned.`, 'D'],
-
-["Reporting", "How do you design reporting that leaders actually use?",
-`**Answer:** Start from the decisions they make, limit to key metrics, show trends and targets, add short commentary on drivers, and automate refreshes. Kill reports nobody reads.
-
-Tip: "Every report should answer a question."`, 'B'],
-
-["Communication", "How do you present financial results to non-finance executives?",
-`**Answer:** Headline first, then 3 drivers in plain language, what it means for the year, and what we're doing about it. Use visuals, avoid jargon, and have details ready for questions.
-
-Tip: Practice a 2-minute version.`, 'B'],
-
-["Risk", "What financial risks do you watch in your business?",
-`**Answer:** Revenue concentration, margin pressure from input costs, working capital swings, forecast misses, control weaknesses, FX exposure, and key-person dependencies. For each: an early indicator and a mitigation plan.
-
-Tip: Tailor to the company's business.`, 'D'],
-
-["Audit", "How do you work with external auditors as a director?",
-`**Answer:** Ensure the team is audit-ready during the year, discuss judgmental areas early, resolve issues quickly and professionally, and review findings to fix root causes.
-
-Tip: "No surprises" both ways.`, 'B'],
-
-["Scenario", "The company misses the quarter. How do you respond?",
-`**Answer:** Explain the miss clearly (drivers, one-offs vs trends), update the full-year forecast realistically, present recovery actions with owners and impact, and communicate transparently to leadership. Avoid over-promising a catch-up.
-
-Tip: Credibility matters more than optimism.`, 'D'],
-
-["Scenario", "Leadership wants to cut finance headcount by 15%. How do you approach it?",
-`**Answer:** Map work by activity and value, eliminate or simplify low-value work, automate repetitive tasks, consider shared services or outsourcing for transactional work, and protect critical controls and close capacity. Present options with risks.
-
-Tip: Show you protect control and quality.`, 'D'],
-
-["Scenario", "Two business units report conflicting numbers. What do you do?",
-`**Answer:** Trace both to the source, identify definitional differences (timing, allocation, metric definitions), agree one definition and data source, and publish it. A single source of truth prevents repeat disputes.
-
-Tip: Data governance is a director-level responsibility.`, 'D'],
-
-["M&A", "What is finance's role in integrating an acquisition?",
-`**Answer:** Day-1 readiness (bank accounts, payments, payroll, close), aligning accounting policies and chart of accounts, integrating controls, migrating systems over time, and tracking synergies against the deal model.
-
-Tip: Synergy tracking is often neglected.`, 'D'],
-
-["Strategy", "How does finance contribute to strategy?",
-`**Answer:** Provide the fact base (profitability by segment, market economics), model strategic options, quantify trade-offs, and track execution. Finance should challenge assumptions constructively.
-
-Tip: Give a strategic decision you supported.`, 'D'],
-
-["Metrics", "Which KPIs matter most for a finance director?",
-`**Answer:** For the business: revenue growth, gross margin, operating margin, free cash flow, working capital days, ROIC. For the finance function: forecast accuracy, close days, report timeliness, control findings, team engagement.
-
-Tip: Separate business KPIs from finance-function KPIs.`, 'D'],
-
-["Capital", "How do you think about capex prioritization?",
-`**Answer:** Categorize into maintenance (required), compliance, and growth. Rank growth projects by return and strategic fit, fund within an envelope, and require post-investment reviews.
-
-Tip: Mention a capex committee.`, 'D'],
-
-["Cash", "How do you ensure cash forecasting is reliable?",
-`**Answer:** Combine a 13-week direct forecast with the P&L-based monthly forecast, reconcile them, track accuracy weekly, and involve AR, AP and treasury. Escalate early if liquidity tightens.
-
-Tip: Cash is the reality check on profit.`, 'D'],
-
-["AI", "How would you use AI in finance?",
-`**Answer:** Start with high-volume, rules-based work (AP capture, reconciliations, cash application), then analytics (forecast baselines, anomaly detection, draft commentary). Pilot, measure accuracy and time saved, keep human review on judgments, and govern data access.
-
-Tip: Mention a pilot you'd run first.`, 'D'],
-
-["Behavioral", "Tell me about a significant decision you influenced with financial analysis.",
-`**Sample answer:** "Operations wanted a $4M automation line. My analysis showed the payback was 6 years at current volumes, but under 3 years if we consolidated two plants' production. We approved it with the consolidation, and it paid back in 2.8 years."
-
-Tip: Analysis changed the decision — and the outcome is measurable.`, 'B'],
-
-["Behavioral", "Tell me about leading finance through a difficult period.",
-`**Sample answer:** "When a major customer cut orders by 30%, I led weekly cash forecasting, a cost program that saved $6M, and scenario planning for the board. We kept covenants intact and returned to growth within a year."
-
-Tip: Calm leadership with numbers.`, 'B'],
-
-["Behavioral", "Describe a time you challenged a senior leader.",
-`**Sample answer:** "The sales VP wanted to book a large deal's revenue upfront. Under the contract terms, half was for multi-year services. I explained the ASC 606 implications with the controller, and we restructured the deal pricing so more value was recognized at delivery legitimately."
-
-Tip: Respectful challenge plus a solution.`, 'D'],
-
-["Behavioral", "Tell me about a failure and what you learned.",
-`**Sample answer:** "I launched a new planning tool without enough user training; adoption was poor and the first forecast was late. I paused, ran hands-on sessions and appointed champions in each department. The next cycle finished two weeks faster. I now plan change management as seriously as the technology."
-
-Tip: Honest and reflective.`, 'B'],
-
-["Behavioral", "How do you handle pressure from leadership to make the numbers look better?",
-`**Answer:** I look for legitimate actions — real cost savings, revenue acceleration within the rules — and present them. I won't change accounting judgments to hit a number; I explain the risks clearly. Integrity protects the leadership team too.
-
-Tip: Calm, firm, solution-oriented.`, 'B'],
-
-["Culture", "How do you create a culture of ownership in finance?",
-`**Answer:** Give people end-to-end ownership of processes, share how their work affects decisions, celebrate improvements, and encourage people to raise issues early without blame.
-
-Tip: Specific examples beat slogans.`, 'B'],
-
-["Stakeholders", "How do you work with the CFO?",
-`**Answer:** Keep them informed early, bring recommendations not just problems, take work off their plate, and align on priorities regularly. Be the person they can trust with the numbers and the business.
-
-Tip: Mention a weekly 1:1 structure.`, 'B'],
-
-["Tax and Treasury", "How do you coordinate with tax and treasury?",
-`**Answer:** Share forecasts for cash and tax planning, align on intercompany and transfer pricing, involve them early in deals or new entities, and ensure month-end handoffs are clean.
-
-Tip: Breadth across finance functions.`, 'D'],
-
-["Global", "What challenges come with managing finance across countries?",
-`**Answer:** Different local GAAP and tax rules, currency and intercompany complexity, time zones, varying control maturity, and culture. Address with global policies, a common ERP and chart of accounts, regional leads and regular communication.
-
-Tip: Share a multi-country example if you have one.`, 'D'],
-
-["Vision", "What will finance look like in five years?",
-`**Answer:** Transactional work largely automated; finance teams focused on analysis, business partnering and controls design; real-time data and continuous close; AI-assisted forecasting. Talent will need data and technology skills plus business judgment.
-
-Tip: Show you're preparing the team.`, 'D'],
-
-["Interview", "What questions would you ask the CFO in this interview?",
-`**Answer:**
-- "What are the top three things you need from this role in the first year?"
-- "Where does finance add the most value today, and where is it weakest?"
-- "How do you see the finance organization evolving?"
-
-Tip: Shows strategic curiosity.`, 'B'],
-
-["Career", "Why do you want this Director of Finance role?",
-`**Sample answer:** "I want to partner closely with the business on growth decisions while leading a strong team. Your expansion plans and system upgrade match what I've done — building reliable forecasts and reporting that leaders use."
-
-Tip: Tie to their situation.`, 'B'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I combine strong controllership with business partnering. I've improved forecast accuracy, freed $3M+ of working capital, and built teams that grew into leaders. I communicate clearly with operators and executives."
-
-Tip: Three proof points.`, 'B'],
-
-["Technical", "How do you analyze customer profitability?",
-`**Answer:** Start with revenue and gross margin per customer, then allocate cost-to-serve — freight, order handling, returns, support, payment terms, discounts. Rank customers and segment (grow, fix, exit). Often 20% of customers drive more than 100% of profit.
-
-Tip: The "whale curve" insight is memorable.`, 'D'],
-
-["Technical", "What is EBITDA bridge analysis?",
-`**Answer:** A walk from last year's (or budget) EBITDA to this year's, showing each driver: volume, price, mix, input costs, productivity, opex, FX, one-offs. It tells the story visually for executives.
-
-Tip: Offer to sketch one in the interview.`, 'D'],
-
-["Technical", "What is ROIC and why does it matter?",
-`**Answer:** Return on invested capital = NOPAT ÷ invested capital (debt + equity, or operating assets). If ROIC exceeds WACC, the business creates value. It's a strong metric for capital allocation decisions.
-
-Tip: Mention using it to rank businesses or projects.`, 'D'],
-
-["Technical", "What is the difference between cost centers and profit centers?",
-`**Answer:** A cost center is measured on spending (e.g. HR, IT); a profit center is measured on profit (revenue and costs, e.g. a product line). Choosing the right structure drives the right accountability.
-
-Tip: Simple, clear.`, 'B']
-];
+QB["fa-dir"] = (QB["fa-dir"] || []).concat([
+["Role", "How do you see the Director of Finance role?", "**Why they ask:** directors sit between execution and strategy; they want to see you understand both.\n\n**Answer:** Three jobs at once: **owner of the numbers** for my area (accurate close, forecasts, controls), **business partner** to operating leaders (decisions on pricing, investment, cost), and **team builder** (developing analysts and accountants). The role succeeds when leaders make better decisions because finance is in the room.\n\nTip: Give one example of a decision you influenced.", "B"],
+["Role", "What would your first 90 days look like?", "**Why they ask:** they want a director who earns credibility before changing things.\n\n**Answer:**\n\"In the first month I'd meet the CFO, business leaders, my team and the auditors, and review recent results, forecasts, the close and open issues. In the second month I'd diagnose — forecast accuracy, close quality, reporting gaps and team capacity — and agree the top priorities with the CFO. In the third month I'd deliver quick wins, like a cleaner monthly business review pack, present a 12-month plan and set team goals.\"\n\nTip: Listening first earns credibility for the changes that follow.", "B"],
+["Planning", "How do you align the budget with strategy?", "**Why they ask:** directors connect money to direction.\n\n**Answer:**\n\"I start from the strategic priorities and translate them into financial targets and investments. The initiatives that drive the strategy get funded first; then we baseline run costs. Driver-based plans let leaders see how operational choices affect results. And every month we review progress against the strategic KPIs, not just the P&L. The budget follows strategy, not last year's spend.\"\n\nTip: 'Budget follows strategy, not last year' is a strong line.", "D"],
+["Planning", "How do you run an effective monthly business review?", "**Why they ask:** the MBR is where finance drives decisions.\n\n**Answer:**\n\"One consistent pack: results against plan and forecast, three to five key drivers, KPIs, the full-year outlook, risks and opportunities, and decisions needed. It goes out as a pre-read, so the meeting is about actions and owners, not reading slides. And we track every action to completion. In my last role I cut the pack from 40 pages to 12 and the discussion got better.\"\n\nTip: Mention shrinking the pack while increasing insight.", "B"],
+["Performance", "Margins are declining. How do you investigate?", "**Why they ask:** margin analysis is core director work.\n\n**Answer:**\n\"I break margin down by product, customer, channel and region, and separate price, volume, mix and cost — materials, labor, freight, overhead. I strip out one-offs. Then I identify actions with quantified impact and owners — price increases, sourcing, productivity, mix shift, or exiting unprofitable business. For example, gross margin fell 3 points: 1.5 from freight, 1 from mix toward lower-margin products, and 0.5 from discounting. We renegotiated freight and tightened discount approvals.\"\n\nTip: Decomposition plus actions.", "D"],
+["Performance", "How do you drive accountability for financial results?", "**Why they ask:** finance can't deliver results alone.\n\n**Answer:**\n\"Clear targets with named owners, monthly reviews with consistent metrics, forecasts that the business leaders own and commit to, recognition when they deliver, and early escalation when gaps appear. I use a 'commit versus stretch' approach — leaders give a number they'll stand behind and a separate upside. Finance provides transparency; leaders own outcomes.\"\n\nTip: Mention the commit-versus-stretch approach.", "D"],
+["Cost", "How would you reduce costs without hurting growth?", "**Why they ask:** a classic director challenge.\n\n**Answer:**\n\"I separate strategic investments from run costs. Then I target non-strategic spend: vendor consolidation and renegotiation, process automation, real estate, discretionary spend and low-value activities. Customer-facing and growth investments are protected. Savings are tracked into the P&L, and I avoid cuts that create bigger costs later, like deferring maintenance. My last program took out $5 million without touching sales or R&D.\"\n\nTip: Quantify a past program.", "D"],
+["Working Capital", "How would you free up cash from working capital?", "**Why they ask:** cash is a director priority.\n\n**Answer:**\n\"Three levers. Receivables: billing accuracy, a stronger collections process and terms discipline. Payables: standard longer terms, supply chain finance, and taking discounts only where the return is high. Inventory: SKU rationalization, better planning, consignment. Each lever gets a target and an owner, tracked weekly. For scale: cutting DSO by 6 days on $200 million of revenue frees about $3.3 million.\"\n\nTip: Show the math.", "D"],
+["Investment", "How do you evaluate a major investment proposal?", "**Why they ask:** directors gatekeep capital.\n\n**Answer:**\n\"I look at strategic fit, then challenge the assumptions — volume, price, cost and timing. I check NPV, IRR and payback, run sensitivities and a downside case, and assess execution risk and capacity. I also compare against alternatives, including doing nothing. Then I recommend with conditions and milestones, and we track results after approval.\"\n\nTip: Post-investment reviews show discipline.", "D"],
+["Pricing", "How does finance support pricing decisions?", "**Why they ask:** pricing has the biggest profit leverage.\n\n**Answer:**\n\"Finance provides cost-to-serve and margin by customer and product, models price and volume scenarios, sets discount guardrails and approval levels, and tracks price realization after an increase — whether we actually got the price we announced. Finance's job is to make the trade-offs visible.\"\n\nTip: Price realization tracking is often missed — mention it.", "D"],
+["Forecasting", "How do you improve forecast accuracy across the business?", "**Why they ask:** credibility depends on forecasts.\n\n**Answer:**\n\"Driver-based models. Business owners accountable for their forecasts. Tracking accuracy and bias every month. Separating run-rate from one-offs. Rolling forecasts. And a post-mortem on every big miss. In my last role, revenue forecast accuracy went from about 88% to 96% in a year.\"\n\nTip: Share an accuracy improvement.", "D"],
+["Close", "How do you oversee the close and reporting quality?", "**Why they ask:** directors own reliability without doing the work.\n\n**Answer:**\n\"I monitor close KPIs — days to close, adjustments, reconciliation status. I personally review the flux analysis for key accounts, make sure controls are working, and push automation. When there's a cross-team blocker, I clear it quickly. A director shouldn't be doing the close, but has to know it's reliable.\"\n\nTip: Directors ensure reliability; they don't run the close.", "B"],
+["Controls", "How do you maintain strong controls while moving fast?", "**Why they ask:** growth companies need both.\n\n**Answer:**\n\"Build controls into systems — approvals and segregation of duties — so they don't slow people down. Focus on key risks, not paperwork. Automate evidence collection. And train teams on why controls matter. Speed comes from good design, not from skipping steps.\"\n\nTip: Mention SOX experience if relevant.", "D"],
+["Team", "How do you build a high-performing finance team?", "**Why they ask:** directors are judged by their teams.\n\n**Answer:**\n\"I hire for curiosity and communication as well as technical skill. Roles are clearly defined. I invest in development — rotations, certifications and systems skills — and give regular feedback. I remove low-value work through automation and recognize results. One analyst I hired is now an FP&A manager running her own team.\"\n\nTip: Mention someone you developed into a manager.", "B"],
+["Team", "How do you handle a high performer who wants a promotion you can't give yet?", "**Why they ask:** retention of top talent.\n\n**Answer:**\n\"I'm honest about the constraints. We agree on what the next level requires, and I give them stretch assignments to build and show those skills. I advocate for them in the next cycle and look for interim recognition — compensation, title or visibility with leadership.\"\n\nTip: Retention through clarity and growth.", "D"],
+["Team", "How do you manage underperformance?", "**Why they ask:** a basic leadership test.\n\n**Answer:**\n\"Address it early and privately, with specific examples. Understand the cause. Agree clear expectations and the support they need, then follow up regularly and document. If it doesn't improve, follow the HR process fairly.\"\n\nTip: Fair and timely.", "B"],
+["Partnership", "How do you build credibility with operations leaders?", "**Why they ask:** finance influence depends on it.\n\n**Answer:**\n\"I learn how their business works — visiting sites, understanding their KPIs. I'm responsive, I bring insights that help them hit their targets, and I explain finance in their language. And I'm consistent — no surprises. Credibility comes from helping them win.\"\n\nTip: Credibility comes from helping them win.", "B"],
+["Partnership", "A business leader wants to spend beyond budget. What do you do?", "**Why they ask:** tests enabling versus gatekeeping.\n\n**Answer:**\n\"I understand the business case and the urgency first. Then look for offsets — within their budget or elsewhere. If the investment is compelling, I take it to the CFO with a recommendation and the impact on the full-year forecast. What I won't do is approve unbudgeted spend silently.\"\n\nTip: Enable good decisions, protect the plan.", "D"],
+["Systems", "How do you approach finance systems and automation?", "**Why they ask:** directors drive transformation.\n\n**Answer:**\n\"Fix the process before automating it. Prioritize by pain and value — close, planning, reporting, AP. Build a business case, involve users early, and measure the benefit in hours saved, cycle time and accuracy. I led an EPM planning rollout that cut the budget cycle from 14 weeks to 8.\"\n\nTip: Mention ERP, EPM or BI projects you led.", "D"],
+["Systems", "What role should finance play in an ERP implementation?", "**Why they ask:** finance-led ERP projects succeed more often.\n\n**Answer:**\n\"Finance owns the finance design decisions — chart of accounts, close, reporting and controls. We provide strong subject matter experts, lead data conversion validation and UAT, and decide go-live readiness. Finance leadership has to stay engaged and not hand it all to IT or consultants. My biggest lesson: start data cleanup months before conversion.\"\n\nTip: Mention a lesson learned.", "D"],
+["Reporting", "How do you design reporting that leaders actually use?", "**Why they ask:** too many reports go unread.\n\n**Answer:**\n\"Start from the decisions they make. Limit to the key metrics, show trends and targets, add short commentary on drivers, and automate the refresh. And kill reports nobody reads. Every report should answer a question.\"\n\nTip: 'Every report should answer a question.'", "B"],
+["Communication", "How do you present financial results to non-finance executives?", "**Why they ask:** communication is a director's core skill.\n\n**Answer:**\n\"Headline first. Then three drivers in plain language, what it means for the year, and what we're doing about it. I use visuals, avoid jargon, and keep the details ready for questions. I always practice a two-minute version.\"\n\nTip: Practice a 2-minute version.", "B"],
+["Risk", "What financial risks do you watch in your business?", "**Why they ask:** risk awareness.\n\n**Answer:**\n\"Revenue concentration, margin pressure from input costs, working capital swings, forecast misses, control weaknesses, FX exposure and dependence on key people. For each, I want an early indicator and a mitigation plan — for concentration, for example, I track the share of revenue from the top five customers every month.\"\n\nTip: Tailor to the company's business.", "D"],
+["Audit", "How do you work with external auditors as a director?", "**Why they ask:** directors set the tone for the audit.\n\n**Answer:**\n\"I make sure the team stays audit-ready during the year, not just at year-end. Judgment areas get discussed early. Issues get resolved quickly and professionally, and I review findings to fix root causes. No surprises in either direction.\"\n\nTip: 'No surprises' both ways.", "B"],
+["Scenario", "The company misses the quarter. How do you respond?", "**Why they ask:** credibility under pressure.\n\n**Answer:**\n\"I explain the miss clearly — the drivers, and which are one-offs versus trends. I update the full-year forecast realistically, present recovery actions with owners and impact, and communicate transparently to leadership. I avoid over-promising a catch-up, because missing twice costs far more credibility than missing once.\"\n\nTip: Credibility matters more than optimism.", "D"],
+["Scenario", "Leadership wants to cut finance headcount by 15%. How do you approach it?", "**Why they ask:** tests protecting control while cutting.\n\n**Answer:**\n\"I map the team's work by activity and value. Then eliminate or simplify low-value work, automate repetitive tasks, and consider shared services or outsourcing for transactional work. I protect critical controls and close capacity. I'd present leadership with options and the risk of each, rather than a flat cut.\"\n\nTip: Show you protect control and quality.", "D"],
+["Scenario", "Two business units report conflicting numbers. What do you do?", "**Why they ask:** data governance is a director responsibility.\n\n**Answer:**\n\"I trace both numbers to the source and find the definitional differences — timing, allocations or metric definitions. Then we agree one definition and one data source and publish it. A single source of truth stops the same argument from happening every month.\"\n\nTip: Data governance is a director-level responsibility.", "D"],
+["M&A", "What is finance's role in integrating an acquisition?", "**Why they ask:** M&A integration lands on finance.\n\n**Answer:**\n\"Day-one readiness — bank accounts, payments, payroll and the first close. Aligning accounting policies and the chart of accounts. Integrating controls. Migrating systems over time. And tracking synergies against the deal model, which is the part most often neglected.\"\n\nTip: Synergy tracking is often neglected.", "D"],
+["Strategy", "How does finance contribute to strategy?", "**Why they ask:** directors should shape strategy, not just fund it.\n\n**Answer:**\n\"Finance provides the fact base — profitability by segment and market economics — models the strategic options, quantifies the trade-offs, and tracks execution. And it challenges assumptions constructively. For example, my segment profitability work led us to stop investing in a channel that looked big but lost money.\"\n\nTip: Give a strategic decision you supported.", "D"],
+["Metrics", "Which KPIs matter most for a finance director?", "**Why they ask:** tests what you'd manage.\n\n**Answer:**\n\"Two sets. For the business: revenue growth, gross margin, operating margin, free cash flow, working capital days and ROIC. For the finance function: forecast accuracy, days to close, report timeliness, control findings and team engagement.\"\n\nTip: Separate business KPIs from finance-function KPIs.", "D"],
+["Capital", "How do you think about capex prioritization?", "**Why they ask:** capital allocation discipline.\n\n**Answer:**\n\"I categorize requests into maintenance, which is required; compliance; and growth. Growth projects are ranked by return and strategic fit and funded within an overall envelope, through a capex committee. And every major project gets a post-investment review.\"\n\nTip: Mention a capex committee.", "D"],
+["Cash", "How do you ensure cash forecasting is reliable?", "**Why they ask:** cash is the reality check on profit.\n\n**Answer:**\n\"I combine a 13-week direct forecast with the P&L-based monthly forecast and reconcile them, track accuracy weekly, and involve AR, AP and treasury. If liquidity tightens, I escalate early. Cash is the reality check on profit.\"\n\nTip: Cash is the reality check on profit.", "D"],
+["AI", "How would you use AI in finance?", "**Why they ask:** they want a modern leader.\n\n**Answer:**\n\"I'd start with high-volume, rules-based work — AP capture, reconciliations, cash application. Then analytics — forecast baselines, anomaly detection and draft commentary. Each starts as a pilot, measured on accuracy and time saved, with human review kept on judgments and data access governed. My first pilot would be AI-drafted variance commentary, because it's low risk and visible.\"\n\nTip: Name a pilot you'd run first.", "D"],
+["Behavioral", "Tell me about a significant decision you influenced with financial analysis.", "**Why they ask:** proof of business impact.\n\n**Answer:**\n\"Operations wanted a $4 million automation line. My analysis showed a six-year payback at current volumes — but under three years if we consolidated two plants' production onto it. We approved it with the consolidation, and it paid back in 2.8 years.\"\n\nTip: Analysis changed the decision, with a measurable outcome.", "B"],
+["Behavioral", "Tell me about leading finance through a difficult period.", "**Why they ask:** tests leadership under stress.\n\n**Answer:**\n\"When a major customer cut orders by 30%, I set up weekly cash forecasting, led a cost program that saved $6 million, and ran scenario planning for the board. We stayed within our covenants and were back to growth within a year.\"\n\nTip: Calm leadership with numbers.", "B"],
+["Behavioral", "Describe a time you challenged a senior leader.", "**Why they ask:** directors must push back on senior people.\n\n**Answer:**\n\"The sales VP wanted to recognize a large deal's revenue upfront. Under the contract, half the value was multi-year services. With the controller, I explained the ASC 606 implications, and we restructured the deal pricing so more value was legitimately recognized at delivery. He got a better quarter, and we stayed compliant.\"\n\nTip: Respectful challenge plus a solution.", "D"],
+["Behavioral", "Tell me about a failure and what you learned.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"I launched a new planning tool without enough user training. Adoption was poor and the first forecast was late. I paused, ran hands-on sessions, and appointed champions in each department. The next cycle finished two weeks faster. Now I plan change management as seriously as the technology.\"\n\nTip: Honest and reflective.", "B"],
+["Behavioral", "How do you handle pressure from leadership to make the numbers look better?", "**Why they ask:** an integrity test.\n\n**Answer:**\n\"I look for legitimate actions — real cost savings, or revenue acceleration within the rules — and put them forward. I won't change accounting judgments to hit a number, and I explain the risks clearly. Protecting the integrity of the numbers protects the leadership team too.\"\n\nTip: Calm, firm, solution-oriented.", "B"],
+["Culture", "How do you create a culture of ownership in finance?", "**Why they ask:** culture drives quality.\n\n**Answer:**\n\"I give people end-to-end ownership of processes, show them how their work affects real decisions, celebrate improvements, and encourage raising issues early without blame. When someone flags a problem early, I thank them publicly.\"\n\nTip: Specific examples beat slogans.", "B"],
+["Stakeholders", "How do you work with the CFO?", "**Why they ask:** the key relationship for this role.\n\n**Answer:**\n\"I keep them informed early, bring recommendations rather than just problems, take work off their plate, and align on priorities regularly — usually a weekly one-on-one with a standing agenda. I want to be the person they trust with both the numbers and the business.\"\n\nTip: Mention a weekly 1:1 structure.", "B"],
+["Tax and Treasury", "How do you coordinate with tax and treasury?", "**Why they ask:** breadth across finance.\n\n**Answer:**\n\"I share forecasts so they can plan cash and tax, align on intercompany and transfer pricing, bring them in early on deals or new entities, and make sure month-end handoffs are clean.\"\n\nTip: Shows breadth across finance functions.", "D"],
+["Global", "What challenges come with managing finance across countries?", "**Why they ask:** global roles need this.\n\n**Answer:**\n\"Different local GAAP and tax rules, currency and intercompany complexity, time zones, varying control maturity and culture. I address them with global policies, a common ERP and chart of accounts, regional leads, and a regular communication rhythm.\"\n\nTip: Share a multi-country example if you have one.", "D"],
+["Vision", "What will finance look like in five years?", "**Why they ask:** vision.\n\n**Answer:**\n\"Transactional work will be largely automated. Finance teams will focus on analysis, business partnering and control design, with real-time data, continuous close and AI-assisted forecasting. Talent will need data and technology skills plus business judgment — so I'm building those skills in my team now.\"\n\nTip: Show you're preparing the team.", "D"],
+["Interview", "What questions would you ask the CFO in this interview?", "**Why they ask:** your questions show how you think.\n\n**Answer:**\n\"I'd ask: 'What are the top three things you need from this role in the first year?' 'Where does finance add the most value today, and where is it weakest?' And 'How do you see the finance organization evolving over the next few years?'\"\n\nTip: Shows strategic curiosity.", "B"],
+["Career", "Why do you want this Director of Finance role?", "**Why they ask:** fit and motivation.\n\n**Answer:**\n\"I want to partner closely with the business on growth decisions while leading a strong team. Your expansion plans and system upgrade match what I've done before — building reliable forecasts and reporting that leaders actually use.\"\n\nTip: Tie it to their situation.", "B"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I combine strong controllership with business partnering. I've improved forecast accuracy, freed more than $3 million of working capital, and built teams that grew into leaders. And I communicate clearly with both operators and executives.\"\n\nTip: Three proof points.", "B"],
+["Technical", "How do you analyze customer profitability?", "**Why they ask:** a high-value director analysis.\n\n**Answer:**\n\"I start with revenue and gross margin per customer, then add cost-to-serve — freight, order handling, returns, support, payment terms and discounts. Then rank and segment customers into grow, fix or exit. Usually about 20% of customers drive more than 100% of profit, and the rest erode it — the 'whale curve'.\"\n\nTip: The whale-curve insight is memorable.", "D"],
+["Technical", "What is EBITDA bridge analysis?", "**Why they ask:** a standard executive tool.\n\n**Answer:**\n\"It's a walk from last year's or budget EBITDA to this year's, showing each driver as a step: volume, price, mix, input costs, productivity, opex, FX and one-offs. For example, from $50 million to $54 million: plus 6 from volume, plus 3 from price, minus 4 from input costs, minus 1 from opex. It tells the story visually for executives.\"\n\nTip: Offer to sketch one in the interview.", "D"],
+["Technical", "What is ROIC and why does it matter?", "**Why they ask:** a value-creation metric.\n\n**Answer:**\n\"Return on invested capital is NOPAT divided by invested capital — debt plus equity, or operating assets. If ROIC is above WACC, the business creates value; below it, it destroys value even if it's profitable. A unit earning 8% ROIC with a 10% cost of capital is growing but losing value. It's a strong metric for ranking businesses and projects.\"\n\nTip: Mention using it to rank businesses or projects.", "D"],
+["Technical", "What is the difference between cost centers and profit centers?", "**Why they ask:** organizational accountability basics.\n\n**Answer:**\n\"A cost center is measured on spending — like HR or IT. A profit center is measured on profit, both revenue and costs — like a product line. Choosing the right structure drives the right accountability.\"\n\nTip: Simple and clear.", "B"]
+]);
