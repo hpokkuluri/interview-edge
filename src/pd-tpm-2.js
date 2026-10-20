@@ -1,34 +1,10 @@
-QB['pd-tpm'] = (QB['pd-tpm']||[]).concat([
-["Charter", "What goes in a project charter?",
-`**Answer:** Purpose and business case, objectives and success criteria, scope and exclusions, key milestones, budget, stakeholders and sponsor, high-level risks and assumptions, and the project manager's authority.
-
-Tip: The sponsor signs it.`, 'B', 'E'],
-["WBS", "What is a work breakdown structure?",
-`**Answer:** A hierarchical decomposition of the total scope into deliverables and work packages small enough to estimate and assign. It is the basis for schedule, cost and responsibility (RACI).
-
-Tip: The 100% rule.`, 'B', 'E'],
-["RACI", "What is a RACI matrix?",
-`**Answer:** It defines roles for each activity or decision: **Responsible** (does the work), **Accountable** (one owner who signs off), **Consulted**, **Informed**. It prevents confusion about ownership.
-
-Tip: Only one A per row.`, 'B', 'E'],
-["Release", "How do you coordinate a multi-team release?",
-`**Answer:** A release calendar, feature readiness tracking, integration testing windows, code freeze criteria, release notes, go/no-go, deployment runbook and rollback, and post-release monitoring.
-
-Tip: Freeze criteria.`, 'B', 'M'],
-["Incidents", "What is a TPM's role during a major production incident?",
-`**Answer:** Often the incident coordinator: run communications, keep the timeline, coordinate teams, keep stakeholders updated, and drive the post-incident review and follow-up actions.
-
-Tip: Coordination.`, 'B', 'M'],
-["Security", "How do you include security and compliance in programs?",
-`**Answer:** Involve security architects early, add security reviews and pen tests to milestones, track compliance requirements (SOX, privacy) as deliverables, and build lead time into the plan.
-
-Tip: Plan for the lead time.`, 'D', 'M'],
-["Agile at Scale", "How do you track progress across many agile teams?",
-`**Answer:** Feature and epic burn-ups, PI objectives, dependency boards, flow metrics, and milestone-based roll-ups for leadership, without forcing teams into identical processes.
-
-Tip: Roll-up without micromanaging.`, 'D', 'M'],
-["Data Migration", "How do you manage data migration risk?",
-`**Answer:** Early data profiling, cleansing ownership by the business, multiple mock loads with reconciliation, defined acceptance criteria, cutover rehearsals, and fallback plans.
-
-Tip: Multiple mock loads.`, 'D', 'M']
+QB["pd-tpm"] = (QB["pd-tpm"] || []).concat([
+["Charter", "What goes in a project charter?", "**Why they ask:** initiation discipline.\n\n**Answer:**\n\"Purpose and business case, objectives and success criteria, scope and exclusions, key milestones, budget, stakeholders and sponsor, high-level risks and assumptions, and the project manager's authority — signed by the sponsor.\"\n\nTip: The sponsor signs it.", "B", "E"],
+["WBS", "What is a work breakdown structure?", "**Why they ask:** planning fundamentals.\n\n**Answer:**\n\"A hierarchical decomposition of the total scope into deliverables and work packages small enough to estimate and assign. It's the basis for schedule, cost and responsibility, and follows the 100% rule — it captures all the work, and nothing outside scope.\"\n\nTip: The 100% rule.", "B", "E"],
+["RACI", "What is a RACI matrix?", "**Why they ask:** role clarity.\n\n**Answer:**\n\"For each activity or decision it defines who is Responsible for doing the work, who is Accountable — one person who signs off — who is Consulted and who is Informed. It prevents 'I thought you were doing that.'\"\n\nTip: Only one A per row.", "B", "E"],
+["Release", "How do you coordinate a multi-team release?", "**Why they ask:** release management.\n\n**Answer:**\n\"A release calendar, feature readiness tracking, integration testing windows, code freeze criteria, release notes, a go/no-go, a deployment runbook with rollback, and post-release monitoring.\"\n\nTip: Freeze criteria.", "B", "M"],
+["Incidents", "What is a TPM's role during a major production incident?", "**Why they ask:** incident leadership.\n\n**Answer:**\n\"Often incident coordinator: running communications, keeping the timeline, coordinating teams, updating stakeholders on a fixed cadence, and afterward driving the post-incident review and follow-up actions to completion.\"\n\nTip: Coordination.", "B", "M"],
+["Security", "How do you include security and compliance in programs?", "**Why they ask:** risk management.\n\n**Answer:**\n\"Involve security architects early, put security reviews and pen tests on the milestone plan, track compliance requirements like SOX and privacy as deliverables, and build in lead time — a pen test vendor booked two weeks before go-live is a schedule risk.\"\n\nTip: Plan for the lead time.", "D", "M"],
+["Agile at Scale", "How do you track progress across many agile teams?", "**Why they ask:** scaled visibility.\n\n**Answer:**\n\"Feature and epic burn-ups, PI objectives, dependency boards, flow metrics, and milestone-based roll-ups for leadership — without forcing every team into identical processes.\"\n\nTip: Roll-up without micromanaging.", "D", "M"],
+["Data Migration", "How do you manage data migration risk?", "**Why they ask:** a top program risk.\n\n**Answer:**\n\"Early data profiling, business ownership of cleansing, multiple mock loads with reconciliation, defined acceptance criteria, cutover rehearsals, and fallback plans. Each mock load should be cleaner than the last, measured in error counts.\"\n\nTip: Multiple mock loads.", "D", "M"]
 ]);

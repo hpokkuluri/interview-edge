@@ -1,220 +1,45 @@
 // Technical Program / Project Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['pd-tpm'] = [
-["Role", "What does a technical program manager do?",
-`**Why they ask:** TPM vs PM vs engineering manager confusion.
-
-**Answer:** Drives complex cross-team technical initiatives to completion: defines scope and milestones with engineering leads, manages dependencies, risks and schedules, coordinates execution across teams, communicates status to leadership, and removes blockers — with enough technical depth to understand architecture trade-offs.
-
-Tip: Cross-team, technical depth.`, 'B', 'E'],
-
-["Project vs Program", "Project vs program vs portfolio?",
-`**Answer:** A **project** is a temporary effort with a defined outcome. A **program** is a group of related projects managed together for combined benefits. A **portfolio** is a collection of programs and projects aligned to strategy and prioritized for investment.
-
-Tip: Benefits realization at program level.`, 'B', 'E'],
-
-["Planning", "How do you plan a large technical program?",
-`**Answer:** Clarify goals and success metrics, define scope and non-goals, break down into workstreams with owners, identify milestones and dependencies, estimate with engineering, build an integrated plan with critical path, define risks and governance, and baseline.
-
-Tip: Critical path.`, 'B', 'M'],
-
-["Schedule", "What is the critical path?",
-`**Answer:** The longest chain of dependent tasks determining the minimum project duration; any delay on it delays the project. Tasks off it have float/slack.
-
-**Example:** A (5d) → B (10d) → D (3d) = 18 days vs A → C (4d) → D = 12 days; the A-B-D path is critical with C having 6 days of float.
-
-Tip: Show an example.`, 'B', 'M'],
-
-["Risk", "How do you manage risks?",
-`**Answer:** Identify risks early with teams, assess probability and impact, plan responses (avoid, mitigate, transfer, accept), assign owners, track in a risk register, and review regularly. Distinguish risks (may happen) from issues (happening).
-
-Tip: Owners and triggers.`, 'B', 'E'],
-
-["Dependencies", "How do you manage cross-team dependencies?",
-`**Answer:** Map them visually, agree dates and interfaces with owners, track in a shared plan, add buffers, hold dependency syncs, and escalate early when at risk.
-
-Tip: Visible and owned.`, 'B', 'M'],
-
-["Status", "How do you report status to executives?",
-`**Answer:** RAG status with honest assessment, progress against milestones, key risks/issues with mitigation, decisions needed, and next steps — one page, consistent cadence.
-
-Tip: No watermelon status (green outside, red inside).`, 'B', 'E'],
-
-["Scope", "How do you handle scope changes?",
-`**Answer:** Assess impact on schedule, cost and risk, present options (add time/resources, trade scope), get decision from the sponsor, update plans and communicate.
-
-Tip: Trade-offs.`, 'B', 'E'],
-
-["Methodology", "Waterfall vs Agile vs hybrid?",
-`**Answer:** **Waterfall** suits fixed requirements and regulatory sign-offs; **Agile** suits evolving requirements and iterative delivery; **hybrid** combines (agile delivery within milestone-based governance) — common in enterprise programs like ERP.
-
-Tip: Context.`, 'B', 'E'],
-
-["Technical", "How technical does a TPM need to be?",
-`**Answer:** Enough to understand architecture, system design, APIs, infrastructure and trade-offs; to challenge estimates; identify technical risks; and communicate between engineers and executives.
-
-Tip: Credibility with engineers.`, 'B', 'M'],
-
-["System Design", "TPM interviews often include system design. How do you approach it?",
-`**Answer:** Clarify requirements and scale, sketch high-level components (clients, load balancer, services, database, cache, queues), discuss data flow, scaling and failure points, and then talk about how you'd plan delivery: phases, teams, risks and milestones.
-
-Tip: Connect design to execution.`, 'D', 'M'],
-
-["Launch", "How do you manage a launch?",
-`**Answer:** Launch readiness checklist (testing, performance, security, documentation, support, monitoring, rollback), go/no-go meeting, phased rollout, war room, and post-launch review.
-
-Tip: Go/no-go criteria.`, 'B', 'M'],
-
-["Migration", "How do you manage a large migration program?",
-`**Answer:** Inventory and dependency mapping, wave planning, pilot wave, runbooks and rehearsals, cutover plans with rollback, communication, and tracking completion and decommissioning.
-
-Tip: Rehearsals.`, 'D', 'M'],
-
-["ERP", "How do you manage an ERP implementation?",
-`**Answer:** Phases (plan, design, build, test cycles, data migration, training, cutover, hypercare), strong business ownership, fit-to-standard design, integrated testing, data readiness tracking, change management and governance with steering committees.
-
-Tip: Business ownership.`, 'D', 'M'],
-
-["Budget", "How do you manage program budgets?",
-`**Answer:** Baseline budget, track actuals and forecasts monthly, earned value where relevant, manage contingency, and report variances with explanations.
-
-Tip: Forecast to complete.`, 'D', 'M'],
-
-["EVM", "Explain earned value management basics.",
-`**Answer:** Planned Value (PV), Earned Value (EV), Actual Cost (AC). Schedule Performance Index SPI = EV/PV; Cost Performance Index CPI = EV/AC.
-
-**Example:** PV $100K, EV $80K, AC $90K → SPI 0.8 (behind), CPI 0.89 (over budget).
-
-Tip: Interpret, not just calculate.`, 'D', 'M'],
-
-["Vendors", "How do you manage vendors and system integrators?",
-`**Answer:** Clear SOWs and deliverables, governance cadence, acceptance criteria, performance tracking, change request processes, and relationship management.
-
-Tip: Acceptance criteria.`, 'B', 'M'],
-
-["Communication", "How do you create a communication plan?",
-`**Answer:** Identify audiences, information needs, frequency and channels (steering committee, status reports, team syncs, newsletters), and owners.
-
-Tip: Tailor by audience.`, 'B', 'E'],
-
-["Governance", "What governance structure do you set up?",
-`**Answer:** Executive sponsor, steering committee for decisions, program board, workstream leads, RAID log (risks, assumptions, issues, dependencies), and decision log.
-
-Tip: RAID log.`, 'B', 'M'],
-
-["Stakeholders", "How do you handle a stakeholder who keeps escalating?",
-`**Answer:** Understand their concerns, increase transparency, involve them in decisions, and set clear communication cadence.
-
-Tip: Transparency.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a program you delivered.",
-`**Sample answer:** "I led a data center to AWS migration for 220 applications across 12 teams. With wave planning, rehearsals and a dependency tracker, we finished two weeks early and cut infrastructure costs 28%."
-
-Tip: Scale and outcomes.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a program in trouble you recovered.",
-`**Sample answer:** "An ERP program was 4 months behind. I re-baselined with realistic estimates, cut non-critical scope to phase 2, added daily defect triage, and we went live within the new date."
-
-Tip: Re-baseline honestly.`, 'B', 'M'],
-
-["Behavioral", "Tell me about delivering bad news to leadership.",
-`**Sample answer:** "I reported a 6-week delay early with root causes, options and a recommendation. Leadership approved extra testers and we contained the slip to 3 weeks."
-
-Tip: Early with options.`, 'B', 'M'],
-
-["Behavioral", "Tell me about influencing teams you don't manage.",
-`**Answer:** Build relationships, align to shared goals, make work visible, recognize contributions, and use data to drive decisions.
-
-Tip: Influence without authority.`, 'B', 'M'],
-
-["Certifications", "Which certifications are useful?",
-`**Answer:** PMP, PgMP, PMI-ACP, SAFe RTE/SPC, PRINCE2, and cloud certifications for technical credibility.
-
-Tip: PMP widely recognized.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior TPM, director of program management or PMO leader.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I deliver complex cross-team programs predictably — 220-application migrations and ERP recoveries — with clear communication and technical credibility."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Estimation", "How do you improve estimate accuracy?",
-`**Answer:** Involve the people doing the work, break down tasks, use historical data, three-point estimates (optimistic, likely, pessimistic), and buffers for risk.
-
-**PERT:** (O + 4M + P) / 6 — e.g. (4 + 4×6 + 14)/6 = 7 days.
-
-Tip: Three-point estimates.`, 'B', 'M'],
-
-["Metrics", "Which metrics do you track for programs?",
-`**Answer:** Milestone attainment, schedule and budget variance, burn-up of scope, risk trends, defect trends, and benefits realization.
-
-Tip: Benefits.`, 'B', 'M'],
-
-["Quality", "How do you ensure quality in delivery?",
-`**Answer:** Clear acceptance criteria, test strategy with entry/exit criteria, defect management, quality gates, and performance/security testing.
-
-Tip: Entry/exit criteria.`, 'B', 'M'],
-
-["Resources", "How do you handle resource constraints?",
-`**Answer:** Prioritize work by value and critical path, negotiate resources, adjust scope or schedule, and avoid overloading people.
-
-Tip: Prioritization.`, 'B', 'E'],
-
-["Lessons Learned", "How do you run lessons learned?",
-`**Answer:** Blameless sessions at milestones and end, gather what worked and didn't, document actionable improvements and share them with the PMO.
-
-Tip: Throughout, not just end.`, 'B', 'E'],
-
-["Tools", "Which tools do you use?",
-`**Answer:** Jira and Jira Align, Smartsheet, MS Project, Azure DevOps, Confluence, Asana, and dashboards in Power BI.
-
-Tip: Tools serve visibility.`, 'B', 'E'],
-
-["Scenario", "Two teams disagree on technical approach and it's blocking progress. What do you do?",
-`**Answer:** Facilitate a decision meeting with criteria, involve architects, document trade-offs, set a decision deadline and escalate to the decision owner if needed.
-
-Tip: Time-boxed decisions.`, 'B', 'M'],
-
-["Scenario", "A key engineer leaves mid-program. What do you do?",
-`**Answer:** Assess knowledge gaps, arrange handover, reassign or hire, adjust plans and update risks.
-
-Tip: Knowledge transfer.`, 'B', 'E'],
-
-["Scenario", "Leadership asks to pull in the date by a month. What do you do?",
-`**Answer:** Analyze options: reduce scope, add resources (if effective), parallelize, accept more risk — present trade-offs honestly.
-
-Tip: Brooks' law caution.`, 'B', 'M'],
-
-["Benefits", "How do you track benefits realization?",
-`**Answer:** Define benefits with measures and owners in the business case, baseline, track after delivery, and report realized vs planned.
-
-Tip: Benefit owners.`, 'D', 'M'],
-
-["Hypercare", "What is hypercare?",
-`**Answer:** An intensive support period after go-live with dedicated teams, daily triage, monitoring and rapid fixes before transitioning to steady-state support.
-
-Tip: Exit criteria.`, 'B', 'E'],
-
-["Change Management", "How do you drive adoption?",
-`**Answer:** Stakeholder engagement, training, champions, communication, readiness assessments, and measuring adoption post-launch.
-
-Tip: Champions.`, 'B', 'E'],
-
-["AI", "How do you use AI as a TPM?",
-`**Answer:** Summarizing meetings and status, drafting reports, analyzing risks and dependencies, and automating updates — while verifying accuracy.
-
-Tip: Verify.`, 'B', 'E'],
-
-["Contracts", "Fixed price vs time and materials contracts?",
-`**Answer:** **Fixed price** shifts risk to the vendor but requires clear scope; **T&M** gives flexibility but needs close cost control.
-
-Tip: Scope clarity.`, 'D', 'M'],
-
-["Cutover", "What's in a cutover plan?",
-`**Answer:** Minute-by-minute tasks with owners, dependencies, go/no-go checkpoints, data validation steps, communication plan and rollback plan — rehearsed in mock cutovers.
-
-Tip: Mock cutovers.`, 'D', 'M']
-];
+QB["pd-tpm"] = (QB["pd-tpm"] || []).concat([
+["Role", "What does a technical program manager do?", "**Why they ask:** TPM vs PM vs engineering manager confusion.\n\n**Answer:** Drives complex cross-team technical initiatives to completion: defines scope and milestones with engineering leads, manages dependencies, risks and schedules, coordinates execution across teams, communicates status to leadership, and removes blockers — with enough technical depth to understand architecture trade-offs.\n\nTip: Cross-team, technical depth.", "B", "E"],
+["Project vs Program", "Project vs program vs portfolio?", "**Why they ask:** program management fundamentals.\n\n**Answer:**\n\"A project is a temporary effort with a defined outcome — say, implementing a new tax engine. A program is a group of related projects managed together for combined benefits — a finance transformation that includes the tax engine, a new ERP and a close-automation tool. A portfolio is the collection of programs and projects aligned to strategy and prioritized for investment. Benefits are usually realized at the program level.\"\n\nTip: Benefits realization at program level.", "B", "E"],
+["Planning", "How do you plan a large technical program?", "**Why they ask:** planning skill.\n\n**Answer:**\n\"Clarify goals and success metrics, define scope and non-goals, break the work into workstreams with owners, identify milestones and dependencies, estimate with engineering rather than for them, build an integrated plan with the critical path, define risks and governance, and baseline it. The critical path tells me where a one-day slip becomes a one-day program slip.\"\n\nTip: Critical path.", "B", "M"],
+["Schedule", "What is the critical path?", "**Why they ask:** scheduling fundamentals.\n\n**Answer:**\n\"The longest chain of dependent tasks, which sets the minimum program duration — any delay on it delays the end date. Say A takes 5 days, then B 10 days, then D 3 days: 18 days. The alternative path A, C at 4 days, then D is only 12 days. So A-B-D is critical, and C has 6 days of float it can slip without affecting the end date.\"\n\nTip: Show an example.", "B", "M"],
+["Risk", "How do you manage risks?", "**Why they ask:** risk discipline.\n\n**Answer:**\n\"Identify risks early with the teams, assess probability and impact, plan a response — avoid, mitigate, transfer or accept — assign an owner and a trigger, track them in a register, and review weekly. A risk is something that may happen; an issue is happening now. For example: 'If the vendor API isn't ready by March 1, integration testing slips' — owner, mitigation of a mock service, trigger date.\"\n\nTip: Owners and triggers.", "B", "E"],
+["Dependencies", "How do you manage cross-team dependencies?", "**Why they ask:** the hardest part of programs.\n\n**Answer:**\n\"Map them visually, agree dates and interfaces with the owners on both sides, track them in a shared plan, add buffers where they hit the critical path, hold a weekly dependency sync, and escalate early when one is at risk — two weeks before, not the day it's due.\"\n\nTip: Visible and owned.", "B", "M"],
+["Status", "How do you report status to executives?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"An honest RAG status, progress against milestones, key risks and issues with their mitigations, decisions needed, and next steps — one page on a consistent cadence. No watermelon reporting: green on the outside, red on the inside. If a milestone is at risk, it's amber now, not green until it's missed.\"\n\nTip: No watermelon status (green outside, red inside).", "B", "E"],
+["Scope", "How do you handle scope changes?", "**Why they ask:** change control.\n\n**Answer:**\n\"Assess the impact on schedule, cost and risk, present options — add time, add people, or trade scope — get the sponsor's decision, then update the plan and communicate it. Scope changes aren't bad; untracked scope changes are.\"\n\nTip: Trade-offs.", "B", "E"],
+["Methodology", "Waterfall vs Agile vs hybrid?", "**Why they ask:** methodology judgment.\n\n**Answer:**\n\"Waterfall suits fixed requirements and regulatory sign-offs; agile suits evolving requirements and iterative delivery; hybrid combines agile delivery inside milestone-based governance. Hybrid is common in enterprise programs like ERP, where configuration sprints sit inside fixed phases for testing, data migration and cutover.\"\n\nTip: Context.", "B", "E"],
+["Technical", "How technical does a TPM need to be?", "**Why they ask:** role expectations.\n\n**Answer:**\n\"Technical enough to understand architecture, system design, APIs, infrastructure and trade-offs; to challenge an estimate when it doesn't add up; to spot technical risks before engineers raise them; and to translate between engineers and executives. I don't design the system, but I can tell when a dependency on a shared database is going to hurt.\"\n\nTip: Credibility with engineers.", "B", "M"],
+["System Design", "TPM interviews often include system design. How do you approach it?", "**Why they ask:** technical depth for TPMs.\n\n**Answer:**\n\"Clarify requirements and scale, sketch the high-level components — clients, load balancer, services, database, cache, queues — walk through data flow, scaling and failure points, then pivot to delivery: how I'd phase it, which teams own which parts, the riskiest components to prototype first, and the milestones. Connecting the design to execution is what distinguishes a TPM answer.\"\n\nTip: Connect design to execution.", "D", "M"],
+["Launch", "How do you manage a launch?", "**Why they ask:** launch experience.\n\n**Answer:**\n\"A launch readiness checklist — testing, performance, security, documentation, support, monitoring, rollback — a go/no-go meeting with explicit criteria, a phased rollout, a war room for the first hours or days, and a post-launch review.\"\n\nTip: Go/no-go criteria.", "B", "M"],
+["Migration", "How do you manage a large migration program?", "**Why they ask:** migration experience.\n\n**Answer:**\n\"Inventory and dependency mapping, wave planning, a pilot wave with low-risk applications, runbooks and rehearsals, cutover plans with rollback, communication, and tracking through to decommissioning the old systems — migrations aren't done until the old system is switched off.\"\n\nTip: Rehearsals.", "D", "M"],
+["ERP", "How do you manage an ERP implementation?", "**Why they ask:** enterprise program experience.\n\n**Answer:**\n\"Clear phases — plan, design, build, multiple test cycles, data migration, training, cutover, hypercare — strong business ownership of design decisions, fit-to-standard design, integrated testing, data readiness tracked as its own workstream, change management, and steering committee governance. The business must own it; IT can't deliver an ERP to a business that isn't engaged.\"\n\nTip: Business ownership.", "D", "M"],
+["Budget", "How do you manage program budgets?", "**Why they ask:** financial control.\n\n**Answer:**\n\"Baseline the budget, track actuals and forecast to complete monthly, use earned value where it fits, manage contingency deliberately, and report variances with explanations. Forecast to complete matters more than spend to date.\"\n\nTip: Forecast to complete.", "D", "M"],
+["EVM", "Explain earned value management basics.", "**Why they ask:** quantitative control.\n\n**Answer:**\n\"Planned Value is the budgeted cost of work scheduled; Earned Value is the budgeted cost of work actually completed; Actual Cost is what we spent. SPI equals EV divided by PV; CPI equals EV divided by AC. With PV of $100K, EV of $80K and AC of $90K, SPI is 0.8 — we're 20% behind schedule — and CPI is about 0.89 — we're getting 89 cents of work per dollar.\"\n\nTip: Interpret, not just calculate.", "D", "M"],
+["Vendors", "How do you manage vendors and system integrators?", "**Why they ask:** vendor governance.\n\n**Answer:**\n\"Clear SOWs with defined deliverables, a governance cadence, acceptance criteria for every deliverable, performance tracking, a formal change request process, and a good working relationship. Acceptance criteria stop arguments about whether something is 'done'.\"\n\nTip: Acceptance criteria.", "B", "M"],
+["Communication", "How do you create a communication plan?", "**Why they ask:** stakeholder management.\n\n**Answer:**\n\"Identify audiences, what each needs to know, frequency and channel — steering committee, status reports, team syncs, newsletters — and who owns each communication. Executives get decisions and risks monthly; teams get details weekly.\"\n\nTip: Tailor by audience.", "B", "E"],
+["Governance", "What governance structure do you set up?", "**Why they ask:** program structure.\n\n**Answer:**\n\"An executive sponsor, a steering committee for decisions, a program board, workstream leads, a RAID log — risks, assumptions, issues, dependencies — and a decision log so nobody relitigates settled decisions.\"\n\nTip: RAID log.", "B", "M"],
+["Stakeholders", "How do you handle a stakeholder who keeps escalating?", "**Why they ask:** relationship management.\n\n**Answer:**\n\"Understand their concerns directly, increase transparency for them, involve them in relevant decisions, and set a clear communication cadence. Repeated escalation usually means they feel uninformed.\"\n\nTip: Transparency.", "B", "E"],
+["Behavioral", "Tell me about a program you delivered.", "**Why they ask:** proof at scale.\n\n**Answer:**\n\"I led a data center to AWS migration of 220 applications across 12 teams. With wave planning, rehearsals and a dependency tracker, we finished two weeks early and cut infrastructure costs 28%.\"\n\nTip: Scale and outcomes.", "B", "M"],
+["Behavioral", "Tell me about a program in trouble you recovered.", "**Why they ask:** recovery skills.\n\n**Answer:**\n\"An ERP program was four months behind. I re-baselined with realistic estimates, moved non-critical scope to phase 2, added daily defect triage, and we went live on the new date.\"\n\nTip: Re-baseline honestly.", "B", "M"],
+["Behavioral", "Tell me about delivering bad news to leadership.", "**Why they ask:** courage and communication.\n\n**Answer:**\n\"I reported a six-week delay as soon as we saw it, with root causes, options and a recommendation. Leadership approved extra testers, and we contained the slip to three weeks.\"\n\nTip: Early with options.", "B", "M"],
+["Behavioral", "Tell me about influencing teams you don't manage.", "**Why they ask:** influence without authority.\n\n**Answer:**\n\"On a platform migration, the payments team had other priorities. I met their lead to understand their roadmap, showed how the migration would remove a recurring on-call burden for them, made their contribution visible to leadership, and they committed two engineers for the critical sprint.\"\n\nTip: Influence without authority.", "B", "M"],
+["Certifications", "Which certifications are useful?", "**Why they ask:** credentials.\n\n**Answer:**\n\"PMP, PgMP, PMI-ACP, SAFe RTE or SPC, PRINCE2, and a cloud certification for technical credibility.\"\n\nTip: PMP widely recognized.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior TPM, director of program management, or PMO leader.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I deliver complex cross-team programs predictably — a 220-application migration and an ERP recovery — with clear communication and technical credibility.\"\n\nTip: Proof.", "B", "E"],
+["Estimation", "How do you improve estimate accuracy?", "**Why they ask:** planning quality.\n\n**Answer:**\n\"Involve the people doing the work, break tasks down, use historical data, three-point estimates and buffers for risk. PERT is (optimistic + 4 times most likely + pessimistic) divided by 6 — with 4, 6 and 14 days that's (4 + 24 + 14) divided by 6, so 7 days.\"\n\nTip: Three-point estimates.", "B", "M"],
+["Metrics", "Which metrics do you track for programs?", "**Why they ask:** measurement.\n\n**Answer:**\n\"Milestone attainment, schedule and budget variance, scope burn-up, risk trends, defect trends, and benefits realization — the last one is what the business actually funded.\"\n\nTip: Benefits.", "B", "M"],
+["Quality", "How do you ensure quality in delivery?", "**Why they ask:** quality ownership.\n\n**Answer:**\n\"Clear acceptance criteria, a test strategy with entry and exit criteria for each phase, defect management, quality gates, and performance and security testing built into the plan.\"\n\nTip: Entry/exit criteria.", "B", "M"],
+["Resources", "How do you handle resource constraints?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"Prioritize by value and the critical path, negotiate for resources with data, adjust scope or schedule when needed, and avoid overloading people — burnout makes every estimate wrong.\"\n\nTip: Prioritization.", "B", "E"],
+["Lessons Learned", "How do you run lessons learned?", "**Why they ask:** continuous improvement.\n\n**Answer:**\n\"Blameless sessions at major milestones and at the end, capturing what worked and what didn't, documenting actionable improvements and sharing them with the PMO — doing it throughout, so the program itself benefits.\"\n\nTip: Throughout, not just end.", "B", "E"],
+["Tools", "Which tools do you use?", "**Why they ask:** practical experience.\n\n**Answer:**\n\"Jira and Jira Align, Smartsheet, MS Project, Azure DevOps, Confluence, Asana, and Power BI dashboards — whatever gives everyone the same view of the truth.\"\n\nTip: Tools serve visibility.", "B", "E"],
+["Scenario", "Two teams disagree on technical approach and it's blocking progress. What do you do?", "**Why they ask:** decision facilitation.\n\n**Answer:**\n\"Facilitate a decision meeting with agreed criteria, involve the architects, document the trade-offs, set a decision deadline, and escalate to the decision owner if they can't converge. An imperfect decision this week beats a perfect one next month.\"\n\nTip: Time-boxed decisions.", "B", "M"],
+["Scenario", "A key engineer leaves mid-program. What do you do?", "**Why they ask:** risk response.\n\n**Answer:**\n\"Assess the knowledge gaps immediately, arrange a structured handover during their notice period, reassign or hire, adjust the plan, and update the risk register — and spread knowledge so no one person is a single point of failure again.\"\n\nTip: Knowledge transfer.", "B", "E"],
+["Scenario", "Leadership asks to pull in the date by a month. What do you do?", "**Why they ask:** honest negotiation.\n\n**Answer:**\n\"Analyze the options — reduce scope, add people where it actually helps, parallelize work, or accept more risk — and present the trade-offs honestly. Adding people late often slows things down at first, as Brooks' law warns.\"\n\nTip: Brooks' law caution.", "B", "M"],
+["Benefits", "How do you track benefits realization?", "**Why they ask:** value focus.\n\n**Answer:**\n\"Define benefits with measures and owners in the business case, capture baselines, track after delivery, and report realized versus planned benefits to leadership.\"\n\nTip: Benefit owners.", "D", "M"],
+["Hypercare", "What is hypercare?", "**Why they ask:** go-live experience.\n\n**Answer:**\n\"An intensive support period after go-live — dedicated teams, daily triage, close monitoring and fast fixes — before transitioning to steady-state support once agreed exit criteria are met, like ticket volume below a threshold for two weeks.\"\n\nTip: Exit criteria.", "B", "E"],
+["Change Management", "How do you drive adoption?", "**Why they ask:** value realization.\n\n**Answer:**\n\"Stakeholder engagement, training, local champions, communication, readiness assessments before go-live, and measuring adoption after launch.\"\n\nTip: Champions.", "B", "E"],
+["AI", "How do you use AI as a TPM?", "**Why they ask:** current tools.\n\n**Answer:**\n\"Summarizing meetings and status, drafting reports, analyzing risks and dependencies across large plans, and automating routine updates — always verifying accuracy before anything reaches leadership.\"\n\nTip: Verify.", "B", "E"],
+["Contracts", "Fixed price vs time and materials contracts?", "**Why they ask:** commercial awareness.\n\n**Answer:**\n\"Fixed price shifts delivery risk to the vendor but requires very clear scope — vague scope just becomes change requests. Time and materials gives flexibility but needs close cost control.\"\n\nTip: Scope clarity.", "D", "M"],
+["Cutover", "What's in a cutover plan?", "**Why they ask:** go-live discipline.\n\n**Answer:**\n\"Minute-by-minute tasks with owners, dependencies, go/no-go checkpoints, data validation steps, a communication plan, and a rollback plan — rehearsed in mock cutovers so the real one is the third or fourth run.\"\n\nTip: Mock cutovers.", "D", "M"]
+]);
