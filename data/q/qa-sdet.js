@@ -1,264 +1,57 @@
 // qa-sdet — generated from src/qa-sdet-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // SDET (Software Development Engineer in Test). Format: [topic, question, answer, 'B'|'D']
-QB['qa-sdet'] = [
-["Role", "How is an SDET different from a QA automation engineer?",
-`**Why they ask:** to confirm you think as an engineer about quality.
-
-**Answer:** An SDET is a software engineer focused on testability and quality at the system level. Beyond automating test cases, an SDET designs test architecture, builds frameworks and internal tools, writes production-quality code, reviews developer code for testability, owns contract and integration testing strategies, and improves CI/CD pipelines and test infrastructure.
-
-Tip: Give an example of a tool or framework you built that others use.`, 'B'],
-
-["Strategy", "How would you design a test strategy for a microservices system?",
-`**Answer:**
-- **Unit tests** in each service (owned by developers, with SDET guidance).
-- **Component tests** — a service with its dependencies stubbed.
-- **Contract tests** (Pact) between consumers and providers.
-- **Integration tests** with real dependencies in containers (Testcontainers).
-- **A few end-to-end tests** for critical journeys.
-- **Production checks** — synthetic monitoring, canaries, feature flags.
-
-Tip: Explain why you keep end-to-end tests few — slow and flaky across many services.`, 'D'],
-
-["Contract Testing", "Explain consumer-driven contract testing.",
-`**Answer:** Each consumer writes tests describing the requests it sends and responses it needs; these generate a contract. The provider runs the contract in its pipeline to verify it still satisfies every consumer. A broker stores contracts and verification results, and "can-i-deploy" checks block breaking releases. Tools: Pact, Spring Cloud Contract.
-
-Tip: Mention it replaces many brittle end-to-end tests.`, 'D'],
-
-["Test Infrastructure", "How do you make a large test suite fast?",
-`**Answer:** Parallelize and shard; make tests hermetic and independent; create data via APIs; reuse authenticated state; run only impacted tests on PRs (test impact analysis); cache dependencies and containers; push checks down the pyramid; and move slow suites to nightly.
-
-**Example:** "Sharding across 8 runners and test-impact selection cut PR feedback from 45 to 8 minutes."
-
-Tip: Numbers make it concrete.`, 'D'],
-
-["Test Infrastructure", "What is a hermetic test?",
-`**Answer:** A test that depends only on what it sets up itself — no shared environments, external services or test order. It creates its own data, uses fakes or containers for dependencies, and cleans up. Hermetic tests are reliable and parallelizable.
-
-Tip: Mention Testcontainers or in-memory fakes.`, 'D'],
-
-["Testcontainers", "What is Testcontainers and why use it?",
-`**Answer:** A library that starts real dependencies — PostgreSQL, Kafka, Redis, LocalStack — in Docker containers from test code, then tears them down. It gives realistic integration tests that run the same locally and in CI, without shared test environments.
-
-Tip: Mention reuse mode for speed.`, 'D'],
-
-["Mocking", "When do you mock and when do you use real dependencies?",
-`**Answer:** Mock external, slow or non-deterministic dependencies in unit and component tests — third-party APIs, time, randomness. Use real dependencies in integration tests where behavior matters — SQL queries, serialization, messaging. Over-mocking gives green tests that hide integration bugs.
-
-Tip: Mention fakes vs mocks vs stubs.`, 'B'],
-
-["Mocking", "What's the difference between mocks, stubs, fakes and spies?",
-`**Answer:** **Stub:** returns canned data. **Mock:** verifies interactions (was this method called with these arguments?). **Fake:** a working lightweight implementation (in-memory database). **Spy:** wraps a real object and records calls.
-
-Tip: Prefer fakes and stubs; overuse of mocks couples tests to implementation.`, 'D'],
-
-["Coding", "Implement a function to check if a string is a palindrome, and how would you test it?",
-`**Answer:** Normalize (lowercase, remove non-alphanumerics), then compare with two pointers from both ends — O(n) time, O(1) extra space. Tests: empty string, single character, even/odd length, mixed case, punctuation ("A man, a plan..."), Unicode, very long input.
-
-Tip: Always list test cases after coding — that's what makes it an SDET answer.`, 'D'],
-
-["Coding", "How would you test a function that sorts an array?",
-`**Answer:** Cases: empty, one element, already sorted, reverse sorted, duplicates, negative numbers, very large arrays, mixed types if allowed, stability (equal keys keep order). Use property-based testing: for random inputs, output is sorted, has the same length and same elements.
-
-Tip: Mention property-based testing (Hypothesis, fast-check, jqwik).`, 'D'],
-
-["Coding", "What is property-based testing?",
-`**Answer:** Instead of hand-picked examples, you define properties that must always hold, and the framework generates hundreds of random inputs to find counterexamples, then shrinks them to the simplest failing case. Example property: "decode(encode(x)) == x".
-
-Tip: Great for parsers, serializers and calculations.`, 'D'],
-
-["Design", "How do you test a REST API thoroughly?",
-`**Answer:** Functional (each endpoint, status codes, payloads), validation (missing/invalid fields), auth and authorization (roles, tenant isolation), pagination and filtering, idempotency (PUT, retries), concurrency (simultaneous updates), error handling, performance thresholds, schema/contract compliance, and backward compatibility.
-
-Tip: Authorization testing finds the most serious bugs.`, 'D'],
-
-["Design", "How would you test a payment system?",
-`**Answer:** Happy paths per method; declines and errors from the gateway (using sandbox test cards); idempotency (retrying a payment doesn't double-charge); timeouts and partial failures; refunds and partial refunds; currency and rounding; concurrency; reconciliation between internal records and the gateway; security (PCI scope, no card data in logs); and audit trails.
-
-Tip: Idempotency and reconciliation show depth.`, 'D'],
-
-["Design", "How would you test a file upload feature?",
-`**Answer:** Allowed and disallowed types, size limits (just under/over), empty and corrupt files, file names with special characters, duplicate uploads, concurrent uploads, slow or interrupted network, virus scanning, storage and retrieval integrity (checksum), permissions on who can access the file, and malicious files (path traversal, scripts).
-
-Tip: Security cases make the answer stand out.`, 'D'],
-
-["Design", "How would you test a search feature?",
-`**Answer:** Exact and partial matches, case and accent insensitivity, typos, special characters, empty and very long queries, ranking relevance, filters and sorting, pagination, performance with large data, no-results experience, and injection attempts.
-
-Tip: Mention relevance evaluation with test datasets.`, 'D'],
-
-["Concurrency", "How do you test for race conditions?",
-`**Answer:** Fire simultaneous requests at the same resource (e.g. two withdrawals from one account), use load tools or parallel threads, verify invariants (balance never negative), check database locking and transactions, and run tests repeatedly. Code review for shared state helps too.
-
-Tip: Concrete invariant examples impress.`, 'D'],
-
-["Performance", "How do you include performance checks in pipelines?",
-`**Answer:** Lightweight k6 or Gatling tests on key APIs with thresholds (e.g. p95 < 300 ms, error rate < 1%) run on merges or nightly; trend results over time; fail builds on regressions; and run full load tests before major releases.
-
-Tip: Trends catch slow degradation.`, 'D'],
-
-["Security", "What security testing can an SDET automate?",
-`**Answer:** SAST and dependency scanning (SCA) in CI, secrets scanning, DAST (OWASP ZAP) against test environments, authorization tests (IDOR — user A accessing user B's resource), input validation and injection tests, and security headers checks.
-
-Tip: Mention shifting security left with developers.`, 'D'],
-
-["Observability", "How does testing in production fit into quality?",
-`**Answer:** Synthetic monitoring of critical journeys, canary releases with automated rollback on error-rate increases, feature flags for gradual rollout, real user monitoring and alerting. It complements pre-production testing because some issues only appear with real traffic and data.
-
-Tip: Mention SLOs and error budgets.`, 'D'],
-
-["CI/CD", "How would you design a CI pipeline for quality?",
-`**Answer:** On PR: lint, unit tests, static analysis, security scans, build, component and contract tests (fast, under ~10 min). On merge: integration tests, deploy to staging, smoke and API regression. Nightly: full E2E and performance. Release gates: quality thresholds. Artifacts and reports for every run.
-
-Tip: Mention keeping PR checks fast.`, 'D'],
-
-["Flakiness", "How do you systematically reduce flaky tests?",
-`**Answer:** Detect (rerun analysis, flake dashboards), quarantine automatically, assign owners, and fix root causes — timing, shared state, order dependence, unstable environments, external services. Set a team goal (e.g. flake rate < 0.5%).
-
-Tip: Flakiness is a culture and tooling problem, not just code.`, 'D'],
-
-["Testability", "What makes code testable?",
-`**Answer:** Dependency injection, small single-purpose functions, pure functions where possible, clear interfaces, avoiding hidden global state and static calls, and observability (logs, metrics). As an SDET I review designs for these properties early.
-
-Tip: Give an example of refactoring for testability.`, 'D'],
-
-["Code Review", "What do you look for when reviewing developer code?",
-`**Answer:** Tests that cover new logic and edge cases, meaningful assertions, testability of the design, error handling, logging, security issues, and whether existing tests were updated properly.
-
-Tip: Reviews are a quality lever, not just a gate.`, 'B'],
-
-["Data", "How do you handle test data at scale?",
-`**Answer:** Factories/builders for objects, APIs to seed data, synthetic data generators, masked production subsets for realistic volumes, per-test isolation (unique tenants or IDs), and automated cleanup.
-
-Tip: Mention privacy compliance.`, 'D'],
-
-["Environments", "How do ephemeral environments help testing?",
-`**Answer:** Spinning up a full environment per pull request (via Kubernetes namespaces or preview deployments) lets tests run in isolation against the exact change, removing shared-environment conflicts. Torn down after merge to control cost.
-
-Tip: Mention preview environments in Vercel/Netlify or K8s.`, 'D'],
-
-["Messaging", "How do you test event-driven systems (Kafka, queues)?",
-`**Answer:** Verify producers publish correct events (schema registry, contract tests), consumers handle messages idempotently, ordering and retries work, dead-letter queues capture failures, and end-to-end flows complete. Use Testcontainers for Kafka in integration tests.
-
-Tip: Idempotent consumers are a key point.`, 'D'],
-
-["Mobile", "What's your approach to mobile test architecture?",
-`**Answer:** Native frameworks (Espresso, XCUITest) for fast UI tests owned by app developers, API and contract tests for backend, a small set of cross-platform E2E tests (Appium or Maestro), device cloud runs before release, and crash/analytics monitoring in production.
-
-Tip: Balance speed and coverage.`, 'D'],
-
-["AI", "How would you test an LLM-powered feature?",
-`**Answer:** Build evaluation datasets with expected behaviors; score with deterministic checks (format, required facts), LLM-as-judge with human calibration, and human review; test safety (prompt injection, jailbreaks, data leakage); measure latency and cost; and run evaluations on every prompt or model change. Monitor real outputs in production.
-
-Tip: Evaluations are the new regression suite.`, 'D'],
-
-["AI", "How do you use AI to improve testing productivity?",
-`**Answer:** Generate test scaffolding and data, suggest edge cases, summarize failures, cluster flaky failures, and help write contract tests. Always review generated code for meaningful assertions.
-
-Tip: Practical, not hype.`, 'D'],
-
-["Metrics", "Which quality metrics would you track?",
-`**Answer:** Escaped defects and severity, change failure rate and MTTR (DORA), test pipeline duration, flake rate, coverage of critical paths, and time to detect regressions.
-
-Tip: Coverage % alone is misleading.`, 'D'],
-
-["Coverage", "Is 100% code coverage a good goal?",
-`**Answer:** No. Coverage shows what code ran, not whether behavior was verified. Chasing 100% leads to weak tests. Aim for high coverage of critical logic, use mutation testing to check test strength, and focus on risk.
-
-Tip: Mention mutation testing (Stryker, PIT).`, 'D'],
-
-["Mutation", "What is mutation testing?",
-`**Answer:** A tool makes small changes (mutants) to the code — flips a condition, changes an operator — and runs the tests. If tests still pass, the mutant "survived", meaning tests didn't catch the change. Mutation score shows test effectiveness. Tools: PIT (Java), Stryker (JS/.NET).
-
-Tip: Strong signal of test quality.`, 'D'],
-
-["Architecture", "How do you design a reusable test framework for multiple teams?",
-`**Answer:** Shared core library (clients, auth, data factories, reporting), conventions and templates, versioning, documentation and examples, extension points for team-specific needs, and an internal support channel. Treat it like a product with users.
-
-Tip: Adoption metrics matter.`, 'D'],
-
-["Behavioral", "Describe a tool you built that improved quality.",
-`**Sample answer:** "I built a test data service with an API that created realistic customers, orders and accounts in seconds. Teams stopped sharing fragile test accounts; flaky tests dropped 60% and new test writing time halved."
-
-Tip: Problem, solution, adoption, impact.`, 'B'],
-
-["Behavioral", "Tell me about a design flaw you caught before it shipped.",
-`**Sample answer:** "In a design review for order retries, I noticed there was no idempotency key — a network retry could create duplicate orders. We added idempotency keys and tests for duplicate submissions before development finished."
-
-Tip: Early catch = high value.`, 'D'],
-
-["Behavioral", "How do you influence developers to write better tests?",
-`**Answer:** Make it easy (templates, fast feedback), show value with data (bugs caught, time saved), pair on tough cases, include test quality in code reviews, and celebrate good examples.
-
-Tip: Influence without authority.`, 'B'],
-
-["Behavioral", "Tell me about a production incident and your role.",
-`**Sample answer:** "A config change broke checkout for one region. I helped reproduce it, added a synthetic check for each region, and a config validation test in the pipeline so similar changes fail before deployment."
-
-Tip: Turn incidents into tests.`, 'B'],
-
-["Systems", "How would you test a distributed system for resilience?",
-`**Answer:** Chaos engineering — inject failures (kill instances, add latency, drop network) in controlled experiments; verify timeouts, retries with backoff, circuit breakers and fallbacks; and confirm alerts fire. Tools: Chaos Monkey, Gremlin, Litmus, AWS Fault Injection Service.
-
-Tip: Start small with a hypothesis.`, 'D'],
-
-["Systems", "How do you test database migrations?",
-`**Answer:** Run migrations on a copy of production-like data, verify schema and data integrity, test backward compatibility for rolling deploys (expand/contract pattern), measure run time and locking, and test rollback.
-
-Tip: Expand/contract shows maturity.`, 'D'],
-
-["Versioning", "How do you test backward compatibility of an API?",
-`**Answer:** Contract tests for existing consumers, run old client test suites against the new version, check that new fields are additive and optional, deprecation headers, and versioned endpoints when breaking changes are unavoidable.
-
-Tip: Mention consumer contract tests.`, 'D'],
-
-["Accessibility", "Where does accessibility fit in an SDET's work?",
-`**Answer:** Automated axe checks in component and E2E tests, linting for ARIA misuse, and manual audits for keyboard and screen reader flows before releases.
-
-Tip: Quality includes everyone.`, 'D'],
-
-["Leadership", "How would you build a quality engineering culture?",
-`**Answer:** Quality owned by the whole team, SDETs as enablers (tools, coaching, standards), fast feedback loops, blameless postmortems with test follow-ups, and shared metrics.
-
-Tip: Enablement over gatekeeping.`, 'D'],
-
-["Interview", "What would you ask about our engineering setup?",
-`**Answer:** "What does your test pyramid look like today?", "How long is PR feedback?", "How do you handle flaky tests?", "Who owns tests — developers or QA?", "What's your release frequency and rollback process?"
-
-Tip: Shows you'll diagnose quickly.`, 'B'],
-
-["Languages", "Which languages and stacks are you strongest in?",
-`**Sample answer:** "Java with JUnit 5, REST Assured and Testcontainers for backend services, and TypeScript with Playwright for web. I'm comfortable reading Go and Python services to write targeted tests."
-
-Tip: Be specific.`, 'B'],
-
-["Kubernetes", "How do you test applications running on Kubernetes?",
-`**Answer:** Validate manifests (lint, policy checks), test health/readiness probes, run integration tests in ephemeral namespaces, verify autoscaling and resource limits under load, and test rolling updates and rollbacks.
-
-Tip: Mention Helm chart testing.`, 'D'],
-
-["Feature Flags", "How do feature flags affect testing?",
-`**Answer:** They allow testing in production with limited users, but multiply configurations. Test both flag states for critical paths, clean up old flags, and include flag configuration in test setup.
-
-Tip: Flag debt is real.`, 'D'],
-
-["Career", "Where do you want to go as an SDET?",
-`**Answer:** Toward staff quality engineer or test architect — shaping quality strategy across teams, building platforms, and mentoring.
-
-Tip: Show ambition with direction.`, 'B'],
-
-["Closing", "Why should we hire you as an SDET?",
-`**Sample answer:** "I combine strong engineering with a tester's mindset. I've built test platforms adopted by multiple teams, cut PR feedback time by 80%, and introduced contract testing that removed most of our flaky E2E tests."
-
-Tip: Engineering + impact.`, 'B']
-];
-
-QB['qa-sdet'] = (QB['qa-sdet'] || []).concat([
-["Design", "How would you test a URL shortener service?",
-`**Answer:** Functional: create short URL, redirect (301/302) to the original, custom aliases, duplicates, invalid URLs, expiry. Non-functional: redirect latency (p99), high read throughput, uniqueness of keys under concurrency, storage growth. Security: malicious or phishing URLs, open redirect abuse, rate limiting. Analytics: click counts accuracy. Resilience: cache and database failures.
-
-Tip: System design + testing answers are common in SDET interviews.`, 'D'],
-["Coding", "How would you write a retry helper for flaky external calls in a test framework?",
-`**Answer:** Wrap the call with a configurable number of attempts and exponential backoff (e.g. 200 ms, 400 ms, 800 ms), retry only on transient errors (timeouts, 502/503), log each attempt, and fail with the last error. Use it for setup calls to unstable dependencies — never to hide real test failures.
-
-Tip: The "only transient errors" point shows judgment.`, 'D']
+QB["qa-sdet"] = (QB["qa-sdet"] || []).concat([
+["Role", "How is an SDET different from a QA automation engineer?", "**Why they ask:** to confirm you think as an engineer about quality.\n\n**Answer:** An SDET is a software engineer focused on testability and quality at the system level. Beyond automating test cases, an SDET designs test architecture, builds frameworks and internal tools, writes production-quality code, reviews developer code for testability, owns contract and integration testing strategies, and improves CI/CD pipelines and test infrastructure.\n\nTip: Give an example of a tool or framework you built that others use.", "B"],
+["Strategy", "How would you design a test strategy for a microservices system?", "**Why they ask:** test architecture at SDET level.\n\n**Answer:**\n\"A pyramid adapted for services. Unit tests in each service, owned by developers with my guidance. Component tests — one service with its dependencies stubbed. Consumer-driven contract tests with Pact between services. Integration tests against real dependencies in containers using Testcontainers. A small number of end-to-end tests for critical journeys like checkout. And production checks — synthetic monitoring, canaries, feature flags. I keep end-to-end tests few because across 20 services they get slow and flaky, and contracts catch most integration breaks faster.\"\n\nTip: Explain why you keep end-to-end tests few — slow and flaky across many services.", "D"],
+["Contract Testing", "Explain consumer-driven contract testing.", "**Why they ask:** a key microservices technique.\n\n**Answer:**\n\"Each consumer writes tests describing the requests it sends and the responses it relies on, which generate a contract. The provider runs every consumer's contract in its own pipeline to prove it still satisfies them. A broker stores contracts and verification results, and a can-i-deploy check blocks a release that would break a consumer. If the orders team renames customerId, their build fails before the billing service ever sees it. Pact and Spring Cloud Contract are the common tools.\"\n\nTip: Mention it replaces many brittle end-to-end tests.", "D"],
+["Test Infrastructure", "How do you make a large test suite fast?", "**Why they ask:** feedback speed drives productivity.\n\n**Answer:**\n\"Parallelize and shard; make tests hermetic and independent; create data via APIs instead of the UI; reuse authenticated state; run only impacted tests on pull requests using test impact analysis; cache dependencies and containers; push checks down the pyramid; and move slow suites to nightly. On my last team, sharding across 8 runners plus test-impact selection cut pull request feedback from 45 minutes to 8.\"\n\nTip: Numbers make it concrete.", "D"],
+["Test Infrastructure", "What is a hermetic test?", "**Why they ask:** reliability fundamentals.\n\n**Answer:**\n\"A test that depends only on what it sets up itself — no shared environments, no external services, no dependence on test order. It creates its own data, uses fakes or containers for dependencies, and cleans up. Hermetic tests give the same result every run and can run in parallel safely.\"\n\nTip: Mention Testcontainers or in-memory fakes.", "D"],
+["Testcontainers", "What is Testcontainers and why use it?", "**Why they ask:** modern integration testing.\n\n**Answer:**\n\"A library that starts real dependencies — PostgreSQL, Kafka, Redis, LocalStack for AWS — in Docker containers from test code and tears them down afterward. You get realistic integration tests that behave the same on a laptop and in CI, without shared test environments. Reuse mode keeps containers alive between local runs for speed.\"\n\nTip: Mention reuse mode for speed.", "D"],
+["Mocking", "When do you mock and when do you use real dependencies?", "**Why they ask:** test design judgment.\n\n**Answer:**\n\"I mock external, slow or non-deterministic things in unit and component tests — third-party APIs, the clock, randomness. I use real dependencies in integration tests where behavior matters — SQL queries, serialization, messaging. A mocked repository can't tell you your SQL has a typo, so over-mocking gives green tests that hide integration bugs.\"\n\nTip: Mention fakes vs mocks vs stubs.", "B"],
+["Mocking", "What's the difference between mocks, stubs, fakes and spies?", "**Why they ask:** precise vocabulary.\n\n**Answer:**\n\"A stub returns canned data. A mock verifies interactions — was this method called with these arguments? A fake is a working lightweight implementation, like an in-memory database. A spy wraps a real object and records calls. I prefer fakes and stubs; heavy use of mocks couples tests to implementation details, so refactors break tests even when behavior is unchanged.\"\n\nTip: Prefer fakes and stubs; overuse of mocks couples tests to implementation.", "D"],
+["Coding", "Implement a function to check if a string is a palindrome, and how would you test it?", "**Why they ask:** coding plus a tester's mindset.\n\n**Answer:**\n\"Normalize first — lowercase and strip non-alphanumeric characters — then walk two pointers from both ends toward the middle, returning false on the first mismatch. That's O(n) time and O(1) extra space. Then the tests: empty string, a single character, even and odd lengths, mixed case like 'Racecar', punctuation like 'A man, a plan, a canal: Panama', Unicode characters, and a very long input for performance.\"\n\nTip: Always list test cases after coding — that's what makes it an SDET answer.", "D"],
+["Coding", "How would you test a function that sorts an array?", "**Why they ask:** systematic test design.\n\n**Answer:**\n\"Example cases: empty, one element, already sorted, reverse sorted, duplicates, negative numbers, very large arrays, mixed types if allowed, and stability — equal keys keep their original order. Then property-based testing: for hundreds of random arrays, assert the output is sorted, has the same length, and contains exactly the same elements as the input.\"\n\nTip: Mention property-based testing (Hypothesis, fast-check, jqwik).", "D"],
+["Coding", "What is property-based testing?", "**Why they ask:** advanced technique.\n\n**Answer:**\n\"Instead of hand-picked examples, you state properties that must always hold, and the framework generates hundreds of random inputs looking for a counterexample, then shrinks it to the simplest failing case. A classic property is decode(encode(x)) equals x. It's great for parsers, serializers and calculations — it once found that our CSV encoder broke on a value containing just a quote character.\"\n\nTip: Great for parsers, serializers and calculations.", "D"],
+["Design", "How do you test a REST API thoroughly?", "**Why they ask:** API depth.\n\n**Answer:**\n\"Functional tests for each endpoint, status codes and payloads; validation of missing and invalid fields; authentication and authorization — roles and tenant isolation; pagination and filtering; idempotency for PUT and retries; concurrency with simultaneous updates; error handling; performance thresholds; schema and contract compliance; and backward compatibility. Authorization tests — can tenant A read tenant B's invoice? — find the most serious bugs.\"\n\nTip: Authorization testing finds the most serious bugs.", "D"],
+["Design", "How would you test a payment system?", "**Why they ask:** high-stakes test design.\n\n**Answer:**\n\"Happy paths per payment method; declines and gateway errors using sandbox test cards; idempotency, so retrying a payment never double-charges; timeouts and partial failures — the gateway charged but our service timed out; refunds and partial refunds; currency and rounding; concurrency; reconciliation between our records and the gateway's; security — PCI scope and no card data in logs; and audit trails. Idempotency and reconciliation are where real money gets lost.\"\n\nTip: Idempotency and reconciliation show depth.", "D"],
+["Design", "How would you test a file upload feature?", "**Why they ask:** breadth of thinking.\n\n**Answer:**\n\"Allowed and disallowed types, size limits just under and just over, empty and corrupt files, file names with special characters or very long names, duplicates, concurrent uploads, slow or interrupted networks, virus scanning, integrity on download using a checksum, access permissions — and malicious files: a renamed executable, path traversal names like ../../etc/passwd, and HTML files with scripts.\"\n\nTip: Security cases make the answer stand out.", "D"],
+["Design", "How would you test a search feature?", "**Why they ask:** functional and quality dimensions.\n\n**Answer:**\n\"Exact and partial matches, case and accent insensitivity, typos, special characters, empty and very long queries, ranking relevance, filters and sorting, pagination, performance with large data, the no-results experience, and injection attempts. For relevance, a labeled dataset of queries with expected top results lets me measure ranking quality across releases.\"\n\nTip: Mention relevance evaluation with test datasets.", "D"],
+["Concurrency", "How do you test for race conditions?", "**Why they ask:** concurrency testing.\n\n**Answer:**\n\"Fire simultaneous requests at the same resource — two $80 withdrawals from an account holding $100, sent at the same instant — using parallel threads or a load tool, and check invariants: the balance must never go negative and exactly one withdrawal should succeed. I repeat it many times because races are intermittent, and review code for shared state and missing locks or transactions.\"\n\nTip: Concrete invariant examples impress.", "D"],
+["Performance", "How do you include performance checks in pipelines?", "**Why they ask:** continuous performance.\n\n**Answer:**\n\"Lightweight k6 or Gatling tests on key APIs with thresholds — p95 under 300 milliseconds, error rate under 1% — run on merges or nightly, with results trended over time so slow degradation is visible, failing builds on regressions, and full load tests before major releases.\"\n\nTip: Trends catch slow degradation.", "D"],
+["Security", "What security testing can an SDET automate?", "**Why they ask:** shift-left security.\n\n**Answer:**\n\"SAST and dependency scanning in CI, secrets scanning, DAST with OWASP ZAP against test environments, authorization tests for IDOR — user A requesting user B's resource — input validation and injection tests, and checks for security headers. I work with developers so these run on every pull request, not just before release.\"\n\nTip: Mention shifting security left with developers.", "D"],
+["Observability", "How does testing in production fit into quality?", "**Why they ask:** modern quality thinking.\n\n**Answer:**\n\"Synthetic monitoring of critical journeys, canary releases with automatic rollback when error rates rise, feature flags for gradual rollout, and real user monitoring with alerting tied to SLOs and error budgets. It complements pre-production testing, because some issues only appear with real traffic and data.\"\n\nTip: Mention SLOs and error budgets.", "D"],
+["CI/CD", "How would you design a CI pipeline for quality?", "**Why they ask:** delivery design.\n\n**Answer:**\n\"On pull request: lint, unit tests, static analysis, security scans, build, component and contract tests — all under about 10 minutes. On merge: integration tests, deploy to staging, smoke and API regression. Nightly: full end-to-end and performance. Release gates on quality thresholds, with reports and artifacts for every run.\"\n\nTip: Mention keeping PR checks fast.", "D"],
+["Flakiness", "How do you systematically reduce flaky tests?", "**Why they ask:** trust in automation.\n\n**Answer:**\n\"Detect with rerun analysis and a flake dashboard, quarantine automatically, assign an owner to each, and fix root causes — timing, shared state, order dependence, unstable environments, external services. And a team goal like a flake rate under 0.5%. Flakiness is a culture and tooling problem as much as a code problem.\"\n\nTip: Flakiness is a culture and tooling problem, not just code.", "D"],
+["Testability", "What makes code testable?", "**Why they ask:** influencing design.\n\n**Answer:**\n\"Dependency injection, small single-purpose functions, pure functions where possible, clear interfaces, no hidden global state or static calls, and good observability. For example, a service that called DateTime.Now directly couldn't test 'subscription expires at midnight'; injecting a clock made it a two-line test.\"\n\nTip: Give an example of refactoring for testability.", "D"],
+["Code Review", "What do you look for when reviewing developer code?", "**Why they ask:** quality leverage.\n\n**Answer:**\n\"Tests covering the new logic and edge cases, meaningful assertions, a testable design, error handling, logging, security issues, and whether existing tests were updated properly rather than deleted or weakened.\"\n\nTip: Reviews are a quality lever, not just a gate.", "B"],
+["Data", "How do you handle test data at scale?", "**Why they ask:** data management.\n\n**Answer:**\n\"Factories and builders for objects, APIs to seed data, synthetic data generators, masked production subsets for realistic volumes, per-test isolation through unique tenants or IDs, and automated cleanup — all compliant with privacy rules.\"\n\nTip: Mention privacy compliance.", "D"],
+["Environments", "How do ephemeral environments help testing?", "**Why they ask:** infrastructure for quality.\n\n**Answer:**\n\"A full environment spun up per pull request — a Kubernetes namespace or a preview deployment — lets tests run in isolation against exactly that change, with no shared-environment conflicts. It's torn down after merge to control cost.\"\n\nTip: Mention preview environments in Vercel/Netlify or K8s.", "D"],
+["Messaging", "How do you test event-driven systems (Kafka, queues)?", "**Why they ask:** async system testing.\n\n**Answer:**\n\"Verify producers publish correct events — schema registry checks and contract tests — consumers process messages idempotently so a redelivered message doesn't double-ship an order, ordering and retries work, dead-letter queues capture failures, and end-to-end flows complete. Kafka runs in Testcontainers for integration tests, and assertions poll with a timeout rather than sleeping.\"\n\nTip: Idempotent consumers are a key point.", "D"],
+["Mobile", "What's your approach to mobile test architecture?", "**Why they ask:** mobile strategy.\n\n**Answer:**\n\"Native frameworks — Espresso and XCUITest — for fast UI tests owned by app developers, API and contract tests for the backend, a small set of cross-platform end-to-end tests with Appium or Maestro, device-cloud runs before release, and crash and analytics monitoring in production.\"\n\nTip: Balance speed and coverage.", "D"],
+["AI", "How would you test an LLM-powered feature?", "**Why they ask:** a new testing frontier.\n\n**Answer:**\n\"Build evaluation datasets with expected behaviors, then score with deterministic checks — format, required facts — LLM-as-judge calibrated against human ratings, and human review of a sample. Test safety — prompt injection, jailbreaks, data leakage — measure latency and cost, and run the evaluations on every prompt or model change, with production outputs monitored.\"\n\nTip: Evaluations are the new regression suite.", "D"],
+["AI", "How do you use AI to improve testing productivity?", "**Why they ask:** practical AI use.\n\n**Answer:**\n\"Generating test scaffolding and data, suggesting edge cases I might miss, summarizing failures, clustering flaky failures by cause, and drafting contract tests. I always review generated tests for meaningful assertions — AI happily writes tests that pass but verify nothing.\"\n\nTip: Practical, not hype.", "D"],
+["Metrics", "Which quality metrics would you track?", "**Why they ask:** measurement.\n\n**Answer:**\n\"Escaped defects and their severity, change failure rate and MTTR from DORA, pipeline duration, flake rate, coverage of critical paths, and time to detect regressions. Coverage percentage alone is misleading.\"\n\nTip: Coverage % alone is misleading.", "D"],
+["Coverage", "Is 100% code coverage a good goal?", "**Why they ask:** metric judgment.\n\n**Answer:**\n\"No. Coverage shows which code ran, not whether behavior was verified — a test with no assertions still adds coverage. Chasing 100% produces weak tests on trivial code. I aim for high coverage of critical logic and use mutation testing to check whether the tests actually catch changes.\"\n\nTip: Mention mutation testing (Stryker, PIT).", "D"],
+["Mutation", "What is mutation testing?", "**Why they ask:** test quality measurement.\n\n**Answer:**\n\"A tool makes small changes to the code — flips a greater-than to greater-or-equal, changes a plus to a minus — and runs the tests. If the tests still pass, the mutant survived, meaning nothing would have caught that bug. The mutation score shows how effective the tests really are. PIT for Java, Stryker for JavaScript and .NET.\"\n\nTip: Strong signal of test quality.", "D"],
+["Architecture", "How do you design a reusable test framework for multiple teams?", "**Why they ask:** platform thinking.\n\n**Answer:**\n\"A shared core library — API clients, auth, data factories, reporting — with conventions and templates, semantic versioning, documentation and examples, extension points for team-specific needs, and a support channel. I treat it as a product with users and track adoption.\"\n\nTip: Adoption metrics matter.", "D"],
+["Behavioral", "Describe a tool you built that improved quality.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built a test data service with an API that created realistic customers, orders and accounts in seconds. Teams stopped sharing fragile test accounts; flaky tests dropped 60% and the time to write a new test halved.\"\n\nTip: Problem, solution, adoption, impact.", "B"],
+["Behavioral", "Tell me about a design flaw you caught before it shipped.", "**Why they ask:** early impact.\n\n**Answer:**\n\"In a design review for order retries, I noticed there was no idempotency key, so a network retry could create duplicate orders. We added idempotency keys and tests for duplicate submissions before development finished.\"\n\nTip: Early catch = high value.", "D"],
+["Behavioral", "How do you influence developers to write better tests?", "**Why they ask:** influence without authority.\n\n**Answer:**\n\"Make it easy with templates and fast feedback, show value with data — bugs caught, time saved — pair on tough cases, include test quality in code reviews, and celebrate good examples in team demos.\"\n\nTip: Influence without authority.", "B"],
+["Behavioral", "Tell me about a production incident and your role.", "**Why they ask:** learning from failure.\n\n**Answer:**\n\"A config change broke checkout in one region. I helped reproduce it, added a synthetic check for every region, and added a config validation test to the pipeline so similar changes fail before deployment.\"\n\nTip: Turn incidents into tests.", "B"],
+["Systems", "How would you test a distributed system for resilience?", "**Why they ask:** resilience engineering.\n\n**Answer:**\n\"Chaos engineering: controlled experiments that kill instances, add latency or drop network traffic, starting from a hypothesis like 'if the recommendations service is down, checkout still works.' Verify timeouts, retries with backoff, circuit breakers and fallbacks behave, and that alerts fire. Tools include Chaos Monkey, Gremlin, Litmus and AWS Fault Injection Service.\"\n\nTip: Start small with a hypothesis.", "D"],
+["Systems", "How do you test database migrations?", "**Why they ask:** deployment safety.\n\n**Answer:**\n\"Run migrations on a copy of production-like data, verify schema and data integrity, test backward compatibility for rolling deploys with the expand-and-contract pattern, measure runtime and locking — a migration that locks a big table for 10 minutes is an outage — and test rollback.\"\n\nTip: Expand/contract shows maturity.", "D"],
+["Versioning", "How do you test backward compatibility of an API?", "**Why they ask:** protecting consumers.\n\n**Answer:**\n\"Contract tests for existing consumers, running old client test suites against the new version, checking that new fields are additive and optional, deprecation headers, and versioned endpoints when a breaking change is unavoidable.\"\n\nTip: Mention consumer contract tests.", "D"],
+["Accessibility", "Where does accessibility fit in an SDET's work?", "**Why they ask:** inclusive quality.\n\n**Answer:**\n\"Automated axe checks in component and end-to-end tests, linting for ARIA misuse, and manual audits of keyboard and screen reader flows before releases.\"\n\nTip: Quality includes everyone.", "D"],
+["Leadership", "How would you build a quality engineering culture?", "**Why they ask:** leadership mindset.\n\n**Answer:**\n\"Quality owned by the whole team, SDETs as enablers — tools, coaching, standards — fast feedback loops, blameless postmortems that end with new tests, and shared metrics.\"\n\nTip: Enablement over gatekeeping.", "D"],
+["Interview", "What would you ask about our engineering setup?", "**Why they ask:** diagnostic curiosity.\n\n**Answer:**\n\"What does your test pyramid look like today? How long does pull request feedback take? How do you handle flaky tests? Who owns tests — developers or QA? What's your release frequency and rollback process?\"\n\nTip: Shows you'll diagnose quickly.", "B"],
+["Languages", "Which languages and stacks are you strongest in?", "**Why they ask:** technical fit.\n\n**Answer:**\n\"Java with JUnit 5, REST Assured and Testcontainers for backend services, and TypeScript with Playwright for web. I'm comfortable reading Go and Python services to write targeted tests.\"\n\nTip: Be specific.", "B"],
+["Kubernetes", "How do you test applications running on Kubernetes?", "**Why they ask:** cloud-native testing.\n\n**Answer:**\n\"Validate manifests with linting and policy checks, test liveness and readiness probes, run integration tests in ephemeral namespaces, verify autoscaling and resource limits under load, and test rolling updates and rollbacks. Helm charts get their own tests with helm template rendering and chart-testing.\"\n\nTip: Mention Helm chart testing.", "D"],
+["Feature Flags", "How do feature flags affect testing?", "**Why they ask:** configuration complexity.\n\n**Answer:**\n\"They allow testing in production with limited users, but multiply configurations — 10 flags is over a thousand combinations. I test both states for critical paths, include flag state in test setup, and push to remove old flags so the combinations don't grow forever.\"\n\nTip: Flag debt is real.", "D"],
+["Career", "Where do you want to go as an SDET?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward staff quality engineer or test architect — shaping quality strategy across teams, building platforms and mentoring.\"\n\nTip: Show ambition with direction.", "B"],
+["Closing", "Why should we hire you as an SDET?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I combine strong engineering with a tester's mindset. I've built test platforms adopted by multiple teams, cut pull request feedback time by 80%, and introduced contract testing that removed most of our flaky end-to-end tests.\"\n\nTip: Engineering + impact.", "B"]
+]);
+
+QB["qa-sdet"] = (QB["qa-sdet"] || []).concat([
+["Design", "How would you test a URL shortener service?", "**Why they ask:** system design plus testing.\n\n**Answer:**\n\"Functional: create a short URL, redirect with 301 or 302 to the original, custom aliases, duplicates, invalid URLs, expiry. Non-functional: redirect latency at p99, high read throughput, key uniqueness when thousands are created concurrently, storage growth. Security: malicious or phishing URLs, open-redirect abuse, rate limiting. Analytics: accurate click counts. Resilience: what happens when the cache or database fails.\"\n\nTip: System design + testing answers are common in SDET interviews.", "D"],
+["Coding", "How would you write a retry helper for flaky external calls in a test framework?", "**Why they ask:** framework engineering judgment.\n\n**Answer:**\n\"Wrap the call with a configurable number of attempts and exponential backoff — 200, 400, then 800 milliseconds — retry only on transient errors like timeouts, 502 and 503, log every attempt, and fail with the last error. I use it for setup calls to unstable dependencies, never to hide real test failures — retrying an assertion just masks bugs.\"\n\nTip: The \"only transient errors\" point shows judgment.", "D"]
 ]);
