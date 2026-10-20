@@ -1,26 +1,8 @@
-QB['sec-arch'] = (QB['sec-arch']||[]).concat([
-["Patterns", "What is a secure-by-default pattern library?",
-`**Answer:** Pre-approved, reusable building blocks (Terraform modules, container base images, auth SDKs, API gateway configs, logging agents) with security built in. Teams that use them get faster approvals and fewer findings.
-
-Tip: Faster approval is the incentive.`, 'D', 'M'],
-["Kubernetes", "How would you design multi-tenant Kubernetes security?",
-`**Answer:** Namespace per tenant with RBAC, network policies that deny cross-namespace traffic by default, Pod Security Standards (restricted), resource quotas, separate node pools or clusters for high-risk tenants, workload identity, and admission policies (Kyverno/Gatekeeper).
-
-Tip: Separate clusters for hard isolation.`, 'D', 'S'],
-["Data Residency", "How do you handle data residency requirements?",
-`**Answer:** Identify which data is subject to residency laws, deploy in-region storage and processing, control replication and backups, manage encryption keys in-region, restrict support access from other regions, and document data flows.
-
-Tip: Backups and logs count too.`, 'D', 'M'],
-["Decision Records", "What is an architecture decision record?",
-`**Answer:** A short document capturing a decision, its context, the options considered, the choice and its consequences. ADRs make security trade-offs traceable and help future reviewers understand why.
-
-Tip: Lightweight and versioned.`, 'B', 'E'],
-["Detection", "How does architecture affect detection capability?",
-`**Answer:** Designs must produce useful telemetry: centralized logs, consistent identity across systems, network choke points for inspection, and EDR coverage. A system with no observable signals can't be defended.
-
-Tip: Design for observability.`, 'D', 'M'],
-["Behavioral", "Tell me about reducing complexity in a security architecture.",
-`**Sample answer:** "We had three remote access products and two web proxies. I designed a consolidated SSE platform, retired four tools, saved $600K a year and simplified policy management."
-
-Tip: Savings plus simplicity.`, 'B', 'M']
+QB["sec-arch"] = (QB["sec-arch"] || []).concat([
+["Patterns", "What is a secure-by-default pattern library?", "**Why they ask:** scaling security.\n\n**Answer:**\n\"Pre-approved building blocks — Terraform modules, hardened container base images, auth SDKs, API gateway configs, logging agents — with security built in. Teams that use them get faster approvals and fewer findings, which is the incentive.\"\n\nTip: Faster approval is the incentive.", "D", "M"],
+["Kubernetes", "How would you design multi-tenant Kubernetes security?", "**Why they ask:** container platform depth.\n\n**Answer:**\n\"A namespace per tenant with RBAC, network policies denying cross-namespace traffic by default, Pod Security Standards at restricted, resource quotas, separate node pools or clusters for high-risk tenants, workload identity, and admission policies through Kyverno or Gatekeeper. For hard isolation, separate clusters.\"\n\nTip: Separate clusters for hard isolation.", "D", "S"],
+["Data Residency", "How do you handle data residency requirements?", "**Why they ask:** regulatory design.\n\n**Answer:**\n\"Identify which data falls under residency laws, deploy in-region storage and processing, control replication and backups, keep encryption keys in-region, restrict support access from other regions, and document the data flows. Backups and logs count too — they're where residency usually leaks.\"\n\nTip: Backups and logs count too.", "D", "M"],
+["Decision Records", "What is an architecture decision record?", "**Why they ask:** traceability.\n\n**Answer:**\n\"A short document capturing a decision — the context, options considered, the choice and its consequences. ADRs make security trade-offs traceable, so a future reviewer understands why we accepted a risk.\"\n\nTip: Lightweight and versioned.", "B", "E"],
+["Detection", "How does architecture affect detection capability?", "**Why they ask:** designing for defense.\n\n**Answer:**\n\"Designs must produce useful telemetry: centralized logs, consistent identity across systems so you can follow a user, network choke points for inspection, and EDR coverage. A system that emits no signals can't be defended.\"\n\nTip: Design for observability.", "D", "M"],
+["Behavioral", "Tell me about reducing complexity in a security architecture.", "**Why they ask:** simplification is a skill.\n\n**Answer:**\n\"We had three remote access products and two web proxies. I designed a consolidated SSE platform, retired four tools, saved $600K a year and simplified policy management to one console.\"\n\nTip: Savings plus simplicity.", "B", "M"]
 ]);
