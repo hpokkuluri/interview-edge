@@ -1,26 +1,8 @@
-QB['hr-hrbp'] = (QB['hr-hrbp']||[]).concat([
-["Spans", "What are healthy spans of control?",
-`**Answer:** It depends on the work. For complex knowledge work, 5–8 direct reports is common; for standardized operational work, 10–15 or more. Very narrow spans (1–3) add layers and cost, and very wide spans limit coaching.
-
-Tip: It depends on work complexity.`, 'D', 'M'],
-["Exit Interviews", "How do you make exit interviews useful?",
-`**Answer:** Use consistent questions, conduct them neutrally (HR or a third party), analyze themes across teams, combine with stay interviews, and report trends with actions to leaders.
-
-Tip: Look at themes, not individual stories.`, 'B', 'E'],
-["Feedback", "How do you give hard feedback to a senior leader?",
-`**Answer:** Do it privately and promptly, with specific behaviors and impact (using the SBI model: situation, behavior, impact), offer support, and agree on next steps.
-
-Tip: The SBI model.`, 'B', 'M'],
-["Data", "Give an example of using HR data to change a decision.",
-`**Sample answer:** "Leaders blamed pay for engineering attrition. Exit and survey data showed career growth was the top driver. We launched a technical career ladder instead of across-the-board raises, and regrettable attrition fell 30%."
-
-Tip: Data reframes the problem.`, 'B', 'M'],
-["Workplace Violence", "How do you handle a threat of workplace violence?",
-`**Answer:** Take it seriously: ensure immediate safety, involve security and law enforcement if needed, follow the threat assessment process, document, support affected employees, and apply policy consistently.
-
-Tip: Safety first.`, 'D', 'M'],
-["Scenario", "Two leaders give conflicting directions to a team. What do you do?",
-`**Answer:** Bring the leaders together to clarify decision rights and priorities (a RACI), agree a joint message to the team, and follow up.
-
-Tip: Decision rights.`, 'B', 'E']
+QB["hr-hrbp"] = (QB["hr-hrbp"] || []).concat([
+["Spans", "What are healthy spans of control?", "**Why they ask:** organization design.\n\n**Answer:**\n\"It depends on the work. For complex knowledge work, 5 to 8 direct reports is common; for standardized operational work, 10 to 15 or more. Very narrow spans add layers and cost; very wide spans leave no time for coaching.\"\n\nTip: It depends on work complexity.", "D", "M"],
+["Exit Interviews", "How do you make exit interviews useful?", "**Why they ask:** retention insight.\n\n**Answer:**\n\"Consistent questions, conducted neutrally by HR or a third party, themes analyzed across teams, combined with stay interviews, and trends reported to leaders with actions attached.\"\n\nTip: Look at themes, not individual stories.", "B", "E"],
+["Feedback", "How do you give hard feedback to a senior leader?", "**Why they ask:** candor.\n\n**Answer:**\n\"Privately and promptly, with specific behaviors and their impact using SBI — situation, behavior, impact: 'In Tuesday's staff meeting, when you cut Maria off three times, the team stopped contributing.' Then offer support and agree next steps.\"\n\nTip: The SBI model.", "B", "M"],
+["Data", "Give an example of using HR data to change a decision.", "**Why they ask:** data influence.\n\n**Answer:**\n\"Leaders blamed pay for engineering attrition. Exit and survey data showed career growth was the top driver. We launched a technical career ladder instead of across-the-board raises, and regrettable attrition fell 30%.\"\n\nTip: Data reframes the problem.", "B", "M"],
+["Workplace Violence", "How do you handle a threat of workplace violence?", "**Why they ask:** safety judgment.\n\n**Answer:**\n\"Take it seriously: ensure immediate safety, involve security and law enforcement if needed, follow the threat assessment process, document everything, support affected employees, and apply policy consistently.\"\n\nTip: Safety first.", "D", "M"],
+["Scenario", "Two leaders give conflicting directions to a team. What do you do?", "**Why they ask:** organizational clarity.\n\n**Answer:**\n\"Bring the leaders together to clarify decision rights and priorities — a RACI helps — agree a joint message to the team, and follow up to make sure it holds.\"\n\nTip: Decision rights.", "B", "E"]
 ]);

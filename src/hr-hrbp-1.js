@@ -1,224 +1,47 @@
 // HR Business Partner. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['hr-hrbp'] = [
-["Role", "What does an HR business partner do?",
-`**Why they ask:** to see if you're strategic, not just transactional.
-
-**Answer:** Partners with business leaders to align people strategy with business goals: workforce planning, organization design, talent management and succession, performance and engagement, employee relations, change management and coaching managers — drawing on centers of excellence (comp, talent acquisition, L&D) and HR operations.
-
-Tip: Strategic partner, not order-taker.`, 'B', 'E'],
-
-["Partnership", "How do you build credibility with business leaders?",
-`**Answer:** Learn the business (strategy, financials, operations), bring data and insights, deliver on commitments, give candid advice, and connect HR solutions to business outcomes like productivity, retention and growth.
-
-Tip: Business acumen.`, 'B', 'M'],
-
-["Employee Relations", "How do you handle an employee complaint?",
-`**Answer:** Listen and acknowledge, gather facts, assess severity and policy implications, involve legal for serious matters (harassment, discrimination, retaliation), investigate impartially, decide and document outcomes, communicate appropriately, and prevent retaliation.
-
-Tip: Prompt, fair, documented.`, 'B', 'M'],
-
-["Investigations", "How do you conduct a workplace investigation?",
-`**Answer:** Plan scope and interviewees, ensure confidentiality to the extent possible, interview complainant, respondent and witnesses with open questions, collect documents and evidence, assess credibility, reach findings based on preponderance of evidence, recommend actions, and document a report.
-
-Tip: Credibility factors.`, 'D', 'M'],
-
-["Performance", "How do you coach a manager on an underperforming employee?",
-`**Answer:** Clarify expectations and gaps with specifics, check for causes (skills, resources, personal issues), recommend regular feedback, a performance improvement plan with measurable goals and support, document progress, and follow through on outcomes.
-
-Tip: Fair process.`, 'B', 'M'],
-
-["PIP", "What makes a PIP fair and effective?",
-`**Answer:** Specific measurable expectations, realistic timeframe (30–90 days), support and resources, regular check-ins, documentation, and clear consequences — used genuinely to help improve, not just as a termination step.
-
-Tip: Genuine support.`, 'B', 'M'],
-
-["Terminations", "How do you manage a termination?",
-`**Answer:** Ensure documentation and consistency, legal review for risk (protected classes, recent complaints, leave), plan logistics (final pay rules, benefits, equipment, access removal), conduct a respectful brief meeting with the manager, and provide information on next steps.
-
-Tip: Dignity and compliance.`, 'B', 'M'],
-
-["Org Design", "How do you approach an organization redesign?",
-`**Answer:** Start with business strategy and problems to solve, assess current structure (spans and layers, roles, costs), design options and principles, evaluate impacts, plan the people transition (selection, communication, legal), and implement with change management.
-
-Tip: Spans and layers.`, 'D', 'M'],
-
-["Workforce Planning", "How do you do workforce planning?",
-`**Answer:** Understand business plans, analyze current workforce (skills, demographics, attrition), forecast demand and supply, identify gaps, and plan build/buy/borrow strategies.
-
-Tip: Build, buy, borrow.`, 'D', 'M'],
-
-["Talent", "How do you run talent reviews and succession planning?",
-`**Answer:** Assess performance and potential (9-box), discuss with leadership calibration, identify successors for critical roles with readiness levels, create development plans, and track movement.
-
-Tip: 9-box.`, 'B', 'M'],
-
-["Engagement", "How do you improve employee engagement?",
-`**Answer:** Analyze survey results by team, identify key drivers (manager quality, growth, recognition, workload), involve teams in action plans, follow through visibly, and measure progress.
-
-Tip: Action, not just surveys.`, 'B', 'M'],
-
-["Retention", "How do you reduce turnover?",
-`**Answer:** Analyze attrition data by team, tenure and reason (exit and stay interviews), address root causes — manager effectiveness, pay competitiveness, career paths, workload, flexibility — and target high performers and critical roles.
-
-Tip: Stay interviews.`, 'B', 'M'],
-
-["Analytics", "Which HR metrics do you track?",
-`**Answer:** Turnover (voluntary, regrettable), time to fill, internal mobility, engagement scores, absence, diversity representation, span of control, cost per hire, and performance distribution.
-
-Tip: Regrettable turnover.`, 'B', 'E'],
-
-["Change", "How do you lead change management?",
-`**Answer:** Make the case for change, secure sponsorship, assess stakeholder impact, communicate early and often, train and support managers, address resistance, and reinforce adoption (ADKAR/Kotter).
-
-Tip: Managers are key.`, 'B', 'M'],
-
-["Compensation", "How do you advise managers on pay decisions?",
-`**Answer:** Use salary ranges and market data, consider performance, internal equity and budget, avoid discriminatory patterns, and partner with compensation COE.
-
-Tip: Internal equity.`, 'B', 'M'],
-
-["Employment Law", "Which employment laws should an HRBP know?",
-`**Answer:** Title VII, ADA (reasonable accommodation), ADEA, FMLA, FLSA (exempt classification), NLRA (protected concerted activity), Equal Pay Act, state laws (pay transparency, leave, final pay) and WARN for layoffs.
-
-Tip: State-specific laws.`, 'B', 'M'],
-
-["Accommodation", "How do you handle an ADA accommodation request?",
-`**Answer:** Engage in the interactive process: understand limitations, request appropriate medical documentation as permitted, explore reasonable accommodations, assess undue hardship, decide, document and keep medical info confidential.
-
-Tip: Interactive process.`, 'B', 'M'],
-
-["Layoffs", "How do you manage a reduction in force?",
-`**Answer:** Clear business rationale, objective selection criteria, adverse impact analysis, WARN Act notices if applicable, severance and releases (OWBPA for 40+), communication plan, manager training, and support for remaining employees.
-
-Tip: Adverse impact analysis.`, 'D', 'M'],
-
-["DEI", "How do you support inclusion in day-to-day work?",
-`**Answer:** Fair processes in hiring, promotions and pay; inclusive manager behaviors; employee resource groups; and data to identify gaps — aligned with current legal guidance.
-
-Tip: Fair processes.`, 'B', 'M'],
-
-["Coaching", "How do you coach leaders?",
-`**Answer:** Ask questions to help them reflect, give candid feedback, use data (360s, engagement), and focus on specific behaviors and outcomes.
-
-Tip: Candid.`, 'B', 'M'],
-
-["Behavioral", "Tell me about influencing a leader to change direction.",
-`**Sample answer:** "A director wanted to replace his whole team after missed targets. Data showed unclear goals and an overloaded team. We reset priorities and added one role; performance recovered without terminations."
-
-Tip: Data and alternatives.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a difficult employee relations case.",
-`**Sample answer:** "A harassment complaint involved a top salesperson. I ran a thorough investigation with legal; findings were substantiated and he was terminated despite revenue pressure. The team's trust in HR improved."
-
-Tip: Integrity.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing turnover.",
-`**Sample answer:** "Attrition in our call center was 48%. Exit data showed scheduling and new-manager issues. We introduced flexible scheduling and manager training; attrition fell to 31% in a year."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** SHRM-CP/SCP and HRCI PHR/SPHR.
-
-Tip: SHRM-SCP for senior.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior HRBP, HR director or CHRO.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I partner with leaders using data and candor — reducing attrition by 17 points and handling complex cases fairly."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Confidentiality", "How do you handle confidentiality when an employee confides something serious?",
-`**Answer:** Explain upfront that you'll keep it as confidential as possible but may need to act on issues like harassment or safety; then follow appropriate procedures.
-
-Tip: Don't promise total secrecy.`, 'B', 'M'],
-
-["Conflict", "How do you mediate conflict between employees?",
-`**Answer:** Meet separately first, then jointly with ground rules, focus on interests and behaviors, agree on commitments and follow up.
-
-Tip: Interests.`, 'B', 'E'],
-
-["Onboarding", "How do you improve onboarding?",
-`**Answer:** Pre-boarding, structured first 90 days, manager checklists, buddies, clear goals and feedback check-ins at 30/60/90 days.
-
-Tip: 30/60/90.`, 'B', 'E'],
-
-["Remote", "How do you support hybrid and remote teams?",
-`**Answer:** Clear policies and norms, manager training for remote leadership, connection rituals, fairness in promotions, and tools.
-
-Tip: Proximity bias.`, 'B', 'M'],
-
-["Pay Transparency", "How do pay transparency laws affect HR?",
-`**Answer:** Many states require salary ranges in postings and disclosure to employees; HR must maintain defensible ranges, train managers and address pay equity gaps.
-
-Tip: Defensible ranges.`, 'D', 'M'],
-
-["Unions", "How should an HRBP respond to union organizing?",
-`**Answer:** Know NLRA rights (employees can discuss and organize), avoid unfair labor practices (TIPS: threaten, interrogate, promise, spy), involve labor counsel, and address underlying concerns.
-
-Tip: TIPS.`, 'D', 'M'],
-
-["Leave", "How do you manage leaves of absence?",
-`**Answer:** Coordinate FMLA, state leave laws, ADA, short-term disability, and return-to-work plans with confidentiality and consistent processes.
-
-Tip: Overlapping laws.`, 'B', 'M'],
-
-["Scenario", "A manager wants to fire someone immediately after they filed a complaint. What do you do?",
-`**Answer:** Pause — retaliation risk is high. Review documentation and timing, involve legal, ensure decisions are based on documented performance unrelated to the complaint.
-
-Tip: Retaliation risk.`, 'B', 'M'],
-
-["Scenario", "Engagement scores drop sharply in one department. What do you do?",
-`**Answer:** Analyze comments and drivers, hold listening sessions, meet with the leader, co-create actions and track progress.
-
-Tip: Listening sessions.`, 'B', 'E'],
-
-["Scenario", "A high performer resigns for a competitor. What do you do?",
-`**Answer:** Assess whether a counteroffer makes sense, understand reasons, conduct exit interview, address systemic issues and review retention risks for others.
-
-Tip: Systemic causes.`, 'B', 'M'],
-
-["Promotions", "How do you ensure fair promotions?",
-`**Answer:** Clear criteria, calibration sessions, diverse panels, data review for patterns, and transparent communication.
-
-Tip: Calibration.`, 'B', 'M'],
-
-["Performance Mgmt", "How should performance management work?",
-`**Answer:** Clear goals, ongoing feedback, mid-year and annual reviews, calibration, and links to development and rewards.
-
-Tip: Ongoing feedback.`, 'B', 'E'],
-
-["AI", "How is AI changing HR?",
-`**Answer:** AI assists with recruiting screening, HR chatbots, analytics, and drafting; HR must ensure fairness, transparency, privacy and compliance with emerging AI hiring laws.
-
-Tip: Bias audits.`, 'B', 'M'],
-
-["Culture", "How do you assess and shape culture?",
-`**Answer:** Surveys, focus groups and observing behaviors; align values with recognition, promotions and leadership behaviors.
-
-Tip: Rewarded behaviors.`, 'B', 'M'],
-
-["M&A", "What's HR's role in acquisitions?",
-`**Answer:** Due diligence (people liabilities, culture, compensation), retention of key talent, harmonizing benefits and policies, communication and integration planning.
-
-Tip: Key talent retention.`, 'D', 'M'],
-
-["Ethics", "A senior leader behaves inappropriately. How do you handle it?",
-`**Answer:** Apply the same standards regardless of rank, escalate appropriately (CHRO, legal, board if needed), investigate and act.
-
-Tip: Same standards.`, 'B', 'M'],
-
-["Development", "How do you build leadership capability?",
-`**Answer:** Leadership programs, coaching, stretch assignments, 360 feedback and mentoring tied to business needs.
-
-Tip: 70-20-10.`, 'B', 'M'],
-
-["Absence", "How do you handle excessive absenteeism?",
-`**Answer:** Check data and patterns, consider protected leave or accommodations, discuss with employee, apply attendance policy consistently.
-
-Tip: Protected leave first.`, 'B', 'E']
-];
+QB["hr-hrbp"] = (QB["hr-hrbp"] || []).concat([
+["Role", "What does an HR business partner do?", "**Why they ask:** to see if you're strategic, not just transactional.\n\n**Answer:** Partners with business leaders to align people strategy with business goals: workforce planning, organization design, talent management and succession, performance and engagement, employee relations, change management and coaching managers — drawing on centers of excellence (comp, talent acquisition, L&D) and HR operations.\n\nTip: Strategic partner, not order-taker.", "B", "E"],
+["Partnership", "How do you build credibility with business leaders?", "**Why they ask:** HRBPs succeed only with business trust.\n\n**Answer:**\n\"Learn the business — its strategy, financials and operations — bring data and insights rather than opinions, deliver on every commitment, give candid advice even when it's unwelcome, and connect HR work to outcomes leaders care about: productivity, retention, growth. When I joined a sales organization, I learned their pipeline metrics first; within a quarter, the VP was asking me to join forecast reviews because I could link rep attrition to missed quota.\"\n\nTip: Business acumen.", "B", "M"],
+["Employee Relations", "How do you handle an employee complaint?", "**Why they ask:** employee relations fundamentals.\n\n**Answer:**\n\"Listen and acknowledge, gather the facts, assess severity and policy implications, involve legal for serious matters like harassment, discrimination or retaliation, investigate impartially, decide and document the outcome, communicate appropriately to the people involved, and actively prevent retaliation. Prompt, fair and documented.\"\n\nTip: Prompt, fair, documented.", "B", "M"],
+["Investigations", "How do you conduct a workplace investigation?", "**Why they ask:** a core ER skill.\n\n**Answer:**\n\"Plan the scope and interview list, explain confidentiality limits, interview the complainant, respondent and witnesses with open questions, collect documents like messages and emails, assess credibility — consistency, corroboration, plausibility, motive — reach findings on the preponderance of evidence, recommend actions, and write a clear report. I don't need certainty, only to decide what's more likely than not.\"\n\nTip: Credibility factors.", "D", "M"],
+["Performance", "How do you coach a manager on an underperforming employee?", "**Why they ask:** practical coaching.\n\n**Answer:**\n\"Get specific about expectations and gaps — 'closes 6 tickets a day versus the team's 12', not 'not pulling weight'. Check for causes: skills, resources, unclear priorities, personal issues. Then regular feedback, and if needed a performance improvement plan with measurable goals and real support, documented progress, and follow-through on the outcome either way.\"\n\nTip: Fair process.", "B", "M"],
+["PIP", "What makes a PIP fair and effective?", "**Why they ask:** fairness and legal defensibility.\n\n**Answer:**\n\"Specific, measurable expectations, a realistic timeframe of 30 to 90 days, genuine support and resources, weekly check-ins, documentation, and clear consequences. It should be a real chance to improve — I've seen about a third of employees on well-run PIPs succeed.\"\n\nTip: Genuine support.", "B", "M"],
+["Terminations", "How do you manage a termination?", "**Why they ask:** risk and dignity.\n\n**Answer:**\n\"Confirm documentation and consistency with past decisions, have legal review the risk — protected characteristics, recent complaints, recent leave — plan logistics: final pay timing under state law, benefits, equipment and access removal. Then a brief, respectful meeting with the manager, clear information on next steps, and no debate about the decision.\"\n\nTip: Dignity and compliance.", "B", "M"],
+["Org Design", "How do you approach an organization redesign?", "**Why they ask:** organizational consulting.\n\n**Answer:**\n\"Start with the strategy and the problems the redesign should solve, assess the current structure — spans and layers, roles, costs — develop design options against agreed principles, evaluate their impact, plan the people transition — selection, communication, legal review — and implement with change management. A manager with only two direct reports is often a sign of a layer that can go.\"\n\nTip: Spans and layers.", "D", "M"],
+["Workforce Planning", "How do you do workforce planning?", "**Why they ask:** strategic HR.\n\n**Answer:**\n\"Understand the business plan, analyze the current workforce — skills, demographics, attrition — forecast demand and supply, identify gaps, and choose build, buy or borrow strategies: develop internally, hire, or use contractors and partners.\"\n\nTip: Build, buy, borrow.", "D", "M"],
+["Talent", "How do you run talent reviews and succession planning?", "**Why they ask:** talent management.\n\n**Answer:**\n\"Assess performance and potential on a 9-box, calibrate in leadership discussions, identify successors for critical roles with readiness levels — ready now, in 1 to 2 years, in 3 to 5 — build development plans, and track movement so the review leads to action.\"\n\nTip: 9-box.", "B", "M"],
+["Engagement", "How do you improve employee engagement?", "**Why they ask:** engagement as a lever.\n\n**Answer:**\n\"Analyze survey results by team, identify the key drivers — usually manager quality, growth, recognition and workload — involve teams in building action plans, follow through visibly, and measure again. Surveys without action make engagement worse.\"\n\nTip: Action, not just surveys.", "B", "M"],
+["Retention", "How do you reduce turnover?", "**Why they ask:** retention impact.\n\n**Answer:**\n\"Analyze attrition by team, tenure and reason using exit and stay interviews, address root causes — manager effectiveness, pay competitiveness, career paths, workload, flexibility — and focus on high performers and critical roles first.\"\n\nTip: Stay interviews.", "B", "M"],
+["Analytics", "Which HR metrics do you track?", "**Why they ask:** data-driven HR.\n\n**Answer:**\n\"Voluntary and regrettable turnover, time to fill, internal mobility, engagement scores, absence, representation, span of control, cost per hire and performance distribution. Regrettable turnover — losing people we wanted to keep — matters more than the overall rate.\"\n\nTip: Regrettable turnover.", "B", "E"],
+["Change", "How do you lead change management?", "**Why they ask:** change leadership.\n\n**Answer:**\n\"Build the case for change, secure sponsorship, assess impact by stakeholder group, communicate early and often, train and support managers — who carry most of the message — address resistance, and reinforce adoption, using frameworks like ADKAR or Kotter.\"\n\nTip: Managers are key.", "B", "M"],
+["Compensation", "How do you advise managers on pay decisions?", "**Why they ask:** pay governance.\n\n**Answer:**\n\"Use salary ranges and market data, consider performance, internal equity and budget, watch for discriminatory patterns, and partner with the compensation team. If a new hire would earn more than three tenured peers doing the same job, we address equity before finalizing.\"\n\nTip: Internal equity.", "B", "M"],
+["Employment Law", "Which employment laws should an HRBP know?", "**Why they ask:** compliance foundation.\n\n**Answer:**\n\"Title VII, the ADA and reasonable accommodation, ADEA, FMLA, FLSA exempt classification, the NLRA's protection of concerted activity — which applies to non-union workplaces too — the Equal Pay Act, state laws on pay transparency, leave and final pay, and WARN for layoffs.\"\n\nTip: State-specific laws.", "B", "M"],
+["Accommodation", "How do you handle an ADA accommodation request?", "**Why they ask:** a legal process.\n\n**Answer:**\n\"Engage in the interactive process: understand the limitations, request appropriate medical documentation as permitted, explore reasonable accommodations together — schedule changes, equipment, remote work — assess undue hardship, decide, document, and keep medical information confidential and separate from the personnel file.\"\n\nTip: Interactive process.", "B", "M"],
+["Layoffs", "How do you manage a reduction in force?", "**Why they ask:** high-stakes process.\n\n**Answer:**\n\"A clear business rationale, objective selection criteria, adverse impact analysis by age, gender and race, WARN Act notices where thresholds are met, severance with releases — including OWBPA requirements for employees 40 and over, like 45 days to consider in a group termination — a communication plan, manager training, and support for the remaining employees.\"\n\nTip: Adverse impact analysis.", "D", "M"],
+["DEI", "How do you support inclusion in day-to-day work?", "**Why they ask:** fairness in practice.\n\n**Answer:**\n\"Fair, consistent processes in hiring, promotion and pay; inclusive manager behaviors like rotating who gets visible assignments; employee resource groups open to all; and data to spot gaps — all aligned with current legal guidance.\"\n\nTip: Fair processes.", "B", "M"],
+["Coaching", "How do you coach leaders?", "**Why they ask:** coaching skill.\n\n**Answer:**\n\"Ask questions that help them reflect, give candid feedback, use data from 360s and engagement surveys, and focus on specific behaviors and outcomes rather than personality.\"\n\nTip: Candid.", "B", "M"],
+["Behavioral", "Tell me about influencing a leader to change direction.", "**Why they ask:** influence with data.\n\n**Answer:**\n\"A director wanted to replace his whole team after missed targets. The data showed unclear goals and an overloaded team. We reset priorities and added one role; performance recovered without any terminations.\"\n\nTip: Data and alternatives.", "B", "M"],
+["Behavioral", "Tell me about a difficult employee relations case.", "**Why they ask:** integrity under pressure.\n\n**Answer:**\n\"A harassment complaint involved a top salesperson. I ran a thorough investigation with legal; the findings were substantiated and he was terminated despite revenue pressure. Trust in HR across the team rose noticeably afterwards.\"\n\nTip: Integrity.", "B", "M"],
+["Behavioral", "Tell me about reducing turnover.", "**Why they ask:** proof.\n\n**Answer:**\n\"Call center attrition was 48%. Exit data pointed to rigid scheduling and inexperienced new managers. We introduced flexible scheduling and a new-manager training program, and attrition fell to 31% within a year.\"\n\nTip: Measured.", "B", "M"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"SHRM-CP or SHRM-SCP, and HRCI's PHR or SPHR.\"\n\nTip: SHRM-SCP for senior.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior HRBP, HR director, and eventually CHRO.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I partner with leaders using data and candor — I reduced attrition by 17 points and handle complex cases fairly and thoroughly.\"\n\nTip: Proof.", "B", "E"],
+["Confidentiality", "How do you handle confidentiality when an employee confides something serious?", "**Why they ask:** trust and obligation.\n\n**Answer:**\n\"I explain up front that I'll keep it as confidential as possible, but that if it involves harassment, safety or legal issues, I'm obligated to act. Then I follow the right procedure. Promising total secrecy and then breaking it destroys trust.\"\n\nTip: Don't promise total secrecy.", "B", "M"],
+["Conflict", "How do you mediate conflict between employees?", "**Why they ask:** conflict resolution.\n\n**Answer:**\n\"Meet each person separately first, then together with ground rules, focus on interests and specific behaviors rather than blame, agree concrete commitments, and follow up in two to three weeks.\"\n\nTip: Interests.", "B", "E"],
+["Onboarding", "How do you improve onboarding?", "**Why they ask:** employee experience.\n\n**Answer:**\n\"Pre-boarding before day one, a structured first 90 days, manager checklists, a buddy, clear early goals, and check-ins at 30, 60 and 90 days. Good onboarding noticeably reduces first-year attrition.\"\n\nTip: 30/60/90.", "B", "E"],
+["Remote", "How do you support hybrid and remote teams?", "**Why they ask:** current work models.\n\n**Answer:**\n\"Clear policies and team norms, manager training for leading remotely, connection rituals, fairness in promotions to counter proximity bias — where people seen in the office get more credit — and the right tools.\"\n\nTip: Proximity bias.", "B", "M"],
+["Pay Transparency", "How do pay transparency laws affect HR?", "**Why they ask:** regulatory awareness.\n\n**Answer:**\n\"Many states now require salary ranges in job postings and disclosure to employees on request. HR has to maintain defensible ranges, train managers to discuss pay, and fix pay equity gaps before ranges expose them.\"\n\nTip: Defensible ranges.", "D", "M"],
+["Unions", "How should an HRBP respond to union organizing?", "**Why they ask:** labor law awareness.\n\n**Answer:**\n\"Know employees' NLRA rights to discuss and organize, avoid unfair labor practices — remember TIPS: no threats, interrogation, promises or spying — bring in labor counsel immediately, and address the underlying concerns that sparked organizing.\"\n\nTip: TIPS.", "D", "M"],
+["Leave", "How do you manage leaves of absence?", "**Why they ask:** compliance complexity.\n\n**Answer:**\n\"Coordinate FMLA, state leave laws, the ADA, short-term disability and return-to-work plans, with confidentiality and consistent processes. These laws overlap — an employee can be on FMLA and need an ADA accommodation afterward.\"\n\nTip: Overlapping laws.", "B", "M"],
+["Scenario", "A manager wants to fire someone immediately after they filed a complaint. What do you do?", "**Why they ask:** retaliation risk judgment.\n\n**Answer:**\n\"Pause it. The timing alone creates high retaliation risk. Review the documentation and timeline, involve legal, and make sure any decision rests on documented performance issues that predate and are unrelated to the complaint. Retaliation claims often succeed even when the original complaint doesn't.\"\n\nTip: Retaliation risk.", "B", "M"],
+["Scenario", "Engagement scores drop sharply in one department. What do you do?", "**Why they ask:** diagnosis and action.\n\n**Answer:**\n\"Analyze the comments and driver scores, hold listening sessions without the leader present, meet with the leader to share themes, co-create actions, and track progress with a pulse survey.\"\n\nTip: Listening sessions.", "B", "E"],
+["Scenario", "A high performer resigns for a competitor. What do you do?", "**Why they ask:** retention thinking.\n\n**Answer:**\n\"Decide quickly whether a counteroffer makes sense, understand their real reasons, run an exit interview, address any systemic issues, and review retention risk for others in similar roles who may feel the same way.\"\n\nTip: Systemic causes.", "B", "M"],
+["Promotions", "How do you ensure fair promotions?", "**Why they ask:** fairness design.\n\n**Answer:**\n\"Clear criteria, calibration sessions, diverse panels, reviewing the data for patterns by group, and transparent communication about how decisions were made.\"\n\nTip: Calibration.", "B", "M"],
+["Performance Mgmt", "How should performance management work?", "**Why they ask:** process philosophy.\n\n**Answer:**\n\"Clear goals, ongoing feedback, mid-year and annual reviews, calibration, and clear links to development and rewards. Nothing in an annual review should be a surprise.\"\n\nTip: Ongoing feedback.", "B", "E"],
+["AI", "How is AI changing HR?", "**Why they ask:** current trends.\n\n**Answer:**\n\"AI helps with recruiting screening, HR chatbots, analytics and drafting. HR's job is to ensure fairness, transparency, privacy and compliance with emerging AI hiring laws — like New York City's bias audit requirement for automated hiring tools.\"\n\nTip: Bias audits.", "B", "M"],
+["Culture", "How do you assess and shape culture?", "**Why they ask:** cultural influence.\n\n**Answer:**\n\"Surveys, focus groups and watching actual behavior; then aligning recognition, promotions and leadership behaviors with the values. Culture is what gets rewarded, not what's on the wall.\"\n\nTip: Rewarded behaviors.", "B", "M"],
+["M&A", "What's HR's role in acquisitions?", "**Why they ask:** M&A experience.\n\n**Answer:**\n\"Due diligence on people liabilities, culture and compensation, retention of key talent, harmonizing benefits and policies, and communication and integration planning.\"\n\nTip: Key talent retention.", "D", "M"],
+["Ethics", "A senior leader behaves inappropriately. How do you handle it?", "**Why they ask:** courage.\n\n**Answer:**\n\"Apply the same standards regardless of rank, escalate appropriately — to the CHRO, legal, or the board if needed — investigate and act. Employees judge HR by how it handles senior people.\"\n\nTip: Same standards.", "B", "M"],
+["Development", "How do you build leadership capability?", "**Why they ask:** development strategy.\n\n**Answer:**\n\"Leadership programs, coaching, stretch assignments, 360 feedback and mentoring tied to business needs — following the 70-20-10 idea that most development comes from experience, some from others, and a little from formal training.\"\n\nTip: 70-20-10.", "B", "M"],
+["Absence", "How do you handle excessive absenteeism?", "**Why they ask:** practical ER.\n\n**Answer:**\n\"Look at the data and patterns, check first whether protected leave or an accommodation applies, have a direct conversation with the employee, and apply the attendance policy consistently.\"\n\nTip: Protected leave first.", "B", "E"]
+]);
