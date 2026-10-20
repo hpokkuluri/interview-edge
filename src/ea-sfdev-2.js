@@ -1,22 +1,6 @@
-QB['ea-sfdev'] = (QB['ea-sfdev']||[]).concat([
-["Apex", "Write a bulkified trigger handler that counts Contacts on Account.",
-`**Answer:**
-- Collect the AccountIds from Trigger.new (and Trigger.old on delete or reparent) into a Set.
-- Run one aggregate query: SELECT AccountId, COUNT(Id) c FROM Contact WHERE AccountId IN :ids GROUP BY AccountId.
-- Build Account records with Contact_Count__c from the results, defaulting to 0 for accounts with none.
-- Do one update DML.
-
-Tip: Handle deletes and reparenting.`, 'D', 'M'],
-["Events", "What is Change Data Capture?",
-`**Answer:** CDC publishes change events (create, update, delete, undelete) for selected objects, so external systems or Apex triggers can stay in sync in near real time without polling.
-
-Tip: Replaces polling.`, 'D', 'M'],
-["Mixed DML", "What is a mixed DML error?",
-`**Answer:** It happens when setup objects (User, Group, PermissionSetAssignment) and non-setup objects are changed in the same transaction. Fix it by moving one of the operations to async (@future or Queueable), or by using System.runAs in tests.
-
-Tip: Common in user provisioning code.`, 'D', 'M'],
-["Named Credentials", "Why use Named Credentials and External Credentials?",
-`**Answer:** They keep endpoints and authentication (OAuth, API keys, JWT) out of code, handle token refresh, and let admins control access through permission sets, which is more secure and easier to maintain.
-
-Tip: No secrets in code.`, 'B', 'M']
+QB["ea-sfdev"] = (QB["ea-sfdev"] || []).concat([
+["Apex", "Write a bulkified trigger handler that counts Contacts on Account.", "**Why they ask:** a hands-on coding question.\n\n**Answer:**\n\"Collect the AccountIds from Trigger.new — and Trigger.old on delete or when a contact moves to another account — into a Set. Run one aggregate query: SELECT AccountId, COUNT(Id) c FROM Contact WHERE AccountId IN :ids GROUP BY AccountId. Build Account records with Contact_Count__c from the results, defaulting to 0 for accounts with none left, and do one update. Forgetting the old account on reparenting is the classic bug.\"\n\nTip: Handle deletes and reparenting.", "D", "M"],
+["Events", "What is Change Data Capture?", "**Why they ask:** integration patterns.\n\n**Answer:**\n\"CDC publishes change events — create, update, delete, undelete — for selected objects, so external systems or Apex triggers stay in sync in near real time without polling the API every few minutes.\"\n\nTip: Replaces polling.", "D", "M"],
+["Mixed DML", "What is a mixed DML error?", "**Why they ask:** a common gotcha.\n\n**Answer:**\n\"It happens when setup objects — User, Group, PermissionSetAssignment — and non-setup objects like Account are changed in the same transaction. The fix is moving one operation to async with @future or Queueable, or using System.runAs to separate them in tests. It shows up a lot in user provisioning code.\"\n\nTip: Common in user provisioning code.", "D", "M"],
+["Named Credentials", "Why use Named Credentials and External Credentials?", "**Why they ask:** secure integration.\n\n**Answer:**\n\"They keep endpoints and authentication — OAuth, API keys, JWT — out of code, handle token refresh automatically, and let admins control who can use them through permission sets. Changing an endpoint for a new environment becomes configuration, not a code deployment.\"\n\nTip: No secrets in code.", "B", "M"]
 ]);

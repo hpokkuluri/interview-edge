@@ -1,240 +1,49 @@
 // Salesforce Developer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ea-sfdev'] = [
-["Apex", "What are governor limits and why do they exist?",
-`**Why they ask:** the most important Salesforce development concept.
-
-**Answer:** Limits per transaction in the multi-tenant platform so no tenant monopolizes resources. Key synchronous limits: 100 SOQL queries, 150 DML statements, 50,000 rows retrieved, 10,000 DML rows, 10 seconds CPU, 6 MB heap (async limits are higher: 200 SOQL, 60s CPU, 12 MB heap).
-
-Tip: Bulkify everything.`, 'B', 'E'],
-
-["Apex", "What does bulkification mean?",
-`**Answer:** Writing code that handles many records at once — no SOQL or DML inside loops, use collections (Lists, Sets, Maps), query once, process in memory, and DML once.
-
-**Example:** Collect AccountIds from trigger records into a Set, query all related Contacts in one SOQL into a Map, then update all in one DML.
-
-Tip: Triggers can receive 200 records per batch.`, 'B', 'E'],
-
-["Triggers", "What are trigger best practices?",
-`**Answer:** One trigger per object delegating to a handler class (trigger framework), logic-less triggers, bulkified code, recursion control, context-specific methods (before insert, after update), and respect order of execution.
-
-Tip: Trigger handler pattern.`, 'B', 'M'],
-
-["Triggers", "Before vs after triggers?",
-`**Answer:** **Before** triggers update fields on the same records without DML and validate. **After** triggers access system fields (Id) and modify related records.
-
-Tip: Same-record changes in before.`, 'B', 'E'],
-
-["Order of Execution", "Describe the Salesforce order of execution.",
-`**Answer:** Roughly: load record → system validation → before-save flows → before triggers → custom validation rules → duplicate rules → save (not committed) → after triggers → assignment/auto-response rules → after-save flows (and legacy workflow; field updates may re-run triggers) → escalation rules, entitlements → roll-up summaries on parents → commit → post-commit logic (emails, async).
-
-Tip: Know where flows fit.`, 'D', 'M'],
-
-["Async", "Compare future, queueable, batch and scheduled Apex.",
-`**Answer:**
-- **@future:** simple async, primitive params, callouts; can't chain.
-- **Queueable:** complex types, job ID tracking, chaining; preferred over future.
-- **Batch Apex:** process millions of records in chunks (start/execute/finish).
-- **Schedulable:** run at scheduled times, often launching batches.
-
-Tip: Queueable is the modern default.`, 'B', 'M'],
-
-["SOQL", "SOQL vs SOSL?",
-`**Answer:** **SOQL** queries specific objects with filters and relationships (like SQL SELECT). **SOSL** searches text across multiple objects at once.
-
-Tip: SOSL for search boxes.`, 'B', 'E'],
-
-["SOQL", "How do you write a relationship query?",
-`**Answer:** Child-to-parent: SELECT Name, Account.Name FROM Contact. Parent-to-child subquery: SELECT Name, (SELECT LastName FROM Contacts) FROM Account. Custom relationships use __r.
-
-Tip: __r vs __c.`, 'B', 'M'],
-
-["SOQL", "How do you make SOQL queries selective?",
-`**Answer:** Filter on indexed fields (Id, Name, OwnerId, external IDs, lookups, custom indexes), avoid leading wildcards and negative operators, and use the Query Plan tool for large data volumes.
-
-Tip: Large data volume performance.`, 'D', 'M'],
-
-["Security", "How do you enforce security in Apex?",
-`**Answer:** Use with sharing (or inherited sharing) classes, WITH USER_MODE / AccessLevel.USER_MODE for CRUD/FLS enforcement in SOQL and DML, Security.stripInaccessible, and avoid SOQL injection with bind variables.
-
-Tip: User mode operations.`, 'B', 'M'],
-
-["Testing", "What are Apex testing requirements and best practices?",
-`**Answer:** 75% code coverage minimum for production deployment, but aim for meaningful assertions. Use @testSetup and test data factories, Test.startTest/stopTest for limits and async, test bulk (200 records), negative cases and different users (System.runAs), and HttpCalloutMock for callouts.
-
-Tip: Assertions over coverage.`, 'B', 'M'],
-
-["LWC", "What are Lightning Web Components?",
-`**Answer:** A modern standards-based framework (web components) for Salesforce UI, with JavaScript classes, HTML templates, decorators (@api public properties, @wire for data, @track mostly unnecessary now), Lightning Data Service and Apex calls.
-
-Tip: Prefer LDS over Apex where possible.`, 'B', 'M'],
-
-["LWC", "How do components communicate in LWC?",
-`**Answer:** Parent to child via @api properties/methods; child to parent via custom events; unrelated components via Lightning Message Service; and pub-sub patterns.
-
-Tip: Lightning Message Service.`, 'B', 'M'],
-
-["LWC", "@wire vs imperative Apex calls?",
-`**Answer:** **@wire** is reactive, cacheable (cacheable=true), and auto-refreshes with parameters — for reading data. **Imperative** calls run on demand (e.g. button click) and are needed for DML.
-
-Tip: refreshApex for wired data.`, 'D', 'M'],
-
-["Integration", "How do you make callouts from Apex?",
-`**Answer:** HttpRequest/Http classes with Named Credentials and External Credentials for endpoints and authentication, handle errors and timeouts, no callouts after uncommitted DML in the same transaction (use async), and mock in tests.
-
-Tip: Named credentials.`, 'B', 'M'],
-
-["Integration", "What integration options does Salesforce offer?",
-`**Answer:** REST/SOAP APIs, Bulk API 2.0 for large data, Platform Events and Change Data Capture for event-driven integration, Pub/Sub API, outbound messages, Apex REST services, External Services, and MuleSoft.
-
-Tip: CDC for sync.`, 'D', 'M'],
-
-["Events", "What are Platform Events?",
-`**Answer:** Publish-subscribe messages for event-driven architecture inside Salesforce and with external systems; subscribers include triggers, flows, and external clients via Pub/Sub API.
-
-Tip: Decoupling.`, 'D', 'M'],
-
-["DevOps", "What is your Salesforce development workflow?",
-`**Answer:** Source-driven development with Salesforce CLI (sf), scratch orgs or sandboxes, Git branches and pull requests, CI (GitHub Actions, Copado, Gearset) running tests and static analysis (PMD/Code Analyzer), and deployments by environment.
-
-Tip: Source of truth in Git.`, 'B', 'M'],
-
-["Packaging", "What are unlocked packages?",
-`**Answer:** Modular, versioned packages of metadata for organizing org code and deploying consistently, without the restrictions of managed packages.
-
-Tip: Modularity.`, 'D', 'M'],
-
-["Errors", "How do you handle exceptions in Apex?",
-`**Answer:** Try/catch for expected failures, custom exceptions, Database methods with allOrNone=false for partial success, logging framework (custom object or Platform Event logging), and user-friendly errors via addError.
-
-Tip: Logging.`, 'B', 'M'],
-
-["Patterns", "What design patterns do you use in Apex?",
-`**Answer:** Trigger handler, service layer, selector layer for queries, domain layer (fflib Apex Enterprise Patterns), unit of work, and dependency injection for testing.
-
-Tip: Separation of concerns.`, 'D', 'S'],
-
-["Performance", "How do you avoid CPU timeouts?",
-`**Answer:** Efficient loops and Maps instead of nested loops, reduce unnecessary processing in triggers, move heavy work to async, and avoid recursion.
-
-Tip: Maps for lookups.`, 'D', 'M'],
-
-["Recursion", "How do you prevent trigger recursion?",
-`**Answer:** Static variables tracking processed record IDs, careful automation design, and checking for actual field changes (old vs new values) before acting.
-
-Tip: Check field changes.`, 'B', 'M'],
-
-["Large Data", "How do you process millions of records?",
-`**Answer:** Batch Apex with QueryLocator (up to 50 million records), Bulk API for loads, selective queries, skinny tables or indexes when needed, and avoiding data skew (too many children per parent or records per owner).
-
-Tip: Data skew.`, 'D', 'S'],
-
-["Agentforce", "How do developers extend Agentforce?",
-`**Answer:** Build custom agent actions with invocable Apex, flows and prompt templates, define topics and instructions, ground on data, and test agent behavior with the testing center.
-
-Tip: Invocable Apex.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a complex component you built.",
-`**Sample answer:** "I built an LWC quoting tool with dynamic pricing calls to an ERP API through Named Credentials and caching. Quote creation time dropped from 20 minutes to 3."
-
-Tip: Business impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about fixing a production issue.",
-`**Sample answer:** "A data load triggered 'Too many SOQL queries'. I found a query in a loop in a legacy trigger, bulkified it with a Map and added a 200-record test. Loads ran cleanly afterward."
-
-Tip: Root cause.`, 'B', 'M'],
-
-["Behavioral", "Declarative vs code — how do you decide?",
-`**Answer:** Use Flow when maintainable by admins and within limits; use Apex for complex logic, high volume, integrations or performance-critical processes.
-
-Tip: Maintainability.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** Platform Developer I and II, JavaScript Developer I, Platform App Builder, and architect credentials.
-
-Tip: PD II for senior.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior developer, technical lead, or technical architect.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I write bulk-safe, tested Apex and clean LWCs, and I integrate Salesforce reliably with other systems — with measurable time savings for users."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Apex", "What collections does Apex support?",
-`**Answer:** List (ordered), Set (unique), Map (key-value). Maps are crucial for bulk processing — e.g. new Map<Id, Account>([SELECT ...]).
-
-Tip: Map constructor from SOQL.`, 'B', 'E'],
-
-["Apex", "with sharing vs without sharing vs inherited sharing?",
-`**Answer:** **with sharing** enforces record sharing of the running user; **without sharing** ignores it (system context); **inherited sharing** takes the caller's mode (defaults to with sharing when entry point).
-
-Tip: Default to with sharing.`, 'B', 'M'],
-
-["Custom Metadata", "Custom settings vs custom metadata types?",
-`**Answer:** **Custom metadata types** are deployable configuration (records move with deployments) and queryable without counting against SOQL limits. **Custom settings** (hierarchy) allow user/profile-specific values but data isn't deployed.
-
-Tip: CMT for config.`, 'B', 'M'],
-
-["DML", "Database methods vs DML statements?",
-`**Answer:** DML statements (insert, update) are all-or-nothing and throw exceptions; Database.insert(records, false) allows partial success and returns results to inspect errors.
-
-Tip: Partial success.`, 'B', 'M'],
-
-["Testing", "How do you test callouts?",
-`**Answer:** Implement HttpCalloutMock (or use StaticResourceCalloutMock), set it with Test.setMock, and assert on responses and handling.
-
-Tip: No real callouts in tests.`, 'B', 'M'],
-
-["LWC", "How do you call Apex from LWC and handle errors?",
-`**Answer:** Import the method (@salesforce/apex/Class.method), annotate it @AuraEnabled (cacheable=true for reads), and handle promise errors with toast messages via ShowToastEvent.
-
-Tip: User feedback.`, 'B', 'M'],
-
-["Security", "How do you prevent SOQL injection?",
-`**Answer:** Use static SOQL with bind variables; for dynamic SOQL use Database.queryWithBinds or String.escapeSingleQuotes and allowlist field names.
-
-Tip: Bind variables.`, 'B', 'M'],
-
-["Scenario", "Update all Contacts' mailing address when the Account billing address changes.",
-`**Answer:** After update trigger on Account → handler collects accounts whose billing fields changed (compare Trigger.oldMap) → query related Contacts in one SOQL → set mailing fields → one update DML. Could also be a record-triggered flow for simple cases.
-
-Tip: Only changed records.`, 'B', 'M'],
-
-["Scenario", "A batch job must call an external API for each record. What do you consider?",
-`**Answer:** Implement Database.AllowsCallouts, keep batch size small (callout limit 100 per transaction), handle failures and retries, and respect API rate limits.
-
-Tip: Callout limits.`, 'D', 'M'],
-
-["Static Analysis", "Which code quality tools do you use?",
-`**Answer:** Salesforce Code Analyzer (PMD, ESLint), SonarQube rules, peer reviews and CI enforcement.
-
-Tip: Automated checks.`, 'B', 'E'],
-
-["Visualforce/Aura", "Do you still work with Visualforce or Aura?",
-`**Answer:** Maintain legacy pages and components when needed, but build new UI in LWC, migrating legacy over time.
-
-Tip: LWC first.`, 'B', 'E'],
-
-["Flows", "How do developers support Flow?",
-`**Answer:** Build invocable Apex actions for complex logic, Apex-defined types, custom LWC screen components, and help admins with performance.
-
-Tip: Invocable methods.`, 'B', 'M'],
-
-["Debugging", "How do you debug Apex?",
-`**Answer:** Debug logs with appropriate levels, Developer Console, Apex Replay Debugger in VS Code, and checking limits usage in logs.
-
-Tip: Replay Debugger.`, 'B', 'E'],
-
-["Locking", "What causes UNABLE_TO_LOCK_ROW errors?",
-`**Answer:** Concurrent updates to the same records (often parent records with many children, or data skew). Mitigate by ordering updates, reducing batch contention, retries and avoiding skew.
-
-Tip: Parent locking.`, 'D', 'M'],
-
-["Caching", "How can you cache data in Salesforce?",
-`**Answer:** Platform Cache (org and session partitions), @wire cacheable Apex, and custom metadata for config.
-
-Tip: Platform Cache.`, 'D', 'M']
-];
+QB["ea-sfdev"] = (QB["ea-sfdev"] || []).concat([
+["Apex", "What are governor limits and why do they exist?", "**Why they ask:** the most important Salesforce development concept.\n\n**Answer:** Limits per transaction in the multi-tenant platform so no tenant monopolizes resources. Key synchronous limits: 100 SOQL queries, 150 DML statements, 50,000 rows retrieved, 10,000 DML rows, 10 seconds CPU, 6 MB heap (async limits are higher: 200 SOQL, 60s CPU, 12 MB heap).\n\nTip: Bulkify everything.", "B", "E"],
+["Apex", "What does bulkification mean?", "**Why they ask:** the most important Apex discipline.\n\n**Answer:**\n\"Writing code that handles many records at once, because a trigger can receive up to 200 records in one batch. No SOQL or DML inside loops — collect IDs into a Set, query once into a Map, process in memory, and do one DML at the end. For example, to update contacts when accounts change: put the AccountIds from Trigger.new into a Set, query all related contacts in one SOQL, update them in memory, and call update once. A query inside the loop would hit the 100-SOQL limit on a 200-record data load.\"\n\nTip: Triggers can receive 200 records per batch.", "B", "E"],
+["Triggers", "What are trigger best practices?", "**Why they ask:** maintainable trigger design.\n\n**Answer:**\n\"One trigger per object that delegates to a handler class, with no logic in the trigger itself; bulkified code; recursion control; separate methods per context — beforeInsert, afterUpdate — and respect for the order of execution. With one trigger per object, you control the order instead of Salesforce running multiple triggers in an unpredictable sequence.\"\n\nTip: Trigger handler pattern.", "B", "M"],
+["Triggers", "Before vs after triggers?", "**Why they ask:** trigger fundamentals.\n\n**Answer:**\n\"Before triggers change fields on the triggering records without any DML and are the place for validation. After triggers can read system fields like the record Id and modify related records. Setting a field on the same record belongs in before; creating child records belongs in after.\"\n\nTip: Same-record changes in before.", "B", "E"],
+["Order of Execution", "Describe the Salesforce order of execution.", "**Why they ask:** debugging automation interactions.\n\n**Answer:**\n\"Roughly: load the record, system validation, before-save flows, before triggers, custom validation rules, duplicate rules, save without committing, after triggers, assignment and auto-response rules, after-save flows — and legacy workflow field updates, which can re-fire triggers — then escalation rules and entitlements, roll-up summary recalculation on parents, commit, and post-commit logic like emails and async jobs. Knowing that before-save flows run before before-triggers explains a lot of 'why was my value overwritten' bugs.\"\n\nTip: Know where flows fit.", "D", "M"],
+["Async", "Compare future, queueable, batch and scheduled Apex.", "**Why they ask:** async processing choices.\n\n**Answer:**\n\"@future is simple async with primitive parameters, good for callouts, but can't be chained or monitored well. Queueable accepts complex types, returns a job ID and can chain jobs — it's the modern default. Batch Apex processes millions of records in chunks through start, execute and finish. Schedulable runs at set times, often to launch a batch.\"\n\nTip: Queueable is the modern default.", "B", "M"],
+["SOQL", "SOQL vs SOSL?", "**Why they ask:** query fundamentals.\n\n**Answer:**\n\"SOQL queries specific objects with filters and relationships, like a SQL SELECT. SOSL searches text across multiple objects at once — like a global search box finding 'Acme' in accounts, contacts and opportunities in one call.\"\n\nTip: SOSL for search boxes.", "B", "E"],
+["SOQL", "How do you write a relationship query?", "**Why they ask:** practical SOQL.\n\n**Answer:**\n\"Child to parent uses dot notation: SELECT Name, Account.Name FROM Contact. Parent to child uses a subquery with the child relationship name: SELECT Name, (SELECT LastName FROM Contacts) FROM Account. For custom objects, the relationship name ends in __r — Invoice__c.Customer__r.Name — while the field itself ends in __c.\"\n\nTip: __r vs __c.", "B", "M"],
+["SOQL", "How do you make SOQL queries selective?", "**Why they ask:** large data volume performance.\n\n**Answer:**\n\"Filter on indexed fields — Id, Name, OwnerId, external IDs, lookups, or custom indexes — avoid leading wildcards like LIKE '%acme', avoid negative operators like != or NOT IN, and check the Query Plan tool. On objects with millions of rows, a non-selective query in a trigger can fail outright.\"\n\nTip: Large data volume performance.", "D", "M"],
+["Security", "How do you enforce security in Apex?", "**Why they ask:** secure coding.\n\n**Answer:**\n\"Declare classes with sharing or inherited sharing, use WITH USER_MODE in SOQL and AccessLevel.USER_MODE for DML so object and field permissions are enforced, use Security.stripInaccessible where needed, and prevent SOQL injection with bind variables. Apex runs in system mode by default, so without these, code can show data a user shouldn't see.\"\n\nTip: User mode operations.", "B", "M"],
+["Testing", "What are Apex testing requirements and best practices?", "**Why they ask:** quality and deployability.\n\n**Answer:**\n\"Production deployments need 75% code coverage, but coverage without assertions proves nothing. I use @testSetup and a test data factory, Test.startTest and stopTest for fresh limits and to run async code, bulk tests with 200 records, negative cases, System.runAs for different users, and HttpCalloutMock for callouts. Every test asserts an outcome, not just that code ran.\"\n\nTip: Assertions over coverage.", "B", "M"],
+["LWC", "What are Lightning Web Components?", "**Why they ask:** modern Salesforce UI.\n\n**Answer:**\n\"A standards-based framework built on web components: JavaScript classes, HTML templates, decorators — @api for public properties, @wire for reactive data; @track is mostly unnecessary now — Lightning Data Service, and Apex calls. I prefer Lightning Data Service for single-record reads and writes because it handles caching, sharing and FLS without Apex.\"\n\nTip: Prefer LDS over Apex where possible.", "B", "M"],
+["LWC", "How do components communicate in LWC?", "**Why they ask:** component architecture.\n\n**Answer:**\n\"Parent to child through @api properties and methods; child to parent through custom events the parent listens for; and unrelated components on the same page through Lightning Message Service. For example, a filter panel publishes a message and a results table in a different region of the page subscribes to it.\"\n\nTip: Lightning Message Service.", "B", "M"],
+["LWC", "@wire vs imperative Apex calls?", "**Why they ask:** data access patterns.\n\n**Answer:**\n\"@wire is reactive and cached — the Apex method must be cacheable=true — and re-runs automatically when its parameters change, so it's for reading data. Imperative calls run on demand, like on a button click, and are required for anything doing DML. After a save, refreshApex updates the wired data.\"\n\nTip: refreshApex for wired data.", "D", "M"],
+["Integration", "How do you make callouts from Apex?", "**Why they ask:** integration skills.\n\n**Answer:**\n\"HttpRequest and Http classes with Named Credentials and External Credentials holding the endpoint and authentication, handling errors and timeouts properly. You can't make a callout after uncommitted DML in the same transaction, so I move callouts to Queueable when needed, and mock them in tests.\"\n\nTip: Named credentials.", "B", "M"],
+["Integration", "What integration options does Salesforce offer?", "**Why they ask:** integration architecture.\n\n**Answer:**\n\"REST and SOAP APIs, Bulk API 2.0 for large data, Platform Events and Change Data Capture for event-driven integration, the Pub/Sub API, outbound messages, custom Apex REST services, External Services, and MuleSoft. For keeping an ERP in sync, CDC removes the need to poll.\"\n\nTip: CDC for sync.", "D", "M"],
+["Events", "What are Platform Events?", "**Why they ask:** event-driven design.\n\n**Answer:**\n\"Publish-subscribe messages for event-driven architecture inside Salesforce and with external systems. Apex triggers, flows and external clients through the Pub/Sub API can subscribe. Publishing an Order_Shipped__e event lets three different systems react without Salesforce knowing about any of them.\"\n\nTip: Decoupling.", "D", "M"],
+["DevOps", "What is your Salesforce development workflow?", "**Why they ask:** modern DevOps.\n\n**Answer:**\n\"Source-driven development with the Salesforce CLI, scratch orgs or sandboxes, Git branches and pull requests, CI on GitHub Actions, Copado or Gearset running tests and Code Analyzer, and deployments per environment. Git is the source of truth, not whatever is in production.\"\n\nTip: Source of truth in Git.", "B", "M"],
+["Packaging", "What are unlocked packages?", "**Why they ask:** modular architecture.\n\n**Answer:**\n\"Modular, versioned packages of metadata used to organize an org's code into units — say, a 'core' package and a 'billing' package — and deploy them consistently, without the restrictions of managed packages. They make large orgs much easier to reason about.\"\n\nTip: Modularity.", "D", "M"],
+["Errors", "How do you handle exceptions in Apex?", "**Why they ask:** robustness.\n\n**Answer:**\n\"Try/catch for expected failures, custom exception classes, Database methods with allOrNone false for partial success, a logging framework — a custom log object or Platform Event logging, which survives rollbacks — and clear user-facing messages with addError.\"\n\nTip: Logging.", "B", "M"],
+["Patterns", "What design patterns do you use in Apex?", "**Why they ask:** architecture skills.\n\n**Answer:**\n\"Trigger handler, a service layer for business logic, a selector layer for queries, a domain layer — following the fflib Apex Enterprise Patterns — unit of work for DML, and dependency injection so tests can swap implementations.\"\n\nTip: Separation of concerns.", "D", "S"],
+["Performance", "How do you avoid CPU timeouts?", "**Why they ask:** performance.\n\n**Answer:**\n\"Use Maps instead of nested loops — matching 1,000 contacts against 1,000 accounts with nested loops is a million iterations, with a Map it's 2,000 — skip unnecessary processing when relevant fields didn't change, move heavy work to async, and avoid recursion.\"\n\nTip: Maps for lookups.", "D", "M"],
+["Recursion", "How do you prevent trigger recursion?", "**Why they ask:** a common bug.\n\n**Answer:**\n\"Static variables tracking which record IDs have already been processed, careful automation design, and only acting when a relevant field actually changed — comparing Trigger.oldMap to the new values.\"\n\nTip: Check field changes.", "B", "M"],
+["Large Data", "How do you process millions of records?", "**Why they ask:** large data volumes.\n\n**Answer:**\n\"Batch Apex with a QueryLocator, which supports up to 50 million records, the Bulk API for loads, selective queries, skinny tables or custom indexes when needed, and avoiding data skew — like one account with 50,000 contacts or one user owning a million records, which causes locking and sharing recalculation problems.\"\n\nTip: Data skew.", "D", "S"],
+["Agentforce", "How do developers extend Agentforce?", "**Why they ask:** current platform direction.\n\n**Answer:**\n\"Build custom agent actions with invocable Apex, flows and prompt templates, define topics and instructions, ground the agent on the right data, and test agent behavior with the testing center before rollout.\"\n\nTip: Invocable Apex.", "D", "M"],
+["Behavioral", "Tell me about a complex component you built.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built an LWC quoting tool with dynamic pricing calls to an ERP API through Named Credentials, with caching for repeated lookups. Quote creation time dropped from 20 minutes to 3.\"\n\nTip: Business impact.", "B", "M"],
+["Behavioral", "Tell me about fixing a production issue.", "**Why they ask:** debugging.\n\n**Answer:**\n\"A data load failed with 'Too many SOQL queries'. I found a query inside a loop in a legacy trigger, bulkified it with a Map, and added a 200-record test. Loads ran cleanly afterward.\"\n\nTip: Root cause.", "B", "M"],
+["Behavioral", "Declarative vs code — how do you decide?", "**Why they ask:** judgment.\n\n**Answer:**\n\"Flow when admins can maintain it and it fits within limits. Apex for complex logic, high volume, integrations or performance-critical processes. I also consider who will maintain it in two years.\"\n\nTip: Maintainability.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Platform Developer I and II, JavaScript Developer I, Platform App Builder, and the architect credentials.\"\n\nTip: PD II for senior.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior developer, technical lead, or technical architect.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I write bulk-safe, well-tested Apex and clean LWCs, and I integrate Salesforce reliably with other systems — with measurable time savings for users, like cutting quote creation from 20 minutes to 3.\"\n\nTip: Proof.", "B", "E"],
+["Apex", "What collections does Apex support?", "**Why they ask:** language fundamentals.\n\n**Answer:**\n\"List for ordered items, Set for unique values, and Map for key-value pairs. Maps are central to bulk processing — new Map<Id, Account>([SELECT Id, Name FROM Account WHERE Id IN :ids]) builds an ID-to-record map straight from a query.\"\n\nTip: Map constructor from SOQL.", "B", "E"],
+["Apex", "with sharing vs without sharing vs inherited sharing?", "**Why they ask:** security context.\n\n**Answer:**\n\"with sharing enforces the running user's record access; without sharing ignores it and runs in system context; inherited sharing takes the caller's mode, and defaults to with sharing when it's the entry point. I default to with sharing and use without sharing only for specific, documented reasons.\"\n\nTip: Default to with sharing.", "B", "M"],
+["Custom Metadata", "Custom settings vs custom metadata types?", "**Why they ask:** configuration design.\n\n**Answer:**\n\"Custom metadata type records are deployable — they move with deployments — and querying them doesn't count against SOQL limits, so they're ideal for configuration like mapping tables. Hierarchy custom settings allow user- or profile-specific values, but their data isn't deployed between orgs.\"\n\nTip: CMT for config.", "B", "M"],
+["DML", "Database methods vs DML statements?", "**Why they ask:** error handling.\n\n**Answer:**\n\"DML statements like insert are all-or-nothing and throw an exception on any failure. Database.insert(records, false) allows partial success and returns results I can inspect — so 198 good records save and I log the 2 that failed.\"\n\nTip: Partial success.", "B", "M"],
+["Testing", "How do you test callouts?", "**Why they ask:** testing integrations.\n\n**Answer:**\n\"Implement HttpCalloutMock — or use StaticResourceCalloutMock — register it with Test.setMock, then assert on how the code handles both success and error responses. Tests can't make real callouts.\"\n\nTip: No real callouts in tests.", "B", "M"],
+["LWC", "How do you call Apex from LWC and handle errors?", "**Why they ask:** full-stack Salesforce.\n\n**Answer:**\n\"Import the method from @salesforce/apex/ClassName.methodName, mark it @AuraEnabled — cacheable=true for reads — and handle the promise rejection by showing a toast with ShowToastEvent, extracting a readable message from the error body.\"\n\nTip: User feedback.", "B", "M"],
+["Security", "How do you prevent SOQL injection?", "**Why they ask:** secure coding.\n\n**Answer:**\n\"Static SOQL with bind variables wherever possible. For dynamic SOQL, Database.queryWithBinds, or String.escapeSingleQuotes on user input, and an allowlist for any field or object names that come from input.\"\n\nTip: Bind variables.", "B", "M"],
+["Scenario", "Update all Contacts' mailing address when the Account billing address changes.", "**Why they ask:** a practical design question.\n\n**Answer:**\n\"An after update trigger on Account calls a handler that collects only accounts whose billing fields actually changed, comparing against Trigger.oldMap. Then one SOQL for their contacts, set the mailing fields from the parent account, and one update. For a simple org a record-triggered flow can do the same thing declaratively.\"\n\nTip: Only changed records.", "B", "M"],
+["Scenario", "A batch job must call an external API for each record. What do you consider?", "**Why they ask:** limits awareness.\n\n**Answer:**\n\"Implement Database.AllowsCallouts, keep the batch scope small because there's a limit of 100 callouts per transaction — a scope of 50 is safer — handle failures with retries and logging, and respect the external API's rate limits.\"\n\nTip: Callout limits.", "D", "M"],
+["Static Analysis", "Which code quality tools do you use?", "**Why they ask:** engineering discipline.\n\n**Answer:**\n\"Salesforce Code Analyzer, which bundles PMD and ESLint, SonarQube rules, peer reviews, and enforcement in CI so issues block merges.\"\n\nTip: Automated checks.", "B", "E"],
+["Visualforce/Aura", "Do you still work with Visualforce or Aura?", "**Why they ask:** legacy experience.\n\n**Answer:**\n\"I maintain legacy Visualforce pages and Aura components when needed, but build all new UI in LWC and migrate legacy pieces over time as they need changes.\"\n\nTip: LWC first.", "B", "E"],
+["Flows", "How do developers support Flow?", "**Why they ask:** collaboration with admins.\n\n**Answer:**\n\"Invocable Apex actions for logic Flow can't do well, Apex-defined types, custom LWC screen components, and helping admins tune flow performance.\"\n\nTip: Invocable methods.", "B", "M"],
+["Debugging", "How do you debug Apex?", "**Why they ask:** troubleshooting tools.\n\n**Answer:**\n\"Debug logs at the right levels, the Developer Console, the Apex Replay Debugger in VS Code for stepping through a captured log, and checking limit usage at the end of logs.\"\n\nTip: Replay Debugger.", "B", "E"],
+["Locking", "What causes UNABLE_TO_LOCK_ROW errors?", "**Why they ask:** concurrency issues.\n\n**Answer:**\n\"Concurrent transactions updating the same records — often a parent with many children, since updating a child can lock the parent, or data skew. Mitigate by ordering updates, reducing contention between batches, adding retries, and avoiding skewed data.\"\n\nTip: Parent locking.", "D", "M"],
+["Caching", "How can you cache data in Salesforce?", "**Why they ask:** performance.\n\n**Answer:**\n\"Platform Cache with org and session partitions, cacheable Apex for @wire, and custom metadata for configuration that rarely changes.\"\n\nTip: Platform Cache.", "D", "M"]
+]);
