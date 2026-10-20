@@ -1,262 +1,53 @@
 // Inventory Control Analyst / Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-inv'] = [
-["Role", "What does an inventory control analyst do?",
-`**Why they ask:** confirms scope.
-
-**Answer:** Ensures inventory records are accurate and inventory is at the right level: runs cycle counts and physical inventories, investigates variances and adjustments, monitors KPIs (accuracy, turns, aging), manages excess and obsolete stock with finance, maintains item and location data, and improves processes and controls so the system matches reality.
-
-Tip: Mention the link between accuracy and MRP/customer service.`, 'B', 'E'],
-
-["Accuracy", "How do you measure inventory accuracy?",
-`**Answer:** Count samples and compare to system records. **Location accuracy:** % of locations where item and quantity match within tolerance. **Value accuracy:** absolute $ variance ÷ total $ counted. Use tolerances by item class (e.g. 0% for A items, ±2% for C items).
-
-**Example:** 485 of 500 locations correct → 97% accuracy.
-
-Tip: Say which measure you report and why.`, 'B', 'E'],
-
-["Accuracy", "How do you improve inventory accuracy?",
-`**Answer:** Root-cause every significant variance (receiving errors, wrong picks, unrecorded scrap, transactions not entered, unit-of-measure errors), fix process and training gaps, enforce scanning, organize locations clearly, control adjustments with approvals, and use cycle counting to catch issues early.
-
-Tip: Root cause, not just correction.`, 'B', 'E'],
-
-["Cycle Counting", "How do you design a cycle count program?",
-`**Answer:** Classify items **ABC** by value or usage: count A items monthly (or more), B quarterly, C semiannually. Add trigger counts — zero or negative balances, pick discrepancies, after adjustments. Count without showing system quantity (blind counts), recount variances above tolerance, and investigate before adjusting.
-
-**Example:** 1,000 A items monthly = ~50 counts per working day.
-
-Tip: Calculate daily count volume — shows practicality.`, 'B', 'E'],
-
-["Cycle Counting", "What is a blind count and why use it?",
-`**Answer:** The counter doesn't see the system quantity, so they count what's actually there instead of confirming the expected number. It gives more honest results.
-
-Tip: Quick and clear.`, 'B', 'E'],
-
-["Cycle Counting", "How do cycle counts help avoid a full physical inventory?",
-`**Answer:** If cycle counting is effective and accuracy is consistently high, auditors may accept it instead of a wall-to-wall count, saving downtime. It needs documented procedures, coverage of all items over the year, and controls over adjustments.
-
-Tip: Mention auditor acceptance criteria.`, 'D', 'M'],
-
-["Physical Inventory", "How do you run a wall-to-wall physical inventory?",
-`**Answer:** Plan cut-off and timing, freeze transactions or manage in-transit items, prepare tags and teams (counters and checkers), train staff, count and recount variances, reconcile to the system, investigate large differences, approve adjustments with finance, and document for auditors.
-
-Tip: Mention cut-off of receipts and shipments.`, 'B', 'M'],
-
-["Variances", "You find a large inventory variance. How do you investigate?",
-`**Answer:** Recount to confirm; review transaction history (receipts, issues, transfers, adjustments); check nearby locations and similar items for misplacement; check unit-of-measure conversions; look at open transactions not yet processed (in-transit, pending receipts); interview staff; then correct and fix the root cause.
-
-Tip: Systematic approach.`, 'B', 'M'],
-
-["Adjustments", "What controls should exist over inventory adjustments?",
-`**Answer:** Reason codes, approval thresholds by value, segregation between counters and approvers, review of adjustments by finance, and reporting of adjustment trends by reason and user.
-
-Tip: SOX relevance.`, 'D', 'M'],
-
-["Valuation", "What inventory costing methods exist?",
-`**Answer:** FIFO (first in, first out), weighted average, standard cost (with variances to actual), specific identification, and LIFO (US GAAP only, not IFRS). Inventory must be carried at the lower of cost and net realizable value.
-
-Tip: Mention which method your company used.`, 'B', 'M'],
-
-["Valuation", "What is standard costing and how are variances handled?",
-`**Answer:** Items are valued at predetermined standard costs. Differences from actual go to variance accounts — purchase price variance, material usage, labor and overhead variances. Standards are updated periodically (often annually).
-
-Tip: Finance partnership.`, 'D', 'M'],
-
-["E&O", "How do you manage excess and obsolete inventory?",
-`**Answer:** Identify using rules (no movement for 12 months, coverage over 24 months, discontinued items), review with planning, sales and finance, take actions (return to vendor, rework, transfer, discount sale, donate, scrap), set reserves per policy, and prevent through better planning and engineering change control.
-
-Tip: Prevention plus disposition.`, 'D', 'M'],
-
-["E&O", "How is an obsolescence reserve calculated?",
-`**Answer:** By policy: e.g. reserve 25% of value for items with 12–18 months coverage, 50% for 18–24, 100% for no usage in 24 months, plus specific reserves for discontinued items. Reviewed quarterly with finance and auditors.
-
-Tip: Policy-based approach.`, 'D', 'S'],
-
-["Metrics", "Which inventory KPIs do you track?",
-`**Answer:** Inventory accuracy, turns, days on hand, excess and obsolete %, shrink, fill rate or stockouts, adjustment value, aging, and carrying cost.
-
-Tip: Mention your actual results.`, 'B', 'E'],
-
-["Metrics", "How do you calculate inventory turns?",
-`**Answer:** Turns = annual COGS ÷ average inventory value. Days on hand = 365 ÷ turns.
-
-**Example:** COGS $30M, average inventory $5M → 6 turns, about 61 days.
-
-Tip: Quick math.`, 'B', 'E'],
-
-["Carrying Cost", "What is inventory carrying cost?",
-`**Answer:** The annual cost of holding inventory, typically 20–30% of inventory value: cost of capital, storage, insurance, taxes, handling, shrink and obsolescence.
-
-**Example:** $5M inventory × 25% = $1.25M per year.
-
-Tip: Use it to justify reductions.`, 'B', 'M'],
-
-["Shrink", "What causes shrinkage and how do you reduce it?",
-`**Answer:** Theft, damage, receiving errors, unrecorded scrap, and transaction errors. Reduce with access control, CCTV, receiving checks, timely scrap recording, cycle counts, audits, and a culture of accountability.
-
-Tip: Mention data analysis by area.`, 'B', 'E'],
-
-["ABC", "How do you perform ABC analysis?",
-`**Answer:** Rank items by annual usage value (units × cost). Typically A = top ~80% of value (~20% of items), B = next ~15%, C = remaining ~5%. Use it to set count frequency, planning attention and storage locations.
-
-Tip: Pareto principle.`, 'B', 'E'],
-
-["Locations", "How does location management affect accuracy?",
-`**Answer:** Clear, labeled locations, one item per location where possible, system-directed putaway, and disciplined location transfers reduce misplacement and picking errors.
-
-Tip: Organization drives accuracy.`, 'B', 'E'],
-
-["Receiving", "What receiving controls protect inventory accuracy?",
-`**Answer:** Check quantities and items against PO and packing slip, scan labels, record discrepancies immediately, inspect quality where required, and receive in the system promptly before putaway.
-
-Tip: Errors start at receiving.`, 'B', 'E'],
-
-["Units", "How do unit-of-measure issues cause problems?",
-`**Answer:** Buying in cases, storing in each, issuing in boxes — wrong conversions in the item master create big quantity errors. Maintain accurate UOM conversions and train staff.
-
-Tip: Common hidden cause.`, 'B', 'M'],
-
-["Systems", "Which systems have you used for inventory control?",
-`**Sample answer:** "Oracle Fusion Inventory for cycle counts, transactions and adjustments; Oracle WMS for directed tasks; and Power BI dashboards for accuracy and aging."
-
-Tip: Name tasks.`, 'B', 'E'],
-
-["Oracle", "How are cycle counts set up in Oracle Inventory?",
-`**Answer:** Define a cycle count with ABC classes or count frequencies, tolerances, approval rules and recount settings; schedule counts; generate count sequences; enter results; recount and approve adjustments; and review accuracy reports.
-
-Tip: Hands-on detail.`, 'D', 'M'],
-
-["Lot and Serial", "Why use lot and serial control?",
-`**Answer:** For traceability — recalls, expiry, quality issues and warranty. Lot control tracks batches; serial control tracks individual units. Required in industries like pharma, food and medical devices.
-
-Tip: FIFO/FEFO for expiring lots.`, 'B', 'M'],
-
-["FEFO", "What is FEFO?",
-`**Answer:** First expired, first out — picking items with the earliest expiry first, essential for perishables and pharmaceuticals.
-
-Tip: Short and clear.`, 'B', 'E'],
-
-["Consignment", "What is consignment inventory and how is it controlled?",
-`**Answer:** Inventory owned by the supplier but stored at your site until used; you pay when consumed. Track separately, count regularly, and reconcile consumption with the supplier.
-
-Tip: Ownership distinction.`, 'D', 'M'],
-
-["In-transit", "How do you handle in-transit inventory?",
-`**Answer:** Track ownership by shipping terms, record in-transit balances between sites, and reconcile shipments and receipts to avoid lost or double-counted stock.
-
-Tip: Cut-off matters at month-end.`, 'D', 'M'],
-
-["Finance", "How do you work with finance on inventory?",
-`**Answer:** Reconcile inventory subledger to GL, support month-end and audits, explain adjustments and variances, agree reserves, and report inventory value trends.
-
-Tip: Accounting awareness.`, 'B', 'M'],
-
-["Audit", "What do auditors look at in inventory?",
-`**Answer:** Count observations, cut-off, valuation and costing, reserve methodology, adjustment controls, and reconciliation between subledger and GL.
-
-Tip: Be audit-ready.`, 'D', 'M'],
-
-["Reduction", "How would you reduce inventory by 15%?",
-`**Answer:** Analyze by category and aging, dispose of excess and obsolete, adjust safety stock and reorder points, reduce lot sizes and MOQs, improve forecast accuracy, and stop over-ordering. Track service levels to protect customers.
-
-Tip: Multiple levers.`, 'D', 'S'],
-
-["Technology", "How can technology improve inventory control?",
-`**Answer:** Barcode and RFID scanning, WMS directed tasks, mobile counting apps, real-time dashboards, and analytics to predict variances or obsolescence.
-
-Tip: RFID for high-value or high-volume items.`, 'D', 'M'],
-
-["RFID", "When does RFID make sense?",
-`**Answer:** High-volume or high-value items, returnable containers, apparel and retail, or where fast counts are needed. Cost per tag and reader infrastructure must be justified.
-
-Tip: Business case thinking.`, 'D', 'M'],
-
-["Process", "How do you prevent negative inventory?",
-`**Answer:** System settings to block negative balances, timely transactions (receive before issue), correct backflush settings in manufacturing, and investigation of each occurrence.
-
-Tip: Negative stock signals process issues.`, 'D', 'M'],
-
-["Manufacturing", "What is backflushing and how does it affect accuracy?",
-`**Answer:** Automatically issuing components when production is reported, based on the BOM. If BOMs, scrap or actual usage differ, inventory becomes inaccurate. Regular counts and BOM accuracy are critical.
-
-Tip: Manufacturing-specific detail.`, 'D', 'M'],
-
-["Behavioral", "Tell me about improving inventory accuracy significantly.",
-`**Sample answer:** "Accuracy was 86%. I analyzed variances and found most came from unit-of-measure errors and late receiving. We fixed 140 UOM conversions, required same-day receiving, and started daily ABC cycle counts. Accuracy reached 98.5% in six months."
-
-Tip: Root cause, actions, result.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing obsolete inventory.",
-`**Sample answer:** "We had $1.8M of slow-moving stock. I reviewed it with sales and engineering, returned $400K to suppliers, reworked $300K into current products, sold $500K at a discount, and scrapped the rest. I also added an end-of-life review before engineering changes."
-
-Tip: Recovery plus prevention.`, 'B', 'M'],
-
-["Behavioral", "How do you handle pushback from warehouse staff on counting?",
-`**Answer:** Explain why accuracy matters to them (fewer searching, fewer shortages), schedule counts around peaks, make it simple, and share results and recognition.
-
-Tip: Engagement.`, 'B', 'E'],
-
-["Leadership", "How would you set up an inventory control function?",
-`**Answer:** Policies (counting, adjustments, reserves), ABC classification, cycle count program, KPIs and dashboards, training, and regular reviews with operations and finance.
-
-Tip: Structured approach.`, 'D', 'S'],
-
-["Leadership", "How do you build accountability for inventory accuracy?",
-`**Answer:** Assign location or zone ownership, report accuracy by area and shift, review variances in daily meetings, and recognize improvements.
-
-Tip: Visibility drives behavior.`, 'D', 'S'],
-
-["Planning", "How does inventory control support planning?",
-`**Answer:** Accurate on-hand balances make MRP and replenishment reliable; inaccurate records cause false shortages or excess orders.
-
-Tip: Link to business outcomes.`, 'B', 'E'],
-
-["Safety Stock", "Should inventory control manage safety stock?",
-`**Answer:** Usually planning owns safety stock settings, but inventory control provides data and highlights excess or shortages. Collaboration ensures parameters reflect reality.
-
-Tip: Clear roles.`, 'B', 'M'],
-
-["Returns", "How do you handle customer returns in inventory?",
-`**Answer:** Receive with an RMA, inspect, disposition (restock, rework, scrap, return to vendor), and record transactions accurately so returned items don't distort balances.
-
-Tip: Reverse logistics control.`, 'B', 'M'],
-
-["Scrap", "How do you control scrap?",
-`**Answer:** Record scrap with reasons promptly, approve above thresholds, analyze trends, and work with production and quality to reduce it.
-
-Tip: Unrecorded scrap is a major accuracy issue.`, 'B', 'E'],
-
-["Career", "Why inventory control?",
-`**Sample answer:** "Inventory is often the biggest asset on the balance sheet, and accuracy affects customers, production and finance. I like finding root causes and fixing processes."
-
-Tip: Business impact.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I raised inventory accuracy from 86% to 98.5%, cleared $1.8M of obsolete stock, and built cycle count programs auditors accepted. I work well with warehouse, planning and finance."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is the difference between periodic and perpetual inventory systems?",
-`**Answer:** **Perpetual:** records update with every transaction in real time (ERP standard). **Periodic:** inventory determined by physical counts at period end; COGS is calculated as beginning + purchases − ending.
-
-Tip: Simple and clear.`, 'B', 'E'],
-
-["Technical", "What is safety stock vs cycle stock vs anticipation stock?",
-`**Answer:** **Cycle stock:** inventory from regular replenishment, used between orders. **Safety stock:** buffer for variability. **Anticipation stock:** built ahead of known peaks or shutdowns. Also pipeline (in-transit) stock.
-
-Tip: Inventory types.`, 'B', 'M'],
-
-["Technical", "What is dead stock?",
-`**Answer:** Inventory with no movement over a long period (e.g. 12+ months) and little chance of future use. Candidates for disposal and full reserve.
-
-Tip: Quick definition.`, 'B', 'E'],
-
-["Technical", "How do you reconcile the inventory subledger to the general ledger?",
-`**Answer:** Compare inventory valuation report totals to GL inventory accounts, investigate differences (unaccounted transactions, manual journals, cost updates, in-transit), and resolve before close.
-
-Tip: Finance collaboration.`, 'D', 'M'],
-
-["Technical", "What is a tolerance in cycle counting?",
-`**Answer:** An acceptable variance range before a recount or approval is required — tighter for A items (e.g. 0–1%), looser for C items (e.g. 5%).
-
-Tip: Practical setup detail.`, 'B', 'M']
-];
+QB["sc-inv"] = (QB["sc-inv"] || []).concat([
+["Role", "What does an inventory control analyst do?", "**Why they ask:** confirms scope.\n\n**Answer:** Ensures inventory records are accurate and inventory is at the right level: runs cycle counts and physical inventories, investigates variances and adjustments, monitors KPIs (accuracy, turns, aging), manages excess and obsolete stock with finance, maintains item and location data, and improves processes and controls so the system matches reality.\n\nTip: Mention the link between accuracy and MRP/customer service.", "B", "E"],
+["Accuracy", "How do you measure inventory accuracy?", "**Why they ask:** accuracy is the core KPI of the role.\n\n**Answer:**\n\"I count samples and compare them to system records. Location accuracy is the percentage of locations where item and quantity match within tolerance — if 485 of 500 locations are right, that's 97%. Value accuracy is the absolute dollar variance divided by total dollars counted. Tolerances depend on item class — zero for A items, maybe plus or minus 2% for C items. I report location accuracy to operations, because it drives picking, and value accuracy to finance.\"\n\nTip: Say which measure you report and why.", "B", "E"],
+["Accuracy", "How do you improve inventory accuracy?", "**Why they ask:** fixing causes, not symptoms.\n\n**Answer:**\n\"I root-cause every significant variance — receiving errors, wrong picks, unrecorded scrap, transactions not entered, unit-of-measure errors. Then fix the process and training gaps, enforce scanning, organize locations clearly, require approvals for adjustments, and use cycle counting to catch problems early. Adjusting the number without finding the cause just means it breaks again next week.\"\n\nTip: Root cause, not just correction.", "B", "E"],
+["Cycle Counting", "How do you design a cycle count program?", "**Why they ask:** a core program you'd own.\n\n**Answer:**\n\"I classify items ABC by value or usage. A items are counted monthly or more, B quarterly, C twice a year. I add trigger counts — zero or negative balances, pick discrepancies, and after adjustments. Counts are blind, variances above tolerance get recounted, and we investigate before adjusting. For scale: 1,000 A items counted monthly is about 50 counts per working day, plus the B and C items.\"\n\nTip: Calculating daily count volume shows practicality.", "B", "E"],
+["Cycle Counting", "What is a blind count and why use it?", "**Why they ask:** a basic counting control.\n\n**Answer:**\n\"In a blind count the counter doesn't see the system quantity, so they count what's physically there instead of just confirming the number they expect. It gives more honest results.\"\n\nTip: Quick and clear.", "B", "E"],
+["Cycle Counting", "How do cycle counts help avoid a full physical inventory?", "**Why they ask:** a big cost saving.\n\n**Answer:**\n\"If cycle counting is effective and accuracy stays consistently high, auditors may accept it in place of a wall-to-wall count — saving a shutdown. To get there, you need documented procedures, coverage of every item during the year, good accuracy results, and controls over adjustments.\"\n\nTip: Mention auditor acceptance criteria.", "D", "M"],
+["Physical Inventory", "How do you run a wall-to-wall physical inventory?", "**Why they ask:** a high-stakes event.\n\n**Answer:**\n\"I plan the cut-off and timing, freeze transactions or manage in-transit items, prepare tags and teams of counters and checkers, and train everyone. We count, recount variances, reconcile to the system, investigate large differences, approve adjustments with finance, and document it all for the auditors. Cut-off is where most errors happen — receipts and shipments on count day have to be handled exactly.\"\n\nTip: Mention cut-off of receipts and shipments.", "B", "M"],
+["Variances", "You find a large inventory variance. How do you investigate?", "**Why they ask:** systematic problem solving.\n\n**Answer:**\n\"First I recount to confirm it's real. Then review the transaction history — receipts, issues, transfers and adjustments. I check nearby locations and similar items for misplacement, check unit-of-measure conversions, and look for open transactions not yet processed, like in-transit or pending receipts. I talk to the people involved. Then correct it and fix the root cause.\"\n\nTip: Show a systematic approach.", "B", "M"],
+["Adjustments", "What controls should exist over inventory adjustments?", "**Why they ask:** adjustments can hide theft or errors.\n\n**Answer:**\n\"Reason codes on every adjustment, approval thresholds by value, separation between the people counting and the people approving, finance review of adjustments, and reporting of adjustment trends by reason and by user. For public companies, these are SOX controls.\"\n\nTip: Mention SOX relevance.", "D", "M"],
+["Valuation", "What inventory costing methods exist?", "**Why they ask:** accounting awareness.\n\n**Answer:**\n\"FIFO — first in, first out; weighted average; standard cost with variances to actual; specific identification; and LIFO, which is allowed under US GAAP but not IFRS. Whatever the method, inventory has to be carried at the lower of cost and net realizable value. My last company used standard cost.\"\n\nTip: Mention which method your company used.", "B", "M"],
+["Valuation", "What is standard costing and how are variances handled?", "**Why they ask:** common in manufacturing.\n\n**Answer:**\n\"Items are valued at a predetermined standard cost. Differences from actual go to variance accounts — purchase price variance, material usage, labor and overhead variances. Standards are usually updated once a year. Inventory control matters because usage variances often come from unrecorded scrap or inaccurate counts.\"\n\nTip: Show finance partnership.", "D", "M"],
+["E&O", "How do you manage excess and obsolete inventory?", "**Why they ask:** E&O ties up cash.\n\n**Answer:**\n\"I identify it with rules — no movement in 12 months, more than 24 months of coverage, or discontinued items. Then review it with planning, sales and finance and take action: return to vendor, rework, transfer to another site, sell at a discount, donate, or scrap. Reserves are set per policy. And I work on prevention — better planning and an end-of-life check on engineering changes.\"\n\nTip: Prevention plus disposition.", "D", "M"],
+["E&O", "How is an obsolescence reserve calculated?", "**Why they ask:** a key estimate.\n\n**Answer:**\n\"By policy. For example, reserve 25% of value for items with 12 to 18 months of coverage, 50% for 18 to 24 months, and 100% for items with no usage in 24 months — plus specific reserves for discontinued items. It's reviewed quarterly with finance and the auditors.\"\n\nTip: A policy-based approach.", "D", "S"],
+["Metrics", "Which inventory KPIs do you track?", "**Why they ask:** managing by numbers.\n\n**Answer:**\n\"Inventory accuracy, turns, days on hand, excess and obsolete percentage, shrink, fill rate or stockouts, adjustment value, aging, and carrying cost. In my last role, accuracy went from 86% to 98.5% and E&O fell by a third.\"\n\nTip: Mention your actual results.", "B", "E"],
+["Metrics", "How do you calculate inventory turns?", "**Why they ask:** a basic metric.\n\n**Answer:**\n\"Turns are annual cost of goods sold divided by average inventory value. Days on hand is 365 divided by turns. With $30 million of COGS and $5 million of average inventory, that's 6 turns — about 61 days on hand.\"\n\nTip: Quick math.", "B", "E"],
+["Carrying Cost", "What is inventory carrying cost?", "**Why they ask:** justifies reductions.\n\n**Answer:**\n\"It's the annual cost of holding inventory, typically 20 to 30% of its value — cost of capital, storage, insurance, taxes, handling, shrink and obsolescence. So $5 million of inventory at 25% costs about $1.25 million a year to hold. That's how I justify reduction projects.\"\n\nTip: Use it to justify reductions.", "B", "M"],
+["Shrink", "What causes shrinkage and how do you reduce it?", "**Why they ask:** shrink is lost money.\n\n**Answer:**\n\"Theft, damage, receiving errors, unrecorded scrap and transaction errors. I reduce it with access control, CCTV, receiving checks, recording scrap on time, cycle counts, audits and a culture of accountability. Analyzing shrink by area and shift usually shows where to focus.\"\n\nTip: Mention data analysis by area.", "B", "E"],
+["ABC", "How do you perform ABC analysis?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"I rank items by annual usage value — units times cost. Typically A items are the top 80% of value from about 20% of items, B the next 15%, and C the last 5%. I use it to set count frequency, planning attention and storage locations — A items closest to the pick face.\"\n\nTip: It's the Pareto principle.", "B", "E"],
+["Locations", "How does location management affect accuracy?", "**Why they ask:** organization drives accuracy.\n\n**Answer:**\n\"Clear, labeled locations, one item per location where possible, system-directed putaway, and disciplined location transfers all reduce misplacement and picking errors. If people can put stock anywhere, the system never knows where it is.\"\n\nTip: Organization drives accuracy.", "B", "E"],
+["Receiving", "What receiving controls protect inventory accuracy?", "**Why they ask:** errors start at receiving.\n\n**Answer:**\n\"Check items and quantities against the PO and packing slip, scan labels, record discrepancies immediately, inspect quality where required, and receive in the system promptly, before putaway. A receiving error flows into every count and every MRP run after it.\"\n\nTip: Errors start at receiving.", "B", "E"],
+["Units", "How do unit-of-measure issues cause problems?", "**Why they ask:** a common hidden cause.\n\n**Answer:**\n\"We might buy in cases, store in eaches and issue in boxes. If the conversion in the item master is wrong — say a case is set to 10 when it's really 12 — every receipt creates a quantity error. I keep UOM conversions accurate, audit them, and train staff on them.\"\n\nTip: A common hidden cause.", "B", "M"],
+["Systems", "Which systems have you used for inventory control?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Oracle Fusion Inventory for cycle counts, transactions and adjustments; Oracle WMS for directed tasks; and Power BI dashboards for accuracy and aging.\"\n\nTip: Name tasks — swap in your own systems.", "B", "E"],
+["Oracle", "How are cycle counts set up in Oracle Inventory?", "**Why they ask:** hands-on Oracle detail.\n\n**Answer:**\n\"You define a cycle count with ABC classes or count frequencies, tolerances, approval rules and recount settings. Then schedule the counts, generate count sequences, enter results, recount and approve adjustments, and review the accuracy reports. Approval tolerances decide which variances post automatically and which wait for a supervisor.\"\n\nTip: Hands-on detail impresses.", "D", "M"],
+["Lot and Serial", "Why use lot and serial control?", "**Why they ask:** traceability.\n\n**Answer:**\n\"For traceability — recalls, expiry, quality issues and warranty. Lot control tracks batches; serial control tracks individual units. It's required in industries like pharma, food and medical devices. For expiring lots, we pick FEFO — first expired, first out.\"\n\nTip: Mention FEFO for expiring lots.", "B", "M"],
+["FEFO", "What is FEFO?", "**Why they ask:** a basic picking rule.\n\n**Answer:**\n\"First expired, first out — picking items with the earliest expiry date first. It's essential for perishables and pharmaceuticals.\"\n\nTip: Short and clear.", "B", "E"],
+["Consignment", "What is consignment inventory and how is it controlled?", "**Why they ask:** ownership distinction.\n\n**Answer:**\n\"It's inventory owned by the supplier but stored at our site until we use it — we pay when we consume it. It has to be tracked separately from our own stock, counted regularly, and consumption reconciled with the supplier.\"\n\nTip: The ownership distinction.", "D", "M"],
+["In-transit", "How do you handle in-transit inventory?", "**Why they ask:** cut-off accuracy.\n\n**Answer:**\n\"I track ownership based on shipping terms, record in-transit balances between sites, and reconcile shipments to receipts so stock isn't lost or counted twice. Cut-off matters especially at month-end.\"\n\nTip: Cut-off matters at month-end.", "D", "M"],
+["Finance", "How do you work with finance on inventory?", "**Why they ask:** accounting awareness.\n\n**Answer:**\n\"I reconcile the inventory subledger to the GL, support month-end and audits, explain adjustments and variances, agree reserves, and report inventory value trends.\"\n\nTip: Accounting awareness.", "B", "M"],
+["Audit", "What do auditors look at in inventory?", "**Why they ask:** audit readiness.\n\n**Answer:**\n\"Count observations, cut-off, valuation and costing, the reserve method, adjustment controls, and the reconciliation between subledger and GL.\"\n\nTip: Be audit-ready.", "D", "M"],
+["Reduction", "How would you reduce inventory by 15%?", "**Why they ask:** a common goal.\n\n**Answer:**\n\"I'd analyze by category and aging, dispose of excess and obsolete, adjust safety stock and reorder points, reduce lot sizes and MOQs, improve forecast accuracy, and stop over-ordering. And track service levels weekly so we don't hurt customers.\"\n\nTip: Multiple levers.", "D", "S"],
+["Technology", "How can technology improve inventory control?", "**Why they ask:** modern tools.\n\n**Answer:**\n\"Barcode and RFID scanning, WMS-directed tasks, mobile counting apps, real-time dashboards, and analytics that predict variances or obsolescence. RFID makes sense for high-value or high-volume items.\"\n\nTip: RFID for high-value or high-volume items.", "D", "M"],
+["RFID", "When does RFID make sense?", "**Why they ask:** business case thinking.\n\n**Answer:**\n\"For high-volume or high-value items, returnable containers, apparel and retail, or wherever very fast counts are needed. The cost per tag and the reader infrastructure have to be justified — tagging a $2 item rarely pays off.\"\n\nTip: Business case thinking.", "D", "M"],
+["Process", "How do you prevent negative inventory?", "**Why they ask:** negative stock signals process problems.\n\n**Answer:**\n\"System settings that block negative balances, transactions done on time — receive before you issue — correct backflush settings in manufacturing, and an investigation of every occurrence.\"\n\nTip: Negative stock signals process issues.", "D", "M"],
+["Manufacturing", "What is backflushing and how does it affect accuracy?", "**Why they ask:** manufacturing-specific risk.\n\n**Answer:**\n\"Backflushing automatically issues components when production is reported, based on the bill of materials. If the BOM, scrap or actual usage differs from reality, inventory goes wrong silently. So regular counts and BOM accuracy are critical for backflushed items.\"\n\nTip: Manufacturing-specific detail.", "D", "M"],
+["Behavioral", "Tell me about improving inventory accuracy significantly.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"Accuracy was 86%. I analyzed the variances and found most came from unit-of-measure errors and late receiving. We fixed 140 UOM conversions, required same-day receiving, and started daily ABC cycle counts. Accuracy reached 98.5% in six months.\"\n\nTip: Root cause, actions, result.", "B", "M"],
+["Behavioral", "Tell me about reducing obsolete inventory.", "**Why they ask:** cash recovery.\n\n**Answer:**\n\"We had $1.8 million of slow-moving stock. I reviewed it with sales and engineering, returned $400,000 to suppliers, reworked $300,000 into current products, sold $500,000 at a discount, and scrapped the rest. Then I added an end-of-life review before engineering changes, so it doesn't build up again.\"\n\nTip: Recovery plus prevention.", "B", "M"],
+["Behavioral", "How do you handle pushback from warehouse staff on counting?", "**Why they ask:** engagement.\n\n**Answer:**\n\"I explain why accuracy matters to them — less time searching, fewer shortages and less overtime. I schedule counts around peaks, keep it simple, and share results and recognition when accuracy improves.\"\n\nTip: Engagement.", "B", "E"],
+["Leadership", "How would you set up an inventory control function?", "**Why they ask:** structure.\n\n**Answer:**\n\"Policies for counting, adjustments and reserves; ABC classification; a cycle count program; KPIs and dashboards; training; and regular reviews with operations and finance.\"\n\nTip: A structured approach.", "D", "S"],
+["Leadership", "How do you build accountability for inventory accuracy?", "**Why they ask:** visibility drives behavior.\n\n**Answer:**\n\"I assign location or zone ownership, report accuracy by area and shift, review variances in daily meetings, and recognize improvements publicly. When a zone owner sees their number every morning, it gets better.\"\n\nTip: Visibility drives behavior.", "D", "S"],
+["Planning", "How does inventory control support planning?", "**Why they ask:** linking to business outcomes.\n\n**Answer:**\n\"Accurate on-hand balances make MRP and replenishment reliable. Inaccurate records cause false shortages — expediting stock we already have — or excess orders. Planning is only as good as the inventory record.\"\n\nTip: Link to business outcomes.", "B", "E"],
+["Safety Stock", "Should inventory control manage safety stock?", "**Why they ask:** clear roles.\n\n**Answer:**\n\"Usually planning owns the safety stock settings. Inventory control provides the data and flags excess or shortages. Working together keeps the parameters realistic.\"\n\nTip: Clear roles.", "B", "M"],
+["Returns", "How do you handle customer returns in inventory?", "**Why they ask:** reverse logistics control.\n\n**Answer:**\n\"Returns are received against an RMA, inspected and given a disposition — restock, rework, scrap or return to vendor — with the transaction recorded accurately, so returned items don't distort balances or go back on the shelf damaged.\"\n\nTip: Reverse logistics control.", "B", "M"],
+["Scrap", "How do you control scrap?", "**Why they ask:** unrecorded scrap kills accuracy.\n\n**Answer:**\n\"Record scrap promptly with a reason code, require approval above thresholds, analyze trends, and work with production and quality to reduce it. Unrecorded scrap is one of the biggest causes of inaccurate inventory.\"\n\nTip: Unrecorded scrap is a major accuracy issue.", "B", "E"],
+["Career", "Why inventory control?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Inventory is often the biggest asset on the balance sheet, and its accuracy affects customers, production and finance. I like finding root causes and fixing processes so the numbers can be trusted.\"\n\nTip: Business impact.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I raised inventory accuracy from 86% to 98.5%, cleared $1.8 million of obsolete stock, and built a cycle count program the auditors accepted. And I work well with warehouse, planning and finance.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is the difference between periodic and perpetual inventory systems?", "**Why they ask:** a basic concept.\n\n**Answer:**\n\"In a perpetual system, records update with every transaction in real time — that's how ERPs work. In a periodic system, inventory is determined by a physical count at period end, and cost of goods sold is calculated as beginning inventory plus purchases minus ending inventory.\"\n\nTip: Simple and clear.", "B", "E"],
+["Technical", "What is safety stock vs cycle stock vs anticipation stock?", "**Why they ask:** inventory types.\n\n**Answer:**\n\"Cycle stock comes from regular replenishment and is used up between orders. Safety stock is the buffer for variability in demand and supply. Anticipation stock is built ahead of known peaks or shutdowns. And there's pipeline stock — inventory in transit.\"\n\nTip: Know the inventory types.", "B", "M"],
+["Technical", "What is dead stock?", "**Why they ask:** a quick definition.\n\n**Answer:**\n\"Inventory with no movement for a long period — often 12 months or more — and little chance of future use. It's a candidate for disposal and a full reserve.\"\n\nTip: Quick definition.", "B", "E"],
+["Technical", "How do you reconcile the inventory subledger to the general ledger?", "**Why they ask:** finance collaboration.\n\n**Answer:**\n\"I compare the inventory valuation report totals to the GL inventory accounts and investigate differences — unaccounted transactions, manual journals, cost updates or in-transit timing — and resolve them before close.\"\n\nTip: Finance collaboration.", "D", "M"],
+["Technical", "What is a tolerance in cycle counting?", "**Why they ask:** practical setup detail.\n\n**Answer:**\n\"It's the acceptable variance before a recount or approval is required — tight for A items, say zero to 1%, and looser for C items, say 5%. It focuses effort on the variances that matter.\"\n\nTip: Practical setup detail.", "B", "M"]
+]);
