@@ -1,0 +1,396 @@
+// Rewritten Sales & Marketing — Account Executive (Why they ask → Answer → Tip). Apply with rewrite.js (prefix sm-ae-).
+module.exports = {
+
+'How do you qualify opportunities?':
+`**Why they ask:** pipeline quality starts with qualification.
+
+**Answer:**
+"For enterprise deals I use MEDDICC: Metrics — the quantified value; the Economic buyer; Decision criteria; Decision process; Identified pain; a Champion; and the Competition. For simpler sales, BANT — budget, authority, need, timeline — is enough. If I can't name the economic buyer and a compelling reason to act by a date, it's not a real opportunity yet, however friendly the calls are."
+
+Tip: MEDDICC for enterprise.`,
+
+'What questions do you ask in discovery?':
+`**Why they ask:** discovery drives everything after it.
+
+**Answer:**
+"How things work today and what's painful, what that pain costs in money, risk or revenue, what they've already tried, the outcome they want and how they'll measure it, who's involved in the decision, the timeline and any compelling event, and how budget gets approved. My favorite question is 'what happens if this isn't solved by Q2?' — the answer tells me whether there's real urgency."
+
+Tip: Quantify impact.`,
+
+'Sell me this pen.':
+`**Why they ask:** a test of selling instinct.
+
+**Answer:**
+"I'd start with questions, not features: 'When did you last use a pen? What for? Anything frustrating about it?' Say you sign client contracts every day and hate smudges. Then: 'This pen uses quick-dry ink, so your signed contracts always look sharp in front of clients. Given you sign every day — shall I get you a box of two?' Discover, connect to their need, then ask for the close."
+
+Tip: Discover before pitching.`,
+
+"How do you handle the 'it's too expensive' objection?":
+`**Why they ask:** objection handling.
+
+**Answer:**
+"Clarify first — 'too expensive compared to what?' — then revisit value tied to their own metrics, explore budget and options like phasing or narrower scope, and avoid discounting early. For example: 'You said the team spends 400 hours a year on this; at $60 an hour, that's $24,000 in value against a $15,000 cost — and that's before the error reduction.'"
+
+Tip: Value over price.`,
+
+"How do you handle 'we're happy with our current vendor'?":
+`**Why they ask:** competitive displacement.
+
+**Answer:**
+"Respect it, and get curious: 'What do you like most about them? If you could change one thing, what would it be?' Probe for gaps or upcoming needs, share a relevant customer story, and stay in touch — contract renewals and leadership changes create openings."
+
+Tip: Curiosity.`,
+
+'How do you build and test a champion?':
+`**Why they ask:** enterprise deal skill.
+
+**Answer:**
+"Find someone with influence who personally benefits from the solution, equip them with a business case and materials they can use internally, and test them by asking them to act — arrange a meeting with the economic buyer, share the decision criteria, or walk me through the approval process. A champion who won't do any of that is a coach, not a champion."
+
+Tip: Test with actions.`,
+
+'How do you manage your pipeline?':
+`**Why they ask:** discipline.
+
+**Answer:**
+"Keep the CRM accurate, review it weekly, prioritize by stage and real probability, maintain 3 to 4 times pipeline coverage of quota, remove stale deals honestly, and prospect consistently every week rather than in bursts."
+
+Tip: Coverage ratio.`,
+
+'How do you forecast accurately?':
+`**Why they ask:** credibility with leadership.
+
+**Answer:**
+"Stage criteria based on evidence, not feelings — verbal approval from the economic buyer, procurement engaged, a signature date in the mutual action plan. Then commit, best case and pipeline categories, and honest risk flags. A deal goes in commit only when the customer has confirmed the path to signature."
+
+Tip: Evidence-based.`,
+
+'How do you prospect new accounts?':
+`**Why they ask:** pipeline generation.
+
+**Answer:**
+"Define the ideal customer profile, watch for trigger events — funding rounds, new executives, expansions, acquisitions — run multi-channel outreach across email, phone and LinkedIn with personalized messages, and use referrals and partners. A new CFO in their first 90 days is often open to fresh ideas."
+
+Tip: Trigger events.`,
+
+'How do you negotiate without giving away margin?':
+`**Why they ask:** commercial discipline.
+
+**Answer:**
+"Know my walk-away, trade every concession for something — a longer term, faster signature, upfront payment, a case study — anchor on value, involve the economic buyer, and avoid end-of-quarter desperation. 'I can do 8% if we sign a three-year term this month' rather than just dropping the price."
+
+Tip: Give to get.`,
+
+'Why multi-thread deals?':
+`**Why they ask:** risk management.
+
+**Answer:**
+"Engaging several stakeholders protects the deal if a champion leaves and builds consensus across the buying committee — enterprise purchases often involve six to ten people. Single-threaded deals die when one person changes jobs."
+
+Tip: Buying committee.`,
+
+'How do you give a great demo?':
+`**Why they ask:** presentation skill.
+
+**Answer:**
+"Tailor it to the pain we found in discovery, start with the outcome they care about, show only the relevant features, tell a customer story, keep them engaged with questions, and agree concrete next steps before the call ends. A focused 20-minute demo beats a 60-minute feature tour."
+
+Tip: Less is more.`,
+
+'How do you close a deal?':
+`**Why they ask:** closing skill.
+
+**Answer:**
+"Align on a mutual action plan with dates, confirm the decision criteria are met, address final concerns, bring legal and procurement in early, and ask clearly for the business: 'Based on everything we've covered, are you ready to move forward?'"
+
+Tip: Mutual action plan.`,
+
+'How do you handle a lost deal?':
+`**Why they ask:** resilience and learning.
+
+**Answer:**
+"Ask for honest feedback, run a win-loss analysis on why, stay professional and in touch — the winning vendor sometimes fails to deliver — and apply the lessons to the next deal."
+
+Tip: Win/loss reviews.`,
+
+'Which sales metrics do you track?':
+`**Why they ask:** self-management.
+
+**Answer:**
+"Quota attainment, pipeline generated, win rate, average deal size, sales cycle length, activity levels, and conversion by stage. Win rate tells me most about qualification quality."
+
+Tip: Win rate.`,
+
+'Tell me about your biggest deal.':
+`**Why they ask:** proof.
+
+**Answer:**
+"I closed a $1.2 million ERP services deal with a manufacturer. Discovery uncovered about $3 million a year in inventory waste; I built the ROI case with their CFO, multi-threaded across IT and operations, and closed in seven months."
+
+Tip: Process and value.`,
+
+'Tell me about a quarter you missed quota.':
+`**Why they ask:** accountability.
+
+**Answer:**
+"I finished Q3 at 78% because two large deals slipped. I realized my pipeline was too concentrated, so I increased prospecting and multi-threaded every major deal. The next two quarters I hit 115% and 124%."
+
+Tip: Ownership and correction.`,
+
+"What's your quota attainment history?":
+`**Why they ask:** track record.
+
+**Answer:**
+"2024: 118% of a $1.1 million quota, ranked third of 22 reps. 2025: 104% of $1.3 million in a newly assigned territory. This year I'm at 92% with a quarter to go and a strong commit."
+
+Tip: Specific numbers.`,
+
+'Which sales methodologies do you know?':
+`**Why they ask:** structured selling.
+
+**Answer:**
+"MEDDICC, the Challenger Sale — teach, tailor, take control — SPIN Selling, Solution Selling, Command of the Message and Sandler. I use MEDDICC for qualification and Challenger for messaging: I open with an insight about their industry they hadn't considered, then tailor it to each stakeholder."
+
+Tip: Explain how you apply one.`,
+
+'Which tools do you use?':
+`**Why they ask:** practical tooling.
+
+**Answer:**
+"Salesforce and HubSpot, LinkedIn Sales Navigator, Outreach or Salesloft for sequences, Gong for call recording and coaching, and ZoomInfo for data. And I keep the CRM clean — my manager shouldn't have to ask me for updates."
+
+Tip: CRM hygiene.`,
+
+'How do you use AI in sales?':
+`**Why they ask:** current tools.
+
+**Answer:**
+"Account research before calls, drafting personalized emails, call summaries and coaching insights from Gong, and forecasting signals — while keeping relationships authentic. AI helps me personalize at scale; it doesn't replace actually understanding the customer."
+
+Tip: Personalization at scale.`,
+
+'Where do you want to grow?':
+`**Why they ask:** career fit.
+
+**Answer:**
+"Toward strategic or enterprise AE, and eventually sales leadership."
+
+Tip: Direction.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I consistently exceed quota by running disciplined, value-based deals — a $1.2 million largest deal and 112% average attainment over three years."
+
+Tip: Proof.`,
+
+'What motivates you in sales?':
+`**Why they ask:** fit and drive.
+
+**Answer:**
+"Solving real customer problems, the competition, and being paid on results. I like that the scoreboard is honest — and that the best deals leave the customer measurably better off."
+
+Tip: Authentic.`,
+
+'How do you handle rejection?':
+`**Why they ask:** resilience.
+
+**Answer:**
+"I treat it as data, not a verdict — what did I learn about the prospect or my pitch? — stay focused on activity I control, and don't take it personally. Prospecting is a numbers game played with skill."
+
+Tip: Resilience.`,
+
+'How do you build a business case?':
+`**Why they ask:** value selling.
+
+**Answer:**
+"Quantify current costs and risks using the customer's own data, estimate improvements conservatively, calculate ROI and payback, and validate it with their finance team so it survives the CFO's scrutiny. A business case built on their numbers sells itself internally."
+
+Tip: Customer's numbers.`,
+
+'How do you work with procurement?':
+`**Why they ask:** enterprise process.
+
+**Answer:**
+"Engage early, understand their process and timelines, keep the conversation anchored on value rather than just price, and prepare for security reviews and contract negotiations before they become last-minute blockers."
+
+Tip: Early engagement.`,
+
+'How do you sell against a competitor?':
+`**Why they ask:** competitive strategy.
+
+**Answer:**
+"Understand their strengths and weaknesses, shape the decision criteria early around our differentiators, use proof points and references, and never trash the competitor — it makes buyers defensive about their own shortlist."
+
+Tip: Shape criteria.`,
+
+'How do you create an account plan?':
+`**Why they ask:** strategic account management.
+
+**Answer:**
+"The customer's goals and initiatives, an org chart with relationship strength, white space — departments or use cases we don't serve yet — the competitive landscape, and an action plan with revenue targets."
+
+Tip: White space.`,
+
+'How do you grow existing accounts?':
+`**Why they ask:** expansion.
+
+**Answer:**
+"Deliver value first, track success metrics with them, identify new departments and use cases, run executive business reviews, and partner closely with customer success. Land and expand."
+
+Tip: Land and expand.`,
+
+'How do you prioritize your time?':
+`**Why they ask:** productivity.
+
+**Answer:**
+"Highest-value activities first: qualified deals near close, high-potential prospects, and protected prospecting blocks on my calendar — mornings for outreach, afternoons for meetings — so pipeline generation never stops."
+
+Tip: Time blocks.`,
+
+'How do you work with sales engineers?':
+`**Why they ask:** teamwork.
+
+**Answer:**
+"Share discovery notes in advance, define technical success criteria together, plan demos jointly, and divide roles clearly — I own the business case and relationships; they own technical credibility."
+
+Tip: Preparation.`,
+
+'Your champion leaves the company mid-deal. What do you do?':
+`**Why they ask:** deal recovery.
+
+**Answer:**
+"Reach out to the other stakeholders immediately, find and build a new champion, re-confirm priorities and timeline with the economic buyer, and stay connected with the former champion — they may bring me into their new company."
+
+Tip: Multi-threading pays off.`,
+
+'A prospect goes silent after a great demo. What do you do?':
+`**Why they ask:** persistence with tact.
+
+**Answer:**
+"Follow up with value — a relevant insight or customer story rather than 'just checking in' — try other contacts in the account, ask directly whether priorities changed, and offer a clear, easy next step."
+
+Tip: Value-add follow-ups.`,
+
+'The customer asks for a 30% discount at the end of quarter. What do you do?':
+`**Why they ask:** negotiation under pressure.
+
+**Answer:**
+"Understand why they're asking, revisit the value, and trade rather than give — for example, a smaller discount in exchange for a multi-year commitment or upfront payment — with management approval, and without setting a precedent that every renewal starts at 30% off."
+
+Tip: Trade concessions.`,
+
+'Give me a 30-second cold call opener.':
+`**Why they ask:** prospecting skill.
+
+**Answer:**
+"'Hi Priya, it's Raj from Acme. I'll be brief — we help finance teams at mid-size manufacturers close their books about 40% faster. Is month-end close something you're trying to improve this year?' Relevant, short, and it ends with a question."
+
+Tip: Relevance and a question.`,
+
+'What makes a great prospecting email?':
+`**Why they ask:** outreach craft.
+
+**Answer:**
+"A personalized opening that shows I did my homework, a relevant problem, brief proof, one clear call to action, and under 100 words. For example, referencing their recent acquisition and how we helped a similar company integrate finance systems in 90 days."
+
+Tip: Brevity.`,
+
+'What compensation structure do you expect?':
+`**Why they ask:** expectations.
+
+**Answer:**
+"For enterprise roles, OTE is typically split around 50/50 between base and variable. Based on my research and track record, I'm targeting an OTE in the range we discussed, with uncapped accelerators above quota."
+
+Tip: Know OTE.`,
+
+'Why does post-sale matter to an AE?':
+`**Why they ask:** long-term thinking.
+
+**Answer:**
+"Happy customers renew, expand and refer. Overselling might win one deal but hurts reputation, renewals and future pipeline — my best deals came from references."
+
+Tip: Long-term view.`,
+
+'How do you learn a new product or industry quickly?':
+`**Why they ask:** ramp speed.
+
+**Answer:**
+"Product training, shadowing the top reps on calls, talking to customers about why they bought, reading industry news, and practicing pitches until I can handle the hard questions."
+
+Tip: Shadow top reps.`,
+
+'How is enterprise selling different from SMB?':
+`**Why they ask:** segment experience.
+
+**Answer:**
+"Longer cycles, more stakeholders, formal procurement and security reviews, larger deals and more customization. It takes patience, stakeholder mapping and strategic account management rather than volume."
+
+Tip: Stakeholder mapping.`,
+
+'What is a mutual action plan?':
+`**Why they ask:** enterprise process.
+
+**Answer:**
+"A shared timeline of the steps both sides take to reach a decision and go-live — security review by March 10, legal redlines by March 20, signature March 28, kickoff April 5. It creates accountability and makes forecasts far more accurate."
+
+Tip: Shared accountability.`,
+
+'What questions would you ask us?':
+`**Why they ask:** due diligence.
+
+**Answer:**
+"What percentage of the team hit quota last year? What's the territory and existing pipeline? How long is ramp, and what support do new reps get? What's the typical sales cycle and deal size? How does the comp plan work? And why did the last person in this role leave?"
+
+Tip: Attainment data.`,
+
+'How much pipeline do you need to hit a $1.2M annual quota?':
+`**Why they ask:** pipeline math.
+
+**Answer:**
+"With a 25% win rate, about $4.8 million in qualified pipeline over the year — 4x coverage. At a $60K average deal, that's 20 wins from roughly 80 opportunities, or about 7 new qualified opportunities a month."
+
+Tip: Work backwards.`,
+
+'What is the difference between pain and impact?':
+`**Why they ask:** value selling.
+
+**Answer:**
+"Pain is the problem — 'manual invoice matching'. Impact is the business consequence — 'three FTEs and $200K a year in late payment penalties'. Impact creates urgency and justifies budget; pain alone rarely does."
+
+Tip: Quantify impact.`,
+
+'Why does a compelling event matter?':
+`**Why they ask:** deal timing.
+
+**Answer:**
+"A deadline with consequences — a contract expiring, a regulatory date, a system reaching end of support, a board commitment — makes decisions happen on time. Without one, deals slip quarter after quarter."
+
+Tip: Find the date.`,
+
+'How do you use LinkedIn for selling?':
+`**Why they ask:** social selling.
+
+**Answer:**
+"A profile written for customers rather than recruiters, sharing useful insights, engaging with prospects' posts, warm introductions through mutual connections, and Sales Navigator alerts for job changes and account news."
+
+Tip: Give before asking.`,
+
+'How do you handle security questionnaires that stall deals?':
+`**Why they ask:** enterprise blockers.
+
+**Answer:**
+"Engage the customer's security team early, share our SOC 2 report and trust center proactively, bring in our security engineers for tough questions, and track it as a milestone in the mutual action plan so it doesn't surprise anyone at the end."
+
+Tip: Get ahead of it.`,
+
+'A deal you forecast as commit slips at the last minute. What do you do?':
+`**Why they ask:** integrity and learning.
+
+**Answer:**
+"Tell my manager immediately, understand the real reason, rebuild the plan with a new date and evidence behind it, and work out what signal I missed — usually a step in their approval process I hadn't confirmed."
+
+Tip: Transparency.`,
+
+};
