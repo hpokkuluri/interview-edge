@@ -1,256 +1,57 @@
 // da-head — generated from src/da-head-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Head of Data / AI (Director → VP / Chief Data Officer). Format: [topic, question, answer, 'B'|'D']
-QB['da-head'] = [
-["Role", "How do you define the role of a head of data and AI?",
-`**Why they ask:** to hear your leadership philosophy.
-
-**Answer:** Turning data and AI into business value: setting strategy aligned to company goals, building platforms and governance that make data trustworthy, leading teams across data engineering, analytics, data science and AI, prioritizing high-value use cases, managing risk (privacy, security, responsible AI), and building a data-driven culture with executive partners.
-
-Tip: Value first, technology second.`, 'B'],
-
-["Strategy", "How do you build a data and AI strategy?",
-`**Answer:** Start with business objectives; identify high-value use cases (revenue, cost, risk, customer experience); assess current capabilities (data, platforms, talent, governance); define target state and principles; prioritize a roadmap balancing quick wins and foundations; define operating model and investment; measure value.
-
-Tip: Use-case driven.`, 'D'],
-
-["Strategy", "How do you prioritize AI use cases?",
-`**Answer:** Score by business value, feasibility (data availability, complexity), time to value, risk, and strategic alignment. Start with use cases that have clear owners and measurable outcomes; avoid "AI for AI's sake".
-
-Tip: Value × feasibility matrix.`, 'D'],
-
-["Value", "How do you measure the value of data and AI investments?",
-`**Answer:** Tie each initiative to business KPIs with baselines and measurement plans (experiments where possible) — revenue lift, cost savings, risk reduction, productivity — and report realized value, not just activity.
-
-Tip: Realized vs projected value.`, 'D'],
-
-["Organization", "How would you organize a data and AI organization?",
-`**Answer:** Central platform and governance teams; domain-aligned analytics and data science squads embedded with business units (hub-and-spoke); AI/ML engineering; and a center of excellence for standards and enablement. Clear career paths and roles.
-
-Tip: Hub-and-spoke.`, 'D'],
-
-["Talent", "How do you attract and retain data and AI talent?",
-`**Answer:** Meaningful problems with visible impact, modern tools, strong technical leadership, clear career paths (IC and manager tracks), learning opportunities, competitive pay and a healthy culture.
-
-Tip: Impact and growth.`, 'B'],
-
-["Governance", "How do you establish data governance without slowing the business?",
-`**Answer:** Focus on critical data and metrics, assign owners, automate quality and access controls, certify trusted datasets, and show value through faster, consistent reporting.
-
-Tip: Governance as enablement.`, 'D'],
-
-["Responsible AI", "How do you govern AI responsibly?",
-`**Answer:** AI policy and risk classification, inventory of AI systems, review process for high-risk uses, evaluation and monitoring requirements (accuracy, bias, safety), human oversight, transparency, data protection, vendor review, and compliance with regulations such as the EU AI Act.
-
-Tip: Risk-based approach.`, 'D'],
-
-["GenAI", "What is your approach to generative AI in the enterprise?",
-`**Answer:** Enable broad productivity tools with guardrails, target a few high-value use cases with measurable outcomes (customer support, knowledge assistants, document processing, coding), build shared capabilities (model gateway, RAG platform, evaluation, guardrails), and manage cost and risk.
-
-Tip: Platform + use cases.`, 'D'],
-
-["GenAI", "Build vs buy for AI capabilities?",
-`**Answer:** Buy embedded AI in SaaS and commodity capabilities; build where proprietary data or processes create advantage; use foundation model APIs rather than training models from scratch in most cases.
-
-Tip: Differentiation logic.`, 'D'],
-
-["Platforms", "How do you choose data and AI platforms?",
-`**Answer:** Based on use cases, existing ecosystem, scalability, governance features, openness, total cost and talent availability — with proofs of concept and clear exit strategies.
-
-Tip: Avoid tool sprawl.`, 'D'],
-
-["Culture", "How do you build a data-driven culture?",
-`**Answer:** Executive sponsorship and role modeling, trusted metrics, self-service tools with training, data literacy programs, celebrating decisions made with data, and embedding analytics in business processes.
-
-Tip: Executives modeling behavior.`, 'D'],
-
-["Executives", "How do you partner with the executive team?",
-`**Answer:** Understand their priorities, translate data and AI into business outcomes, bring clear recommendations and trade-offs, and report value transparently.
-
-Tip: Business language.`, 'B'],
-
-["Board", "How do you present AI strategy to the board?",
-`**Answer:** Business opportunities and risks, competitive context, investment and expected returns, governance and risk management, progress and value delivered.
-
-Tip: Risk and value.`, 'D'],
-
-["Budget", "How do you manage a data and AI budget?",
-`**Answer:** Portfolio approach across foundations, use cases and run costs; FinOps for cloud and AI spend; stage-gated funding for initiatives; and regular value reviews.
-
-Tip: Stage gates.`, 'D'],
-
-["Cost", "How do you control AI and cloud costs?",
-`**Answer:** Cost visibility by team and use case, model routing to cheaper models, caching, right-sized infrastructure, budgets and alerts, and retiring low-value workloads.
-
-Tip: Cost per use case.`, 'D'],
-
-["Risk", "What are the main risks of enterprise AI?",
-`**Answer:** Inaccurate outputs, data leakage, privacy violations, bias, security attacks (prompt injection), IP and copyright issues, regulatory non-compliance, vendor lock-in, and reputational harm.
-
-Tip: Mitigations for each.`, 'D'],
-
-["Privacy", "How do you balance data use with privacy?",
-`**Answer:** Privacy by design, data minimization, consent management, anonymization and aggregation, access controls, and legal review — building trust with customers as a strategic asset.
-
-Tip: Trust as advantage.`, 'D'],
-
-["Quality", "How do you fix chronic data quality problems?",
-`**Answer:** Identify critical data elements and root causes (source processes, systems), assign business ownership, implement data contracts and automated checks, and track quality KPIs with leadership attention.
-
-Tip: Fix at source.`, 'D'],
-
-["Operating Model", "Centralized vs decentralized data teams?",
-`**Answer:** Centralized teams ensure standards and efficiency but can bottleneck; decentralized teams are close to the business but risk inconsistency. Federated models combine central platforms and governance with embedded domain teams.
-
-Tip: Federated balance.`, 'D'],
-
-["Scenario", "The CEO wants an AI strategy in 90 days. What do you do?",
-`**Answer:** Interview leaders for priorities, assess data readiness, run a use-case discovery workshop, pick 2–3 pilots with clear value, define guardrails, and present a roadmap with investment needs and quick wins.
-
-Tip: Pilots plus roadmap.`, 'D'],
-
-["Scenario", "An AI pilot succeeded but can't scale. Why, and what do you do?",
-`**Answer:** Common causes: no production data pipelines, lack of MLOps, unclear ownership, integration gaps, cost, or change management. Fix by building platform capabilities, assigning business owners, planning integration and adoption from the start.
-
-Tip: "Pilot purgatory."`, 'D'],
-
-["Scenario", "A model caused a customer-facing error that went viral. What do you do?",
-`**Answer:** Contain (disable or add human review), communicate transparently, investigate root cause, fix and strengthen evaluations and guardrails, and share lessons internally.
-
-Tip: Transparency and fixes.`, 'D'],
-
-["Behavioral", "Tell me about a data transformation you led.",
-`**Sample answer:** "I built a data and analytics organization from 12 to 60 people, moved to a cloud lakehouse with governance, and delivered use cases worth $25M annually — pricing optimization, churn reduction and supply chain forecasting."
-
-Tip: Scale and value.`, 'B'],
-
-["Behavioral", "Tell me about an AI initiative you stopped.",
-`**Sample answer:** "A computer vision project showed promise but required data we couldn't collect reliably. We stopped after the pilot and reinvested in a forecasting project with clearer ROI."
-
-Tip: Discipline.`, 'B'],
-
-["Behavioral", "How do you handle executives with unrealistic AI expectations?",
-`**Answer:** Educate with concrete examples of what works, set realistic timelines, start with pilots that show value, and be honest about limitations.
-
-Tip: Expectation management.`, 'B'],
-
-["Partnerships", "How do you work with vendors and consultancies?",
-`**Answer:** Use them to accelerate and fill skill gaps, keep strategy and core capabilities in-house, and manage with clear outcomes and knowledge transfer.
-
-Tip: Knowledge transfer.`, 'D'],
-
-["Literacy", "How do you upskill the broader workforce in AI?",
-`**Answer:** Role-based training, approved tools with guidelines, champions networks, use-case libraries, and measuring adoption and productivity.
-
-Tip: Champions.`, 'D'],
-
-["Metrics", "Which metrics would you report as head of data?",
-`**Answer:** Business value delivered, adoption of data products and AI tools, data quality scores, platform reliability and cost, time to insight, and talent metrics.
-
-Tip: Balanced scorecard.`, 'D'],
-
-["Monetization", "How can companies monetize data?",
-`**Answer:** Internally through better decisions and efficiency; externally through data products, insights for partners, or improved products — with privacy, legal and ethical constraints.
-
-Tip: Internal value first.`, 'D'],
-
-["Ethics", "How do you handle ethically ambiguous data uses?",
-`**Answer:** Use an ethics review process, consider customer expectations and potential harm, involve legal and diverse perspectives, and decline uses that undermine trust.
-
-Tip: Trust over short-term gain.`, 'D'],
-
-["Interview", "What would you ask the CEO?",
-`**Answer:** "Where do you see data and AI creating the most value?", "What's the current level of trust in data?", "What investment appetite exists?", "How will success be measured?"
-
-Tip: Strategic questions.`, 'B'],
-
-["Career", "Why are you ready to lead data and AI here?",
-`**Sample answer:** "I've built data organizations and platforms that delivered measurable value, led responsible AI adoption, and partnered closely with executives."
-
-Tip: Evidence.`, 'B'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I turn data and AI into business results — $25M in annual value at my last company — while building trusted platforms, strong teams and responsible governance."
-
-Tip: Proof.`, 'B'],
-
-["Agents", "How do you see AI agents changing operations?",
-`**Answer:** Agents can automate multi-step workflows (support, procurement, finance operations) using tools and enterprise data; value depends on process redesign, reliable integrations, guardrails, and human oversight for exceptions.
-
-Tip: Process redesign.`, 'D'],
-
-["Data Products", "How do you create a portfolio of data products?",
-`**Answer:** Identify reusable datasets and models with clear consumers, assign product owners, define SLAs and quality, publish in a catalog, and measure adoption.
-
-Tip: Reuse drives ROI.`, 'D'],
-
-["Change", "How do you drive adoption of analytics and AI tools?",
-`**Answer:** Co-design with users, integrate into existing workflows, train, provide support, measure usage, and iterate based on feedback.
-
-Tip: Workflow integration.`, 'D'],
-
-["Regulation", "How do you prepare for AI regulation?",
-`**Answer:** Inventory AI systems, classify risk, document models and data, implement evaluation and monitoring, establish accountability, and track regulatory developments (EU AI Act, state laws, sector guidance).
-
-Tip: Documentation.`, 'D'],
-
-["Security", "How do you secure AI systems?",
-`**Answer:** Access controls on data and models, protection against prompt injection and data exfiltration, secure model supply chain, monitoring, red-teaming, and incident response plans.
-
-Tip: Red-teaming.`, 'D'],
-
-["Experimentation", "How do you build an experimentation culture?",
-`**Answer:** Experimentation platform, training, guardrails for valid tests, sharing results (including failures), and leaders asking "how will we test this?"
-
-Tip: Leadership questions.`, 'D'],
-
-["Innovation", "How do you balance innovation with delivery?",
-`**Answer:** Allocate a portion of capacity to exploration with clear stage gates, while the majority delivers roadmap value.
-
-Tip: Portfolio allocation.`, 'D'],
-
-["Foundations", "How do you justify investment in data foundations?",
-`**Answer:** Link foundations to use cases they enable, quantify cost of poor data (rework, errors, delays), and deliver foundations incrementally alongside visible use cases.
-
-Tip: Foundations through use cases.`, 'D'],
-
-["Vision", "Where will enterprise data and AI be in five years?",
-`**Answer:** AI embedded in most business processes, agents handling routine work, semantic layers and governed data as critical infrastructure, stronger regulation, and data and AI literacy as core skills.
-
-Tip: Forward-looking.`, 'D'],
-
-["Team", "How do you build leaders in your organization?",
-`**Answer:** Identify high potentials, give stretch roles, coach, provide leadership training, and plan succession.
-
-Tip: Bench strength.`, 'B'],
-
-["Customer", "How can data and AI improve customer experience?",
-`**Answer:** Personalization, faster support with AI assistants, proactive service (predicting issues), better product recommendations, and understanding customer journeys.
-
-Tip: Examples.`, 'B'],
-
-["Operations", "How can data and AI improve operations?",
-`**Answer:** Forecasting and planning, predictive maintenance, process automation, anomaly detection, and optimization (pricing, routing, inventory).
-
-Tip: Examples with value.`, 'B'],
-
-["Metrics Trust", "How do you rebuild trust in data after repeated errors?",
-`**Answer:** Acknowledge issues, fix root causes visibly, certify key datasets, publish quality scores, and communicate improvements regularly.
-
-Tip: Transparency.`, 'D'],
-
-["Leadership", "What is your leadership style?",
-`**Answer:** Clear vision and priorities, empowerment with accountability, high standards for quality and ethics, transparent communication, and investment in people.
-
-Tip: Examples.`, 'B']
-];
-
-QB['da-head'] = (QB['da-head'] || []).concat([
-["Operating Model", "Should the data team report to the CIO, CFO, COO or CEO?",
-`**Answer:** It depends on strategy: under the CIO for platform strength, CFO for finance-led analytics, COO for operational focus, or directly to the CEO when data and AI are central to strategy. What matters most is executive sponsorship and business alignment.
-
-Tip: Sponsorship over org chart.`, 'D'],
-["Roadmap", "How do you sequence a multi-year data and AI roadmap?",
-`**Answer:** Year 1: foundations tied to 2–3 high-value use cases and governance basics. Year 2: scale platforms and self-service, expand use cases. Year 3: advanced AI and data products across the business — revisiting priorities quarterly.
-
-Tip: Value every quarter.`, 'D']
+QB["da-head"] = (QB["da-head"] || []).concat([
+["Role", "How do you define the role of a head of data and AI?", "**Why they ask:** to hear your leadership philosophy.\n\n**Answer:** Turning data and AI into business value: setting strategy aligned to company goals, building platforms and governance that make data trustworthy, leading teams across data engineering, analytics, data science and AI, prioritizing high-value use cases, managing risk (privacy, security, responsible AI), and building a data-driven culture with executive partners.\n\nTip: Value first, technology second.", "B"],
+["Strategy", "How do you build a data and AI strategy?", "**Why they ask:** the core of the role.\n\n**Answer:**\n\"I start with business objectives, not technology. Identify the high-value use cases — revenue, cost, risk, customer experience. Assess current capabilities — data, platforms, talent and governance. Define the target state and principles, then a prioritized roadmap that balances quick wins with foundations, the operating model and the investment needed — and how we'll measure value.\"\n\nTip: Make it use-case driven.", "D"],
+["Strategy", "How do you prioritize AI use cases?", "**Why they ask:** focus is everything.\n\n**Answer:**\n\"Score each one on business value, feasibility — data availability and complexity — time to value, risk and strategic alignment. Plot value against feasibility and start with use cases that have a clear business owner and measurable outcomes. No AI for AI's sake.\"\n\nTip: A value-by-feasibility matrix.", "D"],
+["Value", "How do you measure the value of data and AI investments?", "**Why they ask:** credibility.\n\n**Answer:**\n\"Tie each initiative to business KPIs with a baseline and a measurement plan — experiments where possible — covering revenue lift, cost savings, risk reduction or productivity. And report realized value, not activity like models built or dashboards delivered.\"\n\nTip: Realized versus projected value.", "D"],
+["Organization", "How would you organize a data and AI organization?", "**Why they ask:** organization design.\n\n**Answer:**\n\"Central platform and governance teams; analytics and data science squads embedded in business units — a hub-and-spoke model; AI and ML engineering; and a center of excellence for standards and enablement. With clear roles and career paths.\"\n\nTip: Hub-and-spoke.", "D"],
+["Talent", "How do you attract and retain data and AI talent?", "**Why they ask:** talent is scarce.\n\n**Answer:**\n\"Meaningful problems with visible impact, modern tools, strong technical leadership, clear career paths for both individual contributors and managers, learning opportunities, competitive pay and a healthy culture. Good people leave when their work never reaches production.\"\n\nTip: Impact and growth.", "B"],
+["Governance", "How do you establish data governance without slowing the business?", "**Why they ask:** governance versus speed.\n\n**Answer:**\n\"Focus on critical data and metrics first, assign owners, automate quality and access controls, certify trusted datasets, and show the value through faster, consistent reporting. Governance should feel like enablement, not a checkpoint.\"\n\nTip: Governance as enablement.", "D"],
+["Responsible AI", "How do you govern AI responsibly?", "**Why they ask:** risk leadership.\n\n**Answer:**\n\"An AI policy and risk classification, an inventory of AI systems, a review process for high-risk uses, evaluation and monitoring requirements for accuracy, bias and safety, human oversight, transparency, data protection, vendor review, and compliance with regulations like the EU AI Act.\"\n\nTip: A risk-based approach.", "D"],
+["GenAI", "What is your approach to generative AI in the enterprise?", "**Why they ask:** current priority.\n\n**Answer:**\n\"Enable broad productivity tools with guardrails, target a few high-value use cases with measurable outcomes — customer support, knowledge assistants, document processing, coding — and build shared capabilities: a model gateway, a RAG platform, evaluation and guardrails. And manage cost and risk from the start.\"\n\nTip: Platform plus use cases.", "D"],
+["GenAI", "Build vs buy for AI capabilities?", "**Why they ask:** investment judgment.\n\n**Answer:**\n\"Buy AI that's embedded in SaaS and commodity capabilities. Build where our proprietary data or processes create a real advantage. And in most cases use foundation model APIs rather than training models from scratch.\"\n\nTip: Differentiation logic.", "D"],
+["Platforms", "How do you choose data and AI platforms?", "**Why they ask:** platform decisions.\n\n**Answer:**\n\"Based on use cases, the existing ecosystem, scalability, governance features, openness, total cost and talent availability — validated with proofs of concept, and with clear exit strategies. And I avoid tool sprawl.\"\n\nTip: Avoid tool sprawl.", "D"],
+["Culture", "How do you build a data-driven culture?", "**Why they ask:** culture change.\n\n**Answer:**\n\"Executive sponsorship and executives modeling it themselves, trusted metrics, self-service tools with training, data literacy programs, celebrating decisions made with data, and embedding analytics into business processes. When the CEO asks 'what does the data say?' in every meeting, culture follows.\"\n\nTip: Executives model the behavior.", "D"],
+["Executives", "How do you partner with the executive team?", "**Why they ask:** executive presence.\n\n**Answer:**\n\"Understand their priorities, translate data and AI into business outcomes, bring clear recommendations and trade-offs, and report value transparently. In business language, never technical jargon.\"\n\nTip: Business language.", "B"],
+["Board", "How do you present AI strategy to the board?", "**Why they ask:** board communication.\n\n**Answer:**\n\"Business opportunities and risks, competitive context, investment and expected returns, governance and risk management, and progress and value delivered so far.\"\n\nTip: Cover risk and value.", "D"],
+["Budget", "How do you manage a data and AI budget?", "**Why they ask:** financial discipline.\n\n**Answer:**\n\"A portfolio approach across foundations, use cases and run costs; FinOps for cloud and AI spend; stage-gated funding so initiatives earn the next round; and regular value reviews.\"\n\nTip: Stage gates.", "D"],
+["Cost", "How do you control AI and cloud costs?", "**Why they ask:** AI costs grow quickly.\n\n**Answer:**\n\"Cost visibility by team and use case, routing work to cheaper models when quality allows, caching, right-sized infrastructure, budgets and alerts, and retiring low-value workloads. Cost per use case is the key number.\"\n\nTip: Track cost per use case.", "D"],
+["Risk", "What are the main risks of enterprise AI?", "**Why they ask:** risk awareness.\n\n**Answer:**\n\"Inaccurate outputs, data leakage, privacy violations, bias, security attacks like prompt injection, IP and copyright issues, regulatory non-compliance, vendor lock-in, and reputational harm. Each needs a specific mitigation — for example, groundedness evaluation for inaccuracy, and least-privilege tools for prompt injection.\"\n\nTip: Name mitigations for each.", "D"],
+["Privacy", "How do you balance data use with privacy?", "**Why they ask:** trust.\n\n**Answer:**\n\"Privacy by design, data minimization, consent management, anonymization and aggregation, access controls, and legal review. Customer trust is a strategic asset — losing it costs far more than any single use case gains.\"\n\nTip: Trust is an advantage.", "D"],
+["Quality", "How do you fix chronic data quality problems?", "**Why they ask:** persistent pain.\n\n**Answer:**\n\"Identify the critical data elements and the root causes — usually source processes or systems — assign business ownership, put in data contracts and automated checks, and track quality KPIs with leadership attention. Fix it at the source, not with downstream cleanup.\"\n\nTip: Fix at the source.", "D"],
+["Operating Model", "Centralized vs decentralized data teams?", "**Why they ask:** organizational trade-offs.\n\n**Answer:**\n\"Centralized teams ensure standards and efficiency but can become a bottleneck. Decentralized teams are close to the business but drift into inconsistency. A federated model combines central platforms and governance with embedded domain teams.\"\n\nTip: A federated balance.", "D"],
+["Scenario", "The CEO wants an AI strategy in 90 days. What do you do?", "**Why they ask:** speed with substance.\n\n**Answer:**\n\"Interview leaders for their priorities, assess data readiness, run a use-case discovery workshop, pick two or three pilots with clear value, define guardrails, and present a roadmap with investment needs and quick wins — with at least one pilot already underway by day 90.\"\n\nTip: Pilots plus a roadmap.", "D"],
+["Scenario", "An AI pilot succeeded but can't scale. Why, and what do you do?", "**Why they ask:** 'pilot purgatory' is common.\n\n**Answer:**\n\"The usual causes are no production data pipelines, no MLOps, unclear ownership, integration gaps, cost, or no change management. I'd fix it by building the platform capabilities, assigning a business owner, and planning integration and adoption from the start of every future pilot.\"\n\nTip: Name 'pilot purgatory'.", "D"],
+["Scenario", "A model caused a customer-facing error that went viral. What do you do?", "**Why they ask:** crisis leadership.\n\n**Answer:**\n\"Contain it immediately — disable the feature or add human review. Communicate transparently. Investigate the root cause, fix it, and strengthen evaluations and guardrails. Then share the lessons internally so it doesn't repeat elsewhere.\"\n\nTip: Transparency and fixes.", "D"],
+["Behavioral", "Tell me about a data transformation you led.", "**Why they ask:** proof at scale.\n\n**Answer:**\n\"I built a data and analytics organization from 12 to 60 people, moved us to a governed cloud lakehouse, and delivered use cases worth about $25 million a year — pricing optimization, churn reduction and supply chain forecasting.\"\n\nTip: Scale and value.", "B"],
+["Behavioral", "Tell me about an AI initiative you stopped.", "**Why they ask:** discipline.\n\n**Answer:**\n\"A computer vision project looked promising, but it needed data we couldn't collect reliably in our plants. We stopped after the pilot and reinvested in a forecasting project with clearer ROI — which paid back in under a year.\"\n\nTip: Show discipline.", "B"],
+["Behavioral", "How do you handle executives with unrealistic AI expectations?", "**Why they ask:** expectation management.\n\n**Answer:**\n\"Educate with concrete examples of what works and what doesn't, set realistic timelines, start with pilots that show real value, and be honest about limitations. Overpromising AI is the fastest way to lose credibility.\"\n\nTip: Manage expectations.", "B"],
+["Partnerships", "How do you work with vendors and consultancies?", "**Why they ask:** partner strategy.\n\n**Answer:**\n\"Use them to accelerate and fill skill gaps, keep strategy and core capabilities in-house, and manage them against clear outcomes, with knowledge transfer built into every engagement.\"\n\nTip: Require knowledge transfer.", "D"],
+["Literacy", "How do you upskill the broader workforce in AI?", "**Why they ask:** enterprise adoption.\n\n**Answer:**\n\"Role-based training, approved tools with clear guidelines, a champions network, a library of proven use cases, and measuring adoption and productivity.\"\n\nTip: Use champions.", "D"],
+["Metrics", "Which metrics would you report as head of data?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Business value delivered, adoption of data products and AI tools, data quality scores, platform reliability and cost, time to insight, and talent metrics. A balanced scorecard.\"\n\nTip: A balanced scorecard.", "D"],
+["Monetization", "How can companies monetize data?", "**Why they ask:** value creation.\n\n**Answer:**\n\"Internally, through better decisions and efficiency — that's usually the biggest value. Externally, through data products, insights for partners, or improving the products themselves — always within privacy, legal and ethical constraints.\"\n\nTip: Internal value first.", "D"],
+["Ethics", "How do you handle ethically ambiguous data uses?", "**Why they ask:** values.\n\n**Answer:**\n\"Run it through an ethics review, consider customer expectations and potential harm, involve legal and diverse perspectives, and decline uses that would undermine trust — even if they're legal.\"\n\nTip: Trust over short-term gain.", "D"],
+["Interview", "What would you ask the CEO?", "**Why they ask:** strategic curiosity.\n\n**Answer:**\n\"'Where do you see data and AI creating the most value?' 'What's the current level of trust in data?' 'What's the investment appetite?' And 'How will success be measured?'\"\n\nTip: Ask strategic questions.", "B"],
+["Career", "Why are you ready to lead data and AI here?", "**Why they ask:** readiness.\n\n**Answer:**\n\"I've built data organizations and platforms that delivered measurable value, led responsible AI adoption, and partnered closely with executives — the full scope this role needs.\"\n\nTip: Give evidence.", "B"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I turn data and AI into business results — about $25 million in annual value at my last company — while building trusted platforms, strong teams and responsible governance.\"\n\nTip: Proof.", "B"],
+["Agents", "How do you see AI agents changing operations?", "**Why they ask:** forward view.\n\n**Answer:**\n\"Agents can automate multi-step workflows — support, procurement, finance operations — using tools and enterprise data. But the value depends on redesigning the process, reliable integrations, guardrails, and human oversight for exceptions. Bolting an agent onto a broken process just automates the mess.\"\n\nTip: Process redesign.", "D"],
+["Data Products", "How do you create a portfolio of data products?", "**Why they ask:** reuse and ROI.\n\n**Answer:**\n\"Identify reusable datasets and models with clear consumers, assign product owners, define SLAs and quality, publish them in a catalog, and measure adoption. Reuse is what drives ROI.\"\n\nTip: Reuse drives ROI.", "D"],
+["Change", "How do you drive adoption of analytics and AI tools?", "**Why they ask:** value requires adoption.\n\n**Answer:**\n\"Co-design with users, integrate into the workflows they already use, train, provide support, measure usage, and iterate on feedback. A tool outside the workflow gets ignored.\"\n\nTip: Workflow integration.", "D"],
+["Regulation", "How do you prepare for AI regulation?", "**Why they ask:** compliance readiness.\n\n**Answer:**\n\"Inventory AI systems, classify their risk, document models and data, implement evaluation and monitoring, establish clear accountability, and track regulatory developments — the EU AI Act, state laws and sector guidance.\"\n\nTip: Documentation.", "D"],
+["Security", "How do you secure AI systems?", "**Why they ask:** new attack surface.\n\n**Answer:**\n\"Access controls on data and models, protection against prompt injection and data exfiltration, a secure model supply chain, monitoring, red-teaming before launch, and an incident response plan specific to AI.\"\n\nTip: Red-teaming.", "D"],
+["Experimentation", "How do you build an experimentation culture?", "**Why they ask:** evidence-based decisions.\n\n**Answer:**\n\"An experimentation platform, training, guardrails for valid tests, sharing results including failures, and leaders who routinely ask 'how will we test this?'\"\n\nTip: Leaders ask the question.", "D"],
+["Innovation", "How do you balance innovation with delivery?", "**Why they ask:** portfolio balance.\n\n**Answer:**\n\"Allocate a portion of capacity — say 15% — to exploration with clear stage gates, while most of the team delivers roadmap value.\"\n\nTip: Portfolio allocation.", "D"],
+["Foundations", "How do you justify investment in data foundations?", "**Why they ask:** foundations are hard to fund.\n\n**Answer:**\n\"Link foundations to the specific use cases they enable, quantify the cost of poor data — rework, errors, delays — and deliver foundations incrementally alongside visible use cases, so the business sees value every quarter.\"\n\nTip: Fund foundations through use cases.", "D"],
+["Vision", "Where will enterprise data and AI be in five years?", "**Why they ask:** vision.\n\n**Answer:**\n\"AI embedded in most business processes, agents handling routine work, semantic layers and governed data as critical infrastructure, stronger regulation, and data and AI literacy as core skills for everyone.\"\n\nTip: Be forward-looking.", "D"],
+["Team", "How do you build leaders in your organization?", "**Why they ask:** succession.\n\n**Answer:**\n\"Identify high potentials, give them stretch roles, coach them, provide leadership training, and plan succession for every key role.\"\n\nTip: Build bench strength.", "B"],
+["Customer", "How can data and AI improve customer experience?", "**Why they ask:** business value.\n\n**Answer:**\n\"Personalization, faster support with AI assistants, proactive service by predicting issues before customers report them, better product recommendations, and understanding customer journeys end to end.\"\n\nTip: Give examples.", "B"],
+["Operations", "How can data and AI improve operations?", "**Why they ask:** business value.\n\n**Answer:**\n\"Forecasting and planning, predictive maintenance, process automation, anomaly detection, and optimization — pricing, routing and inventory. For example, better demand forecasting can cut inventory by double digits.\"\n\nTip: Examples with value.", "B"],
+["Metrics Trust", "How do you rebuild trust in data after repeated errors?", "**Why they ask:** recovery leadership.\n\n**Answer:**\n\"Acknowledge the issues openly, fix root causes visibly, certify key datasets, publish quality scores, and communicate improvements regularly. Trust comes back slowly, through consistency.\"\n\nTip: Transparency.", "D"],
+["Leadership", "What is your leadership style?", "**Why they ask:** fit.\n\n**Answer:**\n\"Clear vision and priorities, empowerment with accountability, high standards for quality and ethics, transparent communication, and real investment in people. For example, every team member has a development plan we review twice a year.\"\n\nTip: Give examples.", "B"]
+]);
+
+QB["da-head"] = (QB["da-head"] || []).concat([
+["Operating Model", "Should the data team report to the CIO, CFO, COO or CEO?", "**Why they ask:** organizational judgment.\n\n**Answer:**\n\"It depends on strategy. Under the CIO for platform strength, the CFO for finance-led analytics, the COO for operational focus, or directly to the CEO when data and AI are central to the strategy. What matters most is executive sponsorship and business alignment.\"\n\nTip: Sponsorship over the org chart.", "D"],
+["Roadmap", "How do you sequence a multi-year data and AI roadmap?", "**Why they ask:** planning.\n\n**Answer:**\n\"Year one: foundations tied to two or three high-value use cases, plus governance basics. Year two: scale the platforms and self-service, and expand use cases. Year three: advanced AI and data products across the business. And I revisit priorities every quarter, so value shows up continuously.\"\n\nTip: Deliver value every quarter.", "D"]
 ]);

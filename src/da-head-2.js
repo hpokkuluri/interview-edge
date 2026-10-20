@@ -1,10 +1,4 @@
-QB['da-head'] = (QB['da-head'] || []).concat([
-["Operating Model", "Should the data team report to the CIO, CFO, COO or CEO?",
-`**Answer:** It depends on strategy: under the CIO for platform strength, CFO for finance-led analytics, COO for operational focus, or directly to the CEO when data and AI are central to strategy. What matters most is executive sponsorship and business alignment.
-
-Tip: Sponsorship over org chart.`, 'D'],
-["Roadmap", "How do you sequence a multi-year data and AI roadmap?",
-`**Answer:** Year 1: foundations tied to 2–3 high-value use cases and governance basics. Year 2: scale platforms and self-service, expand use cases. Year 3: advanced AI and data products across the business — revisiting priorities quarterly.
-
-Tip: Value every quarter.`, 'D']
+QB["da-head"] = (QB["da-head"] || []).concat([
+["Operating Model", "Should the data team report to the CIO, CFO, COO or CEO?", "**Why they ask:** organizational judgment.\n\n**Answer:**\n\"It depends on strategy. Under the CIO for platform strength, the CFO for finance-led analytics, the COO for operational focus, or directly to the CEO when data and AI are central to the strategy. What matters most is executive sponsorship and business alignment.\"\n\nTip: Sponsorship over the org chart.", "D"],
+["Roadmap", "How do you sequence a multi-year data and AI roadmap?", "**Why they ask:** planning.\n\n**Answer:**\n\"Year one: foundations tied to two or three high-value use cases, plus governance basics. Year two: scale the platforms and self-service, and expand use cases. Year three: advanced AI and data products across the business. And I revisit priorities every quarter, so value shows up continuously.\"\n\nTip: Deliver value every quarter.", "D"]
 ]);
