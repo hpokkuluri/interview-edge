@@ -1,10 +1,4 @@
-QB['cl-arch'] = (QB['cl-arch'] || []).concat([
-["Reviews", "How do you run an architecture review?",
-`**Answer:** Review requirements and constraints, walk through the design against Well-Architected pillars, identify risks and trade-offs, agree actions and owners, and document decisions.
-
-Tip: Pillar-based checklist.`, 'B'],
-["Cost", "How do you estimate cloud costs for a new design?",
-`**Answer:** Use pricing calculators with realistic usage assumptions (compute hours, storage, requests, data transfer), include environments beyond production, add growth scenarios, and validate with a pilot.
-
-Tip: Don't forget data transfer and non-prod.`, 'D']
+QB["cl-arch"] = (QB["cl-arch"] || []).concat([
+["Reviews", "How do you run an architecture review?", "**Why they ask:** process maturity.\n\n**Answer:**\n\"Review requirements and constraints, walk the design against the Well-Architected pillars, identify risks and trade-offs, agree actions with owners and dates, and record decisions as ADRs.\"\n\nTip: Pillar-based checklist.", "B"],
+["Cost", "How do you estimate cloud costs for a new design?", "**Why they ask:** cost accuracy.\n\n**Answer:**\n\"Pricing calculators with realistic usage — compute hours, storage, requests, data transfer — plus non-production environments, which are often 30 to 50% of the total, growth scenarios, and validation with a pilot's real bill.\"\n\nTip: Don't forget data transfer and non-prod.", "D"]
 ]);
