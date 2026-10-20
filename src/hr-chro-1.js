@@ -1,216 +1,45 @@
 // HR Director / CHRO. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['hr-chro'] = [
-["Role", "What is the role of a CHRO?",
-`**Why they ask:** to see executive, business-led thinking.
-
-**Answer:** Leads the people strategy that enables business strategy: talent and leadership, culture and engagement, organization design, total rewards, HR operations and technology, workforce planning, employee relations and risk — serving as advisor to the CEO and board (compensation committee).
-
-Tip: Business outcomes.`, 'B', 'E'],
-
-["Strategy", "How do you build a people strategy?",
-`**Answer:** Start from business strategy and challenges, assess workforce capabilities and culture, identify critical talent needs, set priorities (e.g. leadership bench, retention of critical skills, productivity), define initiatives and metrics, and secure executive alignment.
-
-Tip: Business-first.`, 'B', 'M'],
-
-["First 90 Days", "What would you do in your first 90 days?",
-`**Answer:** Meet executives and employees, review HR data (turnover, engagement, costs), assess HR team and systems, understand business priorities, identify quick wins, and present a people strategy and HR operating model.
-
-Tip: Listen, assess, plan.`, 'B', 'M'],
-
-["Operating Model", "How do you structure an HR function?",
-`**Answer:** HRBPs aligned to business units, centers of excellence (talent acquisition, total rewards, L&D, DEI/culture), and shared services/HR operations with technology and self-service — sized to company scale.
-
-Tip: Three-pillar model.`, 'B', 'M'],
-
-["Board", "How do you work with the board?",
-`**Answer:** Support the compensation committee on executive pay, CEO succession planning, culture and human capital reporting, and risk oversight of people issues.
-
-Tip: CEO succession.`, 'D', 'M'],
-
-["Succession", "How do you run CEO and executive succession planning?",
-`**Answer:** Define future leadership requirements, assess internal candidates, create development plans, benchmark externally, maintain emergency succession plans, and review with the board regularly.
-
-Tip: Emergency plan.`, 'D', 'S'],
-
-["Culture", "How do you transform culture?",
-`**Answer:** Define desired behaviors linked to strategy, model from leadership, align systems (hiring, promotion, rewards, recognition), communicate stories, and measure progress.
-
-Tip: Systems shape behavior.`, 'D', 'M'],
-
-["Analytics", "How do you use people analytics?",
-`**Answer:** Predict attrition, analyze engagement drivers, workforce cost and productivity, DEI metrics, and link people metrics to business outcomes.
-
-Tip: Business linkage.`, 'D', 'M'],
-
-["HR Tech", "How do you choose HR technology?",
-`**Answer:** Define needs, integrated HCM vs best-of-breed, user experience, data and integration, total cost and vendor viability; plan change management.
-
-Tip: Employee experience.`, 'D', 'M'],
-
-["Cost", "How do you manage workforce costs?",
-`**Answer:** Workforce planning, span and layer optimization, contingent workforce strategy, benefits cost management, and productivity improvements — balancing cost with capability.
-
-Tip: Spans and layers.`, 'D', 'M'],
-
-["M&A", "What's HR's role in M&A?",
-`**Answer:** People due diligence, culture assessment, retention of key talent, organizational design, harmonizing compensation and benefits, and integration communications.
-
-Tip: Culture integration.`, 'D', 'M'],
-
-["Layoffs", "How do you lead a layoff responsibly?",
-`**Answer:** Clear rationale, fair selection with legal review, WARN compliance, generous and clear severance, respectful notification, outplacement support, and attention to remaining employees.
-
-Tip: Dignity.`, 'D', 'M'],
-
-["Leadership", "How do you develop leaders?",
-`**Answer:** Leadership competency model, assessment, development programs, coaching, stretch roles and accountability for developing others.
-
-Tip: Accountability.`, 'B', 'M'],
-
-["AI", "How should HR approach AI?",
-`**Answer:** Reskill workforce for AI-augmented roles, redesign jobs, set AI use policies, ensure fair and compliant AI in HR processes, and use AI to improve HR service delivery.
-
-Tip: Reskilling.`, 'D', 'M'],
-
-["Hybrid Work", "How do you set hybrid work policy?",
-`**Answer:** Align with business needs and culture, gather data on productivity and engagement, define principles (team-level norms), equip managers, and review regularly.
-
-Tip: Team norms.`, 'B', 'M'],
-
-["Employee Relations", "How do you manage people risk?",
-`**Answer:** Strong policies and training, effective complaint channels, consistent investigations, compliance monitoring, and early intervention on hotspots.
-
-Tip: Early intervention.`, 'B', 'M'],
-
-["Engagement", "How do you raise engagement company-wide?",
-`**Answer:** Manager effectiveness, growth opportunities, recognition, communication from leadership, and acting visibly on feedback.
-
-Tip: Managers matter most.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a people strategy that drove business results.",
-`**Sample answer:** "Sales attrition was hurting revenue. We redesigned onboarding, comp plans and manager training; first-year sales attrition fell from 45% to 28%, and ramp time dropped by two months."
-
-Tip: Business results.`, 'B', 'S'],
-
-["Behavioral", "Tell me about advising the CEO on a difficult decision.",
-`**Sample answer:** "The CEO wanted to keep a high-performing executive despite toxic behavior. I presented engagement data and risk, and we transitioned the executive out with a strong succession plan."
-
-Tip: Courageous advice.`, 'B', 'S'],
-
-["Behavioral", "Tell me about building an HR team.",
-`**Answer:** Assess capabilities, hire strong COE leaders and HRBPs, develop the team, and shift from transactional to strategic.
-
-Tip: Capability.`, 'B', 'M'],
-
-["Certifications", "Which credentials matter?",
-`**Answer:** SHRM-SCP, SPHR, and executive education; track record matters most.
-
-Tip: Track record.`, 'B', 'E'],
-
-["Career", "Why do you want to be our CHRO?",
-`**Answer:** Connect to the company's mission, stage and people challenges — show research into their business.
-
-Tip: Research.`, 'B', 'S'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I connect people strategy to business results — reducing attrition, building leadership benches and guiding culture through change."
-
-Tip: Proof.`, 'B', 'S'],
-
-["Metrics", "What HR metrics belong on an executive dashboard?",
-`**Answer:** Headcount and cost vs plan, regrettable turnover, engagement, succession coverage for critical roles, time to fill critical roles, internal mobility, DEI representation, and safety where relevant.
-
-Tip: Critical roles.`, 'B', 'M'],
-
-["Human Capital Reporting", "What human capital disclosures do public companies make?",
-`**Answer:** SEC requires a description of human capital resources and measures material to the business in the 10-K; many companies report headcount, turnover, engagement and development metrics.
-
-Tip: Materiality.`, 'D', 'M'],
-
-["Labor Relations", "How do you approach labor relations?",
-`**Answer:** Respect legal rights, maintain good relationships with unions where present, negotiate in good faith, and address employee concerns proactively.
-
-Tip: Proactive engagement.`, 'D', 'M'],
-
-["Compliance", "Which regulatory trends affect HR strategy?",
-`**Answer:** Pay transparency, AI hiring regulations, paid leave expansion, non-compete restrictions, and changing DEI legal landscape.
-
-Tip: Stay current.`, 'D', 'M'],
-
-["Workforce Planning", "How do you plan for future skills?",
-`**Answer:** Identify future capabilities from strategy, assess current skills, and close gaps via reskilling, hiring, partnerships and automation.
-
-Tip: Skills-based.`, 'D', 'M'],
-
-["Skills-based", "What is a skills-based organization?",
-`**Answer:** Using skills rather than job titles and degrees for hiring, mobility and development — enabled by skills taxonomies and talent marketplaces.
-
-Tip: Mobility.`, 'D', 'M'],
-
-["Wellbeing", "How do you support employee wellbeing?",
-`**Answer:** Benefits (mental health, EAP), manageable workloads, flexibility, manager training, and a culture that supports rest.
-
-Tip: Workload.`, 'B', 'M'],
-
-["Change", "How do you lead the HR team through change?",
-`**Answer:** Clear vision, involvement, development, and quick wins to build credibility.
-
-Tip: Quick wins.`, 'B', 'E'],
-
-["Budget", "How do you justify HR investments?",
-`**Answer:** Link to outcomes (turnover cost savings, productivity, time to fill), using ROI estimates.
-
-**Example:** reducing turnover of 100 engineers by 5% saves ~5 × $100K replacement cost = $500K.
-
-Tip: Turnover cost.`, 'D', 'M'],
-
-["Ethics", "How do you handle misconduct by an executive?",
-`**Answer:** Independent investigation (possibly external), involve board/legal as appropriate, act consistently regardless of seniority.
-
-Tip: Independence.`, 'D', 'S'],
-
-["Scenario", "Engagement is falling after a reorganization. What do you do?",
-`**Answer:** Listen (pulse surveys, focus groups), clarify roles and priorities, equip managers, communicate progress and quick fixes.
-
-Tip: Clarity.`, 'B', 'M'],
-
-["Scenario", "The CEO wants to cut 15% of the workforce quickly. How do you advise?",
-`**Answer:** Clarify goals and alternatives (attrition, hiring freeze, cost cuts), plan selection fairly and legally, communication, and support — and protect critical capabilities.
-
-Tip: Alternatives.`, 'D', 'S'],
-
-["Employee Voice", "How do you capture employee voice?",
-`**Answer:** Surveys, pulse checks, town halls, skip-levels, ERGs and listening tours — closing the loop with actions.
-
-Tip: Close the loop.`, 'B', 'E'],
-
-["Talent Density", "How do you raise talent quality?",
-`**Answer:** Raise hiring bar, invest in development, manage performance actively, and retain top performers through growth and rewards.
-
-Tip: Hiring bar.`, 'B', 'M'],
-
-["Global", "What challenges come with global HR?",
-`**Answer:** Local labor laws, works councils, cultural differences, global mobility, and consistent yet localized policies.
-
-Tip: Works councils.`, 'D', 'M'],
-
-["Vision", "What will HR look like in five years?",
-`**Answer:** AI-enabled service delivery, skills-based talent models, data-driven decisions, flexible work, and focus on human skills and leadership.
-
-Tip: Strategic view.`, 'B', 'S'],
-
-["Partnership", "How do you partner with the CFO?",
-`**Answer:** Joint workforce planning, headcount and cost management, compensation budgeting, and productivity metrics.
-
-Tip: Shared numbers.`, 'B', 'M'],
-
-["Communication", "How do you communicate difficult news to employees?",
-`**Answer:** Honest, timely, clear about impacts and next steps, delivered by leaders with support resources.
-
-Tip: Honesty.`, 'B', 'E'],
-
-["Retention", "How do you retain critical talent?",
-`**Answer:** Identify critical roles and people, stay interviews, career paths, competitive rewards, recognition and leadership attention.
-
-Tip: Stay interviews.`, 'B', 'M']
-];
+QB["hr-chro"] = (QB["hr-chro"] || []).concat([
+["Role", "What is the role of a CHRO?", "**Why they ask:** to see executive, business-led thinking.\n\n**Answer:** Leads the people strategy that enables business strategy: talent and leadership, culture and engagement, organization design, total rewards, HR operations and technology, workforce planning, employee relations and risk — serving as advisor to the CEO and board (compensation committee).\n\nTip: Business outcomes.", "B", "E"],
+["Strategy", "How do you build a people strategy?", "**Why they ask:** strategic HR leadership.\n\n**Answer:**\n\"I start from the business strategy and its biggest challenges, not from HR programs. Then assess workforce capabilities and culture, identify the critical talent that strategy depends on, set three or four priorities — say, a leadership bench for international expansion, retaining scarce engineering skills, and manager effectiveness — define initiatives and metrics for each, and get executive alignment. If the company plans to double revenue in three years, the people strategy has to answer where the leaders and skills will come from.\"\n\nTip: Business-first.", "B", "M"],
+["First 90 Days", "What would you do in your first 90 days?", "**Why they ask:** onboarding approach.\n\n**Answer:**\n\"Meet every executive and a wide cross-section of employees, review HR data — turnover, engagement, costs — assess the HR team and systems, and understand business priorities. Then identify a couple of quick wins and, around day 90, present a people strategy and HR operating model to the CEO and leadership team. Listen, assess, then plan.\"\n\nTip: Listen, assess, plan.", "B", "M"],
+["Operating Model", "How do you structure an HR function?", "**Why they ask:** organizational design.\n\n**Answer:**\n\"The three-pillar model, sized to the company: HR business partners aligned to business units; centers of excellence for talent acquisition, total rewards, learning, and culture and inclusion; and shared services for HR operations, with technology and self-service handling routine questions. In a 1,500-person company the COEs might be one or two people each; at 30,000 they're full teams.\"\n\nTip: Three-pillar model.", "B", "M"],
+["Board", "How do you work with the board?", "**Why they ask:** governance responsibility.\n\n**Answer:**\n\"I support the compensation committee on executive pay, lead CEO succession planning with the board, report on culture and human capital, and help the board oversee people risks. CEO succession is the most important — an emergency plan must exist even when the CEO is going nowhere.\"\n\nTip: CEO succession.", "D", "M"],
+["Succession", "How do you run CEO and executive succession planning?", "**Why they ask:** a critical CHRO responsibility.\n\n**Answer:**\n\"Define what future leadership requires based on strategy, assess internal candidates objectively, build development plans to close their gaps, benchmark against external talent, maintain an emergency succession plan, and review it with the board at least annually.\"\n\nTip: Emergency plan.", "D", "S"],
+["Culture", "How do you transform culture?", "**Why they ask:** culture leadership.\n\n**Answer:**\n\"Define the desired behaviors in concrete terms linked to strategy, have leaders model them visibly, align systems — hiring, promotion, rewards and recognition — tell stories of the behavior in action, and measure progress. Systems shape behavior: if we say we value collaboration but promote lone heroes, people follow the promotions.\"\n\nTip: Systems shape behavior.", "D", "M"],
+["Analytics", "How do you use people analytics?", "**Why they ask:** data-driven HR.\n\n**Answer:**\n\"Predict attrition risk, analyze engagement drivers, understand workforce cost and productivity, track representation, and above all link people metrics to business outcomes — like showing that teams with high manager-effectiveness scores have 20% lower turnover and better customer scores.\"\n\nTip: Business linkage.", "D", "M"],
+["HR Tech", "How do you choose HR technology?", "**Why they ask:** systems decisions.\n\n**Answer:**\n\"Define needs first, then weigh an integrated HCM suite against best-of-breed tools, user experience for employees and managers, data and integration, total cost and vendor viability — and plan change management, because adoption decides the value.\"\n\nTip: Employee experience.", "D", "M"],
+["Cost", "How do you manage workforce costs?", "**Why they ask:** financial partnership.\n\n**Answer:**\n\"Workforce planning tied to the business plan, span-and-layer optimization — managers with two direct reports are expensive — a deliberate contingent workforce strategy, benefits cost management and productivity improvements, always balancing cost against capability.\"\n\nTip: Spans and layers.", "D", "M"],
+["M&A", "What's HR's role in M&A?", "**Why they ask:** transaction experience.\n\n**Answer:**\n\"People due diligence — key talent, liabilities, culture — retention plans for critical people, organization design, harmonizing compensation and benefits, and integration communications. Culture clashes sink more deals than systems do.\"\n\nTip: Culture integration.", "D", "M"],
+["Layoffs", "How do you lead a layoff responsibly?", "**Why they ask:** handling hard decisions.\n\n**Answer:**\n\"A clear business rationale, fair selection criteria with legal review including adverse impact analysis, WARN Act compliance, generous and clear severance, respectful one-on-one notification by managers, outplacement support — and real attention to the people who stay, who are watching how colleagues are treated.\"\n\nTip: Dignity.", "D", "M"],
+["Leadership", "How do you develop leaders?", "**Why they ask:** leadership pipeline.\n\n**Answer:**\n\"A leadership competency model, assessment, development programs, coaching, stretch assignments, and holding leaders accountable for developing others — in their goals and their reviews.\"\n\nTip: Accountability.", "B", "M"],
+["AI", "How should HR approach AI?", "**Why they ask:** a top current topic.\n\n**Answer:**\n\"Reskill the workforce for AI-augmented roles, redesign jobs around what AI changes, set clear AI use policies, make sure AI used in HR processes like screening is fair and compliant with new regulations, and use AI to improve HR service itself — like an assistant answering policy questions instantly.\"\n\nTip: Reskilling.", "D", "M"],
+["Hybrid Work", "How do you set hybrid work policy?", "**Why they ask:** current workplace issue.\n\n**Answer:**\n\"Align with business needs and culture, gather data on productivity, engagement and retention, set clear principles with room for team-level norms, equip managers to lead hybrid teams, and review regularly.\"\n\nTip: Team norms.", "B", "M"],
+["Employee Relations", "How do you manage people risk?", "**Why they ask:** risk management.\n\n**Answer:**\n\"Strong policies and training, trusted complaint channels, consistent investigations, compliance monitoring, and early intervention on hotspots that the data — exit interviews, complaints, survey comments — reveals.\"\n\nTip: Early intervention.", "B", "M"],
+["Engagement", "How do you raise engagement company-wide?", "**Why they ask:** engagement strategy.\n\n**Answer:**\n\"Manager effectiveness above all, real growth opportunities, recognition, honest communication from leadership, and visibly acting on feedback — 'you said, we did' — so people believe surveys matter.\"\n\nTip: Managers matter most.", "B", "M"],
+["Behavioral", "Tell me about a people strategy that drove business results.", "**Why they ask:** proof.\n\n**Answer:**\n\"Sales attrition was hurting revenue. We redesigned onboarding, comp plans and manager training. First-year sales attrition fell from 45% to 28%, and ramp time dropped by two months.\"\n\nTip: Business results.", "B", "S"],
+["Behavioral", "Tell me about advising the CEO on a difficult decision.", "**Why they ask:** courage.\n\n**Answer:**\n\"The CEO wanted to keep a high-performing executive despite toxic behavior. I presented engagement data, exit interview themes and legal risk, and we transitioned the executive out with a strong succession plan.\"\n\nTip: Courageous advice.", "B", "S"],
+["Behavioral", "Tell me about building an HR team.", "**Why they ask:** team leadership.\n\n**Answer:**\n\"I inherited a largely transactional team. I assessed capabilities, hired strong COE leaders and HRBPs, developed the people who wanted to grow, moved routine work to shared services, and within 18 months business leaders were inviting HRBPs into planning meetings.\"\n\nTip: Capability.", "B", "M"],
+["Certifications", "Which credentials matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"SHRM-SCP, SPHR and executive education help, but track record matters most at this level.\"\n\nTip: Track record.", "B", "E"],
+["Career", "Why do you want to be our CHRO?", "**Why they ask:** genuine motivation.\n\n**Answer:**\n\"You're scaling quickly into new markets, and the people challenge is building leaders fast enough while keeping the culture that got you here. I've led that stage twice, and your commitment to promoting from within matches how I like to build organizations.\"\n\nTip: Research.", "B", "S"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I connect people strategy to business results — reducing attrition, building leadership benches and guiding culture through change.\"\n\nTip: Proof.", "B", "S"],
+["Metrics", "What HR metrics belong on an executive dashboard?", "**Why they ask:** metrics judgment.\n\n**Answer:**\n\"Headcount and cost against plan, regrettable turnover, engagement, succession coverage for critical roles, time to fill critical roles, internal mobility, representation, and safety where relevant. Critical roles get the most attention, because that's where risk concentrates.\"\n\nTip: Critical roles.", "B", "M"],
+["Human Capital Reporting", "What human capital disclosures do public companies make?", "**Why they ask:** governance knowledge.\n\n**Answer:**\n\"The SEC requires a description of human capital resources and any measures material to the business in the 10-K. Many companies report headcount, turnover, engagement and development metrics; the principle is materiality to the business.\"\n\nTip: Materiality.", "D", "M"],
+["Labor Relations", "How do you approach labor relations?", "**Why they ask:** employee relations at scale.\n\n**Answer:**\n\"Respect employees' legal rights, maintain constructive relationships with unions where they're present, negotiate in good faith, and address employee concerns proactively, so problems are solved before they become disputes.\"\n\nTip: Proactive engagement.", "D", "M"],
+["Compliance", "Which regulatory trends affect HR strategy?", "**Why they ask:** awareness of change.\n\n**Answer:**\n\"Pay transparency laws spreading across states and the EU, AI hiring regulations, paid leave expansion, restrictions on non-competes, and a changing legal landscape for DEI programs. Each affects how we design pay, hiring and inclusion work.\"\n\nTip: Stay current.", "D", "M"],
+["Workforce Planning", "How do you plan for future skills?", "**Why they ask:** workforce planning.\n\n**Answer:**\n\"Identify the capabilities the strategy needs in three years, assess current skills, and close gaps through reskilling, hiring, partnerships and automation — choosing the mix by time and cost.\"\n\nTip: Skills-based.", "D", "M"],
+["Skills-based", "What is a skills-based organization?", "**Why they ask:** modern talent models.\n\n**Answer:**\n\"One that uses skills rather than job titles and degrees for hiring, mobility and development, enabled by skills taxonomies and internal talent marketplaces. It widens talent pools and lets people move into new roles based on what they can do.\"\n\nTip: Mobility.", "D", "M"],
+["Wellbeing", "How do you support employee wellbeing?", "**Why they ask:** holistic people care.\n\n**Answer:**\n\"Benefits like mental health coverage and an EAP, manageable workloads, flexibility, manager training to spot burnout, and a culture where leaders actually take vacations. Workload is the part most programs ignore.\"\n\nTip: Workload.", "B", "M"],
+["Change", "How do you lead the HR team through change?", "**Why they ask:** leading your own function.\n\n**Answer:**\n\"A clear vision for what HR will be, involving the team in designing the change, investing in their development, and delivering quick wins that build credibility with the business.\"\n\nTip: Quick wins.", "B", "E"],
+["Budget", "How do you justify HR investments?", "**Why they ask:** business acumen.\n\n**Answer:**\n\"Link them to outcomes — turnover cost, productivity, time to fill — with ROI estimates. Reducing turnover among 100 engineers by 5 points means 5 fewer departures; at roughly $100K replacement cost each, that's $500K a year.\"\n\nTip: Turnover cost.", "D", "M"],
+["Ethics", "How do you handle misconduct by an executive?", "**Why they ask:** integrity.\n\n**Answer:**\n\"An independent investigation — often external — with the board and legal involved as appropriate, and consistent action regardless of seniority. Employees watch closely whether rules apply at the top.\"\n\nTip: Independence.", "D", "S"],
+["Scenario", "Engagement is falling after a reorganization. What do you do?", "**Why they ask:** change recovery.\n\n**Answer:**\n\"Listen first through pulse surveys and focus groups, clarify roles and priorities — confusion is usually the root cause — equip managers to have those conversations, and communicate progress and quick fixes.\"\n\nTip: Clarity.", "B", "M"],
+["Scenario", "The CEO wants to cut 15% of the workforce quickly. How do you advise?", "**Why they ask:** strategic counsel.\n\n**Answer:**\n\"Clarify the goal and whether alternatives — attrition, a hiring freeze, non-people cost cuts — get part of the way. If cuts are needed, plan fair and legal selection, communications and support, and protect the critical capabilities the company needs to recover.\"\n\nTip: Alternatives.", "D", "S"],
+["Employee Voice", "How do you capture employee voice?", "**Why they ask:** listening strategy.\n\n**Answer:**\n\"Engagement surveys, pulse checks, town halls, skip-level meetings, employee resource groups and listening tours — and closing the loop with visible actions, or people stop talking.\"\n\nTip: Close the loop.", "B", "E"],
+["Talent Density", "How do you raise talent quality?", "**Why they ask:** talent strategy.\n\n**Answer:**\n\"Raise the hiring bar with structured interviews, invest in development, manage performance actively, and retain top performers through growth and rewards.\"\n\nTip: Hiring bar.", "B", "M"],
+["Global", "What challenges come with global HR?", "**Why they ask:** global experience.\n\n**Answer:**\n\"Different labor laws, works councils that must be consulted in many European countries, cultural differences, global mobility, and balancing consistent policies with local adaptation.\"\n\nTip: Works councils.", "D", "M"],
+["Vision", "What will HR look like in five years?", "**Why they ask:** vision.\n\n**Answer:**\n\"AI-enabled service delivery, skills-based talent models, decisions driven by data, flexible work as the norm, and HR focused on human skills, leadership and organizational design.\"\n\nTip: Strategic view.", "B", "S"],
+["Partnership", "How do you partner with the CFO?", "**Why they ask:** executive partnership.\n\n**Answer:**\n\"Joint workforce planning, headcount and cost management, compensation budgeting and productivity metrics — working from one shared set of numbers.\"\n\nTip: Shared numbers.", "B", "M"],
+["Communication", "How do you communicate difficult news to employees?", "**Why they ask:** communication under pressure.\n\n**Answer:**\n\"Honestly, promptly and clearly about impacts and next steps, delivered by leaders rather than by email, with support resources ready.\"\n\nTip: Honesty.", "B", "E"],
+["Retention", "How do you retain critical talent?", "**Why they ask:** retention strategy.\n\n**Answer:**\n\"Identify critical roles and people, hold stay interviews, build career paths, offer competitive rewards and recognition, and give them leadership attention — a call from the CEO matters more than people assume.\"\n\nTip: Stay interviews.", "B", "M"]
+]);

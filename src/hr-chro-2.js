@@ -1,34 +1,10 @@
-QB['hr-chro'] = (QB['hr-chro']||[]).concat([
-["Compensation Committee", "What does the compensation committee review?",
-`**Answer:** CEO and executive pay, incentive plan design and payouts, equity plans and share usage, peer groups, the say-on-pay outcomes, the clawback policy, director compensation, and often human capital topics and succession.
-
-Tip: Board governance.`, 'D', 'M'],
-["Talent Reviews", "How do you make executive talent reviews meaningful?",
-`**Answer:** Base them on data (performance, 360s, potential assessments), use calibrated discussion, take actions (moves, development, exits), and follow up on commitments.
-
-Tip: Actions follow.`, 'B', 'M'],
-["Productivity", "How do you link HR to productivity?",
-`**Answer:** Track revenue or output per employee, time to productivity for new hires, manager effectiveness and engagement against performance, and invest in what moves those numbers.
-
-Tip: Revenue per employee.`, 'D', 'M'],
-["Employer Reputation", "How do you manage employer reputation risk?",
-`**Answer:** Live the EVP, monitor reviews and social media, handle issues transparently, and prepare crisis communications.
-
-Tip: Authenticity.`, 'B', 'M'],
-["Crisis", "How did HR lead through a crisis such as COVID?",
-`**Sample answer:** "We set up remote work in a week, protected frontline safety, communicated daily, adjusted leave and benefits, and supported managers. Engagement rose despite the uncertainty."
-
-Tip: Speed and care.`, 'B', 'M'],
-["DEI Landscape", "How do you approach inclusion given changing legal guidance?",
-`**Answer:** Focus on fair, merit-based processes open to all, inclusive leadership and employee experience, work with legal counsel on program design, and stay transparent about goals.
-
-Tip: Fair processes for all.`, 'D', 'M'],
-["HR Service", "How do you improve HR service delivery?",
-`**Answer:** Tiered service model (self-service, HR help desk, specialists), case management tools, AI assistants for common questions, SLAs and employee feedback.
-
-Tip: Tiered model.`, 'B', 'M'],
-["Scenario", "Two executives are in open conflict, affecting their teams. What do you do?",
-`**Answer:** Meet each to understand perspectives, facilitate a structured conversation on shared goals and decision rights, involve the CEO if needed, and coach both. Escalate if behavior doesn't change.
-
-Tip: CEO involvement.`, 'D', 'M']
+QB["hr-chro"] = (QB["hr-chro"] || []).concat([
+["Compensation Committee", "What does the compensation committee review?", "**Why they ask:** board governance.\n\n**Answer:**\n\"CEO and executive pay, incentive plan design and payouts, equity plans and share usage, peer groups, say-on-pay results, the clawback policy, director compensation, and increasingly human capital topics and succession.\"\n\nTip: Board governance.", "D", "M"],
+["Talent Reviews", "How do you make executive talent reviews meaningful?", "**Why they ask:** talent governance.\n\n**Answer:**\n\"Base them on data — performance, 360s, potential assessments — run calibrated discussions, take real actions — moves, development, exits — and follow up on those commitments at the next review.\"\n\nTip: Actions follow.", "B", "M"],
+["Productivity", "How do you link HR to productivity?", "**Why they ask:** business impact.\n\n**Answer:**\n\"Track revenue or output per employee, time to productivity for new hires, and manager effectiveness and engagement against performance, then invest in what moves those numbers.\"\n\nTip: Revenue per employee.", "D", "M"],
+["Employer Reputation", "How do you manage employer reputation risk?", "**Why they ask:** brand protection.\n\n**Answer:**\n\"Live the employee value proposition, monitor reviews and social media, handle issues transparently, and have crisis communications ready.\"\n\nTip: Authenticity.", "B", "M"],
+["Crisis", "How did HR lead through a crisis such as COVID?", "**Why they ask:** crisis leadership.\n\n**Answer:**\n\"We moved to remote work in a week, protected frontline safety, communicated daily, adjusted leave and benefits, and supported managers with guidance. Engagement actually rose despite the uncertainty.\"\n\nTip: Speed and care.", "B", "M"],
+["DEI Landscape", "How do you approach inclusion given changing legal guidance?", "**Why they ask:** navigating a contested area.\n\n**Answer:**\n\"Focus on fair, merit-based processes open to everyone, inclusive leadership and a good employee experience for all, work closely with legal counsel on program design, and be transparent about goals.\"\n\nTip: Fair processes for all.", "D", "M"],
+["HR Service", "How do you improve HR service delivery?", "**Why they ask:** operational excellence.\n\n**Answer:**\n\"A tiered service model — self-service, an HR help desk, then specialists — case management tools, AI assistants for common questions, SLAs and regular employee feedback.\"\n\nTip: Tiered model.", "B", "M"],
+["Scenario", "Two executives are in open conflict, affecting their teams. What do you do?", "**Why they ask:** executive coaching.\n\n**Answer:**\n\"Meet each to understand their perspective, facilitate a structured conversation about shared goals and decision rights, involve the CEO when needed, and coach both. If behavior doesn't change, it becomes a performance issue.\"\n\nTip: CEO involvement.", "D", "M"]
 ]);
