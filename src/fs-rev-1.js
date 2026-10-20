@@ -1,246 +1,50 @@
 // Revenue Accountant. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fs-rev'] = [
-["ASC 606", "Explain the five steps of ASC 606.",
-`**Why they ask:** the core of the role.
-
-**Answer:**
-1. Identify the contract with a customer.
-2. Identify the performance obligations (distinct goods or services).
-3. Determine the transaction price (including variable consideration).
-4. Allocate the price to performance obligations based on standalone selling prices (SSP).
-5. Recognize revenue when (or as) each obligation is satisfied — at a point in time or over time.
-
-Tip: Walk through an example.`, 'B', 'E'],
-
-["ASC 606", "Walk through a software bundle example.",
-`**Answer:** A customer pays $120,000 for a perpetual license (SSP $80,000), one year of support (SSP $30,000) and implementation (SSP $10,000). Total SSP $120,000 equals the price, so allocation matches SSP. License revenue $80,000 at delivery; support $30,000 ratably ($2,500/month); implementation $10,000 as services are performed (if distinct).
-
-**If the price were $108,000 (10% discount):** allocate proportionally — license $72,000, support $27,000, implementation $9,000.
-
-Tip: Show the allocation math.`, 'D', 'M'],
-
-["Performance Obligations", "What makes a good or service distinct?",
-`**Answer:** It's capable of being distinct (customer can benefit from it alone or with readily available resources) and distinct within the context of the contract (not highly integrated, significantly modified, or highly interdependent with other promises).
-
-Tip: Two-part test.`, 'D', 'M'],
-
-["Variable Consideration", "How do you handle variable consideration?",
-`**Answer:** Estimate using expected value (many outcomes) or most likely amount (binary outcomes), and include it only to the extent a significant reversal is not probable (the constraint). Examples: rebates, volume discounts, penalties, usage fees, rights of return.
-
-Tip: The constraint.`, 'D', 'M'],
-
-["SSP", "How do you determine standalone selling price?",
-`**Answer:** Observable prices when sold separately; otherwise estimate via adjusted market assessment, expected cost plus margin, or residual approach (only when SSP is highly variable or uncertain).
-
-Tip: Residual approach limits.`, 'D', 'M'],
-
-["Over Time", "When is revenue recognized over time?",
-`**Answer:** When the customer simultaneously receives and consumes benefits (e.g. SaaS, support), the work creates or enhances an asset the customer controls, or the asset has no alternative use and the entity has an enforceable right to payment for performance to date.
-
-Tip: Three criteria.`, 'D', 'M'],
-
-["Principal vs Agent", "How do you decide principal vs agent?",
-`**Answer:** If the entity controls the good or service before transfer, it's the principal (gross revenue). Indicators: primary responsibility for fulfillment, inventory risk, pricing discretion. Otherwise agent (net revenue — commission only).
-
-Tip: Control is the key.`, 'D', 'M'],
-
-["Contract Balances", "What are contract assets and contract liabilities?",
-`**Answer:** **Contract asset:** revenue recognized before the right to bill is unconditional (unbilled revenue dependent on further performance). **Receivable:** unconditional right to payment. **Contract liability (deferred revenue):** cash received or billed before performance.
-
-Tip: Unconditional right distinguishes receivable.`, 'B', 'M'],
-
-["Deferred Revenue", "Walk through deferred revenue journal entries for an annual SaaS invoice.",
-`**Answer:** Invoice $12,000 upfront: Dr AR 12,000 / Cr Deferred Revenue 12,000. Each month: Dr Deferred Revenue 1,000 / Cr Revenue 1,000. Collection: Dr Cash / Cr AR.
-
-Tip: Simple and clear.`, 'B', 'E'],
-
-["Contract Costs", "How are costs to obtain a contract treated (ASC 340-40)?",
-`**Answer:** Incremental costs of obtaining a contract (e.g. sales commissions) are capitalized and amortized over the period of benefit (including expected renewals if commissions on renewals aren't commensurate), with a practical expedient to expense if amortization period ≤ 1 year.
-
-Tip: Commissions capitalization.`, 'D', 'M'],
-
-["Modifications", "How do you account for contract modifications?",
-`**Answer:** If it adds distinct goods at standalone prices → separate contract. If remaining goods are distinct but not at SSP → prospective (terminate and create new contract). If not distinct → cumulative catch-up adjustment.
-
-Tip: Three treatments.`, 'D', 'S'],
-
-["Systems", "What revenue systems have you used?",
-`**Answer:** Oracle Revenue Management (Fusion), SAP RAR, Zuora Revenue (RevPro), NetSuite ARM, Salesforce Revenue Cloud, plus Excel waterfalls.
-
-Tip: Automation reduces risk.`, 'B', 'E'],
-
-["Close", "What are revenue close activities?",
-`**Answer:** Review new contracts and modifications, confirm revenue schedules, reconcile billings to revenue and deferred revenue roll-forward, unbilled AR analysis, variable consideration estimates, revenue cut-off checks, and flux analysis.
-
-Tip: Deferred revenue roll-forward.`, 'B', 'M'],
-
-["Roll-forward", "What is a deferred revenue roll-forward?",
-`**Answer:** Beginning balance + billings − revenue recognized ± adjustments = ending balance, reconciled to GL, used for analysis and audit.
-
-Tip: Reconcile to GL.`, 'B', 'E'],
-
-["Controls", "What revenue controls matter for SOX?",
-`**Answer:** Contract review and approval, order-to-invoice matching, revenue schedule review, non-standard terms review (side letters), cut-off testing, manual journal approval, and system access controls.
-
-Tip: Non-standard terms.`, 'B', 'M'],
-
-["Deal Review", "What do you look for when reviewing a contract?",
-`**Answer:** Performance obligations, pricing and discounts, payment terms, acceptance clauses, termination rights, renewal terms, variable fees, non-standard terms and signatures/dates.
-
-Tip: Acceptance and termination clauses.`, 'B', 'M'],
-
-["Bill and Hold", "When can revenue be recognized on bill-and-hold?",
-`**Answer:** Only if the customer has obtained control: substantive reason for the arrangement, product separately identified as the customer's, ready for physical transfer, and can't be used or redirected by the seller.
-
-Tip: Strict criteria.`, 'D', 'M'],
-
-["Licenses", "Right to use vs right to access licenses?",
-`**Answer:** **Right to use** (functional IP like software) → recognized at a point in time when the customer can use it. **Right to access** (symbolic IP like brands, where the licensor's ongoing activities affect it) → over time.
-
-Tip: Functional vs symbolic.`, 'D', 'S'],
-
-["IFRS 15", "How does IFRS 15 differ from ASC 606?",
-`**Answer:** Largely converged; differences include collectibility threshold ("probable" means different levels), some licensing guidance, shipping and handling election (US GAAP), and contract cost details.
-
-Tip: Mostly converged.`, 'D', 'M'],
-
-["Disclosure", "What revenue disclosures are required?",
-`**Answer:** Disaggregation of revenue, contract balances, remaining performance obligations (RPO — backlog), significant judgments, and practical expedients used.
-
-Tip: RPO disclosure.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a complex revenue issue you resolved.",
-`**Sample answer:** "A large deal included a free option for future services at a deep discount. I identified it as a material right, allocated $400K of the transaction price to it and deferred until exercise or expiry — avoiding a restatement."
-
-Tip: Material rights.`, 'B', 'M'],
-
-["Behavioral", "Tell me about improving the revenue close.",
-`**Sample answer:** "We used Excel waterfalls for 3,000 contracts. I led implementation of automated revenue schedules, cutting close time from 6 to 2 days and eliminating manual errors."
-
-Tip: Automation.`, 'B', 'M'],
-
-["Behavioral", "How do you work with sales and deal desk?",
-`**Answer:** Train them on revenue impacts of terms, review non-standard deals early, and provide quick guidance so deals close without surprises.
-
-Tip: Partnership.`, 'B', 'E'],
-
-["Certifications", "Which credentials help?",
-`**Answer:** CPA and experience with big-4 audit or technical accounting.
-
-Tip: CPA.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Revenue manager, technical accounting manager, or controller.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I apply ASC 606 accurately on complex deals, keep revenue close efficient, and partner with sales to avoid surprises."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Material Rights", "What is a material right?",
-`**Answer:** An option for additional goods/services at a discount the customer wouldn't receive without the contract; it's a separate performance obligation receiving allocated revenue.
-
-Tip: Renewal discounts.`, 'D', 'M'],
-
-["Returns", "How do you account for rights of return?",
-`**Answer:** Recognize revenue for expected non-returns, a refund liability for expected returns, and an asset for the right to recover goods — updated each period.
-
-Tip: Refund liability.`, 'D', 'M'],
-
-["Warranties", "Assurance vs service warranties?",
-`**Answer:** **Assurance-type** (product works as promised) → cost accrual under ASC 460. **Service-type** (extra service, often sold separately) → separate performance obligation with deferred revenue.
-
-Tip: Sold separately is a clue.`, 'D', 'M'],
-
-["Financing", "What is a significant financing component?",
-`**Answer:** When payment timing provides a significant financing benefit (more than one year difference), adjust the transaction price for time value — with a practical expedient for ≤ 1 year.
-
-Tip: One-year expedient.`, 'D', 'S'],
-
-["Consignment", "How is consignment treated?",
-`**Answer:** Revenue isn't recognized when goods ship to a consignee if the seller retains control; recognized when the consignee sells to the end customer or control transfers.
-
-Tip: Control.`, 'D', 'M'],
-
-["Usage-based", "How do you recognize usage-based fees?",
-`**Answer:** Often as usage occurs using the variable consideration allocation exception (allocated entirely to the period's distinct service), or sales/usage-based royalty exception for IP licenses.
-
-Tip: Exceptions.`, 'D', 'S'],
-
-["SaaS Metrics", "How does revenue accounting relate to ARR?",
-`**Answer:** ARR is an operational metric (annualized recurring contract value), not GAAP revenue; reconcile and explain differences to management and investors.
-
-Tip: Non-GAAP awareness.`, 'B', 'M'],
-
-["Flux", "How do you perform revenue flux analysis?",
-`**Answer:** Compare to prior periods and forecast by product, region and customer, explain significant variances with drivers (volume, price, new deals, timing).
-
-Tip: Drivers.`, 'B', 'E'],
-
-["Audit", "What do auditors test in revenue?",
-`**Answer:** Contract samples for proper 606 application, cut-off, existence (confirmations), journal entries, deferred revenue roll-forward and disclosures. Revenue is a presumed fraud risk.
-
-Tip: Presumed fraud risk.`, 'B', 'M'],
-
-["Scenario", "Sales signed a deal with acceptance criteria not yet met at quarter end. What happens?",
-`**Answer:** If acceptance is substantive and not objectively verifiable as met, revenue is deferred until acceptance — even if shipped.
-
-Tip: Substantive acceptance.`, 'B', 'M'],
-
-["Scenario", "A customer contract has a termination for convenience clause. What's the impact?",
-`**Answer:** The enforceable contract term may be shorter than the stated term, affecting the contract duration, performance obligations and RPO.
-
-Tip: Enforceable rights.`, 'D', 'S'],
-
-["Excel", "How do you build a revenue waterfall in Excel?",
-`**Answer:** Rows by contract/obligation with start and end dates and allocated amounts, monthly columns using formulas to spread revenue ratably (e.g. amount/term if month within period), with checks totaling to allocated price.
-
-Tip: Built-in checks.`, 'B', 'M'],
-
-["Oracle", "How does Oracle Revenue Management work?",
-`**Answer:** Source documents (sales orders, invoices) are ingested as revenue lines, grouped into customer contracts by rules, performance obligations identified, SSP allocated, and satisfaction events trigger revenue recognition journals to GL.
-
-Tip: Contract identification rules.`, 'D', 'M'],
-
-["Communication", "How do you explain a deferral to sales leadership?",
-`**Answer:** In plain terms: the revenue isn't lost — it's recognized as we deliver; explain which term caused it and how to structure future deals.
-
-Tip: Not lost, just timing.`, 'B', 'E'],
-
-["Commission", "How do commissions interact with revenue accounting?",
-`**Answer:** Capitalized commissions are amortized consistent with transfer of related goods/services, with impairment testing and tracking by contract or portfolio.
-
-Tip: Portfolio approach.`, 'D', 'M'],
-
-["Data", "What data quality issues affect revenue?",
-`**Answer:** Missing contract dates, incorrect SKUs, wrong SSP mapping, unlinked orders and invoices — fix at source with controls.
-
-Tip: Fix upstream.`, 'B', 'M'],
-
-["Gross vs Net", "Give an example of agent accounting.",
-`**Answer:** A travel platform sells a $500 hotel booking and earns a $75 commission without controlling the room — it records $75 revenue (net), not $500.
-
-Tip: Concrete example.`, 'B', 'M'],
-
-["Technical Memo", "How do you write a revenue technical memo?",
-`**Answer:** Background and contract terms, issue, applicable guidance (ASC 606 paragraphs), analysis of each step, alternatives considered, conclusion and financial impact.
-
-Tip: Cite guidance.`, 'D', 'M'],
-
-["Timing", "Point-in-time indicators of control transfer?",
-`**Answer:** Present right to payment, legal title, physical possession, risks and rewards of ownership, and customer acceptance.
-
-Tip: Five indicators.`, 'B', 'M'],
-
-["Multi-element", "How do you handle free implementation services bundled with SaaS?",
-`**Answer:** Assess whether implementation is distinct; if distinct, allocate part of the price to it even if "free" and recognize as performed; if not distinct, combine with SaaS and recognize over the subscription.
-
-Tip: "Free" still gets allocation.`, 'D', 'M'],
-
-["Process", "How do you improve contract-to-cash data flow?",
-`**Answer:** Standardize contract templates and SKUs, integrate CRM to billing and revenue systems, and automate validations.
-
-Tip: Integration.`, 'D', 'M']
-];
+QB["fs-rev"] = (QB["fs-rev"] || []).concat([
+["ASC 606", "Explain the five steps of ASC 606.", "**Why they ask:** the core of the role.\n\n**Answer:**\n1. Identify the contract with a customer.\n2. Identify the performance obligations (distinct goods or services).\n3. Determine the transaction price (including variable consideration).\n4. Allocate the price to performance obligations based on standalone selling prices (SSP).\n5. Recognize revenue when (or as) each obligation is satisfied — at a point in time or over time.\n\nTip: Walk through an example.", "B", "E"],
+["ASC 606", "Walk through a software bundle example.", "**Why they ask:** tests allocation in practice.\n\n**Answer:**\n\"Say a customer pays $120,000 for a perpetual license with a standalone selling price of $80,000, one year of support at $30,000, and implementation at $10,000. Total SSP is $120,000, the same as the price, so each gets its SSP. License revenue of $80,000 is recognized at delivery; support of $30,000 ratably at $2,500 a month; and implementation of $10,000 as the work is performed, if it's distinct. If the price were $108,000 — a 10% discount — I'd allocate proportionally: $72,000 license, $27,000 support, $9,000 implementation.\"\n\nTip: Show the allocation math.", "D", "M"],
+["Performance Obligations", "What makes a good or service distinct?", "**Why they ask:** step 2 of ASC 606.\n\n**Answer:**\n\"Two tests. It has to be capable of being distinct — the customer can benefit from it on its own or with readily available resources. And it has to be distinct in the context of the contract — not highly integrated with, significantly modifying, or highly interdependent with other promises. Standard installation is usually distinct; heavy customization of the software itself usually isn't.\"\n\nTip: It's a two-part test.", "D", "M"],
+["Variable Consideration", "How do you handle variable consideration?", "**Why they ask:** a judgment-heavy area.\n\n**Answer:**\n\"I estimate it with the expected value method when there are many possible outcomes, or the most likely amount when it's binary — like a bonus you either get or don't. Then apply the constraint: include it only to the extent a significant reversal isn't probable. Examples are rebates, volume discounts, penalties, usage fees and rights of return.\"\n\nTip: Explain the constraint.", "D", "M"],
+["SSP", "How do you determine standalone selling price?", "**Why they ask:** allocation depends on it.\n\n**Answer:**\n\"Observable prices when we sell the item separately are best. Otherwise, I estimate with the adjusted market assessment, expected cost plus margin, or the residual approach — but the residual approach is only allowed when SSP is highly variable or uncertain, like for software licenses with no consistent price.\"\n\nTip: Know the limits of the residual approach.", "D", "M"],
+["Over Time", "When is revenue recognized over time?", "**Why they ask:** step 5 basics.\n\n**Answer:**\n\"When one of three criteria is met. The customer receives and consumes the benefit as we perform — like SaaS or support. Our work creates or enhances an asset the customer controls — like building on their land. Or the asset has no alternative use to us and we have an enforceable right to payment for performance to date — like custom manufacturing with progress payment rights. Otherwise it's at a point in time.\"\n\nTip: Know the three criteria.", "D", "M"],
+["Principal vs Agent", "How do you decide principal vs agent?", "**Why they ask:** gross versus net revenue.\n\n**Answer:**\n\"The key question is whether we control the good or service before it's transferred to the customer. If we do, we're the principal and record gross revenue. Indicators are primary responsibility for fulfillment, inventory risk and pricing discretion. If not, we're an agent and record only our commission, net.\"\n\nTip: Control is the key.", "D", "M"],
+["Contract Balances", "What are contract assets and contract liabilities?", "**Why they ask:** balance sheet presentation.\n\n**Answer:**\n\"A contract asset is revenue recognized before our right to bill is unconditional — it still depends on more performance. A receivable is an unconditional right to payment — only time has to pass. A contract liability, or deferred revenue, is cash received or billed before we perform. The difference between a contract asset and a receivable is whether the right is unconditional.\"\n\nTip: Unconditional right is the distinction.", "B", "M"],
+["Deferred Revenue", "Walk through deferred revenue journal entries for an annual SaaS invoice.", "**Why they ask:** a basic entry.\n\n**Answer:**\n\"When we invoice $12,000 upfront: debit accounts receivable $12,000, credit deferred revenue $12,000. Each month: debit deferred revenue $1,000, credit revenue $1,000. When the customer pays: debit cash, credit AR.\"\n\nTip: Simple and clear.", "B", "E"],
+["Contract Costs", "How are costs to obtain a contract treated (ASC 340-40)?", "**Why they ask:** commissions accounting.\n\n**Answer:**\n\"Incremental costs of obtaining a contract — mainly sales commissions — are capitalized and amortized over the period of benefit. That can include expected renewals if renewal commissions aren't commensurate with the initial one. There's a practical expedient to expense them if the amortization period is one year or less.\"\n\nTip: Commissions capitalization.", "D", "M"],
+["Modifications", "How do you account for contract modifications?", "**Why they ask:** a frequent complexity.\n\n**Answer:**\n\"Three treatments. If the modification adds distinct goods at their standalone prices, it's a separate contract. If the remaining goods are distinct but not priced at SSP, it's prospective — treated as terminating the old contract and creating a new one. If the remaining goods aren't distinct, it's a cumulative catch-up adjustment.\"\n\nTip: Know the three treatments.", "D", "S"],
+["Systems", "What revenue systems have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Oracle Revenue Management in Fusion, SAP RAR, Zuora Revenue — formerly RevPro — NetSuite ARM, Salesforce Revenue Cloud, and Excel waterfalls before automation. Automation reduces risk dramatically at volume.\"\n\nTip: Automation reduces risk.", "B", "E"],
+["Close", "What are revenue close activities?", "**Why they ask:** close responsibilities.\n\n**Answer:**\n\"Review new contracts and modifications, confirm revenue schedules, reconcile billings to revenue and the deferred revenue roll-forward, analyze unbilled AR, update variable consideration estimates, check cut-off, and run flux analysis.\"\n\nTip: The deferred revenue roll-forward is central.", "B", "M"],
+["Roll-forward", "What is a deferred revenue roll-forward?", "**Why they ask:** a key reconciliation.\n\n**Answer:**\n\"Beginning balance plus billings minus revenue recognized, plus or minus adjustments, equals the ending balance. It's reconciled to the GL and used for analysis and the audit. If it doesn't tie, something was billed or recognized wrong.\"\n\nTip: Reconcile to the GL.", "B", "E"],
+["Controls", "What revenue controls matter for SOX?", "**Why they ask:** revenue is high-risk.\n\n**Answer:**\n\"Contract review and approval, order-to-invoice matching, revenue schedule review, review of non-standard terms including side letters, cut-off testing, manual journal approval, and system access controls. Side letters are the classic risk — terms agreed outside the contract.\"\n\nTip: Watch non-standard terms.", "B", "M"],
+["Deal Review", "What do you look for when reviewing a contract?", "**Why they ask:** practical review skill.\n\n**Answer:**\n\"Performance obligations, pricing and discounts, payment terms, acceptance clauses, termination rights, renewal terms, variable fees, non-standard terms, and signatures and dates. Acceptance and termination clauses most often change the accounting.\"\n\nTip: Acceptance and termination clauses.", "B", "M"],
+["Bill and Hold", "When can revenue be recognized on bill-and-hold?", "**Why they ask:** a high-risk arrangement.\n\n**Answer:**\n\"Only if the customer has obtained control, which requires all of these: a substantive reason for the arrangement, usually the customer's request; the product is separately identified as the customer's; it's ready for physical transfer; and we can't use it or redirect it to someone else. Auditors look hard at these.\"\n\nTip: The criteria are strict.", "D", "M"],
+["Licenses", "Right to use vs right to access licenses?", "**Why they ask:** licensing accounting.\n\n**Answer:**\n\"A right to use applies to functional IP like software — revenue is recognized at the point in time the customer can use it. A right to access applies to symbolic IP like brands, where the licensor's ongoing activities affect the IP's value — revenue is recognized over time.\"\n\nTip: Functional versus symbolic IP.", "D", "S"],
+["IFRS 15", "How does IFRS 15 differ from ASC 606?", "**Why they ask:** global reporting.\n\n**Answer:**\n\"They're largely converged. Differences include the collectibility threshold — 'probable' means a higher bar under US GAAP — some licensing guidance, the US GAAP policy election for shipping and handling, and some details on contract costs.\"\n\nTip: Mostly converged.", "D", "M"],
+["Disclosure", "What revenue disclosures are required?", "**Why they ask:** reporting knowledge.\n\n**Answer:**\n\"Disaggregation of revenue, contract balances, remaining performance obligations — effectively contracted backlog — significant judgments, and the practical expedients used. RPO gets a lot of investor attention.\"\n\nTip: The RPO disclosure.", "D", "M"],
+["Behavioral", "Tell me about a complex revenue issue you resolved.", "**Why they ask:** proof of technical judgment.\n\n**Answer:**\n\"A large deal included an option for future services at a deep discount. I identified it as a material right, allocated $400,000 of the transaction price to it, and deferred that until the option was exercised or expired. Catching it before the quarter closed avoided a restatement.\"\n\nTip: Mention material rights.", "B", "M"],
+["Behavioral", "Tell me about improving the revenue close.", "**Why they ask:** process improvement.\n\n**Answer:**\n\"We were running Excel waterfalls for 3,000 contracts. I led the implementation of automated revenue schedules, which cut revenue close from six days to two and eliminated manual formula errors.\"\n\nTip: Automation.", "B", "M"],
+["Behavioral", "How do you work with sales and deal desk?", "**Why they ask:** prevention beats correction.\n\n**Answer:**\n\"I train them on how terms affect revenue, review non-standard deals early, and give quick guidance so deals close without surprises. A five-minute call before signing beats a deferral discovered at quarter-end.\"\n\nTip: Partnership.", "B", "E"],
+["Certifications", "Which credentials help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"A CPA, and experience in Big 4 audit or technical accounting.\"\n\nTip: CPA.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward revenue manager, technical accounting manager, or controller.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I apply ASC 606 accurately on complex deals, keep the revenue close efficient, and partner with sales so there are no surprises at quarter-end.\"\n\nTip: Proof.", "B", "E"],
+["Material Rights", "What is a material right?", "**Why they ask:** a commonly missed obligation.\n\n**Answer:**\n\"It's an option for additional goods or services at a discount the customer wouldn't get without entering the contract. It's a separate performance obligation, so part of the price is allocated to it and deferred. Deeply discounted renewal options are the common example.\"\n\nTip: Renewal discounts.", "D", "M"],
+["Returns", "How do you account for rights of return?", "**Why they ask:** variable consideration example.\n\n**Answer:**\n\"Recognize revenue only for the goods we expect not to be returned, a refund liability for expected returns, and an asset for our right to recover the returned goods — all updated each period. If we sell 1,000 units at $100 and expect 5% returns, revenue is $95,000 with a $5,000 refund liability.\"\n\nTip: Book a refund liability.", "D", "M"],
+["Warranties", "Assurance vs service warranties?", "**Why they ask:** warranty accounting.\n\n**Answer:**\n\"An assurance-type warranty promises the product works as specified — it's a cost accrual under ASC 460. A service-type warranty provides something extra, often sold separately — it's a separate performance obligation with deferred revenue. If it's sold separately, it's a strong clue it's service-type.\"\n\nTip: Sold separately is a clue.", "D", "M"],
+["Financing", "What is a significant financing component?", "**Why they ask:** time value in contracts.\n\n**Answer:**\n\"When payment timing gives either party a significant financing benefit — usually more than a year between payment and delivery — the transaction price is adjusted for the time value of money. There's a practical expedient to ignore it when the gap is one year or less.\"\n\nTip: Know the one-year expedient.", "D", "S"],
+["Consignment", "How is consignment treated?", "**Why they ask:** control concept.\n\n**Answer:**\n\"Revenue isn't recognized when goods ship to a consignee if we still control them. It's recognized when the consignee sells to the end customer, or when control otherwise transfers.\"\n\nTip: It's about control.", "D", "M"],
+["Usage-based", "How do you recognize usage-based fees?", "**Why they ask:** usage pricing is common.\n\n**Answer:**\n\"Usually as usage occurs, using the variable consideration allocation exception — allocating the fee entirely to the period's distinct service. For IP licenses, the sales- or usage-based royalty exception applies, recognizing when the usage happens.\"\n\nTip: Know the exceptions.", "D", "S"],
+["SaaS Metrics", "How does revenue accounting relate to ARR?", "**Why they ask:** non-GAAP awareness.\n\n**Answer:**\n\"ARR is an operational metric — annualized recurring contract value — not GAAP revenue. It can differ because of timing, one-time fees and ramps. I reconcile and explain the differences for management and investors.\"\n\nTip: Non-GAAP awareness.", "B", "M"],
+["Flux", "How do you perform revenue flux analysis?", "**Why they ask:** analytical review.\n\n**Answer:**\n\"Compare to prior periods and forecast by product, region and customer, and explain significant variances with drivers — volume, price, new deals and timing.\"\n\nTip: Explain drivers.", "B", "E"],
+["Audit", "What do auditors test in revenue?", "**Why they ask:** audit readiness.\n\n**Answer:**\n\"Samples of contracts for proper ASC 606 application, cut-off, existence through confirmations, journal entries, the deferred revenue roll-forward, and disclosures. Revenue is a presumed fraud risk under auditing standards, so it always gets heavy testing.\"\n\nTip: Revenue is a presumed fraud risk.", "B", "M"],
+["Scenario", "Sales signed a deal with acceptance criteria not yet met at quarter end. What happens?", "**Why they ask:** a real quarter-end scenario.\n\n**Answer:**\n\"If the acceptance clause is substantive and we can't objectively verify it's been met, revenue is deferred until acceptance — even if we've already shipped. If acceptance is just a formality based on standard specs we've tested, revenue may still be recognized.\"\n\nTip: Substantive acceptance defers revenue.", "B", "M"],
+["Scenario", "A customer contract has a termination for convenience clause. What's the impact?", "**Why they ask:** enforceable rights.\n\n**Answer:**\n\"The enforceable contract term may be shorter than the stated term — if the customer can cancel any time after 90 days without a significant penalty, the contract may effectively be 90 days. That affects the contract duration, the performance obligations, and the RPO disclosure.\"\n\nTip: Focus on enforceable rights.", "D", "S"],
+["Excel", "How do you build a revenue waterfall in Excel?", "**Why they ask:** practical skill.\n\n**Answer:**\n\"Rows by contract and performance obligation, with start and end dates and allocated amounts. Monthly columns use formulas that spread revenue ratably — amount divided by term, if the month falls within the period. And built-in checks that each row totals to its allocated price.\"\n\nTip: Build in checks.", "B", "M"],
+["Oracle", "How does Oracle Revenue Management work?", "**Why they ask:** system knowledge.\n\n**Answer:**\n\"Source documents — sales orders and invoices — are ingested as revenue lines. Rules group them into customer contracts, performance obligations are identified, SSP is allocated, and satisfaction events trigger revenue recognition journals to the GL. The contract identification rules are the part that needs the most careful setup.\"\n\nTip: Contract identification rules.", "D", "M"],
+["Communication", "How do you explain a deferral to sales leadership?", "**Why they ask:** communication.\n\n**Answer:**\n\"In plain terms: the revenue isn't lost — it's recognized as we deliver. Then explain which term caused it and how to structure future deals to avoid the same issue.\"\n\nTip: Not lost, just timing.", "B", "E"],
+["Commission", "How do commissions interact with revenue accounting?", "**Why they ask:** linked accounting.\n\n**Answer:**\n\"Capitalized commissions are amortized in a pattern consistent with transferring the related goods or services, tested for impairment, and tracked by contract or using a portfolio approach for large volumes.\"\n\nTip: Portfolio approach.", "D", "M"],
+["Data", "What data quality issues affect revenue?", "**Why they ask:** systems depend on data.\n\n**Answer:**\n\"Missing contract dates, wrong SKUs, incorrect SSP mapping, and orders not linked to invoices. I fix them at the source with validations and controls, not with manual adjustments each month.\"\n\nTip: Fix upstream.", "B", "M"],
+["Gross vs Net", "Give an example of agent accounting.", "**Why they ask:** concrete understanding.\n\n**Answer:**\n\"A travel platform sells a $500 hotel booking and earns a $75 commission. It never controls the room — the hotel provides it and sets the terms — so the platform records $75 of revenue, net, not $500.\"\n\nTip: A concrete example.", "B", "M"],
+["Technical Memo", "How do you write a revenue technical memo?", "**Why they ask:** documentation skill.\n\n**Answer:**\n\"Background and contract terms, the issue, the applicable guidance with ASC 606 paragraph references, analysis through each step, alternatives considered, the conclusion, and the financial impact.\"\n\nTip: Cite the guidance.", "D", "M"],
+["Timing", "Point-in-time indicators of control transfer?", "**Why they ask:** control concept.\n\n**Answer:**\n\"A present right to payment, legal title, physical possession, the significant risks and rewards of ownership, and customer acceptance.\"\n\nTip: Know the five indicators.", "B", "M"],
+["Multi-element", "How do you handle free implementation services bundled with SaaS?", "**Why they ask:** a common SaaS scenario.\n\n**Answer:**\n\"First assess whether the implementation is distinct. If it is, part of the price is allocated to it — even though it's 'free' — and recognized as performed. If it isn't distinct, it's combined with the SaaS and recognized over the subscription.\"\n\nTip: 'Free' still gets an allocation.", "D", "M"],
+["Process", "How do you improve contract-to-cash data flow?", "**Why they ask:** process improvement.\n\n**Answer:**\n\"Standardize contract templates and SKUs, integrate CRM with billing and revenue systems, and automate validations so errors are caught at order entry, not at close.\"\n\nTip: Integration.", "D", "M"]
+]);
