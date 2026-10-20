@@ -1,234 +1,49 @@
 // Security Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sec-eng'] = [
-["Role", "What does a security engineer do?",
-`**Why they ask:** the title covers many specialties.
-
-**Answer:** Designs, builds and operates security controls: identity and access, network and endpoint security, cloud security, application security tooling, logging and detection, vulnerability management, secrets and key management, and automation — working with engineering teams to make secure choices easy.
-
-Tip: Name your specialty area.`, 'B', 'E'],
-
-["Fundamentals", "Explain defense in depth.",
-`**Answer:** Layering multiple independent controls so if one fails, others still protect — e.g. MFA + endpoint protection + network segmentation + logging + backups. No single control is relied on completely.
-
-Tip: Concrete layers.`, 'B', 'E'],
-
-["Fundamentals", "What is least privilege?",
-`**Answer:** Granting users and systems only the access they need, for only as long as needed. Implement with role-based access, just-in-time elevation, regular access reviews, and removing standing admin rights.
-
-Tip: Just-in-time access.`, 'B', 'E'],
-
-["Crypto", "Symmetric vs asymmetric encryption?",
-`**Answer:** **Symmetric** (AES) uses one shared key — fast, for bulk data. **Asymmetric** (RSA, ECC) uses public/private key pairs — for key exchange, digital signatures and identity. TLS uses asymmetric crypto to establish a symmetric session key.
-
-Tip: TLS example.`, 'B', 'E'],
-
-["Crypto", "Hashing vs encryption vs encoding?",
-`**Answer:** **Hashing** is one-way (SHA-256) for integrity checks; for passwords use slow salted algorithms (bcrypt, scrypt, Argon2). **Encryption** is reversible with a key. **Encoding** (Base64) is just format conversion — not security.
-
-Tip: Password hashing algorithms.`, 'B', 'E'],
-
-["TLS", "How does TLS work at a high level?",
-`**Answer:** Client and server negotiate a TLS version and cipher suite, the server presents its certificate (verified via certificate authority chain), they perform a key exchange (ECDHE for forward secrecy) to derive session keys, then encrypt traffic symmetrically. TLS 1.3 simplifies and speeds up the handshake.
-
-Tip: Forward secrecy.`, 'B', 'M'],
-
-["PKI", "How do you manage certificates at scale?",
-`**Answer:** Central inventory, automated issuance and renewal (ACME, cert-manager, cloud certificate managers), short-lived certificates, monitoring expiry, secure private key storage (HSM/KMS), and revocation processes.
-
-Tip: Automation prevents outages.`, 'D', 'M'],
-
-["Network", "How do you segment a network?",
-`**Answer:** Separate zones by trust and function (user, server, management, OT, DMZ), firewall rules allowing only required flows, micro-segmentation for workloads, and zero trust access for users instead of flat VPN access.
-
-Tip: Management network isolation.`, 'B', 'M'],
-
-["Zero Trust", "What is zero trust?",
-`**Answer:** A model that assumes no implicit trust based on network location: verify explicitly (identity, device health, context), use least-privilege access, and assume breach (segment, monitor, encrypt). Implemented with strong identity, device management, ZTNA, micro-segmentation and continuous monitoring.
-
-Tip: NIST SP 800-207.`, 'B', 'M'],
-
-["Identity", "Why is MFA important and which types are strongest?",
-`**Answer:** MFA blocks most credential-based attacks. Phishing-resistant methods — FIDO2 security keys, passkeys, Windows Hello for Business, certificate-based — are strongest; SMS and push approvals are weaker (SIM swap, MFA fatigue). Use number matching for push.
-
-Tip: Phishing-resistant MFA.`, 'B', 'M'],
-
-["Vulnerability Mgmt", "How do you run a vulnerability management program?",
-`**Answer:** Asset inventory, regular scanning (infrastructure, cloud, containers, applications), risk-based prioritization (CVSS plus exploitability — EPSS, CISA KEV — and asset criticality/exposure), remediation SLAs by severity, tracking and reporting, exception processes, and verification scans.
-
-Tip: Prioritize exploited vulnerabilities.`, 'B', 'M'],
-
-["Vulnerability Mgmt", "CVSS score of 9.8 on an internal test server vs 7.5 on an internet-facing server — which first?",
-`**Answer:** Usually the internet-facing 7.5 if it's actively exploited or easily reachable, because exposure and exploitability drive real risk. Context beats raw scores.
-
-Tip: Risk = likelihood × impact.`, 'D', 'M'],
-
-["AppSec", "What are the OWASP Top 10 risks?",
-`**Answer:** (2021 list) Broken access control, cryptographic failures, injection, insecure design, security misconfiguration, vulnerable and outdated components, identification and authentication failures, software and data integrity failures, security logging and monitoring failures, and server-side request forgery. (A 2025 update reorganizes some categories, including supply chain failures.)
-
-Tip: Lead with broken access control.`, 'B', 'M'],
-
-["AppSec", "How do you prevent SQL injection?",
-`**Answer:** Parameterized queries/prepared statements or safe ORMs, input validation, least-privilege database accounts, and avoiding dynamic SQL built from user input.
-
-Tip: Parameterization is the fix.`, 'B', 'E'],
-
-["AppSec", "How do you prevent XSS?",
-`**Answer:** Context-aware output encoding, frameworks that escape by default, sanitizing HTML when rich content is necessary, Content Security Policy, and HttpOnly cookies.
-
-Tip: CSP as defense in depth.`, 'B', 'M'],
-
-["AppSec", "What security tools belong in a CI/CD pipeline?",
-`**Answer:** SAST (code analysis), SCA (dependency vulnerabilities and licenses), secrets scanning, IaC scanning, container image scanning, DAST against staging, and SBOM generation — with risk-based gating to avoid blocking on noise.
-
-Tip: Gate only on high-confidence findings.`, 'D', 'M'],
-
-["Secrets", "How do you manage secrets securely?",
-`**Answer:** Central vaults (HashiCorp Vault, cloud secret managers), dynamic short-lived credentials where possible, workload identities instead of static keys, rotation, access auditing, and secrets scanning in repositories.
-
-Tip: Dynamic secrets.`, 'B', 'M'],
-
-["Cloud", "What are the top cloud security risks?",
-`**Answer:** Misconfiguration (public storage, open security groups), excessive IAM permissions, exposed credentials, missing logging, insecure APIs, and lack of visibility across accounts. Use CSPM, guardrail policies and least privilege.
-
-Tip: Misconfiguration is #1.`, 'B', 'M'],
-
-["Endpoint", "How do you secure endpoints?",
-`**Answer:** EDR, patching, device management (Intune, Jamf), disk encryption, application control, removing local admin, secure configuration baselines (CIS), and browser hardening.
-
-Tip: Remove local admin.`, 'B', 'E'],
-
-["Logging", "What should be logged for security?",
-`**Answer:** Authentication and authorization events, admin actions, configuration changes, access to sensitive data, network flows at key points, endpoint telemetry, and cloud control-plane activity — centralized, time-synchronized and retained per policy.
-
-Tip: Cloud control-plane logs.`, 'B', 'M'],
-
-["Email", "How do you secure email?",
-`**Answer:** SPF, DKIM, DMARC at reject, secure email gateway or native protections (attachment sandboxing, URL rewriting), user reporting and training, and impersonation protection.
-
-Tip: DMARC reject.`, 'B', 'E'],
-
-["Ransomware", "How do you protect an organization from ransomware?",
-`**Answer:** Phishing-resistant MFA, patching internet-facing systems, EDR, least privilege and tiered admin, network segmentation, immutable offline backups with tested restores, disabling unnecessary remote access, and an incident response plan.
-
-Tip: Immutable backups.`, 'B', 'M'],
-
-["Active Directory", "How do you secure Active Directory?",
-`**Answer:** Tiered administration model, privileged access workstations, LAPS for local admin passwords, protecting domain admins, disabling legacy protocols (NTLMv1, SMBv1), monitoring for attacks (Kerberoasting, DCSync), and regular AD security assessments.
-
-Tip: Tiered admin.`, 'D', 'M'],
-
-["Containers", "How do you secure containers and Kubernetes?",
-`**Answer:** Minimal signed images, scanning, non-root containers, Pod Security Standards, network policies, RBAC least privilege, secrets management, admission policies, and runtime detection (Falco).
-
-Tip: Supply chain + runtime.`, 'D', 'M'],
-
-["Supply Chain", "How do you address software supply chain risk?",
-`**Answer:** Dependency scanning and pinning, SBOMs, signing and provenance (Sigstore, SLSA), protected build pipelines, vendor security reviews, and monitoring for malicious packages.
-
-Tip: SBOMs.`, 'D', 'M'],
-
-["Automation", "What security tasks have you automated?",
-`**Answer:** Alert enrichment, user offboarding access removal, misconfiguration remediation, certificate renewals, vulnerability ticket creation, and evidence collection for audits.
-
-Tip: Automation reduces toil.`, 'B', 'M'],
-
-["Threat Modeling", "How do you do threat modeling?",
-`**Answer:** Diagram the system and data flows, identify trust boundaries, enumerate threats (STRIDE: spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege), assess risk, and define mitigations — early in design.
-
-Tip: STRIDE.`, 'D', 'M'],
-
-["Incident Response", "What role does a security engineer play in incidents?",
-`**Answer:** Provide technical expertise for investigation and containment, implement blocking and remediation, preserve evidence, and fix root causes afterward.
-
-Tip: Root-cause fixes.`, 'B', 'M'],
-
-["DLP", "What is data loss prevention?",
-`**Answer:** Controls that identify sensitive data (classification) and prevent unauthorized sharing via email, cloud apps, endpoints and web — balancing protection with productivity.
-
-Tip: Classification first.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a security improvement you delivered.",
-`**Sample answer:** "I rolled out phishing-resistant MFA (FIDO2 and Windows Hello) to 3,000 employees with a phased plan and helpdesk support. Account compromise incidents dropped to zero over the next year."
-
-Tip: Measured outcome.`, 'B', 'M'],
-
-["Behavioral", "How do you get engineers to fix security issues?",
-`**Answer:** Prioritize by real risk, give clear fix guidance, integrate findings into their tools (tickets, PRs), reduce noise, and celebrate fixes. Make secure defaults easy.
-
-Tip: Developer empathy.`, 'B', 'M'],
-
-["Behavioral", "Tell me about balancing security with usability.",
-`**Sample answer:** "Strict VPN requirements frustrated remote staff. We moved to ZTNA with device checks, improving both security and user experience."
-
-Tip: Win-win.`, 'B', 'M'],
-
-["AI", "How do you secure the use of AI tools in a company?",
-`**Answer:** Approved tools with enterprise data protections, policies on sensitive data, DLP for AI services, logging, controls on AI agents' permissions, protection against prompt injection in AI apps, and vendor risk reviews.
-
-Tip: Data protection with AI.`, 'D', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** Security+, CISSP (broad, senior), cloud security (AWS Security Specialty, AZ-500, CCSP), OSCP for offensive skills, GIAC certifications for specialties.
-
-Tip: Hands-on experience.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior/staff security engineer or security architect in cloud and application security.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build practical security controls that engineers adopt — MFA rollout, pipeline scanning, cloud guardrails — and I've measurably reduced incidents."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Firewalls", "What is the difference between a firewall, WAF and IPS?",
-`**Answer:** A **firewall** filters traffic by IP/port/protocol (next-gen firewalls add application awareness). A **WAF** protects web applications from HTTP attacks (SQLi, XSS). An **IPS** inspects traffic for malicious patterns and blocks them.
-
-Tip: Layers.`, 'B', 'E'],
-
-["VPN vs ZTNA", "VPN vs ZTNA?",
-`**Answer:** VPNs place users on the network with broad access; ZTNA grants per-application access based on identity and device posture, reducing lateral movement risk.
-
-Tip: Least privilege access.`, 'B', 'M'],
-
-["Patching", "How do you manage patching without breaking things?",
-`**Answer:** Inventory, test patches in staging or pilot groups, maintenance windows, rollback plans, prioritized emergency patching for exploited vulnerabilities, and compliance reporting.
-
-Tip: Pilot rings.`, 'B', 'M'],
-
-["Hardening", "What are CIS Benchmarks?",
-`**Answer:** Consensus-based secure configuration guidelines for operating systems, cloud providers, databases and applications, used to harden systems and measure compliance.
-
-Tip: Baselines.`, 'B', 'E'],
-
-["Password", "What is a good password policy today?",
-`**Answer:** Following NIST SP 800-63B: long passphrases (minimum length), checking against breached password lists, no forced periodic changes without cause, no arbitrary complexity rules, and MFA — ideally moving toward passkeys.
-
-Tip: Modern guidance.`, 'B', 'M'],
-
-["Keys", "What is an HSM?",
-`**Answer:** A hardware security module — tamper-resistant hardware that generates and stores cryptographic keys and performs operations without exposing keys; cloud KMS services often use HSMs.
-
-Tip: Key protection.`, 'D', 'M'],
-
-["Scenario", "You find AWS access keys committed to a public GitHub repo. What do you do?",
-`**Answer:** Revoke/rotate the keys immediately, review CloudTrail for misuse, remove the secret from history, assess impact, add secrets scanning and pre-commit hooks, and move to role-based access.
-
-Tip: Revoke first.`, 'B', 'M'],
-
-["Scenario", "A critical zero-day affects your VPN appliance. What do you do?",
-`**Answer:** Apply vendor mitigations or patches urgently, check for indicators of compromise, restrict access, monitor closely, and consider temporary alternatives — following CISA guidance if relevant.
-
-Tip: Check for compromise, not just patch.`, 'D', 'M'],
-
-["SSO", "What are SAML and OIDC?",
-`**Answer:** Federation protocols for single sign-on. SAML uses XML assertions (common in enterprise apps); OIDC builds on OAuth 2.0 with JSON tokens (common for modern web and mobile apps).
-
-Tip: OAuth is authorization; OIDC adds authentication.`, 'B', 'M'],
-
-["Metrics", "Which security metrics would you report?",
-`**Answer:** MFA coverage, patch compliance and time to remediate critical vulnerabilities, EDR coverage, phishing click rates, incident counts and MTTR, and cloud misconfiguration trends.
-
-Tip: Coverage metrics.`, 'B', 'M']
-];
+QB["sec-eng"] = (QB["sec-eng"] || []).concat([
+["Role", "What does a security engineer do?", "**Why they ask:** the title covers many specialties.\n\n**Answer:** Designs, builds and operates security controls: identity and access, network and endpoint security, cloud security, application security tooling, logging and detection, vulnerability management, secrets and key management, and automation — working with engineering teams to make secure choices easy.\n\nTip: Name your specialty area.", "B", "E"],
+["Fundamentals", "Explain defense in depth.", "**Why they ask:** a foundational principle.\n\n**Answer:**\n\"Layering independent controls so that when one fails, others still protect. Take a phishing attack: email filtering catches most of it; if a user still clicks, phishing-resistant MFA stops the credential being used; if malware runs, EDR blocks it; if it spreads, segmentation limits it; logging detects it; and backups let us recover. No single control carries the whole load.\"\n\nTip: Concrete layers.", "B", "E"],
+["Fundamentals", "What is least privilege?", "**Why they ask:** a core control.\n\n**Answer:**\n\"Giving users and systems only the access they need, only for as long as they need it. In practice: role-based access, just-in-time elevation — an admin requests domain admin for two hours with approval — regular access reviews, and removing standing admin rights.\"\n\nTip: Just-in-time access.", "B", "E"],
+["Crypto", "Symmetric vs asymmetric encryption?", "**Why they ask:** crypto basics.\n\n**Answer:**\n\"Symmetric encryption, like AES, uses one shared key — it's fast, so it's used for bulk data. Asymmetric, like RSA or elliptic curve, uses a public and private key pair — used for key exchange, digital signatures and identity. TLS combines them: asymmetric crypto establishes a shared symmetric session key, then AES encrypts the traffic.\"\n\nTip: TLS example.", "B", "E"],
+["Crypto", "Hashing vs encryption vs encoding?", "**Why they ask:** a common confusion.\n\n**Answer:**\n\"Hashing is one-way — SHA-256 — used for integrity checks; for passwords you need slow, salted algorithms like bcrypt, scrypt or Argon2 so offline cracking is expensive. Encryption is reversible with a key. Encoding, like Base64, is just a format conversion — anyone can reverse it, so it provides no security.\"\n\nTip: Password hashing algorithms.", "B", "E"],
+["TLS", "How does TLS work at a high level?", "**Why they ask:** protocol understanding.\n\n**Answer:**\n\"Client and server agree a TLS version and cipher suite. The server presents its certificate, which the client verifies up the certificate authority chain. They do a key exchange — ECDHE, which gives forward secrecy, so stealing the server's private key later can't decrypt old sessions — derive session keys, and then encrypt traffic symmetrically. TLS 1.3 cuts the handshake to one round trip and removes weak options.\"\n\nTip: Forward secrecy.", "B", "M"],
+["PKI", "How do you manage certificates at scale?", "**Why they ask:** expired certificates cause outages.\n\n**Answer:**\n\"A central inventory, automated issuance and renewal with ACME, cert-manager or cloud certificate managers, short-lived certificates, expiry monitoring, private keys protected in an HSM or KMS, and a revocation process. Automation is the real fix — manual renewals guarantee an outage eventually.\"\n\nTip: Automation prevents outages.", "D", "M"],
+["Network", "How do you segment a network?", "**Why they ask:** limiting lateral movement.\n\n**Answer:**\n\"Separate zones by trust and function — users, servers, management, OT, DMZ — firewall rules allowing only required flows, micro-segmentation for critical workloads, and zero trust access for users instead of a flat VPN. The management network gets the strictest isolation, since compromising it means compromising everything.\"\n\nTip: Management network isolation.", "B", "M"],
+["Zero Trust", "What is zero trust?", "**Why they ask:** the modern security model.\n\n**Answer:**\n\"A model with no implicit trust based on network location. Verify explicitly using identity, device health and context; give least-privilege access; and assume breach — segment, monitor, encrypt. It's implemented through strong identity, device management, ZTNA, micro-segmentation and continuous monitoring. NIST SP 800-207 is the reference.\"\n\nTip: NIST SP 800-207.", "B", "M"],
+["Identity", "Why is MFA important and which types are strongest?", "**Why they ask:** high-impact control knowledge.\n\n**Answer:**\n\"MFA blocks the large majority of credential-based attacks. The strongest are phishing-resistant methods — FIDO2 security keys, passkeys, Windows Hello for Business, certificate-based auth — because they're bound to the real site and can't be relayed by a phishing proxy. SMS is weak because of SIM swapping, and plain push approvals suffer MFA fatigue, so push should at least use number matching.\"\n\nTip: Phishing-resistant MFA.", "B", "M"],
+["Vulnerability Mgmt", "How do you run a vulnerability management program?", "**Why they ask:** a core security program.\n\n**Answer:**\n\"Start with an asset inventory, scan regularly across infrastructure, cloud, containers and applications, prioritize by risk — CVSS plus real exploitability from EPSS and the CISA KEV catalog, plus asset criticality and exposure — set remediation SLAs by severity, track and report, run an exception process, and verify fixes with rescans. Focusing on actively exploited vulnerabilities cut our critical backlog from thousands to about 60 that truly mattered.\"\n\nTip: Prioritize exploited vulnerabilities.", "B", "M"],
+["Vulnerability Mgmt", "CVSS score of 9.8 on an internal test server vs 7.5 on an internet-facing server — which first?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"Usually the internet-facing 7.5 — especially if it's on the KEV list or easily reachable — because exposure and exploitability drive real risk. The 9.8 on an isolated test server still gets fixed, but context beats raw scores.\"\n\nTip: Risk = likelihood × impact.", "D", "M"],
+["AppSec", "What are the OWASP Top 10 risks?", "**Why they ask:** application security literacy.\n\n**Answer:**\n\"The 2021 list: broken access control, cryptographic failures, injection, insecure design, security misconfiguration, vulnerable and outdated components, identification and authentication failures, software and data integrity failures, security logging and monitoring failures, and server-side request forgery. The 2025 update reorganizes some categories, including adding software supply chain failures. Broken access control has stayed at number one.\"\n\nTip: Lead with broken access control.", "B", "M"],
+["AppSec", "How do you prevent SQL injection?", "**Why they ask:** a classic vulnerability.\n\n**Answer:**\n\"Parameterized queries or prepared statements — or an ORM used safely — so user input is always treated as data, never as SQL. Plus input validation, least-privilege database accounts so a successful injection can't drop tables, and never building dynamic SQL by concatenating user input.\"\n\nTip: Parameterization is the fix.", "B", "E"],
+["AppSec", "How do you prevent XSS?", "**Why they ask:** a common web vulnerability.\n\n**Answer:**\n\"Context-aware output encoding, frameworks like React that escape by default, sanitizing HTML with a library like DOMPurify when rich content is needed, a Content Security Policy as a second layer, and HttpOnly cookies so scripts can't steal session tokens.\"\n\nTip: CSP as defense in depth.", "B", "M"],
+["AppSec", "What security tools belong in a CI/CD pipeline?", "**Why they ask:** DevSecOps.\n\n**Answer:**\n\"SAST for code, SCA for dependency vulnerabilities and licenses, secrets scanning, IaC scanning, container image scanning, DAST against staging, and SBOM generation — with risk-based gating. If every low finding blocks a build, developers learn to ignore or bypass the tools.\"\n\nTip: Gate only on high-confidence findings.", "D", "M"],
+["Secrets", "How do you manage secrets securely?", "**Why they ask:** leaked secrets drive breaches.\n\n**Answer:**\n\"A central vault — HashiCorp Vault or a cloud secret manager — dynamic, short-lived credentials where possible, workload identities instead of static keys, automatic rotation, access auditing, and secrets scanning on repositories and pre-commit hooks.\"\n\nTip: Dynamic secrets.", "B", "M"],
+["Cloud", "What are the top cloud security risks?", "**Why they ask:** cloud awareness.\n\n**Answer:**\n\"Misconfiguration — public storage, open security groups — excessive IAM permissions, exposed credentials, missing logging, insecure APIs, and poor visibility across accounts. CSPM, guardrail policies and least privilege address most of it.\"\n\nTip: Misconfiguration is #1.", "B", "M"],
+["Endpoint", "How do you secure endpoints?", "**Why they ask:** endpoints are the entry point.\n\n**Answer:**\n\"EDR, patching, device management with Intune or Jamf, disk encryption, application control, removing local admin rights, CIS configuration baselines, and browser hardening. Removing local admin alone stops a large share of malware from installing.\"\n\nTip: Remove local admin.", "B", "E"],
+["Logging", "What should be logged for security?", "**Why they ask:** detection foundations.\n\n**Answer:**\n\"Authentication and authorization events, admin actions, configuration changes, access to sensitive data, network flows at key points, endpoint telemetry, and cloud control-plane activity — centralized, time-synchronized and retained per policy.\"\n\nTip: Cloud control-plane logs.", "B", "M"],
+["Email", "How do you secure email?", "**Why they ask:** email is the top attack vector.\n\n**Answer:**\n\"SPF, DKIM and DMARC at reject to stop spoofing of our domain, an email gateway or native protections with attachment sandboxing and URL rewriting, impersonation protection, and an easy report-phishing button with training.\"\n\nTip: DMARC reject.", "B", "E"],
+["Ransomware", "How do you protect an organization from ransomware?", "**Why they ask:** a top threat.\n\n**Answer:**\n\"Phishing-resistant MFA, fast patching of internet-facing systems, EDR, least privilege with tiered admin, segmentation, immutable offline backups with tested restores, removing unnecessary remote access like exposed RDP, and a rehearsed incident response plan. The backups are what let you say no to a ransom.\"\n\nTip: Immutable backups.", "B", "M"],
+["Active Directory", "How do you secure Active Directory?", "**Why they ask:** AD is the usual path to domain compromise.\n\n**Answer:**\n\"A tiered administration model so domain admin credentials never touch workstations, privileged access workstations, LAPS for unique local admin passwords, protecting the domain admin group, disabling legacy protocols like NTLMv1 and SMBv1, monitoring for Kerberoasting and DCSync, and regular assessments with tools like PingCastle.\"\n\nTip: Tiered admin.", "D", "M"],
+["Containers", "How do you secure containers and Kubernetes?", "**Why they ask:** container security.\n\n**Answer:**\n\"Minimal signed images with scanning, non-root containers, Pod Security Standards, network policies, least-privilege RBAC, proper secrets management, admission policies, and runtime detection with Falco. Supply chain controls plus runtime visibility.\"\n\nTip: Supply chain + runtime.", "D", "M"],
+["Supply Chain", "How do you address software supply chain risk?", "**Why they ask:** a growing threat.\n\n**Answer:**\n\"Dependency scanning and pinning, SBOMs so we can answer 'are we affected?' in minutes when the next Log4j hits, signing and provenance with Sigstore and SLSA, protected build pipelines, vendor security reviews, and monitoring for malicious packages.\"\n\nTip: SBOMs.", "D", "M"],
+["Automation", "What security tasks have you automated?", "**Why they ask:** engineering mindset.\n\n**Answer:**\n\"Alert enrichment, removing access at offboarding, auto-remediating common misconfigurations, certificate renewals, creating vulnerability tickets routed to owners, and evidence collection for audits. The offboarding automation closed a gap where leavers kept SaaS access for weeks.\"\n\nTip: Automation reduces toil.", "B", "M"],
+["Threat Modeling", "How do you do threat modeling?", "**Why they ask:** design-time security.\n\n**Answer:**\n\"Diagram the system and data flows, mark trust boundaries, enumerate threats with STRIDE — spoofing, tampering, repudiation, information disclosure, denial of service, elevation of privilege — assess the risk, and define mitigations. Done early in design, it's a one-hour conversation instead of a rewrite.\"\n\nTip: STRIDE.", "D", "M"],
+["Incident Response", "What role does a security engineer play in incidents?", "**Why they ask:** responsibilities.\n\n**Answer:**\n\"Technical expertise for investigation and containment, implementing blocks and remediation, preserving evidence, and then fixing the root cause so it doesn't happen again.\"\n\nTip: Root-cause fixes.", "B", "M"],
+["DLP", "What is data loss prevention?", "**Why they ask:** data protection.\n\n**Answer:**\n\"Controls that identify sensitive data through classification and prevent unauthorized sharing over email, cloud apps, endpoints and the web — balanced so productivity isn't crushed. Without good classification first, DLP just generates false positives.\"\n\nTip: Classification first.", "D", "M"],
+["Behavioral", "Tell me about a security improvement you delivered.", "**Why they ask:** proof.\n\n**Answer:**\n\"I rolled out phishing-resistant MFA — FIDO2 keys and Windows Hello — to 3,000 employees with a phased plan and helpdesk support. Account compromise incidents dropped to zero over the following year.\"\n\nTip: Measured outcome.", "B", "M"],
+["Behavioral", "How do you get engineers to fix security issues?", "**Why they ask:** influence.\n\n**Answer:**\n\"Prioritize by real risk, give clear fix guidance with code examples, put findings where they work — tickets and pull requests — cut the noise, and celebrate fixes. Making secure defaults easy prevents most issues in the first place.\"\n\nTip: Developer empathy.", "B", "M"],
+["Behavioral", "Tell me about balancing security with usability.", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Strict VPN requirements frustrated remote staff and they found workarounds. We moved to ZTNA with device posture checks — access got faster and security got stronger, because users no longer had the whole network.\"\n\nTip: Win-win.", "B", "M"],
+["AI", "How do you secure the use of AI tools in a company?", "**Why they ask:** a current challenge.\n\n**Answer:**\n\"Approved tools with enterprise data protections, clear policy on sensitive data, DLP covering AI services, logging, limits on what AI agents can access and do, prompt injection defenses in our own AI apps, and vendor risk reviews.\"\n\nTip: Data protection with AI.", "D", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Security+ as a foundation, CISSP for broad senior roles, cloud security certs like AWS Security Specialty, AZ-500 or CCSP, OSCP for offensive skills, and GIAC certifications for specialties — always backed by hands-on experience.\"\n\nTip: Hands-on experience.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior or staff security engineer or security architect, focused on cloud and application security.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build practical security controls that engineers actually adopt — MFA rollout, pipeline scanning, cloud guardrails — and I've measurably reduced incidents.\"\n\nTip: Proof.", "B", "M"],
+["Firewalls", "What is the difference between a firewall, WAF and IPS?", "**Why they ask:** control layers.\n\n**Answer:**\n\"A firewall filters traffic by IP, port and protocol — next-gen firewalls add application awareness. A WAF protects web applications from HTTP-layer attacks like SQL injection and XSS. An IPS inspects traffic for malicious patterns and blocks them inline.\"\n\nTip: Layers.", "B", "E"],
+["VPN vs ZTNA", "VPN vs ZTNA?", "**Why they ask:** access architecture.\n\n**Answer:**\n\"A VPN puts the user on the network with broad access, so a compromised laptop can reach everything. ZTNA grants access to specific applications based on identity and device posture, which sharply limits lateral movement.\"\n\nTip: Least privilege access.", "B", "M"],
+["Patching", "How do you manage patching without breaking things?", "**Why they ask:** operational balance.\n\n**Answer:**\n\"An inventory, testing in pilot rings — IT first, then 10% of users, then everyone — maintenance windows, rollback plans, emergency patching for actively exploited vulnerabilities outside the normal cycle, and compliance reporting.\"\n\nTip: Pilot rings.", "B", "M"],
+["Hardening", "What are CIS Benchmarks?", "**Why they ask:** hardening standards.\n\n**Answer:**\n\"Consensus-based secure configuration guidelines for operating systems, cloud providers, databases and applications. We use them as hardening baselines and measure compliance against them automatically.\"\n\nTip: Baselines.", "B", "E"],
+["Password", "What is a good password policy today?", "**Why they ask:** modern guidance.\n\n**Answer:**\n\"Following NIST SP 800-63B: long passphrases with a meaningful minimum length, checking against breached password lists, no forced periodic changes unless there's evidence of compromise, no arbitrary complexity rules, and MFA — ideally moving to passkeys.\"\n\nTip: Modern guidance.", "B", "M"],
+["Keys", "What is an HSM?", "**Why they ask:** key protection.\n\n**Answer:**\n\"A hardware security module — tamper-resistant hardware that generates and stores cryptographic keys and performs operations without ever exposing them. Cloud KMS services are typically backed by HSMs.\"\n\nTip: Key protection.", "D", "M"],
+["Scenario", "You find AWS access keys committed to a public GitHub repo. What do you do?", "**Why they ask:** urgent response.\n\n**Answer:**\n\"Revoke or rotate the keys immediately — bots scan GitHub within minutes. Then review CloudTrail for misuse, remove the secret from history, assess impact, add secrets scanning and pre-commit hooks, and move that workload to role-based access so there are no keys to leak.\"\n\nTip: Revoke first.", "B", "M"],
+["Scenario", "A critical zero-day affects your VPN appliance. What do you do?", "**Why they ask:** zero-day response.\n\n**Answer:**\n\"Apply vendor mitigations or patches urgently, check for indicators of compromise — because attackers often exploited it before disclosure — restrict access, monitor closely, and consider temporary alternatives, following CISA guidance where it exists.\"\n\nTip: Check for compromise, not just patch.", "D", "M"],
+["SSO", "What are SAML and OIDC?", "**Why they ask:** identity protocols.\n\n**Answer:**\n\"Both are federation protocols for single sign-on. SAML uses XML assertions and is common in enterprise apps. OIDC sits on top of OAuth 2.0 with JSON tokens and is common for modern web and mobile apps. OAuth itself is about authorization; OIDC adds authentication.\"\n\nTip: OAuth is authorization; OIDC adds authentication.", "B", "M"],
+["Metrics", "Which security metrics would you report?", "**Why they ask:** measurement.\n\n**Answer:**\n\"MFA coverage, patch compliance and time to remediate critical vulnerabilities, EDR coverage, phishing click and report rates, incident counts and MTTR, and cloud misconfiguration trends.\"\n\nTip: Coverage metrics.", "B", "M"]
+]);
