@@ -1,26 +1,7 @@
-QB['sec-socmgr'] = (QB['sec-socmgr']||[]).concat([
-["Severity", "How do you define incident severity levels?",
-`**Answer:** A matrix combining impact (data sensitivity, number of systems or users, business process disruption) with confidence (suspected vs confirmed). Each level comes with response times, escalation contacts and communication requirements. Review the matrix yearly.
-
-Tip: Severity drives who gets woken up.`, 'B', 'M'],
-["Handover", "How do you make shift handovers reliable?",
-`**Answer:** A standard handover template (open incidents, pending actions, watch items), a verbal briefing for critical cases, case ownership transferred explicitly in the ticketing system, and spot checks by leads.
-
-Tip: Explicit ownership transfer.`, 'B', 'E'],
-["Quality", "How do you run quality assurance on analyst work?",
-`**Answer:** Weekly sampling of closed alerts, a scoring rubric (accuracy, evidence, documentation, timeliness), coaching feedback, and trends used to update training and playbooks.
-
-Tip: Coach, don't punish.`, 'B', 'M'],
-["Insider", "How does a SOC handle insider threat cases differently?",
-`**Answer:** Restricted access to the case, coordination with HR and legal, privacy rules, careful evidence handling, and no tipping off the subject. Escalations go to a small named group.
-
-Tip: Need-to-know.`, 'D', 'M'],
-["Roadmap", "What would a 12-month SOC improvement roadmap include?",
-`**Answer:**
-- **Quarter 1:** baseline metrics, tune the noisiest rules, fix gaps in critical log sources.
-- **Quarter 2:** SOAR enrichment, playbook refresh, tabletop exercises.
-- **Quarter 3:** detection-as-code, ATT&CK coverage mapping, a hunting cadence.
-- **Quarter 4:** purple team validation, career ladder, a review of the MDR contract.
-
-Tip: Tie each quarter to a metric.`, 'D', 'M']
+QB["sec-socmgr"] = (QB["sec-socmgr"] || []).concat([
+["Severity", "How do you define incident severity levels?", "**Why they ask:** process design.\n\n**Answer:**\n\"A matrix combining impact — data sensitivity, number of systems or users, business disruption — with confidence, suspected versus confirmed. Each level has response times, escalation contacts and communication requirements, and we review it yearly.\"\n\nTip: Severity drives who gets woken up.", "B", "M"],
+["Handover", "How do you make shift handovers reliable?", "**Why they ask:** continuity.\n\n**Answer:**\n\"A standard template — open incidents, pending actions, watch items — a verbal briefing on critical cases, explicit ownership transfer in the ticketing system, and spot checks by leads.\"\n\nTip: Explicit ownership transfer.", "B", "E"],
+["Quality", "How do you run quality assurance on analyst work?", "**Why they ask:** quality control.\n\n**Answer:**\n\"Weekly sampling of closed alerts scored on accuracy, evidence, documentation and timeliness, coaching feedback, and using the trends to update training and playbooks.\"\n\nTip: Coach, don't punish.", "B", "M"],
+["Insider", "How does a SOC handle insider threat cases differently?", "**Why they ask:** sensitivity.\n\n**Answer:**\n\"Restricted access to the case, coordination with HR and legal, privacy rules, careful evidence handling, and never tipping off the subject. Escalations go only to a small named group.\"\n\nTip: Need-to-know.", "D", "M"],
+["Roadmap", "What would a 12-month SOC improvement roadmap include?", "**Why they ask:** strategic planning.\n\n**Answer:**\n\"Quarter one: baseline metrics, tune the noisiest rules, fix gaps in critical log sources. Quarter two: SOAR enrichment, a playbook refresh and tabletop exercises. Quarter three: detection-as-code, ATT&CK coverage mapping and a hunting cadence. Quarter four: purple team validation, a career ladder, and a review of the MDR contract — each quarter tied to a metric like MTTR or false-positive rate.\"\n\nTip: Tie each quarter to a metric.", "D", "M"]
 ]);
