@@ -1,10 +1,4 @@
-QB['qa-dir'] = (QB['qa-dir'] || []).concat([
-["Strategy", "How do you set quality OKRs?",
-`**Answer:** Objectives tied to business outcomes (e.g. "Customers trust every release"), with measurable key results: change failure rate below 10%, customer-reported P1 defects down 40%, PR feedback under 10 minutes, flake rate under 1%. Review quarterly with engineering leadership.
-
-Tip: Outcome-based key results.`, 'D'],
-["People", "How do you build a technical career ladder for QE?",
-`**Answer:** Define levels with expectations for scope, technical depth, influence and leadership — from QA engineer to staff/principal QE — parallel to the management track, with clear promotion criteria and examples.
-
-Tip: Retains strong ICs.`, 'D']
+QB["qa-dir"] = (QB["qa-dir"] || []).concat([
+["Strategy", "How do you set quality OKRs?", "**Why they ask:** goal setting.\n\n**Answer:**\n\"Objectives tied to business outcomes — 'customers trust every release' — with measurable key results: change failure rate below 10%, customer-reported P1 defects down 40%, pull request feedback under 10 minutes, flake rate under 1%. Reviewed quarterly with engineering leadership.\"\n\nTip: Outcome-based key results.", "D"],
+["People", "How do you build a technical career ladder for QE?", "**Why they ask:** talent strategy.\n\n**Answer:**\n\"Define levels with expectations for scope, technical depth, influence and leadership — from QA engineer up to staff and principal QE — parallel to the management track, with clear promotion criteria and concrete examples at each level.\"\n\nTip: Retains strong ICs.", "D"]
 ]);
