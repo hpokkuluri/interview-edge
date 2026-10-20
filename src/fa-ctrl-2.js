@@ -1,10 +1,4 @@
-QB['fa-ctrl'] = (QB['fa-ctrl'] || []).concat([
-["Close", "What is a continuous or soft close?",
-`**Answer:** Doing close activities throughout the month instead of all at the end — daily reconciliations, weekly accruals and intercompany matching, and automated postings — so month-end is mostly review. A **soft close** is a lighter month-end close (fewer reconciliations, higher thresholds) for non-quarter months, with full rigor at quarter-end.
-
-Tip: Mention which tasks you'd move into the month first.`, 'D', 'S'],
-["Reconciliations", "How do you make sure reconciliations are actually reviewed, not just signed?",
-`**Answer:** Risk-rate accounts (high/medium/low) with matching frequency and review depth, require explanations and planned resolution dates for reconciling items, report aged items to management, and spot-check reviews myself each quarter. Tools like BlackLine show reviewer activity and aging.
-
-Tip: Auditors look for aged reconciling items — say you monitor them.`, 'D', 'S']
+QB["fa-ctrl"] = (QB["fa-ctrl"] || []).concat([
+["Close", "What is a continuous or soft close?", "**Why they ask:** modern close practices.\n\n**Answer:**\n\"A continuous close spreads close work across the month — daily reconciliations, weekly accruals and intercompany matching, automated postings — so month-end is mostly review. A soft close is a lighter month-end for non-quarter months — fewer reconciliations and higher thresholds — with full rigor at quarter-end. I'd move bank reconciliations and intercompany matching into the month first.\"\n\nTip: Say which tasks you'd move into the month first.", "D", "S"],
+["Reconciliations", "How do you make sure reconciliations are actually reviewed, not just signed?", "**Why they ask:** rubber-stamp reviews are a common audit finding.\n\n**Answer:**\n\"I risk-rate every account — high, medium or low — and set frequency and review depth to match. Reconciling items need an explanation and a planned resolution date. Aged items are reported to management. And each quarter I spot-check reviews myself. Tools like BlackLine show reviewer activity and aging, so it's visible who actually reviewed what.\"\n\nTip: Auditors look for aged reconciling items — say you monitor them.", "D", "S"]
 ]);

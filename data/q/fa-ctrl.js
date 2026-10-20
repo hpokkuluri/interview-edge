@@ -1,285 +1,57 @@
 // fa-ctrl — generated from src/fa-ctrl-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Accounting Manager / Controller. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fa-ctrl'] = [
-["Role", "What does a controller do?",
-`**Why they ask:** checks that you see the whole job, not just the close.
-
-**Answer:** The controller owns the integrity of the numbers:
-- **Accurate, timely close and reporting** — monthly, quarterly, annual.
-- **Internal controls** and SOX compliance.
-- **Accounting policy** and technical accounting judgments.
-- **External audit** relationship.
-- **Team leadership** — staffing, development, workload.
-- **Business partnership** with FP&A, tax, treasury and operations.
-
-Tip: Add how you balance "getting it right" with "getting it fast".`, 'B', 'S'],
-
-["Role", "What are your first 90 days as controller?",
-`**Sample answer:** "First 30 days: listen — meet the team, CFO, auditors and key business partners; review last year's audit findings, the close calendar and reconciliations. Days 30–60: identify the top three risks or pain points — for example late reconciliations, manual consolidations, or unclear policies — and agree priorities with the CFO. Days 60–90: deliver quick wins, like a tighter close calendar and reconciliation review, and present a 12-month roadmap."
-
-Tip: Listen first, then act — and name concrete deliverables.`, 'B', 'S'],
-
-["Close", "How would you run a faster, cleaner close?",
-`**Answer:**
-- Close calendar with dependencies, owners and day-by-day deadlines.
-- Shift work to **pre-close** (accrual estimates, prepaid/depreciation, intercompany cut-off).
-- Automate recurring journals, allocations and reconciliations.
-- Set materiality thresholds — don't chase immaterial items during close.
-- Daily close stand-ups; track blockers.
-- Measure **days to close** and **post-close adjustments**; fix root causes.
-
-**Example:** "We moved from a 10-day to a 5-day close in three quarters."
-
-Tip: Speed without quality is not a win — mention fewer adjustments too.`, 'D', 'M'],
-
-["Close", "Your close keeps slipping because subledgers are late. What do you do?",
-`**Answer:** Map dependencies — which subledger, which task, which person. Agree hard cut-off times with each owner (AP, AR, inventory, payroll), give them visibility of the impact, and add pre-close checks. If a system process is slow (e.g. cost processing), work with IT to schedule it earlier. Escalate repeated misses to the owner's manager with data.
-
-Tip: Data on recurring delays turns a complaint into a fix.`, 'D', 'M'],
-
-["Close", "How do you decide what is material?",
-`**Answer:** Materiality is both quantitative and qualitative. Common starting points: a percentage of pre-tax income (around 5%), revenue (0.5–1%) or total assets. Qualitative factors can make small items material — covenant compliance, fraud, items that change a loss into a profit, or segment results. Internally I set lower thresholds for close adjustments and flux review than audit materiality.
-
-Tip: Mentioning qualitative materiality shows senior judgment.`, 'D', 'S'],
-
-["Controls", "How do you design and assess internal controls?",
-`**Answer:** Start with risks — what could go wrong in each process (completeness, accuracy, cut-off, authorization). Design controls that address each: preventive (approvals, system restrictions) and detective (reconciliations, reviews). Document in a risk and control matrix (RCM). Test design and operating effectiveness; remediate gaps. Framework: **COSO 2013** (control environment, risk assessment, control activities, information and communication, monitoring).
-
-Tip: Mention key vs non-key controls and why you'd focus on key ones.`, 'D', 'M'],
-
-["Controls", "What are the most important controls a controller owns?",
-`**Answer:**
-- Journal entry review and approval (especially manual and top-side).
-- Account reconciliations with timely review.
-- Segregation of duties and system access reviews.
-- Period open/close control.
-- Management review of financial results (flux).
-- Revenue and cut-off controls.
-- Vendor master and payment controls.
-
-Tip: Mention management review controls need precision — thresholds and evidence of follow-up.`, 'D', 'M'],
-
-["Controls", "What is a management review control and why do auditors scrutinize it?",
-`**Answer:** A review by management of financial information to detect errors — e.g. a controller reviewing the P&L vs budget. Auditors want evidence that the review is **precise** enough: defined thresholds, what was investigated, the follow-up and resolution. A signature alone isn't enough.
-
-Tip: Say you document investigation notes for variances above thresholds.`, 'D', 'S'],
-
-["SOX", "What is SOX 404 and how have you supported it?",
-`**Answer:** SOX 404 requires management to assess internal control over financial reporting each year; larger public companies also need an auditor's attestation (404(b)). As controller I own key financial controls, ensure they run on time with evidence, work with internal audit on testing, and remediate deficiencies before year-end.
-
-Tip: Share a deficiency you remediated.`, 'D', 'M'],
-
-["SOX", "Explain deficiency, significant deficiency and material weakness.",
-`**Answer:**
-- **Deficiency:** a control doesn't prevent or detect misstatements on time.
-- **Significant deficiency:** important enough to merit the audit committee's attention, but less severe than a material weakness.
-- **Material weakness:** a reasonable possibility that a **material** misstatement won't be prevented or detected — must be disclosed publicly.
-
-Tip: Mention aggregation — several deficiencies can add up to a material weakness.`, 'D', 'S'],
-
-["Audit", "How do you manage the external audit?",
-`**Answer:** Agree scope, timeline and the PBC list early; assign owners for each request; hold weekly status meetings; prepare technical memos for significant judgments in advance; and resolve proposed adjustments quickly. After the audit, debrief to reduce requests and findings next year.
-
-Tip: "No surprises for auditors" — raise issues early.`, 'B', 'M'],
-
-["Audit", "Your auditor proposes a material adjustment you disagree with. What do you do?",
-`**Answer:** Understand their basis and the evidence. Review the guidance and our facts, and prepare a written position. Discuss calmly with the engagement manager and partner; involve the CFO and, if needed, the audit committee. If their position is correct, accept it and fix the process. If not, document the agreed resolution.
-
-Tip: Professional disagreement backed by guidance — never emotional.`, 'D', 'S'],
-
-["Technical Accounting", "How do you approach a complex accounting question?",
-`**Answer:** Gather facts and contracts, identify the relevant guidance (ASC or IFRS), read interpretive guides (Big 4 publications), consider alternatives, and write a **position memo**: background, issue, guidance, analysis, conclusion, disclosure. Discuss with auditors before the period closes.
-
-Tip: Mention a real memo you wrote — revenue, leases, stock comp.`, 'D', 'S'],
-
-["Revenue", "What revenue recognition issues do you watch most closely?",
-`**Answer:** Multiple performance obligations and allocation, variable consideration (rebates, returns), principal vs agent, bill-and-hold, contract modifications, and cut-off at quarter-end. These are the areas where errors and audit findings concentrate.
-
-Tip: Name the ones relevant to the company's business model.`, 'D', 'S'],
-
-["Leases", "What were the hard parts of adopting ASC 842 / IFRS 16?",
-`**Answer:** Finding all leases (including embedded leases in service contracts), getting discount rates (incremental borrowing rate), building a lease system or schedules, modifications and remeasurements, and controls over completeness of the lease population.
-
-Tip: Mention the tool you used (Oracle Lease Accounting, LeaseQuery, CoStar).`, 'D', 'S'],
-
-["Reporting", "What do you include in the monthly management reporting pack?",
-`**Answer:** P&L vs budget, forecast and prior year with commentary; balance sheet and cash flow highlights; KPIs (gross margin, opex %, DSO, DPO, inventory days); one-off items; and risks or opportunities. Consistent format, short commentary focused on drivers.
-
-Tip: "So what" commentary — not just "up 10%".`, 'B', 'M'],
-
-["Reporting", "How do you prepare for quarterly SEC reporting?",
-`**Answer:** A reporting calendar for the 10-Q/10-K, disclosure checklist, roll-forward of prior filings, tie-out of every number to support, disclosure committee review, auditor review, and sign-off. Coordinate with legal and investor relations.
-
-Tip: Mention XBRL tagging and SOX 302 certifications if relevant.`, 'D', 'S'],
-
-["Consolidation", "Walk me through the consolidation process.",
-`**Answer:** Collect subsidiary trial balances, apply group policy adjustments (local GAAP to US GAAP/IFRS), translate foreign currency (closing rate for balance sheet, average for P&L, CTA in OCI), eliminate intercompany balances and profits, record non-controlling interests, and produce consolidated statements. Tools: Oracle FCCS, OneStream, HFM, SAP Group Reporting.
-
-Tip: Intercompany reconciliation is usually the bottleneck — say how you fixed it.`, 'D', 'S'],
-
-["Consolidation", "Intercompany never balances at month-end. How do you fix it?",
-`**Answer:** Standardize intercompany processes: a single intercompany calendar and cut-off, agreed FX rates, matching rules, and a tool for intercompany transactions (or invoices generated from one side). Reconcile balances weekly, not only at month-end, and settle regularly. Track mismatches by entity pair and fix root causes.
-
-Tip: Mention Oracle Intercompany or SAP ICR if used.`, 'D', 'S'],
-
-["Systems", "What is the controller's role in an ERP implementation?",
-`**Answer:** Define the chart of accounts and reporting structure, design close and accounting rules, ensure controls are built in (approvals, segregation of duties, period controls), own data conversion validation and reconciliation, lead finance UAT, and decide go-live readiness (parallel close or reconciled opening balances). Train the team.
-
-Tip: Mention a lesson learned from a past implementation.`, 'D', 'S'],
-
-["Systems", "How would you design a chart of accounts?",
-`**Answer:** Segments that support reporting without overloading: company, cost center/department, natural account, plus optional segments like product, region, intercompany, project. Keep natural accounts lean, use hierarchies for reporting, document definitions and controls for new accounts.
-
-Tip: Mention avoiding "smart" codes that encode too much meaning.`, 'D', 'S'],
-
-["Automation", "Where would you apply automation and AI in accounting?",
-`**Answer:** Reconciliations (auto-matching), journal entry automation, AP invoice capture, cash application, flux analysis commentary drafts, anomaly detection on journals, and close task management. Keep humans on judgment and review; measure time saved and error reduction.
-
-Tip: Mention a pilot you'd run first, like AI-assisted flux commentary.`, 'D', 'S'],
-
-["People", "How do you build and develop an accounting team?",
-`**Answer:** Clear roles and documented procedures, cross-training for coverage, rotations to build skills, support for CPA/CMA, regular feedback and growth plans, and protecting the team from avoidable crunch with better planning. Recognize good work publicly.
-
-Tip: Mention someone you developed and where they are now.`, 'B', 'M'],
-
-["People", "How do you handle a team member who keeps missing close deadlines?",
-`**Answer:** Talk privately, understand the cause (workload, skills, process, personal), agree clear expectations and support (training, reprioritizing, tools), and follow up regularly. Document progress. If performance doesn't improve, follow HR process.
-
-Tip: Fair, supportive, then firm.`, 'B', 'M'],
-
-["People", "How do you manage burnout during busy periods?",
-`**Answer:** Plan the calendar to spread work, move tasks to pre-close, automate, set realistic deadlines, and give time back after peaks. Watch for signs of overload and redistribute work.
-
-Tip: Mention a specific step you took, like eliminating low-value reports.`, 'B', 'M'],
-
-["Partnership", "How do you partner with FP&A?",
-`**Answer:** Agree one source of truth for actuals, align on cost center and account mapping, share early close flash results, and jointly explain variances. Controllers own accuracy; FP&A owns forecasting and insights.
-
-Tip: Mention a regular "actuals handoff" meeting.`, 'B', 'M'],
-
-["Partnership", "How do you work with operations or business leaders who don't understand accounting?",
-`**Answer:** Speak in their terms — cash, margin, cost — not debits and credits. Explain why a rule matters (e.g. why we need receipts for accruals), make the process easy for them, and share results that help them run their business.
-
-Tip: A story where accounting helped a business leader decide something is strong.`, 'B', 'M'],
-
-["Policy", "Which accounting policies would you make sure are documented?",
-`**Answer:** Revenue recognition, capitalization and depreciation, inventory and reserves, accruals and reserves (bad debt, warranty, bonus), leases, intercompany, FX, journal entry and reconciliation policies, and delegation of authority.
-
-Tip: Mention policies reviewed annually and approved by the CFO.`, 'D', 'S'],
-
-["Cash", "How does the controller contribute to cash management?",
-`**Answer:** Accurate working capital data (AR, AP, inventory), reliable accruals for forecasting, controls over payments, and supporting treasury with the 13-week cash forecast. Also identify cash opportunities — for example better payment terms or faster billing.
-
-Tip: Show you think beyond the P&L.`, 'D', 'M'],
-
-["Inventory", "What inventory accounting issues does a controller watch?",
-`**Answer:** Valuation (standard vs actual cost), variance analysis, excess and obsolete reserves, lower of cost and NRV, cycle count accuracy, cut-off, and capitalization of overhead. Physical count observations at year-end.
-
-Tip: Mention reviewing standard cost updates annually.`, 'D', 'S'],
-
-["Tax", "How do you work with the tax team?",
-`**Answer:** Provide clean trial balances and supporting schedules, flag book-tax differences early (e.g. fixed assets, stock comp, reserves), coordinate the quarterly provision, and support indirect tax compliance and audits.
-
-Tip: Mention the provision timeline in the close calendar.`, 'D', 'S'],
-
-["Risk", "What are the biggest risks of financial misstatement and how do you address them?",
-`**Answer:** Revenue cut-off and recognition, management estimates (reserves, impairments), manual journals and top-side adjustments, complex transactions, and IT system changes. Address them with strong controls, review of estimates against actuals, journal analytics, and early technical accounting.
-
-Tip: Mention journal entry testing with data analytics.`, 'D', 'S'],
-
-["Fraud", "How do you detect fraud as controller?",
-`**Answer:** Strong segregation of duties, journal entry analytics (weekend, round-number, unusual account combinations), vendor master reviews, reconciliation reviews, surprise counts, whistleblower hotline, and a culture where people raise concerns.
-
-Tip: Mention the fraud triangle — pressure, opportunity, rationalization.`, 'D', 'S'],
-
-["M&A", "What does the controller do in an acquisition?",
-`**Answer:** Support due diligence on accounting quality, prepare purchase price allocation with valuation experts (goodwill, intangibles), integrate the acquired company's close, policies, chart of accounts and controls, and align systems. Track the opening balance sheet carefully.
-
-Tip: Mention day-1 close readiness.`, 'D', 'S'],
-
-["Scenario", "The CFO wants the close in 3 days. Your team says it's impossible. What do you do?",
-`**Answer:** Map the current close in detail, find the critical path, and show what would need to change for 3 days — automation, earlier cut-offs, materiality thresholds, fewer manual reports. Agree a phased plan (e.g. 7 → 5 → 3 days over a year), with resources needed. Commit to measurable steps rather than an unsafe jump.
-
-Tip: Data-driven negotiation, not a flat no.`, 'D', 'S'],
-
-["Scenario", "You find a significant error in last year's financial statements. What do you do?",
-`**Answer:** Quantify the error and assess materiality (quantitative and qualitative) with the CFO. Inform the auditors and, if needed, the audit committee. Decide: correct in the current period (immaterial), revise prior periods ("little r"), or restate (material, "Big R"). Fix the control failure and document.
-
-Tip: Mention SAB 99 and SAB 108 for public companies.`, 'D', 'S'],
-
-["Scenario", "A business leader pressures you to delay recognizing an expense. What do you do?",
-`**Answer:** Explain the accounting requirement and why it matters. If the expense is real and incurred, it must be recorded. Offer to help them explain the variance or find genuine savings. If pressure continues, escalate to the CFO. Integrity of reporting isn't negotiable.
-
-Tip: Firm, calm, supportive of the leader's real goal.`, 'B', 'S'],
-
-["Metrics", "Which metrics would you use to measure the accounting function?",
-`**Answer:** Days to close, number of post-close adjustments, reconciliation timeliness and aged items, audit adjustments and findings, control deficiencies, manual journal volume, and team turnover/engagement.
-
-Tip: Pick 4–5 and report them monthly.`, 'D', 'S'],
-
-["Behavioral", "Tell me about a control deficiency you found and fixed.",
-`**Sample answer:** "Manual journals above $50,000 were being approved by the preparer's peer, not a manager, and approvals weren't evidenced. I set workflow approval thresholds in the ERP, required support attachments, and ran a monthly report of journals over threshold. Internal audit retested and closed the finding the next quarter."
-
-Tip: Problem, risk, fix, evidence of closure.`, 'B', 'S'],
-
-["Behavioral", "Tell me about a time you improved the close significantly.",
-`**Sample answer:** "The close took 9 days with about 40 post-close adjustments. I introduced a pre-close checklist, automated 60 recurring journals, set up BlackLine for reconciliations, and held daily stand-ups. Within three quarters we closed in 5 days with fewer than 10 adjustments."
-
-Tip: Before/after numbers on speed and quality.`, 'B', 'S'],
-
-["Behavioral", "Describe a difficult conversation with an auditor.",
-`**Sample answer:** "Our auditors questioned our warranty reserve as too low. I prepared a memo with five years of claims history, the reserve methodology and a back-test showing our estimates were within 5% of actuals. We walked through it together and they accepted the reserve with an additional disclosure."
-
-Tip: Evidence and calm discussion.`, 'B', 'S'],
-
-["Behavioral", "How do you handle competing priorities from the CFO and business leaders?",
-`**Answer:** Clarify the deadline and importance of each, communicate trade-offs openly, and let the CFO make the final priority call where needed. Then deliver and keep everyone informed.
-
-Tip: Transparency over heroics.`, 'B', 'M'],
-
-["Strategy", "Where do you see the controller role going in the next five years?",
-`**Answer:** Less manual processing and more analysis and control design. Continuous close and automated reconciliations, AI-driven anomaly detection, real-time reporting, and stronger partnership with the business. Controllers will need data and systems skills alongside technical accounting.
-
-Tip: Show you're preparing — e.g. learning automation or analytics tools.`, 'D', 'S'],
-
-["IFRS", "What are key differences between US GAAP and IFRS you have dealt with?",
-`**Answer:**
-- **Inventory:** LIFO allowed under US GAAP, not under IFRS.
-- **Impairment:** IFRS allows reversal (except goodwill); US GAAP doesn't.
-- **Leases:** IFRS 16 single lessee model; ASC 842 has operating and finance.
-- **Development costs:** IFRS capitalizes some development costs; US GAAP expenses most R&D.
-- **Revaluation:** IFRS allows revaluation of PP&E; US GAAP doesn't.
-
-Tip: Pick the ones relevant to your experience.`, 'D', 'S'],
-
-["Budget", "How do you control accounting department costs?",
-`**Answer:** Automate repetitive work, use shared services or outsourcing for transactional tasks where sensible, rationalize reports, renegotiate tool licenses, and keep audit fees down by being audit-ready.
-
-Tip: Mention a saving you delivered.`, 'D', 'S'],
-
-["Communication", "How do you explain bad financial results to leadership?",
-`**Answer:** Headline first, then the drivers in plain language, separating one-offs from trends. Show what's being done and the outlook. Be factual — no surprises, no spin.
-
-Tip: Prepare the "why" before the meeting.`, 'B', 'S'],
-
-["Career", "Why do you want to be a controller here?",
-`**Sample answer:** "I want to own the integrity of the numbers in a company that's growing, and your expansion and system upgrade are exactly where I've added the most value before — building a faster, well-controlled close that scales."
-
-Tip: Connect your experience to their situation.`, 'B', 'S'],
-
-["Closing", "Why should we hire you as controller?",
-`**Sample answer:** "I've run clean, fast closes — 9 to 5 days with fewer adjustments — remediated control findings, managed audits without surprises and built teams people want to stay on. I combine technical accounting with systems experience, which matters for your ERP roadmap."
-
-Tip: Three proof points with numbers.`, 'B', 'S']
-];
-
-QB['fa-ctrl'] = (QB['fa-ctrl'] || []).concat([
-["Close", "What is a continuous or soft close?",
-`**Answer:** Doing close activities throughout the month instead of all at the end — daily reconciliations, weekly accruals and intercompany matching, and automated postings — so month-end is mostly review. A **soft close** is a lighter month-end close (fewer reconciliations, higher thresholds) for non-quarter months, with full rigor at quarter-end.
-
-Tip: Mention which tasks you'd move into the month first.`, 'D', 'S'],
-["Reconciliations", "How do you make sure reconciliations are actually reviewed, not just signed?",
-`**Answer:** Risk-rate accounts (high/medium/low) with matching frequency and review depth, require explanations and planned resolution dates for reconciling items, report aged items to management, and spot-check reviews myself each quarter. Tools like BlackLine show reviewer activity and aging.
-
-Tip: Auditors look for aged reconciling items — say you monitor them.`, 'D', 'S']
+QB["fa-ctrl"] = (QB["fa-ctrl"] || []).concat([
+["Role", "What does a controller do?", "**Why they ask:** checks that you see the whole job, not just the close.\n\n**Answer:** The controller owns the integrity of the numbers:\n- **Accurate, timely close and reporting** — monthly, quarterly, annual.\n- **Internal controls** and SOX compliance.\n- **Accounting policy** and technical accounting judgments.\n- **External audit** relationship.\n- **Team leadership** — staffing, development, workload.\n- **Business partnership** with FP&A, tax, treasury and operations.\n\nTip: Add how you balance \"getting it right\" with \"getting it fast\".", "B", "S"],
+["Role", "What are your first 90 days as controller?", "**Why they ask:** they want a leader who learns before changing things, then delivers.\n\n**Answer:**\n\"In the first 30 days I listen. I meet the team, the CFO, the auditors and key business partners, and I review last year's audit findings, the close calendar and the reconciliations. In days 30 to 60 I pick the top three risks or pain points — say late reconciliations, a manual consolidation and unclear policies — and agree priorities with the CFO. In days 60 to 90 I deliver quick wins, like a tighter close calendar and a reconciliation review process, and present a 12-month roadmap.\"\n\nTip: Listen first, then act — and name concrete deliverables.", "B", "S"],
+["Close", "How would you run a faster, cleaner close?", "**Why they ask:** close speed and quality are the controller's scorecard.\n\n**Answer:**\n\"I start with a close calendar that shows every task, owner, dependency and deadline by day. Then I move work into pre-close — accrual estimates, prepaids, depreciation and intercompany cut-off happen before month-end. I automate recurring journals, allocations and reconciliations, and set materiality thresholds so we don't chase small items during close. We hold a short daily stand-up on blockers. And I measure two things: days to close and post-close adjustments. In my last role that took us from a 10-day to a 5-day close over three quarters, with fewer adjustments.\"\n\nTip: Speed without quality isn't a win — mention the drop in adjustments too.", "D", "M"],
+["Close", "Your close keeps slipping because subledgers are late. What do you do?", "**Why they ask:** controllers have to fix problems owned by other teams.\n\n**Answer:**\n\"I map the dependencies — which subledger, which task, which person is holding us up. Then I agree hard cut-off times with each owner: AP, AR, inventory, payroll. I show them the impact of a miss on the whole close, and add pre-close checks so problems show up early. If it's a system issue, like cost processing running too long, I work with IT to schedule it earlier. And if one area keeps missing, I take the data to that owner's manager.\"\n\nTip: Data on recurring delays turns a complaint into a fix.", "D", "M"],
+["Close", "How do you decide what is material?", "**Why they ask:** materiality judgment separates senior accountants from controllers.\n\n**Answer:**\n\"Materiality is both quantitative and qualitative. On the numbers, common starting points are about 5% of pre-tax income, 0.5 to 1% of revenue, or a share of total assets. So with $40 million of pre-tax income, something around $2 million is a starting point. But qualitative factors can make a small item material — if it affects a debt covenant, involves fraud, turns a loss into a profit, or changes a segment's results. Internally, I set much lower thresholds for close adjustments and flux review than audit materiality.\"\n\nTip: Mentioning qualitative materiality shows senior judgment.", "D", "S"],
+["Controls", "How do you design and assess internal controls?", "**Why they ask:** the controller owns the control environment.\n\n**Answer:**\n\"I start with risk — for each process, what could go wrong with completeness, accuracy, cut-off or authorization. Then I design controls for each risk: preventive ones like approvals and system restrictions, and detective ones like reconciliations and reviews. Everything goes into a risk and control matrix. We test design and operating effectiveness and fix the gaps. The framework underneath is COSO 2013 — control environment, risk assessment, control activities, information and communication, and monitoring.\"\n\nTip: Mention focusing on key controls and why.", "D", "M"],
+["Controls", "What are the most important controls a controller owns?", "**Why they ask:** a quick test of your priorities.\n\n**Answer:**\n\"Journal entry review and approval, especially manual and top-side entries. Account reconciliations with timely review. Segregation of duties and system access reviews. Period open and close control. Management review of results — the flux review. Revenue and cut-off controls. And vendor master and payment controls. Those are where misstatements and fraud usually get through.\"\n\nTip: Add that management review controls need precision — thresholds and evidence of follow-up.", "D", "M"],
+["Controls", "What is a management review control and why do auditors scrutinize it?", "**Why they ask:** these controls are the most common source of audit findings.\n\n**Answer:**\n\"It's management reviewing financial information to catch errors — for example, me reviewing the P&L against budget each month. Auditors scrutinize it because a signature proves nothing. They want to see the review is precise: what threshold I used, which variances I investigated, what I found and how it was resolved. So I document investigation notes for every variance above, say, $100,000 or 10%.\"\n\nTip: Say you document investigation notes for variances above thresholds.", "D", "S"],
+["SOX", "What is SOX 404 and how have you supported it?", "**Why they ask:** public-company controllers live with SOX.\n\n**Answer:**\n\"SOX 404 requires management to assess internal control over financial reporting every year, and larger public companies also need the auditor to attest to it under 404(b). As controller I own the key financial controls. I make sure they run on time with evidence, work with internal audit on testing, and remediate any deficiencies well before year-end so they can be retested.\"\n\nTip: Share a deficiency you remediated.", "D", "M"],
+["SOX", "Explain deficiency, significant deficiency and material weakness.", "**Why they ask:** you need to classify control problems correctly.\n\n**Answer:**\n\"A deficiency is when a control doesn't prevent or detect misstatements in time. A significant deficiency is serious enough for the audit committee's attention, but less severe than a material weakness. A material weakness means there's a reasonable possibility a material misstatement won't be prevented or detected — and a public company has to disclose it. Also, several smaller deficiencies in the same area can add up to a material weakness.\"\n\nTip: Mentioning aggregation shows depth.", "D", "S"],
+["Audit", "How do you manage the external audit?", "**Why they ask:** a smooth audit saves fees and protects the company.\n\n**Answer:**\n\"I agree the scope, timeline and the PBC list early, and give every request an owner. We hold weekly status meetings. For significant judgments, I prepare technical memos in advance instead of waiting to be asked. Proposed adjustments get resolved quickly. Afterward we debrief so next year has fewer requests and fewer findings. My rule is no surprises for the auditors — I raise issues early.\"\n\nTip: 'No surprises' is the line to remember.", "B", "M"],
+["Audit", "Your auditor proposes a material adjustment you disagree with. What do you do?", "**Why they ask:** tests technical confidence and professional behavior.\n\n**Answer:**\n\"First I make sure I understand their basis and evidence. Then I review the guidance against our facts and write up our position. I discuss it calmly with the engagement manager and partner, and bring in the CFO — and the audit committee if it comes to that. If they're right, I accept it and fix the process that caused it. If we're right, I document the agreed resolution.\"\n\nTip: Professional disagreement backed by guidance — never emotional.", "D", "S"],
+["Technical Accounting", "How do you approach a complex accounting question?", "**Why they ask:** controllers must reach and defend technical conclusions.\n\n**Answer:**\n\"I gather the facts and the contracts first. Then I find the relevant guidance — the ASC or IFRS standard — and read the Big 4 interpretive guides. I consider the alternatives and write a position memo: background, issue, guidance, analysis, conclusion and disclosure. And I discuss it with the auditors before the period closes, not after.\"\n\nTip: Mention a real memo you wrote — revenue, leases or stock comp.", "D", "S"],
+["Revenue", "What revenue recognition issues do you watch most closely?", "**Why they ask:** revenue is the top area for errors and audit findings.\n\n**Answer:**\n\"Multiple performance obligations and how price is allocated across them. Variable consideration like rebates and returns. Principal versus agent. Bill-and-hold arrangements. Contract modifications. And cut-off at quarter-end. Those are where errors and audit findings concentrate.\"\n\nTip: Name the ones relevant to the company's business model.", "D", "S"],
+["Leases", "What were the hard parts of adopting ASC 842 / IFRS 16?", "**Why they ask:** a practical test of standards implementation experience.\n\n**Answer:**\n\"Finding every lease was the hardest part, including leases embedded in service contracts. Then getting discount rates — the incremental borrowing rate for each term. We had to build a lease system or schedules, handle modifications and remeasurements, and put in controls over completeness so new leases don't get missed after adoption.\"\n\nTip: Mention the tool you used — Oracle Lease Accounting, LeaseQuery or CoStar.", "D", "S"],
+["Reporting", "What do you include in the monthly management reporting pack?", "**Why they ask:** controllers must communicate results, not just produce them.\n\n**Answer:**\n\"The P&L against budget, forecast and prior year, with commentary. Balance sheet and cash flow highlights. KPIs like gross margin, opex percentage, DSO, DPO and inventory days. One-off items called out separately. And risks and opportunities. Same format every month, with short commentary on the drivers — not 'up 10%' but why it's up 10%.\"\n\nTip: 'So what' commentary is what leadership values.", "B", "M"],
+["Reporting", "How do you prepare for quarterly SEC reporting?", "**Why they ask:** public-company reporting needs discipline.\n\n**Answer:**\n\"I run a reporting calendar for the 10-Q or 10-K, use a disclosure checklist, and roll forward the prior filing. Every number is tied out to support. Then it goes through the disclosure committee, auditor review and sign-off. I coordinate with legal and investor relations throughout.\"\n\nTip: Mention XBRL tagging and SOX 302 certifications if relevant.", "D", "S"],
+["Consolidation", "Walk me through the consolidation process.", "**Why they ask:** multi-entity controllers own consolidation.\n\n**Answer:**\n\"I collect each subsidiary's trial balance and apply group policy adjustments — local GAAP to US GAAP or IFRS. Then foreign currency translation: closing rate for the balance sheet, average rate for the P&L, and the difference goes to CTA in other comprehensive income. Next, I eliminate intercompany balances and profits, record non-controlling interests, and produce the consolidated statements. Tools like Oracle FCCS, OneStream, HFM or SAP Group Reporting do the heavy lifting.\"\n\nTip: Intercompany is usually the bottleneck — say how you fixed it.", "D", "S"],
+["Consolidation", "Intercompany never balances at month-end. How do you fix it?", "**Why they ask:** a classic multi-entity pain point.\n\n**Answer:**\n\"I standardize the process: one intercompany calendar and cut-off, agreed FX rates, and matching rules. Ideally transactions are created by one side and mirrored automatically, through an intercompany tool. Balances are reconciled weekly, not only at month-end, and settled regularly. I track mismatches by entity pair and fix the root cause for the worst pairs first.\"\n\nTip: Mention Oracle Intercompany or SAP ICR if you've used them.", "D", "S"],
+["Systems", "What is the controller's role in an ERP implementation?", "**Why they ask:** controllers decide whether finance is ready to go live.\n\n**Answer:**\n\"I define the chart of accounts and reporting structure, and design the close and accounting rules. I make sure controls are built in — approvals, segregation of duties, period controls. I own validation of converted data and reconcile it. I lead finance user testing, and I make the call on go-live readiness — either a parallel close or fully reconciled opening balances. And I make sure the team is trained.\"\n\nTip: Mention a lesson learned from a past implementation.", "D", "S"],
+["Systems", "How would you design a chart of accounts?", "**Why they ask:** a bad chart of accounts haunts reporting for years.\n\n**Answer:**\n\"I use segments that support reporting without overloading anyone: company, cost center, natural account, plus optional segments like product, region, intercompany or project. I keep natural accounts lean and use hierarchies for reporting rollups instead of creating new accounts. Definitions are documented, and new accounts need approval.\"\n\nTip: Mention avoiding 'smart' codes that try to encode too much meaning.", "D", "S"],
+["Automation", "Where would you apply automation and AI in accounting?", "**Why they ask:** they want a modern controller.\n\n**Answer:**\n\"Reconciliations with auto-matching, recurring journal automation, AP invoice capture and cash application. AI can draft flux commentary and flag unusual journals, and close management tools track tasks. People stay on judgment and review. I'd measure the hours saved and the drop in errors. A good first pilot is AI-drafted flux commentary — low risk and easy to measure.\"\n\nTip: Naming a specific pilot makes the answer concrete.", "D", "S"],
+["People", "How do you build and develop an accounting team?", "**Why they ask:** controllers are only as good as their team.\n\n**Answer:**\n\"Clear roles and documented procedures, cross-training so every task has a backup, and rotations so people build skills. I support CPA and CMA studies, give regular feedback and growth plans, and protect the team from avoidable crunch through better planning. And I recognize good work publicly.\"\n\nTip: Mention someone you developed and where they are now.", "B", "M"],
+["People", "How do you handle a team member who keeps missing close deadlines?", "**Why they ask:** tests fair but firm management.\n\n**Answer:**\n\"I talk to them privately and find the cause — too much workload, a skill gap, a process issue or something personal. We agree clear expectations and the support they need: training, reprioritizing, better tools. I follow up regularly and document progress. If it doesn't improve, I follow the HR process.\"\n\nTip: Fair, supportive, then firm.", "B", "M"],
+["People", "How do you manage burnout during busy periods?", "**Why they ask:** close and audit seasons burn people out.\n\n**Answer:**\n\"I plan the calendar so work is spread out, move tasks into pre-close, automate where I can, and set realistic deadlines. After peaks, I give time back. I also watch for signs someone is overloaded and redistribute work before it breaks. Once I cut several low-value reports nobody read, which freed a day per person each close.\"\n\nTip: Mention a specific step you took.", "B", "M"],
+["Partnership", "How do you partner with FP&A?", "**Why they ask:** controller and FP&A friction is common.\n\n**Answer:**\n\"We agree on one source of truth for actuals and align cost center and account mapping. I share an early flash of results so they can start analysis, and we explain variances together. The split is clear: the controller owns accuracy, FP&A owns forecasting and insights. A regular actuals handoff meeting keeps us in sync.\"\n\nTip: Mention that handoff meeting.", "B", "M"],
+["Partnership", "How do you work with operations or business leaders who don't understand accounting?", "**Why they ask:** controllers need influence outside finance.\n\n**Answer:**\n\"I speak their language — cash, margin, cost — not debits and credits. I explain why a rule matters, like why we need receipts entered for accruals, and I make the process easy for them. Then I share numbers that actually help them run their business, so they see finance as useful, not just as rules.\"\n\nTip: A story where accounting helped a leader make a decision is strong.", "B", "M"],
+["Policy", "Which accounting policies would you make sure are documented?", "**Why they ask:** documented policies support consistency and audits.\n\n**Answer:**\n\"Revenue recognition, capitalization and depreciation, inventory and its reserves, accruals and reserves like bad debt, warranty and bonus, leases, intercompany, FX, journal entry and reconciliation policies, and the delegation of authority. Each reviewed annually and approved by the CFO.\"\n\nTip: Mention the annual review and CFO approval.", "D", "S"],
+["Cash", "How does the controller contribute to cash management?", "**Why they ask:** they want a controller who thinks beyond the P&L.\n\n**Answer:**\n\"I provide accurate working capital data — AR, AP and inventory — and reliable accruals that feed the forecast. I own controls over payments. I support treasury on the 13-week cash forecast. And I look for cash opportunities, like better payment terms or billing faster after delivery.\"\n\nTip: Show you think beyond the P&L.", "D", "M"],
+["Inventory", "What inventory accounting issues does a controller watch?", "**Why they ask:** inventory is a frequent source of errors in product companies.\n\n**Answer:**\n\"Valuation — standard versus actual cost, and the variances. Excess and obsolete reserves. Lower of cost and net realizable value. Cycle count accuracy and cut-off. Capitalizing the right overhead. And observing physical counts at year-end. I also review standard cost updates every year so variances stay meaningful.\"\n\nTip: Mention reviewing standard costs annually.", "D", "S"],
+["Tax", "How do you work with the tax team?", "**Why they ask:** tax provision delays often hold up quarter-end.\n\n**Answer:**\n\"I give them clean trial balances and supporting schedules on a fixed date, and flag book-tax differences early — fixed assets, stock comp, reserves. We coordinate the quarterly provision, and I support indirect tax compliance and audits. The provision has its own slot in the close calendar.\"\n\nTip: Mention the provision timeline in the close calendar.", "D", "S"],
+["Risk", "What are the biggest risks of financial misstatement and how do you address them?", "**Why they ask:** controllers must know where errors hide.\n\n**Answer:**\n\"Revenue cut-off and recognition. Management estimates like reserves and impairments. Manual and top-side journals. Complex one-off transactions. And IT system changes. I address them with strong controls, back-testing estimates against actuals, journal entry analytics, and getting technical accounting involved early on unusual deals.\"\n\nTip: Mention journal entry testing with data analytics.", "D", "S"],
+["Fraud", "How do you detect fraud as controller?", "**Why they ask:** controllers are a key line of defense.\n\n**Answer:**\n\"Strong segregation of duties first. Then journal entry analytics — entries on weekends, round numbers, odd account combinations. Vendor master reviews, reconciliation reviews, surprise counts, and a whistleblower hotline. And a culture where people feel safe raising concerns. I keep the fraud triangle in mind — pressure, opportunity and rationalization — and work on removing the opportunity.\"\n\nTip: Mentioning the fraud triangle shows grounding.", "D", "S"],
+["M&A", "What does the controller do in an acquisition?", "**Why they ask:** M&A puts heavy load on the controller.\n\n**Answer:**\n\"I support due diligence on the target's accounting quality. After closing, I work with valuation experts on the purchase price allocation — goodwill and intangibles. Then I integrate the acquired company's close, policies, chart of accounts and controls, and align systems. The opening balance sheet needs careful tracking, and I make sure we're ready to include them in the first close.\"\n\nTip: Mention day-one close readiness.", "D", "S"],
+["Scenario", "The CFO wants the close in 3 days. Your team says it's impossible. What do you do?", "**Why they ask:** tests whether you can negotiate with data instead of saying no.\n\n**Answer:**\n\"I map the current close in detail and find the critical path. Then I show the CFO what would have to change to get to 3 days — automation, earlier cut-offs, materiality thresholds, fewer manual reports — and what resources that takes. I'd propose a phased plan, say 7 days to 5 to 3 over a year, with measurable steps each quarter. That's better than an unsafe jump that produces errors.\"\n\nTip: Data-driven negotiation, not a flat no.", "D", "S"],
+["Scenario", "You find a significant error in last year's financial statements. What do you do?", "**Why they ask:** tests integrity and knowledge of correction rules.\n\n**Answer:**\n\"I quantify the error and assess materiality — quantitative and qualitative — with the CFO. I inform the auditors and, if needed, the audit committee. Then we decide: if it's immaterial, correct it in the current period; if it's immaterial to the prior year but would be material to correct now, revise the prior periods — the 'little r'; if it's material, restate — the 'Big R'. Either way, I fix the control that failed and document everything.\"\n\nTip: Mention SAB 99 and SAB 108 for public companies.", "D", "S"],
+["Scenario", "A business leader pressures you to delay recognizing an expense. What do you do?", "**Why they ask:** a direct integrity test.\n\n**Answer:**\n\"I explain the accounting requirement and why it matters. If the expense is real and incurred, it gets recorded — that isn't negotiable. But I offer to help them with what they actually need: explaining the variance to leadership, or finding genuine savings. If the pressure continues, I escalate to the CFO.\"\n\nTip: Firm and calm, while supporting the leader's real goal.", "B", "S"],
+["Metrics", "Which metrics would you use to measure the accounting function?", "**Why they ask:** they want a controller who manages by data.\n\n**Answer:**\n\"Days to close. Number of post-close adjustments. Reconciliation timeliness and aged reconciling items. Audit adjustments and findings. Control deficiencies. Manual journal volume. And team turnover and engagement. I'd pick four or five and report them monthly.\"\n\nTip: Picking a handful and reporting monthly sounds practical.", "D", "S"],
+["Behavioral", "Tell me about a control deficiency you found and fixed.", "**Why they ask:** proof you can remediate, not just identify.\n\n**Answer:**\n\"Manual journals over $50,000 were being approved by the preparer's peer, not a manager, and approvals weren't evidenced. I set workflow approval thresholds in the ERP, required support attachments, and ran a monthly report of journals above the threshold. Internal audit retested the next quarter and closed the finding.\"\n\nTip: Problem, risk, fix, evidence of closure.", "B", "S"],
+["Behavioral", "Tell me about a time you improved the close significantly.", "**Why they ask:** the signature achievement for a controller.\n\n**Answer:**\n\"The close was taking 9 days with about 40 post-close adjustments. I introduced a pre-close checklist, automated 60 recurring journals, set up BlackLine for reconciliations, and ran daily stand-ups. Within three quarters we were closing in 5 days with fewer than 10 adjustments.\"\n\nTip: Before-and-after numbers on both speed and quality.", "B", "S"],
+["Behavioral", "Describe a difficult conversation with an auditor.", "**Why they ask:** auditor relationships make or break year-end.\n\n**Answer:**\n\"Our auditors challenged our warranty reserve as too low. I prepared a memo with five years of claims history, our reserve method, and a back-test showing our estimates had been within 5% of actual claims. We walked through it together, and they accepted the reserve with one additional disclosure.\"\n\nTip: Evidence and calm discussion win.", "B", "S"],
+["Behavioral", "How do you handle competing priorities from the CFO and business leaders?", "**Why they ask:** controllers serve many masters.\n\n**Answer:**\n\"I clarify the deadline and importance of each request, and communicate the trade-offs openly. Where priorities truly conflict, I let the CFO make the final call. Then I deliver and keep everyone informed of where their request stands.\"\n\nTip: Transparency over heroics.", "B", "M"],
+["Strategy", "Where do you see the controller role going in the next five years?", "**Why they ask:** they want someone who's preparing for the future.\n\n**Answer:**\n\"Less manual processing and more analysis and control design. Continuous close, automated reconciliations, AI flagging anomalies, and near real-time reporting. Controllers will need data and systems skills alongside technical accounting, and a closer partnership with the business. I'm building those skills now through automation and analytics work.\"\n\nTip: Show what you're doing to prepare.", "D", "S"],
+["IFRS", "What are key differences between US GAAP and IFRS you have dealt with?", "**Why they ask:** global companies need controllers who know both.\n\n**Answer:**\n\"Inventory — LIFO is allowed under US GAAP but not IFRS. Impairment — IFRS allows reversals except for goodwill; US GAAP doesn't. Leases — IFRS 16 has one lessee model, ASC 842 keeps operating and finance. Development costs — IFRS capitalizes some, US GAAP expenses most R&D. And IFRS allows revaluing property, plant and equipment; US GAAP doesn't.\"\n\nTip: Lead with the ones you've actually dealt with.", "D", "S"],
+["Budget", "How do you control accounting department costs?", "**Why they ask:** finance is a cost center, and they want efficiency.\n\n**Answer:**\n\"I automate repetitive work, use shared services or outsourcing for transactional tasks where it makes sense, cut reports nobody uses, renegotiate tool licenses, and keep audit fees down by being audit-ready. Being well prepared is often the cheapest saving.\"\n\nTip: Mention a saving you delivered.", "D", "S"],
+["Communication", "How do you explain bad financial results to leadership?", "**Why they ask:** delivering bad news well builds trust.\n\n**Answer:**\n\"Headline first — what happened, in one sentence. Then the drivers in plain language, separating one-offs from trends. Then what's being done about it and the outlook. Factual, no spin, and no surprises — I'd rather flag it early than at the meeting.\"\n\nTip: Prepare the 'why' before the meeting.", "B", "S"],
+["Career", "Why do you want to be a controller here?", "**Why they ask:** they want fit, not just any controller job.\n\n**Answer:**\n\"I want to own the integrity of the numbers in a company that's growing. Your expansion and the system upgrade you're planning are exactly where I've added the most value before — building a faster, well-controlled close that scales.\"\n\nTip: Connect your experience to their situation.", "B", "S"],
+["Closing", "Why should we hire you as controller?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I've run clean, fast closes — 9 days down to 5 with fewer adjustments. I've remediated control findings, managed audits without surprises, and built teams people want to stay on. And I combine technical accounting with systems experience, which matters for your ERP roadmap.\"\n\nTip: Three proof points with numbers.", "B", "S"]
+]);
+
+QB["fa-ctrl"] = (QB["fa-ctrl"] || []).concat([
+["Close", "What is a continuous or soft close?", "**Why they ask:** modern close practices.\n\n**Answer:**\n\"A continuous close spreads close work across the month — daily reconciliations, weekly accruals and intercompany matching, automated postings — so month-end is mostly review. A soft close is a lighter month-end for non-quarter months — fewer reconciliations and higher thresholds — with full rigor at quarter-end. I'd move bank reconciliations and intercompany matching into the month first.\"\n\nTip: Say which tasks you'd move into the month first.", "D", "S"],
+["Reconciliations", "How do you make sure reconciliations are actually reviewed, not just signed?", "**Why they ask:** rubber-stamp reviews are a common audit finding.\n\n**Answer:**\n\"I risk-rate every account — high, medium or low — and set frequency and review depth to match. Reconciling items need an explanation and a planned resolution date. Aged items are reported to management. And each quarter I spot-check reviews myself. Tools like BlackLine show reviewer activity and aging, so it's visible who actually reviewed what.\"\n\nTip: Auditors look for aged reconciling items — say you monitor them.", "D", "S"]
 ]);
