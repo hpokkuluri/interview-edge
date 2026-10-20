@@ -1,229 +1,48 @@
 // Microsoft Dynamics 365 Consultant (F&O / Business Central / CE). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ea-d365'] = [
-["Role", "What does a Dynamics 365 consultant do?",
-`**Why they ask:** D365 covers ERP and CRM; they need to know which you know.
-
-**Answer:** Implements and supports Dynamics 365 applications — Finance and Supply Chain Management (F&O), Business Central (SMB ERP) or Customer Engagement (Sales, Customer Service on Dataverse) — gathering requirements, configuring modules, designing processes, data migration, testing, training and post-go-live support.
-
-Tip: State which apps you know.`, 'B', 'E'],
-
-["Product", "D365 Finance & Operations vs Business Central?",
-`**Answer:** **F&O** (Finance, Supply Chain Management) is for large enterprises with complex multi-entity, manufacturing and global needs. **Business Central** is for small and mid-size businesses with simpler, faster deployment. Both are cloud ERP; extensibility differs (X++ for F&O, AL for BC).
-
-Tip: Fit to company size.`, 'B', 'E'],
-
-["Finance", "Explain the chart of accounts and financial dimensions in F&O.",
-`**Answer:** Main accounts plus financial dimensions (department, cost center, business unit, project) combined through account structures and advanced rules; dimensions enable flexible reporting without huge account lists.
-
-Tip: Account structures.`, 'D', 'M'],
-
-["Finance", "How does period close work in D365 Finance?",
-`**Answer:** Financial period close workspace with tasks and checklists, subledger closing (AP, AR, inventory close), reconciliations, intercompany, revaluations, consolidations and reporting through Financial Reporting (Management Reporter).
-
-Tip: Inventory close.`, 'D', 'M'],
-
-["Supply Chain", "What are key SCM processes in D365?",
-`**Answer:** Procure-to-pay (purchase requisitions, POs, receipts, vendor invoices), order-to-cash (sales orders, picking, packing, shipping, invoicing), inventory and warehouse management (WMS), master planning, and production control.
-
-Tip: End-to-end flows.`, 'B', 'M'],
-
-["Inventory", "Explain inventory dimensions in D365 SCM.",
-`**Answer:** Product dimensions (configuration, size, color, style, version), storage dimensions (site, warehouse, location, inventory status, license plate) and tracking dimensions (batch, serial number) — controlled via dimension groups.
-
-Tip: Dimension groups.`, 'D', 'M'],
-
-["Inventory", "Which costing methods does D365 support?",
-`**Answer:** FIFO, LIFO, weighted average, weighted average date, moving average and standard cost — configured in item model groups; inventory close settles issues against receipts for non-standard methods.
-
-Tip: Item model groups.`, 'D', 'M'],
-
-["Planning", "How does master planning work?",
-`**Answer:** Calculates net requirements from demand (sales, forecasts) and supply (on-hand, orders) using coverage groups (period, min/max, requirement), generating planned orders. Planning Optimization is the current engine.
-
-Tip: Coverage groups.`, 'D', 'M'],
-
-["CE", "What is Dataverse?",
-`**Answer:** The data platform underneath Dynamics 365 Customer Engagement and Power Apps — tables, relationships, business rules, security roles and APIs.
-
-Tip: Power Platform foundation.`, 'B', 'M'],
-
-["CE", "How does security work in Dynamics 365 CE?",
-`**Answer:** Business units, security roles with privileges and access levels (user, business unit, parent-child BU, organization), teams, field security profiles and hierarchy security.
-
-Tip: Access levels.`, 'D', 'M'],
-
-["Power Platform", "How does Power Platform extend D365?",
-`**Answer:** Power Apps for custom apps, Power Automate for workflow and integrations, Power BI for analytics, Copilot Studio for agents — all connected to Dataverse and D365 data.
-
-Tip: Low-code extension.`, 'B', 'M'],
-
-["Integration", "What integration options exist for F&O?",
-`**Answer:** Data management framework (data entities, import/export projects), OData and custom services, business events, dual-write (real-time sync with Dataverse), recurring integrations, Azure services (Logic Apps, Service Bus, Synapse/Fabric links).
-
-Tip: Data entities.`, 'D', 'M'],
-
-["Data", "How do you migrate data into D365 F&O?",
-`**Answer:** Data Management workspace with data entities and templates, load sequence (configuration → master data → open transactions → balances), validation, and reconciliation — using staging tables for review.
-
-Tip: Sequence matters.`, 'B', 'M'],
-
-["Lifecycle", "What is Lifecycle Services (LCS) / Power Platform admin center for F&O?",
-`**Answer:** Tools for managing F&O environments, deployments, updates and monitoring; Microsoft is moving F&O environment management into the Power Platform admin center (unified admin).
-
-Tip: Unified admin transition.`, 'D', 'M'],
-
-["Updates", "How do you manage continuous updates?",
-`**Answer:** Microsoft releases service updates several times a year; plan regression testing (RSAT), use update scheduling, review feature management to enable new features and test extensions.
-
-Tip: RSAT automated testing.`, 'B', 'M'],
-
-["Development", "What is extension-based development in F&O?",
-`**Answer:** Customizations use extensions (no overlayering of Microsoft code) in X++, adding fields, methods (chain of command), event handlers and new objects — keeping upgrades seamless.
-
-Tip: Chain of command.`, 'D', 'M'],
-
-["Reporting", "What reporting options exist?",
-`**Answer:** Financial Reporting, SSRS reports, Power BI embedded and analytical workspaces, Electronic Reporting for regulatory formats, and data export to a data lake/Fabric for analytics.
-
-Tip: Electronic Reporting.`, 'B', 'M'],
-
-["Copilot", "What Copilot features exist in Dynamics 365?",
-`**Answer:** Copilot for summarizing records, drafting emails, collections assistance, demand planning insights, and agents for tasks like supplier communications and time entry.
-
-Tip: Agentic features growing.`, 'B', 'M'],
-
-["Implementation", "What is Microsoft's Success by Design?",
-`**Answer:** Microsoft FastTrack methodology with review workshops (solution blueprint, data, integration, performance, go-live readiness) to reduce implementation risk.
-
-Tip: Go-live readiness review.`, 'D', 'M'],
-
-["Fit-Gap", "How do you run a fit-gap analysis?",
-`**Answer:** Demonstrate standard processes, capture business requirements, mark each as fit, configuration gap, or development gap, prioritize gaps and look for standard alternatives before customizing.
-
-Tip: Standard first.`, 'B', 'M'],
-
-["Intercompany", "How is intercompany handled?",
-`**Answer:** Intercompany trading relationships for automatic sales/purchase order chains, intercompany accounting for journal entries, and eliminations in consolidation.
-
-Tip: Trading relationships.`, 'D', 'M'],
-
-["Warehouse", "What is advanced warehouse management?",
-`**Answer:** Location directives, work templates, wave processing, mobile device flows, license plates, and replenishment — for directed picking and putaway.
-
-Tip: Location directives.`, 'D', 'S'],
-
-["Business Central", "What are key Business Central concepts?",
-`**Answer:** Posting groups (general business/product, customer/vendor, inventory) that determine G/L accounts, dimensions, AL extensions, AppSource apps, and simpler setup with role centers.
-
-Tip: Posting groups.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a D365 implementation you delivered.",
-`**Sample answer:** "I implemented F&O Finance and SCM for a manufacturer with 6 legal entities, led AP/AR and inventory design, and data migration. We closed the first month in 6 days, down from 12."
-
-Tip: Measured outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about resolving a post-go-live issue.",
-`**Sample answer:** "Inventory close failed due to negative inventory from timing issues. I identified item groups with bad settings, corrected them, recalculated, and added controls to prevent negative physical inventory."
-
-Tip: Root cause.`, 'B', 'M'],
-
-["Behavioral", "How do you handle customization requests?",
-`**Answer:** Explore standard features and configuration, quantify cost and upgrade impact of custom code, and escalate decisions with options.
-
-Tip: Upgrade impact.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** Microsoft Dynamics 365 Finance Functional Consultant (MB-310), Supply Chain (MB-330/335), Business Central (MB-800), Sales/Customer Service (MB-210/230), and Solution Architect (MB-700).
-
-Tip: MB-700 for architects.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Lead consultant or solution architect.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I deliver D365 solutions using standard functionality wherever possible, with clean data and strong testing — I've shortened month-end closes and stabilized inventory processes."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Procurement", "How do purchase requisitions and approvals work in F&O?",
-`**Answer:** Requisitions use procurement categories and catalogs, workflow approvals by amount and dimensions, then release to purchase orders, with budget checks if configured.
-
-Tip: Workflow.`, 'B', 'M'],
-
-["AP", "How does three-way matching work in D365?",
-`**Answer:** Invoice matching policies (two-way or three-way) compare invoice, PO and product receipt quantities and prices with tolerances; mismatches require approval.
-
-Tip: Tolerances.`, 'B', 'M'],
-
-["AR", "What AR features have you used?",
-`**Answer:** Customer posting profiles, credit limits, collections workspace, payment journals, settlement, interest notes and Copilot collections assistance.
-
-Tip: Collections workspace.`, 'B', 'M'],
-
-["Fixed Assets", "How are fixed assets handled?",
-`**Answer:** Asset groups, books with depreciation profiles, acquisitions from AP, depreciation proposals, disposals and integration with GL posting profiles.
-
-Tip: Multiple books.`, 'D', 'M'],
-
-["Budget", "How does budgeting work?",
-`**Answer:** Budget planning with worksheets and workflows, budget register entries, and budget control checking documents against available funds.
-
-Tip: Budget control.`, 'D', 'M'],
-
-["Production", "What production types exist in D365 SCM?",
-`**Answer:** Discrete manufacturing (BOMs, routes, production orders), process manufacturing (formulas, batch orders, co-products), and lean manufacturing (kanban).
-
-Tip: Know which you used.`, 'D', 'M'],
-
-["Security", "How is F&O security structured?",
-`**Answer:** Roles composed of duties, duties composed of privileges, privileges granting entry point access; segregation of duties rules and security diagnostics.
-
-Tip: Role → duty → privilege.`, 'D', 'M'],
-
-["Testing", "What testing approach do you use?",
-`**Answer:** Unit testing of configuration, system integration testing, UAT with business scenarios, performance testing, and RSAT regression for updates.
-
-Tip: RSAT.`, 'B', 'E'],
-
-["Scenario", "Users report that vendor invoices post to wrong accounts. What do you check?",
-`**Answer:** Vendor posting profiles, procurement category or item group account mappings, financial dimension defaults and account structures.
-
-Tip: Posting profiles.`, 'B', 'M'],
-
-["Scenario", "Master planning creates too many planned orders. What do you check?",
-`**Answer:** Coverage settings, safety stock, lead times, forecast consumption, and negative days/positive days parameters.
-
-Tip: Coverage groups.`, 'D', 'M'],
-
-["Oracle Comparison", "How does D365 compare with Oracle Fusion?",
-`**Answer:** Both are enterprise cloud ERPs; D365 integrates tightly with Microsoft 365, Azure and Power Platform, while Oracle Fusion offers deep financials and broad SaaS suite capabilities. Choice depends on ecosystem, industry needs and cost.
-
-Tip: Balanced.`, 'D', 'M'],
-
-["Dual-write", "What is dual-write?",
-`**Answer:** Near real-time bidirectional synchronization between F&O and Dataverse tables, enabling integrated experiences across ERP and CRM.
-
-Tip: ERP–CRM link.`, 'D', 'M'],
-
-["Workflow", "How are workflows configured in F&O?",
-`**Answer:** Workflow types per module with conditions, approval steps, assignments (hierarchy, position, user), escalations and delegation.
-
-Tip: Hierarchy assignment.`, 'B', 'M'],
-
-["Tax", "How is tax handled in F&O?",
-`**Answer:** Sales tax codes, groups and item sales tax groups, or the newer Tax Calculation service; integrations with tax engines (Avalara, Vertex) for US sales tax.
-
-Tip: Tax engines.`, 'D', 'M'],
-
-["Data Lake", "How do you provide analytics data from D365?",
-`**Answer:** Synapse Link / Microsoft Fabric link exporting tables to a lake for Power BI and analytics, avoiding heavy production queries.
-
-Tip: Fabric link.`, 'D', 'M'],
-
-["Training", "How do you train users?",
-`**Answer:** Role-based sessions, task guides, Microsoft Learn, and super-users.
-
-Tip: Task recorder guides.`, 'B', 'E']
-];
+QB["ea-d365"] = (QB["ea-d365"] || []).concat([
+["Role", "What does a Dynamics 365 consultant do?", "**Why they ask:** D365 covers ERP and CRM; they need to know which you know.\n\n**Answer:** Implements and supports Dynamics 365 applications — Finance and Supply Chain Management (F&O), Business Central (SMB ERP) or Customer Engagement (Sales, Customer Service on Dataverse) — gathering requirements, configuring modules, designing processes, data migration, testing, training and post-go-live support.\n\nTip: State which apps you know.", "B", "E"],
+["Product", "D365 Finance & Operations vs Business Central?", "**Why they ask:** product positioning.\n\n**Answer:**\n\"F&O — Finance and Supply Chain Management — is for large enterprises with complex multi-entity, manufacturing and global requirements. Business Central is for small and mid-size businesses, with simpler, faster deployment. Both are cloud ERP; extensibility differs — X++ for F&O, AL for Business Central. A 40-person distributor fits Business Central; a manufacturer with 12 legal entities across three continents needs F&O.\"\n\nTip: Fit to company size.", "B", "E"],
+["Finance", "Explain the chart of accounts and financial dimensions in F&O.", "**Why they ask:** finance design fundamentals.\n\n**Answer:**\n\"Main accounts combine with financial dimensions — department, cost center, business unit, project — through account structures and advanced rules that control which dimensions are valid for which accounts. That keeps the chart lean: instead of creating 'travel expense — sales — east', you have one travel account and dimensions for department and region, so reporting stays flexible without thousands of accounts.\"\n\nTip: Account structures.", "D", "M"],
+["Finance", "How does period close work in D365 Finance?", "**Why they ask:** month-end experience.\n\n**Answer:**\n\"The financial period close workspace manages tasks and checklists across legal entities. Then subledger closing — AP, AR and inventory close, which settles issues against receipts for actual costing — reconciliations, intercompany, foreign currency revaluation, consolidation, and reporting through Financial Reporting. Inventory close is the step that most often surprises new clients.\"\n\nTip: Inventory close.", "D", "M"],
+["Supply Chain", "What are key SCM processes in D365?", "**Why they ask:** supply chain breadth.\n\n**Answer:**\n\"Procure-to-pay — requisitions, purchase orders, product receipts, vendor invoices. Order-to-cash — sales orders, picking, packing, shipping, invoicing. Inventory and warehouse management with WMS, master planning, and production control. I think in end-to-end flows, because a design choice in receiving affects AP matching later.\"\n\nTip: End-to-end flows.", "B", "M"],
+["Inventory", "Explain inventory dimensions in D365 SCM.", "**Why they ask:** a core SCM concept.\n\n**Answer:**\n\"Three groups. Product dimensions — configuration, size, color, style, version. Storage dimensions — site, warehouse, location, inventory status, license plate. Tracking dimensions — batch and serial number. They're controlled through dimension groups assigned to items, and getting them right before go-live matters, because changing them later with transactions is painful.\"\n\nTip: Dimension groups.", "D", "M"],
+["Inventory", "Which costing methods does D365 support?", "**Why they ask:** cost accounting knowledge.\n\n**Answer:**\n\"FIFO, LIFO, weighted average, weighted average date, moving average and standard cost, set in item model groups. For the non-standard methods, inventory close settles issues against receipts and posts adjustments. Standard cost is common in manufacturing because variances are visible immediately.\"\n\nTip: Item model groups.", "D", "M"],
+["Planning", "How does master planning work?", "**Why they ask:** planning knowledge.\n\n**Answer:**\n\"It calculates net requirements from demand — sales orders and forecasts — against supply — on-hand, purchase and production orders — using coverage groups: period, min/max or requirement. It then generates planned orders to firm. Planning Optimization is the current engine and runs much faster than the old built-in one.\"\n\nTip: Coverage groups.", "D", "M"],
+["CE", "What is Dataverse?", "**Why they ask:** platform understanding.\n\n**Answer:**\n\"The data platform underneath Dynamics 365 Customer Engagement and Power Apps — tables, relationships, business rules, security roles and APIs. It's the foundation for the whole Power Platform, so Sales, Customer Service and custom apps all share the same data and security.\"\n\nTip: Power Platform foundation.", "B", "M"],
+["CE", "How does security work in Dynamics 365 CE?", "**Why they ask:** CRM security model.\n\n**Answer:**\n\"Business units, security roles with privileges and access levels — user, business unit, parent-child business units, organization — teams, field security profiles and hierarchy security. For example, a sales rep might have user-level read on opportunities while a regional manager has business-unit level.\"\n\nTip: Access levels.", "D", "M"],
+["Power Platform", "How does Power Platform extend D365?", "**Why they ask:** low-code extensibility.\n\n**Answer:**\n\"Power Apps for custom apps, Power Automate for workflows and integrations, Power BI for analytics, and Copilot Studio for agents — all connected to Dataverse and D365 data. A field inspection canvas app writing back to Dataverse is often a few weeks instead of a custom development project.\"\n\nTip: Low-code extension.", "B", "M"],
+["Integration", "What integration options exist for F&O?", "**Why they ask:** integration design.\n\n**Answer:**\n\"The data management framework with data entities and import/export projects, OData and custom services, business events, dual-write for near real-time sync with Dataverse, recurring integrations, and Azure services — Logic Apps, Service Bus, and Synapse or Fabric links for analytics. Data entities are the building block for almost all of them.\"\n\nTip: Data entities.", "D", "M"],
+["Data", "How do you migrate data into D365 F&O?", "**Why they ask:** migration experience.\n\n**Answer:**\n\"The Data Management workspace with data entities and templates, following a load sequence — configuration, then master data, then open transactions, then balances — with staging tables to review errors, and reconciliation at each step. Open AR and AP totals must tie to legacy before sign-off.\"\n\nTip: Sequence matters.", "B", "M"],
+["Lifecycle", "What is Lifecycle Services (LCS) / Power Platform admin center for F&O?", "**Why they ask:** environment management.\n\n**Answer:**\n\"LCS has been the portal for managing F&O environments, deployments, updates and monitoring. Microsoft is moving F&O environment management into the Power Platform admin center as part of unified admin, so newer projects increasingly manage environments there.\"\n\nTip: Unified admin transition.", "D", "M"],
+["Updates", "How do you manage continuous updates?", "**Why they ask:** post-go-live operations.\n\n**Answer:**\n\"Microsoft releases service updates several times a year. I plan regression testing with RSAT — the Regression Suite Automation Tool that replays task recordings — use update scheduling, review Feature Management to decide which new features to turn on, and test our extensions against each update in a sandbox first.\"\n\nTip: RSAT automated testing.", "B", "M"],
+["Development", "What is extension-based development in F&O?", "**Why they ask:** upgrade-safe customization.\n\n**Answer:**\n\"Customizations use extensions rather than overlayering Microsoft's code — adding fields, extending methods with chain of command, event handlers and new objects in X++. Because Microsoft's code is never modified, continuous updates apply cleanly.\"\n\nTip: Chain of command.", "D", "M"],
+["Reporting", "What reporting options exist?", "**Why they ask:** reporting breadth.\n\n**Answer:**\n\"Financial Reporting for financial statements, SSRS for documents like invoices, Power BI embedded and analytical workspaces, Electronic Reporting for regulatory and bank formats, and data export to a lake or Microsoft Fabric for analytics. Electronic Reporting is powerful because formats like bank files are configured, not coded.\"\n\nTip: Electronic Reporting.", "B", "M"],
+["Copilot", "What Copilot features exist in Dynamics 365?", "**Why they ask:** current product awareness.\n\n**Answer:**\n\"Copilot summarizes records, drafts emails, assists collections with customer summaries and suggested communications, gives demand planning insights, and Microsoft has been adding agents for tasks like supplier communications and time entry. The agent capabilities are evolving quickly, so I check each release wave.\"\n\nTip: Agentic features growing.", "B", "M"],
+["Implementation", "What is Microsoft's Success by Design?", "**Why they ask:** methodology.\n\n**Answer:**\n\"Microsoft's FastTrack implementation approach, with review workshops at key points — solution blueprint, data, integration, performance and go-live readiness — to catch risks early. The go-live readiness review is the one that most often surfaces gaps in cutover planning.\"\n\nTip: Go-live readiness review.", "D", "M"],
+["Fit-Gap", "How do you run a fit-gap analysis?", "**Why they ask:** consulting discipline.\n\n**Answer:**\n\"Demonstrate standard processes with the business, capture requirements, mark each as fit, configuration gap or development gap, prioritize the gaps, and look for standard alternatives before customizing. On one project, 30 requested customizations came down to 8 after we showed standard workarounds.\"\n\nTip: Standard first.", "B", "M"],
+["Intercompany", "How is intercompany handled?", "**Why they ask:** multi-entity design.\n\n**Answer:**\n\"Intercompany trading relationships create automatic sales and purchase order chains between entities, intercompany accounting handles journal entries with due-to and due-from postings, and eliminations happen in consolidation.\"\n\nTip: Trading relationships.", "D", "M"],
+["Warehouse", "What is advanced warehouse management?", "**Why they ask:** WMS depth.\n\n**Answer:**\n\"Location directives that decide where to pick and put away, work templates, wave processing, mobile device flows, license plates and replenishment — for directed warehouse operations. Location directives are where most of the design effort goes.\"\n\nTip: Location directives.", "D", "S"],
+["Business Central", "What are key Business Central concepts?", "**Why they ask:** BC knowledge.\n\n**Answer:**\n\"Posting groups — general business and product, customer, vendor and inventory — that determine which G/L accounts transactions hit, dimensions for analysis, AL extensions, AppSource apps, and role centers with simpler setup than F&O.\"\n\nTip: Posting groups.", "D", "M"],
+["Behavioral", "Tell me about a D365 implementation you delivered.", "**Why they ask:** proof.\n\n**Answer:**\n\"I implemented F&O Finance and SCM for a manufacturer with six legal entities, led AP, AR and inventory design and data migration. They closed their first month in 6 days, down from 12.\"\n\nTip: Measured outcome.", "B", "M"],
+["Behavioral", "Tell me about resolving a post-go-live issue.", "**Why they ask:** troubleshooting.\n\n**Answer:**\n\"Inventory close failed because of negative inventory caused by timing issues. I found item model groups with the wrong settings, corrected them, recalculated, and turned off negative physical inventory where it shouldn't be allowed.\"\n\nTip: Root cause.", "B", "M"],
+["Behavioral", "How do you handle customization requests?", "**Why they ask:** protecting upgradability.\n\n**Answer:**\n\"Explore standard features and configuration first, quantify the cost and upgrade impact of custom code, and escalate the decision with options. 'This extension costs 15 days plus regression every update; the standard alternative needs one extra click' usually settles it.\"\n\nTip: Upgrade impact.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"MB-310 for Finance, MB-330 and MB-335 for Supply Chain, MB-800 for Business Central, MB-210 and MB-230 for Sales and Customer Service, and MB-700 for solution architects.\"\n\nTip: MB-700 for architects.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward lead consultant or solution architect.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I deliver D365 solutions using standard functionality wherever possible, with clean data and strong testing — I've shortened month-end closes and stabilized inventory processes.\"\n\nTip: Proof.", "B", "E"],
+["Procurement", "How do purchase requisitions and approvals work in F&O?", "**Why they ask:** P2P configuration.\n\n**Answer:**\n\"Requisitions use procurement categories and catalogs, workflow approvals route by amount and financial dimensions, and approved lines are released to purchase orders, with budget checks if budget control is on.\"\n\nTip: Workflow.", "B", "M"],
+["AP", "How does three-way matching work in D365?", "**Why they ask:** AP control knowledge.\n\n**Answer:**\n\"Invoice matching policies — two-way or three-way — compare invoice, purchase order and product receipt quantities and prices within tolerances. If the PO says 100 units at $10 and the invoice says $10.80 with a 5% price tolerance, it's flagged and needs approval before posting.\"\n\nTip: Tolerances.", "B", "M"],
+["AR", "What AR features have you used?", "**Why they ask:** order-to-cash depth.\n\n**Answer:**\n\"Customer posting profiles, credit limits, the collections workspace, payment journals, settlement, interest notes, and Copilot collections assistance.\"\n\nTip: Collections workspace.", "B", "M"],
+["Fixed Assets", "How are fixed assets handled?", "**Why they ask:** finance breadth.\n\n**Answer:**\n\"Asset groups, books with depreciation profiles — often separate books for corporate and tax — acquisitions from AP, depreciation proposals, disposals, and integration with GL through posting profiles.\"\n\nTip: Multiple books.", "D", "M"],
+["Budget", "How does budgeting work?", "**Why they ask:** finance breadth.\n\n**Answer:**\n\"Budget planning with worksheets and workflows, budget register entries, and budget control, which checks purchase requisitions and orders against available funds and warns or blocks when they'd exceed the budget.\"\n\nTip: Budget control.", "D", "M"],
+["Production", "What production types exist in D365 SCM?", "**Why they ask:** manufacturing knowledge.\n\n**Answer:**\n\"Discrete manufacturing with BOMs, routes and production orders; process manufacturing with formulas, batch orders and co-products; and lean manufacturing with kanban. I've worked mostly with discrete.\"\n\nTip: Know which you used.", "D", "M"],
+["Security", "How is F&O security structured?", "**Why they ask:** security model.\n\n**Answer:**\n\"Roles are made of duties, duties of privileges, and privileges grant access to entry points like menu items. Segregation of duties rules flag conflicting duties, and security diagnostics help analyze what a role can reach.\"\n\nTip: Role → duty → privilege.", "D", "M"],
+["Testing", "What testing approach do you use?", "**Why they ask:** quality discipline.\n\n**Answer:**\n\"Unit testing of configuration, system integration testing, UAT with business scenarios, performance testing, and RSAT regression for updates.\"\n\nTip: RSAT.", "B", "E"],
+["Scenario", "Users report that vendor invoices post to wrong accounts. What do you check?", "**Why they ask:** troubleshooting.\n\n**Answer:**\n\"Vendor posting profiles, the account mappings on procurement categories or item groups, default financial dimensions, and account structures — and then trace one invoice's voucher to see exactly which setup it picked up.\"\n\nTip: Posting profiles.", "B", "M"],
+["Scenario", "Master planning creates too many planned orders. What do you check?", "**Why they ask:** planning troubleshooting.\n\n**Answer:**\n\"Coverage settings, safety stock, lead times, forecast consumption, and the negative days and positive days parameters. Positive days set too low, for example, ignores existing supply and creates new planned orders.\"\n\nTip: Coverage groups.", "D", "M"],
+["Oracle Comparison", "How does D365 compare with Oracle Fusion?", "**Why they ask:** market awareness.\n\n**Answer:**\n\"Both are enterprise cloud ERPs. D365 integrates tightly with Microsoft 365, Azure and Power Platform; Oracle Fusion offers deep financials and a broad SaaS suite. The choice depends on the existing ecosystem, industry needs and cost.\"\n\nTip: Balanced.", "D", "M"],
+["Dual-write", "What is dual-write?", "**Why they ask:** ERP–CRM integration.\n\n**Answer:**\n\"Near real-time, bidirectional synchronization between F&O and Dataverse tables — so a customer created in Sales appears in F&O within seconds, enabling integrated experiences across ERP and CRM.\"\n\nTip: ERP–CRM link.", "D", "M"],
+["Workflow", "How are workflows configured in F&O?", "**Why they ask:** configuration skills.\n\n**Answer:**\n\"Workflow types per module with conditions, approval steps, assignment by hierarchy, position or user, escalations and delegation — for example, invoices over $25,000 escalate to the CFO after 48 hours without action.\"\n\nTip: Hierarchy assignment.", "B", "M"],
+["Tax", "How is tax handled in F&O?", "**Why they ask:** tax configuration.\n\n**Answer:**\n\"Sales tax codes, sales tax groups and item sales tax groups — the intersection decides the tax — or the newer Tax Calculation service, plus integrations with Avalara or Vertex for US sales tax.\"\n\nTip: Tax engines.", "D", "M"],
+["Data Lake", "How do you provide analytics data from D365?", "**Why they ask:** analytics architecture.\n\n**Answer:**\n\"Synapse Link or the Microsoft Fabric link exports tables to a lake for Power BI and analytics, so heavy reporting doesn't query production.\"\n\nTip: Fabric link.", "D", "M"],
+["Training", "How do you train users?", "**Why they ask:** adoption.\n\n**Answer:**\n\"Role-based sessions, task guides built with Task Recorder, Microsoft Learn content, and super-users in each department who support their colleagues.\"\n\nTip: Task recorder guides.", "B", "E"]
+]);

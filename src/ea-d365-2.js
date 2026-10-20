@@ -1,22 +1,7 @@
-QB['ea-d365'] = (QB['ea-d365']||[]).concat([
-["Posting", "What are posting profiles in D365 F&O?",
-`**Answer:** Configurations that map subledger transactions (customers, vendors, inventory, fixed assets) to main accounts, such as the AR summary account for a customer group, or inventory receipt and issue accounts per item group.
-
-Tip: The foundation of GL integration.`, 'D', 'M'],
-["CE", "What are model-driven apps vs canvas apps?",
-`**Answer:** **Model-driven apps** are built from Dataverse data (forms, views, business process flows) with consistent UI, and are what D365 CE apps use. **Canvas apps** are pixel-designed apps connecting to many data sources, good for task-specific mobile apps.
-
-Tip: Know when to use each.`, 'B', 'M'],
-["CE", "What are business process flows?",
-`**Answer:** Guided stages and steps displayed on records (for example lead to opportunity stages: Qualify, Develop, Propose, Close) to standardize processes and require key data at each stage.
-
-Tip: Stage gating.`, 'B', 'E'],
-["Environments", "What environments do you need in an F&O project?",
-`**Answer:** Development (cloud-hosted or unified developer), build, test/UAT (sandbox tier 2+), performance testing (higher tier), and production, with database movement operations to refresh test environments.
-
-Tip: Refresh UAT from production.`, 'D', 'M'],
-["Cutover", "What does a D365 go-live cutover include?",
-`**Answer:** Freeze legacy systems, final data migration (open AR/AP, open orders, on-hand inventory, GL balances), reconciliation and sign-off, configuration validation, integration switch-over, user access checks, and hypercare support.
-
-Tip: Reconciliation sign-off.`, 'B', 'M']
+QB["ea-d365"] = (QB["ea-d365"] || []).concat([
+["Posting", "What are posting profiles in D365 F&O?", "**Why they ask:** GL integration foundation.\n\n**Answer:**\n\"Setups that map subledger transactions — customers, vendors, inventory, fixed assets — to main accounts. The AR summary account for a customer group, or the inventory receipt and issue accounts for an item group, come from posting profiles. They're the foundation of how subledgers hit the GL.\"\n\nTip: The foundation of GL integration.", "D", "M"],
+["CE", "What are model-driven apps vs canvas apps?", "**Why they ask:** Power Platform knowledge.\n\n**Answer:**\n\"Model-driven apps are generated from Dataverse data — forms, views, business process flows — with a consistent UI, and the D365 CE apps are built this way. Canvas apps are designed screen by screen and can connect to many data sources — good for task-specific mobile apps like a warehouse cycle count.\"\n\nTip: Know when to use each.", "B", "M"],
+["CE", "What are business process flows?", "**Why they ask:** CRM process design.\n\n**Answer:**\n\"Guided stages and steps shown on a record — lead to opportunity moves through Qualify, Develop, Propose, Close — to standardize the process and require key data at each stage before moving on.\"\n\nTip: Stage gating.", "B", "E"],
+["Environments", "What environments do you need in an F&O project?", "**Why they ask:** project setup.\n\n**Answer:**\n\"Development environments, a build environment, test and UAT sandboxes at tier 2 or higher, a higher-tier performance environment, and production — with database movement operations to refresh UAT from production before key test cycles.\"\n\nTip: Refresh UAT from production.", "D", "M"],
+["Cutover", "What does a D365 go-live cutover include?", "**Why they ask:** go-live experience.\n\n**Answer:**\n\"Freeze legacy systems, final data migration — open AR and AP, open orders, on-hand inventory, GL balances — reconciliation and business sign-off, configuration validation, switching integrations, user access checks, and hypercare support for the first weeks.\"\n\nTip: Reconciliation sign-off.", "B", "M"]
 ]);
