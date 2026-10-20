@@ -1,10 +1,4 @@
-QB['swe-be'] = (QB['swe-be'] || []).concat([
-["Databases", "What is connection pooling and why does it matter?",
-`**Answer:** Opening database connections is expensive, so a pool keeps a set of open connections that requests reuse. Size the pool to the database's capacity (too many connections hurt performance), release connections promptly, and use external poolers (PgBouncer) for many app instances or serverless.
-
-Tip: Pool exhaustion is a common outage cause.`, 'D', 'M'],
-["Architecture", "What is event sourcing and when would you use it?",
-`**Answer:** Storing state as an append-only sequence of events instead of current values; state is rebuilt by replaying events. Useful for audit-heavy domains (finance, ledgers) and temporal queries, often combined with CQRS. Adds complexity — use only when the benefits are clear.
-
-Tip: Balanced view.`, 'D', 'S']
+QB["swe-be"] = (QB["swe-be"] || []).concat([
+["Databases", "What is connection pooling and why does it matter?", "**Why they ask:** a frequent outage cause.\n\n**Answer:**\n\"Opening a database connection is expensive — TLS, authentication, memory on the server — so a pool keeps open connections that requests reuse. Size it to what the database can handle: 20 app instances with a pool of 50 each is 1,000 connections, which can overwhelm Postgres. Release connections promptly, and use an external pooler like PgBouncer for many instances or serverless.\"\n\nTip: Pool exhaustion is a common outage cause.", "D", "M"],
+["Architecture", "What is event sourcing and when would you use it?", "**Why they ask:** advanced patterns.\n\n**Answer:**\n\"Instead of storing current values, you store an append-only sequence of events — AccountOpened, Deposited $100, Withdrew $30 — and rebuild state by replaying them. It gives a perfect audit trail and lets you ask what the state was at any point in time, so it suits ledgers and finance, often with CQRS for read models. It adds real complexity, so I use it only when those benefits matter.\"\n\nTip: Balanced view.", "D", "S"]
 ]);
