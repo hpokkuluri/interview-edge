@@ -1,260 +1,52 @@
 // Warehouse Supervisor / Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-wh'] = [
-["Operations", "Describe the main warehouse processes.",
-`**Why they ask:** baseline operational knowledge.
-
-**Answer:** **Receiving** (unload, check against PO/ASN, label, quality hold) → **putaway** (system-directed to optimal locations) → **storage and replenishment** (moving stock to pick faces) → **picking** (discrete, batch, zone or wave) → **packing** → **shipping** (staging, loading, carrier documentation) → **returns** processing. Plus inventory control (cycle counts) throughout.
-
-Tip: Mention which ones you've managed directly.`, 'B', 'E'],
-
-["Receiving", "How do you run an efficient receiving dock?",
-`**Answer:** Dock appointment scheduling, advance shipping notices (ASNs) for pre-receiving, scanning labels, quick discrepancy handling, cross-docking where possible, and same-day putaway. Track dock-to-stock time.
-
-**Example:** ASNs and scheduled appointments cut dock-to-stock from 36 to 12 hours.
-
-Tip: Numbers make it concrete.`, 'B', 'E'],
-
-["Putaway", "What makes a good putaway strategy?",
-`**Answer:** System-directed putaway based on item velocity, size, weight and compatibility; fast movers near shipping and at waist-level ("golden zone"); heavy items low; hazardous items segregated; and fixed vs random locations depending on SKU profile.
-
-Tip: Mention slotting.`, 'B', 'M'],
-
-["Picking", "Compare picking methods.",
-`**Answer:**
-- **Discrete:** one picker, one order — simple, low volume.
-- **Batch:** one picker, many orders at once — good for small orders.
-- **Zone:** pickers own areas; orders move between zones.
-- **Wave:** release orders in scheduled groups aligned to carrier cutoffs.
-- **Cluster/pick-to-cart** and **goods-to-person** automation.
-
-Tip: Match method to order profile.`, 'B', 'M'],
-
-["Picking", "How do you improve picking productivity?",
-`**Answer:** Slotting fast movers close to pack-out, optimized pick paths, batch or zone picking, RF scanning or voice picking, pick-to-light, and removing walking waste. Measure units/lines per hour.
-
-**Example:** re-slotting top 300 SKUs cut travel time 25% and raised lines per hour from 85 to 110.
-
-Tip: Travel is 50%+ of picking time.`, 'D', 'M'],
-
-["Slotting", "What is slotting and how often do you do it?",
-`**Answer:** Assigning items to locations based on velocity, size and pick patterns. Re-slot periodically (quarterly or seasonally) as demand changes, focusing on top movers.
-
-Tip: Data-driven slotting.`, 'D', 'M'],
-
-["Accuracy", "How do you improve order accuracy?",
-`**Answer:** Scan-based picking and packing verification, clear location labels, check-weighing at pack stations, error tracking by picker and root cause, training and feedback.
-
-Tip: Target 99.5%+ accuracy.`, 'B', 'E'],
-
-["Shipping", "How do you ensure on-time shipping?",
-`**Answer:** Plan waves to carrier cutoffs, monitor order backlog through the day, staff peaks, stage shipments early, coordinate carrier pickups, and escalate risks before cutoffs.
-
-Tip: Real-time visibility.`, 'B', 'E'],
-
-["Metrics", "Which warehouse KPIs do you track?",
-`**Answer:** Order accuracy, on-time shipment, dock-to-stock time, units/lines per hour, order cycle time, inventory accuracy, cost per order or unit, space utilization, safety incidents (TRIR), and overtime.
-
-Tip: Mention a dashboard you used daily.`, 'B', 'E'],
-
-["Safety", "How do you build a safety culture?",
-`**Answer:** Start every shift with a safety talk, lead by example, encourage near-miss reporting without blame, ensure forklift certification and PPE, maintain housekeeping (5S), investigate incidents for root cause, and track leading indicators (near misses, observations).
-
-Tip: Leading vs lagging indicators.`, 'B', 'E'],
-
-["Safety", "What are common warehouse hazards?",
-`**Answer:** Forklift and pedestrian collisions, falling objects from racks, slips and trips, manual lifting injuries, dock accidents (trailer creep), and hazardous materials. Controls: traffic lanes, rack inspections, training, proper lifting, wheel chocks and dock locks.
-
-Tip: Mention OSHA requirements.`, 'B', 'E'],
-
-["Safety", "An employee is injured. What do you do?",
-`**Answer:** Ensure immediate care and safety, secure the area, report per policy and OSHA requirements, investigate root cause with witnesses, implement corrective actions, and communicate learnings to the team.
-
-Tip: People first, then learn.`, 'B', 'E'],
-
-["Labor", "How do you plan labor for peak season?",
-`**Answer:** Forecast volume by day, convert to hours using productivity standards, plan temp staffing and overtime, cross-train, onboard and train early, and adjust daily based on actual volume.
-
-**Example:** 50,000 units/day ÷ 100 units/hour = 500 labor hours ≈ 63 people on 8-hour shifts.
-
-Tip: Show the calculation.`, 'D', 'M'],
-
-["Labor", "What are engineered labor standards?",
-`**Answer:** Time standards for each task based on time studies or predetermined data (e.g. MOST), used to measure productivity fairly and plan labor. Often part of a labor management system (LMS).
-
-Tip: Mention fairness and coaching.`, 'D', 'S'],
-
-["People", "How do you handle an underperforming team member?",
-`**Answer:** Review data privately, understand causes (training, tools, personal issues), set clear expectations and support, follow up regularly and document. Follow HR process if no improvement.
-
-Tip: Fair and consistent.`, 'B', 'E'],
-
-["People", "How do you motivate warehouse employees?",
-`**Answer:** Clear goals and visible performance boards, recognition, fair scheduling, involving them in improvements, career paths (lead, trainer, supervisor), and listening to concerns.
-
-Tip: Retention is a big issue in warehousing.`, 'B', 'E'],
-
-["People", "How do you reduce turnover in the warehouse?",
-`**Answer:** Good onboarding and training, competitive pay and shift options, respectful supervisors, safe conditions, recognition and growth opportunities. Track early turnover (first 90 days).
-
-Tip: Supervisor quality drives retention.`, 'D', 'M'],
-
-["WMS", "What does a WMS do?",
-`**Answer:** Directs receiving, putaway, replenishment, picking, packing and shipping; tracks inventory by location; manages waves and tasks; integrates with ERP, TMS and automation; and provides labor and productivity data. Examples: Manhattan, Blue Yonder, Oracle WMS Cloud, SAP EWM.
-
-Tip: Name the one you've used.`, 'B', 'E'],
-
-["WMS", "How would you prepare for a WMS implementation?",
-`**Answer:** Clean item and location data, define processes and requirements, involve floor leads, test end-to-end scenarios at volume, train super users, plan a cutover with reduced volume, and provide hypercare support.
-
-Tip: Data and training are key.`, 'D', 'S'],
-
-["Automation", "When does warehouse automation make sense?",
-`**Answer:** When volume is high and stable, labor is scarce or expensive, accuracy and speed need to improve, and payback is acceptable (often 2–5 years). Options: conveyors and sorters, AMRs, AS/RS, goods-to-person systems, and pick-to-light.
-
-Tip: Business case first.`, 'D', 'S'],
-
-["Space", "How do you improve space utilization?",
-`**Answer:** Re-slot and right-size locations, use vertical space, reduce obsolete stock, adjust rack configurations, and consider narrow aisles or mezzanines.
-
-Tip: Data on cube utilization.`, 'D', 'M'],
-
-["Inventory", "How do you maintain inventory accuracy in the warehouse?",
-`**Answer:** Scanning discipline, cycle counts, location control, prompt transactions, root-cause analysis of variances, and accountability by zone.
-
-Tip: Accuracy is a warehouse responsibility.`, 'B', 'E'],
-
-["Returns", "How do you manage returns efficiently?",
-`**Answer:** Dedicated returns area, RMA validation, quick inspection and disposition (restock, refurbish, liquidate, scrap), timely system updates and credit processing.
-
-Tip: Returns tie up cash if slow.`, 'B', 'M'],
-
-["Cross-dock", "What is cross-docking?",
-`**Answer:** Moving inbound goods directly to outbound shipping with little or no storage. It reduces handling and storage costs but needs tight coordination and good data.
-
-Tip: Good for fast-moving or pre-allocated goods.`, 'B', 'M'],
-
-["Costs", "How do you reduce warehouse operating costs?",
-`**Answer:** Improve productivity (slotting, methods, technology), reduce overtime with better planning, cut errors and rework, optimize space, manage packaging costs, and negotiate service contracts.
-
-Tip: Cost per order trend.`, 'D', 'M'],
-
-["5S", "What is 5S in the warehouse?",
-`**Answer:** Sort, Set in order, Shine, Standardize, Sustain — creating clean, organized, safe work areas that reduce searching and errors.
-
-Tip: Mention audits to sustain it.`, 'B', 'E'],
-
-["Lean", "How do you apply Lean in the warehouse?",
-`**Answer:** Identify waste (travel, waiting, overprocessing, errors), map processes, standardize work, use visual management, and run kaizen events with the team.
-
-Tip: Give a kaizen result.`, 'D', 'M'],
-
-["Peak", "How do you prepare for peak season?",
-`**Answer:** Forecast volumes early, secure labor and equipment, pre-slot seasonal items, test systems at volume, extend shifts, coordinate carriers, and run daily peak war rooms.
-
-Tip: Plan months ahead.`, 'D', 'M'],
-
-["Carriers", "How do you work with carriers at the dock?",
-`**Answer:** Scheduled pickups, loads staged before arrival, accurate documentation (BOL, labels), monitoring carrier on-time performance, and escalating service issues.
-
-Tip: Partnership with transportation.`, 'B', 'E'],
-
-["Hazmat", "What do you need for hazardous materials?",
-`**Answer:** Proper storage segregation, labeling, SDS availability, trained employees, spill kits, and compliance with OSHA, EPA and DOT shipping rules.
-
-Tip: Compliance awareness.`, 'D', 'M'],
-
-["3PL", "How do you manage a third-party logistics provider?",
-`**Answer:** Clear contract and SLAs (accuracy, on-time, dock-to-stock), regular business reviews, KPI reporting, audits, and joint improvement plans.
-
-Tip: Trust but verify.`, 'D', 'S'],
-
-["Budget", "How do you manage a warehouse budget?",
-`**Answer:** Plan labor, equipment, supplies and facilities costs against forecast volume; track cost per unit; explain variances; and find savings.
-
-Tip: Financial ownership.`, 'D', 'S'],
-
-["Scenario", "Volume doubles overnight due to a promotion. What do you do?",
-`**Answer:** Extend shifts and add temps, prioritize orders by service commitments, simplify processes (batch picking), communicate with customer service and carriers, and monitor backlog hourly.
-
-Tip: Calm, structured response.`, 'D', 'M'],
-
-["Scenario", "Shipping errors spiked this month. How do you fix it?",
-`**Answer:** Analyze errors by type, shift, picker and SKU; find root causes (new staff, similar SKUs adjacent, scanning skipped); retrain, re-slot, enforce scan verification; and track daily.
-
-Tip: Data-driven root cause.`, 'D', 'M'],
-
-["Scenario", "The WMS goes down during shipping. What do you do?",
-`**Answer:** Activate the downtime procedure (paper or offline picking for priority orders), communicate with IT and customers, keep records for later system entry, and debrief afterward.
-
-Tip: Business continuity.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a warehouse improvement you led.",
-`**Sample answer:** "Order accuracy was 98.2%. I introduced pack-station scan verification and re-slotted look-alike SKUs apart. Accuracy rose to 99.7%, and customer complaints dropped by 60%."
-
-Tip: Numbers.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling a difficult employee situation.",
-`**Sample answer:** "Two team leads were in constant conflict, affecting the shift. I met each separately, then together, clarified responsibilities and agreed behaviors. Productivity recovered within weeks."
-
-Tip: People leadership.`, 'B', 'E'],
-
-["Behavioral", "Describe a peak season you managed.",
-`**Sample answer:** "We handled 3× normal volume with 40 temps. I started hiring six weeks early, created a two-hour training program, and ran hourly backlog reviews. We hit 99% on-time shipping."
-
-Tip: Planning pays off.`, 'B', 'M'],
-
-["Leadership", "How do you develop supervisors and leads?",
-`**Answer:** Coaching, clear expectations, leadership training, giving them ownership of metrics, and regular feedback.
-
-Tip: Build your bench.`, 'B', 'S'],
-
-["Leadership", "How do you run a daily start-up meeting?",
-`**Answer:** Safety message, yesterday's results vs targets, today's volume and priorities, staffing, issues and recognition — 10 minutes, standing, with visual boards.
-
-Tip: Short and consistent.`, 'B', 'E'],
-
-["Compliance", "What regulations affect warehouses?",
-`**Answer:** OSHA safety standards (forklifts, hazards), fire codes, hazmat (DOT, EPA), food safety (FDA/FSMA) or pharma (GDP) for regulated goods, and customs bonded warehouse rules.
-
-Tip: Mention your industry.`, 'D', 'M'],
-
-["Technology", "What warehouse technologies have you used?",
-`**Sample answer:** "RF scanners and Oracle WMS, voice picking, pick-to-light in one zone, and AMRs in a pilot that improved picking productivity by 30%."
-
-Tip: Be specific.`, 'B', 'M'],
-
-["Strategy", "How would you design a new distribution center layout?",
-`**Answer:** Analyze order profiles and SKU velocities, plan flow (receiving → storage → pick → pack → ship) to minimize travel, size areas by volume, choose storage and handling equipment, plan for growth and automation, and simulate before building.
-
-Tip: Flow-based design.`, 'D', 'S'],
-
-["Career", "Why warehouse management?",
-`**Sample answer:** "I enjoy leading teams in a fast-paced environment where results are visible every day. Getting customers their orders right and on time is satisfying."
-
-Tip: Energy.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I run safe, accurate and productive operations — I lifted accuracy to 99.7%, handled 3× peaks at 99% on-time, and reduced turnover by improving supervisor coaching."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is an ASN?",
-`**Answer:** An advance shipping notice — an electronic message from the supplier listing what's being shipped, quantities and packaging, sent before arrival. Enables faster receiving and planning.
-
-Tip: EDI 856.`, 'B', 'E'],
-
-["Technical", "What is the difference between FIFO and LIFO in physical stock rotation?",
-`**Answer:** FIFO ships oldest stock first — standard for most goods to avoid aging. LIFO ships newest first — used only where physical layout or product nature requires (e.g. bulk materials). Expiry-driven items use FEFO.
-
-Tip: Physical vs accounting meaning.`, 'B', 'E'],
-
-["Technical", "What is a pick face and replenishment?",
-`**Answer:** The location where pickers take items. Replenishment moves stock from reserve storage to pick faces before they run empty — triggered by min/max or demand-based rules in the WMS.
-
-Tip: Prevents picker waiting.`, 'B', 'M'],
-
-["Technical", "What is order cycle time?",
-`**Answer:** Time from order release to shipment. Shorter cycle times enable later cutoffs and better customer service.
-
-Tip: Key customer-facing metric.`, 'B', 'E']
-];
+QB["sc-wh"] = (QB["sc-wh"] || []).concat([
+["Operations", "Describe the main warehouse processes.", "**Why they ask:** baseline operational knowledge.\n\n**Answer:** **Receiving** (unload, check against PO/ASN, label, quality hold) → **putaway** (system-directed to optimal locations) → **storage and replenishment** (moving stock to pick faces) → **picking** (discrete, batch, zone or wave) → **packing** → **shipping** (staging, loading, carrier documentation) → **returns** processing. Plus inventory control (cycle counts) throughout.\n\nTip: Mention which ones you've managed directly.", "B", "E"],
+["Receiving", "How do you run an efficient receiving dock?", "**Why they ask:** receiving sets up everything after it.\n\n**Answer:**\n\"Dock appointment scheduling so trucks don't all arrive at once, advance shipping notices so we can pre-receive, label scanning, quick handling of discrepancies, cross-docking where possible, and same-day putaway. I track dock-to-stock time. At my last site, ASNs plus scheduled appointments cut dock-to-stock from 36 hours to 12.\"\n\nTip: Numbers make it concrete.", "B", "E"],
+["Putaway", "What makes a good putaway strategy?", "**Why they ask:** putaway drives picking efficiency.\n\n**Answer:**\n\"System-directed putaway based on item velocity, size, weight and compatibility. Fast movers go near shipping and at waist height — the golden zone. Heavy items go low, hazardous items are segregated, and I choose fixed or random locations depending on the SKU profile. It all depends on good slotting.\"\n\nTip: Mention slotting.", "B", "M"],
+["Picking", "Compare picking methods.", "**Why they ask:** method choice drives productivity.\n\n**Answer:**\n\"Discrete picking is one picker, one order — simple, for low volume. Batch picking is one picker doing many orders at once — good for small orders. Zone picking gives pickers their own area and orders move between zones. Wave picking releases orders in scheduled groups aligned to carrier cut-offs. And there's cluster pick-to-cart and goods-to-person automation. The right one depends on the order profile — lots of one-line e-commerce orders call for batch; big multi-line B2B orders suit zone.\"\n\nTip: Match the method to the order profile.", "B", "M"],
+["Picking", "How do you improve picking productivity?", "**Why they ask:** picking is the biggest labor cost.\n\n**Answer:**\n\"Slot fast movers close to pack-out, optimize pick paths, use batch or zone picking, RF or voice picking and pick-to-light, and remove walking waste. Travel is often more than half of picking time. I measure units or lines per hour. Re-slotting our top 300 SKUs cut travel 25% and raised lines per hour from 85 to 110.\"\n\nTip: Travel is more than half of picking time.", "D", "M"],
+["Slotting", "What is slotting and how often do you do it?", "**Why they ask:** a key efficiency lever.\n\n**Answer:**\n\"Slotting is assigning items to locations based on velocity, size and pick patterns. I re-slot quarterly or seasonally as demand changes, focusing on the top movers first, using velocity data from the WMS — not gut feel.\"\n\nTip: Data-driven slotting.", "D", "M"],
+["Accuracy", "How do you improve order accuracy?", "**Why they ask:** errors cost money and customers.\n\n**Answer:**\n\"Scan-based picking and pack verification, clear location labels, check-weighing at pack stations, tracking errors by picker and root cause, and training with feedback. I target 99.5% or better. Separating look-alike SKUs is one of the cheapest fixes.\"\n\nTip: Target 99.5% or higher.", "B", "E"],
+["Shipping", "How do you ensure on-time shipping?", "**Why they ask:** missed trucks mean missed promises.\n\n**Answer:**\n\"Plan waves to carrier cut-offs, monitor the order backlog throughout the day, staff for peaks, stage shipments early, coordinate carrier pickups, and escalate risks well before cut-off — not after the truck leaves.\"\n\nTip: Real-time visibility.", "B", "E"],
+["Metrics", "Which warehouse KPIs do you track?", "**Why they ask:** managing by numbers.\n\n**Answer:**\n\"Order accuracy, on-time shipment, dock-to-stock time, units or lines per hour, order cycle time, inventory accuracy, cost per order or unit, space utilization, safety incidents — TRIR — and overtime. I review a one-page dashboard every morning in the start-up meeting.\"\n\nTip: Mention a dashboard you used daily.", "B", "E"],
+["Safety", "How do you build a safety culture?", "**Why they ask:** warehouses are high-risk workplaces.\n\n**Answer:**\n\"Every shift starts with a safety talk, and I lead by example. Near misses are reported without blame. Forklift certification and PPE are enforced, housekeeping stays tight with 5S, incidents are investigated for root cause, and I track leading indicators — near misses and safety observations — not just injuries, which are lagging.\"\n\nTip: Leading versus lagging indicators.", "B", "E"],
+["Safety", "What are common warehouse hazards?", "**Why they ask:** safety awareness.\n\n**Answer:**\n\"Forklift and pedestrian collisions, falling objects from racks, slips and trips, manual lifting injuries, dock accidents like trailer creep, and hazardous materials. The controls are separate traffic lanes, rack inspections, training, proper lifting technique, wheel chocks and dock locks — all in line with OSHA requirements.\"\n\nTip: Mention OSHA requirements.", "B", "E"],
+["Safety", "An employee is injured. What do you do?", "**Why they ask:** people first.\n\n**Answer:**\n\"First, make sure the person gets immediate care and the area is safe. Report it per policy and OSHA requirements. Investigate the root cause with witnesses, implement corrective actions, and share the learning with the whole team so it doesn't happen again.\"\n\nTip: People first, then learn.", "B", "E"],
+["Labor", "How do you plan labor for peak season?", "**Why they ask:** peak planning is critical.\n\n**Answer:**\n\"I forecast volume by day and convert it to hours using productivity standards. For example, 50,000 units a day at 100 units per hour is 500 labor hours — about 63 people on eight-hour shifts. Then plan temps and overtime, cross-train, onboard and train early, and adjust daily based on actual volume.\"\n\nTip: Show the calculation.", "D", "M"],
+["Labor", "What are engineered labor standards?", "**Why they ask:** fair productivity measurement.\n\n**Answer:**\n\"They're time standards for each task, built from time studies or predetermined data like MOST. They measure productivity fairly — accounting for travel distance and item size — and help plan labor. They're usually part of a labor management system. I use them for coaching, not just discipline.\"\n\nTip: Mention fairness and coaching.", "D", "S"],
+["People", "How do you handle an underperforming team member?", "**Why they ask:** fair management.\n\n**Answer:**\n\"I review the data privately with them and find the cause — training, tools or something personal. We set clear expectations and support, I follow up regularly and document progress. If it doesn't improve, I follow the HR process.\"\n\nTip: Fair and consistent.", "B", "E"],
+["People", "How do you motivate warehouse employees?", "**Why they ask:** engagement and retention.\n\n**Answer:**\n\"Clear goals and visible performance boards, recognition, fair scheduling, involving them in improvements, career paths — lead, trainer, supervisor — and listening to their concerns. Retention is a big issue in warehousing, so this matters a lot.\"\n\nTip: Retention is a big issue.", "B", "E"],
+["People", "How do you reduce turnover in the warehouse?", "**Why they ask:** turnover is expensive.\n\n**Answer:**\n\"Good onboarding and training, competitive pay and shift options, respectful supervisors, safe conditions, recognition and growth opportunities. I track early turnover — the first 90 days — because that's where most people leave, and it's usually about their supervisor.\"\n\nTip: Supervisor quality drives retention.", "D", "M"],
+["WMS", "What does a WMS do?", "**Why they ask:** core technology.\n\n**Answer:**\n\"A warehouse management system directs receiving, putaway, replenishment, picking, packing and shipping; tracks inventory by location; manages waves and tasks; integrates with ERP, TMS and automation; and provides labor and productivity data. Examples are Manhattan, Blue Yonder, Oracle WMS Cloud and SAP EWM.\"\n\nTip: Name the one you've used.", "B", "E"],
+["WMS", "How would you prepare for a WMS implementation?", "**Why they ask:** go-lives are risky.\n\n**Answer:**\n\"Clean the item and location data, define processes and requirements, involve floor leads, test end-to-end scenarios at real volume, train super users, plan a cutover with reduced volume, and provide hypercare support for the first weeks.\"\n\nTip: Data and training are key.", "D", "S"],
+["Automation", "When does warehouse automation make sense?", "**Why they ask:** capital judgment.\n\n**Answer:**\n\"When volume is high and stable, labor is scarce or expensive, accuracy and speed need to improve, and payback is acceptable — usually two to five years. Options include conveyors and sorters, AMRs, AS/RS, goods-to-person systems and pick-to-light. Business case first, technology second.\"\n\nTip: Business case first.", "D", "S"],
+["Space", "How do you improve space utilization?", "**Why they ask:** space is expensive.\n\n**Answer:**\n\"Re-slot and right-size locations, use vertical space, clear obsolete stock, adjust rack configurations, and consider narrow aisles or mezzanines before leasing more space. I measure cube utilization to find the waste.\"\n\nTip: Use data on cube utilization.", "D", "M"],
+["Inventory", "How do you maintain inventory accuracy in the warehouse?", "**Why they ask:** accuracy is a warehouse responsibility.\n\n**Answer:**\n\"Scanning discipline, cycle counts, location control, prompt transactions, root-cause analysis of variances, and accountability by zone. If the warehouse doesn't own accuracy, nobody does.\"\n\nTip: Accuracy is a warehouse responsibility.", "B", "E"],
+["Returns", "How do you manage returns efficiently?", "**Why they ask:** returns tie up cash.\n\n**Answer:**\n\"A dedicated returns area, RMA validation, quick inspection and disposition — restock, refurbish, liquidate or scrap — and prompt system updates and credit processing. Returns sitting in a corner for weeks tie up cash and frustrate customers.\"\n\nTip: Returns tie up cash if slow.", "B", "M"],
+["Cross-dock", "What is cross-docking?", "**Why they ask:** a flow technique.\n\n**Answer:**\n\"It's moving inbound goods straight to outbound shipping with little or no storage. It cuts handling and storage cost, but needs tight coordination and good data. It works best for fast-moving or pre-allocated goods.\"\n\nTip: Good for fast-moving or pre-allocated goods.", "B", "M"],
+["Costs", "How do you reduce warehouse operating costs?", "**Why they ask:** cost ownership.\n\n**Answer:**\n\"Improve productivity through slotting, methods and technology; cut overtime with better planning; reduce errors and rework; optimize space; manage packaging costs; and renegotiate service contracts. I watch the cost per order trend.\"\n\nTip: Track the cost per order trend.", "D", "M"],
+["5S", "What is 5S in the warehouse?", "**Why they ask:** a basic discipline.\n\n**Answer:**\n\"Sort, Set in order, Shine, Standardize and Sustain — creating clean, organized, safe work areas that reduce searching and errors. Sustaining it takes regular audits with scores posted.\"\n\nTip: Mention audits to sustain it.", "B", "E"],
+["Lean", "How do you apply Lean in the warehouse?", "**Why they ask:** continuous improvement.\n\n**Answer:**\n\"Identify waste — travel, waiting, overprocessing, errors — map the processes, standardize work, use visual management, and run kaizen events with the team. A packing kaizen once cut steps per order from 14 to 9 and raised pack rates 20%.\"\n\nTip: Give a kaizen result.", "D", "M"],
+["Peak", "How do you prepare for peak season?", "**Why they ask:** peak is make-or-break.\n\n**Answer:**\n\"Forecast volumes early, secure labor and equipment, pre-slot seasonal items, test systems at peak volume, extend shifts, coordinate with carriers, and run a daily peak war room. Planning starts months ahead, not weeks.\"\n\nTip: Plan months ahead.", "D", "M"],
+["Carriers", "How do you work with carriers at the dock?", "**Why they ask:** dock partnership.\n\n**Answer:**\n\"Scheduled pickups, loads staged before the truck arrives, accurate documentation — bills of lading and labels — monitoring carrier on-time performance, and escalating service issues to transportation. A quick turn at our dock makes us a shipper carriers want to serve.\"\n\nTip: Partnership with transportation.", "B", "E"],
+["Hazmat", "What do you need for hazardous materials?", "**Why they ask:** compliance awareness.\n\n**Answer:**\n\"Proper storage segregation, labeling, safety data sheets available, trained employees, spill kits, and compliance with OSHA, EPA and DOT shipping rules.\"\n\nTip: Compliance awareness.", "D", "M"],
+["3PL", "How do you manage a third-party logistics provider?", "**Why they ask:** outsourced operations.\n\n**Answer:**\n\"A clear contract and SLAs — accuracy, on-time and dock-to-stock — regular business reviews, KPI reporting, audits and joint improvement plans. Trust but verify.\"\n\nTip: Trust but verify.", "D", "S"],
+["Budget", "How do you manage a warehouse budget?", "**Why they ask:** financial ownership.\n\n**Answer:**\n\"I plan labor, equipment, supplies and facility costs against forecast volume, track cost per unit, explain variances, and keep looking for savings.\"\n\nTip: Financial ownership.", "D", "S"],
+["Scenario", "Volume doubles overnight due to a promotion. What do you do?", "**Why they ask:** calm under surge.\n\n**Answer:**\n\"Extend shifts and add temps, prioritize orders by service commitments, simplify processes — switching to batch picking for small orders — communicate with customer service and carriers, and monitor the backlog hourly. And afterward, push for earlier notice next time.\"\n\nTip: A calm, structured response.", "D", "M"],
+["Scenario", "Shipping errors spiked this month. How do you fix it?", "**Why they ask:** data-driven root cause.\n\n**Answer:**\n\"I analyze errors by type, shift, picker and SKU, and find the causes — new staff, look-alike SKUs next to each other, or scanning being skipped. Then retrain, re-slot and enforce scan verification, and track errors daily until they're back down.\"\n\nTip: Data-driven root cause.", "D", "M"],
+["Scenario", "The WMS goes down during shipping. What do you do?", "**Why they ask:** business continuity.\n\n**Answer:**\n\"Activate the downtime procedure — paper or offline picking for priority orders — communicate with IT and customers, keep careful records so we can enter transactions when the system's back, and debrief afterward to improve the procedure.\"\n\nTip: Business continuity.", "D", "M"],
+["Behavioral", "Tell me about a warehouse improvement you led.", "**Why they ask:** proof.\n\n**Answer:**\n\"Order accuracy was 98.2%. I introduced scan verification at pack stations and re-slotted look-alike SKUs apart. Accuracy rose to 99.7%, and customer complaints dropped by 60%.\"\n\nTip: Numbers.", "B", "M"],
+["Behavioral", "Tell me about handling a difficult employee situation.", "**Why they ask:** people leadership.\n\n**Answer:**\n\"Two team leads were in constant conflict, and it was affecting their shift. I met each one separately, then together, clarified their responsibilities and agreed on behaviors. Productivity recovered within weeks.\"\n\nTip: People leadership.", "B", "E"],
+["Behavioral", "Describe a peak season you managed.", "**Why they ask:** peak experience.\n\n**Answer:**\n\"We handled three times normal volume with 40 temps. I started hiring six weeks early, created a two-hour training program, and ran hourly backlog reviews. We hit 99% on-time shipping.\"\n\nTip: Planning pays off.", "B", "M"],
+["Leadership", "How do you develop supervisors and leads?", "**Why they ask:** building the bench.\n\n**Answer:**\n\"Coaching, clear expectations, leadership training, giving them ownership of their area's metrics, and regular feedback. Good supervisors are what keep good employees.\"\n\nTip: Build your bench.", "B", "S"],
+["Leadership", "How do you run a daily start-up meeting?", "**Why they ask:** daily management.\n\n**Answer:**\n\"Safety message, yesterday's results against targets, today's volume and priorities, staffing, issues, and recognition. Ten minutes, standing, at the visual board — same format every day.\"\n\nTip: Short and consistent.", "B", "E"],
+["Compliance", "What regulations affect warehouses?", "**Why they ask:** compliance.\n\n**Answer:**\n\"OSHA safety standards for forklifts and hazards, fire codes, hazmat rules from DOT and EPA, food safety under FDA's FSMA or pharma good distribution practices for regulated goods, and customs rules for bonded warehouses.\"\n\nTip: Mention your industry.", "D", "M"],
+["Technology", "What warehouse technologies have you used?", "**Why they ask:** tool experience.\n\n**Answer:**\n\"RF scanners with Oracle WMS, voice picking, pick-to-light in one zone, and AMRs in a pilot that improved picking productivity by 30%.\"\n\nTip: Be specific — swap in your own.", "B", "M"],
+["Strategy", "How would you design a new distribution center layout?", "**Why they ask:** design thinking.\n\n**Answer:**\n\"I analyze order profiles and SKU velocities, then plan the flow — receiving, storage, pick, pack, ship — to minimize travel. Size each area by volume, choose storage and handling equipment, plan for growth and future automation, and simulate before building.\"\n\nTip: Flow-based design.", "D", "S"],
+["Career", "Why warehouse management?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I enjoy leading teams in a fast-paced environment where results are visible every day. Getting customers their orders right and on time is satisfying.\"\n\nTip: Show energy.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I run safe, accurate and productive operations. I lifted accuracy to 99.7%, handled triple-volume peaks at 99% on-time, and reduced turnover by improving how supervisors coach.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is an ASN?", "**Why they ask:** receiving basics.\n\n**Answer:**\n\"An advance shipping notice is an electronic message from the supplier listing what's shipping, quantities and packaging, sent before the truck arrives — EDI 856. It lets us plan labor and receive faster by scanning instead of counting.\"\n\nTip: Mention EDI 856.", "B", "E"],
+["Technical", "What is the difference between FIFO and LIFO in physical stock rotation?", "**Why they ask:** stock rotation.\n\n**Answer:**\n\"Physically, FIFO ships the oldest stock first — the standard for most goods so nothing ages. LIFO ships the newest first, used only where the layout or product requires it, like bulk materials in a pile. Items with expiry dates use FEFO — first expired, first out. That's the physical meaning, separate from the accounting methods.\"\n\nTip: Physical versus accounting meaning.", "B", "E"],
+["Technical", "What is a pick face and replenishment?", "**Why they ask:** prevents picker waiting.\n\n**Answer:**\n\"The pick face is the location pickers take items from. Replenishment moves stock from reserve storage to the pick face before it runs empty — triggered by min-max or demand-based rules in the WMS. Done well, pickers never wait for stock.\"\n\nTip: It prevents picker waiting.", "B", "M"],
+["Technical", "What is order cycle time?", "**Why they ask:** a customer-facing metric.\n\n**Answer:**\n\"It's the time from order release to shipment. Shorter cycle times allow later order cut-offs, which is a real service advantage.\"\n\nTip: A key customer-facing metric.", "B", "E"]
+]);

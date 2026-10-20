@@ -1,6 +1,3 @@
-QB['sc-wh'] = (QB['sc-wh'] || []).concat([
-["Technical", "What is a wave plan?",
-`**Answer:** Grouping orders into waves released together for picking, typically timed to carrier departures or zones, balancing workload and ensuring shipments are ready by cutoff. Waveless (continuous) release is an alternative in some modern WMS setups.
-
-Tip: Align waves to carrier cutoffs.`, 'B', 'M']
+QB["sc-wh"] = (QB["sc-wh"] || []).concat([
+["Technical", "What is a wave plan?", "**Why they ask:** shipping coordination.\n\n**Answer:**\n\"It groups orders into waves released together for picking, usually timed to carrier departures or by zone, balancing the workload and making sure shipments are ready by cut-off. Some modern WMS setups use waveless, continuous release instead.\"\n\nTip: Align waves to carrier cut-offs.", "B", "M"]
 ]);
