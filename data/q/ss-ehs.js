@@ -1,253 +1,57 @@
 // ss-ehs — generated from src/ss-ehs-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // EHS Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ss-ehs'] = [
-["Role", "What does an EHS manager do?",
-`**Why they ask:** scope across safety, health and environment.
-
-**Answer:** Leads environmental, health and safety programs: regulatory compliance (OSHA, EPA, state), risk assessments, incident investigation, training, permits and reporting, safety culture, contractor safety, emergency preparedness, audits, and metrics — partnering with operations leaders.
-
-Tip: Mention sites, headcount and industry.`, 'B', 'E'],
-
-["Hierarchy", "Explain the hierarchy of controls.",
-`**Answer:** From most to least effective: **Elimination**, **Substitution**, **Engineering controls** (guarding, ventilation), **Administrative controls** (procedures, training, rotation), **PPE**.
-
-Tip: PPE is the last line.`, 'B', 'E'],
-
-["Metrics", "How do you calculate TRIR and DART?",
-`**Answer:** TRIR = (recordable cases × 200,000) / total hours worked. DART = (days away, restricted or transferred cases × 200,000) / hours.
-
-**Example:** 6 recordables, 1,200,000 hours → TRIR 1.0.
-
-Tip: 200,000 = 100 full-time workers per year.`, 'B', 'E'],
-
-["Metrics", "Leading vs lagging indicators?",
-`**Answer:** **Lagging** measure outcomes (TRIR, DART, lost time). **Leading** measure prevention activities (near-miss reports, safety observations, training completion, corrective action closure, inspections).
-
-Tip: Leading drives improvement.`, 'B', 'E'],
-
-["OSHA", "What are OSHA recordkeeping requirements?",
-`**Answer:** Record work-related injuries and illnesses meeting criteria (medical treatment beyond first aid, days away, restricted work, loss of consciousness, significant diagnosis) on OSHA 300 log, 301 incident reports, post 300A summary Feb 1–Apr 30, and electronic submission for certain establishments. Report fatalities within 8 hours, hospitalizations/amputations/eye loss within 24 hours.
-
-Tip: Reporting timelines.`, 'B', 'M'],
-
-["Investigation", "How do you investigate an incident?",
-`**Answer:** Secure the scene and care for injured, preserve evidence, interview witnesses promptly, gather facts (photos, records), identify root causes (5 Whys, fishbone, TapRooT), define corrective actions using hierarchy of controls, share lessons, and verify effectiveness.
-
-Tip: Systems, not blame.`, 'B', 'M'],
-
-["Risk Assessment", "How do you perform a job hazard analysis?",
-`**Answer:** Break the job into steps, identify hazards for each step, evaluate risk, and define controls; review with workers and update when processes change.
-
-Tip: Worker involvement.`, 'B', 'E'],
-
-["LOTO", "What is lockout/tagout?",
-`**Answer:** OSHA 1910.147 control of hazardous energy: shut down, isolate, lock and tag energy sources, release stored energy, verify zero energy before servicing; with written procedures, training and periodic inspections.
-
-Tip: Verify zero energy.`, 'B', 'M'],
-
-["Confined Space", "What are confined space requirements?",
-`**Answer:** Identify permit-required spaces, permits, atmospheric testing, ventilation, attendants, rescue plans, training and entry procedures (OSHA 1910.146).
-
-Tip: Rescue plans.`, 'D', 'M'],
-
-["Culture", "How do you build safety culture?",
-`**Answer:** Visible leadership commitment, employee involvement (committees, observations), encouraging near-miss reporting without blame, recognizing safe behavior, and acting quickly on concerns.
-
-Tip: Near-miss reporting.`, 'B', 'M'],
-
-["Behavior", "What is behavior-based safety?",
-`**Answer:** Observing and providing feedback on safe and at-risk behaviors to reinforce safe practices — effective when combined with fixing system causes, not blaming individuals.
-
-Tip: Balance with system fixes.`, 'D', 'M'],
-
-["Environmental", "Which environmental regulations are key?",
-`**Answer:** Clean Air Act (air permits, emissions), Clean Water Act (stormwater, wastewater discharge permits), RCRA (hazardous waste), EPCRA (Tier II, TRI reporting), CERCLA, and state equivalents.
-
-Tip: Permits.`, 'B', 'M'],
-
-["Waste", "How do you manage hazardous waste?",
-`**Answer:** Determine waste classification, generator status, proper labeling, storage time limits, manifests, licensed transporters and disposal, training and records.
-
-Tip: Generator status.`, 'D', 'M'],
-
-["Chemicals", "What is HazCom?",
-`**Answer:** OSHA Hazard Communication (GHS-aligned): chemical inventory, safety data sheets, labeling, and employee training.
-
-Tip: SDS access.`, 'B', 'E'],
-
-["ISO", "What are ISO 45001 and ISO 14001?",
-`**Answer:** **ISO 45001**: occupational health and safety management system. **ISO 14001**: environmental management system. Both use Plan-Do-Check-Act with risk-based thinking, legal compliance, objectives and continual improvement.
-
-Tip: PDCA.`, 'B', 'M'],
-
-["Ergonomics", "How do you reduce ergonomic injuries?",
-`**Answer:** Assess risks (lifting, repetition, posture), redesign workstations, mechanical aids, job rotation, early reporting and training.
-
-Tip: Engineering fixes.`, 'B', 'E'],
-
-["Contractors", "How do you manage contractor safety?",
-`**Answer:** Prequalification (safety records, programs), orientation, permits to work, supervision, audits and performance reviews.
-
-Tip: Permit to work.`, 'B', 'M'],
-
-["Emergency", "What should an emergency response plan include?",
-`**Answer:** Hazard scenarios, alarm and evacuation procedures, roles, assembly points, communication, spill response, medical response, drills and coordination with local responders.
-
-Tip: Drills.`, 'B', 'E'],
-
-["PSM", "What is process safety management?",
-`**Answer:** OSHA 1910.119 for highly hazardous chemicals: process hazard analysis (HAZOP), operating procedures, mechanical integrity, management of change, incident investigation, emergency planning and audits.
-
-Tip: Management of change.`, 'D', 'S'],
-
-["MOC", "What is management of change?",
-`**Answer:** Reviewing changes to processes, equipment, materials or organization for EHS risks before implementation, with approvals and training.
-
-Tip: Prevents surprises.`, 'B', 'M'],
-
-["Sustainability", "How does EHS support sustainability goals?",
-`**Answer:** Tracking energy, emissions (Scope 1, 2, 3), water and waste, setting reduction targets, supporting ESG reporting and regulations.
-
-Tip: Scope 1, 2, 3.`, 'D', 'M'],
-
-["Behavioral", "Tell me about improving safety performance.",
-`**Sample answer:** "TRIR was 3.2. I launched near-miss reporting, daily safety huddles, machine guarding upgrades and ergonomic fixes. Within two years TRIR fell to 0.9."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a serious incident you managed.",
-`**Sample answer:** "An employee suffered a hand injury on a press. I managed care, OSHA reporting, investigation finding a bypassed guard, implemented interlocked guarding across all presses and retrained supervisors."
-
-Tip: System fix.`, 'B', 'M'],
-
-["Behavioral", "How do you handle production pressure versus safety?",
-`**Answer:** Safety is non-negotiable; show how safe processes improve reliability; escalate and stop work when needed.
-
-Tip: Stop-work authority.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** CSP (Certified Safety Professional), ASP, CIH (industrial hygiene), CHMM (hazardous materials), OSHA 30.
-
-Tip: CSP.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Regional/corporate EHS director.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build safety cultures that get results — reducing TRIR from 3.2 to 0.9 — while keeping sites compliant."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Industrial Hygiene", "What is industrial hygiene?",
-`**Answer:** Anticipating, recognizing, evaluating and controlling workplace exposures (noise, chemicals, dust, heat); exposure monitoring against PELs/TLVs.
-
-Tip: Exposure monitoring.`, 'D', 'M'],
-
-["Noise", "What is a hearing conservation program?",
-`**Answer:** Required when exposure ≥ 85 dBA TWA: monitoring, audiometric testing, hearing protection, training and recordkeeping.
-
-Tip: 85 dBA action level.`, 'D', 'M'],
-
-["Audits", "How do you run EHS audits?",
-`**Answer:** Compliance checklists, interviews, observations, document reviews, findings with risk ratings, corrective actions with owners, and follow-up.
-
-Tip: Follow-up.`, 'B', 'E'],
-
-["Training", "How do you make safety training effective?",
-`**Answer:** Hands-on, job-specific, short sessions, in workers' language, with competency verification.
-
-Tip: Competency checks.`, 'B', 'E'],
-
-["Near Miss", "Why are near misses important?",
-`**Answer:** They reveal hazards before injuries occur (safety pyramid); encourage reporting with quick response.
-
-Tip: Respond quickly.`, 'B', 'E'],
-
-["Fall Protection", "What are fall protection basics?",
-`**Answer:** General industry protection at 4 feet, construction at 6 feet: guardrails, covers, personal fall arrest systems, training and inspection.
-
-Tip: Heights by industry.`, 'B', 'M'],
-
-["Forklifts", "How do you manage powered industrial truck safety?",
-`**Answer:** Operator training and evaluation every 3 years, daily inspections, pedestrian separation, speed limits and traffic plans.
-
-Tip: Pedestrian separation.`, 'B', 'E'],
-
-["Return to Work", "What is a return-to-work program?",
-`**Answer:** Providing modified duty for injured workers, reducing lost time and costs while supporting recovery.
-
-Tip: Modified duty.`, 'B', 'E'],
-
-["Workers Comp", "How does EHS influence workers' compensation costs?",
-`**Answer:** Preventing injuries, prompt reporting, case management and return-to-work programs lower claims and experience modification rate (EMR).
-
-Tip: EMR.`, 'D', 'M'],
-
-["Scenario", "Workers aren't wearing required PPE. What do you do?",
-`**Answer:** Find why (comfort, availability, understanding), fix barriers, involve workers in selection, reinforce expectations with supervisors, and apply consistent accountability.
-
-Tip: Understand barriers.`, 'B', 'E'],
-
-["Scenario", "An OSHA inspector arrives. What do you do?",
-`**Answer:** Verify credentials, understand the scope, notify management, accompany the inspector, take parallel notes/photos, provide requested documents, and address issues promptly.
-
-Tip: Professional cooperation.`, 'B', 'M'],
-
-["Spill", "How do you respond to a chemical spill?",
-`**Answer:** Ensure safety and evacuate if needed, contain using spill kits, notify response team, report if above reportable quantities, clean up and investigate.
-
-Tip: Reportable quantities.`, 'B', 'M'],
-
-["Software", "Which EHS systems have you used?",
-`**Answer:** Intelex, Enablon, Cority, VelocityEHS, Sphera, and Gensuite.
-
-Tip: Mobile reporting.`, 'B', 'E'],
-
-["Heat", "How do you manage heat illness risk?",
-`**Answer:** Heat illness prevention plans, water, rest, shade, acclimatization schedules, monitoring heat index and training — with new state and federal rulemaking attention.
-
-Tip: Acclimatization.`, 'D', 'M'],
-
-["Serious Injuries", "What is SIF prevention?",
-`**Answer:** Focusing on serious injury and fatality precursors — high-energy hazards — rather than only total injury rates.
-
-Tip: High-energy hazards.`, 'D', 'S'],
-
-["Leadership", "How do you engage senior leaders in safety?",
-`**Answer:** Regular safety reviews, leader safety walks, SIF potential metrics, and linking safety to operational excellence.
-
-Tip: Safety walks.`, 'B', 'M']
-];
-
-QB['ss-ehs'] = (QB['ss-ehs']||[]).concat([
-["Machine Guarding", "What are machine guarding principles?",
-`**Answer:** Guards must prevent contact with hazards, be secure and durable, not create new hazards, and allow safe lubrication and maintenance. Options include fixed guards, interlocked guards, light curtains and two-hand controls, per OSHA 1910.212 and ANSI B11 standards.
-
-Tip: Interlocks.`, 'B', 'M'],
-["Respiratory", "What does a respiratory protection program require?",
-`**Answer:** Hazard assessment, respirator selection, medical evaluation, fit testing (annually), training, maintenance and program evaluation (OSHA 1910.134).
-
-Tip: Annual fit tests.`, 'D', 'M'],
-["Stormwater", "What is a stormwater pollution prevention plan?",
-`**Answer:** Required under industrial stormwater permits. It identifies pollutant sources, sets best management practices (covering materials, spill prevention), inspections, monitoring and training.
-
-Tip: BMPs.`, 'D', 'M'],
-["Tier II", "What is Tier II reporting?",
-`**Answer:** Annual EPCRA reporting (due March 1) of hazardous chemicals stored above thresholds to state and local emergency planning agencies and fire departments.
-
-Tip: March 1 deadline.`, 'D', 'M'],
-["Hot Work", "How do you control hot work hazards?",
-`**Answer:** Hot work permits, removing or protecting combustibles within 35 feet, a fire watch during and after the work, fire extinguishers on hand, and trained personnel.
-
-Tip: Fire watch.`, 'B', 'M'],
-["Safety Committees", "How do you make a safety committee effective?",
-`**Answer:** Worker and management members, a clear charter, regular inspections, review of incidents and near misses, action tracking, and visible results.
-
-Tip: Action tracking.`, 'B', 'E'],
-["Multi-site", "How do you manage EHS across multiple sites?",
-`**Answer:** Common standards and a management system, site EHS leads, shared metrics and a central system, cross-site audits, sharing lessons learned, and adapting to local regulations.
-
-Tip: Standards plus local flexibility.`, 'D', 'M']
+QB["ss-ehs"] = (QB["ss-ehs"] || []).concat([
+["Role", "What does an EHS manager do?", "**Why they ask:** scope across safety, health and environment.\n\n**Answer:** Leads environmental, health and safety programs: regulatory compliance (OSHA, EPA, state), risk assessments, incident investigation, training, permits and reporting, safety culture, contractor safety, emergency preparedness, audits, and metrics — partnering with operations leaders.\n\nTip: Mention sites, headcount and industry.", "B", "E"],
+["Hierarchy", "Explain the hierarchy of controls.", "**Why they ask:** the core framework of EHS.\n\n**Answer:**\n\"From most to least effective: elimination — remove the hazard; substitution — replace it with something less hazardous; engineering controls — guarding, ventilation; administrative controls — procedures, training, job rotation; and PPE last. For example, with a solvent hazard, I'd first ask if we can eliminate the cleaning step, then swap to a water-based cleaner, then add local exhaust, and only then rely on respirators.\"\n\nTip: PPE is the last line of defense.", "B", "E"],
+["Metrics", "How do you calculate TRIR and DART?", "**Why they ask:** standard safety metrics.\n\n**Answer:**\n\"TRIR is recordable cases times 200,000, divided by total hours worked. DART uses only days-away, restricted or transferred cases, same formula. The 200,000 represents 100 full-time workers for a year. So 6 recordables over 1.2 million hours gives a TRIR of 1.0.\"\n\nTip: Explain the 200,000.", "B", "E"],
+["Metrics", "Leading vs lagging indicators?", "**Why they ask:** modern safety management.\n\n**Answer:**\n\"Lagging indicators measure outcomes — TRIR, DART, lost time. Leading indicators measure prevention — near-miss reports, safety observations, training completion, corrective action closure and inspections. Lagging tells you you've failed; leading tells you whether you're about to.\"\n\nTip: Leading drives improvement.", "B", "E"],
+["OSHA", "What are OSHA recordkeeping requirements?", "**Why they ask:** a compliance basic.\n\n**Answer:**\n\"We record work-related injuries and illnesses that meet the criteria — medical treatment beyond first aid, days away, restricted work, loss of consciousness or a significant diagnosis — on the OSHA 300 log with a 301 incident report. The 300A summary is posted from February 1 to April 30, and some establishments submit electronically. Fatalities must be reported within 8 hours; inpatient hospitalizations, amputations and eye loss within 24 hours.\"\n\nTip: Know the reporting timelines.", "B", "M"],
+["Investigation", "How do you investigate an incident?", "**Why they ask:** systems thinking.\n\n**Answer:**\n\"Secure the scene and care for the injured. Preserve evidence, interview witnesses promptly, and gather facts — photos and records. Find the root causes with tools like 5 Whys, fishbone or TapRooT. Define corrective actions using the hierarchy of controls, share the lessons, and verify the actions worked. The goal is fixing the system, not blaming a person.\"\n\nTip: Systems, not blame.", "B", "M"],
+["Risk Assessment", "How do you perform a job hazard analysis?", "**Why they ask:** a core prevention tool.\n\n**Answer:**\n\"Break the job into steps, identify the hazards at each step, evaluate the risk, and define controls. I do it with the workers who actually do the job, and update it whenever the process changes. They always spot hazards I'd miss.\"\n\nTip: Involve workers.", "B", "E"],
+["LOTO", "What is lockout/tagout?", "**Why they ask:** a life-safety rule.\n\n**Answer:**\n\"It's OSHA 1910.147, control of hazardous energy. Shut the equipment down, isolate every energy source, apply locks and tags, release stored energy, and verify zero energy before servicing. It needs written procedures for each machine, training, and periodic inspections. The verify step is where most failures happen.\"\n\nTip: Verify zero energy.", "B", "M"],
+["Confined Space", "What are confined space requirements?", "**Why they ask:** a high-fatality hazard.\n\n**Answer:**\n\"Under OSHA 1910.146: identify permit-required spaces, use entry permits, test the atmosphere, ventilate, station an attendant, have a rescue plan, train everyone and follow entry procedures. Many confined-space deaths are would-be rescuers, so the rescue plan is critical.\"\n\nTip: Rescue plans are critical.", "D", "M"],
+["Culture", "How do you build safety culture?", "**Why they ask:** culture drives results.\n\n**Answer:**\n\"Visible leadership commitment, employee involvement through committees and observations, near-miss reporting without blame, recognizing safe behavior, and acting fast on concerns. When someone reports a hazard and sees it fixed within a day, they report the next one.\"\n\nTip: Near-miss reporting.", "B", "M"],
+["Behavior", "What is behavior-based safety?", "**Why they ask:** a common approach with pitfalls.\n\n**Answer:**\n\"It's observing work and giving feedback on safe and at-risk behaviors to reinforce safe practice. It works when combined with fixing the system causes behind unsafe behavior — if people take a shortcut because the proper tool is far away, the fix is moving the tool, not blaming the worker.\"\n\nTip: Balance with system fixes.", "D", "M"],
+["Environmental", "Which environmental regulations are key?", "**Why they ask:** environmental compliance.\n\n**Answer:**\n\"The Clean Air Act for air permits and emissions, the Clean Water Act for stormwater and wastewater discharge permits, RCRA for hazardous waste, EPCRA for Tier II and TRI reporting, CERCLA, and the state equivalents, which are often stricter.\"\n\nTip: Know your permits.", "B", "M"],
+["Waste", "How do you manage hazardous waste?", "**Why they ask:** RCRA compliance.\n\n**Answer:**\n\"Determine the waste classification and our generator status, label correctly, respect storage time limits, use manifests, licensed transporters and permitted disposal, and keep training and records current. Generator status drives most of the requirements.\"\n\nTip: Generator status matters.", "D", "M"],
+["Chemicals", "What is HazCom?", "**Why they ask:** right-to-know compliance.\n\n**Answer:**\n\"OSHA's Hazard Communication standard, aligned with GHS: a chemical inventory, safety data sheets available to employees, proper labeling, and training. Workers have a right to know what they're working with.\"\n\nTip: SDS access.", "B", "E"],
+["ISO", "What are ISO 45001 and ISO 14001?", "**Why they ask:** management systems.\n\n**Answer:**\n\"ISO 45001 is the occupational health and safety management system standard; ISO 14001 is for environmental management. Both use Plan-Do-Check-Act with risk-based thinking, legal compliance, objectives and continual improvement.\"\n\nTip: Both are PDCA.", "B", "M"],
+["Ergonomics", "How do you reduce ergonomic injuries?", "**Why they ask:** a common injury source.\n\n**Answer:**\n\"Assess the risks — lifting, repetition, posture — then redesign workstations, add mechanical aids, rotate jobs, encourage early reporting of discomfort, and train. Engineering fixes like lift tables work better than training people to lift correctly.\"\n\nTip: Engineering fixes first.", "B", "E"],
+["Contractors", "How do you manage contractor safety?", "**Why they ask:** contractors are often higher risk.\n\n**Answer:**\n\"Prequalification of their safety records and programs, site orientation, permits to work, supervision, audits during the job, and performance reviews afterward. Contractors follow our rules on our site.\"\n\nTip: Permit to work.", "B", "M"],
+["Emergency", "What should an emergency response plan include?", "**Why they ask:** preparedness.\n\n**Answer:**\n\"The hazard scenarios, alarm and evacuation procedures, roles, assembly points, communication, spill and medical response, regular drills, and coordination with local responders. A plan that's never drilled won't work in a real emergency.\"\n\nTip: Drills.", "B", "E"],
+["PSM", "What is process safety management?", "**Why they ask:** high-hazard chemical facilities.\n\n**Answer:**\n\"OSHA 1910.119 covers highly hazardous chemicals. It requires process hazard analysis such as HAZOP, operating procedures, mechanical integrity, management of change, incident investigation, emergency planning and compliance audits. Management of change is where many incidents start.\"\n\nTip: Management of change.", "D", "S"],
+["MOC", "What is management of change?", "**Why they ask:** changes create hazards.\n\n**Answer:**\n\"It's reviewing changes to processes, equipment, materials or organization for EHS risks before they're implemented, with approvals and training. A 'minor' change like a new solvent or a different valve can create a major hazard.\"\n\nTip: It prevents surprises.", "B", "M"],
+["Sustainability", "How does EHS support sustainability goals?", "**Why they ask:** a growing scope.\n\n**Answer:**\n\"By tracking energy, Scope 1, 2 and 3 emissions, water and waste, setting reduction targets, and supporting ESG reporting and regulations.\"\n\nTip: Know Scope 1, 2 and 3.", "D", "M"],
+["Behavioral", "Tell me about improving safety performance.", "**Why they ask:** proof.\n\n**Answer:**\n\"TRIR was 3.2. I launched near-miss reporting, daily safety huddles, machine guarding upgrades and ergonomic fixes. Within two years, TRIR fell to 0.9.\"\n\nTip: Measured results.", "B", "M"],
+["Behavioral", "Tell me about a serious incident you managed.", "**Why they ask:** crisis handling.\n\n**Answer:**\n\"An employee suffered a hand injury on a press. I managed his care and the OSHA reporting, then led the investigation, which found a bypassed guard. We installed interlocked guarding on every press — not just that one — and retrained supervisors on checking guards.\"\n\nTip: Fix the system everywhere.", "B", "M"],
+["Behavioral", "How do you handle production pressure versus safety?", "**Why they ask:** a values test.\n\n**Answer:**\n\"Safety is non-negotiable. I show leaders how safe processes are also more reliable, and I use stop-work authority when needed. Everyone on site has the right to stop unsafe work, and I make sure that's real, not just on a poster.\"\n\nTip: Stop-work authority.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"The CSP — Certified Safety Professional — and the ASP before it, the CIH for industrial hygiene, the CHMM for hazardous materials, and OSHA 30. CSP is the one most employers look for.\"\n\nTip: CSP.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward a regional or corporate EHS director role.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build safety cultures that get results — I reduced TRIR from 3.2 to 0.9 — while keeping sites fully compliant.\"\n\nTip: Proof.", "B", "E"],
+["Industrial Hygiene", "What is industrial hygiene?", "**Why they ask:** health hazards.\n\n**Answer:**\n\"It's anticipating, recognizing, evaluating and controlling workplace exposures — noise, chemicals, dust and heat — through exposure monitoring against OSHA PELs and ACGIH TLVs.\"\n\nTip: Exposure monitoring.", "D", "M"],
+["Noise", "What is a hearing conservation program?", "**Why they ask:** a common requirement.\n\n**Answer:**\n\"It's required when exposure reaches 85 dBA as an eight-hour time-weighted average. It includes noise monitoring, audiometric testing, hearing protection, training and recordkeeping.\"\n\nTip: 85 dBA action level.", "D", "M"],
+["Audits", "How do you run EHS audits?", "**Why they ask:** compliance assurance.\n\n**Answer:**\n\"Compliance checklists, interviews, observations and document reviews, findings with risk ratings, corrective actions with owners and dates, and follow-up until they're closed.\"\n\nTip: Follow-up.", "B", "E"],
+["Training", "How do you make safety training effective?", "**Why they ask:** training often doesn't stick.\n\n**Answer:**\n\"Hands-on, job-specific, short sessions in workers' own language, with competency verification — showing they can do it, not just signing an attendance sheet.\"\n\nTip: Competency checks.", "B", "E"],
+["Near Miss", "Why are near misses important?", "**Why they ask:** prevention thinking.\n\n**Answer:**\n\"They reveal hazards before anyone gets hurt — the safety pyramid shows many near misses for every serious injury. I encourage reporting and respond quickly, so people see that reporting leads to fixes.\"\n\nTip: Respond quickly.", "B", "E"],
+["Fall Protection", "What are fall protection basics?", "**Why they ask:** falls are a leading cause of fatalities.\n\n**Answer:**\n\"In general industry, protection is required at 4 feet; in construction, at 6 feet. Options are guardrails, hole covers and personal fall arrest systems, plus training and inspection of the equipment.\"\n\nTip: Know heights by industry.", "B", "M"],
+["Forklifts", "How do you manage powered industrial truck safety?", "**Why they ask:** forklifts cause serious injuries.\n\n**Answer:**\n\"Operator training with evaluation at least every three years, daily pre-use inspections, separating pedestrians from forklift traffic, speed limits and a traffic plan. Pedestrian separation prevents the worst accidents.\"\n\nTip: Pedestrian separation.", "B", "E"],
+["Return to Work", "What is a return-to-work program?", "**Why they ask:** cost and care.\n\n**Answer:**\n\"It provides modified duty for injured workers, so they come back sooner. It reduces lost time and costs, and research shows it supports recovery.\"\n\nTip: Modified duty.", "B", "E"],
+["Workers Comp", "How does EHS influence workers' compensation costs?", "**Why they ask:** financial impact.\n\n**Answer:**\n\"Preventing injuries, prompt reporting, case management and return-to-work programs all lower claims — and lower the experience modification rate, which directly reduces insurance premiums.\"\n\nTip: Mention EMR.", "D", "M"],
+["Scenario", "Workers aren't wearing required PPE. What do you do?", "**Why they ask:** practical problem solving.\n\n**Answer:**\n\"I find out why first — comfort, availability, or not understanding the hazard. Fix those barriers, involve workers in choosing the PPE, reinforce expectations through supervisors, and apply accountability consistently. Often the fix is just better-fitting gloves.\"\n\nTip: Understand the barriers.", "B", "E"],
+["Scenario", "An OSHA inspector arrives. What do you do?", "**Why they ask:** inspection handling.\n\n**Answer:**\n\"Verify credentials, understand the scope, and notify management. Accompany the inspector, take parallel notes and photos, provide requested documents, and address any issues promptly. Professional cooperation goes a long way.\"\n\nTip: Professional cooperation.", "B", "M"],
+["Spill", "How do you respond to a chemical spill?", "**Why they ask:** emergency response.\n\n**Answer:**\n\"Make sure people are safe and evacuate if needed, contain it with spill kits, notify the response team, report to authorities if it's above the reportable quantity, then clean up and investigate why it happened.\"\n\nTip: Know reportable quantities.", "B", "M"],
+["Software", "Which EHS systems have you used?", "**Why they ask:** tool familiarity.\n\n**Answer:**\n\"Intelex, Enablon, Cority, VelocityEHS, Sphera and Gensuite. Mobile reporting made the biggest difference — near-miss reports tripled when workers could submit from their phones.\"\n\nTip: Mobile reporting.", "B", "E"],
+["Heat", "How do you manage heat illness risk?", "**Why they ask:** a growing regulatory focus.\n\n**Answer:**\n\"A heat illness prevention plan with water, rest and shade, acclimatization schedules for new and returning workers, monitoring the heat index, and training on symptoms. Several states have their own rules, and federal OSHA has been working on a heat standard, so I track where that stands.\"\n\nTip: Acclimatization matters most.", "D", "M"],
+["Serious Injuries", "What is SIF prevention?", "**Why they ask:** advanced safety thinking.\n\n**Answer:**\n\"It focuses on precursors to serious injuries and fatalities — high-energy hazards like moving equipment, heights and stored energy — rather than only total injury rates. A site can have a low TRIR and still be one incident away from a fatality.\"\n\nTip: Focus on high-energy hazards.", "D", "S"],
+["Leadership", "How do you engage senior leaders in safety?", "**Why they ask:** leadership commitment.\n\n**Answer:**\n\"Regular safety reviews, leader safety walks, metrics on SIF potential, and linking safety to operational excellence — safe sites are usually well-run sites.\"\n\nTip: Leader safety walks.", "B", "M"]
+]);
+
+QB["ss-ehs"] = (QB["ss-ehs"] || []).concat([
+["Machine Guarding", "What are machine guarding principles?", "**Why they ask:** a top OSHA citation area.\n\n**Answer:**\n\"Guards must prevent contact with the hazard, be secure and durable, not create new hazards, and allow safe lubrication and maintenance. Options include fixed guards, interlocked guards, light curtains and two-hand controls, following OSHA 1910.212 and ANSI B11 standards. Interlocks matter because fixed guards get removed and not replaced.\"\n\nTip: Interlocks.", "B", "M"],
+["Respiratory", "What does a respiratory protection program require?", "**Why they ask:** a common program.\n\n**Answer:**\n\"Under OSHA 1910.134: a hazard assessment, respirator selection, medical evaluation, fit testing at least annually, training, maintenance and program evaluation.\"\n\nTip: Annual fit tests.", "D", "M"],
+["Stormwater", "What is a stormwater pollution prevention plan?", "**Why they ask:** environmental permit compliance.\n\n**Answer:**\n\"It's required under industrial stormwater permits. It identifies pollutant sources and sets best management practices — covering materials, spill prevention, good housekeeping — plus inspections, monitoring and training.\"\n\nTip: Mention BMPs.", "D", "M"],
+["Tier II", "What is Tier II reporting?", "**Why they ask:** EPCRA compliance.\n\n**Answer:**\n\"Annual EPCRA reporting, due March 1, of hazardous chemicals stored above threshold quantities, to state and local emergency planning agencies and the fire department, so responders know what's on site.\"\n\nTip: March 1 deadline.", "D", "M"],
+["Hot Work", "How do you control hot work hazards?", "**Why they ask:** fire prevention.\n\n**Answer:**\n\"Hot work permits, removing or protecting combustibles within 35 feet, a fire watch during the work and for a period afterward, extinguishers on hand, and trained personnel.\"\n\nTip: Fire watch.", "B", "M"],
+["Safety Committees", "How do you make a safety committee effective?", "**Why they ask:** engagement.\n\n**Answer:**\n\"Both worker and management members, a clear charter, regular inspections, review of incidents and near misses, action tracking, and visible results. A committee that never sees its suggestions implemented stops caring.\"\n\nTip: Track actions.", "B", "E"],
+["Multi-site", "How do you manage EHS across multiple sites?", "**Why they ask:** scale.\n\n**Answer:**\n\"Common standards and one management system, site EHS leads, shared metrics in a central system, cross-site audits, sharing lessons learned, and adapting to local regulations.\"\n\nTip: Standards plus local flexibility.", "D", "M"]
 ]);
