@@ -1,10 +1,4 @@
-QB['qa-perf'] = (QB['qa-perf'] || []).concat([
-["Analysis", "What is the difference between latency and throughput?",
-`**Answer:** **Latency** is how long a single request takes (e.g. 250 ms). **Throughput** is how many requests are handled per unit of time (e.g. 800 requests/second). They interact: as throughput approaches capacity, queues form and latency rises sharply.
-
-Tip: Draw the response-time curve "knee" if you can.`, 'B', 'E'],
-["Analysis", "How do you compare two test runs fairly?",
-`**Answer:** Same workload, data, environment configuration and duration; warm-up period excluded; compare percentiles, throughput and errors at steady state; and run more than once to account for variance.
-
-Tip: Consistency makes comparisons meaningful.`, 'D', 'M']
+QB["qa-perf"] = (QB["qa-perf"] || []).concat([
+["Analysis", "What is the difference between latency and throughput?", "**Why they ask:** fundamentals.\n\n**Answer:**\n\"Latency is how long one request takes — say 250 milliseconds. Throughput is how many requests are handled per unit of time — say 800 per second. They interact: as throughput approaches capacity, queues form and latency rises sharply — the knee in the curve.\"\n\nTip: Draw the response-time curve \"knee\" if you can.", "B", "E"],
+["Analysis", "How do you compare two test runs fairly?", "**Why they ask:** analytical rigor.\n\n**Answer:**\n\"Same workload, data, environment configuration and duration; exclude the warm-up period; compare percentiles, throughput and errors at steady state; and run more than once, because variance between identical runs can be 5 to 10%.\"\n\nTip: Consistency makes comparisons meaningful.", "D", "M"]
 ]);

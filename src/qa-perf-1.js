@@ -1,260 +1,51 @@
 // Performance Test Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['qa-perf'] = [
-["Fundamentals", "What types of performance tests are there?",
-`**Why they ask:** baseline vocabulary for the role.
-
-**Answer:**
-- **Load:** expected peak traffic — does it meet targets?
-- **Stress:** beyond capacity — where and how does it break?
-- **Spike:** sudden jumps (e.g. a flash sale).
-- **Endurance/soak:** sustained load for hours — memory leaks, resource exhaustion.
-- **Scalability:** how performance changes as resources are added.
-- **Volume:** large data sizes.
-- **Capacity:** maximum users or throughput within SLAs.
-
-Tip: Give an example of when you'd run each.`, 'B', 'E'],
-
-["Fundamentals", "Which performance metrics matter most?",
-`**Answer:** Response time (average and percentiles — p90, p95, p99), throughput (requests or transactions per second), error rate, concurrency (active users), and resource utilization (CPU, memory, disk I/O, network, DB connections, thread pools, GC).
-
-Tip: Explain why percentiles matter more than averages.`, 'B', 'E'],
-
-["Fundamentals", "Why are percentiles better than averages?",
-`**Answer:** Averages hide outliers. If 95 requests take 200 ms and 5 take 10 seconds, the average is about 690 ms — looks fine — but 1 in 20 users waits 10 seconds. p95 and p99 show the real worst-case experience that users feel.
-
-Tip: The numbers example makes it stick.`, 'B', 'E'],
-
-["Fundamentals", "What is Little's Law?",
-`**Answer:** L = λ × W — average number of items in a system equals arrival rate × average time in the system. In load testing: concurrent users = throughput × (response time + think time).
-
-**Example:** 100 requests/sec × (0.5 s response + 4.5 s think time) = 500 concurrent users.
-
-Tip: Use it to sanity-check your workload model.`, 'D', 'M'],
-
-["Workload", "How do you build a realistic workload model?",
-`**Answer:** Use production analytics and logs: peak hour volumes, transaction mix (e.g. 60% browse, 25% search, 10% cart, 5% checkout), user journeys, think times, data variety, and background jobs. Agree targets (SLAs/SLOs) with the business, include growth projections (e.g. 2× peak), and validate the model with stakeholders.
-
-Tip: A wrong workload model makes the whole test meaningless — say so.`, 'D', 'M'],
-
-["Workload", "What is think time and pacing?",
-`**Answer:** **Think time** is the pause between user actions (reading, typing) — it makes load realistic. **Pacing** controls how often each virtual user starts an iteration, so you hit a target transaction rate regardless of response times.
-
-Tip: Without think time you over-stress the system unrealistically.`, 'B', 'E'],
-
-["Workload", "Open vs closed workload models?",
-`**Answer:** **Closed:** a fixed number of virtual users loop — new requests only start when previous ones finish, so slow responses reduce load (can hide problems). **Open:** requests arrive at a set rate regardless of responses, like real internet traffic — better for web systems. k6 "arrival-rate" executors and Gatling's open models support this.
-
-Tip: Shows advanced understanding.`, 'D', 'S'],
-
-["Tools", "Compare JMeter, LoadRunner, k6 and Gatling.",
-`**Answer:**
-- **JMeter:** open source, GUI and CLI, many protocols, huge community; heavier on resources.
-- **LoadRunner (OpenText):** enterprise, broad protocol support (SAP, Citrix), strong analysis; licensed and costly.
-- **k6:** JavaScript scripting, developer-friendly, great for CI, cloud option.
-- **Gatling:** Scala/Java/Kotlin DSL, very efficient, good reports.
-Choose by protocols, team skills, CI needs and budget.
-
-Tip: Mention which you've used in depth.`, 'B', 'M'],
-
-["Scripting", "What is correlation?",
-`**Answer:** Capturing dynamic values from server responses — session IDs, CSRF tokens, view states, order IDs — and passing them into later requests. Without correlation, replayed scripts fail or behave unrealistically. In JMeter use extractors (regex, JSON, CSS); in k6 parse responses in code.
-
-Tip: Give an example — capturing a CSRF token from the login page.`, 'B', 'E'],
-
-["Scripting", "What is parameterization?",
-`**Answer:** Replacing hard-coded values with varied test data — usernames, products, search terms — from CSV files or generators. It avoids unrealistic caching effects and data collisions (e.g. 1,000 users buying the same item).
-
-Tip: Mention unique data per virtual user.`, 'B', 'E'],
-
-["Scripting", "How do you validate responses in load scripts?",
-`**Answer:** Add checks/assertions for status codes and key content (e.g. "Order confirmed" text or an order ID), not just HTTP 200 — servers sometimes return error pages with 200. Track check failures as errors.
-
-Tip: A 200 isn't always success.`, 'B', 'E'],
-
-["Execution", "How do you ramp up load during a test?",
-`**Answer:** Gradually increase users or arrival rate (e.g. 10% steps every few minutes), hold at target for a steady state (30–60 minutes for load tests), then ramp down. Ramping shows where response times start degrading.
-
-Tip: Note the "knee" in the response-time curve.`, 'B', 'M'],
-
-["Execution", "How do you make sure the load generator isn't the bottleneck?",
-`**Answer:** Monitor load generator CPU, memory and network; keep them below ~70–80%; distribute load across multiple injectors; use efficient tools/modes (JMeter non-GUI); and run a calibration test.
-
-Tip: Many teams misdiagnose the injector as the application.`, 'D', 'M'],
-
-["Environment", "How production-like does the test environment need to be?",
-`**Answer:** As close as possible — same architecture, configuration, data volumes and integrations. If smaller, scale results carefully and identify which components don't scale linearly. Note differences in the report.
-
-Tip: Data volume is often overlooked.`, 'D', 'M'],
-
-["Analysis", "How do you find a performance bottleneck?",
-`**Answer:** Correlate response times with server metrics and APM traces (Dynatrace, AppDynamics, New Relic, Datadog, OpenTelemetry). Drill from slow transactions to slow tiers to slow calls — database queries, external services, locks, thread pool exhaustion, GC pauses, connection pool limits. Change one thing at a time and retest.
-
-**Example:** "p95 jumped at 400 users; APM showed DB connection pool waits; pool was 20 — raised to 60 and fixed two slow queries; p95 dropped from 4.2 s to 0.6 s."
-
-Tip: A concrete story beats a list.`, 'D', 'M'],
-
-["Analysis", "Response times climb steadily during a soak test. What could it be?",
-`**Answer:** Memory leak (heap grows, GC frequency rises), connection or thread leaks, caches growing without eviction, tables growing and queries slowing without indexes, or log/disk filling up. Analyze heap dumps, GC logs and resource trends over time.
-
-Tip: Mention heap dump analysis tools (Eclipse MAT, VisualVM).`, 'D', 'M'],
-
-["Analysis", "Throughput plateaus while CPU is only 40%. Why?",
-`**Answer:** A bottleneck other than CPU: thread or connection pool limits, database locks, a slow downstream service, rate limiting, synchronized code, network bandwidth, or the load generator itself.
-
-Tip: "Low CPU + flat throughput = waiting somewhere."`, 'D', 'S'],
-
-["Analysis", "How do you analyze database performance?",
-`**Answer:** Find top queries by total time (AWR in Oracle, pg_stat_statements in PostgreSQL, Query Store in SQL Server), check execution plans for full scans and missing indexes, look at locks and waits, connection usage, and cache hit ratios.
-
-Tip: Mention working with DBAs.`, 'D', 'M'],
-
-["Analysis", "What is garbage collection's impact on performance?",
-`**Answer:** In Java/.NET, GC pauses stop or slow application threads. Frequent or long pauses cause latency spikes. Tune heap size and collector (G1, ZGC), and fix object churn or leaks. Check GC logs during tests.
-
-Tip: Link latency spikes to GC events.`, 'D', 'S'],
-
-["Front-end", "How do you test front-end performance?",
-`**Answer:** Measure Core Web Vitals — LCP (loading), INP (interactivity), CLS (layout shift) — with Lighthouse, WebPageTest and real user monitoring. Check page weight, number of requests, caching, image optimization and JavaScript execution time.
-
-Tip: Backend load tests don't show front-end slowness.`, 'D', 'M'],
-
-["APM", "How do you use APM tools in performance testing?",
-`**Answer:** Tag test traffic, watch service maps and transaction traces during the test, identify slow methods, SQL and external calls, and compare runs before and after fixes.
-
-Tip: APM turns "it's slow" into "this query is slow".`, 'D', 'M'],
-
-["Cloud", "How does cloud change performance testing?",
-`**Answer:** Test autoscaling behavior (how fast new instances come online), check service limits and throttling, generate load from the cloud across regions, watch costs during big tests, and confirm CDN and caching behavior.
-
-Tip: Autoscaling lag is a common surprise.`, 'D', 'S'],
-
-["ERP", "How do you performance test an ERP like Oracle Fusion or SAP?",
-`**Answer:** Focus on critical business transactions (order entry, invoice processing) and batch jobs (AutoInvoice, payment runs, MRP, close processes) at production-like volumes, including integrations (OIC, FBDI loads). For SaaS, follow the vendor's rules — Oracle requires prior notification and limits for load tests on Fusion pods.
-
-Tip: Batch windows matter as much as online users.`, 'D', 'S'],
-
-["Microservices", "What's different about performance testing microservices?",
-`**Answer:** Test individual services for capacity, then end-to-end flows; watch network latency, retries and cascading failures, circuit breakers, and the slowest dependency in a chain. Distributed tracing is essential.
-
-Tip: Mention tail latency amplification.`, 'D', 'S'],
-
-["Shift-left", "How do you shift performance testing left?",
-`**Answer:** Lightweight API load tests in CI with thresholds, performance budgets for pages, profiling during development, and early capacity tests on new services — rather than one big test before go-live.
-
-Tip: Trend results per build.`, 'D', 'M'],
-
-["Planning", "What goes into a performance test plan?",
-`**Answer:** Objectives and success criteria (SLAs), scope (transactions, systems), workload model, test types and scenarios, environment and data, monitoring plan, tools, schedule, roles, risks and assumptions.
-
-Tip: Agree success criteria before testing.`, 'B', 'M'],
-
-["Reporting", "What goes into a performance test report?",
-`**Answer:** Executive summary with a clear verdict, objectives, workload, results vs targets (percentiles, throughput, errors), resource utilization graphs, bottlenecks found and fixes, risks and recommendations, and a go/no-go opinion.
-
-Tip: Lead with the business conclusion.`, 'B', 'M'],
-
-["Capacity", "How do you do capacity planning?",
-`**Answer:** Measure throughput per resource unit at acceptable response times, project future demand (growth, peaks, new features), and calculate required capacity with headroom (e.g. 30%). Validate with tests and monitor production trends.
-
-Tip: Tie to business growth forecasts.`, 'D', 'S'],
-
-["SLAs", "How do you define performance requirements when the business has none?",
-`**Answer:** Use industry benchmarks (e.g. pages under 2–3 seconds), current production performance as a baseline, competitor comparisons, and business impact (conversion drops with slowness). Propose targets and get agreement.
-
-Tip: Turn vague "fast" into numbers.`, 'B', 'M'],
-
-["Caching", "How does caching affect test results?",
-`**Answer:** Warm caches make responses faster; cold caches show worst-case behavior. Test both, vary data to avoid unrealistic cache hit rates, and understand CDN and application caches.
-
-Tip: Parameterization prevents false confidence.`, 'D', 'M'],
-
-["Network", "How do you test under real network conditions?",
-`**Answer:** Simulate latency, bandwidth limits and packet loss (browser throttling, network emulators, tc on Linux), and test from multiple geographic regions.
-
-Tip: Mobile users on slow networks matter.`, 'D', 'M'],
-
-["Chaos", "How does chaos engineering relate to performance?",
-`**Answer:** Injecting failures (instance loss, latency, dependency outages) under load shows whether the system degrades gracefully — timeouts, retries, circuit breakers, autoscaling.
-
-Tip: Resilience is performance under failure.`, 'D', 'S'],
-
-["Tuning", "Name common performance tuning fixes you've seen.",
-`**Answer:** Adding indexes, fixing N+1 queries, increasing connection/thread pools appropriately, caching hot data, async processing for slow work, compression, pagination, CDN for static content, query rewrites and JVM tuning.
-
-Tip: Give one real example with numbers.`, 'D', 'M'],
-
-["Coding", "How do you script complex flows in k6?",
-`**Answer:** Write JavaScript functions per user journey, group requests, use checks and thresholds, parameterize with SharedArray data, correlate values from JSON responses, set scenarios with executors (ramping-arrival-rate), and export results to Grafana or the cloud.
-
-Tip: Mention thresholds as pass/fail criteria in CI.`, 'D', 'M'],
-
-["JMeter", "Explain key JMeter components.",
-`**Answer:** Thread Groups (users, ramp-up, loops), Samplers (HTTP requests), Config Elements (CSV Data Set, HTTP defaults, cookie manager), Pre/Post Processors (extractors for correlation), Assertions, Timers (think time), Listeners (results — disabled in load runs), and Controllers (logic).
-
-Tip: Run JMeter in non-GUI mode for real tests.`, 'B', 'E'],
-
-["Monitoring", "What do you monitor during a test?",
-`**Answer:** Application response times and errors, servers (CPU, memory, disk, network), JVM/CLR (heap, GC, threads), database (top queries, locks, connections), load balancers, queues, caches, and external dependencies.
-
-Tip: Agree monitoring before the test starts.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a performance issue you found before go-live.",
-`**Sample answer:** "At 60% of target load, checkout p95 hit 8 seconds. APM showed a pricing service calling the database once per cart line. Developers batched the calls and added caching; p95 dropped to 700 ms at full load. Black Friday ran smoothly."
-
-Tip: Symptom, root cause, fix, result.`, 'B', 'M'],
-
-["Behavioral", "How do you handle a team that wants to skip performance testing?",
-`**Answer:** Explain the risk with examples or data (past incidents, revenue impact of slowness), propose a reduced scope focused on the riskiest transactions, and offer quick automated checks in CI.
-
-Tip: Risk-based compromise.`, 'B', 'M'],
-
-["Behavioral", "Describe a time your test results were challenged.",
-`**Sample answer:** "Developers said our test was unrealistic. I walked them through the workload model built from production logs and APM traces showing the slow query. We agreed on the fix, and a retest confirmed it."
-
-Tip: Data settles debates.`, 'B', 'M'],
-
-["Leadership", "How would you set up a performance engineering practice?",
-`**Answer:** Standard tooling and frameworks, workload models from production data, performance requirements in stories, CI performance checks, a performance environment and APM, a center of excellence for complex tests, and dashboards that track trends.
-
-Tip: Practice, not just tests.`, 'D', 'S'],
-
-["Leadership", "How do you prioritize which systems to performance test?",
-`**Answer:** By business criticality, user volume, recent changes, known risks, upcoming peak events and past incidents.
-
-Tip: Risk-based approach.`, 'B', 'S'],
-
-["Costs", "How do you control the cost of performance testing in the cloud?",
-`**Answer:** Schedule environments to run only during tests, use spot instances for load generators, right-size test runs, reuse scripts, and tear down after.
-
-Tip: Cost awareness is valued.`, 'D', 'S'],
-
-["Security", "Can load tests cause security concerns?",
-`**Answer:** Yes — they can trigger DDoS protections, WAF blocks or rate limits, and must not use real customer data. Coordinate with security teams, whitelist injectors, and use masked data.
-
-Tip: Coordination prevents surprises.`, 'D', 'M'],
-
-["Batch", "How do you test batch job performance?",
-`**Answer:** Run jobs with production-like volumes, measure duration against the batch window, monitor resource usage and locks, test concurrency with online users, and check scaling with data growth.
-
-Tip: Batch windows shrink as data grows.`, 'D', 'M'],
-
-["Mobile", "How do you test mobile app performance?",
-`**Answer:** App startup time, screen rendering (frames), memory and battery use, network usage, behavior on low-end devices and slow networks, plus backend API load. Tools: Android Profiler, Xcode Instruments, Firebase Performance.
-
-Tip: Device matters.`, 'D', 'M'],
-
-["AI", "How would you performance test an AI/LLM feature?",
-`**Answer:** Measure time to first token and total latency, throughput under concurrent requests, rate limits and token quotas, cost per request, and fallback behavior when the model API is slow or unavailable.
-
-Tip: Current and relevant.`, 'D', 'S'],
-
-["Career", "Why performance engineering?",
-`**Sample answer:** "I like the detective work — finding why a system slows down and fixing it with developers. It combines testing, systems knowledge and real business impact."
-
-Tip: Show curiosity.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build realistic workload models, find root causes with APM rather than just reporting slow numbers, and I've prevented peak-season outages — like cutting checkout p95 from 8 s to 0.7 s before Black Friday."
-
-Tip: Root-cause skill plus impact.`, 'B', 'M']
-];
+QB["qa-perf"] = (QB["qa-perf"] || []).concat([
+["Fundamentals", "What types of performance tests are there?", "**Why they ask:** baseline vocabulary for the role.\n\n**Answer:**\n- **Load:** expected peak traffic — does it meet targets?\n- **Stress:** beyond capacity — where and how does it break?\n- **Spike:** sudden jumps (e.g. a flash sale).\n- **Endurance/soak:** sustained load for hours — memory leaks, resource exhaustion.\n- **Scalability:** how performance changes as resources are added.\n- **Volume:** large data sizes.\n- **Capacity:** maximum users or throughput within SLAs.\n\nTip: Give an example of when you'd run each.", "B", "E"],
+["Fundamentals", "Which performance metrics matter most?", "**Why they ask:** the vocabulary of performance work.\n\n**Answer:**\n\"Response time — average and especially percentiles like p90, p95 and p99 — throughput in requests or transactions per second, error rate, concurrency, and resource utilization: CPU, memory, disk I/O, network, database connections, thread pools and garbage collection. Percentiles matter more than averages because they show what the slowest users actually experience.\"\n\nTip: Explain why percentiles matter more than averages.", "B", "E"],
+["Fundamentals", "Why are percentiles better than averages?", "**Why they ask:** a key analytical concept.\n\n**Answer:**\n\"Averages hide outliers. If 95 requests take 200 milliseconds and 5 take 10 seconds, the average is 95 times 0.2 plus 5 times 10, which is 69 seconds over 100 requests — about 690 milliseconds. That looks fine, but one in twenty users waits 10 seconds. p95 and p99 expose that tail, which is what users feel and complain about.\"\n\nTip: The numbers example makes it stick.", "B", "E"],
+["Fundamentals", "What is Little's Law?", "**Why they ask:** workload modeling math.\n\n**Answer:**\n\"L equals lambda times W: the average number of items in a system equals the arrival rate times the average time each spends in it. For load testing, concurrent users equal throughput times response time plus think time. So 100 requests per second with 0.5 seconds of response and 4.5 seconds of think time needs 100 times 5 — 500 concurrent virtual users. I use it to sanity-check every workload model.\"\n\nTip: Use it to sanity-check your workload model.", "D", "M"],
+["Workload", "How do you build a realistic workload model?", "**Why they ask:** a wrong model makes the test meaningless.\n\n**Answer:**\n\"From production analytics and logs: peak-hour volumes, the transaction mix — say 60% browse, 25% search, 10% add to cart, 5% checkout — user journeys, think times, data variety and background jobs. Then agree targets with the business, add growth — typically 2x current peak — and validate the model with stakeholders before testing. If the model is wrong, the results are precise but meaningless.\"\n\nTip: A wrong workload model makes the whole test meaningless — say so.", "D", "M"],
+["Workload", "What is think time and pacing?", "**Why they ask:** realistic load.\n\n**Answer:**\n\"Think time is the pause between a user's actions — reading a page, typing — which makes load realistic. Pacing controls how often each virtual user starts a new iteration, so I hit a target rate — say 1,200 checkouts an hour — no matter how response times change. Without think time, 100 virtual users can generate the load of thousands of real people.\"\n\nTip: Without think time you over-stress the system unrealistically.", "B", "E"],
+["Workload", "Open vs closed workload models?", "**Why they ask:** advanced understanding.\n\n**Answer:**\n\"In a closed model, a fixed number of virtual users loop, and each starts its next request only after the last one finishes — so when the system slows down, the load drops, which can hide problems. In an open model, requests arrive at a set rate regardless of responses, like real internet traffic — better for public web systems. k6's arrival-rate executors and Gatling's open injection profiles support this.\"\n\nTip: Shows advanced understanding.", "D", "S"],
+["Tools", "Compare JMeter, LoadRunner, k6 and Gatling.", "**Why they ask:** tool knowledge.\n\n**Answer:**\n\"JMeter is open source with a GUI and CLI, supports many protocols and has a huge community, but uses more resources per virtual user. LoadRunner from OpenText is enterprise-grade with broad protocol support — SAP, Citrix — and strong analysis, but it's licensed and expensive. k6 uses JavaScript, is developer-friendly and fits CI pipelines well. Gatling uses a Scala, Java or Kotlin DSL, is very efficient and produces good reports. I've used JMeter and k6 in depth; I choose by protocols, team skills, CI needs and budget.\"\n\nTip: Mention which you've used in depth.", "B", "M"],
+["Scripting", "What is correlation?", "**Why they ask:** core scripting skill.\n\n**Answer:**\n\"Capturing dynamic values from server responses — session IDs, CSRF tokens, view states, order IDs — and feeding them into later requests. A recorded script replays the token from recording time, so the login fails. In JMeter I use regex or JSON extractors; in k6 I parse the response in code — for example, pulling the CSRF token from the login page HTML and sending it with the login POST.\"\n\nTip: Give an example — capturing a CSRF token from the login page.", "B", "E"],
+["Scripting", "What is parameterization?", "**Why they ask:** realistic data.\n\n**Answer:**\n\"Replacing hard-coded values with varied data — usernames, products, search terms — from CSV files or generators. Otherwise everything is served from cache and you get unrealistic results, or collisions like 1,000 virtual users trying to buy the same last item. Each virtual user gets unique data.\"\n\nTip: Mention unique data per virtual user.", "B", "E"],
+["Scripting", "How do you validate responses in load scripts?", "**Why they ask:** avoiding false passes.\n\n**Answer:**\n\"Checks on status codes and key content — 'Order confirmed' text or an order ID in the response — not just HTTP 200, because servers sometimes return an error page with a 200 status. Failed checks count as errors. I once saw a test 'pass' at 2,000 users while every response was a maintenance page.\"\n\nTip: A 200 isn't always success.", "B", "E"],
+["Execution", "How do you ramp up load during a test?", "**Why they ask:** test design.\n\n**Answer:**\n\"Increase load gradually — in about 10% steps every few minutes — hold at target for a steady state of 30 to 60 minutes for a load test, then ramp down. Ramping shows the knee in the curve: the point where response times stop being flat and start climbing sharply, which is the practical capacity.\"\n\nTip: Note the \"knee\" in the response-time curve.", "B", "M"],
+["Execution", "How do you make sure the load generator isn't the bottleneck?", "**Why they ask:** a common misdiagnosis.\n\n**Answer:**\n\"Monitor the injectors' CPU, memory and network and keep them under about 70 to 80%, spread load across several injectors, run JMeter in non-GUI mode, and do a calibration run. Many teams have blamed an application for slowness that was actually a maxed-out load generator.\"\n\nTip: Many teams misdiagnose the injector as the application.", "D", "M"],
+["Environment", "How production-like does the test environment need to be?", "**Why they ask:** validity of results.\n\n**Answer:**\n\"As close as possible — same architecture, configuration, data volumes and integrations. If it's smaller, I scale results carefully and identify components that don't scale linearly, like a database. Data volume is the most overlooked: a query that's instant on 10,000 rows can take seconds on 50 million. Differences go in the report.\"\n\nTip: Data volume is often overlooked.", "D", "M"],
+["Analysis", "How do you find a performance bottleneck?", "**Why they ask:** root-cause skill.\n\n**Answer:**\n\"Correlate response times with server metrics and APM traces — Dynatrace, AppDynamics, Datadog, OpenTelemetry — and drill down from slow transactions to slow tiers to slow calls: database queries, external services, locks, thread pool exhaustion, GC pauses, connection pool limits. Change one thing at a time and retest. On one system p95 jumped at 400 users; APM showed threads waiting for database connections with a pool of 20. We raised it to 60 and fixed two slow queries, and p95 dropped from 4.2 seconds to 0.6.\"\n\nTip: A concrete story beats a list.", "D", "M"],
+["Analysis", "Response times climb steadily during a soak test. What could it be?", "**Why they ask:** long-running issues.\n\n**Answer:**\n\"A memory leak — heap keeps growing and GC runs more and more often — connection or thread leaks, caches growing without eviction, tables growing so unindexed queries slow down, or logs filling the disk. I analyze heap dumps with Eclipse MAT or VisualVM, GC logs, and resource trends across the hours.\"\n\nTip: Mention heap dump analysis tools (Eclipse MAT, VisualVM).", "D", "M"],
+["Analysis", "Throughput plateaus while CPU is only 40%. Why?", "**Why they ask:** analytical reasoning.\n\n**Answer:**\n\"Something other than CPU is the bottleneck — the system is waiting. Thread or connection pool limits, database locks, a slow downstream service, rate limiting, synchronized code, network bandwidth, or the load generator itself. Thread dumps and APM wait times usually show which.\"\n\nTip: \"Low CPU + flat throughput = waiting somewhere.\"", "D", "S"],
+["Analysis", "How do you analyze database performance?", "**Why they ask:** databases are the usual bottleneck.\n\n**Answer:**\n\"Find top queries by total time — AWR in Oracle, pg_stat_statements in PostgreSQL, Query Store in SQL Server — check execution plans for full scans and missing indexes, look at locks and waits, connection usage and cache hit ratios. I work closely with DBAs on fixes.\"\n\nTip: Mention working with DBAs.", "D", "M"],
+["Analysis", "What is garbage collection's impact on performance?", "**Why they ask:** runtime knowledge.\n\n**Answer:**\n\"In Java and .NET, GC pauses stop or slow application threads, so frequent or long pauses show up as latency spikes. I check GC logs during tests and line pauses up with p99 spikes. Fixes are tuning heap size and the collector — G1 or ZGC — and reducing object churn or leaks in code.\"\n\nTip: Link latency spikes to GC events.", "D", "S"],
+["Front-end", "How do you test front-end performance?", "**Why they ask:** user-perceived performance.\n\n**Answer:**\n\"Core Web Vitals — LCP for loading, INP for interactivity, CLS for layout shift — measured with Lighthouse, WebPageTest and real user monitoring. Plus page weight, number of requests, caching, image optimization and JavaScript execution time. A backend load test can be green while the page takes 6 seconds to become usable.\"\n\nTip: Backend load tests don't show front-end slowness.", "D", "M"],
+["APM", "How do you use APM tools in performance testing?", "**Why they ask:** modern diagnostics.\n\n**Answer:**\n\"Tag test traffic, watch service maps and transaction traces during the run, identify slow methods, SQL and external calls, and compare runs before and after fixes. APM turns 'checkout is slow' into 'this specific query takes 3 seconds.'\"\n\nTip: APM turns \"it's slow\" into \"this query is slow\".", "D", "M"],
+["Cloud", "How does cloud change performance testing?", "**Why they ask:** cloud-era testing.\n\n**Answer:**\n\"Test how autoscaling behaves — new instances may take 3 to 5 minutes to serve traffic, so a sudden spike can still overwhelm the system — check service limits and throttling, generate load from multiple cloud regions, watch costs during big tests, and confirm CDN and caching behavior.\"\n\nTip: Autoscaling lag is a common surprise.", "D", "S"],
+["ERP", "How do you performance test an ERP like Oracle Fusion or SAP?", "**Why they ask:** enterprise performance testing.\n\n**Answer:**\n\"Focus on critical business transactions like order entry and invoice processing, and on batch jobs — AutoInvoice, payment runs, MRP, close processes — at production-like volumes, including integrations through OIC and FBDI loads. For SaaS, follow the vendor's rules: Oracle requires advance notice and has limits on load testing Fusion environments. Batch windows matter as much as online users.\"\n\nTip: Batch windows matter as much as online users.", "D", "S"],
+["Microservices", "What's different about performance testing microservices?", "**Why they ask:** distributed systems.\n\n**Answer:**\n\"Test individual services for capacity, then end-to-end flows; watch network latency, retries and cascading failures, circuit breakers, and the slowest dependency in each chain. Distributed tracing is essential. Tail latency amplifies: if a page calls 10 services in parallel, each with a 1% chance of being slow, about 10% of page loads hit at least one slow call.\"\n\nTip: Mention tail latency amplification.", "D", "S"],
+["Shift-left", "How do you shift performance testing left?", "**Why they ask:** continuous performance.\n\n**Answer:**\n\"Lightweight API load tests in CI with thresholds, performance budgets for pages, profiling during development, and early capacity tests on new services — instead of one big test before go-live. Trending results per build catches a 20% regression the day it's introduced.\"\n\nTip: Trend results per build.", "D", "M"],
+["Planning", "What goes into a performance test plan?", "**Why they ask:** planning discipline.\n\n**Answer:**\n\"Objectives and success criteria, scope of transactions and systems, the workload model, test types and scenarios, environment and data, monitoring plan, tools, schedule, roles, risks and assumptions. Success criteria get agreed before testing, so nobody moves the goalposts after the results.\"\n\nTip: Agree success criteria before testing.", "B", "M"],
+["Reporting", "What goes into a performance test report?", "**Why they ask:** communication.\n\n**Answer:**\n\"An executive summary with a clear verdict, objectives, the workload, results against targets — percentiles, throughput, errors — resource utilization graphs, bottlenecks found and fixed, risks and recommendations, and a go/no-go opinion. The first line answers 'are we ready for peak?'\"\n\nTip: Lead with the business conclusion.", "B", "M"],
+["Capacity", "How do you do capacity planning?", "**Why they ask:** forward-looking analysis.\n\n**Answer:**\n\"Measure throughput per resource unit at acceptable response times, project demand from growth, peaks and new features, and calculate capacity with headroom. If one node handles 300 orders a minute within SLA and peak is forecast at 1,800, I need 6 nodes, plus about 30% headroom — so 8. Then validate with tests and monitor production trends.\"\n\nTip: Tie to business growth forecasts.", "D", "S"],
+["SLAs", "How do you define performance requirements when the business has none?", "**Why they ask:** turning vague into measurable.\n\n**Answer:**\n\"Use current production performance as a baseline, industry benchmarks like pages under 2 to 3 seconds, competitor comparisons, and business impact — conversion drops as pages slow. Then propose specific targets — '95% of searches under 1.5 seconds at 2x peak' — and get them agreed.\"\n\nTip: Turn vague \"fast\" into numbers.", "B", "M"],
+["Caching", "How does caching affect test results?", "**Why they ask:** avoiding false confidence.\n\n**Answer:**\n\"Warm caches make responses fast; cold caches show worst-case behavior, like right after a deployment. I test both, vary data so cache hit rates are realistic, and understand both CDN and application caches. If every virtual user searches 'laptop', you're testing the cache, not the system.\"\n\nTip: Parameterization prevents false confidence.", "D", "M"],
+["Network", "How do you test under real network conditions?", "**Why they ask:** real-world realism.\n\n**Answer:**\n\"Simulate latency, bandwidth limits and packet loss with browser throttling, network emulators or tc on Linux, and run tests from multiple geographic regions. Mobile users on slow networks are often a big share of traffic.\"\n\nTip: Mobile users on slow networks matter.", "D", "M"],
+["Chaos", "How does chaos engineering relate to performance?", "**Why they ask:** resilience thinking.\n\n**Answer:**\n\"Injecting failures — losing an instance, adding latency, taking a dependency down — while under load shows whether the system degrades gracefully: do timeouts, retries, circuit breakers and autoscaling work as designed, or does one slow service take everything down?\"\n\nTip: Resilience is performance under failure.", "D", "S"],
+["Tuning", "Name common performance tuning fixes you've seen.", "**Why they ask:** practical experience.\n\n**Answer:**\n\"Adding indexes, fixing N+1 queries, sizing connection and thread pools properly, caching hot data, moving slow work to async processing, compression, pagination, a CDN for static content, query rewrites and JVM tuning. One missing index on an order lookup took a report from 40 seconds to under 1.\"\n\nTip: Give one real example with numbers.", "D", "M"],
+["Coding", "How do you script complex flows in k6?", "**Why they ask:** k6 depth.\n\n**Answer:**\n\"A JavaScript function per user journey, requests grouped, checks and thresholds — like p95 under 500 milliseconds — data parameterized with SharedArray, values correlated from JSON responses, scenarios using executors such as ramping-arrival-rate, and results exported to Grafana or k6 Cloud. Thresholds become pass/fail criteria in CI.\"\n\nTip: Mention thresholds as pass/fail criteria in CI.", "D", "M"],
+["JMeter", "Explain key JMeter components.", "**Why they ask:** JMeter depth.\n\n**Answer:**\n\"Thread Groups define users, ramp-up and loops; Samplers send requests; Config Elements like CSV Data Set, HTTP defaults and the cookie manager; pre- and post-processors, including extractors for correlation; Assertions; Timers for think time; Listeners for results — disabled during real load runs; and logic Controllers. Real tests run in non-GUI mode.\"\n\nTip: Run JMeter in non-GUI mode for real tests.", "B", "E"],
+["Monitoring", "What do you monitor during a test?", "**Why they ask:** observability during tests.\n\n**Answer:**\n\"Application response times and errors; servers — CPU, memory, disk, network; the JVM or CLR — heap, GC, threads; the database — top queries, locks, connections; load balancers, queues, caches and external dependencies. I agree the monitoring setup before the test starts, not after a failure.\"\n\nTip: Agree monitoring before the test starts.", "B", "M"],
+["Behavioral", "Tell me about a performance issue you found before go-live.", "**Why they ask:** proof.\n\n**Answer:**\n\"At 60% of target load, checkout p95 hit 8 seconds. APM showed the pricing service querying the database once per cart line. Developers batched the calls and added caching, and p95 dropped to 700 milliseconds at full load. Black Friday ran smoothly.\"\n\nTip: Symptom, root cause, fix, result.", "B", "M"],
+["Behavioral", "How do you handle a team that wants to skip performance testing?", "**Why they ask:** influence.\n\n**Answer:**\n\"Explain the risk with data — past incidents, revenue lost per hour of slowness — propose a reduced scope focused on the riskiest transactions, and offer quick automated checks in CI so there's some protection on every build.\"\n\nTip: Risk-based compromise.", "B", "M"],
+["Behavioral", "Describe a time your test results were challenged.", "**Why they ask:** credibility.\n\n**Answer:**\n\"Developers said our test was unrealistic. I walked them through the workload model built from production logs and showed the APM trace of the slow query. We agreed on the fix, and a retest confirmed it.\"\n\nTip: Data settles debates.", "B", "M"],
+["Leadership", "How would you set up a performance engineering practice?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Standard tooling and frameworks, workload models from production data, performance requirements written into stories, CI performance checks, a dedicated performance environment with APM, a center of excellence for complex tests, and dashboards tracking trends.\"\n\nTip: Practice, not just tests.", "D", "S"],
+["Leadership", "How do you prioritize which systems to performance test?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"By business criticality, user volume, recent changes, known risks, upcoming peak events and past incidents.\"\n\nTip: Risk-based approach.", "B", "S"],
+["Costs", "How do you control the cost of performance testing in the cloud?", "**Why they ask:** cost awareness.\n\n**Answer:**\n\"Run environments only during test windows, use spot instances for load generators, right-size test runs, reuse scripts, and tear everything down afterward.\"\n\nTip: Cost awareness is valued.", "D", "S"],
+["Security", "Can load tests cause security concerns?", "**Why they ask:** coordination.\n\n**Answer:**\n\"Yes — they can trigger DDoS protection, WAF blocks or rate limits, and they must never use real customer data. I coordinate with security, allowlist the injectors, and use masked or synthetic data.\"\n\nTip: Coordination prevents surprises.", "D", "M"],
+["Batch", "How do you test batch job performance?", "**Why they ask:** non-interactive workloads.\n\n**Answer:**\n\"Run jobs at production-like volumes, measure duration against the batch window, monitor resources and locks, test them concurrently with online users, and check how they scale as data grows — a job that fits in 3 of 4 hours today may not next year.\"\n\nTip: Batch windows shrink as data grows.", "D", "M"],
+["Mobile", "How do you test mobile app performance?", "**Why they ask:** mobile coverage.\n\n**Answer:**\n\"App startup time, rendering smoothness, memory and battery use, network usage, behavior on low-end devices and slow networks, plus backend API load. Android Profiler, Xcode Instruments and Firebase Performance Monitoring.\"\n\nTip: Device matters.", "D", "M"],
+["AI", "How would you performance test an AI/LLM feature?", "**Why they ask:** a current topic.\n\n**Answer:**\n\"Measure time to first token and total latency, throughput under concurrent requests, provider rate limits and token quotas, cost per request, and fallback behavior when the model API is slow or unavailable.\"\n\nTip: Current and relevant.", "D", "S"],
+["Career", "Why performance engineering?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I like the detective work — finding why a system slows down and fixing it with developers. It combines testing, systems knowledge and real business impact.\"\n\nTip: Show curiosity.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build realistic workload models and find root causes with APM rather than just reporting slow numbers. I've prevented peak-season outages — like cutting checkout p95 from 8 seconds to 0.7 before Black Friday.\"\n\nTip: Root-cause skill plus impact.", "B", "M"]
+]);
