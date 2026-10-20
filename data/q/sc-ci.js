@@ -1,277 +1,55 @@
 // sc-ci — generated from src/sc-ci-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Continuous Improvement / Lean Six Sigma. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sc-ci'] = [
-["Lean", "What are the 8 wastes in Lean?",
-`**Why they ask:** foundation of Lean thinking.
-
-**Answer:** Remember **DOWNTIME**: Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra processing. Overproduction is often considered the worst because it causes the others.
-
-**Example:** in an office, waiting for approvals and re-entering data are waiting and extra processing.
-
-Tip: Give an example of each in your environment.`, 'B', 'E'],
-
-["Lean", "What are the five Lean principles?",
-`**Answer:** (1) Define **value** from the customer's view, (2) map the **value stream**, (3) create **flow**, (4) establish **pull**, (5) pursue **perfection** through continuous improvement.
-
-Tip: Short and clear.`, 'B', 'E'],
-
-["Six Sigma", "Explain DMAIC.",
-`**Answer:**
-- **Define:** problem statement, goals, scope, project charter, voice of the customer (SIPOC).
-- **Measure:** baseline performance, data collection plan, measurement system analysis.
-- **Analyze:** find root causes with data (Pareto, fishbone, hypothesis tests, regression).
-- **Improve:** develop and pilot solutions (DOE, brainstorming, error-proofing).
-- **Control:** sustain gains (control plans, SPC, standard work, handoff to owner).
-
-Tip: Walk through a real project using DMAIC.`, 'B', 'E'],
-
-["Six Sigma", "What does Six Sigma mean statistically?",
-`**Answer:** A process capable of 3.4 defects per million opportunities, accounting for a 1.5-sigma long-term shift. It's about reducing variation so the process stays well within specifications.
-
-Tip: Mention DPMO calculation.`, 'B', 'M'],
-
-["Tools", "What is value stream mapping?",
-`**Answer:** A visual map of material and information flow from supplier to customer, showing process steps, cycle times, wait times, inventory and information flows. Calculate value-added vs total lead time. Then design a **future state** with less waste and an implementation plan.
-
-**Example:** lead time 22 days, value-added time 3 hours — most time is waiting in queues.
-
-Tip: The value-added ratio is eye-opening for leaders.`, 'B', 'E'],
-
-["Tools", "What is a SIPOC?",
-`**Answer:** A high-level process map: Suppliers, Inputs, Process (5–7 steps), Outputs, Customers. Used in the Define phase to agree scope.
-
-Tip: Quick alignment tool.`, 'B', 'E'],
-
-["Tools", "What is 5S?",
-`**Answer:** Sort (remove what's not needed), Set in order (a place for everything), Shine (clean and inspect), Standardize (visual standards), Sustain (audits and habits). It creates safe, organized workplaces and exposes problems.
-
-Tip: Sustain is the hardest — mention audits.`, 'B', 'E'],
-
-["Tools", "What is a kaizen event and how do you run one?",
-`**Answer:** A focused 3–5 day improvement workshop with a cross-functional team including the people who do the work. Steps: prepare scope, goals and baseline data; observe the process; identify waste; brainstorm and implement changes during the week; measure results; report out; 30/60/90-day follow-up.
-
-Tip: Mention results from a kaizen you led.`, 'D', 'M'],
-
-["Flow", "What are takt time, cycle time and lead time?",
-`**Answer:** **Takt time** = available time ÷ customer demand (the pace needed). **Cycle time:** time to complete one unit at a step. **Lead time:** total time from order to delivery including waiting.
-
-**Example:** 480 min ÷ 240 units = 2 minutes takt.
-
-Tip: Show the math.`, 'B', 'E'],
-
-["Flow", "What is line balancing?",
-`**Answer:** Distributing work across stations so each is at or below takt time and workloads are even, reducing bottlenecks and idle time. Use yamazumi charts to visualize work content by station.
-
-Tip: Yamazumi chart mention.`, 'D', 'M'],
-
-["Pull", "What is a pull system and kanban?",
-`**Answer:** Production is triggered by actual consumption, not forecasts. Kanban cards or signals authorize replenishment. It limits WIP and inventory.
-
-Tip: Mention supermarkets.`, 'B', 'M'],
-
-["Standard Work", "Why is standard work the foundation of improvement?",
-`**Answer:** Without a stable, documented best method, you can't measure improvement or sustain it. Standard work defines sequence, takt and standard WIP.
-
-Tip: "Where there is no standard, there can be no kaizen."`, 'B', 'M'],
-
-["Statistics", "Which statistical tools do you use?",
-`**Answer:** Descriptive statistics, histograms, Pareto, control charts, capability analysis, hypothesis tests (t-test, ANOVA, chi-square), correlation and regression, and DOE. Tools: Minitab, JMP, Excel, Python.
-
-Tip: Give an example of a hypothesis test result.`, 'D', 'M'],
-
-["Statistics", "When would you use a t-test vs ANOVA?",
-`**Answer:** A t-test compares means of two groups (e.g. shift A vs shift B cycle times). ANOVA compares means of three or more groups. Check assumptions (normality, equal variance) and p-values below 0.05 typically indicate a significant difference.
-
-Tip: Practical framing.`, 'D', 'M'],
-
-["Statistics", "What is a p-value?",
-`**Answer:** The probability of seeing results at least as extreme as observed if the null hypothesis (no difference) were true. A low p-value (e.g. < 0.05) suggests the difference is statistically significant.
-
-Tip: Distinguish statistical from practical significance.`, 'D', 'M'],
-
-["Measurement", "Why is measurement system analysis important in projects?",
-`**Answer:** If the measurement system is unreliable, data and conclusions are wrong. Run Gage R&R before analyzing process data.
-
-Tip: Measure phase step.`, 'D', 'M'],
-
-["Projects", "How do you select improvement projects?",
-`**Answer:** Align to business goals; prioritize by impact (cost, quality, delivery, safety, customer) vs effort; check data availability and sponsorship; define clear scope.
-
-Tip: Impact-effort matrix.`, 'B', 'M'],
-
-["Projects", "What goes into a project charter?",
-`**Answer:** Business case, problem statement, goal (SMART), scope (in/out), team and roles, sponsor, timeline, and expected benefits.
-
-Tip: Good charters prevent scope creep.`, 'B', 'E'],
-
-["Projects", "How do you write a good problem statement?",
-`**Answer:** Specific, measurable, factual and without assumed causes or solutions.
-
-**Example:** "Order entry errors averaged 4.2% from January to June, causing $180K in rework and credits."
-
-Tip: No solutions in the problem statement.`, 'B', 'E'],
-
-["Benefits", "How do you calculate and validate project savings?",
-`**Answer:** Compare baseline to post-improvement performance, convert to financial impact (labor hours, scrap, inventory, revenue), separate hard savings from cost avoidance, and get finance validation.
-
-Tip: Finance sign-off adds credibility.`, 'D', 'M'],
-
-["Sustain", "Why do improvements fail to stick, and how do you prevent it?",
-`**Answer:** Lack of ownership, no standard work, no follow-up, leadership attention moving elsewhere, and people reverting to old habits. Prevent with control plans, visual management, leader standard work, audits, training, and involving the people doing the work from the start.
-
-Tip: Control phase discipline.`, 'D', 'M'],
-
-["Change", "How do you get buy-in from resistant teams?",
-`**Answer:** Involve them early, use their data and ideas, explain the why, show quick wins, address fears openly (job security), and recognize contributions.
-
-Tip: People change processes.`, 'B', 'M'],
-
-["Transactional", "How do you apply Lean to office processes?",
-`**Answer:** Map processes like order entry, invoicing or hiring; find waste (waiting, rework, handoffs, approvals); standardize; reduce batching; automate repetitive steps; and use visual boards.
-
-**Example:** invoice processing cycle time cut from 9 days to 3 by removing two approval steps.
-
-Tip: Lean isn't only for factories.`, 'D', 'M'],
-
-["Healthcare", "Can Lean be applied in healthcare or services?",
-`**Answer:** Yes — reducing patient wait times, improving discharge processes, reducing medication errors, and standardizing workflows. The principles are the same: value, flow and waste reduction.
-
-Tip: Show versatility.`, 'D', 'M'],
-
-["TOC", "What is the theory of constraints?",
-`**Answer:** Every system has a constraint limiting output. Five focusing steps: identify the constraint, exploit it, subordinate everything else to it, elevate it, and repeat.
-
-Tip: Complements Lean.`, 'D', 'M'],
-
-["Error Proofing", "What is poka-yoke?",
-`**Answer:** Error-proofing that prevents mistakes or makes them immediately obvious — fixtures that only fit one way, checklists in systems, sensors that stop machines, required fields in forms.
-
-Tip: Give an office and a factory example.`, 'B', 'E'],
-
-["Hoshin", "What is hoshin kanri?",
-`**Answer:** Strategy deployment — aligning breakthrough objectives from leadership down through the organization with catchball discussions and regular reviews (X-matrix).
-
-Tip: Strategic CI.`, 'D', 'S'],
-
-["Visual", "What is visual management?",
-`**Answer:** Making the status of work visible at a glance — production boards, andon lights, kanban, floor markings, KPI boards — so problems are seen and acted on quickly.
-
-Tip: Supports daily management.`, 'B', 'E'],
-
-["Daily Management", "What is a daily management system?",
-`**Answer:** Tiered huddles, visual boards with KPIs, leader standard work and gemba walks to manage performance daily and escalate problems.
-
-Tip: Sustains improvements.`, 'D', 'M'],
-
-["A3", "What is A3 problem solving?",
-`**Answer:** A structured one-page report (A3 paper size) covering background, current state, goal, root cause analysis, countermeasures, implementation plan and follow-up. It encourages clear thinking and communication.
-
-Tip: Toyota tool.`, 'D', 'M'],
-
-["Coaching", "How do you coach others in problem solving?",
-`**Answer:** Ask questions rather than give answers (Toyota Kata coaching), guide through PDCA, review A3s, and let people own the solutions.
-
-Tip: Build capability, not dependency.`, 'D', 'S'],
-
-["Metrics", "How do you measure a CI program's success?",
-`**Answer:** Financial savings, KPI improvements (quality, delivery, productivity, safety), number of people trained and engaged, projects completed and sustained, and culture survey results.
-
-Tip: Balance hard and soft results.`, 'D', 'S'],
-
-["Leadership", "How would you build a CI program from scratch?",
-`**Answer:** Secure leadership sponsorship, assess current state, choose a few high-impact pilot projects, train belts and leaders, set up daily management and visual systems, celebrate wins, and scale.
-
-Tip: Start small, prove value.`, 'D', 'S'],
-
-["Leadership", "How do you get leadership support for CI?",
-`**Answer:** Link projects to business goals and financial results, show quick wins, involve leaders in gemba walks and report-outs, and make CI part of their goals.
-
-Tip: Results earn support.`, 'D', 'S'],
-
-["Digital", "How do digital tools and automation fit with Lean?",
-`**Answer:** Simplify and standardize processes first, then automate (RPA, workflow tools, IoT data). Automating a wasteful process just makes waste faster.
-
-Tip: "Lean first, then digitize."`, 'D', 'M'],
-
-["AI", "How can AI support continuous improvement?",
-`**Answer:** Analyze large process datasets to find patterns, predict failures, mine process logs (process mining with tools like Celonis), and automate data collection.
-
-Tip: Process mining is a strong mention.`, 'D', 'S'],
-
-["Scenario", "A sponsor wants a solution before analysis is done. What do you do?",
-`**Answer:** Acknowledge their idea, explain the risk of solving the wrong problem, agree on a quick data check, and include their hypothesis in the analysis.
-
-Tip: Respectful discipline.`, 'D', 'M'],
-
-["Scenario", "Your project stalls because the team is busy. What do you do?",
-`**Answer:** Re-check priority with the sponsor, reduce scope, schedule short focused sessions, remove blockers, and show progress to regain momentum.
-
-Tip: Sponsor engagement.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a Lean or Six Sigma project you led.",
-`**Sample answer:** "Order-to-ship lead time was 12 days. Using VSM and DMAIC, we found orders waited 4 days for credit checks and 3 days in batch picking. We automated credit checks under a threshold and moved to wave picking. Lead time fell to 5 days, and on-time delivery rose from 82% to 95%."
-
-Tip: Method, root cause, result.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a project that failed.",
-`**Sample answer:** "A 5S program faded within three months because supervisors weren't involved. I relaunched it with supervisor-led audits and weekly scores on visual boards, and it sustained."
-
-Tip: Lessons learned.`, 'B', 'M'],
-
-["Behavioral", "How did you handle resistance from an experienced employee?",
-`**Sample answer:** "A senior operator resisted standard work. I asked him to help write it, using his best practices. He became its strongest advocate."
-
-Tip: Involvement wins.`, 'B', 'M'],
-
-["Certification", "What belt certifications do you have and what do they mean?",
-`**Answer:** Yellow Belt (basic awareness), Green Belt (leads smaller projects, part-time), Black Belt (leads complex projects full-time, coaches Green Belts), Master Black Belt (program leadership and training).
-
-Tip: Mention your projects, not just the certificate.`, 'B', 'E'],
-
-["Gemba", "What is gemba and why go there?",
-`**Answer:** "The real place" where work happens. Observing directly reveals waste and problems that data and meetings miss.
-
-Tip: "Go see."`, 'B', 'E'],
-
-["PDCA", "What is PDCA?",
-`**Answer:** Plan, Do, Check, Act — the basic cycle of improvement: plan a change, try it, check results, and standardize or adjust.
-
-Tip: Simple but powerful.`, 'B', 'E'],
-
-["Career", "Why continuous improvement?",
-`**Sample answer:** "I enjoy making work easier and better for people while delivering business results. CI combines data, problem solving and coaching."
-
-Tip: Purpose.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I've delivered measurable results — lead time cut from 12 to 5 days, $1.2M in validated savings — and I build problem-solving capability so improvements stick."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Technical", "What is DPMO?",
-`**Answer:** Defects per million opportunities = (defects ÷ (units × opportunities per unit)) × 1,000,000.
-
-**Example:** 30 defects, 1,000 units, 5 opportunities each → 6,000 DPMO (about 4.0 sigma).
-
-Tip: Show the math.`, 'D', 'M'],
-
-["Technical", "What is a fishbone diagram?",
-`**Answer:** A cause-and-effect diagram organizing possible causes of a problem into categories — often the 6Ms: Man, Machine, Method, Material, Measurement, Mother Nature (environment).
-
-Tip: Brainstorming tool, then verify with data.`, 'B', 'E'],
-
-["Technical", "What is a Pareto chart?",
-`**Answer:** A bar chart of causes sorted by frequency or impact with a cumulative line, showing the "vital few" (often ~20% of causes create ~80% of problems).
-
-Tip: Focus tool.`, 'B', 'E'],
-
-["Technical", "What is a spaghetti diagram?",
-`**Answer:** A drawing of the path a person or product travels through a process, revealing excessive motion and transportation waste.
-
-Tip: Great for layout improvements.`, 'B', 'E'],
-
-["Technical", "What is heijunka?",
-`**Answer:** Production leveling — smoothing the volume and mix of production over time to reduce peaks and enable steady flow.
-
-Tip: Toyota production system concept.`, 'D', 'M']
-];
+QB["sc-ci"] = (QB["sc-ci"] || []).concat([
+["Lean", "What are the 8 wastes in Lean?", "**Why they ask:** foundation of Lean thinking.\n\n**Answer:** Remember **DOWNTIME**: Defects, Overproduction, Waiting, Non-utilized talent, Transportation, Inventory, Motion, Extra processing. Overproduction is often considered the worst because it causes the others.\n\n**Example:** in an office, waiting for approvals and re-entering data are waiting and extra processing.\n\nTip: Give an example of each in your environment.", "B", "E"],
+["Lean", "What are the five Lean principles?", "**Why they ask:** the foundation of Lean thinking.\n\n**Answer:**\n\"First, define value from the customer's point of view — what they'd actually pay for. Second, map the value stream — every step it takes to deliver that value. Third, create flow so work moves without stopping. Fourth, establish pull, so we only make what the customer needs when they need it. And fifth, pursue perfection through continuous improvement.\"\n\nTip: Short and clear is fine here.", "B", "E"],
+["Six Sigma", "Explain DMAIC.", "**Why they ask:** the core Six Sigma method.\n\n**Answer:**\n\"Define is the problem statement, goal, scope and charter, plus the voice of the customer — often with a SIPOC. Measure is getting the baseline and a data collection plan, after checking the measurement system. Analyze is finding root causes with data — Pareto, fishbone, hypothesis tests, regression. Improve is developing and piloting solutions — sometimes with DOE, and error-proofing. Control is sustaining the gains with control plans, SPC, standard work and a handoff to the process owner.\"\n\nTip: Walk through a real project using DMAIC.", "B", "E"],
+["Six Sigma", "What does Six Sigma mean statistically?", "**Why they ask:** a basic concept check.\n\n**Answer:**\n\"A Six Sigma process produces about 3.4 defects per million opportunities, allowing for a 1.5-sigma long-term drift in the process. The real point is reducing variation so the process stays well inside the specification limits. We measure it with DPMO — defects per million opportunities.\"\n\nTip: Mention the DPMO calculation.", "B", "M"],
+["Tools", "What is value stream mapping?", "**Why they ask:** a core Lean diagnostic.\n\n**Answer:**\n\"It's a visual map of material and information flow from supplier to customer, showing every process step, cycle times, wait times, inventory and information flows. From it you calculate value-added time against total lead time — and then design a future state with less waste and an implementation plan. In one map, lead time was 22 days but value-added time was only 3 hours — almost everything was waiting in queues.\"\n\nTip: The value-added ratio is eye-opening for leaders.", "B", "E"],
+["Tools", "What is a SIPOC?", "**Why they ask:** a basic scoping tool.\n\n**Answer:**\n\"It's a high-level process map: Suppliers, Inputs, Process in five to seven steps, Outputs and Customers. I use it in the Define phase to get everyone agreeing on where the process starts and ends before we dive in.\"\n\nTip: A quick alignment tool.", "B", "E"],
+["Tools", "What is 5S?", "**Why they ask:** a foundational Lean practice.\n\n**Answer:**\n\"Sort — remove what isn't needed. Set in order — a place for everything. Shine — clean and inspect. Standardize — visual standards so everyone does it the same way. Sustain — audits and habits. It creates a safe, organized workplace and makes problems visible. Sustain is the hardest part, so I use regular audits with scores posted on the board.\"\n\nTip: Sustain is the hardest — mention audits.", "B", "E"],
+["Tools", "What is a kaizen event and how do you run one?", "**Why they ask:** a common CI deliverable.\n\n**Answer:**\n\"It's a focused three-to-five-day improvement workshop with a cross-functional team, including the people who do the work. Before it, I prepare the scope, goals and baseline data. During the week, we observe the process, identify waste, brainstorm and implement changes, then measure the results and report out to leaders. Afterward there's a 30, 60 and 90-day follow-up. My last kaizen on a packing line cut changeover time from 45 minutes to 18.\"\n\nTip: Mention results from a kaizen you led.", "D", "M"],
+["Flow", "What are takt time, cycle time and lead time?", "**Why they ask:** fundamental flow metrics.\n\n**Answer:**\n\"Takt time is available time divided by customer demand — the pace we need to work at. With 480 minutes available and 240 units needed, takt is 2 minutes per unit. Cycle time is how long it actually takes to complete one unit at a step. Lead time is the total time from order to delivery, including all the waiting. If a step's cycle time is above takt, it's a bottleneck.\"\n\nTip: Show the math.", "B", "E"],
+["Flow", "What is line balancing?", "**Why they ask:** practical flow design.\n\n**Answer:**\n\"It's spreading work across stations so each is at or below takt time and the workload is even — removing bottlenecks and idle time. I use a yamazumi chart, which stacks the work elements for each station so you can see at a glance which one is overloaded, then move tasks around until they're level.\"\n\nTip: Mention the yamazumi chart.", "D", "M"],
+["Pull", "What is a pull system and kanban?", "**Why they ask:** a core Lean mechanism.\n\n**Answer:**\n\"In a pull system, production is triggered by actual consumption, not a forecast. Kanban — cards or signals — authorize replenishment: when a bin empties, its card goes back and authorizes refilling exactly that amount. Usually it's paired with a supermarket — a small, controlled stock point. It limits work in progress and inventory.\"\n\nTip: Mention supermarkets.", "B", "M"],
+["Standard Work", "Why is standard work the foundation of improvement?", "**Why they ask:** tests Lean understanding.\n\n**Answer:**\n\"Without a stable, documented best method, you can't measure improvement or keep it. Standard work defines the sequence, the takt time and the standard work-in-progress. Every improvement becomes the new standard. As the saying goes, where there is no standard, there can be no kaizen.\"\n\nTip: Quote 'Where there is no standard, there can be no kaizen.'", "B", "M"],
+["Statistics", "Which statistical tools do you use?", "**Why they ask:** analytical depth.\n\n**Answer:**\n\"Descriptive statistics, histograms, Pareto charts, control charts, capability analysis, hypothesis tests like t-tests, ANOVA and chi-square, correlation and regression, and design of experiments. I use Minitab, JMP, Excel and some Python. For example, a two-sample t-test showed night shift's cycle time was 8% longer with a p-value of 0.01, which led us to a training gap.\"\n\nTip: Give an example of a hypothesis test result.", "D", "M"],
+["Statistics", "When would you use a t-test vs ANOVA?", "**Why they ask:** practical statistics.\n\n**Answer:**\n\"A t-test compares the means of two groups — say, shift A versus shift B cycle times. ANOVA compares three or more groups — like three machines. I check the assumptions first — roughly normal data and similar variance — and a p-value below 0.05 usually means the difference is statistically significant.\"\n\nTip: Practical framing.", "D", "M"],
+["Statistics", "What is a p-value?", "**Why they ask:** a common stats check.\n\n**Answer:**\n\"It's the probability of seeing results at least this extreme if there were really no difference. A low p-value, like below 0.05, suggests the difference is statistically significant. But statistical significance isn't the same as practical significance — a 0.2-second difference might be 'significant' and still not worth acting on.\"\n\nTip: Distinguish statistical from practical significance.", "D", "M"],
+["Measurement", "Why is measurement system analysis important in projects?", "**Why they ask:** bad data ruins projects.\n\n**Answer:**\n\"If the measurement system isn't reliable, the data — and every conclusion from it — is wrong. So before analyzing process data, I run a Gage R&R to check repeatability and reproducibility. Once I found two inspectors disagreeing on 30% of parts, which was most of our 'defect' problem.\"\n\nTip: It's a Measure-phase step.", "D", "M"],
+["Projects", "How do you select improvement projects?", "**Why they ask:** choosing well is half the result.\n\n**Answer:**\n\"I align with business goals first. Then prioritize by impact — cost, quality, delivery, safety or customer — against effort, using an impact-effort matrix. I check that data exists and there's a sponsor who cares, and I define a clear scope so the project can finish in a few months.\"\n\nTip: Mention the impact-effort matrix.", "B", "M"],
+["Projects", "What goes into a project charter?", "**Why they ask:** project discipline.\n\n**Answer:**\n\"The business case, the problem statement, a SMART goal, scope — what's in and out — team and roles, the sponsor, the timeline and expected benefits. A good charter prevents scope creep, because when someone asks for more, you point back to it.\"\n\nTip: Good charters prevent scope creep.", "B", "E"],
+["Projects", "How do you write a good problem statement?", "**Why they ask:** a common weakness.\n\n**Answer:**\n\"It should be specific, measurable and factual, with no assumed causes or solutions. For example: 'Order entry errors averaged 4.2% from January to June, causing $180,000 in rework and credits.' Not 'We need a new order system' — that's a solution.\"\n\nTip: No solutions in the problem statement.", "B", "E"],
+["Benefits", "How do you calculate and validate project savings?", "**Why they ask:** credibility of results.\n\n**Answer:**\n\"I compare baseline performance to post-improvement performance and convert the difference to money — labor hours, scrap, inventory or revenue. I separate hard savings from cost avoidance, and get finance to validate it. Finance sign-off is what makes leadership believe the number.\"\n\nTip: Finance sign-off adds credibility.", "D", "M"],
+["Sustain", "Why do improvements fail to stick, and how do you prevent it?", "**Why they ask:** sustainment is the hard part.\n\n**Answer:**\n\"They fail because nobody owns them, there's no standard work, nobody follows up, leaders move on to the next thing, and people slip back to old habits. I prevent it with a control plan, visual management, leader standard work, regular audits, training, and by involving the people who do the work from the start — so it's their change, not mine.\"\n\nTip: Control-phase discipline.", "D", "M"],
+["Change", "How do you get buy-in from resistant teams?", "**Why they ask:** CI is people work.\n\n**Answer:**\n\"I involve them early, use their data and their ideas, and explain the why. I show quick wins, address fears openly — especially about jobs — and recognize their contributions publicly. People support what they help create.\"\n\nTip: People change processes.", "B", "M"],
+["Transactional", "How do you apply Lean to office processes?", "**Why they ask:** Lean isn't only for factories.\n\n**Answer:**\n\"Map processes like order entry, invoicing or hiring. Look for the waste — waiting, rework, handoffs and extra approvals. Then standardize, reduce batching, automate repetitive steps and use visual boards. For example, we cut invoice processing from 9 days to 3 just by removing two approval steps that never rejected anything.\"\n\nTip: Lean isn't only for factories.", "D", "M"],
+["Healthcare", "Can Lean be applied in healthcare or services?", "**Why they ask:** shows versatility.\n\n**Answer:**\n\"Yes. It's used to reduce patient wait times, improve discharge processes, cut medication errors and standardize workflows. The principles are the same — value, flow and waste reduction — only the 'product' is a patient or a service request.\"\n\nTip: Show versatility.", "D", "M"],
+["TOC", "What is the theory of constraints?", "**Why they ask:** a complementary method.\n\n**Answer:**\n\"Every system has one constraint that limits its output. The five focusing steps are: identify the constraint, exploit it — get the most out of it — subordinate everything else to it, elevate it by adding capacity, and then repeat, because the constraint moves. An hour lost at the bottleneck is an hour lost for the whole plant.\"\n\nTip: It complements Lean.", "D", "M"],
+["Error Proofing", "What is poka-yoke?", "**Why they ask:** error-proofing is high-value.\n\n**Answer:**\n\"It's error-proofing — designing so mistakes can't happen or are immediately obvious. In a factory: a fixture that only fits one way, or a sensor that stops the machine. In an office: required fields in a form, or a dropdown instead of free text. The best poka-yoke doesn't rely on people remembering.\"\n\nTip: Give an office and a factory example.", "B", "E"],
+["Hoshin", "What is hoshin kanri?", "**Why they ask:** strategic CI.\n\n**Answer:**\n\"It's strategy deployment — taking a few breakthrough objectives from leadership and aligning them down through the organization, using 'catchball' discussions where each level agrees how it will contribute, and regular reviews. The X-matrix puts objectives, priorities, metrics and owners on one page.\"\n\nTip: It's strategic CI.", "D", "S"],
+["Visual", "What is visual management?", "**Why they ask:** supports daily control.\n\n**Answer:**\n\"It's making the status of work visible at a glance — production boards, andon lights, kanban, floor markings, KPI boards — so problems are seen and acted on quickly. If you have to open a report to know you're behind, it's not visual.\"\n\nTip: It supports daily management.", "B", "E"],
+["Daily Management", "What is a daily management system?", "**Why they ask:** how gains are sustained.\n\n**Answer:**\n\"Tiered huddles — team, area, plant — with visual boards and KPIs, plus leader standard work and gemba walks. Problems surface daily and escalate quickly up the tiers. It's what keeps improvements from fading.\"\n\nTip: It sustains improvements.", "D", "M"],
+["A3", "What is A3 problem solving?", "**Why they ask:** a Toyota-style tool.\n\n**Answer:**\n\"It's a structured one-page report, named after the A3 paper size, covering background, current state, goal, root cause analysis, countermeasures, implementation plan and follow-up. Fitting it on one page forces clear thinking and makes it easy to share.\"\n\nTip: It's a Toyota tool.", "D", "M"],
+["Coaching", "How do you coach others in problem solving?", "**Why they ask:** CI leaders build capability.\n\n**Answer:**\n\"I ask questions rather than give answers — Toyota Kata style coaching — and guide people through PDCA. I review their A3s and let them own the solutions. My goal is that they can solve the next problem without me.\"\n\nTip: Build capability, not dependency.", "D", "S"],
+["Metrics", "How do you measure a CI program's success?", "**Why they ask:** program accountability.\n\n**Answer:**\n\"Financial savings, KPI improvements in quality, delivery, productivity and safety, how many people are trained and engaged, how many projects were completed and stayed sustained, and culture survey results. I balance the hard results with the soft ones.\"\n\nTip: Balance hard and soft results.", "D", "S"],
+["Leadership", "How would you build a CI program from scratch?", "**Why they ask:** program leadership.\n\n**Answer:**\n\"I'd secure leadership sponsorship, assess the current state, and pick a few high-impact pilot projects. Train belts and leaders, set up daily management and visual systems, celebrate the wins, and then scale. Start small and prove value before going wide.\"\n\nTip: Start small, prove value.", "D", "S"],
+["Leadership", "How do you get leadership support for CI?", "**Why they ask:** CI dies without leaders.\n\n**Answer:**\n\"I link projects to business goals and financial results, show quick wins, and involve leaders directly in gemba walks and report-outs. Then make CI part of their goals. Results earn support.\"\n\nTip: Results earn support.", "D", "S"],
+["Digital", "How do digital tools and automation fit with Lean?", "**Why they ask:** a modern balance.\n\n**Answer:**\n\"Simplify and standardize the process first, then automate — with RPA, workflow tools or IoT data. Automating a wasteful process just makes waste happen faster. Lean first, then digitize.\"\n\nTip: 'Lean first, then digitize.'", "D", "M"],
+["AI", "How can AI support continuous improvement?", "**Why they ask:** current tools.\n\n**Answer:**\n\"AI can analyze large process datasets to find patterns, predict machine failures, and automate data collection. Process mining tools like Celonis read system logs to show how a process really runs — every variant and delay — which used to take weeks of manual mapping.\"\n\nTip: Process mining is a strong mention.", "D", "S"],
+["Scenario", "A sponsor wants a solution before analysis is done. What do you do?", "**Why they ask:** respectful discipline.\n\n**Answer:**\n\"I acknowledge their idea — they often know the process well. Then explain the risk of solving the wrong problem, and agree a quick data check. I include their hypothesis in the analysis, so if it's right, we prove it fast; if not, the data shows it.\"\n\nTip: Respectful discipline.", "D", "M"],
+["Scenario", "Your project stalls because the team is busy. What do you do?", "**Why they ask:** real-world obstacles.\n\n**Answer:**\n\"I re-check the priority with the sponsor, reduce scope if needed, schedule short focused sessions instead of long meetings, remove blockers, and show progress to regain momentum. Usually the sponsor helping free up time is what fixes it.\"\n\nTip: Sponsor engagement.", "B", "M"],
+["Behavioral", "Tell me about a Lean or Six Sigma project you led.", "**Why they ask:** proof of results.\n\n**Answer:**\n\"Order-to-ship lead time was 12 days. Using a value stream map and DMAIC, we found orders waited 4 days for credit checks and 3 days in batch picking. We automated credit checks under a threshold and moved to wave picking. Lead time fell to 5 days, and on-time delivery rose from 82% to 95%.\"\n\nTip: Method, root cause, result.", "B", "M"],
+["Behavioral", "Tell me about a project that failed.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"A 5S program faded within three months because supervisors weren't involved — it was seen as the CI team's thing. I relaunched it with supervisor-led audits and weekly scores on the visual boards, and this time it sustained.\"\n\nTip: Share the lessons learned.", "B", "M"],
+["Behavioral", "How did you handle resistance from an experienced employee?", "**Why they ask:** people skills.\n\n**Answer:**\n\"A senior operator resisted standard work — he felt it ignored his experience. So I asked him to help write it, using his best practices. He became its strongest advocate and trained the newer operators himself.\"\n\nTip: Involvement wins.", "B", "M"],
+["Certification", "What belt certifications do you have and what do they mean?", "**Why they ask:** credentials and depth.\n\n**Answer:**\n\"Yellow Belt is basic awareness. Green Belt leads smaller projects part-time. Black Belt leads complex projects full-time and coaches Green Belts. Master Black Belt leads the program and trains others. I'm a Black Belt, and I've led eight projects with about $2 million in validated savings.\"\n\nTip: Mention your projects, not just the certificate.", "B", "E"],
+["Gemba", "What is gemba and why go there?", "**Why they ask:** a core Lean behavior.\n\n**Answer:**\n\"Gemba means 'the real place' — where the work happens. Going there and watching directly reveals waste and problems that data and meetings miss. Reports tell you what happened; the gemba shows you why.\"\n\nTip: 'Go see.'", "B", "E"],
+["PDCA", "What is PDCA?", "**Why they ask:** the basic improvement cycle.\n\n**Answer:**\n\"Plan, Do, Check, Act. Plan a change based on a hypothesis, try it on a small scale, check the results against what you expected, and then standardize it or adjust and go again. It's simple, but it's the engine under every improvement method.\"\n\nTip: Simple but powerful.", "B", "E"],
+["Career", "Why continuous improvement?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I enjoy making work easier and better for people while delivering business results. CI combines data, problem solving and coaching, and you can see the difference you make on the floor.\"\n\nTip: Show purpose.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I've delivered measurable results — lead time cut from 12 days to 5, and $1.2 million in finance-validated savings — and I build problem-solving capability in teams, so the improvements stick after I move on.\"\n\nTip: Proof.", "B", "M"],
+["Technical", "What is DPMO?", "**Why they ask:** a basic Six Sigma calculation.\n\n**Answer:**\n\"Defects per million opportunities equals defects divided by units times opportunities per unit, times a million. With 30 defects on 1,000 units that each have 5 opportunities, that's 30 divided by 5,000, times a million — 6,000 DPMO, which is roughly 4 sigma.\"\n\nTip: Show the math.", "D", "M"],
+["Technical", "What is a fishbone diagram?", "**Why they ask:** a root-cause tool.\n\n**Answer:**\n\"It's a cause-and-effect diagram that organizes possible causes of a problem into categories — often the 6Ms: man, machine, method, material, measurement and mother nature, meaning environment. It's a brainstorming tool; I then verify the likely causes with data before acting.\"\n\nTip: Brainstorm first, then verify with data.", "B", "E"],
+["Technical", "What is a Pareto chart?", "**Why they ask:** a focus tool.\n\n**Answer:**\n\"It's a bar chart of causes sorted by frequency or impact, with a cumulative line. It shows the 'vital few' — usually around 20% of causes create about 80% of the problems — so you know where to focus first.\"\n\nTip: A focus tool.", "B", "E"],
+["Technical", "What is a spaghetti diagram?", "**Why they ask:** motion waste.\n\n**Answer:**\n\"It's a drawing of the path a person or product travels through a process. The tangle of lines shows excessive motion and transport. Once we drew one for a picker who walked 7 miles a shift; a re-slotting cut it by 40%.\"\n\nTip: Great for layout improvements.", "B", "E"],
+["Technical", "What is heijunka?", "**Why they ask:** a Toyota Production System concept.\n\n**Answer:**\n\"It's production leveling — smoothing the volume and mix of production over time. Instead of making all of product A on Monday and B on Tuesday, you make a repeating mix every day. That reduces peaks and allows steady flow with less inventory.\"\n\nTip: A Toyota Production System concept.", "D", "M"]
+]);
