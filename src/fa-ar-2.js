@@ -1,18 +1,6 @@
-QB['fa-ar'] = (QB['fa-ar'] || []).concat([
-["Billing", "What is consolidated billing and when is it useful?",
-`**Answer:** Instead of one invoice per shipment, the customer receives a single periodic invoice (e.g. monthly) covering all transactions. Large customers prefer it because it reduces their AP work, and it improves cash application because one payment matches one invoice. It requires clear statement cut-off dates and agreed terms.
-
-Tip: Mention it as a fix for heavy cash application work with high-volume customers.`, 'D', 'M'],
-["Cash Application", "What is a lockbox?",
-`**Answer:** A bank service where customer checks (and remittances) go to a bank-managed P.O. box; the bank deposits the checks and sends the company an electronic file with payment and remittance details. The ERP imports the file and applies receipts automatically. It speeds up deposits and reduces manual handling and theft risk.
-
-Tip: Mention wholesale vs retail lockbox if you know the difference.`, 'B', 'E'],
-["Collections", "How do you use dunning letters effectively?",
-`**Answer:** Automate a sequence based on days past due — friendly reminder before due date, first notice at 1–5 days late, firmer notice at 30, final notice with credit hold warning at 60. Personalize for key accounts, include invoice copies and payment links, and stop dunning automatically when a dispute is logged.
-
-Tip: "Pre-due reminders" are an easy DSO win.`, 'B', 'E'],
-["Credit", "How do you review credit limits for existing customers?",
-`**Answer:** Annually for all customers and immediately on triggers — limit breaches, slowing payments, credit score drops, large order requests or negative news. Review payment history, current exposure and updated financials. Increase limits for strong payers to support sales; tighten for deteriorating risk.
-
-Tip: Show you support sales growth, not just block it.`, 'D', 'M']
+QB["fa-ar"] = (QB["fa-ar"] || []).concat([
+["Billing", "What is consolidated billing and when is it useful?", "**Why they ask:** a practical lever for high-volume customers.\n\n**Answer:**\n\"Instead of one invoice per shipment, the customer gets a single periodic invoice — say monthly — covering everything. Large customers like it because it cuts their AP work. It also helps us, because one payment matches one invoice and cash application gets much easier. It needs clear statement cut-off dates and agreed terms.\"\n\nTip: Present it as a fix for heavy cash application work with high-volume customers.", "D", "M"],
+["Cash Application", "What is a lockbox?", "**Why they ask:** a basic cash-receipts concept.\n\n**Answer:**\n\"It's a bank service. Customers mail checks and remittances to a P.O. box the bank manages. The bank deposits the checks and sends us an electronic file with the payment and remittance details. Our ERP imports the file and applies the receipts automatically. It speeds up deposits and reduces manual handling and theft risk.\"\n\nTip: Mention wholesale versus retail lockbox if you know the difference.", "B", "E"],
+["Collections", "How do you use dunning letters effectively?", "**Why they ask:** dunning is cheap collection effort when it's done well.\n\n**Answer:**\n\"I automate a sequence based on days past due. A friendly reminder before the due date. A first notice at one to five days late. A firmer notice at 30 days, and a final notice with a credit-hold warning at 60. Key accounts get a personal touch. Every letter includes invoice copies and a payment link. And dunning stops automatically when a dispute is logged, so we don't chase customers for amounts we're still investigating.\"\n\nTip: Pre-due reminders are an easy DSO win — mention them.", "B", "E"],
+["Credit", "How do you review credit limits for existing customers?", "**Why they ask:** credit should support sales, not just block it.\n\n**Answer:**\n\"Every customer gets an annual review, plus an immediate review when something triggers it — a limit breach, slower payments, a credit score drop, an unusually large order, or bad news in the press. I look at payment history, current exposure and updated financials. Strong payers get higher limits to support sales; deteriorating customers get tightened.\"\n\nTip: Show that you support sales growth, not just block orders.", "D", "M"]
 ]);

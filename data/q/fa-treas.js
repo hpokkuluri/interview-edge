@@ -1,276 +1,56 @@
 // fa-treas — generated from src/fa-treas-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Treasury Analyst / Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fa-treas'] = [
-["Role", "What are the core responsibilities of treasury?",
-`**Why they ask:** to confirm you see treasury as more than moving cash.
-
-**Answer:**
-- **Cash and liquidity management** — daily positioning, funding, investing surpluses.
-- **Cash forecasting** — short-term (13-week) and longer-term.
-- **Banking** — relationships, accounts, services, fees.
-- **Risk management** — FX, interest rate, counterparty, commodity.
-- **Capital** — debt, credit facilities, covenants, investments.
-- **Payments and controls** — secure payment processes and fraud prevention.
-
-Tip: Mention which of these you've owned directly.`, 'B', 'E'],
-
-["Cash", "Walk me through daily cash positioning.",
-`**Answer:**
-1. Pull prior-day and intraday balances from all banks (BAI2, MT940, camt.053 files or portals).
-2. Add expected inflows (customer receipts, intercompany) and outflows (payments, payroll, debt service, taxes) for today.
-3. Calculate the net position per account and entity.
-4. Fund shortfalls (sweeps, intercompany loans, revolver draws) and invest or pay down debt with surpluses.
-5. Record and report the position.
-
-Tip: Mention the cut-off times for wires and ACH you work around.`, 'B', 'E'],
-
-["Forecasting", "How do you build a 13-week cash flow forecast?",
-`**Answer:** Use the **direct method** by week:
-- **Receipts** from AR aging and customer payment patterns.
-- **Disbursements** — AP run schedule, payroll calendar, rent, taxes, debt service, capex.
-- **Financing** — draws, repayments.
-Opening cash + receipts − disbursements = closing cash, compared with minimum liquidity. Each week compare actual vs forecast and refine assumptions.
-
-Tip: Mention a variance analysis habit — it's what makes the forecast accurate.`, 'D', 'M'],
-
-["Forecasting", "How do you measure and improve cash forecast accuracy?",
-`**Answer:** Track variance by category and by week (e.g. receipts within ±5%). Identify systematic biases — collections always late, AP runs larger than forecast — and adjust. Get better inputs from business owners and automate data feeds from ERP.
-
-Tip: Give an accuracy improvement number.`, 'D', 'M'],
-
-["Banking", "What is cash pooling?",
-`**Answer:** Concentrating balances across accounts and entities to use cash efficiently.
-- **Physical pooling** — zero-balance accounts sweep cash to a header account daily.
-- **Notional pooling** — balances are offset for interest calculation without moving cash (less available in the US).
-Benefits: visibility, lower borrowing, better yields. Watch intercompany loan documentation, tax and legal restrictions.
-
-Tip: Mention intercompany interest and transfer pricing implications.`, 'D', 'M'],
-
-["Banking", "How do you manage bank relationships?",
-`**Answer:** Keep a core group of relationship banks that also provide credit, allocate ancillary business (cash management, FX) to them fairly, review fees through account analysis statements, rationalize unnecessary accounts, and maintain up-to-date signatory and KYC documentation.
-
-Tip: Mention a bank account rationalization project.`, 'D', 'M'],
-
-["Banking", "How do you review bank fees?",
-`**Answer:** Review monthly account analysis statements, compare against the agreed pricing schedule, check earnings credits on balances, and challenge errors or unusual charges. Benchmark fees during RFPs.
-
-Tip: Mention savings recovered.`, 'B', 'E'],
-
-["FX", "What types of FX exposure are there?",
-`**Answer:**
-- **Transaction exposure:** receivables, payables and cash flows in foreign currency.
-- **Translation exposure:** converting foreign subsidiaries' financial statements to the reporting currency.
-- **Economic exposure:** long-term effect of currency moves on competitiveness.
-
-Tip: Say which ones companies usually hedge — mostly transaction exposure.`, 'B', 'M'],
-
-["FX", "How do companies hedge FX risk?",
-`**Answer:** First, natural hedges — match revenue and costs in the same currency, net intercompany exposures. Then financial instruments: **forwards** (lock a rate), **options** (protection with upside, for a premium), **swaps**. A hedging policy sets what to hedge (e.g. 50–80% of forecast exposures for 12 months), instruments allowed, limits and approvals.
-
-**Example:** a US company expects €5M receipts in 6 months → sells EUR forward to lock the USD value.
-
-Tip: Mention hedge accounting to avoid P&L volatility.`, 'D', 'M'],
-
-["FX", "What is hedge accounting?",
-`**Answer:** Special accounting (ASC 815 / IFRS 9) that matches the timing of gains and losses on hedging instruments with the hedged item. For cash flow hedges, the effective portion of the derivative's change in value goes to OCI and is released to the P&L when the hedged transaction occurs. It requires documentation at inception and effectiveness assessment.
-
-Tip: Mention you worked with accounting on documentation.`, 'D', 'S'],
-
-["Interest Rate", "How do you manage interest rate risk?",
-`**Answer:** Decide the mix of fixed and floating debt based on risk appetite and outlook. Use **interest rate swaps** (pay fixed, receive floating) to convert floating debt to fixed, or caps to limit increases. Monitor sensitivity — e.g. a 1% rate rise increases annual interest by $X.
-
-Tip: Mention the SOFR transition if you worked through it.`, 'D', 'M'],
-
-["Debt", "What are debt covenants and how do you monitor them?",
-`**Answer:** Lender conditions such as maximum **leverage** (Debt/EBITDA, e.g. ≤ 3.5x), minimum **interest coverage** (EBITDA/interest, e.g. ≥ 3x), minimum liquidity, and restrictions on additional debt or dividends. I calculate them quarterly, forecast them forward with FP&A, and alert leadership early if headroom narrows so we can act or talk to lenders.
-
-Tip: Covenant headroom forecasting is the key point.`, 'D', 'M'],
-
-["Debt", "What is a revolving credit facility?",
-`**Answer:** A committed bank line the company can draw, repay and redraw up to a limit during its term. It provides liquidity backup. Costs include interest on drawn amounts and a commitment fee on the undrawn portion.
-
-Tip: Mention the role of the revolver in liquidity planning.`, 'B', 'E'],
-
-["Investments", "How do you invest excess cash?",
-`**Answer:** Priorities: **safety, liquidity, then yield**. Use an investment policy that sets allowed instruments (money market funds, T-bills, bank deposits, commercial paper), credit ratings, maturity limits and concentration limits per counterparty.
-
-Tip: Mention diversifying across banks after bank failure concerns.`, 'B', 'M'],
-
-["Liquidity", "How do you decide how much cash a company should hold?",
-`**Answer:** Enough to cover operating needs and volatility (e.g. several weeks of outflows), seasonal peaks, debt maturities and a buffer for shocks — considering access to committed credit lines. Excess beyond that should be invested or used for debt reduction or returns.
-
-Tip: Mention a minimum liquidity target agreed with the CFO.`, 'D', 'M'],
-
-["Payments", "What payment controls does treasury own?",
-`**Answer:** Dual approval in bank portals with role limits, segregation between payment creation and approval, secure transmission (host-to-host, SWIFT), positive pay and ACH debit blocks, verification of bank account changes by call-back, and regular access reviews.
-
-Tip: Mention BEC (business email compromise) training.`, 'B', 'E'],
-
-["Payments", "What are the main payment methods and their uses?",
-`**Answer:** ACH (low cost, domestic), wire/Fedwire (same-day, urgent or large), RTP and FedNow (instant), SEPA (Europe), SWIFT cross-border wires, checks (declining), and virtual cards. Choice depends on cost, speed and supplier preference.
-
-Tip: Mention a move from checks to electronic payments.`, 'B', 'E'],
-
-["Systems", "What is a TMS and why use one?",
-`**Answer:** A treasury management system centralizes bank connectivity, cash positioning, forecasting, FX and debt deal management, payments, and reporting. Examples: Kyriba, GTreasury, SAP Treasury, ION. ERPs like Oracle Fusion handle bank statements and reconciliation but usually not full deal management.
-
-Tip: Mention the system you used and the benefits.`, 'B', 'M'],
-
-["Systems", "How do bank statements flow into the ERP?",
-`**Answer:** Banks send daily statement files (BAI2, MT940, camt.053) via host-to-host or SWIFT. The ERP or TMS imports them, and reconciliation rules match bank lines to payments, receipts and journals. Unmatched items are reviewed and resolved.
-
-Tip: In Oracle Cash Management, mention autoreconciliation rules.`, 'D', 'M'],
-
-["Working Capital", "How can treasury help improve working capital?",
-`**Answer:** Partner with AR on faster collections and payment methods, with AP and procurement on longer terms and supply chain finance, and with operations on inventory. Track the cash conversion cycle (DSO + DIO − DPO) and quantify cash released.
-
-Tip: Example: "Moving 20% of suppliers to net 60 released $8M."`, 'D', 'S'],
-
-["Supply Chain Finance", "What is supply chain finance?",
-`**Answer:** A bank-funded program where the buyer approves supplier invoices and the bank pays suppliers early at a discount based on the buyer's credit. Suppliers get cash faster; the buyer can extend payment terms. It needs proper disclosure (ASU 2022-04).
-
-Tip: Mention the disclosure requirement — it shows current knowledge.`, 'D', 'S'],
-
-["Risk", "What is counterparty risk and how do you manage it?",
-`**Answer:** The risk that a bank or financial counterparty fails. Manage it with limits by counterparty and credit rating, diversification of deposits and investments, monitoring of credit spreads and ratings, and ISDA agreements with netting for derivatives.
-
-Tip: Mention the lessons from 2023 regional bank failures.`, 'D', 'M'],
-
-["Risk", "What would you do if one of your banks showed signs of distress?",
-`**Answer:** Assess exposure (deposits, investments, credit lines, payment flows), move excess cash to other banks within policy, ensure alternative payment routes and payroll accounts are ready, and keep leadership informed.
-
-Tip: A pre-built contingency plan is the best answer.`, 'D', 'S'],
-
-["Intercompany", "How does treasury manage intercompany funding?",
-`**Answer:** Intercompany loans with documented terms and arm's-length interest rates, in-house bank or netting centers to settle intercompany payables/receivables, and attention to tax (withholding, thin capitalization) and FX.
-
-Tip: Mention multilateral netting reduces bank fees and FX trades.`, 'D', 'S'],
-
-["Accounting", "How does treasury interact with accounting?",
-`**Answer:** Treasury provides deal data (debt, hedges, investments), interest accruals, FX rates and bank reconciliations. Accounting records them, including fair values and hedge accounting. Clear month-end handoffs prevent errors.
-
-Tip: Mention a reconciliation or handoff process you created.`, 'B', 'M'],
-
-["Fraud", "How do you protect against payment fraud?",
-`**Answer:** Strong controls (dual approval, call-back verification for bank changes), positive pay, limited and reviewed bank portal access, secure tokens, training on phishing and BEC, and monitoring of unusual payments.
-
-Tip: Share an attempt you prevented if you have one.`, 'B', 'E'],
-
-["Capital Markets", "How would you approach raising debt?",
-`**Answer:** Determine the need and timing, review the capital structure and rating impact, evaluate options (bank loans, private placements, bonds), run a process with banks, negotiate pricing and covenants, and get board approval.
-
-Tip: Mention flexibility as important as price.`, 'D', 'S'],
-
-["Metrics", "Which treasury KPIs do you report?",
-`**Answer:** Cash and liquidity vs target, forecast accuracy, bank fees, investment yield vs benchmark, hedge coverage ratios, covenant headroom, and cash conversion cycle.
-
-Tip: Keep it to a one-page dashboard.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a time you identified a liquidity risk early.",
-`**Sample answer:** "Our 13-week forecast showed a $6M dip below our minimum cash in week 9 because of a large tax payment and a slower customer. I flagged it five weeks ahead; we accelerated collections from our top three customers and arranged a short revolver draw. We stayed above minimum without disruption."
-
-Tip: Signal → action → result.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a process you improved in treasury.",
-`**Sample answer:** "Cash positioning took two hours each morning using bank portals. I set up automated BAI2 imports into our TMS and a standard position template. It now takes 20 minutes, and we invest surpluses earlier in the day."
-
-Tip: Time saved plus a business benefit.`, 'B', 'M'],
-
-["Behavioral", "How do you handle a payment deadline when systems fail?",
-`**Answer:** Use the documented backup process (bank portal manual entry with dual approval), prioritize critical payments (payroll, taxes, debt), communicate with stakeholders and the bank, and document everything for reconciliation afterward.
-
-Tip: Mention business continuity planning.`, 'D', 'M'],
-
-["Management", "How would you structure a treasury team?",
-`**Answer:** Front office (cash management, FX and funding deals), middle office (risk and compliance monitoring), back office (settlements, confirmations, accounting). Segregation between dealing and settlement is critical. Smaller companies combine roles with compensating controls.
-
-Tip: Mention segregation of duties.`, 'D', 'S'],
-
-["Strategy", "What would your treasury priorities be in your first year?",
-`**Answer:** Full cash visibility across all banks, a reliable 13-week forecast, documented policies (investment, FX, payments), bank rationalization, and stronger payment controls. Then optimize — pooling, hedging program, working capital.
-
-Tip: Visibility first, optimization second.`, 'D', 'S'],
-
-["Technical", "What is the difference between a forward and an option?",
-`**Answer:** A forward is an obligation to exchange currency at a fixed rate on a future date — no upfront cost, no upside. An option gives the right, not obligation, to exchange at a strike rate — protection plus upside, for a premium paid upfront.
-
-Tip: Use forwards for certain exposures, options for uncertain ones.`, 'D', 'M'],
-
-["Technical", "What is an interest rate swap?",
-`**Answer:** An agreement to exchange interest payments — typically one party pays fixed and receives floating on a notional amount. A company with floating-rate debt can enter a pay-fixed swap to lock its cost.
-
-Tip: Mention mark-to-market and hedge accounting.`, 'D', 'M'],
-
-["Technical", "What is a letter of credit used for in treasury?",
-`**Answer:** A bank guarantee of payment used in trade to reduce credit risk, or a standby letter of credit used as a guarantee (e.g. for insurance, leases). Standby LCs often reduce available revolver capacity.
-
-Tip: Mention LC capacity tracking under the credit facility.`, 'D', 'S'],
-
-["Technical", "What is the cash conversion cycle?",
-`**Answer:** CCC = DSO + DIO − DPO. It measures how long cash is tied up in operations. **Example:** DSO 45 + DIO 60 − DPO 40 = 65 days. Shorter is better; it frees cash for other uses.
-
-Tip: Show the calculation.`, 'B', 'E'],
-
-["Technical", "What are KYC requirements with banks?",
-`**Answer:** Banks must verify customers' identity and ownership — company documents, beneficial owners, authorized signers. Treasury maintains these and updates banks when officers change; outdated KYC can freeze accounts.
-
-Tip: A practical detail interviewers appreciate.`, 'B', 'E'],
-
-["Technical", "What are the main bank file formats?",
-`**Answer:** Statements: BAI2 (US), MT940/MT942 (SWIFT), camt.052/053 (ISO 20022). Payments: NACHA (US ACH), pain.001 (ISO 20022 XML), MT101. The industry is moving to ISO 20022 for richer data.
-
-Tip: Mention the SWIFT ISO 20022 migration.`, 'D', 'M'],
-
-["Technical", "What is netting?",
-`**Answer:** Offsetting payables and receivables between entities so only net amounts are paid — reduces the number of transfers, bank fees and FX trades. Bilateral (two parties) or multilateral (a netting center for many entities).
-
-Tip: Good for groups with many intercompany flows.`, 'D', 'S'],
-
-["Policy", "What should a treasury policy include?",
-`**Answer:** Objectives, roles and authorities, liquidity targets, investment rules, FX and interest rate hedging rules, counterparty limits, approved instruments, payment controls, and reporting requirements. Reviewed annually and approved by the board or CFO.
-
-Tip: Mention board approval.`, 'D', 'S'],
-
-["Communication", "How do you report liquidity to the CFO?",
-`**Answer:** A short weekly update: current cash and liquidity (cash + undrawn revolver), forecast for 13 weeks against minimum, key variances, covenant headroom, and risks or actions needed.
-
-Tip: One page.`, 'B', 'M'],
-
-["Career", "Why treasury?",
-`**Sample answer:** "Treasury is where finance meets markets and real-time decisions — keeping the company liquid and protected. I like the mix of analysis, controls and working with banks, and I want to grow into a treasury manager role."
-
-Tip: Energy for the work.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I bring reliable cash visibility and forecasting — I cut daily positioning from two hours to 20 minutes and caught a liquidity gap five weeks early. I'm strong on payment controls and comfortable with TMS and ERP integration."
-
-Tip: Results plus controls.`, 'B', 'E'],
-
-["Scenario", "Interest rates rise sharply. What does treasury do?",
-`**Answer:** Assess impact on floating-rate debt and interest cost, consider hedging more with swaps or caps, review investment yields (opportunity to earn more on cash), revisit refinancing timing, and update forecasts and covenant projections.
-
-Tip: Both sides — costs and investment income.`, 'D', 'S'],
-
-["Scenario", "The company is expanding into three new countries. What does treasury need?",
-`**Answer:** Bank account setup and KYC, local payment methods and payroll, cash repatriation rules and taxes, FX exposure and hedging, intercompany funding structure, and inclusion in cash visibility and forecasting.
-
-Tip: Mention checking currency controls in those countries.`, 'D', 'S'],
-
-["Scenario", "Cash forecast is consistently too optimistic. What do you do?",
-`**Answer:** Analyze variance by category to find where the bias comes from — usually receipts timing. Use actual customer payment behavior instead of terms, add a buffer for slow payers, and review assumptions with AR weekly.
-
-Tip: Data-based correction of bias.`, 'D', 'M'],
-
-["Technical", "What is the difference between liquidity and solvency?",
-`**Answer:** Liquidity is the ability to meet short-term obligations as they come due (cash and access to credit). Solvency is long-term ability to meet all obligations (assets exceeding liabilities, sustainable debt). A profitable company can still face a liquidity crisis.
-
-Tip: Short and clear.`, 'B', 'E'],
-
-["Technical", "What is a sweep account?",
-`**Answer:** An arrangement where the bank automatically moves balances above or below a target between accounts — e.g. zero-balance accounts sweeping to a concentration account, or excess cash sweeping into a money market fund overnight.
-
-Tip: Mention target balance accounts.`, 'B', 'E']
-];
+QB["fa-treas"] = (QB["fa-treas"] || []).concat([
+["Role", "What are the core responsibilities of treasury?", "**Why they ask:** to confirm you see treasury as more than moving cash.\n\n**Answer:**\n- **Cash and liquidity management** — daily positioning, funding, investing surpluses.\n- **Cash forecasting** — short-term (13-week) and longer-term.\n- **Banking** — relationships, accounts, services, fees.\n- **Risk management** — FX, interest rate, counterparty, commodity.\n- **Capital** — debt, credit facilities, covenants, investments.\n- **Payments and controls** — secure payment processes and fraud prevention.\n\nTip: Mention which of these you've owned directly.", "B", "E"],
+["Cash", "Walk me through daily cash positioning.", "**Answer:**\n1. Pull prior-day and intraday balances from all banks (BAI2, MT940, camt.053 files or portals).\n2. Add expected inflows (customer receipts, intercompany) and outflows (payments, payroll, debt service, taxes) for today.\n3. Calculate the net position per account and entity.\n4. Fund shortfalls (sweeps, intercompany loans, revolver draws) and invest or pay down debt with surpluses.\n5. Record and report the position.\n\nTip: Mention the cut-off times for wires and ACH you work around.", "B", "E"],
+["Forecasting", "How do you build a 13-week cash flow forecast?", "**Answer:** Use the **direct method** by week:\n- **Receipts** from AR aging and customer payment patterns.\n- **Disbursements** — AP run schedule, payroll calendar, rent, taxes, debt service, capex.\n- **Financing** — draws, repayments.\nOpening cash + receipts − disbursements = closing cash, compared with minimum liquidity. Each week compare actual vs forecast and refine assumptions.\n\nTip: Mention a variance analysis habit — it's what makes the forecast accurate.", "D", "M"],
+["Forecasting", "How do you measure and improve cash forecast accuracy?", "**Answer:** Track variance by category and by week (e.g. receipts within ±5%). Identify systematic biases — collections always late, AP runs larger than forecast — and adjust. Get better inputs from business owners and automate data feeds from ERP.\n\nTip: Give an accuracy improvement number.", "D", "M"],
+["Banking", "What is cash pooling?", "**Answer:** Concentrating balances across accounts and entities to use cash efficiently.\n- **Physical pooling** — zero-balance accounts sweep cash to a header account daily.\n- **Notional pooling** — balances are offset for interest calculation without moving cash (less available in the US).\nBenefits: visibility, lower borrowing, better yields. Watch intercompany loan documentation, tax and legal restrictions.\n\nTip: Mention intercompany interest and transfer pricing implications.", "D", "M"],
+["Banking", "How do you manage bank relationships?", "**Answer:** Keep a core group of relationship banks that also provide credit, allocate ancillary business (cash management, FX) to them fairly, review fees through account analysis statements, rationalize unnecessary accounts, and maintain up-to-date signatory and KYC documentation.\n\nTip: Mention a bank account rationalization project.", "D", "M"],
+["Banking", "How do you review bank fees?", "**Answer:** Review monthly account analysis statements, compare against the agreed pricing schedule, check earnings credits on balances, and challenge errors or unusual charges. Benchmark fees during RFPs.\n\nTip: Mention savings recovered.", "B", "E"],
+["FX", "What types of FX exposure are there?", "**Answer:**\n- **Transaction exposure:** receivables, payables and cash flows in foreign currency.\n- **Translation exposure:** converting foreign subsidiaries' financial statements to the reporting currency.\n- **Economic exposure:** long-term effect of currency moves on competitiveness.\n\nTip: Say which ones companies usually hedge — mostly transaction exposure.", "B", "M"],
+["FX", "How do companies hedge FX risk?", "**Answer:** First, natural hedges — match revenue and costs in the same currency, net intercompany exposures. Then financial instruments: **forwards** (lock a rate), **options** (protection with upside, for a premium), **swaps**. A hedging policy sets what to hedge (e.g. 50–80% of forecast exposures for 12 months), instruments allowed, limits and approvals.\n\n**Example:** a US company expects €5M receipts in 6 months → sells EUR forward to lock the USD value.\n\nTip: Mention hedge accounting to avoid P&L volatility.", "D", "M"],
+["FX", "What is hedge accounting?", "**Answer:** Special accounting (ASC 815 / IFRS 9) that matches the timing of gains and losses on hedging instruments with the hedged item. For cash flow hedges, the effective portion of the derivative's change in value goes to OCI and is released to the P&L when the hedged transaction occurs. It requires documentation at inception and effectiveness assessment.\n\nTip: Mention you worked with accounting on documentation.", "D", "S"],
+["Interest Rate", "How do you manage interest rate risk?", "**Answer:** Decide the mix of fixed and floating debt based on risk appetite and outlook. Use **interest rate swaps** (pay fixed, receive floating) to convert floating debt to fixed, or caps to limit increases. Monitor sensitivity — e.g. a 1% rate rise increases annual interest by $X.\n\nTip: Mention the SOFR transition if you worked through it.", "D", "M"],
+["Debt", "What are debt covenants and how do you monitor them?", "**Answer:** Lender conditions such as maximum **leverage** (Debt/EBITDA, e.g. ≤ 3.5x), minimum **interest coverage** (EBITDA/interest, e.g. ≥ 3x), minimum liquidity, and restrictions on additional debt or dividends. I calculate them quarterly, forecast them forward with FP&A, and alert leadership early if headroom narrows so we can act or talk to lenders.\n\nTip: Covenant headroom forecasting is the key point.", "D", "M"],
+["Debt", "What is a revolving credit facility?", "**Answer:** A committed bank line the company can draw, repay and redraw up to a limit during its term. It provides liquidity backup. Costs include interest on drawn amounts and a commitment fee on the undrawn portion.\n\nTip: Mention the role of the revolver in liquidity planning.", "B", "E"],
+["Investments", "How do you invest excess cash?", "**Answer:** Priorities: **safety, liquidity, then yield**. Use an investment policy that sets allowed instruments (money market funds, T-bills, bank deposits, commercial paper), credit ratings, maturity limits and concentration limits per counterparty.\n\nTip: Mention diversifying across banks after bank failure concerns.", "B", "M"],
+["Liquidity", "How do you decide how much cash a company should hold?", "**Answer:** Enough to cover operating needs and volatility (e.g. several weeks of outflows), seasonal peaks, debt maturities and a buffer for shocks — considering access to committed credit lines. Excess beyond that should be invested or used for debt reduction or returns.\n\nTip: Mention a minimum liquidity target agreed with the CFO.", "D", "M"],
+["Payments", "What payment controls does treasury own?", "**Answer:** Dual approval in bank portals with role limits, segregation between payment creation and approval, secure transmission (host-to-host, SWIFT), positive pay and ACH debit blocks, verification of bank account changes by call-back, and regular access reviews.\n\nTip: Mention BEC (business email compromise) training.", "B", "E"],
+["Payments", "What are the main payment methods and their uses?", "**Answer:** ACH (low cost, domestic), wire/Fedwire (same-day, urgent or large), RTP and FedNow (instant), SEPA (Europe), SWIFT cross-border wires, checks (declining), and virtual cards. Choice depends on cost, speed and supplier preference.\n\nTip: Mention a move from checks to electronic payments.", "B", "E"],
+["Systems", "What is a TMS and why use one?", "**Answer:** A treasury management system centralizes bank connectivity, cash positioning, forecasting, FX and debt deal management, payments, and reporting. Examples: Kyriba, GTreasury, SAP Treasury, ION. ERPs like Oracle Fusion handle bank statements and reconciliation but usually not full deal management.\n\nTip: Mention the system you used and the benefits.", "B", "M"],
+["Systems", "How do bank statements flow into the ERP?", "**Answer:** Banks send daily statement files (BAI2, MT940, camt.053) via host-to-host or SWIFT. The ERP or TMS imports them, and reconciliation rules match bank lines to payments, receipts and journals. Unmatched items are reviewed and resolved.\n\nTip: In Oracle Cash Management, mention autoreconciliation rules.", "D", "M"],
+["Working Capital", "How can treasury help improve working capital?", "**Answer:** Partner with AR on faster collections and payment methods, with AP and procurement on longer terms and supply chain finance, and with operations on inventory. Track the cash conversion cycle (DSO + DIO − DPO) and quantify cash released.\n\nTip: Example: \"Moving 20% of suppliers to net 60 released $8M.\"", "D", "S"],
+["Supply Chain Finance", "What is supply chain finance?", "**Answer:** A bank-funded program where the buyer approves supplier invoices and the bank pays suppliers early at a discount based on the buyer's credit. Suppliers get cash faster; the buyer can extend payment terms. It needs proper disclosure (ASU 2022-04).\n\nTip: Mention the disclosure requirement — it shows current knowledge.", "D", "S"],
+["Risk", "What is counterparty risk and how do you manage it?", "**Answer:** The risk that a bank or financial counterparty fails. Manage it with limits by counterparty and credit rating, diversification of deposits and investments, monitoring of credit spreads and ratings, and ISDA agreements with netting for derivatives.\n\nTip: Mention the lessons from 2023 regional bank failures.", "D", "M"],
+["Risk", "What would you do if one of your banks showed signs of distress?", "**Answer:** Assess exposure (deposits, investments, credit lines, payment flows), move excess cash to other banks within policy, ensure alternative payment routes and payroll accounts are ready, and keep leadership informed.\n\nTip: A pre-built contingency plan is the best answer.", "D", "S"],
+["Intercompany", "How does treasury manage intercompany funding?", "**Answer:** Intercompany loans with documented terms and arm's-length interest rates, in-house bank or netting centers to settle intercompany payables/receivables, and attention to tax (withholding, thin capitalization) and FX.\n\nTip: Mention multilateral netting reduces bank fees and FX trades.", "D", "S"],
+["Accounting", "How does treasury interact with accounting?", "**Answer:** Treasury provides deal data (debt, hedges, investments), interest accruals, FX rates and bank reconciliations. Accounting records them, including fair values and hedge accounting. Clear month-end handoffs prevent errors.\n\nTip: Mention a reconciliation or handoff process you created.", "B", "M"],
+["Fraud", "How do you protect against payment fraud?", "**Answer:** Strong controls (dual approval, call-back verification for bank changes), positive pay, limited and reviewed bank portal access, secure tokens, training on phishing and BEC, and monitoring of unusual payments.\n\nTip: Share an attempt you prevented if you have one.", "B", "E"],
+["Capital Markets", "How would you approach raising debt?", "**Answer:** Determine the need and timing, review the capital structure and rating impact, evaluate options (bank loans, private placements, bonds), run a process with banks, negotiate pricing and covenants, and get board approval.\n\nTip: Mention flexibility as important as price.", "D", "S"],
+["Metrics", "Which treasury KPIs do you report?", "**Answer:** Cash and liquidity vs target, forecast accuracy, bank fees, investment yield vs benchmark, hedge coverage ratios, covenant headroom, and cash conversion cycle.\n\nTip: Keep it to a one-page dashboard.", "D", "M"],
+["Behavioral", "Tell me about a time you identified a liquidity risk early.", "**Sample answer:** \"Our 13-week forecast showed a $6M dip below our minimum cash in week 9 because of a large tax payment and a slower customer. I flagged it five weeks ahead; we accelerated collections from our top three customers and arranged a short revolver draw. We stayed above minimum without disruption.\"\n\nTip: Signal → action → result.", "B", "M"],
+["Behavioral", "Tell me about a process you improved in treasury.", "**Sample answer:** \"Cash positioning took two hours each morning using bank portals. I set up automated BAI2 imports into our TMS and a standard position template. It now takes 20 minutes, and we invest surpluses earlier in the day.\"\n\nTip: Time saved plus a business benefit.", "B", "M"],
+["Behavioral", "How do you handle a payment deadline when systems fail?", "**Answer:** Use the documented backup process (bank portal manual entry with dual approval), prioritize critical payments (payroll, taxes, debt), communicate with stakeholders and the bank, and document everything for reconciliation afterward.\n\nTip: Mention business continuity planning.", "D", "M"],
+["Management", "How would you structure a treasury team?", "**Answer:** Front office (cash management, FX and funding deals), middle office (risk and compliance monitoring), back office (settlements, confirmations, accounting). Segregation between dealing and settlement is critical. Smaller companies combine roles with compensating controls.\n\nTip: Mention segregation of duties.", "D", "S"],
+["Strategy", "What would your treasury priorities be in your first year?", "**Answer:** Full cash visibility across all banks, a reliable 13-week forecast, documented policies (investment, FX, payments), bank rationalization, and stronger payment controls. Then optimize — pooling, hedging program, working capital.\n\nTip: Visibility first, optimization second.", "D", "S"],
+["Technical", "What is the difference between a forward and an option?", "**Answer:** A forward is an obligation to exchange currency at a fixed rate on a future date — no upfront cost, no upside. An option gives the right, not obligation, to exchange at a strike rate — protection plus upside, for a premium paid upfront.\n\nTip: Use forwards for certain exposures, options for uncertain ones.", "D", "M"],
+["Technical", "What is an interest rate swap?", "**Answer:** An agreement to exchange interest payments — typically one party pays fixed and receives floating on a notional amount. A company with floating-rate debt can enter a pay-fixed swap to lock its cost.\n\nTip: Mention mark-to-market and hedge accounting.", "D", "M"],
+["Technical", "What is a letter of credit used for in treasury?", "**Answer:** A bank guarantee of payment used in trade to reduce credit risk, or a standby letter of credit used as a guarantee (e.g. for insurance, leases). Standby LCs often reduce available revolver capacity.\n\nTip: Mention LC capacity tracking under the credit facility.", "D", "S"],
+["Technical", "What is the cash conversion cycle?", "**Answer:** CCC = DSO + DIO − DPO. It measures how long cash is tied up in operations. **Example:** DSO 45 + DIO 60 − DPO 40 = 65 days. Shorter is better; it frees cash for other uses.\n\nTip: Show the calculation.", "B", "E"],
+["Technical", "What are KYC requirements with banks?", "**Answer:** Banks must verify customers' identity and ownership — company documents, beneficial owners, authorized signers. Treasury maintains these and updates banks when officers change; outdated KYC can freeze accounts.\n\nTip: A practical detail interviewers appreciate.", "B", "E"],
+["Technical", "What are the main bank file formats?", "**Answer:** Statements: BAI2 (US), MT940/MT942 (SWIFT), camt.052/053 (ISO 20022). Payments: NACHA (US ACH), pain.001 (ISO 20022 XML), MT101. The industry is moving to ISO 20022 for richer data.\n\nTip: Mention the SWIFT ISO 20022 migration.", "D", "M"],
+["Technical", "What is netting?", "**Answer:** Offsetting payables and receivables between entities so only net amounts are paid — reduces the number of transfers, bank fees and FX trades. Bilateral (two parties) or multilateral (a netting center for many entities).\n\nTip: Good for groups with many intercompany flows.", "D", "S"],
+["Policy", "What should a treasury policy include?", "**Answer:** Objectives, roles and authorities, liquidity targets, investment rules, FX and interest rate hedging rules, counterparty limits, approved instruments, payment controls, and reporting requirements. Reviewed annually and approved by the board or CFO.\n\nTip: Mention board approval.", "D", "S"],
+["Communication", "How do you report liquidity to the CFO?", "**Answer:** A short weekly update: current cash and liquidity (cash + undrawn revolver), forecast for 13 weeks against minimum, key variances, covenant headroom, and risks or actions needed.\n\nTip: One page.", "B", "M"],
+["Career", "Why treasury?", "**Sample answer:** \"Treasury is where finance meets markets and real-time decisions — keeping the company liquid and protected. I like the mix of analysis, controls and working with banks, and I want to grow into a treasury manager role.\"\n\nTip: Energy for the work.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I collect consistently while keeping customer relationships strong. I fix the root causes of disputes instead of just chasing them. And I'm comfortable in ERP AR modules and reporting. In my last role, I helped bring DSO down by 8 days.\"\n\nTip: Results plus approach — use your own numbers.", "B", "E"],
+["Scenario", "Interest rates rise sharply. What does treasury do?", "**Answer:** Assess impact on floating-rate debt and interest cost, consider hedging more with swaps or caps, review investment yields (opportunity to earn more on cash), revisit refinancing timing, and update forecasts and covenant projections.\n\nTip: Both sides — costs and investment income.", "D", "S"],
+["Scenario", "The company is expanding into three new countries. What does treasury need?", "**Answer:** Bank account setup and KYC, local payment methods and payroll, cash repatriation rules and taxes, FX exposure and hedging, intercompany funding structure, and inclusion in cash visibility and forecasting.\n\nTip: Mention checking currency controls in those countries.", "D", "S"],
+["Scenario", "Cash forecast is consistently too optimistic. What do you do?", "**Answer:** Analyze variance by category to find where the bias comes from — usually receipts timing. Use actual customer payment behavior instead of terms, add a buffer for slow payers, and review assumptions with AR weekly.\n\nTip: Data-based correction of bias.", "D", "M"],
+["Technical", "What is the difference between liquidity and solvency?", "**Answer:** Liquidity is the ability to meet short-term obligations as they come due (cash and access to credit). Solvency is long-term ability to meet all obligations (assets exceeding liabilities, sustainable debt). A profitable company can still face a liquidity crisis.\n\nTip: Short and clear.", "B", "E"],
+["Technical", "What is a sweep account?", "**Answer:** An arrangement where the bank automatically moves balances above or below a target between accounts — e.g. zero-balance accounts sweeping to a concentration account, or excess cash sweeping into a money market fund overnight.\n\nTip: Mention target balance accounts.", "B", "E"]
+]);
 
 QB['fa-treas'] = (QB['fa-treas'] || []).concat([
 ["Cash", "What is trapped cash and how do you deal with it?",

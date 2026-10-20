@@ -1,0 +1,396 @@
+// Rewritten Finance & Accounting — Accounts Receivable answers (Why they ask → Answer → Tip). Apply with rewrite.js (prefix fa-).
+module.exports = {
+
+'What is cash application and what makes it difficult?':
+`**Why they ask:** cash application drives accurate balances and DSO, and it's where most AR time goes.
+
+**Answer:**
+"Cash application is matching the payments we receive to the open invoices they pay, so every customer's balance is right. The hard part is the data. Remittances come separately or not at all, one payment covers fifty invoices, customers short-pay or take deductions, a parent company pays for its subsidiaries, or the invoice reference is wrong. My approach is to import lockbox and bank files daily, let auto-match rules on invoice number, amount and customer do the bulk, and spend people's time on the exceptions — with unapplied cash cleared within a few days."
+
+Tip: Mention your auto-match rate and how you raised it.`,
+
+'A customer pays $48,500 against invoices totaling $50,000. What do you do?':
+`**Why they ask:** short payments are daily AR work, and they want to see you don't bury them.
+
+**Answer:**
+"I apply the $48,500 to the invoices and record the $1,500 gap as a deduction with a reason code — not a write-off, and not left in unapplied cash. Then I ask the customer why: a pricing difference, damaged goods, a promotion, or an early-pay discount taken after the window. I route it to whoever owns that reason, like sales or logistics. If it's valid, we issue a credit memo. If it isn't, I collect it."
+
+Tip: Say clearly that a short pay never sits buried in unapplied cash.`,
+
+'How do you handle unapplied and unidentified cash?':
+`**Why they ask:** old unapplied cash distorts aging and DSO.
+
+**Answer:**
+"They're two different problems. Unapplied cash is when we know the customer but not which invoices — so I contact them for remittance details. Unidentified cash is when we don't even know who paid — so I research the bank details, look for an amount that matches open invoices, and ask sales. I track both daily with aging and aim to clear them within about five business days, because stale unapplied balances make the aging and DSO wrong."
+
+Tip: Give a target, like cleared within 5 business days.`,
+
+'How do you prioritize your collections work?':
+`**Why they ask:** collectors can't call everyone, so they want a method.
+
+**Answer:**
+"I segment the portfolio. The largest and oldest past-due balances come first. Then risk — customers whose payment pattern or credit score is getting worse. Then any promises to pay that are due today. Small balances go through automated dunning emails instead of calls. I work from a daily list and log every contact so the history is there for the next call."
+
+Tip: Mention collection software like HighRadius, Billtrust or Oracle Advanced Collections if you've used it.`,
+
+'Describe your approach to a collections call.':
+`**Why they ask:** they want to hear a structured, professional call.
+
+**Answer:**
+"I prepare before dialing — the open invoices, the payment history, any earlier promises. On the call, I first confirm they received the invoice and there's no dispute, because that's often the real reason. Then I ask when it will be paid and get a specific amount and date, not 'soon'. I stay polite but firm. Right after, I send an email confirming what we agreed, and if the money doesn't arrive, I follow up the day after the promised date."
+
+Tip: Interviewers listen for 'specific commitment' and 'written follow-up'.`,
+
+'What is your escalation path for a seriously overdue account?':
+`**Why they ask:** they want a consistent, documented path, not ad hoc pressure.
+
+**Answer:**
+"It goes in steps: reminder, call, second call with my manager, then bring in the sales account owner. If that doesn't work, credit hold on new orders, then a formal demand letter, then a payment plan negotiation. Beyond that, a collections agency or legal action, and write-off only as a last resort. I document every step so the history supports whatever we do next."
+
+Tip: Mention talking to sales before a credit hold — it protects the relationship.`,
+
+"A customer says they can't pay right now. What do you do?":
+`**Why they ask:** tests flexibility while protecting the company.
+
+**Answer:**
+"First I find out what's going on — a temporary cash squeeze, or something more serious. Then I propose a payment plan with specific dates and amounts. To protect us, I might stop further credit or require prepayment on new orders until they're caught up. The plan goes in writing, I watch it closely, and if they miss a payment I escalate right away. I also check whether we need to reserve for the balance."
+
+Tip: Flexibility plus protection is the balance they want.`,
+
+'What is DSO and how do you calculate it?':
+`**Why they ask:** DSO is the headline AR metric.
+
+**Answer:**
+"Days sales outstanding is accounts receivable divided by credit sales for the period, times the days in the period. If AR is $3 million and quarterly credit sales are $9 million, that's 3 over 9 times 90 — 30 days. I also look at best possible DSO, which uses only current AR, the collection effectiveness index, and the percentage of AR over 60 and 90 days. Those together tell you whether the problem is terms or collection."
+
+Tip: Note that seasonal sales distort DSO — look at the trend.`,
+
+'What is the collection effectiveness index (CEI)?':
+`**Why they ask:** a depth check beyond DSO.
+
+**Answer:**
+"CEI measures how much of what was collectible we actually collected in the period. The formula is beginning AR plus credit sales minus ending total AR, divided by beginning AR plus credit sales minus ending current AR, times 100. Closer to 100% is better. I like it because, unlike DSO, it isn't thrown off by a big sales month."
+
+Tip: Mentioning CEI shows you go beyond DSO.`,
+
+'How do you set a credit limit for a new customer?':
+`**Why they ask:** credit limits balance sales growth against bad-debt risk.
+
+**Answer:**
+"I start with a credit application and trade and bank references, and pull a credit report from D&B, Experian or Creditsafe. For larger exposure, I review their financial statements for liquidity and leverage. I size the limit from expected orders and terms — if they'll buy about $50,000 a month on net 30, I'd set around $75,000 so overlapping invoices don't trigger holds. Higher risk means a lower limit, shorter terms, or a deposit or letter of credit. Then I adjust as payment history builds."
+
+Tip: Mention a credit policy with approval levels by limit size.`,
+
+"What do you look at in a customer's financial statements?":
+`**Why they ask:** credit roles need basic financial analysis.
+
+**Answer:**
+"Liquidity first — the current ratio and quick ratio. Then leverage, like debt to equity. Profitability trends and operating cash flow. And how they pay their own suppliers — their days payable. The red flags are falling cash, rising payables, ongoing losses, and any going-concern note from their auditor."
+
+Tip: You don't need to be an analyst — just know the key ratios and red flags.`,
+
+'What is a credit hold and when do you use it?':
+`**Why they ask:** credit holds directly affect sales, so they want judgment.
+
+**Answer:**
+"A credit hold blocks new orders when a customer goes over their limit or is seriously past due. It stops our exposure from growing. Releasing it needs approval from credit management, usually with input from sales. I apply holds based on clear policy rules, not mood, because overusing them hurts sales and the relationship."
+
+Tip: Mention working with sales on releases for strategic customers.`,
+
+'How do you manage disputes and deductions?':
+`**Why they ask:** unresolved disputes are a top cause of high DSO.
+
+**Answer:**
+"Every dispute gets logged with a reason code — pricing, quantity, damage, promotion, tax, or proof of delivery. I route it to the responsible team with a deadline. If it's valid, we issue a credit memo; if not, we re-bill or collect. Every month I report disputes by root cause and work with sales, logistics and billing to stop the repeat ones."
+
+Tip: Root-cause reporting is what separates good AR from great AR.`,
+
+'Pricing disputes keep coming from one large customer. How do you fix it?':
+`**Why they ask:** they want to see you fix the cause, not just process credits.
+
+**Answer:**
+"I'd pull the last few months of disputes and compare the invoiced prices to the customer's contract and the price list in the system. Almost always, the contract price or a promotion wasn't updated in the ERP. I'd fix the master data with sales operations, credit the affected invoices, and add a price check before invoicing for that customer until we trust it again."
+
+Tip: Turning a recurring dispute into a master-data fix is a strong story.`,
+
+'How do you estimate the allowance for doubtful accounts?':
+`**Why they ask:** a core accounting estimate that auditors review closely.
+
+**Answer:**
+"I use the aging method — apply historical loss rates to each aging bucket, for example 1% for current, 5% for 31 to 60 days, 20% for 61 to 90, and 50% over 90 — and add specific reserves for known problem customers. Under CECL, ASC 326, we also factor in forward-looking information about expected losses. The entry is debit bad debt expense, credit allowance. A write-off is debit allowance, credit AR. If we later recover it, we reverse the write-off and record the cash."
+
+Tip: Mention IFRS 9's expected credit loss model if the company reports under IFRS.`,
+
+'What are the journal entries for a sale, collection and credit memo?':
+`**Why they ask:** a basic accounting check for any AR role.
+
+**Answer:**
+"When we invoice, debit accounts receivable and credit revenue, plus sales tax payable if tax applies. When we collect, debit cash and credit AR. For a credit memo on returned goods, debit sales returns — or revenue — and credit AR. If the customer takes an early-pay discount, debit sales discounts and credit AR."
+
+Tip: Add that a physical return also reverses cost of goods sold and puts inventory back.`,
+
+'What does AR do at month-end?':
+`**Why they ask:** they want to know you understand AR's part in the close.
+
+**Answer:**
+"I make sure all invoices and cash are posted by cut-off, and clear unapplied cash. I run create accounting and transfer to the GL, then reconcile the AR subledger to the GL. I review the aging and credit balances, update the allowance, and report DSO, past-due balances and the top risks to the controller."
+
+Tip: Mention reconciling cash receipts to the bank as part of it.`,
+
+'How do you reconcile AR to the general ledger?':
+`**Why they ask:** a standard close control and audit point.
+
+**Answer:**
+"I compare the AR aging total to the GL receivables account. When they differ, it's usually a manual journal posted straight to AR, transactions that weren't accounted, FX revaluation, or timing. I fix the source rather than plugging it, and I push to restrict manual entries to the control account so it doesn't keep happening. Differences are resolved before close."
+
+Tip: In Oracle, name the Receivables to General Ledger Reconciliation report.`,
+
+'What causes invoice errors and how do you prevent them?':
+`**Why they ask:** wrong invoices are the biggest hidden cause of late payment.
+
+**Answer:**
+"The usual causes are wrong prices or contracts in the system, the wrong bill-to address or missing customer PO number, no proof of delivery, tax errors, and billing before shipment. To prevent them: accurate master data, a required customer PO on orders, validation before invoices go out, and e-invoicing for large customers who reject anything that doesn't match their PO."
+
+Tip: Say that accurate invoices are the fastest way to lower DSO.`,
+
+'How would you reduce DSO by 10 days?':
+`**Why they ask:** a manager-level question about turning ideas into cash.
+
+**Answer:**
+"I'd work on the whole order-to-cash chain. Invoice accurately and immediately, with e-invoicing where we can. Collect proactively — reminders before the due date, not after. Make paying easy with ACH, card and a customer portal. Fix the root causes of disputes. Enforce terms and credit holds consistently. And make sure sales incentives reward collected cash, not just bookings. The prize is real — on $100 million of annual sales, 10 days of DSO is about $2.7 million of cash."
+
+Tip: Quantifying the cash freed up makes the answer land.`,
+
+'How do you improve the cash application auto-match rate?':
+`**Why they ask:** auto-match rate drives AR headcount and accuracy.
+
+**Answer:**
+"I'd analyze what doesn't match and why — missing invoice numbers, consolidated payments, short pays. Then fix each cause: ask large customers to send remittances electronically through EDI 820 or a portal, tune matching rules for amount combinations and customer reference patterns, use AI remittance capture for emails and PDFs, and keep customer bank account mapping current so we at least know who paid."
+
+Tip: Give a before and after — for example, 45% to 80%.`,
+
+'How is AI changing AR?':
+`**Why they ask:** they want to see you're current and practical.
+
+**Answer:**
+"AI now predicts which customers are likely to pay late, so collectors call them earlier. It drafts collection emails, pulls remittance data from any format for cash application, and suggests who should own a dispute and how to resolve it. HighRadius and the AI features in Oracle and SAP do this. Collectors end up spending more time on relationships and complex cases instead of data entry."
+
+Tip: Say you'd adopt it with clear before-and-after measurement.`,
+
+'Which AR systems have you used?':
+`**Why they ask:** they want to know how fast you'll ramp up.
+
+**Answer:**
+"I've used Oracle Fusion Receivables for invoicing, receipts, lockbox and adjustments, and Advanced Collections for collector work queues. I've done aging analysis in Excel, and used Billtrust for the customer portal and online payments."
+
+Tip: Say what you did in each system — swap in your own tools.`,
+
+'How do AutoInvoice and lockbox work in Oracle Receivables?':
+`**Why they ask:** a common Oracle AR question.
+
+**Answer:**
+"AutoInvoice imports billing lines from Order Management or outside systems into Receivables, validates them, and creates invoices, credit memos and their accounting. Anything that fails stays in the interface for correction — a missing customer or invalid tax, for example. Lockbox imports the bank's payment file, matches receipts to invoices using matching rules, and creates the receipts automatically. Anything it can't match goes to an exception queue."
+
+Tip: Mention AutoInvoice errors you've fixed, if you have.`,
+
+'How do you balance collecting money with keeping a good customer relationship?':
+`**Why they ask:** collectors who damage relationships cost the company sales.
+
+**Answer:**
+"I stay respectful and consistent, and assume good intent at first. A lot of late payment is really a problem on our side — a wrong invoice or a missing PO — so I fix what's blocking payment. For major accounts I coordinate with sales before escalating. Being clear and firm about terms actually helps the relationship; customers respect clear expectations more than surprises."
+
+Tip: A story where you collected and kept the customer happy works well here.`,
+
+'A customer refuses to pay until a quality issue is fixed. What do you do?':
+`**Why they ask:** tests whether you can keep cash flowing during a dispute.
+
+**Answer:**
+"I log it as a dispute and send the details to quality and sales, with an agreed timeline. Then I ask the customer to pay the undisputed portion now — if only one shipment is the problem, the rest shouldn't wait. Once the issue is resolved, we issue a credit if it's warranted and collect the remainder. I track it until it's closed."
+
+Tip: 'Pay the undisputed portion' is the key move — say it.`,
+
+'When do you write off a receivable?':
+`**Why they ask:** write-offs need judgment and control.
+
+**Answer:**
+"When we no longer reasonably expect to collect — bankruptcy, a closed business, collection efforts exhausted, or legal advice. Write-offs follow approval limits, for example a manager under $5,000 and the controller above that, and they're charged against the allowance. Small balances follow a policy threshold so we don't waste time chasing a few dollars."
+
+Tip: Mention filing a proof of claim when a customer goes bankrupt.`,
+
+'A customer files for bankruptcy. What happens next?':
+`**Why they ask:** a real-world scenario that shows depth.
+
+**Answer:**
+"We stop shipping on credit right away. All collection activity stops because of the automatic stay — calling them now would violate it. We file a proof of claim with the court, and reserve or write off the balance as appropriate. We also watch for preference claims, because payments received in the 90 days before the filing can be challenged and clawed back. Legal is involved throughout."
+
+Tip: Mentioning the automatic stay and preference risk signals expertise.`,
+
+'How does revenue recognition relate to AR?':
+`**Why they ask:** they want to see you connect AR to the revenue standard.
+
+**Answer:**
+"AR exists when we have an unconditional right to payment — usually when we invoice after delivery. Under ASC 606, revenue can be recognized before we invoice, which creates a contract asset or unbilled receivable. Or we can collect cash before revenue is earned, which creates deferred revenue, a contract liability. AR has to line up with those balances."
+
+Tip: Mention unbilled receivables if you've worked with project billing.`,
+
+'What are the key AR controls?':
+`**Why they ask:** AR has real theft and misstatement risk.
+
+**Answer:**
+"Segregation of duties between handling cash receipts and posting to AR. Approval for credit memos and write-offs. Approval levels for credit limits. Daily reconciliation of cash to the bank, and monthly AR-to-GL reconciliation. And review of customer master changes."
+
+Tip: Point out that the person applying cash shouldn't also approve credit memos.`,
+
+'What AR fraud risks do you watch for?':
+`**Why they ask:** awareness of fraud schemes shows maturity.
+
+**Answer:**
+"The classic one is lapping — stealing one customer's payment and covering it with the next customer's payment, over and over. Others are unauthorized credit memos or write-offs to hide theft, fictitious customers or sales, and diverted payments. Controls are segregation of duties, credit memo approvals, customer balance confirmations, and mandatory vacation or rotation, because lapping falls apart when someone else does the work."
+
+Tip: Naming lapping signals real knowledge.`,
+
+'What does a good AR report for leadership include?':
+`**Why they ask:** managers report up, and leadership wants decisions, not data dumps.
+
+**Answer:**
+"The DSO trend. Aging buckets with the percentage past due. The top 10 past-due customers, each with an action plan. Disputes by reason. Cash collected versus forecast. And changes in bad debt and the allowance. Then a few lines of commentary on the risks and what we're doing about them."
+
+Tip: Leadership wants actions, not just numbers.`,
+
+'How does AR support cash forecasting?':
+`**Why they ask:** AR is the main input to near-term cash forecasts.
+
+**Answer:**
+"AR gives treasury the expected collections by week, based on due dates, each customer's actual payment pattern and any promises to pay. Every week we compare forecast to actual and adjust, which makes the forecast better over time. Treasury rolls it into the 13-week cash forecast."
+
+Tip: Mention using each customer's historical average days-to-pay, not just the due date.`,
+
+'Tell me about a difficult collection you resolved.':
+`**Why they ask:** they want proof you can handle hard accounts.
+
+**Answer:**
+"A distributor was $380,000 past due and had stopped returning calls. I brought in our sales director and set up a meeting. It turned out $90,000 was in dispute over damaged shipments. We resolved the damage claim within a week and agreed a 60-day payment plan for the rest. They paid on schedule, and they're still a customer."
+
+Tip: Root cause, partnership, numbers, relationship kept. Use your own story in that shape.`,
+
+'Describe a time you improved an AR process.':
+`**Why they ask:** they want an improver, not just a processor.
+
+**Answer:**
+"Unapplied cash was averaging $1.2 million because remittances came in separate emails nobody tied to the payments. I set up a shared remittance inbox, asked our top 20 customers to include remittance details with their ACH payments, and added auto-match rules. Within two months unapplied cash dropped below $200,000."
+
+Tip: A before-and-after number is essential.`,
+
+'How do you handle a rude or aggressive customer?':
+`**Why they ask:** they're testing emotional control.
+
+**Answer:**
+"I stay calm and professional and acknowledge their frustration — usually they're upset about something real. I keep the conversation on facts and what we can do to fix it, and I don't take it personally. If it turns abusive, I end the call politely and bring in my manager or the sales owner."
+
+Tip: Emotional control is the skill they're testing — show it in how you answer.`,
+
+'As AR manager, how would you structure the team?':
+`**Why they ask:** a management question about organization.
+
+**Answer:**
+"Either by function — billing, cash application, collections and credit — or by customer segment, where strategic accounts get a dedicated collector who knows them well. Often it's a mix. Every role has clear KPIs and a backup. We do a short daily huddle on priorities, and we automate low-value work so people focus on exceptions and relationships."
+
+Tip: Mention growth paths for your team members.`,
+
+'How do you set collector targets?':
+`**Why they ask:** wrong targets drive wrong behavior.
+
+**Answer:**
+"I base targets on each collector's portfolio — for example, the percentage of past-due collected each month, promises to pay that were kept, and how fast disputes get resolved. I track activity like contacts made, but the targets are tied to cash outcomes, not call counts. And they need to be achievable, or people stop trying."
+
+Tip: Balance activity metrics with results metrics.`,
+
+'What should a credit and collections policy include?':
+`**Why they ask:** managers own the policy.
+
+**Answer:**
+"The credit approval process, with limits by approval level. Standard payment terms and the documents we require. The dunning schedule. Escalation and credit hold rules. Timelines for resolving disputes. Who has authority to write off, and at what amounts. And how we calculate the reserve. I'd review it every year."
+
+Tip: Mention the annual review.`,
+
+"What's different about international receivables?":
+`**Why they ask:** global companies need AR that handles cross-border risk.
+
+**Answer:**
+"Invoices in foreign currency and FX revaluation at month-end. Longer standard payment terms in some countries. Letters of credit or export credit insurance for riskier markets. Local tax like VAT on the invoice. And cross-border bank fees that make payments arrive a little short, which can flood you with tiny deductions."
+
+Tip: Mention a small-tolerance policy for bank-fee short payments.`,
+
+'What is a letter of credit?':
+`**Why they ask:** a common tool in international credit.
+
+**Answer:**
+"It's a bank's guarantee that we'll be paid as long as we present documents that comply with its terms — the invoice, bill of lading and so on. It's common in international trade with new or risky customers. It cuts our credit risk, but it adds bank fees and paperwork, and small document errors can delay payment."
+
+Tip: Show you know when to use one — high risk, high value, cross-border.`,
+
+'What is credit insurance?':
+`**Why they ask:** tests knowledge of credit risk tools.
+
+**Answer:**
+"It's an insurance policy that pays a percentage of a receivable if the customer can't pay because of insolvency or political events. It lets a company extend more credit with less risk, and lenders sometimes give better financing terms on insured receivables."
+
+Tip: Mention it alongside letters of credit as risk tools.`,
+
+'What is factoring?':
+`**Why they ask:** a working-capital concept credit people should know.
+
+**Answer:**
+"Factoring is selling receivables to a third party, the factor, at a discount to get cash early. With recourse, we still carry the credit risk if the customer doesn't pay. Without recourse, the factor does. Whether it comes off the balance sheet depends on whether control transfers under ASC 860."
+
+Tip: Mention it's a working-capital tool often used by growing companies.`,
+
+'Why do you want a career in credit and collections?':
+`**Why they ask:** they want real motivation.
+
+**Answer:**
+"Cash is what keeps a business alive, and AR is where sales actually turn into cash. I like solving problems with customers and with internal teams, and I want to grow into a credit manager role where I shape policy and make risk decisions."
+
+Tip: Tie your answer to business impact.`,
+
+'Why should we hire you?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I collect consistently while keeping customer relationships strong. I fix the root causes of disputes instead of just chasing them. And I'm comfortable in ERP AR modules and reporting. In my last role, I helped bring DSO down by 8 days."
+
+Tip: Results plus approach — use your own numbers.`,
+
+'What is consolidated billing and when is it useful?':
+`**Why they ask:** a practical lever for high-volume customers.
+
+**Answer:**
+"Instead of one invoice per shipment, the customer gets a single periodic invoice — say monthly — covering everything. Large customers like it because it cuts their AP work. It also helps us, because one payment matches one invoice and cash application gets much easier. It needs clear statement cut-off dates and agreed terms."
+
+Tip: Present it as a fix for heavy cash application work with high-volume customers.`,
+
+'What is a lockbox?':
+`**Why they ask:** a basic cash-receipts concept.
+
+**Answer:**
+"It's a bank service. Customers mail checks and remittances to a P.O. box the bank manages. The bank deposits the checks and sends us an electronic file with the payment and remittance details. Our ERP imports the file and applies the receipts automatically. It speeds up deposits and reduces manual handling and theft risk."
+
+Tip: Mention wholesale versus retail lockbox if you know the difference.`,
+
+'How do you use dunning letters effectively?':
+`**Why they ask:** dunning is cheap collection effort when it's done well.
+
+**Answer:**
+"I automate a sequence based on days past due. A friendly reminder before the due date. A first notice at one to five days late. A firmer notice at 30 days, and a final notice with a credit-hold warning at 60. Key accounts get a personal touch. Every letter includes invoice copies and a payment link. And dunning stops automatically when a dispute is logged, so we don't chase customers for amounts we're still investigating."
+
+Tip: Pre-due reminders are an easy DSO win — mention them.`,
+
+'How do you review credit limits for existing customers?':
+`**Why they ask:** credit should support sales, not just block it.
+
+**Answer:**
+"Every customer gets an annual review, plus an immediate review when something triggers it — a limit breach, slower payments, a credit score drop, an unusually large order, or bad news in the press. I look at payment history, current exposure and updated financials. Strong payers get higher limits to support sales; deteriorating customers get tightened."
+
+Tip: Show that you support sales growth, not just block orders.`,
+
+};
