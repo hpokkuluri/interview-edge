@@ -1,18 +1,6 @@
-QB['ea-ns'] = (QB['ea-ns']||[]).concat([
-["Items", "What item types does NetSuite support?",
-`**Answer:** Inventory items, non-inventory items (for sale/purchase/resale), service items, assembly/BOM items, kit/package items, item groups, other charge items, discount, markup, subtotal and description items, gift certificates, and download items.
-
-Tip: Kits vs assemblies.`, 'B', 'M'],
-["Accounting", "What are accounting preferences you'd review first?",
-`**Answer:** Period close settings (allow non-GL changes), approval requirements for journals, AR/AP posting periods, multi-currency, expense allocation, and avoiding posting to closed periods.
-
-Tip: Lock periods properly.`, 'D', 'M'],
-["Allocations", "How do expense allocations work?",
-`**Answer:** Allocation schedules move expenses between departments, classes or locations by fixed weights or statistical (dynamic) weights, and run on a schedule as part of close.
-
-Tip: Statistical allocations.`, 'D', 'M'],
-["Saved Search", "How do you schedule a saved search to email results?",
-`**Answer:** On the Email tab, set recipients (users, roles, groups), the schedule, and whether to send results as an attachment or inline. You can also send alerts when records change, to keep stakeholders informed automatically.
-
-Tip: Alerts on changes.`, 'B', 'E']
+QB["ea-ns"] = (QB["ea-ns"] || []).concat([
+["Items", "What item types does NetSuite support?", "**Why they ask:** item setup knowledge.\n\n**Answer:**\n\"Inventory items, non-inventory items for sale, purchase or resale, service items, assembly items, kit or package items, item groups, other charge items, discount, markup, subtotal and description items, gift certificates and download items. Kits are sold as a bundle without being built; assemblies are built through work orders and stocked.\"\n\nTip: Kits vs assemblies.", "B", "M"],
+["Accounting", "What are accounting preferences you'd review first?", "**Why they ask:** setup judgment.\n\n**Answer:**\n\"Period close settings like allowing non-GL changes, approval requirements for journals, AR and AP posting periods, multi-currency, expense allocation, and preventing posting to closed periods.\"\n\nTip: Lock periods properly.", "D", "M"],
+["Allocations", "How do expense allocations work?", "**Why they ask:** close process.\n\n**Answer:**\n\"Allocation schedules move expenses between departments, classes or locations using fixed weights or statistical weights — like headcount per department — and run on a schedule as part of close.\"\n\nTip: Statistical allocations.", "D", "M"],
+["Saved Search", "How do you schedule a saved search to email results?", "**Why they ask:** practical automation.\n\n**Answer:**\n\"On the search's Email tab, set recipients — users, roles or groups — the schedule, and whether results go as an attachment or inline. You can also send alerts when records are created or changed, like notifying the controller whenever a journal over $50,000 is posted.\"\n\nTip: Alerts on changes.", "B", "E"]
 ]);
