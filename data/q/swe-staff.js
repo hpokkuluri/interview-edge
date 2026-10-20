@@ -1,256 +1,57 @@
 // swe-staff — generated from src/swe-staff-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Staff / Principal Engineer. Format: [topic, question, answer, 'B'|'D']
-QB['swe-staff'] = [
-["Role", "What does a staff or principal engineer do?",
-`**Why they ask:** staff roles are ambiguous; they want to see you understand the scope.
-
-**Answer:** Technical leadership beyond a single team: setting technical direction for an area, solving the hardest cross-team problems, making and documenting key architectural decisions, raising engineering quality and standards, unblocking teams, mentoring senior engineers, and aligning technical strategy with business goals — mostly through influence, not authority. Common archetypes: tech lead, architect, solver, right hand to an engineering leader.
-
-Tip: Say which archetype fits you, with an example.`, 'B'],
-
-["Influence", "How do you drive a technical decision across teams without authority?",
-`**Answer:** Understand each team's constraints, write a clear proposal (RFC/design doc) with problem, options and trade-offs, socialize early with key people one-on-one, incorporate feedback, use data or prototypes to reduce uncertainty, get explicit sign-off from decision-makers, and document the decision (ADR).
-
-Tip: Pre-alignment before the big meeting.`, 'D'],
-
-["Design Docs", "What makes a strong design document?",
-`**Answer:** Context and problem, goals and non-goals, proposed design with diagrams, alternatives considered and why rejected, risks and mitigations, migration and rollout plan, observability and success metrics, open questions — concise enough to be read.
-
-Tip: Non-goals prevent scope creep.`, 'B'],
-
-["Architecture", "How do you evaluate architectural trade-offs?",
-`**Answer:** Against explicit requirements and quality attributes (scalability, latency, availability, consistency, cost, security, operability, team cognitive load), considering reversibility — one-way vs two-way doors. Prefer simple solutions that meet needs, and make trade-offs explicit.
-
-Tip: Reversibility framing.`, 'D'],
-
-["Architecture", "When would you split a monolith?",
-`**Answer:** When team coupling slows delivery, parts need independent scaling or release cycles, or domain boundaries are clear. First modularize the monolith with clear boundaries; extract services incrementally (strangler pattern), starting with well-understood, loosely coupled domains.
-
-Tip: Modular monolith first.`, 'D'],
-
-["Distributed Systems", "Explain the CAP theorem and its practical meaning.",
-`**Answer:** In a network partition, a distributed system must choose between consistency (all nodes see the same data) and availability (every request gets a response). In practice, you choose per use case — e.g. payments favor consistency, social feeds favor availability. PACELC adds the latency/consistency trade-off when there's no partition.
-
-Tip: Mention PACELC.`, 'D'],
-
-["Distributed Systems", "How do you ensure data consistency across services?",
-`**Answer:** Keep strongly consistent operations within one service's database; use sagas with compensation for cross-service workflows; the outbox pattern for reliable event publishing; idempotent consumers; and reconciliation jobs to detect drift.
-
-Tip: Reconciliation as a safety net.`, 'D'],
-
-["Reliability", "How do you improve reliability of a critical system?",
-`**Answer:** Define SLOs from user journeys, measure error budgets, remove single points of failure, add timeouts, retries and circuit breakers, load test, chaos test, improve observability, run game days, and fix top incident causes from postmortems.
-
-Tip: SLOs drive priorities.`, 'D'],
-
-["Scale", "How would you prepare a system for 10× traffic?",
-`**Answer:** Model load and find bottlenecks (DB, hot keys, external dependencies), make services stateless and horizontally scalable, add caching and read replicas, partition data, move work async, load test to target, and plan capacity and cost.
-
-Tip: Find the first bottleneck.`, 'D'],
-
-["Data", "How do you approach a large data migration with zero downtime?",
-`**Answer:** Dual writes or change data capture to the new store, backfill historical data, verify with reconciliation and shadow reads, gradually shift reads behind flags, then cut writes, and keep rollback until confidence is high.
-
-Tip: Shadow reads.`, 'D'],
-
-["Quality", "How do you raise engineering quality across an organization?",
-`**Answer:** Shared standards and paved roads (templates, libraries, CI pipelines), code review culture, testing strategy guidance, observability defaults, postmortem learning, and tech talks. Make the right way the easy way.
-
-Tip: Paved roads.`, 'D'],
-
-["Technical Debt", "How do you prioritize technical debt?",
-`**Answer:** Quantify impact (incidents, delivery slowdown, developer time, risk), tie to business goals, propose investment with expected outcomes, and negotiate a capacity allocation with product leaders. Tackle debt that blocks strategic work first.
-
-Tip: Business framing.`, 'D'],
-
-["Strategy", "How do you build a technical strategy for an area?",
-`**Answer:** Assess current state and pain points, understand business direction for 1–3 years, define principles and target architecture, identify key bets and a sequenced roadmap, and align stakeholders. Revisit regularly.
-
-Tip: Diagnosis → guiding policy → actions.`, 'D'],
-
-["Mentoring", "How do you mentor senior engineers toward staff?",
-`**Answer:** Give them ownership of cross-team problems, coach on writing and influence, sponsor them in visible forums, review their designs, and give honest feedback on scope and impact.
-
-Tip: Sponsorship, not just mentorship.`, 'B'],
-
-["Incidents", "What is your role in major incidents?",
-`**Answer:** Help diagnose complex issues, guide mitigation decisions, keep communication flowing, and afterward drive blameless postmortems focused on systemic fixes.
-
-Tip: Systemic fixes.`, 'B'],
-
-["Build vs Buy", "How do you decide build vs buy?",
-`**Answer:** Buy when the capability isn't a differentiator and good products exist; build when it's core to your advantage or requirements are unique. Include total cost of ownership, integration, lock-in and team capacity.
-
-Tip: Core vs context.`, 'D'],
-
-["Security", "How do you embed security into architecture?",
-`**Answer:** Threat modeling for new systems, secure defaults in templates, least privilege, secrets management, dependency hygiene, and partnering with security teams early.
-
-Tip: Threat modeling.`, 'D'],
-
-["Cost", "How do you think about cloud cost as a staff engineer?",
-`**Answer:** Make cost a design constraint, provide visibility by service and team, right-size resources, choose pricing models wisely (reserved/savings plans), and design efficient architectures.
-
-Tip: FinOps awareness.`, 'D'],
-
-["Platform", "What makes a good internal developer platform?",
-`**Answer:** Self-service golden paths for creating, deploying and operating services, built with developer feedback, measured by adoption and lead time, and treated as a product.
-
-Tip: Platform as product.`, 'D'],
-
-["Communication", "How do you communicate technical decisions to executives?",
-`**Answer:** Start with business impact and options, quantify risk and cost, give a clear recommendation, and avoid jargon.
-
-Tip: One-page summary.`, 'B'],
-
-["Behavioral", "Tell me about the most impactful technical project you led.",
-`**Sample answer:** "I led the migration of our payments platform from a monolith to three services with event-driven integration. We wrote the RFC, aligned four teams, migrated with dual writes and reconciliation, and cut payment-related incidents by 70% while enabling two new payment methods."
-
-Tip: Scope, influence, outcome.`, 'B'],
-
-["Behavioral", "Tell me about a time you were wrong about a technical decision.",
-`**Sample answer:** "I pushed for a NoSQL store for a reporting feature; query needs grew relational and we struggled. We moved to Postgres. I now insist on validating access patterns before choosing data stores."
-
-Tip: Learning.`, 'B'],
-
-["Behavioral", "How do you handle disagreement with another senior engineer?",
-`**Answer:** Focus on shared goals and data, write down positions and trade-offs, prototype if needed, escalate to a decision-maker if stuck, and commit once decided.
-
-Tip: Disagree and commit.`, 'B'],
-
-["Behavioral", "Tell me about unblocking a struggling team.",
-`**Sample answer:** "A team kept missing deadlines due to a fragile build. I paired with them to cut build time from 40 to 8 minutes and introduced test parallelization; their delivery predictability recovered within a quarter."
-
-Tip: Hands-on help.`, 'B'],
-
-["Hiring", "How do you contribute to hiring?",
-`**Answer:** Design and calibrate interviews (system design, coding), interview senior candidates, raise the bar, and help close strong candidates.
-
-Tip: Calibration.`, 'B'],
-
-["Observability", "What observability standards would you set?",
-`**Answer:** Structured logging, OpenTelemetry tracing with correlation IDs, RED metrics per service, SLOs and alerts on symptoms, dashboards per service, and runbooks.
-
-Tip: Standard defaults in templates.`, 'D'],
-
-["APIs", "How do you govern APIs across many teams?",
-`**Answer:** API style guide, design reviews, OpenAPI contracts, versioning and deprecation policies, an API catalog, and linting in CI.
-
-Tip: Linting automates governance.`, 'D'],
-
-["Testing", "What testing strategy would you recommend for microservices?",
-`**Answer:** Strong unit and component tests, contract tests between services, a small set of end-to-end tests, testing in production with canaries, and observability.
-
-Tip: Contract tests.`, 'D'],
-
-["AI", "How would you lead adoption of AI in engineering?",
-`**Answer:** Pilot AI coding tools with measurement (cycle time, quality), set guidelines (security, IP, review), build internal AI features with evaluation and guardrails, and train engineers.
-
-Tip: Measured adoption.`, 'D'],
-
-["AI", "How would you architect an LLM-powered product feature?",
-`**Answer:** Retrieval-augmented generation over permission-filtered data, model gateway for provider abstraction, prompt and version management, evaluation pipelines, guardrails (input/output filtering), caching, cost and latency controls, observability, and human feedback loops.
-
-Tip: Evaluation is key.`, 'D'],
-
-["Performance", "How do you approach a system-wide performance problem?",
-`**Answer:** Establish baselines and SLOs, use tracing to find the critical path, profile hot spots, fix the biggest contributors, and add regression detection in CI.
-
-Tip: Data-driven.`, 'D'],
-
-["Leadership", "How do you balance hands-on coding with leadership?",
-`**Answer:** Code on critical or exploratory work (prototypes, hard bugs), avoid being on the critical path for routine tasks, and spend substantial time on design, reviews and mentoring.
-
-Tip: Leverage.`, 'B'],
-
-["Impact", "How do you measure your impact as a staff engineer?",
-`**Answer:** Outcomes enabled — delivery speed, reliability, cost savings, engineers grown, decisions that held up — not lines of code.
-
-Tip: Outcome focus.`, 'B'],
-
-["Ambiguity", "How do you handle highly ambiguous problems?",
-`**Answer:** Clarify the goal and constraints, break into hypotheses, run quick experiments or spikes, share findings early, and converge on a direction.
-
-Tip: Reduce uncertainty incrementally.`, 'B'],
-
-["Writing", "Why is writing important at staff level?",
-`**Answer:** Writing scales influence — design docs, RFCs, strategy documents and postmortems reach people you can't meet and preserve decisions.
-
-Tip: Writing as leadership.`, 'B'],
-
-["Cross-functional", "How do you partner with product managers?",
-`**Answer:** Early involvement in discovery, explaining technical options and costs, shaping roadmaps with technical enablers, and shared outcome metrics.
-
-Tip: Partnership.`, 'B'],
-
-["Migration", "How do you lead a large platform migration?",
-`**Answer:** Clear rationale and success metrics, migration tooling and guides, early adopter teams, tracking dashboards, deprecation timelines, and support for teams during migration.
-
-Tip: Make migration easy.`, 'D'],
-
-["Standards", "How do you avoid becoming an 'architecture astronaut'?",
-`**Answer:** Stay grounded in real problems and data, prototype, prefer simple solutions, and measure results in production.
-
-Tip: Pragmatism.`, 'B'],
-
-["Interview", "What would you ask the engineering leadership?",
-`**Answer:** "What are the biggest technical risks?", "Where do teams struggle most?", "How are architectural decisions made?", "What would success look like for this role in a year?"
-
-Tip: Diagnostic.`, 'B'],
-
-["Career", "Why are you ready for staff/principal level?",
-`**Sample answer:** "I've consistently led cross-team technical efforts with measurable outcomes, mentored senior engineers into leads, and shaped technical strategy aligned with business goals."
-
-Tip: Evidence.`, 'B'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I solve hard cross-team problems, raise engineering quality at scale, and grow engineers — my last migration cut incidents 70% and enabled new revenue."
-
-Tip: Proof.`, 'B'],
-
-["System Design", "Design a globally distributed system with low latency.",
-`**Answer:** Multi-region deployment with geo-routing, data partitioned by region where possible, read replicas or multi-region databases (Spanner, CockroachDB, DynamoDB global tables), CDN and edge caching, conflict resolution for multi-region writes, and regional failover.
-
-Tip: Data residency considerations.`, 'D'],
-
-["System Design", "How would you design an event-driven architecture?",
-`**Answer:** Define domain events and schemas (schema registry), event broker (Kafka), producers using outbox, idempotent consumers, ordering guarantees per key, retention and replay, dead-letter handling, and observability across flows.
-
-Tip: Schema evolution.`, 'D'],
-
-["Developer Experience", "How do you improve developer productivity?",
-`**Answer:** Measure (DORA, SPACE, developer surveys), reduce build and test times, improve local environments, automate toil, and remove process friction.
-
-Tip: Measure before optimizing.`, 'D'],
-
-["Culture", "How do you build a healthy engineering culture?",
-`**Answer:** Psychological safety, blameless postmortems, clear standards, knowledge sharing, recognition of glue work, and leaders modeling behavior.
-
-Tip: Recognize glue work.`, 'B'],
-
-["Operations", "What is your view on 'you build it, you run it'?",
-`**Answer:** Teams owning production improves quality and accountability, but needs good tooling, on-call support, sustainable rotations and platform help.
-
-Tip: Sustainable on-call.`, 'D'],
-
-["Vendors", "How do you evaluate a critical third-party technology?",
-`**Answer:** Fit, reliability and SLAs, security and compliance, performance, cost, vendor viability, exit strategy, and proof of concept.
-
-Tip: Exit strategy.`, 'D'],
-
-["Documentation", "How do you keep architecture documentation useful?",
-`**Answer:** Lightweight ADRs close to code, C4-model diagrams, updated during changes, and focused on decisions rather than exhaustive detail.
-
-Tip: C4 model.`, 'B']
-];
-
-QB['swe-staff'] = (QB['swe-staff'] || []).concat([
-["Prioritization", "How do you decide what to work on as a staff engineer?",
-`**Answer:** Focus on problems with the highest leverage — those blocking multiple teams, posing serious risk, or enabling strategic goals — that others aren't positioned to solve. Revisit priorities with your manager and engineering leaders regularly.
-
-Tip: Leverage and alignment.`, 'B'],
-["Sponsorship", "What's the difference between mentoring and sponsoring?",
-`**Answer:** Mentoring is advising and coaching someone. Sponsoring is actively using your influence to create opportunities for them — recommending them for high-visibility projects or promotions.
-
-Tip: Staff engineers should do both.`, 'B']
+QB["swe-staff"] = (QB["swe-staff"] || []).concat([
+["Role", "What does a staff or principal engineer do?", "**Why they ask:** staff roles are ambiguous; they want to see you understand the scope.\n\n**Answer:** Technical leadership beyond a single team: setting technical direction for an area, solving the hardest cross-team problems, making and documenting key architectural decisions, raising engineering quality and standards, unblocking teams, mentoring senior engineers, and aligning technical strategy with business goals — mostly through influence, not authority. Common archetypes: tech lead, architect, solver, right hand to an engineering leader.\n\nTip: Say which archetype fits you, with an example.", "B"],
+["Influence", "How do you drive a technical decision across teams without authority?", "**Why they ask:** influence is the core staff skill.\n\n**Answer:**\n\"I start by understanding each team's constraints, then write an RFC with the problem, options and trade-offs. Before any big meeting I socialize it one-on-one with the key people, fold in their feedback, and use data or a prototype where there's uncertainty. Then explicit sign-off from the decision-makers and an ADR so it sticks. When we standardized on one event broker across four teams, the decision meeting took 30 minutes because every objection had already been heard and addressed.\"\n\nTip: Pre-alignment before the big meeting.", "D"],
+["Design Docs", "What makes a strong design document?", "**Why they ask:** writing is how staff engineers scale.\n\n**Answer:**\n\"Context and problem, goals and non-goals, the proposed design with diagrams, alternatives considered and why they were rejected, risks and mitigations, migration and rollout plan, observability and success metrics, and open questions — short enough that people actually read it. Non-goals matter most for preventing scope creep: 'this does not cover multi-region' ends a lot of debates.\"\n\nTip: Non-goals prevent scope creep.", "B"],
+["Architecture", "How do you evaluate architectural trade-offs?", "**Why they ask:** judgment.\n\n**Answer:**\n\"Against explicit requirements and quality attributes — scalability, latency, availability, consistency, cost, security, operability and the team's cognitive load. I also ask about reversibility: a two-way-door decision like a library choice can be made fast; a one-way door like a primary database deserves more rigor. And I prefer the simplest design that meets the needs, with trade-offs written down.\"\n\nTip: Reversibility framing.", "D"],
+["Architecture", "When would you split a monolith?", "**Why they ask:** avoiding fashionable mistakes.\n\n**Answer:**\n\"When team coupling is slowing delivery, when parts need independent scaling or release cycles, and when domain boundaries are clear. First I'd modularize the monolith with enforced boundaries, then extract services incrementally with the strangler pattern, starting with a well-understood, loosely coupled domain like notifications rather than the core order model.\"\n\nTip: Modular monolith first.", "D"],
+["Distributed Systems", "Explain the CAP theorem and its practical meaning.", "**Why they ask:** distributed systems depth.\n\n**Answer:**\n\"During a network partition, a distributed system must choose between consistency — every node returns the same latest data — and availability — every request gets a response. In practice you choose per use case: a payment balance favors consistency and rejects writes it can't confirm; a social feed favors availability and tolerates slightly stale data. PACELC adds that even without a partition, you trade latency against consistency.\"\n\nTip: Mention PACELC.", "D"],
+["Distributed Systems", "How do you ensure data consistency across services?", "**Why they ask:** microservice correctness.\n\n**Answer:**\n\"Keep strongly consistent operations inside one service's database. For workflows spanning services, sagas with compensating actions; the outbox pattern so events are published reliably with the data change; idempotent consumers; and reconciliation jobs that compare systems nightly and flag drift. Reconciliation is the safety net that catches what the design missed.\"\n\nTip: Reconciliation as a safety net.", "D"],
+["Reliability", "How do you improve reliability of a critical system?", "**Why they ask:** production leadership.\n\n**Answer:**\n\"Define SLOs from user journeys and track error budgets, remove single points of failure, add timeouts, retries and circuit breakers, load test and chaos test, improve observability, run game days, and fix the top incident causes from postmortems. The SLOs decide priorities — we spend reliability effort where users actually feel it.\"\n\nTip: SLOs drive priorities.", "D"],
+["Scale", "How would you prepare a system for 10× traffic?", "**Why they ask:** scaling strategy.\n\n**Answer:**\n\"Model the expected load and find the first bottleneck — usually the database, a hot key, or an external dependency with rate limits. Make services stateless so they scale horizontally, add caching and read replicas, partition data, move work to async queues, load test to the 10x target, and plan capacity and cost. Every fix reveals the next bottleneck, so it's iterative.\"\n\nTip: Find the first bottleneck.", "D"],
+["Data", "How do you approach a large data migration with zero downtime?", "**Why they ask:** high-risk execution.\n\n**Answer:**\n\"Start dual writes or change data capture into the new store, backfill historical data, verify with reconciliation and shadow reads — reading from both and comparing results without serving the new one — then shift reads gradually behind flags, then cut over writes, keeping rollback available until we're confident. On a 2-billion-row migration, shadow reads caught a timezone bug before any customer saw it.\"\n\nTip: Shadow reads.", "D"],
+["Quality", "How do you raise engineering quality across an organization?", "**Why they ask:** org-wide impact.\n\n**Answer:**\n\"Shared standards delivered as paved roads — service templates, libraries, CI pipelines with testing and security built in — a healthy code review culture, testing strategy guidance, observability defaults, learning from postmortems, and tech talks. Make the right way the easy way and most teams take it.\"\n\nTip: Paved roads.", "D"],
+["Technical Debt", "How do you prioritize technical debt?", "**Why they ask:** business-aligned engineering.\n\n**Answer:**\n\"Quantify impact — incidents, delivery slowdown, developer hours, risk — tie it to business goals, propose an investment with expected outcomes, and negotiate a capacity allocation with product leadership. 'This flaky build costs 40 engineer-hours a week' gets funded; 'the code is ugly' doesn't. Debt that blocks strategic work goes first.\"\n\nTip: Business framing.", "D"],
+["Strategy", "How do you build a technical strategy for an area?", "**Why they ask:** strategic thinking.\n\n**Answer:**\n\"Diagnose the current state and pain points, understand where the business is heading over one to three years, set guiding principles and a target architecture, then identify a few key bets in a sequenced roadmap and align stakeholders. And revisit it regularly — a strategy nobody updates is a historical document.\"\n\nTip: Diagnosis → guiding policy → actions.", "D"],
+["Mentoring", "How do you mentor senior engineers toward staff?", "**Why they ask:** growing leaders.\n\n**Answer:**\n\"Give them ownership of a cross-team problem, coach their writing and influence, sponsor them in visible forums, review their designs, and give honest feedback on scope and impact. Sponsorship matters most — putting their name forward for the project, not just advising them.\"\n\nTip: Sponsorship, not just mentorship.", "B"],
+["Incidents", "What is your role in major incidents?", "**Why they ask:** technical leadership under pressure.\n\n**Answer:**\n\"Help diagnose the hard parts, guide mitigation decisions — like whether to fail over or roll back — keep communication flowing, and afterward drive a blameless postmortem focused on systemic fixes rather than patching the one symptom.\"\n\nTip: Systemic fixes.", "B"],
+["Build vs Buy", "How do you decide build vs buy?", "**Why they ask:** strategic resource use.\n\n**Answer:**\n\"Buy when the capability isn't a differentiator and good products exist — auth, feature flags, observability. Build when it's core to our competitive advantage or our requirements are genuinely unique. I include total cost of ownership, integration effort, lock-in and team capacity — a 'free' internal tool still costs two engineers forever.\"\n\nTip: Core vs context.", "D"],
+["Security", "How do you embed security into architecture?", "**Why they ask:** security leadership.\n\n**Answer:**\n\"Threat modeling for new systems, secure defaults in templates, least privilege, secrets management, dependency hygiene, and bringing the security team in at design time rather than at launch.\"\n\nTip: Threat modeling.", "D"],
+["Cost", "How do you think about cloud cost as a staff engineer?", "**Why they ask:** cost is an engineering concern.\n\n**Answer:**\n\"Cost is a design constraint like latency. I push for visibility by service and team, right-sizing, smart pricing models like savings plans, and efficient architectures. One design review moved a chatty cross-region integration in-region and saved about $40K a month in data transfer.\"\n\nTip: FinOps awareness.", "D"],
+["Platform", "What makes a good internal developer platform?", "**Why they ask:** platform thinking.\n\n**Answer:**\n\"Self-service golden paths for creating, deploying and operating services, built from developer feedback, measured by adoption and lead time, and run as a product with a roadmap and support.\"\n\nTip: Platform as product.", "D"],
+["Communication", "How do you communicate technical decisions to executives?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"Start with business impact and options, quantify risk and cost, give a clear recommendation, no jargon — one page. 'Option B costs one extra quarter but removes the outage risk behind last year's two major incidents. I recommend B.'\"\n\nTip: One-page summary.", "B"],
+["Behavioral", "Tell me about the most impactful technical project you led.", "**Why they ask:** proof at staff scope.\n\n**Answer:**\n\"I led the migration of our payments platform from a monolith to three services with event-driven integration. I wrote the RFC, aligned four teams, and we migrated with dual writes and reconciliation. Payment-related incidents dropped 70%, and the new design let us launch two new payment methods that had been blocked for a year.\"\n\nTip: Scope, influence, outcome.", "B"],
+["Behavioral", "Tell me about a time you were wrong about a technical decision.", "**Why they ask:** humility and learning.\n\n**Answer:**\n\"I pushed for a NoSQL store for a reporting feature. The query needs turned relational and we struggled with joins and aggregations, so we moved to Postgres. Now I insist on validating access patterns before choosing a data store.\"\n\nTip: Learning.", "B"],
+["Behavioral", "How do you handle disagreement with another senior engineer?", "**Why they ask:** collaboration among peers.\n\n**Answer:**\n\"Focus on shared goals and data, write down both positions and their trade-offs, prototype if it's close, escalate to a decision-maker if we're stuck, and commit fully once it's decided.\"\n\nTip: Disagree and commit.", "B"],
+["Behavioral", "Tell me about unblocking a struggling team.", "**Why they ask:** hands-on leverage.\n\n**Answer:**\n\"A team kept missing deadlines because of a fragile 40-minute build. I paired with them to cut it to 8 minutes and introduced test parallelization. Their delivery predictability recovered within a quarter.\"\n\nTip: Hands-on help.", "B"],
+["Hiring", "How do you contribute to hiring?", "**Why they ask:** organizational contribution.\n\n**Answer:**\n\"Design and calibrate interviews — system design and coding — interview senior candidates, raise the bar consistently, and help close strong candidates by talking about the technical challenges honestly.\"\n\nTip: Calibration.", "B"],
+["Observability", "What observability standards would you set?", "**Why they ask:** operational maturity.\n\n**Answer:**\n\"Structured logging, OpenTelemetry tracing with correlation IDs, RED metrics per service, SLOs with symptom-based alerts, a dashboard per service, and runbooks — all as defaults baked into the service template, so teams get them without thinking.\"\n\nTip: Standard defaults in templates.", "D"],
+["APIs", "How do you govern APIs across many teams?", "**Why they ask:** consistency at scale.\n\n**Answer:**\n\"An API style guide, design reviews for public or shared APIs, OpenAPI contracts, versioning and deprecation policies, an API catalog, and linting in CI with a tool like Spectral so most of the style guide enforces itself.\"\n\nTip: Linting automates governance.", "D"],
+["Testing", "What testing strategy would you recommend for microservices?", "**Why they ask:** quality at scale.\n\n**Answer:**\n\"Strong unit and component tests per service, contract tests between services so a provider can't break a consumer unknowingly, a small set of end-to-end tests, testing in production with canaries, and good observability. Big end-to-end suites across 30 services become slow and flaky.\"\n\nTip: Contract tests.", "D"],
+["AI", "How would you lead adoption of AI in engineering?", "**Why they ask:** current leadership topic.\n\n**Answer:**\n\"Pilot AI coding tools with measurement — cycle time, review load, defect rates — set guidelines on security, IP and review, build internal AI features with evaluation and guardrails, and train engineers. Measured adoption beats hype or bans.\"\n\nTip: Measured adoption.", "D"],
+["AI", "How would you architect an LLM-powered product feature?", "**Why they ask:** current architecture challenges.\n\n**Answer:**\n\"Retrieval-augmented generation over permission-filtered data, a model gateway that abstracts providers and handles fallback, prompt and version management, evaluation pipelines run on every change, input and output guardrails, caching, cost and latency controls, observability, and human feedback loops. Evaluation is the piece most teams skip and regret.\"\n\nTip: Evaluation is key.", "D"],
+["Performance", "How do you approach a system-wide performance problem?", "**Why they ask:** data-driven method.\n\n**Answer:**\n\"Establish baselines and SLOs, use tracing to find the critical path, profile the hot spots, fix the biggest contributors first, and add performance regression checks in CI so we don't slide back.\"\n\nTip: Data-driven.", "D"],
+["Leadership", "How do you balance hands-on coding with leadership?", "**Why they ask:** staff engineer operating model.\n\n**Answer:**\n\"I code on critical or exploratory work — prototypes, hard bugs, a tricky migration tool — but stay off the critical path for routine features so I'm not a bottleneck. Most of my time goes to design, reviews and mentoring, which multiplies output more than my own commits.\"\n\nTip: Leverage.", "B"],
+["Impact", "How do you measure your impact as a staff engineer?", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"Outcomes I enabled — faster delivery, better reliability, cost savings, engineers I helped grow, and decisions that held up a year later — not lines of code.\"\n\nTip: Outcome focus.", "B"],
+["Ambiguity", "How do you handle highly ambiguous problems?", "**Why they ask:** staff problems are ambiguous.\n\n**Answer:**\n\"Clarify the goal and constraints, break the problem into hypotheses, run quick spikes or experiments, share findings early, and converge on a direction — reducing uncertainty step by step rather than waiting for a perfect plan.\"\n\nTip: Reduce uncertainty incrementally.", "B"],
+["Writing", "Why is writing important at staff level?", "**Why they ask:** leadership through writing.\n\n**Answer:**\n\"Writing scales influence: design docs, RFCs, strategy documents and postmortems reach people I'll never meet and preserve the reasoning behind decisions long after I've moved on.\"\n\nTip: Writing as leadership.", "B"],
+["Cross-functional", "How do you partner with product managers?", "**Why they ask:** cross-functional leadership.\n\n**Answer:**\n\"Join discovery early, explain technical options and their costs, shape roadmaps to include technical enablers, and share outcome metrics so we're aiming at the same thing.\"\n\nTip: Partnership.", "B"],
+["Migration", "How do you lead a large platform migration?", "**Why they ask:** execution at scale.\n\n**Answer:**\n\"A clear rationale and success metrics, migration tooling and guides — ideally automated codemods — early adopter teams, a tracking dashboard, deprecation timelines, and hands-on support. The easier the migration, the faster it finishes.\"\n\nTip: Make migration easy.", "D"],
+["Standards", "How do you avoid becoming an 'architecture astronaut'?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Stay grounded in real problems and data, prototype instead of theorizing, prefer simple solutions, and measure results in production.\"\n\nTip: Pragmatism.", "B"],
+["Interview", "What would you ask the engineering leadership?", "**Why they ask:** diagnostic curiosity.\n\n**Answer:**\n\"What are the biggest technical risks? Where do teams struggle most? How are architectural decisions made today? What would success look like for this role in a year?\"\n\nTip: Diagnostic.", "B"],
+["Career", "Why are you ready for staff/principal level?", "**Why they ask:** readiness.\n\n**Answer:**\n\"I've consistently led cross-team technical efforts with measurable outcomes, mentored senior engineers into leads, and shaped technical strategy aligned with business goals.\"\n\nTip: Evidence.", "B"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I solve hard cross-team problems, raise engineering quality at scale, and grow engineers — my last migration cut incidents 70% and enabled new revenue.\"\n\nTip: Proof.", "B"],
+["System Design", "Design a globally distributed system with low latency.", "**Why they ask:** advanced system design.\n\n**Answer:**\n\"Multi-region deployment with geo-routing, data partitioned by region where possible so most reads and writes stay local, multi-region databases like Spanner, CockroachDB or DynamoDB global tables where data must be global, CDN and edge caching, a conflict resolution strategy for multi-region writes, and regional failover. Data residency rules may force some data to stay in-region.\"\n\nTip: Data residency considerations.", "D"],
+["System Design", "How would you design an event-driven architecture?", "**Why they ask:** architecture depth.\n\n**Answer:**\n\"Define domain events and their schemas in a schema registry, use Kafka as the broker, have producers publish via the outbox pattern, make consumers idempotent, keep ordering per key — such as per order ID — set retention for replay, handle dead letters, and trace flows end to end. Schema evolution rules — backward-compatible changes only — prevent consumers breaking.\"\n\nTip: Schema evolution.", "D"],
+["Developer Experience", "How do you improve developer productivity?", "**Why they ask:** org-level leverage.\n\n**Answer:**\n\"Measure first — DORA, SPACE and developer surveys — then reduce build and test times, improve local environments, automate toil and remove process friction. Surveys often point somewhere unexpected, like waiting days for environment access.\"\n\nTip: Measure before optimizing.", "D"],
+["Culture", "How do you build a healthy engineering culture?", "**Why they ask:** cultural leadership.\n\n**Answer:**\n\"Psychological safety, blameless postmortems, clear standards, knowledge sharing, recognizing glue work like onboarding and documentation, and senior people modeling the behavior they expect.\"\n\nTip: Recognize glue work.", "B"],
+["Operations", "What is your view on 'you build it, you run it'?", "**Why they ask:** operating model views.\n\n**Answer:**\n\"Teams owning production improves quality and accountability, but only with good tooling, on-call support, sustainable rotations and platform help. Without those it just burns people out.\"\n\nTip: Sustainable on-call.", "D"],
+["Vendors", "How do you evaluate a critical third-party technology?", "**Why they ask:** risk judgment.\n\n**Answer:**\n\"Fit, reliability and SLAs, security and compliance, performance, cost, vendor viability, an exit strategy, and a proof of concept on our real workload.\"\n\nTip: Exit strategy.", "D"],
+["Documentation", "How do you keep architecture documentation useful?", "**Why they ask:** documentation that lives.\n\n**Answer:**\n\"Lightweight ADRs next to the code, C4-model diagrams at the context and container levels, updated as part of changes, focused on decisions rather than exhaustive detail nobody maintains.\"\n\nTip: C4 model.", "B"]
+]);
+
+QB["swe-staff"] = (QB["swe-staff"] || []).concat([
+["Prioritization", "How do you decide what to work on as a staff engineer?", "**Why they ask:** prioritization at staff level.\n\n**Answer:**\n\"The highest-leverage problems: ones blocking multiple teams, posing serious risk, or enabling strategic goals — and that nobody else is positioned to solve. I revisit priorities with my manager and engineering leaders regularly.\"\n\nTip: Leverage and alignment.", "B"],
+["Sponsorship", "What's the difference between mentoring and sponsoring?", "**Why they ask:** leadership maturity.\n\n**Answer:**\n\"Mentoring is advising and coaching someone. Sponsoring is spending your own influence to create opportunities for them — recommending them for a high-visibility project or advocating in promotion discussions. Staff engineers should do both.\"\n\nTip: Staff engineers should do both.", "B"]
 ]);

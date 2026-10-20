@@ -1,10 +1,4 @@
-QB['swe-staff'] = (QB['swe-staff'] || []).concat([
-["Prioritization", "How do you decide what to work on as a staff engineer?",
-`**Answer:** Focus on problems with the highest leverage — those blocking multiple teams, posing serious risk, or enabling strategic goals — that others aren't positioned to solve. Revisit priorities with your manager and engineering leaders regularly.
-
-Tip: Leverage and alignment.`, 'B'],
-["Sponsorship", "What's the difference between mentoring and sponsoring?",
-`**Answer:** Mentoring is advising and coaching someone. Sponsoring is actively using your influence to create opportunities for them — recommending them for high-visibility projects or promotions.
-
-Tip: Staff engineers should do both.`, 'B']
+QB["swe-staff"] = (QB["swe-staff"] || []).concat([
+["Prioritization", "How do you decide what to work on as a staff engineer?", "**Why they ask:** prioritization at staff level.\n\n**Answer:**\n\"The highest-leverage problems: ones blocking multiple teams, posing serious risk, or enabling strategic goals — and that nobody else is positioned to solve. I revisit priorities with my manager and engineering leaders regularly.\"\n\nTip: Leverage and alignment.", "B"],
+["Sponsorship", "What's the difference between mentoring and sponsoring?", "**Why they ask:** leadership maturity.\n\n**Answer:**\n\"Mentoring is advising and coaching someone. Sponsoring is spending your own influence to create opportunities for them — recommending them for a high-visibility project or advocating in promotion discussions. Staff engineers should do both.\"\n\nTip: Staff engineers should do both.", "B"]
 ]);
