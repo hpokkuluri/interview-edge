@@ -1,239 +1,48 @@
 // Corporate Development / M&A and Investment Analyst. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['fs-ib'] = [
-["Valuation", "Walk me through the three main valuation methods.",
-`**Why they ask:** foundation of every finance interview.
-
-**Answer:**
-- **Comparable companies (trading comps):** value based on multiples (EV/EBITDA, EV/Revenue, P/E) of similar public companies.
-- **Precedent transactions:** multiples paid in past acquisitions of similar companies (include control premium).
-- **DCF:** present value of projected free cash flows plus terminal value, discounted at WACC.
-Results are shown in a "football field" range.
-
-Tip: Precedents usually highest due to control premium.`, 'B', 'E'],
-
-["DCF", "Walk me through a DCF.",
-`**Answer:** Project unlevered free cash flow for 5–10 years (EBIT × (1 − tax) + D&A − capex − change in NWC), calculate terminal value (perpetuity growth: FCF × (1+g)/(WACC − g), or exit multiple), discount cash flows and terminal value at WACC, sum to get enterprise value, subtract net debt to get equity value, divide by diluted shares for value per share.
-
-Tip: Know the unlevered FCF formula.`, 'B', 'M'],
-
-["WACC", "How do you calculate WACC?",
-`**Answer:** WACC = E/(D+E) × Re + D/(D+E) × Rd × (1 − t). Cost of equity via CAPM: Re = Rf + β × (market risk premium).
-
-**Example:** Rf 4.3%, β 1.2, MRP 5.5% → Re = 10.9%. Rd 6%, tax 25% → after-tax 4.5%. 70/30 equity/debt → WACC = 0.7×10.9 + 0.3×4.5 = 8.98%.
-
-Tip: Show numbers.`, 'B', 'M'],
-
-["EV", "Enterprise value vs equity value?",
-`**Answer:** Equity value = market value of shares. Enterprise value = equity value + debt + preferred + minority interest − cash. EV represents value of operations to all capital providers.
-
-Tip: Match multiples: EV/EBITDA, P/E.`, 'B', 'E'],
-
-["Accounting", "Walk through how $10 of depreciation affects the three statements.",
-`**Answer:** Income statement: operating income down $10; at 25% tax, net income down $7.50. Cash flow: net income −$7.50 + depreciation $10 = cash up $2.50 (tax savings). Balance sheet: PP&E down $10, cash up $2.50, retained earnings down $7.50 — balances.
-
-Tip: Classic question.`, 'B', 'E'],
-
-["Accounting", "How do the three financial statements link?",
-`**Answer:** Net income flows from the income statement to the top of cash flow statement and to retained earnings; cash flow statement explains change in cash on balance sheet; non-cash items and working capital changes adjust net income to cash.
-
-Tip: Net income and cash links.`, 'B', 'E'],
-
-["M&A", "Walk through an accretion/dilution analysis.",
-`**Answer:** Combine acquirer and target net income, adjust for synergies, financing costs (interest on new debt after tax, lost interest on cash), new share issuance and transaction amortization, then compare pro forma EPS to the acquirer's standalone EPS.
-
-**Quick rule:** a stock deal is accretive if the target's P/E is lower than the acquirer's P/E.
-
-Tip: The P/E rule of thumb.`, 'D', 'M'],
-
-["M&A", "Why do companies acquire others?",
-`**Answer:** Growth, market share, new products or geographies, technology and talent, cost and revenue synergies, vertical integration, and defensive reasons.
-
-Tip: Strategic rationale.`, 'B', 'E'],
-
-["Synergies", "Cost vs revenue synergies?",
-`**Answer:** **Cost synergies** (consolidating functions, procurement savings, facilities) are more reliable. **Revenue synergies** (cross-selling, pricing) are harder to achieve; buyers often discount them.
-
-Tip: Realization risk.`, 'B', 'M'],
-
-["LBO", "Walk through an LBO model.",
-`**Answer:** Determine purchase price and sources/uses (debt and sponsor equity), project cash flows, pay down debt with free cash flow, calculate exit value (exit multiple × EBITDA), subtract remaining debt, and compute IRR and MOIC on sponsor equity.
-
-**Example:** $100M equity in, $250M equity value at exit in 5 years → 2.5x MOIC, ~20% IRR.
-
-Tip: Returns drivers: deleveraging, EBITDA growth, multiple expansion.`, 'D', 'M'],
-
-["Due Diligence", "What does M&A due diligence cover?",
-`**Answer:** Financial (quality of earnings, working capital, debt-like items), commercial (market, customers), legal (contracts, litigation, IP), tax, HR (key people, benefits), IT and cybersecurity, operations, and ESG.
-
-Tip: Quality of earnings.`, 'B', 'M'],
-
-["QoE", "What is a quality of earnings analysis?",
-`**Answer:** Adjusts reported EBITDA for non-recurring, non-operating or owner-related items and accounting irregularities to determine sustainable earnings for valuation.
-
-Tip: Adjusted EBITDA.`, 'D', 'M'],
-
-["Working Capital", "What is a working capital peg?",
-`**Answer:** A target normalized working capital level in the purchase agreement; the price adjusts up or down based on actual working capital at closing vs the peg.
-
-Tip: Purchase price adjustment.`, 'D', 'M'],
-
-["Process", "Describe an M&A process from the buyer side.",
-`**Answer:** Strategy and target screening → initial outreach → NDA → preliminary valuation and indication of interest → management meetings and diligence → letter of intent → confirmatory diligence → definitive agreement negotiation → regulatory approvals → closing → integration.
-
-Tip: LOI stage.`, 'B', 'M'],
-
-["Integration", "Why do acquisitions fail?",
-`**Answer:** Overpaying, overestimated synergies, culture clashes, poor integration planning, loss of key talent and customers, and distraction from core business.
-
-Tip: Integration planning.`, 'B', 'M'],
-
-["Multiples", "Why might two similar companies trade at different multiples?",
-`**Answer:** Differences in growth, margins, return on capital, risk, market position, capital structure and market sentiment.
-
-Tip: Growth and ROIC.`, 'B', 'M'],
-
-["Investment", "How would you pitch a stock?",
-`**Answer:** Company overview, investment thesis (2–3 key reasons the market misprices it), valuation and upside, catalysts, risks and mitigants.
-
-Tip: Variant perception.`, 'D', 'M'],
-
-["Portfolio", "What is portfolio diversification and how is risk measured?",
-`**Answer:** Holding assets with less than perfect correlation reduces unsystematic risk; risk measured via standard deviation, beta, VaR, Sharpe ratio (excess return / volatility).
-
-Tip: Sharpe ratio.`, 'B', 'M'],
-
-["Fixed Income", "How do bond prices relate to interest rates?",
-`**Answer:** Inversely — when rates rise, existing bond prices fall. Duration measures sensitivity: a 5-year duration bond loses ~5% for a 1% rate rise.
-
-Tip: Duration.`, 'B', 'M'],
-
-["Markets", "How would rising interest rates affect valuations?",
-`**Answer:** Higher discount rates reduce present value of future cash flows, especially hurting long-duration growth companies; also raise borrowing costs and can compress multiples.
-
-Tip: Growth stocks hit harder.`, 'B', 'M'],
-
-["Excel", "Which modeling best practices do you follow?",
-`**Answer:** Separate inputs, calculations and outputs; color coding (blue inputs, black formulas); no hard-codes in formulas; consistent time periods; error checks; and clear documentation.
-
-Tip: Model integrity.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a deal you worked on.",
-`**Sample answer:** "I supported a $180M acquisition of a SaaS company — built the DCF and synergy model, led financial diligence workstreams, and identified $6M of debt-like items that reduced the price."
-
-Tip: Your specific contribution.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a time your analysis changed a decision.",
-`**Sample answer:** "Diligence showed the target's top customer (35% of revenue) was up for renewal with signs of churn. We restructured with an earn-out tied to retention."
-
-Tip: Earn-out.`, 'B', 'M'],
-
-["Behavioral", "Why corporate development / investment?",
-`**Answer:** Interest in strategy and capital allocation, analytical work with real decisions, and long-term value creation — tie to the company's strategy.
-
-Tip: Company-specific.`, 'B', 'E'],
-
-["Certifications", "Which credentials matter?",
-`**Answer:** CFA charter, MBA from strong programs, and investment banking experience.
-
-Tip: CFA.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Corporate development director, strategy leader or portfolio manager.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build rigorous models, find what matters in diligence, and communicate clearly to executives — identifying millions in value protection on past deals."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Terminal Value", "Perpetuity growth vs exit multiple method?",
-`**Answer:** **Perpetuity growth** assumes FCF grows at a stable rate forever (usually 2–3%). **Exit multiple** applies a market multiple to final-year EBITDA. Cross-check implied multiples and growth rates.
-
-Tip: Cross-check.`, 'B', 'M'],
-
-["Beta", "How do you get beta for a private company?",
-`**Answer:** Take comparable public companies' levered betas, unlever them (βu = βL / (1 + (1−t) D/E)), average, then relever at the target's capital structure.
-
-Tip: Unlever/relever.`, 'D', 'M'],
-
-["Deal Structure", "Asset deal vs stock deal?",
-`**Answer:** **Asset deal:** buyer picks assets and liabilities, gets tax step-up; seller may face double taxation. **Stock deal:** buyer acquires the entity with all liabilities; simpler transfer of contracts.
-
-Tip: Tax step-up.`, 'D', 'M'],
-
-["Earn-outs", "What is an earn-out?",
-`**Answer:** Contingent consideration paid if the target achieves future milestones — bridging valuation gaps but creating potential disputes.
-
-Tip: Bridges gaps.`, 'B', 'M'],
-
-["Goodwill", "How is goodwill created and tested?",
-`**Answer:** Purchase price above fair value of identifiable net assets (after intangibles) becomes goodwill; tested annually for impairment, not amortized under US GAAP for public companies.
-
-Tip: Purchase price allocation.`, 'B', 'M'],
-
-["Financing", "How do you decide how to finance an acquisition?",
-`**Answer:** Consider cash on hand, debt capacity and cost, impact on credit ratings, dilution from stock, tax effects and seller preferences.
-
-Tip: Cost of capital trade-offs.`, 'D', 'M'],
-
-["EBITDA", "Why is EBITDA used — and what are its limitations?",
-`**Answer:** Proxy for operating cash flow comparable across capital structures; but ignores capex, working capital, taxes and can be manipulated with adjustments.
-
-Tip: Limitations.`, 'B', 'E'],
-
-["FCF", "Levered vs unlevered free cash flow?",
-`**Answer:** **Unlevered** FCF is before interest (for all capital providers, used with WACC/EV). **Levered** FCF is after interest and debt repayments (for equity, used with cost of equity).
-
-Tip: Match discount rate.`, 'B', 'M'],
-
-["Market Sizing", "How do you evaluate a target's market?",
-`**Answer:** TAM/SAM/SOM, growth drivers, competitive landscape, customer interviews, and market share trends.
-
-Tip: Customer calls.`, 'B', 'M'],
-
-["Board", "How do you present an acquisition recommendation to the board?",
-`**Answer:** Strategic rationale, valuation and price range, synergies, financing, risks, integration plan and returns (IRR, accretion, ROIC vs WACC).
-
-Tip: ROIC vs WACC.`, 'D', 'M'],
-
-["Divestiture", "Why would a company divest a business?",
-`**Answer:** Non-core, underperforming, capital needs, regulatory requirements, or higher value to another owner.
-
-Tip: Focus.`, 'B', 'E'],
-
-["IRR", "IRR vs NPV — which is better?",
-`**Answer:** NPV shows absolute value creation and handles scale; IRR shows return rate but can mislead with non-conventional cash flows or comparing projects of different scale. Use both.
-
-Tip: NPV for decisions.`, 'B', 'M'],
-
-["Scenario", "Your DCF gives a value far above comps. What do you do?",
-`**Answer:** Check assumptions: growth, margins, terminal value share (if >75% of value, scrutinize), WACC, and compare implied multiples; reconcile or explain differences.
-
-Tip: Sanity checks.`, 'B', 'M'],
-
-["Scenario", "Target management projections look aggressive. How do you handle it?",
-`**Answer:** Build a base case with your own assumptions, test historical achievement, run sensitivity analyses and value on a risk-adjusted basis.
-
-Tip: Sensitivities.`, 'B', 'M'],
-
-["Sensitivity", "How do you present sensitivity analysis?",
-`**Answer:** Data tables showing valuation across WACC and growth/exit multiple ranges, and scenario cases (bear, base, bull).
-
-Tip: Two-variable tables.`, 'B', 'E'],
-
-["Antitrust", "When do antitrust reviews matter?",
-`**Answer:** Deals above HSR thresholds require filing; horizontal deals in concentrated markets face scrutiny, affecting timing and certainty.
-
-Tip: HSR filing.`, 'D', 'M'],
-
-["Investor Relations", "How do you think about investors' reaction to a deal?",
-`**Answer:** Clear strategic logic, credible synergies, reasonable price and financing, and communication of value creation timeline.
-
-Tip: Narrative.`, 'D', 'M'],
-
-["Current Markets", "What's a recent deal you followed and why?",
-`**Answer:** Choose one in the company's industry, explain the rationale, valuation, financing and whether you think it creates value.
-
-Tip: Do your homework.`, 'B', 'M']
-];
+QB["fs-ib"] = (QB["fs-ib"] || []).concat([
+["Valuation", "Walk me through the three main valuation methods.", "**Why they ask:** foundation of every finance interview.\n\n**Answer:**\n- **Comparable companies (trading comps):** value based on multiples (EV/EBITDA, EV/Revenue, P/E) of similar public companies.\n- **Precedent transactions:** multiples paid in past acquisitions of similar companies (include control premium).\n- **DCF:** present value of projected free cash flows plus terminal value, discounted at WACC.\nResults are shown in a \"football field\" range.\n\nTip: Precedents usually highest due to control premium.", "B", "E"],
+["DCF", "Walk me through a DCF.", "**Why they ask:** the most common technical question.\n\n**Answer:**\n\"I project unlevered free cash flow for five to ten years — EBIT times one minus the tax rate, plus D&A, minus capex, minus the change in net working capital. Then calculate terminal value, either with perpetuity growth — final-year free cash flow times one plus g, divided by WACC minus g — or an exit multiple. I discount the cash flows and terminal value at WACC and add them up to get enterprise value. Subtract net debt to get equity value, and divide by diluted shares for value per share.\"\n\nTip: Know the unlevered FCF formula cold.", "B", "M"],
+["WACC", "How do you calculate WACC?", "**Why they ask:** a core valuation input.\n\n**Answer:**\n\"WACC is the equity weight times the cost of equity, plus the debt weight times the cost of debt times one minus the tax rate. Cost of equity comes from CAPM: risk-free rate plus beta times the market risk premium. For example, with a 4.3% risk-free rate, beta of 1.2 and a 5.5% premium, cost of equity is 10.9%. Debt at 6% with a 25% tax rate is 4.5% after tax. At 70% equity and 30% debt, WACC is 0.7 times 10.9 plus 0.3 times 4.5 — about 9%.\"\n\nTip: Show the numbers.", "B", "M"],
+["EV", "Enterprise value vs equity value?", "**Why they ask:** a fundamental concept.\n\n**Answer:**\n\"Equity value is the market value of the shares. Enterprise value is equity value plus debt, preferred stock and minority interest, minus cash. EV is the value of the operations to all capital providers. And multiples have to match: EV goes with EBITDA or revenue; equity value goes with net income, as in P/E.\"\n\nTip: Match multiples to the right value.", "B", "E"],
+["Accounting", "Walk through how $10 of depreciation affects the three statements.", "**Why they ask:** a classic test of statement linkages.\n\n**Answer:**\n\"On the income statement, operating income falls $10; at a 25% tax rate, net income falls $7.50. On the cash flow statement, net income is down $7.50 but we add back the $10 of depreciation, so cash is up $2.50 — that's the tax saving. On the balance sheet, PP&E is down $10, cash is up $2.50, and retained earnings is down $7.50. Assets down $7.50, equity down $7.50 — it balances.\"\n\nTip: A classic question — practice it until it's smooth.", "B", "E"],
+["Accounting", "How do the three financial statements link?", "**Why they ask:** foundation.\n\n**Answer:**\n\"Net income from the income statement flows to the top of the cash flow statement and into retained earnings on the balance sheet. The cash flow statement adjusts net income for non-cash items and working capital changes, and explains the change in cash on the balance sheet. Ending cash on the cash flow statement equals cash on the balance sheet.\"\n\nTip: Focus on net income and cash links.", "B", "E"],
+["M&A", "Walk through an accretion/dilution analysis.", "**Why they ask:** a key M&A analysis.\n\n**Answer:**\n\"Combine the acquirer's and target's net income, then adjust for synergies, financing costs — after-tax interest on new debt and lost interest on cash used — new shares issued, and amortization of new intangibles. Divide by the new share count and compare pro forma EPS with the acquirer's standalone EPS. A quick rule for an all-stock deal: it's accretive if the target's P/E is lower than the acquirer's.\"\n\nTip: Know the P/E rule of thumb.", "D", "M"],
+["M&A", "Why do companies acquire others?", "**Why they ask:** strategic thinking.\n\n**Answer:**\n\"For growth, market share, new products or geographies, technology and talent, cost and revenue synergies, vertical integration, or defensive reasons — buying a competitor before someone else does. The best deals have a clear strategic reason, not just a cheap price.\"\n\nTip: Lead with strategic rationale.", "B", "E"],
+["Synergies", "Cost vs revenue synergies?", "**Why they ask:** synergy realism.\n\n**Answer:**\n\"Cost synergies come from consolidating functions, procurement savings and facilities — they're more within your control and more reliable. Revenue synergies come from cross-selling and pricing — they depend on customers, so they're harder to achieve. Buyers usually discount revenue synergies heavily or exclude them from the price.\"\n\nTip: Talk about realization risk.", "B", "M"],
+["LBO", "Walk through an LBO model.", "**Why they ask:** private equity basics.\n\n**Answer:**\n\"Determine the purchase price and sources and uses — how much debt and how much sponsor equity. Project cash flows, use free cash flow to pay down debt, then calculate exit value as an exit multiple times EBITDA, subtract remaining debt, and compute IRR and multiple of money on the sponsor's equity. For example, $100 million of equity in and $250 million out after five years is 2.5 times and roughly a 20% IRR. The returns come from paying down debt, growing EBITDA and multiple expansion.\"\n\nTip: Name the three return drivers.", "D", "M"],
+["Due Diligence", "What does M&A due diligence cover?", "**Why they ask:** protecting value.\n\n**Answer:**\n\"Financial — quality of earnings, working capital, debt-like items. Commercial — market and customers. Legal — contracts, litigation and IP. Tax. HR — key people and benefits. IT and cybersecurity. Operations. And ESG. Quality of earnings is usually where price adjustments come from.\"\n\nTip: Highlight quality of earnings.", "B", "M"],
+["QoE", "What is a quality of earnings analysis?", "**Why they ask:** valuation depends on it.\n\n**Answer:**\n\"It adjusts reported EBITDA for non-recurring, non-operating or owner-related items and accounting irregularities, to find sustainable earnings to value. For example, removing a one-time gain on an asset sale, or adding back an owner's above-market salary. At a 10 times multiple, every $1 million of EBITDA adjustment moves price by $10 million.\"\n\nTip: It drives adjusted EBITDA.", "D", "M"],
+["Working Capital", "What is a working capital peg?", "**Why they ask:** a deal mechanic.\n\n**Answer:**\n\"It's a target level of normalized working capital set in the purchase agreement. At closing, if actual working capital is above the peg, the price goes up; if below, it goes down. It stops a seller from collecting receivables or delaying payables just before closing to pull cash out.\"\n\nTip: It's a purchase price adjustment.", "D", "M"],
+["Process", "Describe an M&A process from the buyer side.", "**Why they ask:** process knowledge.\n\n**Answer:**\n\"Strategy and target screening, initial outreach, an NDA, preliminary valuation and an indication of interest. Then management meetings and diligence, a letter of intent, confirmatory diligence, negotiating the definitive agreement, regulatory approvals, closing, and integration. The LOI is the key gate — after it, exclusivity usually starts.\"\n\nTip: Know the LOI stage.", "B", "M"],
+["Integration", "Why do acquisitions fail?", "**Why they ask:** judgment.\n\n**Answer:**\n\"Overpaying, overestimating synergies, culture clashes, poor integration planning, losing key people and customers, and distraction from the core business. Most value is lost after closing, in integration.\"\n\nTip: Emphasize integration planning.", "B", "M"],
+["Multiples", "Why might two similar companies trade at different multiples?", "**Why they ask:** valuation intuition.\n\n**Answer:**\n\"Differences in growth, margins, return on capital, risk, market position, capital structure and sentiment. Usually growth and ROIC explain most of it — a company growing 15% with high returns deserves a higher multiple than one growing 5%.\"\n\nTip: Growth and ROIC.", "B", "M"],
+["Investment", "How would you pitch a stock?", "**Why they ask:** investment thinking.\n\n**Answer:**\n\"A short company overview, then the investment thesis — two or three reasons the market is mispricing it — valuation and upside, catalysts that will make the market see it, and risks with mitigants. The key is the variant view: what do I believe that the market doesn't?\"\n\nTip: Have a variant perception.", "D", "M"],
+["Portfolio", "What is portfolio diversification and how is risk measured?", "**Why they ask:** investment basics.\n\n**Answer:**\n\"Holding assets that aren't perfectly correlated reduces unsystematic, company-specific risk. Risk is measured with standard deviation, beta, value at risk, and the Sharpe ratio — excess return divided by volatility — which shows return per unit of risk.\"\n\nTip: Know the Sharpe ratio.", "B", "M"],
+["Fixed Income", "How do bond prices relate to interest rates?", "**Why they ask:** fixed income basics.\n\n**Answer:**\n\"Inversely — when rates rise, existing bond prices fall, because new bonds pay more. Duration measures sensitivity: a bond with a duration of 5 loses about 5% of its value if rates rise one percentage point.\"\n\nTip: Explain duration.", "B", "M"],
+["Markets", "How would rising interest rates affect valuations?", "**Why they ask:** macro awareness.\n\n**Answer:**\n\"Higher discount rates reduce the present value of future cash flows, which hurts long-duration growth companies most, since most of their value is far in the future. Higher rates also raise borrowing costs and tend to compress multiples.\"\n\nTip: Growth stocks are hit harder.", "B", "M"],
+["Excel", "Which modeling best practices do you follow?", "**Why they ask:** model quality.\n\n**Answer:**\n\"Separate inputs, calculations and outputs. Color coding — blue for inputs, black for formulas. No hard-coded numbers inside formulas. Consistent time periods. Error checks — the balance sheet balances, cash ties. And clear documentation so someone else can audit it.\"\n\nTip: Model integrity.", "B", "E"],
+["Behavioral", "Tell me about a deal you worked on.", "**Why they ask:** proof of contribution.\n\n**Answer:**\n\"I supported a $180 million acquisition of a SaaS company. I built the DCF and synergy model, led the financial diligence workstream, and found $6 million of debt-like items — deferred revenue obligations and unpaid bonuses — that reduced the price.\"\n\nTip: Name your specific contribution.", "B", "M"],
+["Behavioral", "Tell me about a time your analysis changed a decision.", "**Why they ask:** impact.\n\n**Answer:**\n\"Diligence showed the target's top customer — 35% of revenue — was coming up for renewal and showing signs of churn. Instead of walking away, we restructured the deal with an earn-out tied to retaining that customer, which protected us if they left.\"\n\nTip: Mention the earn-out.", "B", "M"],
+["Behavioral", "Why corporate development / investment?", "**Why they ask:** motivation.\n\n**Answer:**\n\"I'm drawn to strategy and capital allocation — analytical work that leads to real, large decisions and long-term value creation. Your company's strategy of growing through acquisitions in adjacent markets is exactly where I want to contribute.\"\n\nTip: Make it company-specific.", "B", "E"],
+["Certifications", "Which credentials matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"The CFA charter, an MBA from a strong program, and investment banking experience are the most valued.\"\n\nTip: CFA.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward corporate development director, a strategy leadership role, or portfolio management.\"\n\nTip: Show direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build rigorous models, find what matters in diligence, and communicate clearly to executives. On past deals, my work protected millions in value.\"\n\nTip: Proof.", "B", "M"],
+["Terminal Value", "Perpetuity growth vs exit multiple method?", "**Why they ask:** terminal value methods.\n\n**Answer:**\n\"Perpetuity growth assumes free cash flow grows at a stable rate forever — usually 2 to 3%. The exit multiple method applies a market multiple to final-year EBITDA. I calculate both and cross-check: what multiple does my growth rate imply, and what growth does my multiple imply? If they disagree wildly, an assumption is wrong.\"\n\nTip: Cross-check the two.", "B", "M"],
+["Beta", "How do you get beta for a private company?", "**Why they ask:** practical valuation.\n\n**Answer:**\n\"Take comparable public companies' levered betas, unlever them — beta levered divided by one plus one minus tax times debt to equity — average them, and then relever at the target's own capital structure.\"\n\nTip: Unlever, then relever.", "D", "M"],
+["Deal Structure", "Asset deal vs stock deal?", "**Why they ask:** deal structure.\n\n**Answer:**\n\"In an asset deal, the buyer picks the assets and liabilities it wants and gets a tax step-up in basis, but the seller may face double taxation. In a stock deal, the buyer acquires the whole entity with all its liabilities, but contracts and licenses usually transfer more easily.\"\n\nTip: Mention the tax step-up.", "D", "M"],
+["Earn-outs", "What is an earn-out?", "**Why they ask:** a deal tool.\n\n**Answer:**\n\"Contingent consideration paid only if the target hits future milestones — revenue or EBITDA targets. It bridges valuation gaps between buyer and seller, but it can create disputes about how the business is run during the earn-out period.\"\n\nTip: It bridges gaps.", "B", "M"],
+["Goodwill", "How is goodwill created and tested?", "**Why they ask:** acquisition accounting.\n\n**Answer:**\n\"In the purchase price allocation, we identify intangibles like customer relationships and technology at fair value. Whatever price is left above the fair value of identifiable net assets is goodwill. Under US GAAP for public companies, it isn't amortized; it's tested for impairment at least annually.\"\n\nTip: Mention purchase price allocation.", "B", "M"],
+["Financing", "How do you decide how to finance an acquisition?", "**Why they ask:** capital structure thinking.\n\n**Answer:**\n\"I consider cash on hand, debt capacity and cost, the impact on credit ratings, dilution from issuing stock, tax effects, and what the seller prefers. It's a trade-off between cost of capital and flexibility.\"\n\nTip: Cost of capital trade-offs.", "D", "M"],
+["EBITDA", "Why is EBITDA used — and what are its limitations?", "**Why they ask:** critical thinking.\n\n**Answer:**\n\"It's a proxy for operating cash flow that's comparable across different capital structures and tax situations. But it ignores capex, working capital and taxes, and 'adjusted' EBITDA can be stretched with aggressive add-backs. A capital-heavy business can look great on EBITDA and still burn cash.\"\n\nTip: Know the limitations.", "B", "E"],
+["FCF", "Levered vs unlevered free cash flow?", "**Why they ask:** valuation consistency.\n\n**Answer:**\n\"Unlevered free cash flow is before interest — it belongs to all capital providers, so it's discounted at WACC to get enterprise value. Levered free cash flow is after interest and debt repayment — it belongs to equity, so it's discounted at the cost of equity. The discount rate has to match the cash flow.\"\n\nTip: Match the discount rate.", "B", "M"],
+["Market Sizing", "How do you evaluate a target's market?", "**Why they ask:** commercial diligence.\n\n**Answer:**\n\"TAM, SAM and SOM, the growth drivers, the competitive landscape, market share trends, and customer interviews. Customer calls often tell you more than any market report.\"\n\nTip: Do customer calls.", "B", "M"],
+["Board", "How do you present an acquisition recommendation to the board?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"The strategic rationale, valuation and price range, synergies, financing, risks, integration plan, and returns — IRR, EPS accretion, and ROIC against WACC over time.\"\n\nTip: ROIC versus WACC.", "D", "M"],
+["Divestiture", "Why would a company divest a business?", "**Why they ask:** portfolio thinking.\n\n**Answer:**\n\"It's non-core, underperforming, needs capital the parent won't provide, there's a regulatory requirement, or another owner would value it more. Divesting can sharpen focus and free capital for better uses.\"\n\nTip: Focus.", "B", "E"],
+["IRR", "IRR vs NPV — which is better?", "**Why they ask:** decision metrics.\n\n**Answer:**\n\"NPV shows absolute value created and handles projects of different size. IRR shows the rate of return, but it can mislead with unusual cash flow patterns or when comparing projects of different scale — a small project can have a higher IRR but create far less value. I use both, but NPV decides.\"\n\nTip: NPV for decisions.", "B", "M"],
+["Scenario", "Your DCF gives a value far above comps. What do you do?", "**Why they ask:** sanity checking.\n\n**Answer:**\n\"Check the assumptions: growth, margins, WACC, and how much of the value is in the terminal value — if it's over 75%, I scrutinize it hard. Compare the implied multiples to comps, and either reconcile or explain the difference. Usually it's an optimistic terminal growth rate.\"\n\nTip: Do sanity checks.", "B", "M"],
+["Scenario", "Target management projections look aggressive. How do you handle it?", "**Why they ask:** skepticism.\n\n**Answer:**\n\"Build my own base case with my own assumptions, test how well they've hit past projections, run sensitivities, and value on a risk-adjusted basis. If management has missed their own plans three years running, I won't pay for the fourth.\"\n\nTip: Run sensitivities.", "B", "M"],
+["Sensitivity", "How do you present sensitivity analysis?", "**Why they ask:** communicating uncertainty.\n\n**Answer:**\n\"Two-variable data tables showing valuation across WACC and growth rate or exit multiple ranges, plus bear, base and bull scenarios. Decision makers want to see the range, not a single false-precise number.\"\n\nTip: Two-variable tables.", "B", "E"],
+["Antitrust", "When do antitrust reviews matter?", "**Why they ask:** deal certainty.\n\n**Answer:**\n\"Deals above the HSR thresholds require a filing and a waiting period. Horizontal deals in concentrated markets get more scrutiny, which affects timing and certainty — and sometimes requires remedies or blocks the deal.\"\n\nTip: Mention the HSR filing.", "D", "M"],
+["Investor Relations", "How do you think about investors' reaction to a deal?", "**Why they ask:** market communication.\n\n**Answer:**\n\"Investors want clear strategic logic, credible synergies, a reasonable price and financing, and a clear timeline for value creation. If you can't explain it in two sentences, the stock usually drops.\"\n\nTip: Have a clear narrative.", "D", "M"],
+["Current Markets", "What's a recent deal you followed and why?", "**Why they ask:** genuine interest.\n\n**Answer:**\n\"I'd pick a deal in your industry and explain the rationale, valuation, financing, and whether I think it creates value. For example — the strategic fit, the multiple paid against peers, how it was financed, and what has to go right on integration for it to work.\"\n\nTip: Do your homework on the company's industry.", "B", "M"]
+]);

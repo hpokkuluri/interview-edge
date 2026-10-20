@@ -1,24 +1,7 @@
-QB['fs-ib'] = (QB['fs-ib']||[]).concat([
-["Accounting", "A company buys $100 of inventory with cash. Effect on the statements?",
-`**Answer:** Income statement: no change. Cash flow: operating cash flow −$100 (increase in inventory). Balance sheet: cash −$100, inventory +$100. It balances.
-
-Tip: Working capital effects.`, 'B', 'E'],
-["Valuation", "Why subtract cash when calculating enterprise value?",
-`**Answer:** An acquirer effectively gets the cash, which offsets the purchase price, and cash is a non-operating asset. EV measures the value of the operating business only.
-
-Tip: Non-operating assets.`, 'B', 'E'],
-["Diluted Shares", "How do you calculate diluted shares (treasury stock method)?",
-`**Answer:** Add in-the-money options and warrants, and assume the exercise proceeds buy back shares at the current price.
-
-**Example:** 10M options at a $20 strike, share price $50 → proceeds $200M buy back 4M shares → net dilution 6M shares.
-
-Tip: Only in-the-money options count.`, 'D', 'M'],
-["Comps", "How do you choose comparable companies?",
-`**Answer:** Similar industry, business model, size, growth, margins and geography. Calculate their multiples on consistent metrics (LTM, NTM), remove outliers, and use median and quartile ranges.
-
-Tip: Use medians, not just averages.`, 'B', 'M'],
-["Synergy Valuation", "How do you value synergies?",
-`**Answer:** Project run-rate synergies with timing and integration costs, apply realization probabilities, and discount at an appropriate rate. Compare the synergy value with the control premium paid.
-
-Tip: Don't pay away all the synergies.`, 'D', 'M']
+QB["fs-ib"] = (QB["fs-ib"] || []).concat([
+["Accounting", "A company buys $100 of inventory with cash. Effect on the statements?", "**Why they ask:** working capital mechanics.\n\n**Answer:**\n\"The income statement doesn't change — nothing has been sold. On the cash flow statement, operating cash flow falls by $100 because inventory increased. On the balance sheet, cash goes down $100 and inventory goes up $100. It balances.\"\n\nTip: Working capital effects.", "B", "E"],
+["Valuation", "Why subtract cash when calculating enterprise value?", "**Why they ask:** EV concept.\n\n**Answer:**\n\"Because an acquirer effectively gets that cash, which offsets the price, and cash is a non-operating asset. Enterprise value measures the value of the operating business only.\"\n\nTip: Cash is non-operating.", "B", "E"],
+["Diluted Shares", "How do you calculate diluted shares (treasury stock method)?", "**Why they ask:** a technical detail.\n\n**Answer:**\n\"Add the in-the-money options and warrants, and assume the exercise proceeds are used to buy back shares at the current price. With 10 million options at a $20 strike and a $50 share price: proceeds of $200 million buy back 4 million shares, so net dilution is 6 million shares.\"\n\nTip: Only in-the-money options count.", "D", "M"],
+["Comps", "How do you choose comparable companies?", "**Why they ask:** comps quality.\n\n**Answer:**\n\"Similar industry, business model, size, growth, margins and geography. I calculate multiples on consistent metrics — LTM or NTM — remove outliers, and use the median and quartile ranges rather than a simple average one outlier can distort.\"\n\nTip: Use medians.", "B", "M"],
+["Synergy Valuation", "How do you value synergies?", "**Why they ask:** avoiding overpayment.\n\n**Answer:**\n\"Project run-rate synergies with their timing and the integration cost to achieve them, apply realization probabilities, and discount them. Then compare the synergy value with the control premium we're paying — if the premium equals all the synergies, we've given the value to the seller.\"\n\nTip: Don't pay away all the synergies.", "D", "M"]
 ]);
