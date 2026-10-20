@@ -1,28 +1,8 @@
-QB['pd-pm'] = (QB['pd-pm']||[]).concat([
-["Funnel", "How would you analyze a conversion funnel?",
-`**Answer:** Define the steps (visit → sign-up → activation → purchase), measure conversion at each step, segment by source, device and cohort, find the biggest drop-off, research why (session recordings, surveys), and test fixes.
-
-**Example:** 10,000 visits → 1,000 sign-ups (10%) → 300 activated (30%) → 60 paid (20%). Activation is the biggest lever.
-
-Tip: Find the biggest lever.`, 'B', 'M'],
-["Unit Economics", "What are CAC and LTV?",
-`**Answer:** **CAC** (customer acquisition cost) = sales and marketing spend / new customers. **LTV** (lifetime value) ≈ average revenue per customer × gross margin × average lifetime. A healthy SaaS benchmark is LTV:CAC ≥ 3 with CAC payback under 12–18 months.
-
-Tip: Know the benchmarks.`, 'D', 'M'],
-["Interview", "How do you run a good customer interview?",
-`**Answer:** Ask about past behavior, not hypothetical futures ("tell me about the last time…"). Use open questions, avoid pitching, listen more than you talk, dig into why, and capture quotes and patterns across interviews.
-
-Tip: The Mom Test principles.`, 'B', 'M'],
-["Deprecation", "How do you sunset a feature?",
-`**Answer:** Analyze usage and cost, understand who depends on it, offer alternatives, communicate early with a timeline, support migration, and monitor feedback.
-
-Tip: Communicate early.`, 'D', 'M'],
-["Trade-offs", "Speed vs quality — how do you decide?",
-`**Answer:** It depends on reversibility and risk. Move fast on reversible, low-risk experiments. Be careful with irreversible decisions (data, security, pricing, core architecture). Define a minimum quality bar.
-
-Tip: One-way vs two-way doors.`, 'B', 'M'],
-["Scenario", "Engagement is up but revenue is flat. What do you investigate?",
-`**Answer:** Whether engaged users are paying segments, pricing and packaging (is value captured?), the conversion path to paid, churn among paying users, and whether engagement reflects real value or vanity activity.
-
-Tip: Value capture.`, 'D', 'M']
+QB["pd-pm"] = (QB["pd-pm"] || []).concat([
+["Funnel", "How would you analyze a conversion funnel?", "**Why they ask:** analytical skill.\n\n**Answer:**\n\"Define the steps — visit, sign-up, activation, purchase — measure conversion between each, segment by source, device and cohort, find the biggest drop-off, research why with session recordings and surveys, and test fixes. For example: 10,000 visits, 1,000 sign-ups at 10%, 300 activated at 30%, 60 paid at 20%. Lifting activation from 30% to 40% adds 20 paying customers — the biggest lever.\"\n\nTip: Find the biggest lever.", "B", "M"],
+["Unit Economics", "What are CAC and LTV?", "**Why they ask:** unit economics.\n\n**Answer:**\n\"CAC, customer acquisition cost, is sales and marketing spend divided by new customers. LTV, lifetime value, is roughly average revenue per customer times gross margin times average lifetime. A healthy SaaS benchmark is LTV to CAC of at least 3, with CAC payback under 12 to 18 months.\"\n\nTip: Know the benchmarks.", "D", "M"],
+["Interview", "How do you run a good customer interview?", "**Why they ask:** discovery craft.\n\n**Answer:**\n\"Ask about past behavior, not hypothetical futures — 'tell me about the last time you did this' — use open questions, don't pitch, listen far more than I talk, dig into why, and capture quotes and patterns across interviews. People are bad at predicting what they'd use and good at describing what they did.\"\n\nTip: The Mom Test principles.", "B", "M"],
+["Deprecation", "How do you sunset a feature?", "**Why they ask:** product lifecycle.\n\n**Answer:**\n\"Analyze usage and cost, find out who depends on it, offer alternatives, communicate early with a clear timeline, support migration, and monitor feedback.\"\n\nTip: Communicate early.", "D", "M"],
+["Trade-offs", "Speed vs quality — how do you decide?", "**Why they ask:** judgment.\n\n**Answer:**\n\"It depends on reversibility and risk. Move fast on reversible, low-risk experiments; be careful with irreversible decisions like data models, security, pricing and core architecture. And always keep a minimum quality bar.\"\n\nTip: One-way vs two-way doors.", "B", "M"],
+["Scenario", "Engagement is up but revenue is flat. What do you investigate?", "**Why they ask:** business thinking.\n\n**Answer:**\n\"Whether the engaged users are in paying segments, whether pricing and packaging capture the value, the conversion path to paid, churn among paying customers, and whether engagement reflects real value or vanity activity.\"\n\nTip: Value capture.", "D", "M"]
 ]);

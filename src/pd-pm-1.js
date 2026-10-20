@@ -1,230 +1,47 @@
 // Product Manager / Product Owner. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['pd-pm'] = [
-["Role", "What does a product manager do?",
-`**Why they ask:** to see if you think about outcomes, not just features.
-
-**Answer:** Owns the product's success: understands customers and market, defines vision and strategy, prioritizes what to build, works with engineering and design to deliver, measures outcomes, and aligns stakeholders. The PM decides "what and why"; engineering decides "how".
-
-Tip: Outcomes over output.`, 'B', 'E'],
-
-["Role", "Product manager vs product owner?",
-`**Answer:** **Product owner** is a Scrum role accountable for maximizing value through backlog management. **Product manager** is a broader job covering discovery, strategy, market and go-to-market. In many companies one person does both.
-
-Tip: Overlap depends on company.`, 'B', 'E'],
-
-["Product Sense", "How would you improve a product you use daily?",
-`**Answer:** Structure: pick the product and a target user, identify their goals and pain points, brainstorm solutions, prioritize by impact and effort, define the MVP, and set success metrics.
-
-**Example:** Google Maps for commuters — pain: unpredictable parking at destination; solution: parking availability predictions; metric: reduction in time-to-park reported, feature adoption.
-
-Tip: User-centered structure.`, 'B', 'M'],
-
-["Prioritization", "How do you prioritize a roadmap?",
-`**Answer:** Align to strategy and goals, assess customer value and business impact, effort and risk, use frameworks (RICE = Reach × Impact × Confidence / Effort, value vs effort, Kano), consider dependencies, and communicate trade-offs.
-
-**RICE example:** Reach 5,000 users, Impact 2, Confidence 80%, Effort 4 person-months → 5,000×2×0.8/4 = 2,000.
-
-Tip: Show your math.`, 'B', 'M'],
-
-["Discovery", "How do you do product discovery?",
-`**Answer:** Customer interviews, data analysis, competitor research, problem framing, assumption mapping, prototypes and experiments to test value, usability, feasibility and viability before building.
-
-Tip: Test riskiest assumptions first.`, 'B', 'M'],
-
-["Metrics", "How do you define success metrics?",
-`**Answer:** Choose a north star metric reflecting customer value, plus input metrics (activation, engagement, retention) and guardrail metrics (performance, churn, support tickets). Use frameworks like HEART or AARRR.
-
-Tip: North star + guardrails.`, 'B', 'M'],
-
-["Metrics", "A key metric dropped 15% this week. How do you investigate?",
-`**Answer:** Check data accuracy (tracking changes), segment by platform, region, cohort, and channel, look at recent releases and external events, check the funnel to find where the drop happens, form hypotheses, and act.
-
-Tip: Validate data first.`, 'B', 'M'],
-
-["Experimentation", "How do you run an A/B test?",
-`**Answer:** Hypothesis, primary metric and guardrails, sample size and duration calculated for statistical power, random assignment, avoid peeking, analyze significance and practical impact, then decide.
-
-Tip: Pre-define success.`, 'D', 'M'],
-
-["Strategy", "How do you build a product strategy?",
-`**Answer:** Understand the market, customers, competitors and company goals; define target segments, value proposition and differentiation; set goals and key bets; and translate into a roadmap of outcomes.
-
-Tip: Where to play, how to win.`, 'D', 'M'],
-
-["Roadmap", "What makes a good roadmap?",
-`**Answer:** Outcome-focused themes (now/next/later), tied to strategy, flexible to learning, communicated by audience, and not a fixed list of features with dates.
-
-Tip: Now/next/later.`, 'B', 'M'],
-
-["Stakeholders", "How do you say no to stakeholders?",
-`**Answer:** Understand the request's goal, explain priorities and trade-offs with data, offer alternatives or timing, and keep relationships positive.
-
-Tip: "Not now" with reasons.`, 'B', 'M'],
-
-["Engineering", "How do you work with engineering?",
-`**Answer:** Share the problem and context early, involve engineers in discovery, respect estimates, collaborate on scope trade-offs, protect the team from churn, and celebrate outcomes.
-
-Tip: Partnership.`, 'B', 'E'],
-
-["Design", "How do you work with designers?",
-`**Answer:** Co-own discovery, share research, define problems not solutions, review prototypes with users, and balance usability with feasibility.
-
-Tip: Problem framing.`, 'B', 'E'],
-
-["Backlog", "How do you manage the backlog?",
-`**Answer:** Keep it ordered and refined, top items ready (clear acceptance criteria, sized), remove stale items, and link items to goals.
-
-Tip: Prune regularly.`, 'B', 'E'],
-
-["MVP", "What is an MVP?",
-`**Answer:** The smallest product that lets you learn whether you're solving a real problem in a valuable way — not a low-quality product. It tests key assumptions with real users.
-
-Tip: Learning goal.`, 'B', 'E'],
-
-["Launch", "How do you launch a product?",
-`**Answer:** Define target customers and positioning, readiness (sales, support, documentation, marketing), phased rollout or beta, monitoring metrics, feedback loops, and post-launch review.
-
-Tip: Phased rollout.`, 'B', 'M'],
-
-["Pricing", "How do you think about pricing?",
-`**Answer:** Value-based pricing, customer willingness to pay research, competitor benchmarks, packaging tiers, and testing; align with costs and business model.
-
-Tip: Value-based.`, 'D', 'M'],
-
-["Technical", "How technical should a PM be?",
-`**Answer:** Enough to understand architecture trade-offs, APIs, data and feasibility, earn engineering trust and make informed decisions — without designing the solution.
-
-Tip: Credibility.`, 'B', 'M'],
-
-["B2B", "How is B2B product management different?",
-`**Answer:** Buyers and users differ, longer sales cycles, customer-specific requests, integrations, security and compliance requirements, and enterprise contracts influence roadmaps.
-
-Tip: Avoid becoming a feature factory for one client.`, 'D', 'M'],
-
-["AI", "How do you manage AI-powered products?",
-`**Answer:** Define the user problem first, measure quality with evaluations, handle uncertainty and errors in UX, monitor cost and latency, address privacy and safety, and iterate with real usage data.
-
-Tip: Evaluations.`, 'D', 'M'],
-
-["Estimation", "Estimate the market size for project management software for small businesses in the US.",
-`**Answer:** ~33 million small businesses; maybe 30% have teams that manage projects (~10M); assume 20% adopt paid tools (~2M businesses); average $20/user × 5 users × 12 months = $1,200/year → ~$2.4B market. State assumptions clearly.
-
-Tip: Structured assumptions.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a product you launched.",
-`**Sample answer:** "I launched a self-service invoice portal for suppliers. Discovery showed 40% of AP calls were status inquiries. After launch, inquiry calls dropped 55% and supplier satisfaction rose."
-
-Tip: Problem, solution, outcome.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a failed product decision.",
-`**Sample answer:** "We built a dashboard customization feature few used. I hadn't validated demand. I now test interest with prototypes and fake-door tests before building."
-
-Tip: Learning.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling disagreement with engineering.",
-`**Sample answer:** "Engineering wanted to rewrite a service before adding features. We quantified tech debt impact on velocity and agreed on a phased refactor alongside features."
-
-Tip: Data-driven compromise.`, 'B', 'M'],
-
-["Behavioral", "Tell me about using data to make a decision.",
-`**Sample answer:** "Usage data showed 70% of users dropped at step 3 of onboarding. We simplified it and completion rose from 45% to 68%."
-
-Tip: Data to action.`, 'B', 'M'],
-
-["Certifications", "Are PM certifications valuable?",
-`**Answer:** CSPO, PSPO, Pragmatic Institute and AIPMM help, but portfolio of outcomes matters more.
-
-Tip: Outcomes > certificates.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior PM, group PM, or director of product.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I find real customer problems, prioritize ruthlessly and deliver measurable outcomes — like cutting supplier inquiry calls 55% and raising onboarding completion by 23 points."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Favorite Product", "What's your favorite product and why?",
-`**Answer:** Choose one, explain who it serves, what problem it solves, why it's well designed (with specifics), and one improvement you'd make.
-
-Tip: Show product thinking.`, 'B', 'E'],
-
-["Customer Feedback", "How do you handle customer feedback?",
-`**Answer:** Collect from many channels, tag and quantify themes, understand the underlying problem, connect to strategy and close the loop with customers.
-
-Tip: Themes not individual requests.`, 'B', 'E'],
-
-["Tech Debt", "How do you balance features with technical debt?",
-`**Answer:** Make debt visible and quantify its impact, allocate capacity (e.g. 20%) for maintenance, and prioritize debt that blocks goals.
-
-Tip: Capacity allocation.`, 'B', 'M'],
-
-["OKRs", "How do you use OKRs?",
-`**Answer:** Objectives are qualitative goals; key results are measurable outcomes; teams align initiatives to key results and review progress regularly.
-
-**Example:** Objective: delight new users. KR: increase 30-day retention from 35% to 45%.
-
-Tip: Outcome KRs.`, 'B', 'M'],
-
-["Competition", "How do you analyze competitors?",
-`**Answer:** Feature and positioning comparison, pricing, customer reviews, win/loss analysis, and focusing on differentiation rather than copying.
-
-Tip: Win/loss interviews.`, 'B', 'M'],
-
-["Personas", "How do you use personas?",
-`**Answer:** Research-based archetypes of users' goals, behaviors and pain points to guide decisions — kept updated with evidence.
-
-Tip: Evidence-based.`, 'B', 'E'],
-
-["Jobs to be Done", "What is Jobs to be Done?",
-`**Answer:** A framework focusing on the progress customers want to make ("job") in a circumstance, rather than demographics — guiding innovation and positioning.
-
-Tip: Circumstance matters.`, 'D', 'M'],
-
-["Retention", "How would you improve retention?",
-`**Answer:** Analyze cohorts to find when users churn, understand reasons (interviews, surveys), improve activation and the "aha" moment, build habits and value, and fix friction.
-
-Tip: Activation drives retention.`, 'D', 'M'],
-
-["Scenario", "Sales demands a feature for a big deal. What do you do?",
-`**Answer:** Understand the customer need, assess fit with strategy and value to other customers, evaluate cost, explore alternatives, and decide with leadership transparently.
-
-Tip: Strategy fit.`, 'B', 'M'],
-
-["Scenario", "Your launch is slipping. What do you do?",
-`**Answer:** Understand causes, re-scope to protect core value, communicate early with stakeholders, and adjust plans.
-
-Tip: Cut scope, not quality.`, 'B', 'M'],
-
-["Communication", "How do you write a product requirements doc?",
-`**Answer:** Problem and context, goals and metrics, users, scope and non-goals, requirements/user stories, design links, open questions, and launch plan.
-
-Tip: Non-goals.`, 'B', 'E'],
-
-["Platform", "How is platform product management different?",
-`**Answer:** Customers are internal developers or partners; success means adoption, developer experience, reliability and API quality.
-
-Tip: Developer experience.`, 'D', 'M'],
-
-["Growth", "What is product-led growth?",
-`**Answer:** Using the product itself (free trials, freemium, self-serve onboarding, virality) as the primary driver of acquisition, conversion and expansion.
-
-Tip: Time to value.`, 'D', 'M'],
-
-["Accessibility", "Why does accessibility matter to PMs?",
-`**Answer:** It expands reach, is often legally required, and improves usability for everyone.
-
-Tip: Include in definition of done.`, 'B', 'E'],
-
-["Ethics", "How do you handle a feature that may harm users' trust?",
-`**Answer:** Evaluate privacy and user impact, consult legal and stakeholders, and choose transparent, user-respecting designs.
-
-Tip: Trust is a long-term asset.`, 'B', 'M'],
-
-["Vision", "How do you communicate product vision?",
-`**Answer:** A concise narrative of the future for customers, why it matters, and how we'll get there — repeated consistently.
-
-Tip: Storytelling.`, 'B', 'M']
-];
+QB["pd-pm"] = (QB["pd-pm"] || []).concat([
+["Role", "What does a product manager do?", "**Why they ask:** to see if you think about outcomes, not just features.\n\n**Answer:** Owns the product's success: understands customers and market, defines vision and strategy, prioritizes what to build, works with engineering and design to deliver, measures outcomes, and aligns stakeholders. The PM decides \"what and why\"; engineering decides \"how\".\n\nTip: Outcomes over output.", "B", "E"],
+["Role", "Product manager vs product owner?", "**Why they ask:** role clarity.\n\n**Answer:**\n\"Product owner is a Scrum accountability: maximizing the value the team delivers through backlog management. Product manager is a broader job: discovery, strategy, market understanding and go-to-market. In many companies one person does both — I've done both, spending mornings with customers and afternoons refining the backlog with engineering.\"\n\nTip: Overlap depends on company.", "B", "E"],
+["Product Sense", "How would you improve a product you use daily?", "**Why they ask:** product thinking in action.\n\n**Answer:**\n\"I'd pick Google Maps for daily commuters. Their goal is arriving on time with less stress; a real pain is not knowing whether there's parking near the destination, so the drive ends with 10 minutes circling. I'd brainstorm options, prioritize parking availability predictions for the destination, since Maps already has location data to infer it, and launch it as an MVP in a few dense cities. Success metrics: feature adoption, and a drop in post-arrival circling detected through location data.\"\n\nTip: User-centered structure.", "B", "M"],
+["Prioritization", "How do you prioritize a roadmap?", "**Why they ask:** prioritization judgment.\n\n**Answer:**\n\"Start with strategy and goals, then assess customer value, business impact, effort and risk, using frameworks like RICE, value versus effort, or Kano, plus dependencies. RICE is reach times impact times confidence divided by effort: reach of 5,000 users, impact 2, 80% confidence and 4 person-months gives 5,000 times 2 times 0.8 divided by 4 — 2,000. Frameworks inform the decision; I still communicate the trade-offs openly.\"\n\nTip: Show your math.", "B", "M"],
+["Discovery", "How do you do product discovery?", "**Why they ask:** building the right thing.\n\n**Answer:**\n\"Customer interviews, data analysis, competitor research, problem framing, then assumption mapping to find the riskiest beliefs, and prototypes or experiments that test value, usability, feasibility and viability before we build. If the riskiest assumption is 'finance teams will trust automated matching', we test that with a prototype before writing production code.\"\n\nTip: Test riskiest assumptions first.", "B", "M"],
+["Metrics", "How do you define success metrics?", "**Why they ask:** outcome orientation.\n\n**Answer:**\n\"A north star metric that reflects customer value — say, invoices processed without manual touch — plus input metrics like activation, engagement and retention, and guardrail metrics like performance, churn and support tickets, so we don't win one number by damaging another. HEART and AARRR are useful frameworks.\"\n\nTip: North star + guardrails.", "B", "M"],
+["Metrics", "A key metric dropped 15% this week. How do you investigate?", "**Why they ask:** analytical thinking.\n\n**Answer:**\n\"First check the data is real — a tracking change or broken event is the most common cause. Then segment by platform, region, cohort and channel, look at recent releases and external events like a holiday, walk the funnel to find where the drop happens, form hypotheses and act. If it's only Android and only since Tuesday's release, I know where to look.\"\n\nTip: Validate data first.", "B", "M"],
+["Experimentation", "How do you run an A/B test?", "**Why they ask:** experimentation rigor.\n\n**Answer:**\n\"Write a hypothesis, choose a primary metric and guardrails, calculate sample size and duration for adequate statistical power, randomize assignment, avoid peeking and stopping early, then analyze both statistical significance and practical impact before deciding. Success criteria are agreed before the test starts.\"\n\nTip: Pre-define success.", "D", "M"],
+["Strategy", "How do you build a product strategy?", "**Why they ask:** strategic depth.\n\n**Answer:**\n\"Understand the market, customers, competitors and company goals; choose target segments, the value proposition and how we'll differentiate; set goals and a few key bets; and translate that into a roadmap of outcomes. In short: where we'll play, and how we'll win there.\"\n\nTip: Where to play, how to win.", "D", "M"],
+["Roadmap", "What makes a good roadmap?", "**Why they ask:** planning philosophy.\n\n**Answer:**\n\"Outcome-focused themes arranged as now, next and later, tied to strategy, flexible as we learn, and communicated differently for each audience. Not a fixed list of features with dates a year out, which becomes a list of broken promises.\"\n\nTip: Now/next/later.", "B", "M"],
+["Stakeholders", "How do you say no to stakeholders?", "**Why they ask:** stakeholder management.\n\n**Answer:**\n\"Understand what the request is really trying to achieve, explain priorities and trade-offs with data, offer alternatives or a timeframe, and keep the relationship positive. Usually it's 'not now, and here's why' — and sometimes an existing feature already solves the underlying problem.\"\n\nTip: \"Not now\" with reasons.", "B", "M"],
+["Engineering", "How do you work with engineering?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Share the problem and context early, involve engineers in discovery, respect their estimates, collaborate on scope trade-offs, protect the team from churn, and celebrate outcomes together. Engineers who understand the customer problem often propose better solutions than I would.\"\n\nTip: Partnership.", "B", "E"],
+["Design", "How do you work with designers?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Co-own discovery, share research, define problems rather than prescribing solutions, test prototypes with users together, and balance usability with feasibility.\"\n\nTip: Problem framing.", "B", "E"],
+["Backlog", "How do you manage the backlog?", "**Why they ask:** execution discipline.\n\n**Answer:**\n\"Keep it ordered and refined, with the top items ready — clear acceptance criteria, sized — remove stale items regularly, and link every item to a goal. A 600-item backlog nobody reads is just a graveyard.\"\n\nTip: Prune regularly.", "B", "E"],
+["MVP", "What is an MVP?", "**Why they ask:** a commonly misused concept.\n\n**Answer:**\n\"The smallest product that lets us learn whether we're solving a real problem in a valuable way. It's not a low-quality product — it's a narrow one that tests key assumptions with real users.\"\n\nTip: Learning goal.", "B", "E"],
+["Launch", "How do you launch a product?", "**Why they ask:** go-to-market skills.\n\n**Answer:**\n\"Define target customers and positioning, make sure sales, support, documentation and marketing are ready, roll out in phases or through a beta, monitor metrics, set up feedback loops, and run a post-launch review.\"\n\nTip: Phased rollout.", "B", "M"],
+["Pricing", "How do you think about pricing?", "**Why they ask:** business acumen.\n\n**Answer:**\n\"Value-based pricing grounded in willingness-to-pay research, competitor benchmarks, packaging into tiers, and testing — aligned with costs and the business model. Price on the value customers get, not on what it cost us to build.\"\n\nTip: Value-based.", "D", "M"],
+["Technical", "How technical should a PM be?", "**Why they ask:** credibility with engineering.\n\n**Answer:**\n\"Technical enough to understand architecture trade-offs, APIs, data and feasibility, to earn engineering's trust and make informed decisions — without designing the solution myself.\"\n\nTip: Credibility.", "B", "M"],
+["B2B", "How is B2B product management different?", "**Why they ask:** context awareness.\n\n**Answer:**\n\"Buyers and users are different people, sales cycles are long, customers ask for specific features, integrations matter, security and compliance requirements are heavy, and contracts influence the roadmap. The risk is becoming a feature factory for one big client.\"\n\nTip: Avoid becoming a feature factory for one client.", "D", "M"],
+["AI", "How do you manage AI-powered products?", "**Why they ask:** current product reality.\n\n**Answer:**\n\"Start from the user problem, not the technology. Measure quality with evaluation sets, design UX for uncertainty and errors — letting users verify and correct — monitor cost and latency, address privacy and safety, and iterate with real usage data.\"\n\nTip: Evaluations.", "D", "M"],
+["Estimation", "Estimate the market size for project management software for small businesses in the US.", "**Why they ask:** structured estimation.\n\n**Answer:**\n\"There are roughly 33 million small businesses in the US. Maybe 30% have teams that actually manage projects — about 10 million. Assume 20% of those pay for a tool — 2 million businesses. At $20 per user for 5 users, times 12 months, that's $1,200 a year each, so about $2.4 billion. I'd sanity-check the assumptions against public revenue of the main players.\"\n\nTip: Structured assumptions.", "D", "M"],
+["Behavioral", "Tell me about a product you launched.", "**Why they ask:** proof.\n\n**Answer:**\n\"I launched a self-service invoice status portal for suppliers. Discovery showed 40% of AP calls were status questions. After launch, those calls dropped 55% and supplier satisfaction rose.\"\n\nTip: Problem, solution, outcome.", "B", "M"],
+["Behavioral", "Tell me about a failed product decision.", "**Why they ask:** learning from failure.\n\n**Answer:**\n\"We built a dashboard customization feature that few people used. I hadn't validated demand. Now I test interest with prototypes and fake-door tests before building anything substantial.\"\n\nTip: Learning.", "B", "M"],
+["Behavioral", "Tell me about handling disagreement with engineering.", "**Why they ask:** conflict resolution.\n\n**Answer:**\n\"Engineering wanted to rewrite a service before adding features. We quantified how much the tech debt was slowing velocity and agreed on a phased refactor alongside feature work.\"\n\nTip: Data-driven compromise.", "B", "M"],
+["Behavioral", "Tell me about using data to make a decision.", "**Why they ask:** data fluency.\n\n**Answer:**\n\"Usage data showed 70% of users dropped at step 3 of onboarding. We simplified that step, and completion rose from 45% to 68%.\"\n\nTip: Data to action.", "B", "M"],
+["Certifications", "Are PM certifications valuable?", "**Why they ask:** credentials view.\n\n**Answer:**\n\"CSPO, PSPO, Pragmatic Institute and AIPMM help with foundations, but a track record of outcomes matters far more.\"\n\nTip: Outcomes > certificates.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior PM, group PM, then director of product.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I find real customer problems, prioritize ruthlessly and deliver measurable outcomes — like cutting supplier inquiry calls 55% and raising onboarding completion by 23 points.\"\n\nTip: Proof.", "B", "E"],
+["Favorite Product", "What's your favorite product and why?", "**Why they ask:** product sense.\n\n**Answer:**\n\"Figma. It serves design teams who need to collaborate, and it solved the 'which file is the latest version?' problem by putting everything in the browser with live multiplayer editing. Details like seeing teammates' cursors make collaboration feel natural. One improvement: better handoff to developers for large design systems, where finding the right component variant is still slow.\"\n\nTip: Show product thinking.", "B", "E"],
+["Customer Feedback", "How do you handle customer feedback?", "**Why they ask:** customer focus.\n\n**Answer:**\n\"Collect it from many channels, tag and quantify themes, dig for the underlying problem behind each request, connect it to strategy, and close the loop with customers so they know they were heard.\"\n\nTip: Themes not individual requests.", "B", "E"],
+["Tech Debt", "How do you balance features with technical debt?", "**Why they ask:** sustainable delivery.\n\n**Answer:**\n\"Make debt visible and quantify its impact, allocate steady capacity — around 20% — for maintenance, and prioritize debt that blocks goals.\"\n\nTip: Capacity allocation.", "B", "M"],
+["OKRs", "How do you use OKRs?", "**Why they ask:** goal setting.\n\n**Answer:**\n\"Objectives are qualitative goals; key results are measurable outcomes; initiatives align to key results and progress is reviewed regularly. For example, objective: delight new users; key result: raise 30-day retention from 35% to 45%.\"\n\nTip: Outcome KRs.", "B", "M"],
+["Competition", "How do you analyze competitors?", "**Why they ask:** market awareness.\n\n**Answer:**\n\"Feature and positioning comparisons, pricing, customer reviews, and win-loss interviews — focused on how we differentiate rather than copying their roadmap.\"\n\nTip: Win/loss interviews.", "B", "M"],
+["Personas", "How do you use personas?", "**Why they ask:** user focus.\n\n**Answer:**\n\"As research-based archetypes of users' goals, behaviors and pain points that guide decisions — kept updated with fresh evidence, not invented once and forgotten.\"\n\nTip: Evidence-based.", "B", "E"],
+["Jobs to be Done", "What is Jobs to be Done?", "**Why they ask:** framework knowledge.\n\n**Answer:**\n\"A framework focused on the progress a customer is trying to make in a particular circumstance — the job — rather than their demographics. Nobody wants an expense app; they want to get reimbursed quickly without saving paper receipts.\"\n\nTip: Circumstance matters.", "D", "M"],
+["Retention", "How would you improve retention?", "**Why they ask:** growth thinking.\n\n**Answer:**\n\"Analyze cohorts to see when users churn, learn why through interviews and surveys, improve activation and the 'aha' moment, build habits and ongoing value, and remove friction. Retention problems often start in onboarding.\"\n\nTip: Activation drives retention.", "D", "M"],
+["Scenario", "Sales demands a feature for a big deal. What do you do?", "**Why they ask:** strategic discipline.\n\n**Answer:**\n\"Understand the customer's actual need, check strategic fit and value to other customers, estimate the cost, explore alternatives, and decide with leadership transparently. If it helps 30 other prospects too, it may move up; if it's a one-off, a services solution may be better.\"\n\nTip: Strategy fit.", "B", "M"],
+["Scenario", "Your launch is slipping. What do you do?", "**Why they ask:** execution under pressure.\n\n**Answer:**\n\"Understand the causes, re-scope to protect the core value, communicate early with stakeholders, and adjust the plan. Cut scope, not quality.\"\n\nTip: Cut scope, not quality.", "B", "M"],
+["Communication", "How do you write a product requirements doc?", "**Why they ask:** communication craft.\n\n**Answer:**\n\"Problem and context, goals and metrics, users, scope and non-goals, requirements or user stories, design links, open questions and the launch plan. Non-goals prevent a lot of scope creep.\"\n\nTip: Non-goals.", "B", "E"],
+["Platform", "How is platform product management different?", "**Why they ask:** product range.\n\n**Answer:**\n\"Customers are internal developers or partners, so success means adoption, developer experience, reliability and API quality rather than end-user engagement.\"\n\nTip: Developer experience.", "D", "M"],
+["Growth", "What is product-led growth?", "**Why they ask:** growth models.\n\n**Answer:**\n\"Using the product itself — free trials, freemium, self-serve onboarding, virality — as the main driver of acquisition, conversion and expansion. Time to value is everything: users should get value in minutes, before any sales call.\"\n\nTip: Time to value.", "D", "M"],
+["Accessibility", "Why does accessibility matter to PMs?", "**Why they ask:** inclusive product thinking.\n\n**Answer:**\n\"It expands reach, it's often legally required, and it improves usability for everyone — captions help people in noisy places too. I put it in the definition of done.\"\n\nTip: Include in definition of done.", "B", "E"],
+["Ethics", "How do you handle a feature that may harm users' trust?", "**Why they ask:** ethics and judgment.\n\n**Answer:**\n\"Evaluate privacy and user impact, consult legal and other stakeholders, and choose transparent, user-respecting designs even if a short-term metric suffers. Trust is a long-term asset.\"\n\nTip: Trust is a long-term asset.", "B", "M"],
+["Vision", "How do you communicate product vision?", "**Why they ask:** leadership.\n\n**Answer:**\n\"A concise narrative of the future for customers, why it matters, and how we'll get there — repeated consistently until the team can tell it themselves.\"\n\nTip: Storytelling.", "B", "M"]
+]);
