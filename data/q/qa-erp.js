@@ -1,263 +1,57 @@
 // qa-erp — generated from src/qa-erp-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // ERP / Oracle Cloud Tester. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['qa-erp'] = [
-["ERP Testing", "How is testing an ERP different from testing a typical web app?",
-`**Why they ask:** ERP testing needs business-process thinking.
-
-**Answer:** You test **end-to-end business processes** across modules (procure-to-pay, order-to-cash, record-to-report), not just screens. Results must be verified in **accounting** (journals, balances, reports). Behavior is **configuration-driven**, so the same screen behaves differently by business unit. There are **roles and approvals**, **batch jobs** (imports, payment runs, close), **integrations**, and SaaS vendors push **quarterly updates** that need regression.
-
-Tip: Mention you always check accounting, not just the UI.`, 'B', 'E'],
-
-["ERP Testing", "Walk me through testing a procure-to-pay scenario in Oracle Fusion.",
-`**Answer:**
-1. Create a requisition; verify approval routing.
-2. Create the purchase order; verify defaults (supplier site, ship-to, accounts) and approval.
-3. Receive the goods; check tolerances and receipt routing.
-4. Create and match the AP invoice (3-way); validate; check holds.
-5. Pay through a payment process request.
-6. Run Create Accounting; verify SLA journals (receipt accrual, liability, cash) and GL balances.
-Negative cases: over-receipt, price variance hold, closed period, inactive supplier.
-
-Tip: Showing the accounting step sets you apart.`, 'B', 'E'],
-
-["ERP Testing", "Walk me through testing an order-to-cash scenario.",
-`**Answer:** Create the customer and sales order; check pricing, credit check and approval; pick, pack and ship; verify inventory decreases and cost of goods sold accounting; AutoInvoice creates the invoice with correct tax; apply a receipt; check AR aging, revenue and receivable accounting in GL. Negative cases: credit hold, insufficient inventory, return (RMA) and credit memo.
-
-Tip: Mention verifying COGS and revenue accounting.`, 'B', 'E'],
-
-["ERP Testing", "Walk me through testing a record-to-report (close) scenario.",
-`**Answer:** Enter manual and recurring journals with approval, run allocations, revalue foreign currency, reconcile subledgers to GL, run intercompany, close subledger periods then GL, run financial reports (FSG/Financial Reporting Studio) and verify balances and consolidation.
-
-Tip: Close testing needs realistic period data.`, 'D', 'M'],
-
-["Test Phases", "What are the testing phases on an ERP implementation?",
-`**Answer:** Configuration/unit testing (consultants), **CRP** (conference room pilots to validate design), **SIT** (system integration testing — end-to-end with integrations), **data migration testing**, **performance testing**, **UAT** (business users), **cutover rehearsals (mock conversions)**, then post-go-live regression for updates.
-
-Tip: Mention multiple SIT cycles.`, 'B', 'E'],
-
-["Test Phases", "SIT vs UAT on an ERP project?",
-`**Answer:** **SIT** is run by the project team to prove processes work end to end across modules and integrations. **UAT** is run by business users with realistic scenarios to confirm the system supports their daily work before sign-off. Both need scripts, data, defect management and exit criteria.
-
-Tip: UAT shouldn't find basic defects — SIT should.`, 'B', 'E'],
-
-["Quarterly Updates", "How do you test Oracle Cloud quarterly updates?",
-`**Answer:** Updates reach the test environment about two weeks before production. Review the What's New and readiness material for changed features and Redwood pages, run the regression suite (ideally automated) across core flows, reports, integrations and extensions, log issues and raise SRs with Oracle, retest fixes, and sign off before production updates.
-
-Tip: Mention the tight two-week window and why automation matters.`, 'B', 'M'],
-
-["Quarterly Updates", "How would you build a regression suite for Oracle Fusion?",
-`**Answer:** Start with critical business processes and their variations (business units, currencies), integrations and interfaces, key reports and BI Publisher outputs, security roles, and known past issues. Prioritize tiers (P1 must-pass), automate the stable P1/P2 flows, and update the suite after every design change.
-
-Tip: Tie the suite to business process documentation.`, 'D', 'M'],
-
-["Automation", "Which tools automate ERP testing?",
-`**Answer:** ERP-focused tools: Opkey, Tricentis Tosca, Worksoft Certify, Panaya, Oracle's own testing offerings. General tools: Selenium/Playwright (harder with complex ERP UIs), plus API testing for REST services and integrations. Choose based on Redwood and classic page support, maintenance effort, business-user friendliness and cost.
-
-Tip: Mention you evaluated tools in a PoC if true.`, 'D', 'M'],
-
-["Automation", "What are the challenges of automating Oracle Fusion UIs?",
-`**Answer:** Dynamic element IDs and complex components (classic ADF pages and newer Redwood pages), frequent UI changes with quarterly updates, long-running scheduled processes (ESS jobs) needing polling, and data dependencies (open periods, valid suppliers and items). Mitigate with ERP-aware tools, API-based data setup, robust waits and modular tests.
-
-Tip: Mention Redwood conversion changing locators.`, 'D', 'S'],
-
-["Test Data", "How do you manage test data in ERP testing?",
-`**Answer:** Prepare master data per scenario — suppliers, customers, items, employees, bank accounts — open accounting periods, valid accounts and cost centers. Plan around environment refreshes (production-to-test clones) and mask sensitive data. For repeatable automation, create data through FBDI or REST APIs.
-
-Tip: Data readiness is usually the biggest risk in SIT.`, 'D', 'M'],
-
-["Data Migration", "How do you test data migration?",
-`**Answer:** Validate record counts source vs target, reconcile financial totals (open AP, AR, GL balances by account), sample-check field values, test that migrated records work in transactions (pay a migrated invoice, ship a migrated order), verify error logs, and run multiple mock conversions with sign-off.
-
-Tip: "Migrated data must be usable, not just loaded."`, 'D', 'M'],
-
-["Integrations", "How do you test an inbound integration into Fusion?",
-`**Answer:** Positive cases (valid records load correctly and appear in the UI and reports), negative cases (invalid data rejected with clear errors), partial failures, duplicates (idempotency), volume, monitoring and alerts, reprocessing of failed records, and reconciliation of counts between source and Fusion.
-
-Tip: Mention testing via OIC monitoring.`, 'D', 'M'],
-
-["Integrations", "How do you test an outbound integration such as a bank payment file?",
-`**Answer:** Generate payments, create the file, and validate format (e.g. NACHA or ISO 20022 XML) against the bank's specification, check amounts, bank details and totals, test special characters and multiple currencies, and do an end-to-end test with the bank's test environment before go-live.
-
-Tip: Bank testing usually needs extra lead time.`, 'D', 'M'],
-
-["Security", "How do you test ERP roles and security?",
-`**Answer:** For each job role, test that users can perform their tasks and **cannot** perform others. Test data security — users only see their business units, ledgers or inventory orgs. Check segregation of duties conflicts and approval routing by role and hierarchy.
-
-Tip: Negative security testing is often skipped — mention you do it.`, 'D', 'M'],
-
-["Reports", "How do you test reports in an ERP?",
-`**Answer:** Validate totals against known transactions and GL balances, check parameters and filters, formatting and output types (PDF, Excel), security (who can run it, what data appears), performance with large data, and scheduled delivery.
-
-Tip: Reconcile report totals to GL.`, 'B', 'E'],
-
-["Approvals", "How do you test approval workflows?",
-`**Answer:** Test each rule (amount thresholds, categories, cost centers), routing up the hierarchy, delegation and vacation rules, rejections and resubmission, timeouts and escalation, and notifications (email and worklist).
-
-Tip: Boundary amounts are key — exactly at the threshold.`, 'B', 'M'],
-
-["Accounting", "Why must ERP testers check accounting entries?",
-`**Answer:** Because many defects don't show in the UI — wrong account, cost center or amount in the journal. For each transaction, verify the subledger journal (SLA), its transfer to GL, and resulting balances. Finance users will reject a system whose accounting is wrong.
-
-Tip: Mention Account Inspector or SLA journal reports.`, 'B', 'E'],
-
-["Defects", "How do you triage ERP defects?",
-`**Answer:** Classify as configuration issue, data issue, training/user error, integration issue, custom extension bug, or product bug (SR to Oracle). Assign to the right owner, set severity by business impact, and track in daily triage during SIT and UAT.
-
-Tip: Knowing these categories shows ERP experience.`, 'D', 'M'],
-
-["Oracle SR", "When and how do you raise an SR with Oracle?",
-`**Answer:** When a defect appears to be standard product behavior not caused by configuration or data. Provide clear steps, environment, screenshots, logs (diagnostics), business impact and severity; reproduce in a vanilla scenario if possible; track until resolved or a workaround is provided.
-
-Tip: Good SRs get faster answers.`, 'D', 'M'],
-
-["Cutover", "What is cutover testing or mock conversion?",
-`**Answer:** A rehearsal of the go-live sequence: data loads in order, configurations, integrations switched, timing of each step, validation and reconciliation, and sign-offs. Multiple mocks reduce go-live risk and confirm the timeline fits the cutover window.
-
-Tip: Mention timing each step.`, 'D', 'M'],
-
-["Performance", "What performance testing matters for an ERP?",
-`**Answer:** Peak online transactions, batch jobs at volume (payment runs, AutoInvoice, MRP, cost processing), integration volumes and month-end close load. For Oracle Cloud, coordinate load tests with Oracle per their policy.
-
-Tip: Month-end is the real peak.`, 'D', 'S'],
-
-["Redwood", "What should you watch for when Redwood pages replace classic pages?",
-`**Answer:** Changed navigation and field placement, different personalization behavior, new or missing fields, changes to automated test locators, and user training needs. Test Redwood pages alongside classic during the transition and update scripts.
-
-Tip: Mention reviewing Oracle's Redwood readiness notes for the update.`, 'D', 'M'],
-
-["Extensions", "How do you test ERP extensions built in Visual Builder or OIC?",
-`**Answer:** Functional tests of the extension's UI and logic, integration with Fusion REST APIs, security (role-based access), error handling, and regression after each quarterly update since APIs and pages can change.
-
-Tip: Extensions are a common source of update regressions.`, 'D', 'S'],
-
-["UAT", "How do you prepare business users for UAT?",
-`**Answer:** Training sessions on the system and on logging defects, clear scripts based on their real scenarios, prepared data and access, a schedule with daily check-ins, and a support team on hand. Track progress and sign-off per process.
-
-Tip: Good UAT preparation prevents chaos.`, 'B', 'M'],
-
-["Metrics", "Which metrics do you report during ERP testing?",
-`**Answer:** Scripts executed vs planned by process, pass rates, defects by severity, module and status, defect aging, blocked tests, and readiness against exit criteria.
-
-Tip: Show readiness by business process.`, 'B', 'M'],
-
-["Strategy", "How would you set up a test strategy for an ERP implementation?",
-`**Answer:** Define phases and entry/exit criteria, scenario library mapped to business processes, roles between consultants, testers and business, environments and data plan, defect management and triage cadence, tools, regression and automation plan after go-live, and reporting.
-
-Tip: Mention a RACI.`, 'D', 'S'],
-
-["Strategy", "How do you prioritize test scenarios when time is short?",
-`**Answer:** Risk-based: financial impact, compliance (SOX, tax), volume, complexity, integrations and past issues. Must-pass processes first (e.g. pay suppliers, invoice customers, payroll, close).
-
-Tip: "Can we pay, bill, and close?"`, 'B', 'M'],
-
-["SoD", "How do you test segregation of duties?",
-`**Answer:** Run SoD analysis on role design (e.g. create supplier vs pay supplier), test that conflicting actions are blocked for a user, and verify compensating controls where conflicts are accepted.
-
-Tip: Mention Oracle Advanced Access Controls if used.`, 'D', 'S'],
-
-["Tax", "How do you test tax calculation in an ERP?",
-`**Answer:** Test scenarios by jurisdiction, product taxability, exemptions and ship-from/ship-to combinations; verify integration with tax engines (Vertex, Avalara) and tax accounting; test VAT and reverse charge for international flows.
-
-Tip: Tax errors are costly — thorough testing pays off.`, 'D', 'M'],
-
-["Multi-entity", "How do you test multi-currency and multi-entity scenarios?",
-`**Answer:** Transactions in foreign currencies with rate types, revaluation and realized gains/losses, intercompany transactions between entities, translation in consolidation, and reporting in each ledger.
-
-Tip: Include rounding checks.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a business-critical defect you found in ERP testing.",
-`**Sample answer:** "During SIT I noticed payments for one country used the wrong bank file format — the file passed system validation but the bank would have rejected all payments. Catching it before go-live avoided a missed supplier payment run."
-
-Tip: Business impact is the story.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling a difficult UAT.",
-`**Sample answer:** "Business users were overwhelmed and logging training questions as defects. I set up daily triage, separated training items from defects, ran quick training sessions, and UAT completed on schedule with a clean defect list."
-
-Tip: Organization under pressure.`, 'B', 'M'],
-
-["Behavioral", "How do you work with functional consultants?",
-`**Answer:** Understand their design, review configuration documents, share defects with clear evidence and business impact, and collaborate on root cause. We both want the business processes to work.
-
-Tip: Partnership tone.`, 'B', 'E'],
-
-["Fusion", "What are ESS jobs and how do they affect testing?",
-`**Answer:** Enterprise Scheduler Service jobs are background processes in Oracle Fusion — imports, accounting, payments, reports. Tests must submit jobs, wait for completion (polling status), check logs and outputs, and verify downstream results.
-
-Tip: Automation must handle job waits.`, 'D', 'M'],
-
-["Fusion", "What is FBDI and how do testers use it?",
-`**Answer:** File-Based Data Import — Excel templates converted to CSV/ZIP files, uploaded and imported via scheduled processes. Testers use it to load test data in bulk and to test data migration and inbound integrations.
-
-Tip: Know the import → load interface → import process flow.`, 'B', 'M'],
-
-["Fusion", "How do you test with OTBI or BI Publisher reports?",
-`**Answer:** Validate report data against transactions and GL, test filters and prompts, security (data visible by role), and scheduled outputs. OTBI is useful for quick validation queries during testing.
-
-Tip: Testers can use OTBI to verify data quickly.`, 'D', 'M'],
-
-["SAP", "How is SAP testing similar or different?",
-`**Answer:** Similar business-process focus (P2P, O2C, R2R) and integration testing. SAP uses transactions (t-codes) or Fiori apps, transports for changes, and tools like Tricentis Tosca and SAP Solution Manager/Cloud ALM for test management. S/4HANA upgrades and RISE releases require regression similar to Oracle updates.
-
-Tip: Shows transferable skills.`, 'D', 'M'],
-
-["Environments", "How do you manage ERP test environments?",
-`**Answer:** Coordinate refresh schedules (P2T clones), post-refresh steps (mask data, update integration endpoints, reset passwords), environment calendars, and quarterly update timing.
-
-Tip: Refresh steps are often forgotten — mention a checklist.`, 'D', 'M'],
-
-["Audit", "Why do auditors care about ERP testing evidence?",
-`**Answer:** For SOX, changes affecting financial reporting need evidence of testing and approval (change management ITGC). Test scripts, results and sign-offs must be retained.
-
-Tip: Keep evidence organized.`, 'D', 'M'],
-
-["Tools", "Which test management tools have you used on ERP projects?",
-`**Sample answer:** "Jira with Zephyr for SIT scripts and defects, Oracle's test templates for processes, and Opkey for regression automation on quarterly updates."
-
-Tip: Be specific.`, 'B', 'E'],
-
-["Leadership", "How would you lead a test team on an ERP project?",
-`**Answer:** Clear process ownership per tester, daily stand-ups and triage, a test calendar aligned to the project plan, data and environment readiness checks, metrics reporting to the PMO, and coaching on business processes.
-
-Tip: Business-process knowledge is the core skill.`, 'D', 'S'],
-
-["Career", "Why ERP testing?",
-`**Sample answer:** "ERP systems run the business — finance, supply chain, HR. Testing them means understanding how the business works and preventing costly issues like failed payments or wrong accounting. I enjoy that mix of business and technical."
-
-Tip: Business impact motivation.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I test ERP processes end to end and always verify the accounting. I've supported SIT, UAT and quarterly updates for Oracle Fusion, built automated regression, and caught issues like a wrong bank file format before go-live."
-
-Tip: ERP-specific proof.`, 'B', 'M'],
-
-["Hypercare", "What happens in hypercare after go-live?",
-`**Answer:** Intensive support for the first weeks: monitoring transactions and integrations, quick triage of issues, daily stand-ups, tracking first-time processes (first payment run, first month-end close), and fixing data or config issues.
-
-Tip: Testers help reproduce and verify fixes.`, 'B', 'M'],
-
-["Negative Testing", "Give examples of negative tests in an ERP.",
-`**Answer:** Entering transactions in closed periods, invalid account combinations, inactive suppliers or customers, exceeding approval limits, duplicate invoice numbers, over-receipt beyond tolerance, and users without required roles.
-
-Tip: Negative tests catch control gaps.`, 'B', 'E'],
-
-["Regression", "What breaks most often after ERP updates?",
-`**Answer:** Custom reports and extensions, integrations relying on changed APIs, personalized pages, approval rules and Redwood page changes.
-
-Tip: Focus regression on customizations.`, 'D', 'M'],
-
-["Communication", "How do you report ERP test status to leadership?",
-`**Answer:** Readiness by business process (green/amber/red), key open defects with business impact, risks to go-live, and decisions needed.
-
-Tip: Process-based, not test-case counts.`, 'B', 'M']
-];
-
-QB['qa-erp'] = (QB['qa-erp'] || []).concat([
-["Fusion", "How do you test Oracle Fusion REST APIs?",
-`**Answer:** Use Postman or automated scripts with a test user's credentials (basic auth or OAuth), call resources like /fscmRestApi/resources/.../invoices to create, query and update records, check status codes and payloads, verify the records in the UI and accounting, and test errors (missing required fields, invalid values, security restrictions).
-
-Tip: APIs are also great for creating test data quickly.`, 'D', 'M'],
-["Period Close", "Why is period status important in ERP testing?",
-`**Answer:** Transactions can only be accounted in open periods. Tests fail with confusing errors if periods aren't open for the dates used. Plan test dates and period statuses (GL, AP, AR, inventory, cost) as part of environment readiness, and include negative tests for closed periods.
-
-Tip: A practical detail that shows real experience.`, 'B', 'E']
+QB["qa-erp"] = (QB["qa-erp"] || []).concat([
+["ERP Testing", "How is testing an ERP different from testing a typical web app?", "**Why they ask:** ERP testing needs business-process thinking.\n\n**Answer:** You test **end-to-end business processes** across modules (procure-to-pay, order-to-cash, record-to-report), not just screens. Results must be verified in **accounting** (journals, balances, reports). Behavior is **configuration-driven**, so the same screen behaves differently by business unit. There are **roles and approvals**, **batch jobs** (imports, payment runs, close), **integrations**, and SaaS vendors push **quarterly updates** that need regression.\n\nTip: Mention you always check accounting, not just the UI.", "B", "E"],
+["ERP Testing", "Walk me through testing a procure-to-pay scenario in Oracle Fusion.", "**Why they ask:** P2P is the core ERP test scenario.\n\n**Answer:**\n\"I'd follow the money end to end. Create a requisition for, say, 10 laptops at $1,000 and confirm it routes to the right approver for a $10,000 amount. Create the purchase order and check defaults — supplier site, ship-to, charge account — and approval. Receive the goods and check receiving tolerances. Create the AP invoice and match it three-way to PO and receipt, validate it, and check no holds. Pay it through a payment process request. Then run Create Accounting and verify the journals: receipt accrual debit inventory or expense and credit accrual, then invoice clearing the accrual against AP liability, then payment debiting liability and crediting cash — and confirm GL balances. Negative cases: over-receipt, a price variance hold when the invoice says $1,050, a closed period, and an inactive supplier.\"\n\nTip: Showing the accounting step sets you apart.", "B", "E"],
+["ERP Testing", "Walk me through testing an order-to-cash scenario.", "**Why they ask:** the revenue side of ERP.\n\n**Answer:**\n\"Create the customer and a sales order; check pricing, the credit check and approval. Pick, pack and ship, verifying inventory decreases and cost of goods sold is accounted. AutoInvoice creates the invoice with correct tax; apply a receipt; then check AR aging, revenue and receivable accounting in GL. Negative cases: a customer on credit hold, insufficient inventory, and a return through an RMA with a credit memo.\"\n\nTip: Mention verifying COGS and revenue accounting.", "B", "E"],
+["ERP Testing", "Walk me through testing a record-to-report (close) scenario.", "**Why they ask:** month-end close is where finance lives.\n\n**Answer:**\n\"Enter manual and recurring journals with approval, run allocations, revalue foreign currency balances, reconcile subledgers to GL, run intercompany, close subledger periods and then GL, and run financial reports from Financial Reporting Studio to verify balances and consolidation. It needs realistic period data — a close test on an empty ledger proves nothing.\"\n\nTip: Close testing needs realistic period data.", "D", "M"],
+["Test Phases", "What are the testing phases on an ERP implementation?", "**Why they ask:** project lifecycle knowledge.\n\n**Answer:**\n\"Configuration and unit testing by consultants, conference room pilots to validate the design with the business, system integration testing end to end with integrations — usually two or three SIT cycles — data migration testing, performance testing, UAT by business users, cutover rehearsals or mock conversions, and then regression testing for every update after go-live.\"\n\nTip: Mention multiple SIT cycles.", "B", "E"],
+["Test Phases", "SIT vs UAT on an ERP project?", "**Why they ask:** a key distinction.\n\n**Answer:**\n\"SIT is run by the project team to prove processes work end to end across modules and integrations. UAT is run by business users with their real scenarios to confirm the system supports their daily work before sign-off. Both need scripts, data, defect management and exit criteria. If UAT is finding basic defects, SIT wasn't thorough enough.\"\n\nTip: UAT shouldn't find basic defects — SIT should.", "B", "E"],
+["Quarterly Updates", "How do you test Oracle Cloud quarterly updates?", "**Why they ask:** quarterly updates are a constant ERP reality.\n\n**Answer:**\n\"The update reaches our test environment about two weeks before production. In that window I review the What's New and readiness material for changed features and Redwood pages, run the regression suite — ideally automated — across core flows, reports, integrations and extensions, log issues and raise SRs with Oracle, retest fixes, and sign off before the production update. Two weeks isn't enough for a full manual regression, which is why automation matters so much here.\"\n\nTip: Mention the tight two-week window and why automation matters.", "B", "M"],
+["Quarterly Updates", "How would you build a regression suite for Oracle Fusion?", "**Why they ask:** sustained quality after go-live.\n\n**Answer:**\n\"Start from critical business processes and their variations — different business units, currencies — then integrations, key reports and BI Publisher outputs, security roles, and past issues. Tier them so P1 tests must pass, automate the stable P1 and P2 flows, and update the suite after every design change. Mapping each test to the business process document keeps it relevant.\"\n\nTip: Tie the suite to business process documentation.", "D", "M"],
+["Automation", "Which tools automate ERP testing?", "**Why they ask:** tooling knowledge.\n\n**Answer:**\n\"ERP-focused tools like Opkey, Tricentis Tosca, Worksoft Certify and Panaya, plus Oracle's own testing offerings. General tools like Selenium or Playwright work but are harder with complex ERP pages, and API testing covers REST services and integrations. I'd choose based on Redwood and classic page support, maintenance effort, business-user friendliness and cost — ideally after a proof of concept on our own processes.\"\n\nTip: Mention you evaluated tools in a PoC if true.", "D", "M"],
+["Automation", "What are the challenges of automating Oracle Fusion UIs?", "**Why they ask:** practical automation experience.\n\n**Answer:**\n\"Dynamic element IDs and complex components across classic ADF pages and newer Redwood pages, UI changes every quarter, long-running ESS jobs that tests must poll until complete, and data dependencies like open periods and valid suppliers and items. I mitigate with ERP-aware tools, API-based data setup, robust waits and modular tests. Redwood conversions in particular change locators, so tests break on update day unless they're designed for it.\"\n\nTip: Mention Redwood conversion changing locators.", "D", "S"],
+["Test Data", "How do you manage test data in ERP testing?", "**Why they ask:** data is the biggest SIT risk.\n\n**Answer:**\n\"Prepare master data per scenario — suppliers, customers, items, employees, bank accounts — plus open accounting periods and valid accounts and cost centers. Plan around environment refreshes from production, mask sensitive data, and for repeatable automation create data through FBDI or REST APIs. In most SIT cycles I've run, missing or wrong data blocked more tests than defects did.\"\n\nTip: Data readiness is usually the biggest risk in SIT.", "D", "M"],
+["Data Migration", "How do you test data migration?", "**Why they ask:** migration errors are high-impact.\n\n**Answer:**\n\"Compare record counts source versus target, reconcile financial totals — open AP, AR and GL balances by account — sample-check field values, and prove migrated records work in transactions: pay a migrated invoice, ship a migrated order, receive against a migrated PO. Check error logs, and run multiple mock conversions with sign-off. If open AP is $4.2 million in legacy, it must be $4.2 million in Fusion.\"\n\nTip: \"Migrated data must be usable, not just loaded.\"", "D", "M"],
+["Integrations", "How do you test an inbound integration into Fusion?", "**Why they ask:** integrations break most often.\n\n**Answer:**\n\"Positive cases — valid records load and show correctly in the UI and reports. Negative cases — invalid data rejected with clear errors. Partial failures, duplicates so a resend doesn't create two invoices, volume, monitoring and alerts, reprocessing of failed records, and reconciling counts between the source and Fusion. I watch runs in the OIC monitoring console to confirm error handling actually fires.\"\n\nTip: Mention testing via OIC monitoring.", "D", "M"],
+["Integrations", "How do you test an outbound integration such as a bank payment file?", "**Why they ask:** payment files are high-risk.\n\n**Answer:**\n\"Generate payments, create the file, and validate the format — NACHA or ISO 20022 XML — against the bank's specification. Check amounts, bank details, control totals, special characters in supplier names and multiple currencies, then run an end-to-end test with the bank's test environment before go-live. Banks often need several weeks to schedule testing, so I book it early.\"\n\nTip: Bank testing usually needs extra lead time.", "D", "M"],
+["Security", "How do you test ERP roles and security?", "**Why they ask:** security is a SOX concern.\n\n**Answer:**\n\"For each job role, test that users can do their tasks and can't do others — an AP clerk can enter invoices but can't approve payments. Test data security: users only see their own business units, ledgers or inventory orgs. Check segregation of duties conflicts and approval routing by role and hierarchy. The negative tests are the ones most often skipped.\"\n\nTip: Negative security testing is often skipped — mention you do it.", "D", "M"],
+["Reports", "How do you test reports in an ERP?", "**Why they ask:** reports drive decisions.\n\n**Answer:**\n\"Validate totals against known transactions and GL balances, check parameters and filters, formatting and output types like PDF and Excel, security — who can run it and what data they see — performance with large data, and scheduled delivery. A trial balance report that doesn't tie to GL is a release blocker.\"\n\nTip: Reconcile report totals to GL.", "B", "E"],
+["Approvals", "How do you test approval workflows?", "**Why they ask:** approvals are full of edge cases.\n\n**Answer:**\n\"Test each rule — amount thresholds, categories, cost centers — routing up the hierarchy, delegation and vacation rules, rejection and resubmission, timeouts and escalation, and notifications in email and the worklist. Boundaries matter: if over $10,000 needs director approval, I test $9,999.99, exactly $10,000 and $10,000.01.\"\n\nTip: Boundary amounts are key — exactly at the threshold.", "B", "M"],
+["Accounting", "Why must ERP testers check accounting entries?", "**Why they ask:** a hallmark of strong ERP testers.\n\n**Answer:**\n\"Because many defects never show in the UI — the invoice looks perfect but hits the wrong account, cost center or amount. For each transaction I check the subledger journal, its transfer to GL and the resulting balances, using Account Inspector or SLA journal reports. Finance will reject a system whose accounting is wrong, no matter how good the screens look.\"\n\nTip: Mention Account Inspector or SLA journal reports.", "B", "E"],
+["Defects", "How do you triage ERP defects?", "**Why they ask:** ERP experience shows in triage.\n\n**Answer:**\n\"Classify each one: configuration issue, data issue, training or user error, integration issue, custom extension bug, or product bug that needs an SR with Oracle. Route it to the right owner, set severity by business impact, and run daily triage during SIT and UAT. Often half the 'defects' in early UAT are training or data.\"\n\nTip: Knowing these categories shows ERP experience.", "D", "M"],
+["Oracle SR", "When and how do you raise an SR with Oracle?", "**Why they ask:** vendor engagement.\n\n**Answer:**\n\"When a defect looks like standard product behavior, not our configuration or data. I provide clear steps, the environment, screenshots, diagnostic logs, business impact and severity, reproduce it in a vanilla scenario if possible, and track it until it's fixed or there's a workaround. A clear SR with a reproducible case gets answered much faster.\"\n\nTip: Good SRs get faster answers.", "D", "M"],
+["Cutover", "What is cutover testing or mock conversion?", "**Why they ask:** go-live readiness.\n\n**Answer:**\n\"A full rehearsal of the go-live sequence: data loads in order, configurations, switching integrations, timing every step, validation and reconciliation, and sign-offs. Multiple mocks reduce risk and prove the plan fits the window — if mock one takes 70 hours and the cutover weekend is 60, we know early.\"\n\nTip: Mention timing each step.", "D", "M"],
+["Performance", "What performance testing matters for an ERP?", "**Why they ask:** non-functional risks.\n\n**Answer:**\n\"Peak online transactions, batch jobs at volume — payment runs, AutoInvoice, MRP, cost processing — integration volumes, and month-end close load, which is the real peak. For Oracle Cloud, load testing has to be coordinated with Oracle under their policy.\"\n\nTip: Month-end is the real peak.", "D", "S"],
+["Redwood", "What should you watch for when Redwood pages replace classic pages?", "**Why they ask:** current Oracle reality.\n\n**Answer:**\n\"Changed navigation and field placement, different personalization behavior, new or missing fields, broken automated test locators, and user training needs. I test Redwood pages alongside classic during the transition, review Oracle's Redwood readiness notes for each update, and update scripts and training materials.\"\n\nTip: Mention reviewing Oracle's Redwood readiness notes for the update.", "D", "M"],
+["Extensions", "How do you test ERP extensions built in Visual Builder or OIC?", "**Why they ask:** extensions break on updates.\n\n**Answer:**\n\"Functional tests of the extension's UI and logic, integration with Fusion REST APIs, role-based security, error handling, and regression after every quarterly update, since APIs and pages can change underneath them.\"\n\nTip: Extensions are a common source of update regressions.", "D", "S"],
+["UAT", "How do you prepare business users for UAT?", "**Why they ask:** UAT success depends on preparation.\n\n**Answer:**\n\"Training on the system and on how to log defects, clear scripts based on their real scenarios, data and access ready before day one, a schedule with daily check-ins, and support people in the room. Then track progress and sign-off per process.\"\n\nTip: Good UAT preparation prevents chaos.", "B", "M"],
+["Metrics", "Which metrics do you report during ERP testing?", "**Why they ask:** reporting.\n\n**Answer:**\n\"Scripts executed versus planned by process, pass rates, defects by severity, module and status, defect aging, blocked tests, and readiness against exit criteria — shown by business process so leaders see 'Procure-to-Pay: green, Order-to-Cash: amber.'\"\n\nTip: Show readiness by business process.", "B", "M"],
+["Strategy", "How would you set up a test strategy for an ERP implementation?", "**Why they ask:** planning ability.\n\n**Answer:**\n\"Define phases with entry and exit criteria, a scenario library mapped to business processes, a RACI between consultants, testers and the business, environment and data plans, defect management and triage cadence, tools, the regression and automation plan for after go-live, and reporting.\"\n\nTip: Mention a RACI.", "D", "S"],
+["Strategy", "How do you prioritize test scenarios when time is short?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"By risk: financial impact, compliance like SOX and tax, volume, complexity, integrations and past issues. Must-pass processes come first — can we pay suppliers, invoice customers, run payroll and close the books?\"\n\nTip: \"Can we pay, bill, and close?\"", "B", "M"],
+["SoD", "How do you test segregation of duties?", "**Why they ask:** control testing.\n\n**Answer:**\n\"Run SoD analysis on the role design — like create supplier versus pay supplier — test that a user is actually blocked from the conflicting action, and verify compensating controls where a conflict is accepted. Oracle Advanced Access Controls can automate the analysis if it's licensed.\"\n\nTip: Mention Oracle Advanced Access Controls if used.", "D", "S"],
+["Tax", "How do you test tax calculation in an ERP?", "**Why they ask:** tax errors are costly.\n\n**Answer:**\n\"Scenarios by jurisdiction, product taxability, exemptions and ship-from/ship-to combinations; integration with tax engines like Vertex or Avalara and the tax accounting; and VAT and reverse charge for international flows. A shipment from Texas to an exempt customer in California should calculate zero tax and record the exemption certificate.\"\n\nTip: Tax errors are costly — thorough testing pays off.", "D", "M"],
+["Multi-entity", "How do you test multi-currency and multi-entity scenarios?", "**Why they ask:** global ERP complexity.\n\n**Answer:**\n\"Foreign-currency transactions with the right rate types, revaluation and realized gains and losses, intercompany transactions between entities that net to zero, translation in consolidation, and reporting in each ledger — including rounding checks, which are a classic source of small but annoying differences.\"\n\nTip: Include rounding checks.", "D", "M"],
+["Behavioral", "Tell me about a business-critical defect you found in ERP testing.", "**Why they ask:** proof of impact.\n\n**Answer:**\n\"During SIT I noticed payments for one country used the wrong bank file format. The file passed system validation, but the bank would have rejected every payment. Catching it before go-live avoided a missed supplier payment run.\"\n\nTip: Business impact is the story.", "B", "M"],
+["Behavioral", "Tell me about handling a difficult UAT.", "**Why they ask:** organization under pressure.\n\n**Answer:**\n\"Business users were overwhelmed and logging training questions as defects. I set up daily triage, separated training items from real defects, ran quick training sessions, and UAT finished on schedule with a clean defect list.\"\n\nTip: Organization under pressure.", "B", "M"],
+["Behavioral", "How do you work with functional consultants?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Understand their design, review the configuration documents, raise defects with clear evidence and business impact, and work through root cause together. We both want the processes to work.\"\n\nTip: Partnership tone.", "B", "E"],
+["Fusion", "What are ESS jobs and how do they affect testing?", "**Why they ask:** Oracle-specific knowledge.\n\n**Answer:**\n\"Enterprise Scheduler Service jobs are background processes in Fusion — imports, Create Accounting, payments, reports. Tests have to submit the job, poll its status until it finishes, check the log and output, and verify the downstream results. Automation must handle these waits properly or it'll be flaky.\"\n\nTip: Automation must handle job waits.", "D", "M"],
+["Fusion", "What is FBDI and how do testers use it?", "**Why they ask:** data loading knowledge.\n\n**Answer:**\n\"File-Based Data Import: Excel templates generate CSV files zipped and uploaded, then 'Load Interface File for Import' loads them into interface tables and an import process creates the records. Testers use it to load test data in bulk and to test data migration and inbound integrations — including checking the error reports for rejected rows.\"\n\nTip: Know the import → load interface → import process flow.", "B", "M"],
+["Fusion", "How do you test with OTBI or BI Publisher reports?", "**Why they ask:** reporting tools.\n\n**Answer:**\n\"Validate report data against transactions and GL, test filters and prompts, security by role, and scheduled outputs. I also use OTBI as a testing tool — a quick analysis is often the fastest way to confirm 500 migrated records look right.\"\n\nTip: Testers can use OTBI to verify data quickly.", "D", "M"],
+["SAP", "How is SAP testing similar or different?", "**Why they ask:** transferable skills.\n\n**Answer:**\n\"The business-process focus — P2P, O2C, R2R — and integration testing are the same. SAP uses transactions or Fiori apps, transports to move changes, and tools like Tricentis Tosca and SAP Solution Manager or Cloud ALM for test management. S/4HANA upgrades and RISE releases need regression just like Oracle's quarterly updates.\"\n\nTip: Shows transferable skills.", "D", "M"],
+["Environments", "How do you manage ERP test environments?", "**Why they ask:** environment discipline.\n\n**Answer:**\n\"Coordinate refresh schedules for production-to-test clones, run post-refresh steps — mask data, repoint integration endpoints away from production, reset passwords — keep an environment calendar, and plan around quarterly update timing. Forgetting to repoint an integration after a refresh can send test payments to a real bank, so it's on a checklist.\"\n\nTip: Refresh steps are often forgotten — mention a checklist.", "D", "M"],
+["Audit", "Why do auditors care about ERP testing evidence?", "**Why they ask:** compliance awareness.\n\n**Answer:**\n\"Under SOX, changes affecting financial reporting need evidence of testing and approval as part of change management ITGCs. Test scripts, results and sign-offs must be retained and easy to produce.\"\n\nTip: Keep evidence organized.", "D", "M"],
+["Tools", "Which test management tools have you used on ERP projects?", "**Why they ask:** tooling experience.\n\n**Answer:**\n\"Jira with Zephyr for SIT scripts and defects, Oracle's process test templates, and Opkey for regression automation on quarterly updates.\"\n\nTip: Be specific.", "B", "E"],
+["Leadership", "How would you lead a test team on an ERP project?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Clear process ownership per tester, daily stand-ups and triage, a test calendar aligned to the project plan, data and environment readiness checks before each cycle, metrics to the PMO, and coaching the team on the business processes themselves.\"\n\nTip: Business-process knowledge is the core skill.", "D", "S"],
+["Career", "Why ERP testing?", "**Why they ask:** motivation.\n\n**Answer:**\n\"ERP systems run the business — finance, supply chain, HR. Testing them means understanding how the business works and preventing expensive problems like failed payments or wrong accounting. I enjoy that mix of business and technical work.\"\n\nTip: Business impact motivation.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I test ERP processes end to end and always verify the accounting. I've supported SIT, UAT and quarterly updates for Oracle Fusion, built automated regression, and caught issues like a wrong bank file format before go-live.\"\n\nTip: ERP-specific proof.", "B", "M"],
+["Hypercare", "What happens in hypercare after go-live?", "**Why they ask:** post-go-live experience.\n\n**Answer:**\n\"Intensive support for the first few weeks: monitoring transactions and integrations, fast triage, daily stand-ups, and close watch on first-time events — the first payment run, the first month-end close. Testers reproduce issues and verify fixes quickly.\"\n\nTip: Testers help reproduce and verify fixes.", "B", "M"],
+["Negative Testing", "Give examples of negative tests in an ERP.", "**Why they ask:** control thinking.\n\n**Answer:**\n\"Entering transactions in a closed period, invalid account combinations, inactive suppliers or customers, exceeding approval limits, duplicate invoice numbers, over-receipt beyond tolerance, and users without the required roles trying the action.\"\n\nTip: Negative tests catch control gaps.", "B", "E"],
+["Regression", "What breaks most often after ERP updates?", "**Why they ask:** focus for regression.\n\n**Answer:**\n\"Custom reports and extensions, integrations relying on changed APIs, personalized pages, approval rules and Redwood page changes. So regression effort goes heaviest on customizations.\"\n\nTip: Focus regression on customizations.", "D", "M"],
+["Communication", "How do you report ERP test status to leadership?", "**Why they ask:** executive communication.\n\n**Answer:**\n\"Readiness by business process in green, amber or red, the key open defects with their business impact, risks to go-live, and decisions needed — not test case counts.\"\n\nTip: Process-based, not test-case counts.", "B", "M"]
+]);
+
+QB["qa-erp"] = (QB["qa-erp"] || []).concat([
+["Fusion", "How do you test Oracle Fusion REST APIs?", "**Why they ask:** API skills in ERP.\n\n**Answer:**\n\"Postman or automated scripts with a test user's credentials through basic auth or OAuth, calling resources under /fscmRestApi/resources — like the invoices resource — to create, query and update records. I check status codes and payloads, verify the records in the UI and accounting, and test errors: missing required fields, invalid values and security restrictions. APIs are also the fastest way to create test data.\"\n\nTip: APIs are also great for creating test data quickly.", "D", "M"],
+["Period Close", "Why is period status important in ERP testing?", "**Why they ask:** practical ERP detail.\n\n**Answer:**\n\"Transactions can only be accounted in open periods, so tests fail with confusing errors if the GL, AP, AR, inventory or cost periods aren't open for the dates used. I plan test dates and period statuses as part of environment readiness, and include negative tests for closed periods.\"\n\nTip: A practical detail that shows real experience.", "B", "E"]
 ]);

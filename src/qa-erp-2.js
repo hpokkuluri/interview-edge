@@ -1,10 +1,4 @@
-QB['qa-erp'] = (QB['qa-erp'] || []).concat([
-["Fusion", "How do you test Oracle Fusion REST APIs?",
-`**Answer:** Use Postman or automated scripts with a test user's credentials (basic auth or OAuth), call resources like /fscmRestApi/resources/.../invoices to create, query and update records, check status codes and payloads, verify the records in the UI and accounting, and test errors (missing required fields, invalid values, security restrictions).
-
-Tip: APIs are also great for creating test data quickly.`, 'D', 'M'],
-["Period Close", "Why is period status important in ERP testing?",
-`**Answer:** Transactions can only be accounted in open periods. Tests fail with confusing errors if periods aren't open for the dates used. Plan test dates and period statuses (GL, AP, AR, inventory, cost) as part of environment readiness, and include negative tests for closed periods.
-
-Tip: A practical detail that shows real experience.`, 'B', 'E']
+QB["qa-erp"] = (QB["qa-erp"] || []).concat([
+["Fusion", "How do you test Oracle Fusion REST APIs?", "**Why they ask:** API skills in ERP.\n\n**Answer:**\n\"Postman or automated scripts with a test user's credentials through basic auth or OAuth, calling resources under /fscmRestApi/resources — like the invoices resource — to create, query and update records. I check status codes and payloads, verify the records in the UI and accounting, and test errors: missing required fields, invalid values and security restrictions. APIs are also the fastest way to create test data.\"\n\nTip: APIs are also great for creating test data quickly.", "D", "M"],
+["Period Close", "Why is period status important in ERP testing?", "**Why they ask:** practical ERP detail.\n\n**Answer:**\n\"Transactions can only be accounted in open periods, so tests fail with confusing errors if the GL, AP, AR, inventory or cost periods aren't open for the dates used. I plan test dates and period statuses as part of environment readiness, and include negative tests for closed periods.\"\n\nTip: A practical detail that shows real experience.", "B", "E"]
 ]);
