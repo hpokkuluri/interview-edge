@@ -1,232 +1,47 @@
 // Manufacturing / Process Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ss-mfgeng'] = [
-["Role", "What does a manufacturing engineer do?",
-`**Why they ask:** baseline and industry context.
-
-**Answer:** Designs, improves and supports manufacturing processes: process development and validation, work instructions, equipment and tooling, line layout, capacity and cycle time improvement, quality and yield improvement, cost reduction, new product introduction, and troubleshooting production issues.
-
-Tip: Name the industry and processes.`, 'B', 'E'],
-
-["Lean", "What are the core lean principles?",
-`**Answer:** Define value from the customer's view, map the value stream, create flow, establish pull, and pursue perfection — eliminating waste (TIMWOODS: transport, inventory, motion, waiting, overproduction, overprocessing, defects, skills unused).
-
-Tip: TIMWOODS.`, 'B', 'E'],
-
-["Lean", "What is value stream mapping?",
-`**Answer:** Diagramming material and information flow from supplier to customer with process data (cycle time, changeover, uptime, inventory), calculating lead time vs value-added time, then designing a future state.
-
-Tip: Lead time vs VA time.`, 'B', 'M'],
-
-["OEE", "How do you calculate OEE?",
-`**Answer:** OEE = Availability × Performance × Quality.
-
-**Example:** planned 480 min, downtime 60 → availability 87.5%; ideal cycle 1 min, produced 380 → performance 380/420 = 90.5%; good 361 → quality 95%. OEE ≈ 75%. World-class ~85%.
-
-Tip: Show calculation.`, 'B', 'M'],
-
-["Takt", "What is takt time?",
-`**Answer:** Available production time / customer demand.
-
-**Example:** 450 minutes / 900 units = 0.5 min (30 seconds) per unit. Balance stations to takt.
-
-Tip: Pace of demand.`, 'B', 'E'],
-
-["Line Balancing", "How do you balance a line?",
-`**Answer:** List tasks with times and precedence, calculate takt, assign tasks to stations without exceeding takt, minimize idle time; line efficiency = total task time / (stations × takt).
-
-Tip: Precedence constraints.`, 'D', 'M'],
-
-["SMED", "What is SMED?",
-`**Answer:** Single-Minute Exchange of Die: reduce changeover time by separating internal (machine stopped) from external (machine running) activities, converting internal to external, and streamlining both.
-
-Tip: Internal vs external.`, 'B', 'M'],
-
-["Six Sigma", "Explain DMAIC.",
-`**Answer:** Define (problem, scope, CTQs), Measure (baseline, MSA), Analyze (root cause with data), Improve (solutions, pilot), Control (control plans, SPC).
-
-Tip: Data-driven.`, 'B', 'E'],
-
-["SPC", "What is statistical process control?",
-`**Answer:** Using control charts (X-bar/R, I-MR, p-charts) to monitor process variation, distinguishing common cause from special cause variation, and reacting to out-of-control signals (Western Electric rules).
-
-Tip: Common vs special cause.`, 'B', 'M'],
-
-["Capability", "What are Cp and Cpk?",
-`**Answer:** **Cp** = (USL − LSL) / 6σ — potential capability. **Cpk** = min(USL − μ, μ − LSL) / 3σ — actual capability accounting for centering. Cpk ≥ 1.33 is typical target.
-
-**Example:** USL 10.5, LSL 9.5, μ 10.1, σ 0.1 → Cp = 1.0 / 0.6 = 1.67; Cpk = min((10.5 − 10.1)/0.3, (10.1 − 9.5)/0.3) = min(1.33, 2.0) = 1.33.
-
-Tip: Centering.`, 'D', 'M'],
-
-["MSA", "What is Gage R&R?",
-`**Answer:** Measurement system analysis assessing repeatability (same operator/gauge) and reproducibility (different operators). Under 10% of tolerance is good; 10–30% may be acceptable; over 30% needs improvement.
-
-Tip: Measure before analyzing.`, 'D', 'M'],
-
-["Root Cause", "Which root cause tools do you use?",
-`**Answer:** 5 Whys, fishbone diagrams, Pareto analysis, fault tree analysis, is/is-not analysis, and designed experiments.
-
-Tip: Verify root cause with data.`, 'B', 'E'],
-
-["FMEA", "What is PFMEA?",
-`**Answer:** Process Failure Mode and Effects Analysis identifies potential failure modes, effects, causes and controls, rated for severity, occurrence and detection (RPN or AIAG-VDA action priority), driving preventive actions.
-
-Tip: AIAG-VDA action priority.`, 'B', 'M'],
-
-["Validation", "What are IQ, OQ and PQ?",
-`**Answer:** **Installation Qualification** (installed correctly), **Operational Qualification** (operates within limits across ranges), **Performance Qualification** (consistently produces acceptable product under normal conditions) — key in regulated industries.
-
-Tip: Medical/pharma relevance.`, 'D', 'M'],
-
-["NPI", "How do you support new product introduction?",
-`**Answer:** Design for manufacturability reviews, process design, PFMEA and control plans, tooling and fixtures, pilot builds, capability studies, work instructions, training, and ramp-up support (APQP/PPAP in automotive).
-
-Tip: APQP/PPAP.`, 'B', 'M'],
-
-["DFM", "What is design for manufacturability?",
-`**Answer:** Designing products to be easy and cost-effective to produce: fewer parts, standard components, tolerances matched to process capability, error-proof assembly and accessibility.
-
-Tip: Tolerance stack-up.`, 'B', 'M'],
-
-["Poka-yoke", "What is poka-yoke?",
-`**Answer:** Error-proofing devices or methods that prevent or detect mistakes — e.g. asymmetric connectors, sensors detecting missing parts, fixtures that only fit one way.
-
-Tip: Prevention over detection.`, 'B', 'E'],
-
-["5S", "What is 5S?",
-`**Answer:** Sort, Set in order, Shine, Standardize, Sustain — workplace organization reducing waste and improving safety and quality.
-
-Tip: Sustain is hardest.`, 'B', 'E'],
-
-["Standard Work", "What is standard work?",
-`**Answer:** Documented best method with takt time, work sequence and standard WIP — the baseline for improvement and training.
-
-Tip: Basis for kaizen.`, 'B', 'E'],
-
-["Automation", "How do you evaluate an automation project?",
-`**Answer:** Analyze the process stability first, calculate labor savings, quality and capacity gains vs capital and maintenance costs, compute payback/ROI, and consider flexibility and risks.
-
-**Example:** $300K robot saving 2 operators ($140K/year) → ~2.1-year payback.
-
-Tip: Stabilize before automating.`, 'B', 'M'],
-
-["Industry 4.0", "What Industry 4.0 technologies have you used?",
-`**Answer:** IoT sensors and machine monitoring, MES, digital work instructions, predictive maintenance, vision inspection with AI, and digital twins.
-
-Tip: MES.`, 'B', 'M'],
-
-["Safety", "How do you address safety in process design?",
-`**Answer:** Risk assessments, hierarchy of controls (eliminate, substitute, engineering controls, administrative, PPE), ergonomics, machine guarding and lockout/tagout.
-
-Tip: Hierarchy of controls.`, 'B', 'E'],
-
-["Cost", "How do you reduce manufacturing cost?",
-`**Answer:** Improve yield and scrap, cycle time and OEE, reduce changeovers, material utilization, automation, value engineering and energy efficiency.
-
-Tip: Scrap first.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a process improvement you led.",
-`**Sample answer:** "Scrap on a molding line was 6%. Using DMAIC, I found mold temperature variation; installing better control and SPC reduced scrap to 1.5%, saving $380K/year."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about troubleshooting a production stoppage.",
-`**Sample answer:** "A line stopped due to intermittent sensor faults. I traced it to cable wear from motion, rerouted cables and added strain relief, restoring uptime within shift."
-
-Tip: Systematic.`, 'B', 'M'],
-
-["Behavioral", "How do you work with operators?",
-`**Answer:** Go to the gemba, listen, involve them in improvements, respect their knowledge and train them.
-
-Tip: Gemba.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** Six Sigma Green/Black Belt, Lean certification, PE license, and SME Certified Manufacturing Engineer.
-
-Tip: Black Belt.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior/lead engineer, engineering manager or operations manager.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I improve processes with data and teamwork — cutting scrap 75% and improving OEE — while supporting production daily."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Kaizen", "How do you run a kaizen event?",
-`**Answer:** Select scope and team, baseline data, train, analyze current state on the floor, implement improvements rapidly (3–5 days), standardize and follow up.
-
-Tip: Follow-up.`, 'B', 'E'],
-
-["Kanban", "How does kanban work in manufacturing?",
-`**Answer:** Pull signals (cards, bins, electronic) trigger replenishment; number of kanbans = (demand × lead time × (1 + safety)) / container size.
-
-Tip: Calculation.`, 'B', 'M'],
-
-["Bottleneck", "How do you find and manage a bottleneck?",
-`**Answer:** Look for queues, highest utilization and longest cycle times; apply Theory of Constraints: identify, exploit, subordinate, elevate, repeat.
-
-Tip: TOC.`, 'B', 'M'],
-
-["DOE", "When do you use design of experiments?",
-`**Answer:** To understand how multiple factors affect outcomes and interactions efficiently — e.g. full or fractional factorial designs to optimize process settings.
-
-Tip: Interactions.`, 'D', 'M'],
-
-["Quality", "How do you handle a customer complaint about defects?",
-`**Answer:** Contain (sort, quarantine), root cause analysis (8D), corrective and preventive actions, verify effectiveness, update PFMEA and control plans.
-
-Tip: 8D.`, 'B', 'M'],
-
-["Documentation", "What documentation do you maintain?",
-`**Answer:** Process flow diagrams, PFMEA, control plans, work instructions, routings, validation reports, and change records.
-
-Tip: Linkage of documents.`, 'B', 'E'],
-
-["Change Control", "How do you manage process changes?",
-`**Answer:** Engineering change requests with risk assessment, validation, customer notification if required, documentation updates and training.
-
-Tip: Customer notification.`, 'B', 'M'],
-
-["Ergonomics", "How do you address ergonomics?",
-`**Answer:** Assess tasks (RULA/REBA), reduce reaching, lifting and repetitive motions with fixtures, lifts and layout changes.
-
-Tip: Assessment tools.`, 'B', 'E'],
-
-["Layout", "How do you design a production layout?",
-`**Answer:** Analyze flow and volumes, choose layout type (cellular, line, process), minimize transport and motion, consider safety and flexibility.
-
-Tip: Cellular manufacturing.`, 'B', 'M'],
-
-["Scenario", "Demand doubles in 3 months. What do you do?",
-`**Answer:** Analyze capacity and bottlenecks, improve OEE, add shifts, duplicate tooling, outsource selectively, and plan capital if needed.
-
-Tip: Quick wins first.`, 'B', 'M'],
-
-["Scenario", "Yield dropped suddenly. How do you respond?",
-`**Answer:** Contain, check recent changes (materials, settings, operators, maintenance), use data and SPC to isolate cause, fix and verify.
-
-Tip: What changed.`, 'B', 'M'],
-
-["Energy", "How do you reduce energy use in manufacturing?",
-`**Answer:** Monitor usage, fix compressed air leaks, optimize equipment idle states, efficient motors and lighting, and heat recovery.
-
-Tip: Compressed air.`, 'D', 'M'],
-
-["Metrics", "Which manufacturing metrics do you track?",
-`**Answer:** OEE, first-pass yield, scrap, cycle time, throughput, changeover time, safety incidents and cost per unit.
-
-Tip: FPY.`, 'B', 'E'],
-
-["Tolerance", "What is tolerance stack-up analysis?",
-`**Answer:** Calculating cumulative variation of part dimensions in an assembly using worst-case or statistical (RSS) methods to ensure fit and function.
-
-Tip: RSS.`, 'D', 'M'],
-
-["CAD/CAM", "Which tools do you use?",
-`**Answer:** SolidWorks, AutoCAD, CATIA, Minitab, MES and ERP systems, and PLC basics.
-
-Tip: Minitab.`, 'B', 'E']
-];
+QB["ss-mfgeng"] = (QB["ss-mfgeng"] || []).concat([
+["Role", "What does a manufacturing engineer do?", "**Why they ask:** baseline and industry context.\n\n**Answer:** Designs, improves and supports manufacturing processes: process development and validation, work instructions, equipment and tooling, line layout, capacity and cycle time improvement, quality and yield improvement, cost reduction, new product introduction, and troubleshooting production issues.\n\nTip: Name the industry and processes.", "B", "E"],
+["Lean", "What are the core lean principles?", "**Why they ask:** the foundation of the role.\n\n**Answer:**\n\"Define value from the customer's view, map the value stream, create flow, establish pull, and pursue perfection — all by eliminating waste. I remember the wastes as TIMWOODS: transport, inventory, motion, waiting, overproduction, overprocessing, defects, and skills unused.\"\n\nTip: Use TIMWOODS.", "B", "E"],
+["Lean", "What is value stream mapping?", "**Why they ask:** a core diagnostic.\n\n**Answer:**\n\"It's diagramming material and information flow from supplier to customer with process data — cycle time, changeover, uptime and inventory at each step. Then I compare total lead time with value-added time, and design a future state. On one product family, lead time was 15 days and value-added time was 40 minutes — the rest was queues.\"\n\nTip: Compare lead time with value-added time.", "B", "M"],
+["OEE", "How do you calculate OEE?", "**Why they ask:** the key equipment metric.\n\n**Answer:**\n\"OEE is availability times performance times quality. Say a shift has 480 planned minutes and 60 minutes of downtime — availability is 420 over 480, 87.5%. With an ideal cycle of one minute, we should make 420; we made 380, so performance is about 90.5%. Of the 380, 361 were good — quality is 95%. Multiply them and OEE is about 75%. World-class is around 85%.\"\n\nTip: Show the calculation.", "B", "M"],
+["Takt", "What is takt time?", "**Why they ask:** pacing to demand.\n\n**Answer:**\n\"Takt is available production time divided by customer demand. With 450 minutes and 900 units, takt is half a minute — 30 seconds per unit. Every station is balanced to work within that.\"\n\nTip: It's the pace of demand.", "B", "E"],
+["Line Balancing", "How do you balance a line?", "**Why they ask:** practical design skill.\n\n**Answer:**\n\"I list every task with its time and its precedence — what has to happen before what. Then calculate takt and assign tasks to stations so none exceeds takt, while minimizing idle time. Line efficiency is total task time divided by number of stations times takt. If tasks total 100 seconds and takt is 30, the theoretical minimum is four stations.\"\n\nTip: Respect precedence constraints.", "D", "M"],
+["SMED", "What is SMED?", "**Why they ask:** changeover reduction.\n\n**Answer:**\n\"Single-minute exchange of die — reducing changeover time. You separate internal activities, done with the machine stopped, from external ones, done while it runs. Then convert as much internal work to external as possible — pre-staging tools and materials — and streamline both with things like quick-release clamps.\"\n\nTip: Internal versus external.", "B", "M"],
+["Six Sigma", "Explain DMAIC.", "**Why they ask:** structured problem solving.\n\n**Answer:**\n\"Define the problem, scope and the critical-to-quality characteristics. Measure the baseline and check the measurement system. Analyze the root cause with data. Improve with solutions and a pilot. Control with control plans and SPC, so it stays fixed.\"\n\nTip: It's data-driven.", "B", "E"],
+["SPC", "What is statistical process control?", "**Why they ask:** monitoring process health.\n\n**Answer:**\n\"SPC uses control charts — X-bar and R, I-MR, p-charts — to monitor process variation. It separates common-cause variation, the normal noise, from special-cause variation that has a real reason. When the chart signals — a point outside the limits, or a run under the Western Electric rules — we react and find the cause.\"\n\nTip: Common versus special cause.", "B", "M"],
+["Capability", "What are Cp and Cpk?", "**Why they ask:** capability analysis.\n\n**Answer:**\n\"Cp is the spec width divided by six sigma — potential capability. Cpk is the smaller distance from the mean to a spec limit, divided by three sigma — actual capability, accounting for centering. With limits of 9.5 and 10.5, a mean of 10.1 and sigma 0.1: Cp is 1.0 over 0.6, which is 1.67. Cpk is the smaller of 0.4 over 0.3 and 0.6 over 0.3 — that's 1.33. The gap between them tells me centering the process would help.\"\n\nTip: Explain centering.", "D", "M"],
+["MSA", "What is Gage R&R?", "**Why they ask:** trust the data first.\n\n**Answer:**\n\"It's a measurement system analysis of repeatability — the same operator and gauge measuring the same part — and reproducibility — different operators. Under 10% of tolerance is good, 10 to 30% may be acceptable, and over 30% needs fixing. I always run it before analyzing process data.\"\n\nTip: Measure before analyzing.", "D", "M"],
+["Root Cause", "Which root cause tools do you use?", "**Why they ask:** problem-solving depth.\n\n**Answer:**\n\"5 Whys, fishbone diagrams, Pareto analysis, fault tree analysis, is/is-not analysis, and designed experiments. And I always verify the root cause with data — turn the cause on and off and see if the defect follows.\"\n\nTip: Verify root cause with data.", "B", "E"],
+["FMEA", "What is PFMEA?", "**Why they ask:** proactive risk management.\n\n**Answer:**\n\"Process failure mode and effects analysis identifies potential failure modes, their effects, causes and current controls, rated for severity, occurrence and detection. That's either an RPN or, in the AIAG-VDA method, an action priority. High-priority items drive preventive actions before launch.\"\n\nTip: Mention AIAG-VDA action priority.", "B", "M"],
+["Validation", "What are IQ, OQ and PQ?", "**Why they ask:** regulated process validation.\n\n**Answer:**\n\"Installation qualification proves the equipment is installed correctly. Operational qualification proves it operates within limits across its ranges. Performance qualification proves it consistently produces acceptable product under normal conditions. They're key in medical device and pharma manufacturing.\"\n\nTip: Medical and pharma relevance.", "D", "M"],
+["NPI", "How do you support new product introduction?", "**Why they ask:** launches are where engineers add most value.\n\n**Answer:**\n\"Design-for-manufacturability reviews, process design, PFMEA and control plans, tooling and fixtures, pilot builds, capability studies, work instructions, training, and ramp-up support. In automotive that follows APQP and ends with PPAP.\"\n\nTip: Mention APQP and PPAP.", "B", "M"],
+["DFM", "What is design for manufacturability?", "**Why they ask:** cost is set at design.\n\n**Answer:**\n\"Designing products to be easy and cheap to make: fewer parts, standard components, tolerances that match what the process can actually hold, error-proof assembly, and easy access for tools. I check tolerance stack-ups early, because a tolerance that's tighter than the process can hold guarantees scrap.\"\n\nTip: Mention tolerance stack-up.", "B", "M"],
+["Poka-yoke", "What is poka-yoke?", "**Why they ask:** error-proofing.\n\n**Answer:**\n\"Error-proofing — devices or methods that prevent or detect mistakes. Asymmetric connectors that can't be plugged in backward, sensors that detect a missing part, fixtures that only accept the part one way. Prevention is always better than detection.\"\n\nTip: Prevention over detection.", "B", "E"],
+["5S", "What is 5S?", "**Why they ask:** workplace foundation.\n\n**Answer:**\n\"Sort, Set in order, Shine, Standardize and Sustain — organizing the workplace to reduce waste and improve safety and quality. Sustain is the hardest — it needs audits and leaders who check.\"\n\nTip: Sustain is hardest.", "B", "E"],
+["Standard Work", "What is standard work?", "**Why they ask:** baseline for improvement.\n\n**Answer:**\n\"It's the documented best method, with takt time, work sequence and standard work-in-progress. It's the baseline for training and for every improvement — kaizen changes the standard.\"\n\nTip: It's the basis for kaizen.", "B", "E"],
+["Automation", "How do you evaluate an automation project?", "**Why they ask:** capital judgment.\n\n**Answer:**\n\"First I make sure the process is stable — automating an unstable process just makes bad parts faster. Then calculate labor savings, quality and capacity gains against capital and maintenance costs, compute payback and ROI, and consider flexibility and risks. For example, a $300,000 robot replacing two operators at $140,000 a year pays back in a little over two years.\"\n\nTip: Stabilize before automating.", "B", "M"],
+["Industry 4.0", "What Industry 4.0 technologies have you used?", "**Why they ask:** modern manufacturing.\n\n**Answer:**\n\"IoT sensors and machine monitoring, an MES, digital work instructions, predictive maintenance, AI vision inspection, and a digital twin for a line layout. The MES was the biggest win — real-time downtime data changed how supervisors ran shifts.\"\n\nTip: Mention the MES.", "B", "M"],
+["Safety", "How do you address safety in process design?", "**Why they ask:** engineers design safety in.\n\n**Answer:**\n\"Risk assessments and the hierarchy of controls — eliminate the hazard, substitute, engineering controls, administrative controls, and PPE last. Plus ergonomics, machine guarding and lockout/tagout points designed in from the start.\"\n\nTip: Use the hierarchy of controls.", "B", "E"],
+["Cost", "How do you reduce manufacturing cost?", "**Why they ask:** cost focus.\n\n**Answer:**\n\"Improve yield and scrap, cycle time and OEE, cut changeovers, improve material utilization, automate where it pays, value-engineer the product, and improve energy efficiency. Scrap is usually first — it wastes material, labor and capacity all at once.\"\n\nTip: Scrap first.", "B", "E"],
+["Behavioral", "Tell me about a process improvement you led.", "**Why they ask:** proof.\n\n**Answer:**\n\"Scrap on a molding line was 6%. Using DMAIC, I found the cause was mold temperature variation. We installed better temperature control and SPC, and scrap dropped to 1.5% — saving $380,000 a year.\"\n\nTip: Measured results.", "B", "M"],
+["Behavioral", "Tell me about troubleshooting a production stoppage.", "**Why they ask:** troubleshooting under pressure.\n\n**Answer:**\n\"A line kept stopping on intermittent sensor faults. I traced it to cable wear from repeated motion, rerouted the cables and added strain relief. Uptime was restored within the shift, and I added cable checks to the PM.\"\n\nTip: Be systematic.", "B", "M"],
+["Behavioral", "How do you work with operators?", "**Why they ask:** engineers who ignore operators fail.\n\n**Answer:**\n\"I go to the gemba, listen, involve them in improvements, respect their knowledge and train them. Operators often know the fix — they just haven't been asked.\"\n\nTip: Go to the gemba.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** professional development.\n\n**Answer:**\n\"Six Sigma Green or Black Belt, Lean certification, a PE license, and SME's Certified Manufacturing Engineer.\"\n\nTip: Black Belt carries weight.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior or lead engineer, then engineering manager or operations manager.\"\n\nTip: Show direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I improve processes with data and teamwork — I cut scrap by 75% and improved OEE — while supporting production every day.\"\n\nTip: Proof.", "B", "E"],
+["Kaizen", "How do you run a kaizen event?", "**Why they ask:** rapid improvement.\n\n**Answer:**\n\"Select the scope and team, gather baseline data and train the team. Analyze the current state on the floor, implement improvements rapidly over three to five days, standardize the new method, and follow up at 30 and 60 days.\"\n\nTip: Follow-up makes it stick.", "B", "E"],
+["Kanban", "How does kanban work in manufacturing?", "**Why they ask:** pull systems.\n\n**Answer:**\n\"Pull signals — cards, bins or electronic signals — trigger replenishment when material is used. The number of kanbans is demand times lead time times one plus a safety factor, divided by container size. With demand of 100 an hour, a 4-hour lead time, 20% safety and containers of 50, that's 100 times 4 times 1.2 over 50 — about 10 kanbans.\"\n\nTip: Show the calculation.", "B", "M"],
+["Bottleneck", "How do you find and manage a bottleneck?", "**Why they ask:** throughput thinking.\n\n**Answer:**\n\"Look for queues, the highest utilization and the longest cycle times. Then apply theory of constraints: identify it, exploit it, subordinate everything else to it, elevate its capacity, and repeat as the constraint moves.\"\n\nTip: Theory of constraints.", "B", "M"],
+["DOE", "When do you use design of experiments?", "**Why they ask:** advanced optimization.\n\n**Answer:**\n\"When several factors affect an outcome and might interact — like temperature, pressure and time on a weld. A full or fractional factorial design finds the best settings and the interactions in a fraction of the runs that one-at-a-time testing would need.\"\n\nTip: DOE finds interactions.", "D", "M"],
+["Quality", "How do you handle a customer complaint about defects?", "**Why they ask:** structured response.\n\n**Answer:**\n\"Contain first — sort and quarantine. Then root-cause analysis through an 8D, corrective and preventive actions, verify they work, and update the PFMEA and control plan so the lesson is built into the process.\"\n\nTip: Use 8D.", "B", "M"],
+["Documentation", "What documentation do you maintain?", "**Why they ask:** process discipline.\n\n**Answer:**\n\"Process flow diagrams, PFMEA, control plans, work instructions, routings, validation reports and change records. They should link — every step in the flow diagram appears in the PFMEA and the control plan.\"\n\nTip: Documents should link to each other.", "B", "E"],
+["Change Control", "How do you manage process changes?", "**Why they ask:** uncontrolled changes cause defects.\n\n**Answer:**\n\"Through engineering change requests with a risk assessment, validation, customer notification if required, updated documentation, and training. In automotive and medical, many customers must approve changes before you make them.\"\n\nTip: Mention customer notification.", "B", "M"],
+["Ergonomics", "How do you address ergonomics?", "**Why they ask:** injury prevention.\n\n**Answer:**\n\"Assess tasks with tools like RULA or REBA, then reduce reaching, lifting and repetitive motion with fixtures, lift assists and layout changes. Ergonomic fixes often improve cycle time too.\"\n\nTip: Mention assessment tools.", "B", "E"],
+["Layout", "How do you design a production layout?", "**Why they ask:** design skill.\n\n**Answer:**\n\"Analyze flow and volumes, choose the layout type — cellular, line or process — minimize transport and motion, and design in safety and flexibility. For a mid-volume product family, cellular manufacturing usually wins.\"\n\nTip: Mention cellular manufacturing.", "B", "M"],
+["Scenario", "Demand doubles in 3 months. What do you do?", "**Why they ask:** capacity response.\n\n**Answer:**\n\"Analyze capacity and find the bottleneck. Quick wins first — improve OEE on the bottleneck, add shifts, duplicate tooling. Then outsource selectively and plan capital if it's still needed. Most plants can find 15 to 20% from OEE before spending money.\"\n\nTip: Quick wins first.", "B", "M"],
+["Scenario", "Yield dropped suddenly. How do you respond?", "**Why they ask:** structured troubleshooting.\n\n**Answer:**\n\"Contain first. Then check what changed — materials, settings, operators, maintenance. Use data and SPC to isolate the cause, fix it and verify. A sudden drop almost always has a specific change behind it.\"\n\nTip: Ask 'what changed?'", "B", "M"],
+["Energy", "How do you reduce energy use in manufacturing?", "**Why they ask:** cost and sustainability.\n\n**Answer:**\n\"Monitor usage first. Then fix compressed air leaks, put equipment into idle states when not running, use efficient motors and lighting, and recover waste heat. Compressed air leaks alone often waste 20 to 30% of compressor energy.\"\n\nTip: Compressed air is the classic.", "D", "M"],
+["Metrics", "Which manufacturing metrics do you track?", "**Why they ask:** managing by data.\n\n**Answer:**\n\"OEE, first-pass yield, scrap, cycle time, throughput, changeover time, safety incidents and cost per unit. First-pass yield is the one I watch most — it shows hidden rework.\"\n\nTip: First-pass yield.", "B", "E"],
+["Tolerance", "What is tolerance stack-up analysis?", "**Why they ask:** design and fit.\n\n**Answer:**\n\"It's calculating the cumulative variation of part dimensions in an assembly, using worst-case or statistical root-sum-square methods, to make sure parts fit and function. Worst-case is safe but expensive; RSS is realistic when the processes are capable.\"\n\nTip: Mention RSS.", "D", "M"],
+["CAD/CAM", "Which tools do you use?", "**Why they ask:** technical skills.\n\n**Answer:**\n\"SolidWorks, AutoCAD and CATIA for design, Minitab for statistics, MES and ERP systems, and basic PLC troubleshooting.\"\n\nTip: Minitab matters.", "B", "E"]
+]);
