@@ -1,249 +1,52 @@
 // Full-Stack Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['swe-fs'] = [
-["Role", "What does a full-stack engineer own?",
-`**Why they ask:** to understand your breadth and depth.
-
-**Answer:** Features end to end: UI (React/Angular/Vue), API and business logic (Node, Python, .NET, Java), data model and database, integration with third-party services, deployment and monitoring. Strong full-stack engineers have depth in one layer and solid competence in the others, and think about the whole user flow — performance, security and reliability across layers.
-
-Tip: Say where your depth is.`, 'B', 'E'],
-
-["Architecture", "Walk me through how you'd build a new feature end to end.",
-`**Answer:** Clarify requirements and acceptance criteria; design the data model and API contract (OpenAPI); build backend endpoints with validation, authorization and tests; build the UI with loading, empty and error states; add analytics and logging; feature-flag the release; deploy through CI/CD; monitor errors and usage after launch.
-
-Tip: Mention feature flags and monitoring — shows ownership.`, 'B', 'M'],
-
-["Architecture", "How do you design the API contract between frontend and backend?",
-`**Answer:** Agree on resources, fields, errors and pagination early, document with OpenAPI or GraphQL schema, generate typed clients (TypeScript types from the schema), mock the API so frontend and backend work in parallel, and evolve contracts without breaking changes.
-
-Tip: Generated types reduce bugs.`, 'B', 'M'],
-
-["Architecture", "What is a BFF (backend for frontend)?",
-`**Answer:** A backend layer tailored to a specific frontend (web or mobile) that aggregates and shapes data from multiple services, handles auth/session, and keeps frontend logic simple. Useful when many microservices or different clients need different shapes.
-
-Tip: Trade-off: another service to maintain.`, 'D', 'M'],
-
-["Stack", "Describe a stack you've used and why.",
-`**Sample answer:** "TypeScript end to end: Next.js with React Server Components for the frontend, Node/NestJS APIs, PostgreSQL with Prisma, Redis for caching and queues, deployed in containers on AWS with GitHub Actions. One language across layers made sharing types and moving between tasks easy."
-
-Tip: Explain choices, not just names.`, 'B', 'M'],
-
-["Frontend", "How do you manage server data in the UI?",
-`**Answer:** Use a server-state library (TanStack Query, SWR, RTK Query) for caching, background refresh, retries and invalidation; optimistic updates for responsiveness; and clear loading and error states.
-
-Tip: Separate server state from UI state.`, 'B', 'M'],
-
-["Frontend", "How do you keep the UI fast?",
-`**Answer:** Code splitting, image optimization, server rendering for first load, memoization where measured, virtualization for long lists, and avoiding unnecessary client-side JavaScript. Track Core Web Vitals.
-
-Tip: Measure first.`, 'B', 'M'],
-
-["Backend", "How do you structure backend code?",
-`**Answer:** Layered or hexagonal architecture: controllers/handlers (HTTP), services (business logic), repositories (data access), with dependency injection; validation at the edge; domain logic independent of frameworks for testability.
-
-Tip: Testability.`, 'B', 'M'],
-
-["Databases", "How do you choose between an ORM and raw SQL?",
-`**Answer:** ORMs (Prisma, TypeORM, Entity Framework, SQLAlchemy) speed development and type safety; raw SQL or query builders give control for complex or performance-critical queries. Use ORMs by default, drop to SQL where needed, and always watch generated queries (N+1).
-
-Tip: Balanced.`, 'B', 'M'],
-
-["Databases", "How do you design a schema for a multi-tenant SaaS app?",
-`**Answer:** Options: shared tables with a tenant_id column (simplest; enforce with row-level security or query scoping), schema per tenant, or database per tenant (strong isolation, higher cost). Always enforce tenant isolation in every query and test it.
-
-Tip: Tenant isolation is a security requirement.`, 'D', 'S'],
-
-["Auth", "How do you implement authentication in a full-stack app?",
-`**Answer:** Use a proven identity provider or library (Auth0, Cognito, Entra ID, Clerk, NextAuth) with OIDC; store sessions in httpOnly secure cookies; protect routes on both server and client; implement refresh flows; and enforce authorization in the backend for every request.
-
-Tip: "Don't roll your own auth."`, 'B', 'M'],
-
-["Auth", "Authentication vs authorization?",
-`**Answer:** Authentication verifies who you are (login). Authorization decides what you can do (roles, permissions, resource ownership). Authorization must be checked on the server for every action.
-
-Tip: Short and clear.`, 'B', 'E'],
-
-["Security", "What security issues span frontend and backend?",
-`**Answer:** XSS (escape output, CSP), CSRF (SameSite cookies, tokens), broken access control (check ownership server-side), injection (parameterized queries), insecure file uploads, secrets exposed in frontend bundles, and CORS misconfiguration.
-
-Tip: Server-side checks are the real protection.`, 'D', 'M'],
-
-["Real-time", "How would you add real-time updates to an app?",
-`**Answer:** WebSockets or Server-Sent Events from the backend (or a managed service), publish events from the backend when data changes (via Redis pub/sub or a message bus across instances), update client caches, and handle reconnection.
-
-Tip: Scaling WebSockets across instances.`, 'D', 'M'],
-
-["Payments", "How would you integrate payments (e.g. Stripe)?",
-`**Answer:** Use the provider's hosted checkout or elements to keep card data off your servers (PCI scope), create payment intents server-side, confirm on client, handle webhooks for final status (verify signatures, idempotent processing), and reconcile records.
-
-Tip: Webhooks as source of truth.`, 'D', 'M'],
-
-["Webhooks", "How do you handle incoming webhooks reliably?",
-`**Answer:** Verify signatures, respond quickly (200) and process asynchronously via a queue, make processing idempotent (store event IDs), handle out-of-order events, and log for troubleshooting.
-
-Tip: Idempotency and async processing.`, 'D', 'M'],
-
-["Testing", "What's your testing strategy across the stack?",
-`**Answer:** Unit tests for logic (frontend and backend), component tests (React Testing Library), API integration tests with a real test database, contract tests if services are separate, and a few Playwright end-to-end tests for critical journeys. Run all in CI.
-
-Tip: Testing pyramid.`, 'B', 'M'],
-
-["DevOps", "How do you deploy a full-stack application?",
-`**Answer:** Containerize services, CI pipeline (lint, test, build, scan), deploy frontend to a CDN/edge platform (Vercel, CloudFront) and backend to containers or serverless, database migrations as a pipeline step, environment configs and secrets, and monitoring with alerts.
-
-Tip: Migrations in the pipeline.`, 'B', 'M'],
-
-["DevOps", "How do you do zero-downtime deployments?",
-`**Answer:** Rolling or blue-green deployments behind a load balancer, backward-compatible database migrations (expand/contract), feature flags, health checks, and quick rollback.
-
-Tip: Database compatibility is the tricky part.`, 'D', 'M'],
-
-["Observability", "How do you monitor a full-stack app?",
-`**Answer:** Frontend error tracking and real user monitoring (Sentry, Datadog RUM), backend logs, metrics and traces with correlation IDs that link frontend requests to backend spans, uptime checks and SLO alerts.
-
-Tip: End-to-end tracing.`, 'D', 'M'],
-
-["Performance", "A page is slow. How do you find out where?",
-`**Answer:** Check browser DevTools (network waterfall, long tasks), see whether the API is slow (backend traces) or rendering is heavy, then fix the biggest contributor: slow queries, too many requests, large bundles or heavy rendering.
-
-Tip: Frontend vs backend first.`, 'B', 'M'],
-
-["Caching", "Where can you cache in a full-stack app?",
-`**Answer:** Browser cache and service worker, CDN/edge cache, client-side data cache (TanStack Query), API response cache (Redis), database query cache, and computed results. Invalidate carefully.
-
-Tip: Layers of caching.`, 'D', 'M'],
-
-["Files", "How do you handle file uploads?",
-`**Answer:** Pre-signed URLs for direct upload to object storage from the browser, validate type and size, scan for malware, store metadata in the database, and serve through a CDN with access control.
-
-Tip: Avoid passing large files through the API server.`, 'B', 'M'],
-
-["Search", "How would you add search to an app?",
-`**Answer:** Start with database full-text search (PostgreSQL tsvector) for simple needs; use a search engine (Elasticsearch/OpenSearch, Algolia, Meilisearch) for relevance tuning, facets and scale; sync data via events or CDC.
-
-Tip: Start simple.`, 'D', 'M'],
-
-["Email", "How do you send transactional emails reliably?",
-`**Answer:** Use a provider (SES, SendGrid, Postmark), send via a background queue, templates with localization, track bounces and complaints via webhooks, and configure SPF, DKIM and DMARC.
-
-Tip: Deliverability setup.`, 'B', 'M'],
-
-["Mobile", "How do you support web and mobile clients from one backend?",
-`**Answer:** Shared APIs with versioning, consider a BFF for mobile-specific needs, efficient payloads, offline-friendly sync patterns, and push notification services.
-
-Tip: Mobile app versions live long — backward compatibility.`, 'D', 'M'],
-
-["Monorepo", "What are the pros and cons of a monorepo?",
-`**Answer:** Pros: shared code and types, atomic changes across frontend and backend, consistent tooling. Cons: tooling complexity and build times at scale. Tools: Nx, Turborepo, pnpm workspaces.
-
-Tip: Shared types are a big win.`, 'D', 'M'],
-
-["Coding", "Build a paginated API and UI — what decisions do you make?",
-`**Answer:** Cursor-based pagination for large/changing datasets (stable ordering by indexed field), page size limits, total counts only if cheap, infinite scroll or numbered pages in UI based on use case, and caching pages client-side.
-
-Tip: Cursor vs offset trade-off.`, 'D', 'M'],
-
-["Coding", "How would you implement optimistic updates?",
-`**Answer:** Update the UI immediately, send the request, roll back on failure with an error message, and reconcile with the server response. TanStack Query's onMutate/onError/onSettled supports this pattern.
-
-Tip: Rollback handling.`, 'D', 'M'],
-
-["Accessibility", "How do you make sure full-stack features are accessible?",
-`**Answer:** Semantic HTML, keyboard support, labels and error messaging, contrast, screen reader testing, and accessible error responses from forms (server validation messages mapped to fields).
-
-Tip: Accessibility is part of done.`, 'B', 'M'],
-
-["Data", "How do you handle time zones and dates?",
-`**Answer:** Store timestamps in UTC, keep user time zone separately, convert for display with Intl or date libraries (date-fns, Luxon, Temporal when available), and be careful with date-only fields and daylight saving changes.
-
-Tip: Common source of bugs.`, 'B', 'M'],
-
-["Product", "How do you balance speed and quality as a full-stack engineer?",
-`**Answer:** Ship small increments behind feature flags, automate tests for critical paths, refactor as you go, and agree on quality bars with the team. Take on deliberate, tracked technical debt only.
-
-Tip: Pragmatism.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a feature you built end to end.",
-`**Sample answer:** "I built a team invitation and roles feature: schema for memberships and permissions, APIs with authorization checks, email invites via a queue, and React UI with optimistic updates. It launched in three weeks and enabled our first enterprise customers."
-
-Tip: Business impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a production bug that crossed frontend and backend.",
-`**Sample answer:** "Users saw duplicate orders. The frontend retried on timeout while the backend lacked idempotency. I added idempotency keys server-side and disabled the button during submission. Duplicates stopped."
-
-Tip: Cross-layer root cause.`, 'B', 'M'],
-
-["Behavioral", "How do you keep up with technology changes?",
-`**Answer:** Follow release notes of core tools, build small side projects, read engineering blogs, and share learnings with the team — adopting new tools only when they solve real problems.
-
-Tip: Pragmatic learning.`, 'B', 'E'],
-
-["Cloud", "Which managed services speed up full-stack development?",
-`**Answer:** Managed databases (RDS, Supabase, Neon), auth providers, object storage, serverless functions, queues, edge hosting (Vercel, Netlify), and observability SaaS.
-
-Tip: Focus engineering time on product.`, 'B', 'M'],
-
-["AI", "How would you add an AI assistant feature to a web app?",
-`**Answer:** Backend endpoint calling the LLM provider with server-side keys, retrieval from the app's data respecting user permissions, streaming responses to the UI, rate limiting and cost tracking, prompt-injection safeguards, and feedback collection for evaluation.
-
-Tip: Permissions on retrieved data.`, 'D', 'S'],
-
-["AI", "How do you use AI coding tools responsibly?",
-`**Answer:** Use them for scaffolding, tests and refactors; review every change for correctness and security; don't paste secrets or sensitive data; and keep design decisions human-owned.
-
-Tip: Review and security.`, 'B', 'M'],
-
-["Seniority", "What does senior look like for a full-stack engineer?",
-`**Answer:** Owns larger features or systems, designs clean boundaries, anticipates edge cases, improves team practices, mentors, and communicates trade-offs clearly with product.
-
-Tip: Examples.`, 'B', 'S'],
-
-["Leadership", "How do you mentor junior engineers?",
-`**Answer:** Pairing, thoughtful code reviews, small ownership areas, explaining the "why", and encouraging questions.
-
-Tip: Specific example.`, 'B', 'S'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Toward tech lead or staff engineer — leading product areas technically and shaping architecture.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I ship complete, well-tested features across the stack, think about users and operations, and I'm productive quickly in TypeScript, React, Node and Postgres. I've launched features that opened new revenue."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Design", "How do you handle errors consistently across the stack?",
-`**Answer:** Standard error format from the API (code, message, field errors), map errors to user-friendly messages in the UI, log details server-side with correlation IDs, and avoid exposing internals.
-
-Tip: Consistency.`, 'B', 'M'],
-
-["Design", "How do you design feature flags?",
-`**Answer:** Use a flag service (LaunchDarkly, Unleash, OpenFeature) with server and client evaluation, target by user/tenant, default safely, clean up old flags, and track flag usage.
-
-Tip: Flag cleanup.`, 'D', 'M'],
-
-["GraphQL", "When would you choose GraphQL for a full-stack app?",
-`**Answer:** Many related entities and varied client needs; strong typing end to end; reducing round trips. Watch for N+1 (use DataLoader), query complexity limits, caching and authorization per field.
-
-Tip: Trade-offs.`, 'D', 'M'],
-
-["Analytics", "How do you add product analytics?",
-`**Answer:** Define key events with product, track via an analytics SDK (Segment, PostHog, Amplitude) with consistent naming, respect privacy and consent, and validate data quality.
-
-Tip: Event naming conventions.`, 'B', 'M'],
-
-["Privacy", "How do you handle user data privacy?",
-`**Answer:** Collect only what's needed, encrypt sensitive data, respect consent (cookies, tracking), support data export and deletion requests (GDPR/CCPA), and restrict access internally.
-
-Tip: Privacy by design.`, 'D', 'M'],
-
-["Design", "How do you approach a technical design document?",
-`**Answer:** Problem and goals, non-goals, proposed design with diagrams, alternatives considered, data model and APIs, risks, rollout and monitoring plan — reviewed with the team before building.
-
-Tip: Alternatives section matters.`, 'B', 'M'],
-
-["Coding", "Explain how you'd prevent a double form submission.",
-`**Answer:** Disable the submit button while pending, show progress, and enforce idempotency on the server (unique constraint or idempotency key) since client-side protection isn't enough.
-
-Tip: Server-side protection.`, 'B', 'E']
-];
+QB["swe-fs"] = (QB["swe-fs"] || []).concat([
+["Role", "What does a full-stack engineer own?", "**Why they ask:** to understand your breadth and depth.\n\n**Answer:** Features end to end: UI (React/Angular/Vue), API and business logic (Node, Python, .NET, Java), data model and database, integration with third-party services, deployment and monitoring. Strong full-stack engineers have depth in one layer and solid competence in the others, and think about the whole user flow — performance, security and reliability across layers.\n\nTip: Say where your depth is.", "B", "E"],
+["Architecture", "Walk me through how you'd build a new feature end to end.", "**Why they ask:** full-stack means owning the whole path.\n\n**Answer:**\n\"Say it's 'export invoices to CSV.' I'd clarify requirements and acceptance criteria with product — which fields, how many rows, who's allowed. Then design the data model and API contract in OpenAPI, build the backend endpoint with validation, authorization and tests — large exports run as a background job that emails a link. Then the UI with loading, empty and error states, analytics on usage, release behind a feature flag through CI/CD, and watch errors and adoption for the first week.\"\n\nTip: Mention feature flags and monitoring — shows ownership.", "B", "M"],
+["Architecture", "How do you design the API contract between frontend and backend?", "**Why they ask:** contracts prevent integration pain.\n\n**Answer:**\n\"Agree on resources, fields, error format and pagination early, document them in OpenAPI or a GraphQL schema, generate TypeScript types and a typed client from the schema, and mock the API so frontend and backend build in parallel. Contracts then evolve additively without breaking changes. Generated types mean a renamed field fails the build instead of failing in production.\"\n\nTip: Generated types reduce bugs.", "B", "M"],
+["Architecture", "What is a BFF (backend for frontend)?", "**Why they ask:** an architecture pattern you may need.\n\n**Answer:**\n\"A backend layer built for one specific frontend — web or mobile — that aggregates and reshapes data from several services, handles auth and sessions, and keeps the client simple. A mobile home screen that needs data from five microservices makes one BFF call instead of five over a slow network. The trade-off is one more service to build and run.\"\n\nTip: Trade-off: another service to maintain.", "D", "M"],
+["Stack", "Describe a stack you've used and why.", "**Why they ask:** reasoning behind choices.\n\n**Answer:**\n\"TypeScript end to end: Next.js with React Server Components on the frontend, NestJS APIs on Node, PostgreSQL with Prisma, Redis for caching and job queues, containers on AWS deployed with GitHub Actions. One language across layers meant we shared types and validation schemas between client and server, and anyone could pick up a ticket at any layer.\"\n\nTip: Explain choices, not just names.", "B", "M"],
+["Frontend", "How do you manage server data in the UI?", "**Why they ask:** a common source of complexity.\n\n**Answer:**\n\"A server-state library — TanStack Query, SWR or RTK Query — for caching, background refresh, retries and invalidation after mutations, optimistic updates where responsiveness matters, and clear loading and error states. Keeping server data out of Redux removed hundreds of lines of hand-written loading flags in my last project.\"\n\nTip: Separate server state from UI state.", "B", "M"],
+["Frontend", "How do you keep the UI fast?", "**Why they ask:** performance ownership.\n\n**Answer:**\n\"Code splitting, optimized images, server rendering for the first load, memoization only where profiling shows it helps, virtualization for long lists, and shipping less client JavaScript overall. I track Core Web Vitals in production so I know whether changes actually helped.\"\n\nTip: Measure first.", "B", "M"],
+["Backend", "How do you structure backend code?", "**Why they ask:** maintainability.\n\n**Answer:**\n\"Layered or hexagonal: controllers or handlers for HTTP, services for business logic, repositories for data access, wired with dependency injection. Validation at the edge, and domain logic that doesn't depend on the framework, so I can unit test 'calculate invoice total' without spinning up a web server or database.\"\n\nTip: Testability.", "B", "M"],
+["Databases", "How do you choose between an ORM and raw SQL?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"ORMs — Prisma, TypeORM, Entity Framework, SQLAlchemy — speed up development and give type safety, so they're my default. For complex reporting or performance-critical queries, I drop to raw SQL or a query builder. Either way I watch the generated queries, because ORMs make N+1 problems easy to create.\"\n\nTip: Balanced.", "B", "M"],
+["Databases", "How do you design a schema for a multi-tenant SaaS app?", "**Why they ask:** a common SaaS design question.\n\n**Answer:**\n\"Three options. Shared tables with a tenant_id column — simplest and cheapest — enforced with Postgres row-level security or a mandatory query scope. Schema per tenant, which isolates better but complicates migrations. Or database per tenant — strongest isolation, highest cost, often for large enterprise customers. Whatever the model, tenant isolation is enforced on every query and covered by tests, because a leak between customers is a security incident.\"\n\nTip: Tenant isolation is a security requirement.", "D", "S"],
+["Auth", "How do you implement authentication in a full-stack app?", "**Why they ask:** auth is easy to get wrong.\n\n**Answer:**\n\"Use a proven provider or library — Auth0, Cognito, Entra ID, Clerk, NextAuth — with OIDC. Sessions in httpOnly, Secure cookies, routes protected on both server and client, a proper refresh flow, and authorization enforced in the backend on every request. Hiding a button in the UI is not authorization.\"\n\nTip: \"Don't roll your own auth.\"", "B", "M"],
+["Auth", "Authentication vs authorization?", "**Why they ask:** fundamentals.\n\n**Answer:**\n\"Authentication verifies who you are — logging in. Authorization decides what you're allowed to do — roles, permissions, owning the resource. Authorization has to be checked on the server for every action, because anything in the browser can be bypassed.\"\n\nTip: Short and clear.", "B", "E"],
+["Security", "What security issues span frontend and backend?", "**Why they ask:** security across layers.\n\n**Answer:**\n\"XSS — escape output and use a CSP. CSRF — SameSite cookies and tokens. Broken access control — check ownership on the server. Injection — parameterized queries. Insecure file uploads, secrets accidentally shipped in frontend bundles, and CORS set to allow any origin with credentials. The server-side checks are the real protection.\"\n\nTip: Server-side checks are the real protection.", "D", "M"],
+["Real-time", "How would you add real-time updates to an app?", "**Why they ask:** real-time architecture.\n\n**Answer:**\n\"WebSockets or Server-Sent Events from the backend, or a managed service. When data changes, the backend publishes an event — through Redis pub/sub or a message bus so every server instance can push to its connected clients — the client updates its cache, and reconnection with backoff handles dropped connections.\"\n\nTip: Scaling WebSockets across instances.", "D", "M"],
+["Payments", "How would you integrate payments (e.g. Stripe)?", "**Why they ask:** a common, high-stakes integration.\n\n**Answer:**\n\"Use Stripe's hosted checkout or Elements so card numbers never touch our servers, which keeps PCI scope minimal. Create the PaymentIntent server-side with the amount calculated on the server, confirm on the client, and treat webhooks as the source of truth for the final status — verifying signatures and processing idempotently. Then reconcile our records with Stripe's daily.\"\n\nTip: Webhooks as source of truth.", "D", "M"],
+["Webhooks", "How do you handle incoming webhooks reliably?", "**Why they ask:** integration robustness.\n\n**Answer:**\n\"Verify the signature, return 200 quickly and process asynchronously through a queue — providers retry if you're slow — make processing idempotent by storing event IDs, handle events arriving out of order, and log everything for troubleshooting.\"\n\nTip: Idempotency and async processing.", "D", "M"],
+["Testing", "What's your testing strategy across the stack?", "**Why they ask:** quality ownership.\n\n**Answer:**\n\"Unit tests for logic on both sides, component tests with React Testing Library, API integration tests against a real test database, contract tests if services are separate, and a handful of Playwright end-to-end tests for critical journeys like signup and checkout — all running in CI on every pull request.\"\n\nTip: Testing pyramid.", "B", "M"],
+["DevOps", "How do you deploy a full-stack application?", "**Why they ask:** delivery knowledge.\n\n**Answer:**\n\"Containerize services, run a CI pipeline — lint, test, build, scan — deploy the frontend to a CDN or edge platform like Vercel or CloudFront, the backend to containers or serverless, run database migrations as a pipeline step, manage config and secrets per environment, and set up monitoring with alerts.\"\n\nTip: Migrations in the pipeline.", "B", "M"],
+["DevOps", "How do you do zero-downtime deployments?", "**Why they ask:** production maturity.\n\n**Answer:**\n\"Rolling or blue-green deployments behind a load balancer, health checks, feature flags, quick rollback — and backward-compatible database migrations using expand and contract, because during a rollout old and new code run against the same database at the same time.\"\n\nTip: Database compatibility is the tricky part.", "D", "M"],
+["Observability", "How do you monitor a full-stack app?", "**Why they ask:** operability.\n\n**Answer:**\n\"Frontend error tracking and real user monitoring with Sentry or Datadog RUM, backend logs, metrics and traces, and correlation IDs that link a frontend request to its backend spans. Plus uptime checks and SLO alerts. With end-to-end tracing, a user's 'it's slow' becomes a specific slow query.\"\n\nTip: End-to-end tracing.", "D", "M"],
+["Performance", "A page is slow. How do you find out where?", "**Why they ask:** structured debugging.\n\n**Answer:**\n\"Open DevTools: the network waterfall shows whether the API is slow or there are too many requests, and the performance panel shows long tasks from heavy rendering. If the API is slow, backend traces show where — usually a query. Then fix the biggest contributor first. Recently a page made 14 sequential API calls; batching into one endpoint cut load time from 3 seconds to 700 milliseconds.\"\n\nTip: Frontend vs backend first.", "B", "M"],
+["Caching", "Where can you cache in a full-stack app?", "**Why they ask:** caching layers.\n\n**Answer:**\n\"Browser cache and service worker, CDN or edge cache, the client data cache like TanStack Query, API response caching in Redis, database query caching, and precomputed results. Each layer needs a clear invalidation story — stale prices are worse than slow prices.\"\n\nTip: Layers of caching.", "D", "M"],
+["Files", "How do you handle file uploads?", "**Why they ask:** practical architecture.\n\n**Answer:**\n\"Issue a pre-signed URL so the browser uploads directly to object storage, validate type and size, scan for malware asynchronously, store metadata in the database, and serve files through a CDN with access control — signed URLs for private files.\"\n\nTip: Avoid passing large files through the API server.", "B", "M"],
+["Search", "How would you add search to an app?", "**Why they ask:** pragmatic scaling.\n\n**Answer:**\n\"Start with Postgres full-text search using tsvector and a GIN index — it handles a lot. When we need relevance tuning, facets, typo tolerance or scale, move to Elasticsearch or OpenSearch, Algolia or Meilisearch, kept in sync through events or change data capture.\"\n\nTip: Start simple.", "D", "M"],
+["Email", "How do you send transactional emails reliably?", "**Why they ask:** deliverability matters.\n\n**Answer:**\n\"A provider like SES, SendGrid or Postmark, sending through a background queue so a slow provider doesn't slow the request, localized templates, bounce and complaint tracking through webhooks, and SPF, DKIM and DMARC configured so emails don't land in spam.\"\n\nTip: Deliverability setup.", "B", "M"],
+["Mobile", "How do you support web and mobile clients from one backend?", "**Why they ask:** multi-client design.\n\n**Answer:**\n\"Shared, versioned APIs, a BFF if mobile needs different shapes, compact payloads, offline-friendly sync patterns, and push notification services. Mobile app versions stay in the wild for months, so backward compatibility is non-negotiable.\"\n\nTip: Mobile app versions live long — backward compatibility.", "D", "M"],
+["Monorepo", "What are the pros and cons of a monorepo?", "**Why they ask:** repo strategy.\n\n**Answer:**\n\"Pros: shared code and types, atomic changes across frontend and backend in one pull request, consistent tooling. Cons: tooling complexity and longer builds at scale without caching. Nx, Turborepo and pnpm workspaces handle most of it. Shared API types alone justify it for a full-stack team.\"\n\nTip: Shared types are a big win.", "D", "M"],
+["Coding", "Build a paginated API and UI — what decisions do you make?", "**Why they ask:** practical design trade-offs.\n\n**Answer:**\n\"Cursor-based pagination for large or frequently changing data — ordering by an indexed column like created_at plus id, so new inserts don't shift pages the way OFFSET does, and deep pages stay fast. A maximum page size, total counts only if they're cheap, infinite scroll for feeds or numbered pages for admin tables, and caching fetched pages on the client.\"\n\nTip: Cursor vs offset trade-off.", "D", "M"],
+["Coding", "How would you implement optimistic updates?", "**Why they ask:** UX responsiveness.\n\n**Answer:**\n\"Update the UI immediately, send the request, roll back with an error message if it fails, and reconcile with the server's response. In TanStack Query: onMutate snapshots the cache and applies the change, onError restores the snapshot, onSettled invalidates to refetch the truth.\"\n\nTip: Rollback handling.", "D", "M"],
+["Accessibility", "How do you make sure full-stack features are accessible?", "**Why they ask:** accessibility ownership.\n\n**Answer:**\n\"Semantic HTML, keyboard support, labels and error messaging, color contrast, screen reader testing — and on the backend, validation errors returned per field so the UI can attach each message to the right input.\"\n\nTip: Accessibility is part of done.", "B", "M"],
+["Data", "How do you handle time zones and dates?", "**Why they ask:** a classic bug source.\n\n**Answer:**\n\"Store timestamps in UTC, store the user's time zone separately, convert only for display with Intl or a library like date-fns or Luxon, and treat date-only fields like birthdays as plain dates — not midnight UTC, which shows as the previous day in New York. And test around daylight saving changes.\"\n\nTip: Common source of bugs.", "B", "M"],
+["Product", "How do you balance speed and quality as a full-stack engineer?", "**Why they ask:** pragmatism.\n\n**Answer:**\n\"Ship small increments behind feature flags, automate tests for critical paths, refactor as I go, and agree quality bars with the team. Technical debt is fine when it's deliberate and tracked with a ticket, not accidental.\"\n\nTip: Pragmatism.", "B", "M"],
+["Behavioral", "Tell me about a feature you built end to end.", "**Why they ask:** proof.\n\n**Answer:**\n\"I built team invitations and roles: schema for memberships and permissions, APIs with authorization checks, invite emails through a queue, and a React UI with optimistic updates. It launched in three weeks and unlocked our first enterprise customers.\"\n\nTip: Business impact.", "B", "M"],
+["Behavioral", "Tell me about a production bug that crossed frontend and backend.", "**Why they ask:** cross-layer debugging.\n\n**Answer:**\n\"Users were getting duplicate orders. The frontend retried on timeout, and the backend had no idempotency, so a slow first request plus a retry created two orders. I added idempotency keys server-side and disabled the button during submission. Duplicates stopped completely.\"\n\nTip: Cross-layer root cause.", "B", "M"],
+["Behavioral", "How do you keep up with technology changes?", "**Why they ask:** learning habits.\n\n**Answer:**\n\"I follow release notes for our core tools, build small side projects to try new things, read engineering blogs, and share what I learn with the team — but adopt new tools only when they solve a real problem we have.\"\n\nTip: Pragmatic learning.", "B", "E"],
+["Cloud", "Which managed services speed up full-stack development?", "**Why they ask:** build-versus-buy judgment.\n\n**Answer:**\n\"Managed databases like RDS, Supabase or Neon, auth providers, object storage, serverless functions, queues, edge hosting like Vercel or Netlify, and observability SaaS. Every hour not spent running infrastructure goes into the product.\"\n\nTip: Focus engineering time on product.", "B", "M"],
+["AI", "How would you add an AI assistant feature to a web app?", "**Why they ask:** current demand.\n\n**Answer:**\n\"A backend endpoint calls the LLM provider with keys kept server-side, retrieves context from the app's data while respecting the user's permissions — the assistant must never surface records the user can't see — streams responses to the UI, applies rate limiting and cost tracking, guards against prompt injection, and collects thumbs-up/down feedback for evaluation.\"\n\nTip: Permissions on retrieved data.", "D", "S"],
+["AI", "How do you use AI coding tools responsibly?", "**Why they ask:** current practice.\n\n**Answer:**\n\"For scaffolding, tests and refactors. I review every change for correctness and security, never paste secrets or customer data, and keep design decisions human-owned.\"\n\nTip: Review and security.", "B", "M"],
+["Seniority", "What does senior look like for a full-stack engineer?", "**Why they ask:** leveling.\n\n**Answer:**\n\"Owning larger features or whole systems, designing clean boundaries, anticipating edge cases, improving team practices, mentoring, and explaining trade-offs clearly to product. For example, I introduced shared Zod schemas so validation is defined once for client and server.\"\n\nTip: Examples.", "B", "S"],
+["Leadership", "How do you mentor junior engineers?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Pairing, thoughtful code reviews that explain the why, giving them a small area to own, and making questions welcome. One junior I mentored owned our notifications module within three months.\"\n\nTip: Specific example.", "B", "S"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward tech lead or staff engineer — leading a product area technically and shaping architecture.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I ship complete, well-tested features across the stack, think about users and operations, and I'm productive quickly in TypeScript, React, Node and Postgres. I've launched features that opened new revenue.\"\n\nTip: Proof.", "B", "M"],
+["Design", "How do you handle errors consistently across the stack?", "**Why they ask:** consistency.\n\n**Answer:**\n\"A standard error format from the API — a code, a message and field-level errors — mapped to friendly messages in the UI, details logged server-side with a correlation ID the user can quote to support, and no stack traces or internals exposed.\"\n\nTip: Consistency.", "B", "M"],
+["Design", "How do you design feature flags?", "**Why they ask:** release control.\n\n**Answer:**\n\"A flag service — LaunchDarkly, Unleash, or OpenFeature with a provider — evaluated on server and client, targeting by user or tenant, safe defaults if the service is unreachable, and a cleanup process because stale flags become hidden complexity.\"\n\nTip: Flag cleanup.", "D", "M"],
+["GraphQL", "When would you choose GraphQL for a full-stack app?", "**Why they ask:** API judgment.\n\n**Answer:**\n\"When there are many related entities and different clients need different shapes, when end-to-end typing matters, and to cut round trips. I watch for N+1 resolvers with DataLoader, set query complexity limits, plan caching, and enforce authorization per field.\"\n\nTip: Trade-offs.", "D", "M"],
+["Analytics", "How do you add product analytics?", "**Why they ask:** product mindset.\n\n**Answer:**\n\"Define key events with product — like invite_sent and invite_accepted — track them with an SDK like Segment, PostHog or Amplitude using consistent naming, respect privacy and consent, and validate data quality before anyone builds dashboards on it.\"\n\nTip: Event naming conventions.", "B", "M"],
+["Privacy", "How do you handle user data privacy?", "**Why they ask:** privacy by design.\n\n**Answer:**\n\"Collect only what's needed, encrypt sensitive data, respect consent for cookies and tracking, support export and deletion requests under GDPR and CCPA, and restrict internal access.\"\n\nTip: Privacy by design.", "D", "M"],
+["Design", "How do you approach a technical design document?", "**Why they ask:** communication.\n\n**Answer:**\n\"Problem and goals, non-goals, the proposed design with diagrams, alternatives considered and why they lost, data model and APIs, risks, and the rollout and monitoring plan — reviewed with the team before building.\"\n\nTip: Alternatives section matters.", "B", "M"],
+["Coding", "Explain how you'd prevent a double form submission.", "**Why they ask:** a cross-layer classic.\n\n**Answer:**\n\"On the client, disable the submit button while the request is pending and show progress. On the server — which is the real protection — an idempotency key or a unique constraint, so even if two requests arrive, only one order is created.\"\n\nTip: Server-side protection.", "B", "E"]
+]);

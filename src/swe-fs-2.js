@@ -1,6 +1,3 @@
-QB['swe-fs'] = (QB['swe-fs'] || []).concat([
-["Frontend", "Server-side rendering vs client-side rendering for a full-stack app?",
-`**Answer:** SSR improves first load, SEO and works with less client JavaScript; CSR suits highly interactive app screens behind login. Modern frameworks (Next.js, Remix, Nuxt) mix both per route, with server components and streaming.
-
-Tip: Choose per page.`, 'B', 'M']
+QB["swe-fs"] = (QB["swe-fs"] || []).concat([
+["Frontend", "Server-side rendering vs client-side rendering for a full-stack app?", "**Why they ask:** rendering strategy.\n\n**Answer:**\n\"SSR gives a faster first load and better SEO with less client JavaScript; CSR suits highly interactive screens behind a login. Modern frameworks — Next.js, Remix, Nuxt — mix both per route, with server components and streaming. I choose per page: marketing and product pages server-rendered, the editor client-side.\"\n\nTip: Choose per page.", "B", "M"]
 ]);
