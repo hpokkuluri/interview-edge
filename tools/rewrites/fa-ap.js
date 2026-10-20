@@ -1,0 +1,372 @@
+// Rewritten Finance & Accounting — Accounts Payable answers (Why they ask → Answer → Tip). Apply with rewrite.js (prefix fa-).
+module.exports = {
+
+'An invoice is on a price variance hold. How do you resolve it?':
+`**Why they ask:** price holds are the most common AP exception, and they want to see you respect who owns the PO price.
+
+**Answer:**
+"First I compare the invoice price to the PO price line by line. If the supplier simply billed wrong, I ask them for a credit memo or a corrected invoice. If the price really did change, I go to the buyer — procurement updates the PO through approval, and when I revalidate, the hold releases. If the difference is small and inside our tolerance policy, I can release it with documented approval. I also keep a list of suppliers who keep billing above PO and share it with procurement so the problem stops at the source."
+
+Tip: Say plainly that AP doesn't change PO prices — procurement owns that. It shows control awareness.`,
+
+'What do you do when goods are invoiced but not received?':
+`**Why they ask:** they want to know you won't pay for goods the company may not have.
+
+**Answer:**
+"The invoice stays on a receipt hold — I don't override it. I contact the requester or the receiving team to check whether the goods actually arrived. If they did and someone just forgot to receive them, they enter the receipt and the hold clears on the next validation. If they didn't arrive, I check with the supplier; often they billed at shipment or the delivery is late. I only release without a receipt if there's documented approval from someone with authority, and I keep an eye on how long receipt holds are sitting."
+
+Tip: Mention receipt-hold aging as a KPI you track weekly.`,
+
+'How do you keep the vendor master clean?':
+`**Why they ask:** a messy vendor master causes duplicate payments and opens the door to fraud.
+
+**Answer:**
+"I treat it as ongoing work, not a one-time cleanup. Every quarter I run duplicate checks on tax ID, bank account and address. Vendors with no activity in 12 to 18 months get deactivated. We use a naming standard and make key fields — tax ID, payment terms, remit-to — mandatory. And every month I review the change log, especially bank account changes, against the call-back verification records. A clean master means fewer duplicate payments and fewer places for a fake vendor to hide."
+
+Tip: Give a number from a cleanup you did — for example, 2,000 inactive vendors deactivated.`,
+
+'How does a payment run work?':
+`**Why they ask:** payments are where money leaves the company, so they want a controlled, step-by-step picture.
+
+**Answer:**
+"I select invoices due by a cut-off date, based on terms and any discount dates. Then I review the proposed payment list for anything odd — invoices on hold, unusually large amounts, or vendors whose bank details changed recently. A manager approves the run. The system builds the payment file — ACH in NACHA format, wires, ISO 20022 XML, or checks — and we send it to the bank through a secure channel, with a second approver in the bank portal. Suppliers get remittance advice. Afterward I confirm the bank processed everything and reconcile the payments to cash."
+
+Tip: Mention positive pay for checks and dual approval in the bank portal.`,
+
+'What are early payment discounts and are they worth it?':
+`**Why they ask:** a quick test of whether you think about cash, not just processing.
+
+**Answer:**
+"Terms like 2/10 net 30 mean we get 2% off if we pay in 10 days instead of 30. That's 2% for paying 20 days early. Annualized, it's about 2 divided by 98, times 365 divided by 20 — roughly 37%. That's far more than most companies pay to borrow money, so it's almost always worth taking. The catch is that AP has to get invoices approved and scheduled quickly, or the window closes."
+
+Tip: Doing the math out loud impresses interviewers.`,
+
+'What is positive pay?':
+`**Why they ask:** a basic payment fraud control every AP person should know.
+
+**Answer:**
+"Positive pay is a bank service. Each time we issue checks, we send the bank a file listing the check number, date, amount and often the payee. When a check is presented, the bank only pays it if it matches. Anything that doesn't match shows up on an exception report, and we decide to pay or return it. There's a similar control for electronic payments — ACH positive pay or debit blocks — that stops unauthorized ACH debits from hitting our account."
+
+Tip: Say you've worked the daily exception report from the bank, if you have.`,
+
+'Compare ACH, wire, check and virtual card payments.':
+`**Why they ask:** they want to see you know the cost, speed and risk trade-offs.
+
+**Answer:**
+"ACH is the workhorse — cheap, one to two days, and standard for domestic suppliers. Wires are same day but cost more, so we use them for urgent or international payments. Checks are slow, expensive to process and carry the highest fraud risk, so I try to move vendors off them. Virtual cards are fast and can earn the company a rebate, but the supplier pays a card fee, so not everyone accepts. The goal is usually to push volume from checks to ACH or card."
+
+Tip: Mention a project where you moved vendors from check to ACH or card.`,
+
+'How do you prevent duplicate payments?':
+`**Why they ask:** duplicate payments are the classic AP loss, and they want layered controls.
+
+**Answer:**
+"I use several layers. The ERP checks for duplicates on supplier, invoice number, amount and date. We have an invoice numbering standard — no extra spaces, dashes or prefixes — so the check actually catches repeats. PO matching helps too, because a PO can't be over-invoiced. On top of that I run periodic duplicate audits, sometimes with a recovery audit tool, and reconcile statements from key suppliers. The usual causes are re-sent invoices, 'copy' invoices, and the same invoice coming through both email and the portal."
+
+Tip: Naming the common causes shows you've actually dealt with them.`,
+
+'You discover a duplicate payment of $40,000. What do you do?':
+`**Why they ask:** they want to see both recovery and prevention, not just cleanup.
+
+**Answer:**
+"First I confirm it's a true duplicate — same goods, same invoice — and not two legitimate invoices that look alike. Then I tell my manager. I contact the supplier and ask for a refund, or for the amount to be applied as a credit against open invoices, and I record the receivable or credit memo correctly. Then the important part: I find out how it happened. Was the duplicate check bypassed, did it come in through two channels, did someone override a warning? I fix that cause so it doesn't happen again."
+
+Tip: Recovery plus root-cause fix is the full answer.`,
+
+'What does AP do at month-end?':
+`**Why they ask:** they want to know you understand AP's part in the close.
+
+**Answer:**
+"Before cut-off, I make sure every invoice received is entered and accounted. For goods and services received but not yet invoiced, we book the accrual. I run create accounting and transfer to the GL, then reconcile the AP subledger to the GL control account. I also review the aging for debit balances and invoices stuck on hold. Finally I report the month's KPIs — volume, holds, discounts captured and DPO."
+
+Tip: Mention the received-not-invoiced accrual report by name.`,
+
+'How do you reconcile AP to the general ledger?':
+`**Why they ask:** a core month-end control and a frequent audit point.
+
+**Answer:**
+"I compare the AP aging or trial balance at period end to the balance in the GL liability account. When they don't match, the cause is usually one of a few things: someone posted a manual journal straight to the AP account, some invoices or payments weren't accounted, there's a period mismatch, or FX revaluation. I fix the source rather than plugging the difference, document any remaining timing items, and get the reconciliation reviewed and signed off."
+
+Tip: Say that blocking manual journals to the AP control account prevents most differences.`,
+
+'What is the received-not-invoiced (RNI) accrual?':
+`**Why they ask:** it's the main AP-related accrual and tests whether you understand period-end liabilities.
+
+**Answer:**
+"It's the liability for goods or services we've received against POs but haven't been invoiced for yet. The ERP calculates it as receipts minus matched invoices — either at period end or when the receipt is entered, depending on the accrual setup. Before it posts, AP and accounting review it for stale receipts and receipts entered in error, because those inflate the accrual."
+
+Tip: In Oracle, mention the Uninvoiced Receipts report and accrual reconciliation.`,
+
+'What is 1099 reporting?':
+`**Why they ask:** a US compliance requirement that lands on AP every January.
+
+**Answer:**
+"US companies have to report certain payments to non-corporate vendors — independent contractors, rent, legal fees, royalties. Contractor payments go on Form 1099-NEC, which is due to the IRS and the vendor by January 31; other types go on 1099-MISC. It depends on good W-9 data and correct 1099 flags on vendors and invoices. If a vendor won't give a valid tax ID, we have to apply 24% backup withholding."
+
+Tip: Mention your year-end review of 1099 vendors and how you handle corrections.`,
+
+'How does sales/use tax affect AP?':
+`**Why they ask:** tax errors on invoices are common and costly.
+
+**Answer:**
+"When a vendor charges sales tax, AP checks it's correct for what we bought and where it was delivered. When we buy something taxable and the vendor doesn't charge tax — often an out-of-state vendor — the company may owe use tax and has to self-assess it. Tax engines like Vertex or Avalara calculate that on the invoice. And when we buy tax-exempt, we need the exemption certificate on file."
+
+Tip: If you've worked with international entities, mention VAT recovery too.`,
+
+'How do you control employee expense reports?':
+`**Why they ask:** T&E is a high-volume area with real fraud and policy risk.
+
+**Answer:**
+"It starts with a clear travel and expense policy. Receipts are required above a set amount, and managers approve. Tools like Concur or Expensify run automatic policy checks, and corporate card charges are reconciled. Then we audit a sample, focusing on risky items like alcohol, gifts and weekend spending, and check for the same expense being both paid by card and reimbursed."
+
+Tip: Mention a policy-violation trend you helped bring down.`,
+
+'Which AP metrics do you track?':
+`**Why they ask:** they want to see you manage AP with numbers.
+
+**Answer:**
+"I look at efficiency — cost per invoice and invoices per FTE. Speed — the cycle time from receiving an invoice to approval. Automation — the first-pass match or touchless rate. Exceptions — how many holds and how old they are. Cash — discounts captured versus available, late payments, and DPO. And quality — the duplicate payment rate. Each one should lead to an action, not just a report."
+
+Tip: Pair each metric you name with something you did to improve it.`,
+
+'What is DPO and how is it calculated?':
+`**Why they ask:** DPO links AP to working capital, which leadership cares about.
+
+**Answer:**
+"Days payable outstanding is accounts payable divided by cost of goods sold, times the number of days in the period. If AP is $5 million and quarterly COGS is $30 million, that's 5 over 30 times 90 — about 15 days. A higher DPO means we hold onto cash longer, but push it too far and you hurt supplier relationships and lose discounts. Treasury and procurement usually set target terms, like net 60."
+
+Tip: Mention balancing DPO against discount capture.`,
+
+'How would you automate AP?':
+`**Why they ask:** most AP teams are under pressure to do more with fewer people.
+
+**Answer:**
+"I'd start at intake — OCR or AI capture, plus a supplier portal or e-invoicing, so we stop keying invoices. Next, automated matching with sensible tolerances, and approval workflow routed by amount and cost center. On the payment side, move suppliers from checks to ACH or virtual card. Give suppliers self-service to check status, and give the team dashboards for holds and aging. The aim is that people only touch exceptions."
+
+Tip: Put a number on it — for example, touchless rate from 20% to 65%.`,
+
+'How is AI being used in AP?':
+`**Why they ask:** they want to see you're current and realistic about AI.
+
+**Answer:**
+"AI now reads invoices in any layout, so we don't need templates per supplier. It suggests GL coding for non-PO invoices based on history, predicts which invoices will hit exceptions and routes them, and flags anomalies like possible duplicates or unusual bank changes. Some tools also answer supplier status questions. Oracle Fusion, SAP and specialist vendors all offer this. But people still review exceptions and approve payments — the controls stay."
+
+Tip: Present AI as removing manual work, not removing controls.`,
+
+'What are the key AP controls?':
+`**Why they ask:** AP is a SOX-heavy area, and they want to know you can keep it clean.
+
+**Answer:**
+"Segregation of duties comes first — the person who sets up vendors shouldn't enter invoices or approve payments. Then approval limits and workflow, and matching with tolerances. Vendor master changes are reviewed, and bank changes are verified by calling a known contact. Payment runs get reviewed with dual approval, plus positive pay at the bank. And AP is reconciled to the GL every month."
+
+Tip: Mention you've supported SOX testing of these controls.`,
+
+'How do you reduce invoice holds?':
+`**Why they ask:** holds slow payment, frustrate suppliers and cost discounts.
+
+**Answer:**
+"I analyze holds by type and root cause — usually a simple Pareto chart. The fixes tend to be the same: buyers keep PO prices current, receiving is entered on time, suppliers put the PO number on invoices, tolerances are realistic, and tax setups are right. Then I report holds by buyer and requester so the people who cause them own fixing them."
+
+Tip: A Pareto of hold reasons is a strong, concrete detail.`,
+
+'Why reconcile supplier statements?':
+`**Why they ask:** it shows whether you look beyond your own system.
+
+**Answer:**
+"A supplier statement shows their view of what we owe. Comparing it to ours catches invoices we never received — unrecorded liabilities — payments they haven't applied, credits we haven't used, and duplicates. I reconcile key suppliers monthly or quarterly, depending on volume."
+
+Tip: Recovering unused credits is an easy win to mention.`,
+
+'How do you handle supplier credit memos and debit balances?':
+`**Why they ask:** unused credits are cash the company is owed.
+
+**Answer:**
+"I apply credit memos against open invoices for the same supplier as soon as they're valid. Every month I review debit balances — if we don't expect more invoices from that supplier, I ask for a refund. Credits shouldn't sit for months; that's money owed to us."
+
+Tip: If you know them, mention escheatment rules for long-unclaimed balances.`,
+
+'A supplier calls angry that they haven\'t been paid. What do you do?':
+`**Why they ask:** they're testing calm under pressure and follow-through.
+
+**Answer:**
+"I listen first and let them explain. Then I look up the invoice: did we receive it, is it on hold, is it scheduled for payment? If it's held for a missing receipt or approval, I chase the internal owner and give the supplier a realistic date, not a promise I can't keep. If the delay is ours, I own it. If their invoice was wrong, I explain exactly what we need. And I follow up when it's paid."
+
+Tip: Calm, factual, with a clear next step.`,
+
+'How do you handle supplier inquiries at volume?':
+`**Why they ask:** inquiries eat AP capacity, and they want a system, not heroics.
+
+**Answer:**
+"I use a shared mailbox with categories, standard reply templates, and a service level — say, a response within two business days. A supplier portal lets suppliers check status themselves. Most importantly, I track why they're contacting us. If most calls are about missing PO numbers on invoices, fixing that cuts the inquiries."
+
+Tip: Say that reducing inquiries matters more than answering faster.`,
+
+'How do you handle non-PO invoices?':
+`**Why they ask:** non-PO spend is weaker on control and accruals.
+
+**Answer:**
+"I route them to the right approver based on cost center and amount, and make sure the GL coding is right. I also track what categories come in without a PO, because many should be on POs or contracts. A 'no PO, no pay' policy — with exceptions for things like utilities and rent — tightens control and makes accruals more accurate."
+
+Tip: Mention the percentage of non-PO spend you helped reduce.`,
+
+'Which AP systems have you used?':
+`**Why they ask:** they want to know how quickly you'll be productive on their tools.
+
+**Answer:**
+"I've used Oracle Fusion Payables for invoice entry, matching, holds and payment process requests; Coupa for invoice capture and approvals; and Concur for expenses. I'm comfortable with the standard ERP reports — invoice aging, holds and unaccounted transactions — and I've used them to drive month-end."
+
+Tip: Say what you did in each tool, not just the names. Swap in your own systems.`,
+
+'How does invoice validation and accounting work in Oracle Payables?':
+`**Why they ask:** a common question when the company runs Oracle.
+
+**Answer:**
+"After entry, the invoice is validated. Validation checks matching against the PO and receipt, tolerances, tax and distributions, and places holds if something's off. Once it's validated and approved, Create Accounting generates the subledger journal — liability and expense or accrual — through Subledger Accounting, and that transfers to the GL. Payments go through a payment process request and are accounted the same way, debiting the liability and crediting cash or cash clearing."
+
+Tip: For blanket POs, mention the invoice match option — PO versus receipt.`,
+
+'How do you handle supplier prepayments?':
+`**Why they ask:** prepayments are easy to lose track of.
+
+**Answer:**
+"A prepayment is recorded as an asset — debit prepayment, credit cash. When the final invoice comes in, I apply the prepayment against it, which reduces what we owe. Every month I review unapplied prepayments and follow up on anything older than expected, because an old prepayment usually means an invoice we never received."
+
+Tip: In Oracle, prepayment application is a standard step — say you've done it.`,
+
+'What\'s different about paying international suppliers?':
+`**Why they ask:** global companies need AP that can handle cross-border payments.
+
+**Answer:**
+"There's foreign currency — the invoice is in their currency and we need the right rate. Payments go by wire or international ACH, like SEPA in Europe, using IBAN and SWIFT/BIC details. Some countries require withholding tax, and for US tax we need a W-8 form instead of a W-9. We also screen against sanctions lists. And FX gains or losses show up between the invoice date and the payment date."
+
+Tip: Mention EU VAT invoice requirements if you've dealt with them.`,
+
+'What AP fraud schemes do you watch for?':
+`**Why they ask:** AP is a prime fraud target, and they want awareness plus controls.
+
+**Answer:**
+"The common ones are fake vendors — often sharing an employee's address or bank account — bank detail change scams, duplicate or inflated invoices, kickbacks with real vendors, and invoices split to stay under approval limits. Controls that catch them are vendor master review, data analytics, approval limits, and segregation of duties."
+
+Tip: Mention running an employee-to-vendor address and bank match.`,
+
+'What do auditors test in AP?':
+`**Why they ask:** AP managers spend real time supporting audits.
+
+**Answer:**
+"The big one is completeness — the search for unrecorded liabilities. Auditors look at payments made after year-end and check whether any belonged to the prior year and should have been accrued. They also test that payables exist, cut-off, approval and matching controls, vendor master changes, and payment controls. AP should have support and approval evidence ready to hand over."
+
+Tip: Name the unrecorded liabilities search — it's the classic test.`,
+
+'Tell me about a process improvement you made in AP.':
+`**Why they ask:** they want proof you fix root causes, not just process volume.
+
+**Answer:**
+"About 35% of our invoices were going on receipt holds because the warehouse was entering receipts days late. I worked with the warehouse lead so goods were received in the system on the day of delivery, and set up a daily hold report by receiver. Receipt holds dropped by half, and we started capturing about $8,000 a month more in early payment discounts."
+
+Tip: Root cause, partner, number. Use your own example in that shape.`,
+
+'How do you handle a high invoice volume at quarter-end?':
+`**Why they ask:** quarter-end pressure is part of the job.
+
+**Answer:**
+"I prioritize by due date and discount date, batch similar invoices, and chase approvals early in the week instead of on the last day. Anything that's likely to miss cut-off, I flag to accounting so they can accrue it. Clear communication keeps quarter-end calm instead of a scramble."
+
+Tip: Mentioning the accrual handoff shows you understand the close.`,
+
+'Tell me about catching an error or fraud attempt.':
+`**Why they ask:** a real story proves your controls aren't just theory.
+
+**Answer:**
+"We got an email from a long-time vendor asking to change their bank details. The email domain was off by one letter. I called our known contact at the vendor using the number we had on file, and they confirmed they hadn't sent it. We blocked the change and reported it to IT security. That stopped a $120,000 payment from going to the fraudster."
+
+Tip: Real fraud stories are memorable — use one if you have it.`,
+
+'As AP manager, how would you reduce processing cost?':
+`**Why they ask:** managers are judged on cost per invoice.
+
+**Answer:**
+"I'd attack it from several sides. Get more spend onto POs so matching does the work. Move suppliers to e-invoicing and the portal. Raise the touchless match rate. Shift payments from checks to ACH and card. Clean the vendor master. And review KPIs weekly with the team. I'd benchmark our cost per invoice against industry ranges, set a target, and give it a timeline — say, 25% lower in 12 months."
+
+Tip: A target with a timeline sounds like a manager.`,
+
+'How do you manage and motivate an AP team?':
+`**Why they ask:** AP work is repetitive, and they want a leader who keeps people engaged.
+
+**Answer:**
+"I set clear roles and backups so no one is a single point of failure. We agree priorities daily or weekly, and the KPIs are visible to everyone. I recognize accuracy and improvement ideas, not just speed. I cross-train people, and I involve the team in automation so they see it as a way to move into better exception and analysis work — not as a threat to their jobs."
+
+Tip: Address the fear of automation directly — it's on every AP team's mind.`,
+
+'How do you prepare AP for a new ERP implementation?':
+`**Why they ask:** AP is often the first area to feel a bad go-live.
+
+**Answer:**
+"I document current processes and pain points so we don't rebuild the same problems. I clean the vendor master before migration — that's the big one. We define approval and matching rules, test end-to-end procure-to-pay scenarios including holds and payments, and validate payment file formats with each bank. And the team is trained before go-live, not after."
+
+Tip: Data cleanup before conversion saves months of trouble — say it.`,
+
+'What is the journal entry when an invoice is matched to a receipt?':
+`**Why they ask:** tests whether you understand the accounting behind the process.
+
+**Answer:**
+"At receipt, we debit inventory or expense and credit the receipt accrual liability. When the invoice is matched, we debit the accrual and credit accounts payable. If the invoice price is different from the PO price, the difference goes to an invoice price variance account. At payment, we debit accounts payable and credit cash. For example, receive $1,000 of goods, get invoiced $1,020 — $1,000 clears the accrual and $20 goes to IPV."
+
+Tip: Mentioning invoice price variance shows depth.`,
+
+'What is withholding tax and when does AP apply it?':
+`**Why they ask:** missing withholding creates tax exposure for the company.
+
+**Answer:**
+"Some payments require us to hold back part of the payment as tax and send it to the government. In the US, that's backup withholding when a vendor doesn't give a valid tax ID, and withholding on payments to foreign vendors, using W-8 forms and treaty rates. Many countries also require withholding on services or royalties. AP applies it at payment, and the tax team files and remits."
+
+Tip: Mention the W-8BEN-E for foreign entities.`,
+
+'What is escheatment (unclaimed property)?':
+`**Why they ask:** a niche area that shows broad AP knowledge.
+
+**Answer:**
+"When payments like checks go uncashed for a set period — usually one to five years, depending on the state — the company has to send due-diligence letters and then report and remit the money to the state as unclaimed property. AP tracks uncashed checks, follows up with payees, and voids or reissues where appropriate."
+
+Tip: Even a short, correct answer here stands out.`,
+
+'Why do you want to work in AP?':
+`**Why they ask:** they want to hear real interest, not 'it's a job'.
+
+**Answer:**
+"AP touches almost every supplier and most of the company's spend, so getting it right protects cash, controls and relationships. I like the mix of detail work and process improvement, and I want to grow toward AP or procure-to-pay leadership."
+
+Tip: Keep it positive and forward-looking.`,
+
+'Why should we hire you for this AP role?':
+`**Why they ask:** your closing pitch.
+
+**Answer:**
+"I process accurately at volume, I resolve holds quickly, and I'm careful with vendor and payment controls — I've stopped at least one fraud attempt. I also look for root causes; in my last role I cut receipt holds by half. So you'd get someone who keeps AP clean and keeps making it better."
+
+Tip: Accuracy, control and improvement — each with proof.`,
+
+'What is the difference between a PO invoice and a non-PO invoice in terms of risk?':
+`**Why they ask:** a simple question that shows whether you think in terms of control.
+
+**Answer:**
+"A PO invoice was approved before the spend — price, quantity and supplier were agreed through purchasing, and matching confirms it. A non-PO invoice is approved after the fact. That means more risk: spend nobody approved upfront, wrong coding, missed accruals and more room for fraud. That's why non-PO invoices need stronger approval routing, and why most companies push spend onto POs or contracts."
+
+Tip: Mention the share of non-PO invoices at your last company and what you did about it.`,
+
+'How do you handle invoices received after the period has closed?':
+`**Why they ask:** it tests your grasp of cut-off and materiality.
+
+**Answer:**
+"If the goods or services belong to the closed period and weren't accrued, accounting looks at materiality. If it's small, we book it in the current period. If it's material, we record a late adjustment before the financial statements are final. Either way, I look at why the accrual missed it — no receipt, no PO, late approval — and fix that."
+
+Tip: Tie it to the auditor's search for unrecorded liabilities.`,
+
+'What is a supplier portal and why use one?':
+`**Why they ask:** portals are a standard part of a modern AP setup.
+
+**Answer:**
+"It's a self-service site where suppliers register, maintain their own details with verification, submit invoices against POs, and check invoice and payment status. It cuts data-entry errors and supplier inquiries, speeds up processing, and adds control over bank detail changes. Examples are Oracle Supplier Portal, Coupa and SAP Business Network."
+
+Tip: Mention the drop in 'where's my payment' emails after go-live.`,
+
+};

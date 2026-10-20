@@ -5,7 +5,7 @@
 // Afterwards run: node tools/merge.js
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const root = path.join(__dirname, '..'), srcDir = path.join(root, 'src');
-const map = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+const map = /\.js$/.test(process.argv[2]) ? require(path.resolve(process.argv[2])) : JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const prefix = process.argv[3] || '';
 const used = new Set();
 for (const f of fs.readdirSync(srcDir).filter(f => f.startsWith(prefix) && f.endsWith('.js'))) {

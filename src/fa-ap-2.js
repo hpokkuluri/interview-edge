@@ -1,14 +1,5 @@
-QB['fa-ap'] = (QB['fa-ap'] || []).concat([
-["Process", "What is the difference between a PO invoice and a non-PO invoice in terms of risk?",
-`**Answer:** A PO invoice was pre-approved through purchasing — price, quantity and supplier were agreed before the spend, and matching confirms it. A non-PO invoice is approved after the fact, so the risks are higher: unapproved spend, wrong coding, missed accruals and fraud. That's why non-PO invoices need stronger approval routing and why most companies push spend onto POs or contracts.
-
-Tip: Mention the % of non-PO invoices at your last company and what you did about it.`, 'B', 'E'],
-["Close", "How do you handle invoices received after the period has closed?",
-`**Answer:** If the goods or services belong to the closed period and weren't accrued, accounting assesses materiality: if immaterial, book in the current period; if material, record a late adjustment before financial statements are final. Either way, I review why the accrual missed it — no receipt, no PO, late approval — and fix that source.
-
-Tip: Tie it to the auditor's unrecorded liabilities search.`, 'D', 'M'],
-["Supplier Onboarding", "What is a supplier portal and why use one?",
-`**Answer:** A self-service site where suppliers register, maintain their details (with verification), submit invoices against POs, and check invoice and payment status. It reduces data-entry errors, cuts supplier inquiries, speeds invoice processing, and adds control over bank detail changes. Examples: Oracle Supplier Portal, Coupa, SAP Business Network.
-
-Tip: Mention the drop in "where's my payment" emails after go-live.`, 'D', 'M']
+QB["fa-ap"] = (QB["fa-ap"] || []).concat([
+["Process", "What is the difference between a PO invoice and a non-PO invoice in terms of risk?", "**Why they ask:** a simple question that shows whether you think in terms of control.\n\n**Answer:**\n\"A PO invoice was approved before the spend — price, quantity and supplier were agreed through purchasing, and matching confirms it. A non-PO invoice is approved after the fact. That means more risk: spend nobody approved upfront, wrong coding, missed accruals and more room for fraud. That's why non-PO invoices need stronger approval routing, and why most companies push spend onto POs or contracts.\"\n\nTip: Mention the share of non-PO invoices at your last company and what you did about it.", "B", "E"],
+["Close", "How do you handle invoices received after the period has closed?", "**Why they ask:** it tests your grasp of cut-off and materiality.\n\n**Answer:**\n\"If the goods or services belong to the closed period and weren't accrued, accounting looks at materiality. If it's small, we book it in the current period. If it's material, we record a late adjustment before the financial statements are final. Either way, I look at why the accrual missed it — no receipt, no PO, late approval — and fix that.\"\n\nTip: Tie it to the auditor's search for unrecorded liabilities.", "D", "M"],
+["Supplier Onboarding", "What is a supplier portal and why use one?", "**Why they ask:** portals are a standard part of a modern AP setup.\n\n**Answer:**\n\"It's a self-service site where suppliers register, maintain their own details with verification, submit invoices against POs, and check invoice and payment status. It cuts data-entry errors and supplier inquiries, speeds up processing, and adds control over bank detail changes. Examples are Oracle Supplier Portal, Coupa and SAP Business Network.\"\n\nTip: Mention the drop in 'where's my payment' emails after go-live.", "D", "M"]
 ]);
