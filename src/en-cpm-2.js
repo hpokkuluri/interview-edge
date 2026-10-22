@@ -1,26 +1,8 @@
-QB['en-cpm'] = (QB['en-cpm']||[]).concat([
-["General Conditions", "What are general conditions costs?",
-`**Answer:** Project overhead such as the site office, supervision staff, temporary utilities, insurance, equipment, cleanup and permits. They are often time-related, so delays increase them.
-
-Tip: Time-related costs.`, 'B', 'M'],
-["Contingency", "How do you manage contingency?",
-`**Answer:** Track the contractor's and the owner's contingency separately, document each draw with justification, forecast the remaining risks, and report usage transparently.
-
-Tip: Transparent usage.`, 'B', 'M'],
-["Superintendent", "How do PMs and superintendents divide responsibilities?",
-`**Answer:** The PM handles contracts, cost, schedule, procurement and owner communication. The superintendent runs field operations, safety, daily coordination and quality on site. They need close daily alignment.
-
-Tip: Partnership.`, 'B', 'E'],
-["Prefabrication", "How does prefabrication help projects?",
-`**Answer:** Faster schedules, better quality in controlled environments, less site congestion and safety risk, and less waste. It requires early design coordination and logistics.
-
-Tip: Early coordination.`, 'B', 'M'],
-["EMR", "What is EMR and why does it matter?",
-`**Answer:** The Experience Modification Rate compares a contractor's workers' comp claims to industry averages. Below 1.0 is better than average, which lowers insurance costs and qualifies the firm for more bids.
-
-Tip: Below 1.0.`, 'B', 'E'],
-["Earned Value", "How can earned value help on construction projects?",
-`**Answer:** Compare planned value, earned value (percent complete × budget) and actual costs to measure schedule and cost performance, and forecast the final cost.
-
-Tip: SPI and CPI.`, 'D', 'M']
+QB["en-cpm"] = (QB["en-cpm"] || []).concat([
+["General Conditions", "What are general conditions costs?", "**Why they ask:** cost structure.\n\n**Answer:**\n\"Project overhead — site office, supervision staff, temporary utilities, insurance, equipment, cleanup and permits. They're time-related: if general conditions run $60,000 a month, a two-month delay costs $120,000.\"\n\nTip: Time-related costs.", "B", "M"],
+["Contingency", "How do you manage contingency?", "**Why they ask:** financial integrity.\n\n**Answer:**\n\"Track contractor and owner contingency separately, document every draw with justification, forecast remaining risks against what's left, and report usage transparently.\"\n\nTip: Transparent usage.", "B", "M"],
+["Superintendent", "How do PMs and superintendents divide responsibilities?", "**Why they ask:** team dynamics.\n\n**Answer:**\n\"The PM owns contracts, cost, schedule, procurement and owner communication. The superintendent runs field operations, safety, daily coordination and quality on site. We talk every day.\"\n\nTip: Partnership.", "B", "E"],
+["Prefabrication", "How does prefabrication help projects?", "**Why they ask:** modern methods.\n\n**Answer:**\n\"Faster schedules, better quality in controlled shop conditions, less site congestion and safety risk, and less waste — but it requires design to be locked early and careful logistics.\"\n\nTip: Early coordination.", "B", "M"],
+["EMR", "What is EMR and why does it matter?", "**Why they ask:** safety and business link.\n\n**Answer:**\n\"The Experience Modification Rate compares a contractor's workers' comp claims against the industry average. Below 1.0 is better than average — an EMR of 0.8 means roughly 20% lower premiums — and many owners won't let firms above 1.0 bid.\"\n\nTip: Below 1.0.", "B", "E"],
+["Earned Value", "How can earned value help on construction projects?", "**Why they ask:** performance measurement.\n\n**Answer:**\n\"Compare planned value, earned value — percent complete times budget — and actual cost. On a $10 million job at 40% complete, EV is $4 million. If PV is $5 million and actual cost $4.4 million, SPI is 0.8, behind schedule, and CPI about 0.91, over cost, so the estimate at completion is about $11 million.\"\n\nTip: SPI and CPI.", "D", "M"]
 ]);

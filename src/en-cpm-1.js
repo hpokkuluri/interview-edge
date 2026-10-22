@@ -1,224 +1,47 @@
 // Construction Project Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['en-cpm'] = [
-["Role", "What does a construction project manager do?",
-`**Why they ask:** scope and project size.
-
-**Answer:** Manages construction projects from preconstruction to closeout: budget and cost control, schedule, subcontractor procurement and management, contracts and change orders, RFIs and submittals, safety and quality, owner and design team communication, and closeout.
-
-Tip: Project types and sizes.`, 'B', 'E'],
-
-["Delivery Methods", "Compare project delivery methods.",
-`**Answer:** **Design-bid-build** (separate design and construction, lowest bid), **design-build** (single entity, faster), **CM at risk** (CM joins early, provides GMP), **IPD** (shared risk/reward).
-
-Tip: Pros and cons.`, 'B', 'M'],
-
-["Contracts", "Lump sum vs cost-plus vs GMP?",
-`**Answer:** **Lump sum:** fixed price, contractor risk. **Cost-plus:** owner pays costs plus fee, more owner risk. **GMP:** cost-plus with a guaranteed maximum, savings often shared.
-
-Tip: Risk allocation.`, 'B', 'M'],
-
-["Schedule", "How do you build and manage a construction schedule?",
-`**Answer:** CPM scheduling (Primavera P6, MS Project) with activities, durations, logic and resources; identify critical path; update regularly; look-ahead schedules (3-week) with subs; manage delays and recovery.
-
-Tip: Look-aheads.`, 'B', 'M'],
-
-["Delays", "How do you handle schedule delays?",
-`**Answer:** Identify cause and impact, notify per contract, develop recovery options (resequencing, overtime, added crews), document for potential claims, and communicate.
-
-Tip: Contract notices.`, 'B', 'M'],
-
-["Cost", "How do you control project costs?",
-`**Answer:** Detailed budget by cost codes, buyout tracking, committed vs actual costs, forecast to complete, change order management and monthly cost reports.
-
-Tip: Forecast to complete.`, 'B', 'M'],
-
-["Buyout", "What is buyout?",
-`**Answer:** Awarding subcontracts and purchase orders after contract award, aiming to secure scope at or below budget — buyout savings or losses affect margin.
-
-Tip: Scope gaps.`, 'B', 'M'],
-
-["Change Orders", "How do you manage change orders?",
-`**Answer:** Identify changes early, document scope and cause, price with backup, negotiate with owner, get written approval before work where possible, and track status.
-
-Tip: Written approval.`, 'B', 'E'],
-
-["RFIs", "How do you manage RFIs?",
-`**Answer:** Clear questions with references and proposed solutions, log with due dates, follow up with design team, and distribute responses to affected trades.
-
-Tip: Proposed solutions.`, 'B', 'E'],
-
-["Submittals", "What is the submittal process?",
-`**Answer:** Subcontractors submit shop drawings, product data and samples; GC reviews for completeness, architect/engineer reviews for design compliance; track in a log tied to procurement lead times.
-
-Tip: Lead times.`, 'B', 'E'],
-
-["Safety", "How do you lead safety on a project?",
-`**Answer:** Site-specific safety plan, pre-task planning, toolbox talks, inspections, subcontractor accountability, incident investigation, and leading by example — safety first always.
-
-Tip: Pre-task planning.`, 'B', 'E'],
-
-["OSHA", "What are the OSHA Focus Four hazards?",
-`**Answer:** Falls, struck-by, caught-in/between, and electrocution — the leading causes of construction fatalities.
-
-Tip: Focus Four.`, 'B', 'E'],
-
-["Quality", "How do you ensure quality?",
-`**Answer:** Quality control plan, preinstallation meetings, mockups, inspections and testing, punch lists throughout, and corrective actions.
-
-Tip: Mockups.`, 'B', 'E'],
-
-["Subcontractors", "How do you manage subcontractors?",
-`**Answer:** Clear scopes and contracts, prequalification, coordination meetings, schedule commitments, payment discipline, performance tracking and fair dealing.
-
-Tip: Clear scopes.`, 'B', 'E'],
-
-["Preconstruction", "What happens in preconstruction?",
-`**Answer:** Estimating, constructability reviews, value engineering, scheduling, logistics planning, procurement of long-lead items and risk identification.
-
-Tip: Long-lead items.`, 'B', 'M'],
-
-["Value Engineering", "How do you approach value engineering?",
-`**Answer:** Identify alternatives that maintain function and quality at lower cost, quantify savings and impacts, and present to owner/design team.
-
-Tip: Function preserved.`, 'B', 'M'],
-
-["Estimating", "How do you prepare an estimate?",
-`**Answer:** Quantity takeoffs, unit costs from history and sub bids, general conditions, contingency, overhead and profit — with scope review to avoid gaps.
-
-Tip: Scope gaps.`, 'B', 'M'],
-
-["Pay Apps", "How do pay applications work?",
-`**Answer:** Monthly billing against schedule of values (AIA G702/G703), percent complete, stored materials, retainage, lien waivers and owner approval.
-
-Tip: Lien waivers.`, 'B', 'M'],
-
-["Retainage", "What is retainage?",
-`**Answer:** A percentage (often 5–10%) withheld from payments until completion to ensure performance, released at substantial completion or closeout.
-
-Tip: Cash flow impact.`, 'B', 'E'],
-
-["Closeout", "What's involved in project closeout?",
-`**Answer:** Punch list completion, final inspections and certificate of occupancy, O&M manuals and warranties, as-built drawings, training, final payment and lessons learned.
-
-Tip: Start early.`, 'B', 'E'],
-
-["Technology", "Which construction tools do you use?",
-`**Answer:** Procore, Autodesk Construction Cloud, Primavera P6, Bluebeam, BIM 360/Navisworks, and estimating software.
-
-Tip: Procore.`, 'B', 'E'],
-
-["BIM", "How does BIM help construction?",
-`**Answer:** Clash detection before construction, coordination, prefabrication, quantity takeoffs and better communication.
-
-Tip: Clash detection.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a project you delivered successfully.",
-`**Sample answer:** "I managed a $28M healthcare clinic, delivered 3 weeks early and 2% under budget through early MEP coordination and prefabrication, with zero lost-time incidents."
-
-Tip: Cost, schedule, safety.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a difficult owner.",
-`**Sample answer:** "An owner disputed change orders. I documented every change with RFIs and photos, met regularly to review, and resolved 90% without escalation."
-
-Tip: Documentation.`, 'B', 'M'],
-
-["Behavioral", "Tell me about recovering a delayed schedule.",
-`**Answer:** Describe analyzing the critical path, resequencing, adding shifts, and communicating — with outcome.
-
-Tip: Critical path.`, 'B', 'M'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** PMP, CCM (Certified Construction Manager), OSHA 30, LEED AP, DBIA.
-
-Tip: OSHA 30.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior PM, project executive, or operations leadership.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I deliver projects safely, early and under budget by planning ahead and managing details — like a $28M clinic finished 3 weeks early."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Risk", "How do you identify project risks?",
-`**Answer:** Risk register from preconstruction: site conditions, design completeness, long-lead materials, labor availability, weather, permits; with mitigations and owners.
-
-Tip: Risk register.`, 'B', 'M'],
-
-["Claims", "How do you avoid and manage claims?",
-`**Answer:** Clear contracts, good documentation (daily reports, photos, correspondence), timely notices, and negotiation; escalate per dispute resolution clauses.
-
-Tip: Daily reports.`, 'D', 'M'],
-
-["Daily Reports", "What should daily reports include?",
-`**Answer:** Weather, manpower by trade, work performed, deliveries, inspections, delays, safety observations and visitors.
-
-Tip: Claims evidence.`, 'B', 'E'],
-
-["Logistics", "How do you plan site logistics?",
-`**Answer:** Site layout for cranes, laydown, access, parking, deliveries, safety zones and neighbors — updated by phase.
-
-Tip: Phased plans.`, 'B', 'M'],
-
-["Materials", "How do you manage supply chain risks for materials?",
-`**Answer:** Early procurement, monitoring lead times, alternate products, storage plans, and price escalation clauses.
-
-Tip: Escalation clauses.`, 'B', 'M'],
-
-["Meetings", "Which meetings do you run?",
-`**Answer:** OAC (owner-architect-contractor) meetings, subcontractor coordination, safety meetings, and preinstallation meetings.
-
-Tip: OAC.`, 'B', 'E'],
-
-["Financial", "How do you report project financials?",
-`**Answer:** Monthly cost report: budget, committed, actual, forecast, change orders pending/approved, contingency and projected margin.
-
-Tip: Projected margin.`, 'B', 'M'],
-
-["Lien Law", "What are mechanics' liens?",
-`**Answer:** Legal claims against property by unpaid contractors or suppliers; manage with lien waivers and timely payments.
-
-Tip: Waivers.`, 'D', 'M'],
-
-["Scenario", "A subcontractor is falling behind. What do you do?",
-`**Answer:** Meet to understand causes, require a recovery plan with manpower commitments, document, offer support, and use contract remedies (supplementing forces) if needed.
-
-Tip: Recovery plan.`, 'B', 'M'],
-
-["Scenario", "You discover unforeseen site conditions. What do you do?",
-`**Answer:** Stop affected work, document, notify owner per contract (differing site conditions clause), get engineering direction, price the change and adjust schedule.
-
-Tip: Notice requirements.`, 'B', 'M'],
-
-["Scenario", "An inspector fails a critical inspection. What do you do?",
-`**Answer:** Understand deficiencies, correct promptly with the sub, reschedule, and assess schedule impact.
-
-Tip: Quick correction.`, 'B', 'E'],
-
-["Communication", "How do you keep owners informed?",
-`**Answer:** Regular reports on schedule, cost, risks and decisions needed; transparent bad news early.
-
-Tip: No surprises.`, 'B', 'E'],
-
-["Sustainability", "How do you manage LEED requirements on site?",
-`**Answer:** Waste diversion tracking, material documentation, indoor air quality plans, and commissioning coordination.
-
-Tip: Documentation.`, 'B', 'M'],
-
-["Commissioning", "What is commissioning?",
-`**Answer:** Systematic verification that building systems (MEP) are installed and perform as designed, often by a third-party commissioning agent.
-
-Tip: Functional testing.`, 'B', 'M'],
-
-["Team", "How do you lead project teams?",
-`**Answer:** Clear roles, mentorship of project engineers and superintendents, regular communication and accountability.
-
-Tip: Mentorship.`, 'B', 'E'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Project pipeline and types, team structure, tools, safety record (EMR), and bonus structure.
-
-Tip: EMR.`, 'B', 'E']
-];
+QB["en-cpm"] = (QB["en-cpm"] || []).concat([
+["Role", "What does a construction project manager do?", "**Why they ask:** scope and project size.\n\n**Answer:** Manages construction projects from preconstruction to closeout: budget and cost control, schedule, subcontractor procurement and management, contracts and change orders, RFIs and submittals, safety and quality, owner and design team communication, and closeout.\n\nTip: Project types and sizes.", "B", "E"],
+["Delivery Methods", "Compare project delivery methods.", "**Why they ask:** contract and risk literacy.\n\n**Answer:**\n\"Design-bid-build separates design and construction and awards to the low bidder — clear competition, but slower and prone to change orders. Design-build puts one entity on the hook for both, so it's faster with fewer disputes, though the owner gives up some design control. CM at risk brings the contractor in during design to give constructability input and a GMP. IPD shares risk and reward across owner, designer and builder — great collaboration, but it needs mature partners.\"\n\nTip: Pros and cons.", "B", "M"],
+["Contracts", "Lump sum vs cost-plus vs GMP?", "**Why they ask:** risk allocation.\n\n**Answer:**\n\"Lump sum is a fixed price, so the contractor carries cost risk and the owner needs complete drawings. Cost-plus has the owner pay actual costs plus a fee — flexible, but the owner carries the risk. GMP is cost-plus with a ceiling: if costs come in at $9.4 million on a $10 million GMP, the $600,000 savings is often split, say 50/50, while overruns above the GMP are the contractor's.\"\n\nTip: Risk allocation.", "B", "M"],
+["Schedule", "How do you build and manage a construction schedule?", "**Why they ask:** a core PM skill.\n\n**Answer:**\n\"A CPM schedule in Primavera P6 or MS Project with activities, durations, logic ties and resources, so I know the critical path. I update it at least monthly, and with the superintendent run three-week look-aheads with subs every week — that's where the schedule actually gets managed. Delays get analyzed against the baseline right away.\"\n\nTip: Look-aheads.", "B", "M"],
+["Delays", "How do you handle schedule delays?", "**Why they ask:** delay management and contractual awareness.\n\n**Answer:**\n\"Identify the cause and whether it hits the critical path, give written notice within the contract deadline — often 7 to 21 days, and missing it can waive the claim — develop recovery options like resequencing, overtime or added crews, document everything for potential time extension requests, and communicate openly with the owner.\"\n\nTip: Contract notices.", "B", "M"],
+["Cost", "How do you control project costs?", "**Why they ask:** financial discipline.\n\n**Answer:**\n\"A detailed budget by cost code, buyout tracking, committed versus actual costs, a forecast to complete for every line, disciplined change order management and monthly cost reports. The forecast matters most: knowing in month four that concrete will overrun by $80,000 gives me time to recover it elsewhere.\"\n\nTip: Forecast to complete.", "B", "M"],
+["Buyout", "What is buyout?", "**Why they ask:** a key margin driver.\n\n**Answer:**\n\"Awarding subcontracts and purchase orders after the prime contract is signed. If electrical was budgeted at $2.1 million and I buy it out at $1.95 million with a complete scope, that $150,000 improves margin — but a cheap bid with scope gaps just becomes a change order later.\"\n\nTip: Scope gaps.", "B", "M"],
+["Change Orders", "How do you manage change orders?", "**Why they ask:** protecting margin and relationships.\n\n**Answer:**\n\"Identify changes early, document scope and cause, price with backup — sub quotes, labor and material — negotiate with the owner, and get written approval before doing the work wherever possible. I track every pending change in a log reviewed at each OAC meeting.\"\n\nTip: Written approval.", "B", "E"],
+["RFIs", "How do you manage RFIs?", "**Why they ask:** design coordination.\n\n**Answer:**\n\"Write clear questions with drawing references and a proposed solution, so the designer can just approve it. Log them with due dates, follow up, and distribute answers to every affected trade.\"\n\nTip: Proposed solutions.", "B", "E"],
+["Submittals", "What is the submittal process?", "**Why they ask:** procurement and design compliance.\n\n**Answer:**\n\"Subs submit shop drawings, product data and samples; we review for completeness and coordination; the architect and engineer review for design compliance. The log ties each submittal to procurement lead times — switchgear with a 40-week lead time needs approval months before anything else.\"\n\nTip: Lead times.", "B", "E"],
+["Safety", "How do you lead safety on a project?", "**Why they ask:** safety is non-negotiable.\n\n**Answer:**\n\"A site-specific safety plan, daily pre-task planning by every crew, weekly toolbox talks, regular inspections, holding subs accountable, investigating every incident and near miss, and leading by example — I wear my PPE and stop work when something's wrong.\"\n\nTip: Pre-task planning.", "B", "E"],
+["OSHA", "What are the OSHA Focus Four hazards?", "**Why they ask:** safety fundamentals.\n\n**Answer:**\n\"Falls, struck-by, caught-in or between, and electrocution — the leading causes of construction fatalities, with falls the largest.\"\n\nTip: Focus Four.", "B", "E"],
+["Quality", "How do you ensure quality?", "**Why they ask:** quality management.\n\n**Answer:**\n\"A quality control plan, preinstallation meetings with each trade, mockups to agree on the standard before production work, inspections and testing, and rolling punch lists instead of one giant list at the end.\"\n\nTip: Mockups.", "B", "E"],
+["Subcontractors", "How do you manage subcontractors?", "**Why they ask:** subs do most of the work.\n\n**Answer:**\n\"Clear scopes and contracts, prequalification, coordination meetings, firm schedule commitments, paying on time, tracking performance, and dealing fairly. Subs who get paid promptly put their best crews on your job.\"\n\nTip: Clear scopes.", "B", "E"],
+["Preconstruction", "What happens in preconstruction?", "**Why they ask:** early project value.\n\n**Answer:**\n\"Estimating, constructability reviews, value engineering, scheduling, logistics planning, procuring long-lead items like switchgear and elevators, and identifying risks.\"\n\nTip: Long-lead items.", "B", "M"],
+["Value Engineering", "How do you approach value engineering?", "**Why they ask:** cost optimization without cutting corners.\n\n**Answer:**\n\"Find alternatives that keep function and quality at lower cost, quantify the savings and any impacts on schedule or maintenance, and present them to the owner and design team. Swapping a cast-in-place stair for precast can save money and weeks; downgrading the roof to save money isn't VE, it's cutting.\"\n\nTip: Function preserved.", "B", "M"],
+["Estimating", "How do you prepare an estimate?", "**Why they ask:** estimating rigor.\n\n**Answer:**\n\"Quantity takeoffs, unit costs from history and sub bids, general conditions, contingency, overhead and profit — with a scope review across divisions so nothing falls between trades.\"\n\nTip: Scope gaps.", "B", "M"],
+["Pay Apps", "How do pay applications work?", "**Why they ask:** cash flow management.\n\n**Answer:**\n\"Monthly billing against a schedule of values on AIA G702 and G703 — percent complete per line, stored materials, minus retainage, with lien waivers from subs and owner approval. If a $500,000 line is 40% complete, I bill $200,000 less 10% retainage, so $180,000.\"\n\nTip: Lien waivers.", "B", "M"],
+["Retainage", "What is retainage?", "**Why they ask:** cash flow awareness.\n\n**Answer:**\n\"A percentage — often 5 to 10% — withheld from each payment until completion, released at substantial completion or closeout. On a $20 million job at 10%, that's up to $2 million of cash tied up, so it significantly affects cash flow.\"\n\nTip: Cash flow impact.", "B", "E"],
+["Closeout", "What's involved in project closeout?", "**Why they ask:** finishing strong.\n\n**Answer:**\n\"Punch list completion, final inspections and certificate of occupancy, O&M manuals and warranties, as-built drawings, owner training, final payment and retainage release, and lessons learned. Closeout documents should start being collected months earlier.\"\n\nTip: Start early.", "B", "E"],
+["Technology", "Which construction tools do you use?", "**Why they ask:** tooling fit.\n\n**Answer:**\n\"Procore for project management, Autodesk Construction Cloud, Primavera P6 for scheduling, Bluebeam for drawings, Navisworks for coordination, and estimating software.\"\n\nTip: Procore.", "B", "E"],
+["BIM", "How does BIM help construction?", "**Why they ask:** modern methods.\n\n**Answer:**\n\"Clash detection before construction, coordination between trades, prefabrication from the model, quantity takeoffs and clearer communication. On one hospital, clash detection caught over 200 conflicts in the ceiling space before anyone installed a hanger.\"\n\nTip: Clash detection.", "B", "M"],
+["Behavioral", "Tell me about a project you delivered successfully.", "**Why they ask:** proven results.\n\n**Answer:**\n\"I managed a $28 million healthcare clinic, delivered three weeks early and 2% under budget through early MEP coordination and prefabrication, with zero lost-time incidents.\"\n\nTip: Cost, schedule, safety.", "B", "M"],
+["Behavioral", "Tell me about a difficult owner.", "**Why they ask:** relationship management.\n\n**Answer:**\n\"An owner disputed change orders. I documented every change with RFIs, photos and the drawing revision that caused it, met weekly to review the log, and resolved 90% without escalation.\"\n\nTip: Documentation.", "B", "M"],
+["Behavioral", "Tell me about recovering a delayed schedule.", "**Why they ask:** recovery skills.\n\n**Answer:**\n\"A steel delivery delay put us five weeks behind. I analyzed the critical path, resequenced to start interior work in the completed areas, added a second shift for erection, and gave the owner weekly updates. We recovered four of the five weeks and hit the occupancy date.\"\n\nTip: Critical path.", "B", "M"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"PMP, CCM — Certified Construction Manager — OSHA 30, LEED AP and DBIA.\"\n\nTip: OSHA 30.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior PM and project executive, and eventually operations leadership.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I deliver projects safely, early and under budget by planning ahead and managing details — like a $28 million clinic finished three weeks early.\"\n\nTip: Proof.", "B", "E"],
+["Risk", "How do you identify project risks?", "**Why they ask:** proactive management.\n\n**Answer:**\n\"A risk register started in preconstruction: site conditions, design completeness, long-lead materials, labor availability, weather and permits — each with a mitigation and an owner, reviewed monthly.\"\n\nTip: Risk register.", "B", "M"],
+["Claims", "How do you avoid and manage claims?", "**Why they ask:** dispute prevention.\n\n**Answer:**\n\"Clear contracts, good documentation — daily reports, photos, correspondence — timely notices and negotiation first. If that fails, escalate through the contract's dispute resolution steps, usually mediation before arbitration.\"\n\nTip: Daily reports.", "D", "M"],
+["Daily Reports", "What should daily reports include?", "**Why they ask:** documentation discipline.\n\n**Answer:**\n\"Weather, manpower by trade, work performed, deliveries, inspections, delays, safety observations and visitors. They're the first evidence anyone asks for in a claim.\"\n\nTip: Claims evidence.", "B", "E"],
+["Logistics", "How do you plan site logistics?", "**Why they ask:** field planning.\n\n**Answer:**\n\"A site logistics plan for crane placement, laydown, access, parking, deliveries, safety zones and neighbor impacts — updated for each phase as the building goes up.\"\n\nTip: Phased plans.", "B", "M"],
+["Materials", "How do you manage supply chain risks for materials?", "**Why they ask:** current risk awareness.\n\n**Answer:**\n\"Procure early, monitor lead times, approve alternate products ahead of time, plan secure storage, and negotiate price escalation clauses for volatile materials like steel and copper.\"\n\nTip: Escalation clauses.", "B", "M"],
+["Meetings", "Which meetings do you run?", "**Why they ask:** communication cadence.\n\n**Answer:**\n\"OAC meetings with owner and architect, weekly subcontractor coordination, safety meetings, and preinstallation meetings before each major trade starts.\"\n\nTip: OAC.", "B", "E"],
+["Financial", "How do you report project financials?", "**Why they ask:** financial transparency.\n\n**Answer:**\n\"A monthly cost report: budget, committed, actual, forecast, pending and approved change orders, contingency remaining and projected margin.\"\n\nTip: Projected margin.", "B", "M"],
+["Lien Law", "What are mechanics' liens?", "**Why they ask:** payment risk.\n\n**Answer:**\n\"Legal claims against the property by unpaid contractors or suppliers. We manage them with conditional and unconditional lien waivers with every pay app and by paying subs promptly.\"\n\nTip: Waivers.", "D", "M"],
+["Scenario", "A subcontractor is falling behind. What do you do?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Meet to understand why, require a recovery plan with manpower commitments, document it, offer support like resequencing, and if they still miss, use contract remedies such as supplementing their forces at their cost after proper notice.\"\n\nTip: Recovery plan.", "B", "M"],
+["Scenario", "You discover unforeseen site conditions. What do you do?", "**Why they ask:** contract management.\n\n**Answer:**\n\"Stop affected work, document with photos and measurements, notify the owner under the differing site conditions clause within the notice period, get engineering direction, then price the change and adjust the schedule.\"\n\nTip: Notice requirements.", "B", "M"],
+["Scenario", "An inspector fails a critical inspection. What do you do?", "**Why they ask:** problem response.\n\n**Answer:**\n\"Understand each deficiency, get the sub to correct it promptly, reschedule the inspection, and assess schedule impact — and figure out why our own QC didn't catch it first.\"\n\nTip: Quick correction.", "B", "E"],
+["Communication", "How do you keep owners informed?", "**Why they ask:** client trust.\n\n**Answer:**\n\"Regular reports on schedule, cost, risks and decisions needed — and bad news early, with options.\"\n\nTip: No surprises.", "B", "E"],
+["Sustainability", "How do you manage LEED requirements on site?", "**Why they ask:** sustainability delivery.\n\n**Answer:**\n\"Track waste diversion, collect material documentation, follow an indoor air quality plan during construction, and coordinate commissioning.\"\n\nTip: Documentation.", "B", "M"],
+["Commissioning", "What is commissioning?", "**Why they ask:** building performance.\n\n**Answer:**\n\"Systematic verification that building systems — especially MEP — are installed and perform as designed, often by a third-party commissioning agent through functional testing.\"\n\nTip: Functional testing.", "B", "M"],
+["Team", "How do you lead project teams?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Clear roles, mentoring project engineers and assistant superintendents, regular communication and accountability.\"\n\nTip: Mentorship.", "B", "E"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What's the project pipeline and typical project type? How are teams structured, which tools do you use, what's your EMR, and how is the bonus structured?\"\n\nTip: EMR.", "B", "E"]
+]);
