@@ -1,249 +1,57 @@
 // ls-cra — generated from src/ls-cra-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Clinical Research Associate / Clinical Trial Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ls-cra'] = [
-["Role", "What does a CRA do?",
-`**Why they ask:** baseline.
-
-**Answer:** Monitors clinical trials at investigator sites to ensure subject safety, data integrity and compliance with the protocol, ICH-GCP and regulations: site selection and initiation, routine monitoring visits (on-site/remote), source data verification and review, issue resolution, and close-out.
-
-Tip: Phases and therapeutic areas.`, 'B', 'E'],
-
-["GCP", "What are the principles of ICH-GCP?",
-`**Answer:** Protect rights, safety and wellbeing of subjects; scientifically sound protocols; IRB/IEC approval; informed consent; qualified investigators; accurate data recording; confidentiality; investigational product handled per GMP; quality systems. ICH E6(R3) emphasizes risk-based, proportionate approaches.
-
-Tip: E6(R3).`, 'B', 'M'],
-
-["Visits", "What types of monitoring visits are there?",
-`**Answer:** Site qualification/selection visit, site initiation visit (SIV), interim monitoring visits, and close-out visit — plus remote monitoring.
-
-Tip: Purpose of each.`, 'B', 'E'],
-
-["Consent", "What do you check for informed consent?",
-`**Answer:** Correct IRB-approved version, signed and dated by subject (and person obtaining consent) before any study procedures, documentation of the consent process, re-consent for amendments, and subject copy provided.
-
-Tip: Before procedures.`, 'B', 'E'],
-
-["SDV", "What is source data verification vs review?",
-`**Answer:** **SDV** compares CRF/EDC data to source documents for accuracy. **SDR** reviews source for quality, protocol compliance and safety — risk-based monitoring focuses SDV on critical data.
-
-Tip: Critical data.`, 'B', 'M'],
-
-["ALCOA", "What is ALCOA+?",
-`**Answer:** Data integrity principles: Attributable, Legible, Contemporaneous, Original, Accurate — plus Complete, Consistent, Enduring and Available.
-
-Tip: Data integrity.`, 'B', 'E'],
-
-["Safety", "What are AEs and SAEs?",
-`**Answer:** An **adverse event** is any untoward medical occurrence in a subject. A **serious AE** results in death, is life-threatening, requires or prolongs hospitalization, causes significant disability, congenital anomaly, or is an important medical event. SAEs must be reported to the sponsor within 24 hours of site awareness.
-
-Tip: 24-hour reporting.`, 'B', 'M'],
-
-["Deviations", "How do you handle protocol deviations?",
-`**Answer:** Identify and document, assess impact on subject safety and data, report per requirements (important deviations), determine root cause, implement corrective actions and retrain site staff.
-
-Tip: Root cause.`, 'B', 'M'],
-
-["RBM", "What is risk-based monitoring?",
-`**Answer:** Focusing monitoring on critical data and processes identified through risk assessment, using central monitoring and key risk indicators, reducing 100% SDV.
-
-Tip: Central monitoring.`, 'D', 'M'],
-
-["IP", "How do you monitor investigational product?",
-`**Answer:** Check storage conditions and temperature logs, accountability records (receipt, dispensing, returns), expiry, blinding and reconciliation.
-
-Tip: Temperature excursions.`, 'B', 'M'],
-
-["Recruitment", "How do you help sites with slow enrollment?",
-`**Answer:** Understand barriers, review prescreening logs, suggest recruitment strategies (referrals, database searches, advertising with IRB approval), and escalate to study team.
-
-Tip: Prescreening logs.`, 'B', 'M'],
-
-["TMF", "What is the Trial Master File?",
-`**Answer:** Essential documents demonstrating trial conduct and compliance — sponsor TMF and site ISF (Investigator Site File) — must be complete and inspection-ready.
-
-Tip: Inspection-ready.`, 'B', 'E'],
-
-["Regulations", "Which regulations apply to US trials?",
-`**Answer:** 21 CFR Part 50 (informed consent), Part 56 (IRBs), Part 312 (INDs), Part 11 (electronic records), and Part 812 for devices.
-
-Tip: Part 11.`, 'D', 'M'],
-
-["Phases", "Describe clinical trial phases.",
-`**Answer:** Phase I (safety, dosing, small number — often healthy volunteers), Phase II (efficacy and side effects), Phase III (large-scale confirmation vs standard of care), Phase IV (post-marketing).
-
-Tip: Purpose of each.`, 'B', 'E'],
-
-["Audits", "How do you prepare a site for an inspection?",
-`**Answer:** Review ISF completeness, consent documentation, source and EDC consistency, deviation logs, IP accountability, and train staff on what to expect.
-
-Tip: Mock audits.`, 'B', 'M'],
-
-["Site Relations", "How do you build good relationships with sites?",
-`**Answer:** Respect their time, be organized, communicate clearly, provide solutions, and recognize their efforts.
-
-Tip: Partnership.`, 'B', 'E'],
-
-["Systems", "Which systems have you used?",
-`**Answer:** EDC (Medidata Rave, Veeva EDC, Oracle InForm), CTMS, eTMF (Veeva Vault), IRT/IWRS.
-
-Tip: Medidata.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a site issue you resolved.",
-`**Sample answer:** "A site had repeated consent errors. I retrained staff, introduced a consent checklist, and monitored closely. Errors stopped and the site became a top enroller."
-
-Tip: Resolution.`, 'B', 'M'],
-
-["Behavioral", "Tell me about finding serious noncompliance.",
-`**Answer:** Describe escalation to the study team and QA, documentation, CAPA and outcome — always prioritizing subject safety.
-
-Tip: Escalation.`, 'B', 'M'],
-
-["Behavioral", "How do you manage travel and workload?",
-`**Answer:** Plan visits efficiently, prioritize by risk, use remote monitoring, and stay organized with trip reports on time.
-
-Tip: Timely reports.`, 'B', 'E'],
-
-["Trip Reports", "What goes into a monitoring visit report?",
-`**Answer:** Visit details, attendees, enrollment status, findings (consent, SDV, deviations, safety, IP), actions and follow-up — written within required timelines.
-
-Tip: Timelines.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** ACRP CCRA, SOCRA CCRP, and GCP training certificates.
-
-Tip: CCRA.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior CRA, clinical trial manager, or clinical operations lead.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I keep sites compliant and enrolling, protect subjects and data integrity, and deliver reports on time."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Blinding", "Why is blinding important and how do you protect it?",
-`**Answer:** Prevents bias; protect via restricted access to randomization, unblinded staff for IP if needed, and procedures for emergency unblinding.
-
-Tip: Emergency unblinding.`, 'B', 'M'],
-
-["IRB", "What is the role of an IRB?",
-`**Answer:** Reviews and approves protocols, consent forms and amendments to protect subjects' rights and welfare; continuing review and reporting of unanticipated problems.
-
-Tip: Subject protection.`, 'B', 'E'],
-
-["Decentralized", "What are decentralized clinical trials?",
-`**Answer:** Trials using remote elements — eConsent, telemedicine visits, home nursing, direct-to-patient IP shipment and wearables — to improve access and convenience.
-
-Tip: Patient-centric.`, 'D', 'M'],
-
-["CAPA", "How do you write a good CAPA?",
-`**Answer:** Clear problem description, root cause, corrective actions for the issue, preventive actions for recurrence, owners, dates and effectiveness checks.
-
-Tip: Effectiveness check.`, 'B', 'M'],
-
-["Eligibility", "What if a subject who doesn't meet eligibility was enrolled?",
-`**Answer:** Notify sponsor immediately, assess subject safety, document as an important deviation, follow sponsor decision on continuation, and retrain.
-
-Tip: Safety first.`, 'B', 'M'],
-
-["Fraud", "What are signs of data fraud at a site?",
-`**Answer:** Identical data patterns, too-perfect data, implausible visit timing, missing source, signatures inconsistencies — escalate to QA immediately.
-
-Tip: Escalate.`, 'D', 'M'],
-
-["Scenario", "A site PI is rarely involved. What do you do?",
-`**Answer:** Remind them of PI responsibilities for oversight, meet with them, document, and escalate to sponsor if oversight is inadequate.
-
-Tip: PI responsibility.`, 'B', 'M'],
-
-["Scenario", "The site coordinator leaves mid-study. What do you do?",
-`**Answer:** Ensure delegation log updates, training of replacement, catch-up on data entry and close monitoring.
-
-Tip: Delegation log.`, 'B', 'E'],
-
-["Delegation Log", "What is the delegation log?",
-`**Answer:** Records which site staff are authorized for which trial tasks by the PI, with signatures and dates — staff must be trained before performing tasks.
-
-Tip: Trained first.`, 'B', 'E'],
-
-["Data Queries", "How do you manage data queries?",
-`**Answer:** Raise clear queries, follow up for timely resolution, look for patterns indicating training needs.
-
-Tip: Patterns.`, 'B', 'E'],
-
-["Close-out", "What happens at a close-out visit?",
-`**Answer:** Ensure all data and queries resolved, IP reconciled and returned/destroyed, ISF complete, record retention explained, and final reports.
-
-Tip: Record retention.`, 'B', 'E'],
-
-["Diversity", "Why is diversity in clinical trials important?",
-`**Answer:** Ensures results apply to all populations who will use the treatment; FDA encourages diversity action plans.
-
-Tip: Generalizability.`, 'B', 'M'],
-
-["Devices", "How do device trials differ?",
-`**Answer:** 21 CFR 812 (IDE), device accountability, often operator training, and different risk categories (significant vs non-significant risk).
-
-Tip: IDE.`, 'D', 'M'],
-
-["Communication", "How do you communicate issues to the study team?",
-`**Answer:** Timely, factual, with impact and proposed actions, through CTMS and escalation pathways.
-
-Tip: Timely.`, 'B', 'E'],
-
-["Time", "How do you handle conflicting site and sponsor priorities?",
-`**Answer:** Clarify requirements, negotiate realistic timelines, and keep both informed.
-
-Tip: Transparency.`, 'B', 'E'],
-
-["Ethics", "How do you balance enrollment pressure with subject safety?",
-`**Answer:** Subject safety and eligibility always come first; never encourage shortcuts.
-
-Tip: Non-negotiable.`, 'B', 'E'],
-
-["Questions", "What would you ask in a CRA interview?",
-`**Answer:** Number of sites and travel, therapeutic areas, monitoring model, systems, and support for growth.
-
-Tip: Travel %.`, 'B', 'E']
-];
-
-QB['ls-cra'] = (QB['ls-cra']||[]).concat([
-["Feasibility", "How do you assess site feasibility?",
-`**Answer:** Patient population and access, recruitment history, PI experience and availability, staff and facilities (equipment, storage, pharmacy), competing studies, and timelines for IRB and contracts.
-
-Tip: Competing studies.`, 'B', 'M'],
-["SIV", "What happens at a site initiation visit?",
-`**Answer:** Protocol and procedure training, review of responsibilities, consent process, IP handling, safety reporting, EDC and other systems, essential documents in the ISF, and confirming readiness to enroll.
-
-Tip: Training documentation.`, 'B', 'E'],
-["eSource", "What are eSource and EHR-to-EDC integration?",
-`**Answer:** Capturing data electronically at the point of care and moving it into EDC directly, reducing transcription and SDV while needing validation and data integrity controls.
-
-Tip: Less transcription.`, 'D', 'M'],
-["Protocol Amendments", "How do you implement a protocol amendment at sites?",
-`**Answer:** Confirm IRB approval, train site staff, update consent forms and re-consent subjects as required, update documents and systems, and document the implementation date.
-
-Tip: Re-consent.`, 'B', 'M'],
-["KRIs", "What key risk indicators do central monitors use?",
-`**Answer:** Screen failure rates, AE reporting rates compared with other sites, query rates, data entry lag, protocol deviation rates, and unusual data patterns.
-
-Tip: Outlier sites.`, 'D', 'M'],
-["Retention", "How do you support subject retention?",
-`**Answer:** Visit reminders, reduced burden (scheduling flexibility, travel support), good site relationships, and clear communication about study progress.
-
-Tip: Reduce burden.`, 'B', 'E'],
-["Budget", "How do CRAs interact with site budgets and payments?",
-`**Answer:** Confirm completed visits and procedures for payment triggers, and help resolve payment issues to keep sites motivated.
-
-Tip: Timely payments.`, 'B', 'E'],
-["Data Lock", "What happens before database lock?",
-`**Answer:** All data entered and SDV/SDR complete as planned, queries resolved, SAE reconciliation done, coding complete, and investigator sign-offs.
-
-Tip: SAE reconciliation.`, 'B', 'M'],
-["Scenario", "During a visit you find an unreported SAE. What do you do?",
-`**Answer:** Have the site report it to the sponsor immediately, document the late report as a deviation, find out why it was missed, retrain the site, and check for other unreported events.
-
-Tip: Look for others.`, 'B', 'M']
+QB["ls-cra"] = (QB["ls-cra"] || []).concat([
+["Role", "What does a CRA do?", "**Why they ask:** baseline.\n\n**Answer:** Monitors clinical trials at investigator sites to ensure subject safety, data integrity and compliance with the protocol, ICH-GCP and regulations: site selection and initiation, routine monitoring visits (on-site/remote), source data verification and review, issue resolution, and close-out.\n\nTip: Phases and therapeutic areas.", "B", "E"],
+["GCP", "What are the principles of ICH-GCP?", "**Why they ask:** the foundation of clinical research.\n\n**Answer:**\n\"Protect the rights, safety and wellbeing of subjects; run scientifically sound protocols; get IRB or IEC approval; obtain informed consent; use qualified investigators; record data accurately; protect confidentiality; handle investigational product under GMP; and maintain quality systems. The updated ICH E6(R3) puts more emphasis on risk-based, proportionate approaches — focusing effort on what matters most to subject safety and data reliability.\"\n\nTip: E6(R3).", "B", "M"],
+["Visits", "What types of monitoring visits are there?", "**Why they ask:** role basics.\n\n**Answer:**\n\"A site qualification or selection visit to check the site can do the study; a site initiation visit to train staff and confirm readiness; interim monitoring visits during the study; and a close-out visit at the end — plus remote monitoring between visits.\"\n\nTip: Purpose of each.", "B", "E"],
+["Consent", "What do you check for informed consent?", "**Why they ask:** the most important subject protection.\n\n**Answer:**\n\"The correct IRB-approved version, signed and dated by the subject and the person obtaining consent before any study-specific procedure — even a screening blood draw — documentation of the consent discussion in the source, re-consent after amendments, and confirmation the subject received a copy.\"\n\nTip: Before procedures.", "B", "E"],
+["SDV", "What is source data verification vs review?", "**Why they ask:** monitoring method.\n\n**Answer:**\n\"SDV compares data in the EDC against source documents for accuracy. SDR reviews source for quality, protocol compliance and safety signals — like an AE noted in a clinic note but never entered. Risk-based monitoring focuses SDV on critical data like primary endpoints and eligibility.\"\n\nTip: Critical data.", "B", "M"],
+["ALCOA", "What is ALCOA+?", "**Why they ask:** data integrity.\n\n**Answer:**\n\"Attributable, Legible, Contemporaneous, Original, Accurate — plus Complete, Consistent, Enduring and Available. A vital sign written on a paper towel and transcribed later fails 'original' and 'contemporaneous'.\"\n\nTip: Data integrity.", "B", "E"],
+["Safety", "What are AEs and SAEs?", "**Why they ask:** safety reporting.\n\n**Answer:**\n\"An adverse event is any untoward medical occurrence in a subject, related to the drug or not. It's serious if it results in death, is life-threatening, requires or prolongs hospitalization, causes significant disability, is a congenital anomaly, or is an important medical event. Sites must report SAEs to the sponsor within 24 hours of becoming aware.\"\n\nTip: 24-hour reporting.", "B", "M"],
+["Deviations", "How do you handle protocol deviations?", "**Why they ask:** compliance management.\n\n**Answer:**\n\"Identify and document it, assess the impact on subject safety and data, report it as required — important deviations get escalated — find the root cause, implement corrective actions and retrain site staff.\"\n\nTip: Root cause.", "B", "M"],
+["RBM", "What is risk-based monitoring?", "**Why they ask:** modern monitoring.\n\n**Answer:**\n\"Focusing monitoring on critical data and processes identified through a risk assessment, using central monitoring and key risk indicators across sites, instead of 100% SDV on every data point.\"\n\nTip: Central monitoring.", "D", "M"],
+["IP", "How do you monitor investigational product?", "**Why they ask:** IP accountability.\n\n**Answer:**\n\"Check storage conditions and temperature logs, accountability records for receipt, dispensing and returns, expiry dates, blinding, and reconciliation of counts. A temperature excursion needs immediate quarantine and sponsor assessment before the product is used.\"\n\nTip: Temperature excursions.", "B", "M"],
+["Recruitment", "How do you help sites with slow enrollment?", "**Why they ask:** site support.\n\n**Answer:**\n\"Understand the barriers, review prescreening logs to see why patients aren't qualifying or consenting, suggest recruitment strategies — physician referrals, EHR database searches, IRB-approved advertising — and escalate to the study team if eligibility criteria themselves are the problem.\"\n\nTip: Prescreening logs.", "B", "M"],
+["TMF", "What is the Trial Master File?", "**Why they ask:** documentation.\n\n**Answer:**\n\"The collection of essential documents demonstrating the trial was conducted properly — the sponsor TMF and the site's Investigator Site File. It must be complete and inspection-ready at all times, not assembled before an audit.\"\n\nTip: Inspection-ready.", "B", "E"],
+["Regulations", "Which regulations apply to US trials?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"21 CFR Part 50 for informed consent, Part 56 for IRBs, Part 312 for INDs, Part 11 for electronic records and signatures, and Part 812 for device studies.\"\n\nTip: Part 11.", "D", "M"],
+["Phases", "Describe clinical trial phases.", "**Why they ask:** basics.\n\n**Answer:**\n\"Phase I tests safety and dosing in a small group, often healthy volunteers. Phase II looks at efficacy and side effects in patients. Phase III confirms efficacy at scale against standard of care. Phase IV is post-marketing surveillance.\"\n\nTip: Purpose of each.", "B", "E"],
+["Audits", "How do you prepare a site for an inspection?", "**Why they ask:** inspection readiness.\n\n**Answer:**\n\"Review ISF completeness, consent documentation, consistency between source and EDC, deviation logs and IP accountability, run a mock audit, and coach staff on what to expect — answer honestly, show documents, don't guess.\"\n\nTip: Mock audits.", "B", "M"],
+["Site Relations", "How do you build good relationships with sites?", "**Why they ask:** partnership.\n\n**Answer:**\n\"Respect their time, arrive organized, communicate clearly, bring solutions not just findings, and recognize their efforts. Coordinators are juggling several studies; the CRA who makes their life easier gets their best work.\"\n\nTip: Partnership.", "B", "E"],
+["Systems", "Which systems have you used?", "**Why they ask:** tooling.\n\n**Answer:**\n\"EDC systems like Medidata Rave, Veeva EDC and Oracle InForm, CTMS, Veeva Vault eTMF, and IRT or IWRS for randomization and supply.\"\n\nTip: Medidata.", "B", "E"],
+["Behavioral", "Tell me about a site issue you resolved.", "**Why they ask:** proof.\n\n**Answer:**\n\"A site had repeated consent errors — wrong versions and missing dates. I retrained the staff, introduced a consent checklist and reviewed every new consent for two months. The errors stopped and the site became a top enroller.\"\n\nTip: Resolution.", "B", "M"],
+["Behavioral", "Tell me about finding serious noncompliance.", "**Why they ask:** integrity.\n\n**Answer:**\n\"I found a subject dosed before their consent was signed. I made sure the subject was safe, escalated immediately to the study team and QA, documented it as an important deviation, and worked with the site on a CAPA — retraining and a hard-stop checklist. Subject safety and honest reporting come before keeping a site happy.\"\n\nTip: Escalation.", "B", "M"],
+["Behavioral", "How do you manage travel and workload?", "**Why they ask:** practical capability.\n\n**Answer:**\n\"Plan visits efficiently by geography, prioritize sites by risk, use remote monitoring where appropriate, and stay disciplined about writing trip reports on time.\"\n\nTip: Timely reports.", "B", "E"],
+["Trip Reports", "What goes into a monitoring visit report?", "**Why they ask:** documentation.\n\n**Answer:**\n\"Visit details and attendees, enrollment status, findings on consent, SDV, deviations, safety and IP, action items with owners and due dates, and follow-up on prior actions — submitted within the required timeline, often 5 to 10 working days.\"\n\nTip: Timelines.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"ACRP's CCRA, SOCRA's CCRP, and current GCP training certificates.\"\n\nTip: CCRA.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior CRA, clinical trial manager, or clinical operations lead.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I keep sites compliant and enrolling, protect subjects and data integrity, and deliver reports on time.\"\n\nTip: Proof.", "B", "E"],
+["Blinding", "Why is blinding important and how do you protect it?", "**Why they ask:** trial integrity.\n\n**Answer:**\n\"It prevents bias in how subjects are treated and assessed. It's protected by restricting access to randomization, using unblinded pharmacists or monitors for IP where needed, and clear procedures for emergency unblinding when a subject's safety requires it.\"\n\nTip: Emergency unblinding.", "B", "M"],
+["IRB", "What is the role of an IRB?", "**Why they ask:** subject protection.\n\n**Answer:**\n\"It reviews and approves protocols, consent forms and amendments to protect subjects' rights and welfare, conducts continuing review, and receives reports of unanticipated problems.\"\n\nTip: Subject protection.", "B", "E"],
+["Decentralized", "What are decentralized clinical trials?", "**Why they ask:** current trends.\n\n**Answer:**\n\"Trials using remote elements — eConsent, telemedicine visits, home nursing, direct-to-patient IP shipment and wearables — to make participation easier and reach patients who live far from sites.\"\n\nTip: Patient-centric.", "D", "M"],
+["CAPA", "How do you write a good CAPA?", "**Why they ask:** quality systems.\n\n**Answer:**\n\"A clear problem description, the root cause, corrective actions for this issue, preventive actions so it doesn't recur, owners and dates, and an effectiveness check — like auditing the next ten consents to confirm the fix worked.\"\n\nTip: Effectiveness check.", "B", "M"],
+["Eligibility", "What if a subject who doesn't meet eligibility was enrolled?", "**Why they ask:** safety judgment.\n\n**Answer:**\n\"Notify the sponsor immediately, assess the subject's safety, document it as an important deviation, follow the sponsor's decision on whether the subject continues, and retrain the site on eligibility verification.\"\n\nTip: Safety first.", "B", "M"],
+["Fraud", "What are signs of data fraud at a site?", "**Why they ask:** vigilance.\n\n**Answer:**\n\"Identical data patterns across subjects, data that's too perfect, implausible visit timing, missing source, and inconsistent signatures. I escalate suspicions to QA immediately rather than investigating alone.\"\n\nTip: Escalate.", "D", "M"],
+["Scenario", "A site PI is rarely involved. What do you do?", "**Why they ask:** oversight.\n\n**Answer:**\n\"Remind them of their PI responsibilities for oversight, meet with them directly, document the concern, and escalate to the sponsor if oversight stays inadequate — FDA holds the PI accountable, not the coordinator.\"\n\nTip: PI responsibility.", "B", "M"],
+["Scenario", "The site coordinator leaves mid-study. What do you do?", "**Why they ask:** continuity.\n\n**Answer:**\n\"Make sure the delegation log is updated, the replacement is trained before doing study tasks, data entry is caught up, and the site gets closer monitoring for the next few visits.\"\n\nTip: Delegation log.", "B", "E"],
+["Delegation Log", "What is the delegation log?", "**Why they ask:** site documentation.\n\n**Answer:**\n\"A record of which site staff the PI has authorized for which trial tasks, with signatures and dates. Staff must be trained and listed before performing any delegated task.\"\n\nTip: Trained first.", "B", "E"],
+["Data Queries", "How do you manage data queries?", "**Why they ask:** data quality.\n\n**Answer:**\n\"Raise clear, specific queries, follow up for timely resolution, and look for patterns — the same query across several subjects means a training need.\"\n\nTip: Patterns.", "B", "E"],
+["Close-out", "What happens at a close-out visit?", "**Why they ask:** study completion.\n\n**Answer:**\n\"Confirm all data is entered and queries resolved, reconcile and return or destroy IP, make sure the ISF is complete, explain record retention requirements, and document everything in the final report.\"\n\nTip: Record retention.", "B", "E"],
+["Diversity", "Why is diversity in clinical trials important?", "**Why they ask:** current priority.\n\n**Answer:**\n\"So results apply to all the populations who'll actually use the treatment — responses can differ by age, sex, race or ethnicity. FDA has pushed sponsors toward diversity action plans.\"\n\nTip: Generalizability.", "B", "M"],
+["Devices", "How do device trials differ?", "**Why they ask:** breadth.\n\n**Answer:**\n\"They fall under 21 CFR 812 for IDEs, with device accountability, often operator training, and risk categories — significant risk versus non-significant risk — that determine FDA involvement.\"\n\nTip: IDE.", "D", "M"],
+["Communication", "How do you communicate issues to the study team?", "**Why they ask:** escalation discipline.\n\n**Answer:**\n\"Promptly and factually, with the impact and proposed actions, through CTMS and the defined escalation pathways.\"\n\nTip: Timely.", "B", "E"],
+["Time", "How do you handle conflicting site and sponsor priorities?", "**Why they ask:** balancing stakeholders.\n\n**Answer:**\n\"Clarify what's actually required, negotiate realistic timelines, and keep both sides informed.\"\n\nTip: Transparency.", "B", "E"],
+["Ethics", "How do you balance enrollment pressure with subject safety?", "**Why they ask:** ethics.\n\n**Answer:**\n\"Subject safety and eligibility always come first. I never encourage shortcuts to hit enrollment numbers.\"\n\nTip: Non-negotiable.", "B", "E"],
+["Questions", "What would you ask in a CRA interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"How many sites would I manage and how much travel? Which therapeutic areas? What monitoring model? Which systems? How do you support CRA growth?\"\n\nTip: Travel %.", "B", "E"]
+]);
+
+QB["ls-cra"] = (QB["ls-cra"] || []).concat([
+["Feasibility", "How do you assess site feasibility?", "**Why they ask:** site selection.\n\n**Answer:**\n\"Patient population and access, past recruitment performance, PI experience and availability, staff and facilities — equipment, storage, pharmacy — competing studies for the same patients, and IRB and contract timelines.\"\n\nTip: Competing studies.", "B", "M"],
+["SIV", "What happens at a site initiation visit?", "**Why they ask:** study start-up.\n\n**Answer:**\n\"Training on the protocol and procedures, roles and responsibilities, the consent process, IP handling, safety reporting, EDC and other systems, and essential documents in the ISF — then confirming and documenting that the site is ready to enroll.\"\n\nTip: Training documentation.", "B", "E"],
+["eSource", "What are eSource and EHR-to-EDC integration?", "**Why they ask:** modern data capture.\n\n**Answer:**\n\"Capturing data electronically at the point of care and moving it into EDC directly, which reduces transcription errors and SDV work, but requires validated systems and data integrity controls.\"\n\nTip: Less transcription.", "D", "M"],
+["Protocol Amendments", "How do you implement a protocol amendment at sites?", "**Why they ask:** change control.\n\n**Answer:**\n\"Confirm IRB approval, train site staff, update consent forms and re-consent subjects as required, update documents and systems, and document the implementation date.\"\n\nTip: Re-consent.", "B", "M"],
+["KRIs", "What key risk indicators do central monitors use?", "**Why they ask:** RBM depth.\n\n**Answer:**\n\"Screen failure rates, AE reporting rates compared with other sites — a site reporting far fewer AEs is a red flag — query rates, data entry lag, protocol deviation rates, and unusual data patterns.\"\n\nTip: Outlier sites.", "D", "M"],
+["Retention", "How do you support subject retention?", "**Why they ask:** study success.\n\n**Answer:**\n\"Visit reminders, reducing burden through scheduling flexibility and travel support, strong site relationships, and keeping subjects informed about study progress.\"\n\nTip: Reduce burden.", "B", "E"],
+["Budget", "How do CRAs interact with site budgets and payments?", "**Why they ask:** site relations.\n\n**Answer:**\n\"Confirm completed visits and procedures that trigger payments and help resolve payment issues — late payments are a common reason sites deprioritize a study.\"\n\nTip: Timely payments.", "B", "E"],
+["Data Lock", "What happens before database lock?", "**Why they ask:** study closure.\n\n**Answer:**\n\"All data entered, SDV and SDR completed as planned, queries resolved, SAE reconciliation between the safety database and EDC, medical coding complete, and investigator sign-offs collected.\"\n\nTip: SAE reconciliation.", "B", "M"],
+["Scenario", "During a visit you find an unreported SAE. What do you do?", "**Why they ask:** safety response.\n\n**Answer:**\n\"Have the site report it to the sponsor immediately, document the late report as a deviation, find out why it was missed, retrain the site, and review other subjects' records for any additional unreported events.\"\n\nTip: Look for others.", "B", "M"]
 ]);

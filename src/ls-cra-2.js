@@ -1,38 +1,11 @@
-QB['ls-cra'] = (QB['ls-cra']||[]).concat([
-["Feasibility", "How do you assess site feasibility?",
-`**Answer:** Patient population and access, recruitment history, PI experience and availability, staff and facilities (equipment, storage, pharmacy), competing studies, and timelines for IRB and contracts.
-
-Tip: Competing studies.`, 'B', 'M'],
-["SIV", "What happens at a site initiation visit?",
-`**Answer:** Protocol and procedure training, review of responsibilities, consent process, IP handling, safety reporting, EDC and other systems, essential documents in the ISF, and confirming readiness to enroll.
-
-Tip: Training documentation.`, 'B', 'E'],
-["eSource", "What are eSource and EHR-to-EDC integration?",
-`**Answer:** Capturing data electronically at the point of care and moving it into EDC directly, reducing transcription and SDV while needing validation and data integrity controls.
-
-Tip: Less transcription.`, 'D', 'M'],
-["Protocol Amendments", "How do you implement a protocol amendment at sites?",
-`**Answer:** Confirm IRB approval, train site staff, update consent forms and re-consent subjects as required, update documents and systems, and document the implementation date.
-
-Tip: Re-consent.`, 'B', 'M'],
-["KRIs", "What key risk indicators do central monitors use?",
-`**Answer:** Screen failure rates, AE reporting rates compared with other sites, query rates, data entry lag, protocol deviation rates, and unusual data patterns.
-
-Tip: Outlier sites.`, 'D', 'M'],
-["Retention", "How do you support subject retention?",
-`**Answer:** Visit reminders, reduced burden (scheduling flexibility, travel support), good site relationships, and clear communication about study progress.
-
-Tip: Reduce burden.`, 'B', 'E'],
-["Budget", "How do CRAs interact with site budgets and payments?",
-`**Answer:** Confirm completed visits and procedures for payment triggers, and help resolve payment issues to keep sites motivated.
-
-Tip: Timely payments.`, 'B', 'E'],
-["Data Lock", "What happens before database lock?",
-`**Answer:** All data entered and SDV/SDR complete as planned, queries resolved, SAE reconciliation done, coding complete, and investigator sign-offs.
-
-Tip: SAE reconciliation.`, 'B', 'M'],
-["Scenario", "During a visit you find an unreported SAE. What do you do?",
-`**Answer:** Have the site report it to the sponsor immediately, document the late report as a deviation, find out why it was missed, retrain the site, and check for other unreported events.
-
-Tip: Look for others.`, 'B', 'M']
+QB["ls-cra"] = (QB["ls-cra"] || []).concat([
+["Feasibility", "How do you assess site feasibility?", "**Why they ask:** site selection.\n\n**Answer:**\n\"Patient population and access, past recruitment performance, PI experience and availability, staff and facilities — equipment, storage, pharmacy — competing studies for the same patients, and IRB and contract timelines.\"\n\nTip: Competing studies.", "B", "M"],
+["SIV", "What happens at a site initiation visit?", "**Why they ask:** study start-up.\n\n**Answer:**\n\"Training on the protocol and procedures, roles and responsibilities, the consent process, IP handling, safety reporting, EDC and other systems, and essential documents in the ISF — then confirming and documenting that the site is ready to enroll.\"\n\nTip: Training documentation.", "B", "E"],
+["eSource", "What are eSource and EHR-to-EDC integration?", "**Why they ask:** modern data capture.\n\n**Answer:**\n\"Capturing data electronically at the point of care and moving it into EDC directly, which reduces transcription errors and SDV work, but requires validated systems and data integrity controls.\"\n\nTip: Less transcription.", "D", "M"],
+["Protocol Amendments", "How do you implement a protocol amendment at sites?", "**Why they ask:** change control.\n\n**Answer:**\n\"Confirm IRB approval, train site staff, update consent forms and re-consent subjects as required, update documents and systems, and document the implementation date.\"\n\nTip: Re-consent.", "B", "M"],
+["KRIs", "What key risk indicators do central monitors use?", "**Why they ask:** RBM depth.\n\n**Answer:**\n\"Screen failure rates, AE reporting rates compared with other sites — a site reporting far fewer AEs is a red flag — query rates, data entry lag, protocol deviation rates, and unusual data patterns.\"\n\nTip: Outlier sites.", "D", "M"],
+["Retention", "How do you support subject retention?", "**Why they ask:** study success.\n\n**Answer:**\n\"Visit reminders, reducing burden through scheduling flexibility and travel support, strong site relationships, and keeping subjects informed about study progress.\"\n\nTip: Reduce burden.", "B", "E"],
+["Budget", "How do CRAs interact with site budgets and payments?", "**Why they ask:** site relations.\n\n**Answer:**\n\"Confirm completed visits and procedures that trigger payments and help resolve payment issues — late payments are a common reason sites deprioritize a study.\"\n\nTip: Timely payments.", "B", "E"],
+["Data Lock", "What happens before database lock?", "**Why they ask:** study closure.\n\n**Answer:**\n\"All data entered, SDV and SDR completed as planned, queries resolved, SAE reconciliation between the safety database and EDC, medical coding complete, and investigator sign-offs collected.\"\n\nTip: SAE reconciliation.", "B", "M"],
+["Scenario", "During a visit you find an unreported SAE. What do you do?", "**Why they ask:** safety response.\n\n**Answer:**\n\"Have the site report it to the sponsor immediately, document the late report as a deviation, find out why it was missed, retrain the site, and review other subjects' records for any additional unreported events.\"\n\nTip: Look for others.", "B", "M"]
 ]);
