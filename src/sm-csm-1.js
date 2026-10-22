@@ -1,216 +1,45 @@
 // Customer Success Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sm-csm'] = [
-["Role", "What does a customer success manager do?",
-`**Why they ask:** CS vs support vs account management.
-
-**Answer:** Ensures customers achieve their desired outcomes with the product so they renew and expand: onboarding and adoption, health monitoring, business reviews, risk mitigation, advocacy, and identifying expansion — proactive rather than reactive like support.
-
-Tip: Proactive and outcome-focused.`, 'B', 'E'],
-
-["Onboarding", "How do you onboard a new customer?",
-`**Answer:** Kickoff to confirm goals and success metrics, stakeholder mapping, implementation plan with milestones, training, early value milestones (time to first value), and transition to adoption phase.
-
-Tip: Time to value.`, 'B', 'E'],
-
-["Health Score", "How do you build a customer health score?",
-`**Answer:** Combine product usage (logins, feature adoption), support tickets, NPS/CSAT, engagement (meetings, exec relationships), payment status and business outcomes — weighted and validated against churn history.
-
-Tip: Validate against churn.`, 'B', 'M'],
-
-["Churn", "How do you prevent churn?",
-`**Answer:** Early warning signals (usage drop, champion leaving, negative feedback), proactive outreach, root cause analysis, recovery plans with value demonstration, and executive engagement.
-
-Tip: Early signals.`, 'B', 'M'],
-
-["Metrics", "Which CS metrics matter?",
-`**Answer:** Gross revenue retention (GRR), net revenue retention (NRR), logo churn, health scores, adoption, time to value, NPS/CSAT, and expansion revenue.
-
-Tip: NRR.`, 'B', 'E'],
-
-["NRR", "How do you calculate NRR and GRR?",
-`**Answer:** NRR = (starting ARR + expansion − contraction − churn) / starting ARR. GRR excludes expansion.
-
-**Example:** start $1M, expansion $200K, contraction $50K, churn $80K → NRR 107%, GRR 87%.
-
-Tip: Show math.`, 'B', 'M'],
-
-["QBR", "How do you run an effective QBR/EBR?",
-`**Answer:** Focus on customer's business outcomes and ROI achieved, usage insights, roadmap alignment, recommendations, and next-quarter goals — with executives present.
-
-Tip: Outcomes, not features.`, 'B', 'M'],
-
-["Expansion", "How do you identify expansion opportunities?",
-`**Answer:** Usage nearing limits, new teams or use cases, strategic initiatives, success stories to replicate, and partnering with sales on timing.
-
-Tip: Value-led.`, 'B', 'M'],
-
-["Renewals", "How do you manage renewals?",
-`**Answer:** Start 90–120 days early, confirm value delivered, address risks, involve decision-makers, negotiate terms, and forecast accurately.
-
-Tip: Start early.`, 'B', 'E'],
-
-["Difficult Customer", "How do you handle an angry customer?",
-`**Answer:** Listen and acknowledge, take ownership, understand the impact, provide a clear action plan and timeline, follow up consistently, and escalate internally when needed.
-
-Tip: Ownership.`, 'B', 'E'],
-
-["Escalation", "How do you manage escalations internally?",
-`**Answer:** Clear documentation of impact, involve right teams (support, product, engineering), agree on plan, communicate regularly with customer, and post-mortem.
-
-Tip: Impact data.`, 'B', 'M'],
-
-["Adoption", "How do you drive product adoption?",
-`**Answer:** Usage analysis, targeted training, in-app guidance, success plans tied to goals, champion programs and sharing best practices.
-
-Tip: Tie to goals.`, 'B', 'E'],
-
-["Success Plan", "What is a success plan?",
-`**Answer:** A document of customer goals, success metrics, milestones, stakeholders and responsibilities — reviewed regularly.
-
-Tip: Shared accountability.`, 'B', 'E'],
-
-["Product Feedback", "How do you handle feature requests?",
-`**Answer:** Understand the underlying need, check workarounds, log with business impact and customer value, communicate honestly about roadmap and timelines.
-
-Tip: Honesty.`, 'B', 'E'],
-
-["Segmentation", "How do you manage a large book of business?",
-`**Answer:** Segment by ARR and potential: high-touch for strategic accounts, tech-touch (automated emails, webinars) for long tail; prioritize by health and renewal dates.
-
-Tip: Tech-touch.`, 'B', 'M'],
-
-["Tools", "Which CS tools have you used?",
-`**Answer:** Gainsight, ChurnZero, Totango, Vitally, Salesforce, product analytics (Pendo, Mixpanel).
-
-Tip: Gainsight.`, 'B', 'E'],
-
-["Behavioral", "Tell me about saving an at-risk account.",
-`**Sample answer:** "A $300K customer planned to churn after a failed rollout. I ran an executive reset, created a 60-day recovery plan with weekly check-ins, and delivered training. They renewed and expanded 20%."
-
-Tip: Recovery plan.`, 'B', 'M'],
-
-["Behavioral", "Tell me about driving expansion.",
-`**Sample answer:** "Usage data showed one department's success. I organized a showcase for other departments, leading to a $180K expansion."
-
-Tip: Proof of value.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a customer you lost.",
-`**Answer:** Explain honestly, what signals you missed, and what you changed (e.g. earlier executive engagement).
-
-Tip: Learning.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** SuccessCOACHING CCSM, Gainsight Pulse certifications, and product certifications.
-
-Tip: Results matter most.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior/strategic CSM, CS manager, or account management.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I keep customers successful and growing — 115% NRR in my book and turnarounds of at-risk accounts."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Relationships", "How do you build executive relationships with customers?",
-`**Answer:** Understand their strategic goals, bring insights and ROI, involve your executives, and engage consistently not just at renewal.
-
-Tip: Strategic value.`, 'B', 'M'],
-
-["Champion Loss", "Your champion leaves the customer company. What do you do?",
-`**Answer:** Quickly identify and engage new stakeholders, re-establish value, onboard the new owner, and connect with the former champion at their new company.
-
-Tip: Opportunity too.`, 'B', 'M'],
-
-["Usage Drop", "Usage drops 40% at an account. What do you do?",
-`**Answer:** Investigate causes (seasonality, staff changes, issues, competitor), reach out with insights, offer training or adjustments, and escalate if strategic.
-
-Tip: Investigate first.`, 'B', 'E'],
-
-["Value", "How do you demonstrate ROI to customers?",
-`**Answer:** Baseline metrics at onboarding, track improvements, quantify savings or revenue gains, and present in business reviews.
-
-Tip: Baseline early.`, 'B', 'M'],
-
-["Advocacy", "How do you create customer advocates?",
-`**Answer:** Deliver outcomes, recognize champions, invite to case studies, reference programs, advisory boards and communities.
-
-Tip: Recognize champions.`, 'B', 'E'],
-
-["Sales Handoff", "What makes a good sales-to-CS handoff?",
-`**Answer:** Documented goals, stakeholders, promises made, use cases, risks and timeline — with a joint call.
-
-Tip: Promises made.`, 'B', 'E'],
-
-["Time", "How do you prioritize your day?",
-`**Answer:** Renewals and risks first, then strategic accounts, scheduled programs, and proactive outreach by health score.
-
-Tip: Risk first.`, 'B', 'E'],
-
-["Communication", "How do you deliver bad news to a customer?",
-`**Answer:** Early, honest, with impact, plan, and alternatives.
-
-Tip: Early.`, 'B', 'E'],
-
-["Pricing", "How do you handle a renewal price increase?",
-`**Answer:** Communicate early, explain value delivered and added features, offer options (multi-year lock), and negotiate within guidelines.
-
-Tip: Value narrative.`, 'B', 'M'],
-
-["Data", "How do you use data in CS?",
-`**Answer:** Health trends, adoption analytics, cohort analysis of churn drivers, and predictive risk models.
-
-Tip: Cohort analysis.`, 'D', 'M'],
-
-["Scale", "How do you scale customer success?",
-`**Answer:** Digital CS programs, automation, community and knowledge base, pooled CSM models and in-app guidance.
-
-Tip: Digital CS.`, 'D', 'M'],
-
-["Support", "How does CS differ from support?",
-`**Answer:** Support resolves issues reactively; CS proactively drives outcomes, adoption and retention.
-
-Tip: Proactive.`, 'B', 'E'],
-
-["Scenario", "A customer demands a feature not on the roadmap or they'll leave. What do you do?",
-`**Answer:** Understand the business need, explore workarounds or alternatives, involve product to assess, be honest, and focus on overall value.
-
-Tip: Underlying need.`, 'B', 'M'],
-
-["Scenario", "You inherit a book with many unhealthy accounts. What do you do?",
-`**Answer:** Triage by ARR and renewal date, quick outreach to high-risk accounts, recovery plans, and systematic health improvements.
-
-Tip: Triage.`, 'B', 'M'],
-
-["Technical", "How technical should a CSM be?",
-`**Answer:** Enough to understand the product, integrations and use cases, troubleshoot basics and speak credibly — partnering with solutions engineers for deeper issues.
-
-Tip: Credibility.`, 'B', 'E'],
-
-["Forecasting", "How do you forecast renewals?",
-`**Answer:** Health scores, customer signals, stakeholder confirmations and categorize commit/at-risk.
-
-Tip: Evidence.`, 'B', 'E'],
-
-["Collaboration", "How do you work with product teams?",
-`**Answer:** Share aggregated feedback with impact, participate in beta programs and help prioritize customer needs.
-
-Tip: Aggregated feedback.`, 'B', 'E'],
-
-["Empathy", "How do you show empathy while protecting the company?",
-`**Answer:** Acknowledge customer frustration genuinely, advocate internally, and set realistic expectations.
-
-Tip: Advocate both ways.`, 'B', 'E'],
-
-["AI", "How is AI changing CS?",
-`**Answer:** AI summarizes accounts and calls, predicts churn, automates outreach, and supports customers with AI agents — freeing CSMs for strategic work.
-
-Tip: Strategic focus.`, 'B', 'M'],
-
-["Questions", "What would you ask in a CSM interview?",
-`**Answer:** Book size and ARR, NRR targets, comp structure, tools, how CS works with sales and product.
-
-Tip: Book size.`, 'B', 'E']
-];
+QB["sm-csm"] = (QB["sm-csm"] || []).concat([
+["Role", "What does a customer success manager do?", "**Why they ask:** CS vs support vs account management.\n\n**Answer:** Ensures customers achieve their desired outcomes with the product so they renew and expand: onboarding and adoption, health monitoring, business reviews, risk mitigation, advocacy, and identifying expansion — proactive rather than reactive like support.\n\nTip: Proactive and outcome-focused.", "B", "E"],
+["Onboarding", "How do you onboard a new customer?", "**Why they ask:** onboarding sets up retention.\n\n**Answer:**\n\"A kickoff to confirm goals and how success will be measured, a stakeholder map, an implementation plan with milestones, role-based training, and an early value milestone — the first moment the customer sees a real result. For an AP automation customer, that's the first batch of invoices processed without manual keying, ideally within 30 days. Then a formal handoff into the adoption phase.\"\n\nTip: Time to value.", "B", "E"],
+["Health Score", "How do you build a customer health score?", "**Why they ask:** proactive risk management.\n\n**Answer:**\n\"Combine product usage — logins, adoption of key features — support ticket trends, NPS or CSAT, engagement like meeting attendance and executive relationships, payment status, and business outcomes. Weight them, then validate against churn history: if accounts scored green churned last year, the weights are wrong. In one model, adoption of two core features predicted renewal far better than login counts.\"\n\nTip: Validate against churn.", "B", "M"],
+["Churn", "How do you prevent churn?", "**Why they ask:** the core CSM outcome.\n\n**Answer:**\n\"Watch for early signals — usage dropping, a champion leaving, negative feedback, unpaid invoices — reach out proactively, find the root cause, build a recovery plan that demonstrates value, and engage executives on both sides. Churn decided at renewal time was usually lost six months earlier.\"\n\nTip: Early signals.", "B", "M"],
+["Metrics", "Which CS metrics matter?", "**Why they ask:** measurement.\n\n**Answer:**\n\"Gross revenue retention, net revenue retention, logo churn, health scores, adoption, time to value, NPS and CSAT, and expansion revenue. NRR is the headline because it captures both keeping and growing customers.\"\n\nTip: NRR.", "B", "E"],
+["NRR", "How do you calculate NRR and GRR?", "**Why they ask:** financial fluency.\n\n**Answer:**\n\"NRR is starting ARR plus expansion minus contraction minus churn, divided by starting ARR. GRR is the same without expansion, so it can never exceed 100%. Start with $1 million, add $200K expansion, lose $50K to downgrades and $80K to churn: NRR is $1.07 million over $1 million, 107%; GRR is $870K over $1 million, 87%.\"\n\nTip: Show math.", "B", "M"],
+["QBR", "How do you run an effective QBR/EBR?", "**Why they ask:** strategic account management.\n\n**Answer:**\n\"Focus on the customer's business outcomes and the ROI achieved, usage insights and recommendations, roadmap alignment, and agreed goals for next quarter — with their executives in the room. If the deck is mostly feature screenshots, it's a product demo, not a business review.\"\n\nTip: Outcomes, not features.", "B", "M"],
+["Expansion", "How do you identify expansion opportunities?", "**Why they ask:** growth.\n\n**Answer:**\n\"Usage nearing license limits, new teams or use cases, strategic initiatives the customer has announced, success stories in one department that can be replicated in another, and partnering with sales on timing. Expansion should follow proven value, not precede it.\"\n\nTip: Value-led.", "B", "M"],
+["Renewals", "How do you manage renewals?", "**Why they ask:** revenue protection.\n\n**Answer:**\n\"Start 90 to 120 days before the date, confirm the value delivered with data, surface and address risks, involve the actual decision-makers, negotiate terms, and forecast accurately. Surprises at renewal come from starting late.\"\n\nTip: Start early.", "B", "E"],
+["Difficult Customer", "How do you handle an angry customer?", "**Why they ask:** composure and ownership.\n\n**Answer:**\n\"Listen fully and acknowledge the frustration, take ownership even if the cause was another team, understand the business impact, give a clear action plan with dates, follow up consistently, and escalate internally when needed. Customers forgive problems; they don't forgive silence.\"\n\nTip: Ownership.", "B", "E"],
+["Escalation", "How do you manage escalations internally?", "**Why they ask:** cross-functional influence.\n\n**Answer:**\n\"Document the business impact clearly — ARR at risk, users affected, deadlines — bring in the right teams across support, product and engineering, agree a plan with owners, update the customer on a fixed cadence, and run a post-mortem afterward. Impact data gets an escalation prioritized.\"\n\nTip: Impact data.", "B", "M"],
+["Adoption", "How do you drive product adoption?", "**Why they ask:** value realization.\n\n**Answer:**\n\"Analyze usage to find gaps, run targeted training, use in-app guidance, tie adoption to the customer's success plan goals, build a champion program, and share best practices from similar customers. People adopt features that help them hit their own targets.\"\n\nTip: Tie to goals.", "B", "E"],
+["Success Plan", "What is a success plan?", "**Why they ask:** structured CS practice.\n\n**Answer:**\n\"A shared document of the customer's goals, success metrics, milestones, stakeholders and responsibilities on both sides — reviewed regularly so we're both accountable for the outcome.\"\n\nTip: Shared accountability.", "B", "E"],
+["Product Feedback", "How do you handle feature requests?", "**Why they ask:** managing expectations.\n\n**Answer:**\n\"Understand the underlying need, check whether a workaround already solves it, log it with business impact and customer value so product can prioritize, and communicate honestly about roadmap and timing. I never promise a feature I don't control.\"\n\nTip: Honesty.", "B", "E"],
+["Segmentation", "How do you manage a large book of business?", "**Why they ask:** prioritization at scale.\n\n**Answer:**\n\"Segment by ARR and potential: high-touch for strategic accounts, tech-touch — automated emails, webinars, in-app guidance — for the long tail, and prioritize by health score and renewal date.\"\n\nTip: Tech-touch.", "B", "M"],
+["Tools", "Which CS tools have you used?", "**Why they ask:** tooling.\n\n**Answer:**\n\"Gainsight, ChurnZero, Totango and Vitally for CS platforms, Salesforce for CRM, and Pendo or Mixpanel for product analytics.\"\n\nTip: Gainsight.", "B", "E"],
+["Behavioral", "Tell me about saving an at-risk account.", "**Why they ask:** proof.\n\n**Answer:**\n\"A $300K customer planned to churn after a failed rollout. I ran an executive reset meeting, built a 60-day recovery plan with weekly check-ins, and delivered targeted training. They renewed and expanded 20%.\"\n\nTip: Recovery plan.", "B", "M"],
+["Behavioral", "Tell me about driving expansion.", "**Why they ask:** growth proof.\n\n**Answer:**\n\"Usage data showed one department getting strong results. I organized a showcase where they presented to other departments, which led to a $180K expansion.\"\n\nTip: Proof of value.", "B", "M"],
+["Behavioral", "Tell me about a customer you lost.", "**Why they ask:** honesty and learning.\n\n**Answer:**\n\"We lost a $90K account after our executive sponsor left and I'd built no other senior relationships. Usage looked fine, so I missed the risk. Since then I map at least two executive contacts per strategic account and treat a champion change as a red alert.\"\n\nTip: Learning.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"SuccessCOACHING's CCSM, Gainsight certifications, and product certifications — though retention numbers matter most.\"\n\nTip: Results matter most.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward strategic CSM, then CS manager.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I keep customers successful and growing — 115% NRR in my book and turnarounds of at-risk accounts like a $300K save that expanded.\"\n\nTip: Proof.", "B", "E"],
+["Relationships", "How do you build executive relationships with customers?", "**Why they ask:** strategic influence.\n\n**Answer:**\n\"Understand their strategic goals, bring insights and ROI rather than product updates, involve our own executives, and engage consistently — not just at renewal time.\"\n\nTip: Strategic value.", "B", "M"],
+["Champion Loss", "Your champion leaves the customer company. What do you do?", "**Why they ask:** risk response.\n\n**Answer:**\n\"Quickly identify and engage new stakeholders, re-establish the value story with whoever takes over, onboard them properly, and stay connected with the former champion — they may bring us into their new company.\"\n\nTip: Opportunity too.", "B", "M"],
+["Usage Drop", "Usage drops 40% at an account. What do you do?", "**Why they ask:** diagnosis.\n\n**Answer:**\n\"Investigate before reacting — seasonality, staff changes, a product issue, or a competitor pilot — then reach out with what I found, offer training or configuration changes, and escalate if it's a strategic account.\"\n\nTip: Investigate first.", "B", "E"],
+["Value", "How do you demonstrate ROI to customers?", "**Why they ask:** value proof.\n\n**Answer:**\n\"Capture baseline metrics at onboarding — say invoice processing at 9 days — track improvements, quantify savings or revenue gains, and present them in business reviews. Without a baseline, ROI is just an opinion.\"\n\nTip: Baseline early.", "B", "M"],
+["Advocacy", "How do you create customer advocates?", "**Why they ask:** advocacy programs.\n\n**Answer:**\n\"Deliver real outcomes, recognize champions publicly, invite them into case studies, reference programs, advisory boards and the community.\"\n\nTip: Recognize champions.", "B", "E"],
+["Sales Handoff", "What makes a good sales-to-CS handoff?", "**Why they ask:** continuity.\n\n**Answer:**\n\"Documented goals, stakeholders, promises made during the sale, use cases, risks and timeline — and a joint call with the customer, so they don't have to repeat themselves.\"\n\nTip: Promises made.", "B", "E"],
+["Time", "How do you prioritize your day?", "**Why they ask:** time management.\n\n**Answer:**\n\"Renewals and at-risk accounts first, then strategic accounts, then scheduled programs, then proactive outreach ordered by health score.\"\n\nTip: Risk first.", "B", "E"],
+["Communication", "How do you deliver bad news to a customer?", "**Why they ask:** communication.\n\n**Answer:**\n\"Early and honestly, with the impact, our plan and the alternatives — 'the integration will be three weeks late; here's why, here's the interim workaround, and here's how we'll keep you updated.'\"\n\nTip: Early.", "B", "E"],
+["Pricing", "How do you handle a renewal price increase?", "**Why they ask:** commercial skill.\n\n**Answer:**\n\"Communicate early, explain the value delivered and features added, offer options like a multi-year lock at the current rate, and negotiate within guidelines.\"\n\nTip: Value narrative.", "B", "M"],
+["Data", "How do you use data in CS?", "**Why they ask:** analytical CS.\n\n**Answer:**\n\"Health trends, adoption analytics, cohort analysis to find churn drivers — like customers who never complete onboarding churning at three times the rate — and predictive risk models.\"\n\nTip: Cohort analysis.", "D", "M"],
+["Scale", "How do you scale customer success?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Digital CS programs, automation, community and a strong knowledge base, pooled CSM models for smaller accounts, and in-app guidance.\"\n\nTip: Digital CS.", "D", "M"],
+["Support", "How does CS differ from support?", "**Why they ask:** role clarity.\n\n**Answer:**\n\"Support resolves issues reactively when customers ask; CS proactively drives outcomes, adoption and retention before customers have to ask.\"\n\nTip: Proactive.", "B", "E"],
+["Scenario", "A customer demands a feature not on the roadmap or they'll leave. What do you do?", "**Why they ask:** pressure handling.\n\n**Answer:**\n\"Understand the business need behind it, explore workarounds or alternatives, involve product to assess honestly, and refocus on the overall value they're getting. I won't promise something to save one renewal that I can't deliver.\"\n\nTip: Underlying need.", "B", "M"],
+["Scenario", "You inherit a book with many unhealthy accounts. What do you do?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"Triage by ARR and renewal date, reach out fast to the highest-risk accounts, build recovery plans, and then work on systematic health improvements across the book.\"\n\nTip: Triage.", "B", "M"],
+["Technical", "How technical should a CSM be?", "**Why they ask:** role expectations.\n\n**Answer:**\n\"Technical enough to understand the product, integrations and use cases, troubleshoot the basics and speak credibly — partnering with solutions engineers for deeper issues.\"\n\nTip: Credibility.", "B", "E"],
+["Forecasting", "How do you forecast renewals?", "**Why they ask:** forecasting discipline.\n\n**Answer:**\n\"Health scores, customer signals, confirmation from decision-makers, and categories of commit and at-risk based on evidence rather than optimism.\"\n\nTip: Evidence.", "B", "E"],
+["Collaboration", "How do you work with product teams?", "**Why they ask:** feedback loops.\n\n**Answer:**\n\"Share aggregated feedback with revenue impact — '14 customers worth $2.1 million ARR need this' — join beta programs, and help prioritize customer needs.\"\n\nTip: Aggregated feedback.", "B", "E"],
+["Empathy", "How do you show empathy while protecting the company?", "**Why they ask:** balance.\n\n**Answer:**\n\"Acknowledge the customer's frustration genuinely, advocate for them internally, and set realistic expectations rather than making promises.\"\n\nTip: Advocate both ways.", "B", "E"],
+["AI", "How is AI changing CS?", "**Why they ask:** current trends.\n\n**Answer:**\n\"AI summarizes accounts and calls, predicts churn, automates outreach, and supports customers through AI agents — freeing CSMs for strategic work like executive relationships.\"\n\nTip: Strategic focus.", "B", "M"],
+["Questions", "What would you ask in a CSM interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"How big is the book in accounts and ARR? What are the NRR targets? How is comp structured? What tools do you use? How does CS work with sales and product?\"\n\nTip: Book size.", "B", "E"]
+]);
