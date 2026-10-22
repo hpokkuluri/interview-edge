@@ -1,42 +1,12 @@
-QB['bk-rm'] = (QB['bk-rm']||[]).concat([
-["Leverage", "How do you assess leverage?",
-`**Answer:** Senior debt/EBITDA and total debt/EBITDA (for example, under 3x for middle-market cash flow loans, depending on industry), debt-to-tangible net worth, and trends over time.
-
-Tip: Industry norms.`, 'B', 'M'],
-["Liquidity", "Which liquidity measures do you use?",
-`**Answer:** Current ratio, quick ratio, working capital, cash and availability on lines, and the cash conversion cycle.
-
-Tip: Line availability.`, 'B', 'E'],
-["Spreading", "What is spreading financial statements?",
-`**Answer:** Entering financial statements into a standardized template (Moody's or nCino spreading) to calculate ratios, trends and cash flow consistently across borrowers.
-
-Tip: Standardization.`, 'B', 'E'],
-["Construction Loans", "What are the risks in construction lending?",
-`**Answer:** Cost overruns, delays, contractor failure, market changes before completion and lease-up risk. Mitigate with budgets and contingency, draw inspections, completion guarantees, equity first, and interest reserves.
-
-Tip: Draw controls.`, 'D', 'M'],
-["Appraisals", "What do you review in an appraisal?",
-`**Answer:** Approaches to value (sales comparison, income, cost), assumptions (cap rate, rents, vacancy), comparables quality, and the review appraiser's comments.
-
-Tip: Cap rate.`, 'D', 'M'],
-["Cap Rate", "How do cap rates affect value?",
-`**Answer:** Value = NOI / cap rate. NOI of $1M at a 6% cap rate gives $16.7M; at 7% it gives $14.3M. Rising cap rates lower values and raise LTV.
-
-Tip: Sensitivity.`, 'B', 'M'],
-["Relationship Profitability", "How do you measure relationship profitability?",
-`**Answer:** Loan interest spread, fees, deposit value (earnings credit vs cost), treasury fees, minus capital and operating costs, often measured as risk-adjusted return on capital.
-
-Tip: Whole relationship.`, 'D', 'M'],
-["Onboarding", "How do you onboard a new commercial client smoothly?",
-`**Answer:** KYC documentation, an account setup plan, treasury implementation with training, a loan closing checklist, and regular check-ins during the first 90 days.
-
-Tip: First 90 days.`, 'B', 'E'],
-["Portfolio Monitoring", "How do you monitor your portfolio?",
-`**Answer:** Covenant tracking, financial reporting compliance, account activity changes (overdrafts, declining deposits), annual reviews, site visits and early-warning reports.
-
-Tip: Early warnings.`, 'B', 'M'],
-["Scenario", "A client wants to refinance a loan with another bank for a lower rate. How do you respond?",
-`**Answer:** Understand the competing terms (rate, structure, covenants, fees), evaluate the profitability of a retention offer, emphasize service and expertise, and decide quickly with credit and pricing.
-
-Tip: Quick decision.`, 'B', 'E']
+QB["bk-rm"] = (QB["bk-rm"] || []).concat([
+["Leverage", "How do you assess leverage?", "**Why they ask:** credit analysis.\n\n**Answer:**\n\"Senior debt to EBITDA and total debt to EBITDA — $9 million of debt on $3 million of EBITDA is 3x, often the upper range for middle-market cash flow loans, depending on industry — plus debt to tangible net worth and the trend over time.\"\n\nTip: Industry norms.", "B", "M"],
+["Liquidity", "Which liquidity measures do you use?", "**Why they ask:** analysis.\n\n**Answer:**\n\"Current ratio, quick ratio, working capital, cash plus availability on lines, and the cash conversion cycle.\"\n\nTip: Line availability.", "B", "E"],
+["Spreading", "What is spreading financial statements?", "**Why they ask:** analytical process.\n\n**Answer:**\n\"Entering financial statements into a standardized template, like Moody's or nCino spreading, so ratios, trends and cash flow are calculated consistently across borrowers.\"\n\nTip: Standardization.", "B", "E"],
+["Construction Loans", "What are the risks in construction lending?", "**Why they ask:** specialized lending.\n\n**Answer:**\n\"Cost overruns, delays, contractor failure, market changes before completion and lease-up risk. I mitigate with detailed budgets and contingency, third-party draw inspections, completion guarantees, equity in first, and interest reserves.\"\n\nTip: Draw controls.", "D", "M"],
+["Appraisals", "What do you review in an appraisal?", "**Why they ask:** collateral analysis.\n\n**Answer:**\n\"The approaches to value — sales comparison, income and cost — the key assumptions like cap rate, rents and vacancy, the quality of comparables, and the review appraiser's comments.\"\n\nTip: Cap rate.", "D", "M"],
+["Cap Rate", "How do cap rates affect value?", "**Why they ask:** CRE math.\n\n**Answer:**\n\"Value equals NOI over cap rate. NOI of $1 million at a 6% cap is about $16.7 million; at 7% it's about $14.3 million. So a one-point rise cuts value about 14%, and an $11 million loan goes from 66% LTV to 77%.\"\n\nTip: Sensitivity.", "B", "M"],
+["Relationship Profitability", "How do you measure relationship profitability?", "**Why they ask:** business thinking.\n\n**Answer:**\n\"Loan spread, fees, deposit value — earnings credit versus cost — and treasury fees, minus capital and operating costs, usually expressed as risk-adjusted return on capital.\"\n\nTip: Whole relationship.", "D", "M"],
+["Onboarding", "How do you onboard a new commercial client smoothly?", "**Why they ask:** client experience.\n\n**Answer:**\n\"Complete KYC documentation, an account setup plan, treasury implementation with training, a loan closing checklist, and regular check-ins during the first 90 days — that's when switching banks feels most painful.\"\n\nTip: First 90 days.", "B", "E"],
+["Portfolio Monitoring", "How do you monitor your portfolio?", "**Why they ask:** risk management.\n\n**Answer:**\n\"Covenant tracking, financial reporting compliance, changes in account activity like overdrafts or declining deposits, annual reviews, site visits and early-warning reports.\"\n\nTip: Early warnings.", "B", "M"],
+["Scenario", "A client wants to refinance a loan with another bank for a lower rate. How do you respond?", "**Why they ask:** retention.\n\n**Answer:**\n\"Understand the competing terms — rate, structure, covenants, fees — evaluate whether a retention offer is still profitable, emphasize our service and expertise, and decide quickly with credit and pricing. A slow answer loses the deal.\"\n\nTip: Quick decision.", "B", "E"]
 ]);
