@@ -1,42 +1,12 @@
-QB['ls-qa'] = (QB['ls-qa']||[]).concat([
-["Line Clearance", "What is line clearance?",
-`**Answer:** Verifying that the production line is free of materials, labels and documents from the previous batch before starting a new one, to prevent mix-ups. It is documented and independently verified.
-
-Tip: Independent verification.`, 'B', 'E'],
-["SOPs", "What makes a good SOP?",
-`**Answer:** Clear purpose and scope, defined responsibilities, step-by-step instructions written for the user, references and definitions, version control and periodic review, and training before it takes effect.
-
-Tip: User-friendly.`, 'B', 'E'],
-["Trending", "Why trend deviations and complaints?",
-`**Answer:** Trending reveals recurring issues and systemic problems that individual investigations miss, and drives preventive CAPAs and management review.
-
-Tip: Systemic issues.`, 'B', 'M'],
-["Investigational Tools", "Which investigation tools do you use?",
-`**Answer:** 5 Whys, fishbone (Ishikawa), fault tree analysis, is/is-not analysis, process mapping and change analysis (what changed?).
-
-Tip: Change analysis.`, 'B', 'E'],
-["Material Release", "How are incoming materials released?",
-`**Answer:** Receipt and quarantine, sampling and testing (or certificate of analysis with periodic verification for qualified suppliers), QA review, then release to approved status.
-
-Tip: Quarantine status.`, 'B', 'M'],
-["QMSR", "What changed with FDA's QMSR for devices?",
-`**Answer:** FDA's Quality Management System Regulation (effective February 2026) aligns 21 CFR 820 with ISO 13485:2016, replacing much of the old QSR terminology while keeping FDA-specific requirements.
-
-Tip: ISO 13485 alignment.`, 'D', 'M'],
-["Contract Manufacturers", "How do you oversee contract manufacturers?",
-`**Answer:** Qualification audits, quality agreements defining responsibilities, review of their batch records and deviations, performance metrics, periodic audits and joint CAPA.
-
-Tip: Quality agreements.`, 'B', 'M'],
-["Temperature", "How do you handle a temperature excursion during shipping?",
-`**Answer:** Quarantine the product, review the data logger, evaluate against stability data and allowed excursion limits, decide on disposition with QA approval, and investigate the cause with logistics.
-
-Tip: Stability data.`, 'B', 'M'],
-["Continuous Improvement", "How does QA drive continuous improvement?",
-`**Answer:** Use quality data trends, right-first-time metrics, lean tools in quality processes, and management review to prioritize improvements.
-
-Tip: Data-driven.`, 'B', 'E'],
-["Scenario", "An inspector asks for a document you can't find. What do you do?",
-`**Answer:** Stay calm and honest, explain that the back room is retrieving it, provide it as soon as it's located, and if it's missing, acknowledge it and explain the controls. Never fabricate.
-
-Tip: Never fabricate.`, 'B', 'M']
+QB["ls-qa"] = (QB["ls-qa"] || []).concat([
+["Line Clearance", "What is line clearance?", "**Why they ask:** mix-up prevention.\n\n**Answer:**\n\"Verifying that the production line is free of materials, labels and documents from the previous batch before starting a new one. It's documented and independently verified by a second person.\"\n\nTip: Independent verification.", "B", "E"],
+["SOPs", "What makes a good SOP?", "**Why they ask:** documentation quality.\n\n**Answer:**\n\"Clear purpose and scope, defined responsibilities, step-by-step instructions written for the person doing the job, references and definitions, version control with periodic review, and training before it goes effective.\"\n\nTip: User-friendly.", "B", "E"],
+["Trending", "Why trend deviations and complaints?", "**Why they ask:** systemic thinking.\n\n**Answer:**\n\"Trending reveals recurring issues individual investigations miss. Five 'unrelated' minor deviations on one line in a quarter may point to equipment or training, and that drives preventive CAPA and management review.\"\n\nTip: Systemic issues.", "B", "M"],
+["Investigational Tools", "Which investigation tools do you use?", "**Why they ask:** methodology.\n\n**Answer:**\n\"5 Whys, fishbone diagrams, fault tree analysis, is/is-not analysis, process mapping, and change analysis — asking what changed — which often solves things fastest.\"\n\nTip: Change analysis.", "B", "E"],
+["Material Release", "How are incoming materials released?", "**Why they ask:** material control.\n\n**Answer:**\n\"Receipt into quarantine, sampling and testing — or reliance on the supplier's CoA with periodic verification for qualified suppliers — QA review, then release to approved status in the system.\"\n\nTip: Quarantine status.", "B", "M"],
+["QMSR", "What changed with FDA's QMSR for devices?", "**Why they ask:** current device regulation.\n\n**Answer:**\n\"FDA's Quality Management System Regulation, effective February 2026, aligns 21 CFR 820 with ISO 13485:2016 by incorporating it by reference, replacing much of the old QSR terminology while keeping some FDA-specific requirements.\"\n\nTip: ISO 13485 alignment.", "D", "M"],
+["Contract Manufacturers", "How do you oversee contract manufacturers?", "**Why they ask:** outsourcing oversight.\n\n**Answer:**\n\"Qualification audits, quality agreements defining who does what, review of their batch records and deviations, performance metrics, periodic audits and joint CAPAs. Outsourcing the work doesn't outsource the responsibility.\"\n\nTip: Quality agreements.", "B", "M"],
+["Temperature", "How do you handle a temperature excursion during shipping?", "**Why they ask:** cold-chain judgment.\n\n**Answer:**\n\"Quarantine the product, pull the data logger, and evaluate the time and temperature against stability data and allowed excursion limits. If a 2–8°C product hit 12°C for 3 hours and stability data supports that, QA can approve release; otherwise reject. Then investigate the cause with logistics.\"\n\nTip: Stability data.", "B", "M"],
+["Continuous Improvement", "How does QA drive continuous improvement?", "**Why they ask:** beyond compliance.\n\n**Answer:**\n\"Use quality data trends and right-first-time metrics, apply lean tools to quality processes like review cycle time, and use management review to prioritize improvements.\"\n\nTip: Data-driven.", "B", "E"],
+["Scenario", "An inspector asks for a document you can't find. What do you do?", "**Why they ask:** inspection composure.\n\n**Answer:**\n\"Stay calm and honest: tell the inspector the back room is retrieving it, and provide it as soon as it's found. If it's genuinely missing, acknowledge it and explain the controls around it. Never fabricate or recreate a document.\"\n\nTip: Never fabricate.", "B", "M"]
 ]);

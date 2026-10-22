@@ -1,248 +1,57 @@
 // ls-qa — generated from src/ls-qa-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // GMP Quality Assurance Specialist / Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ls-qa'] = [
-["Role", "What does a GMP QA specialist do?",
-`**Why they ask:** scope.
-
-**Answer:** Ensures products are manufactured consistently to quality standards under cGMP: batch record review and release, deviations and investigations, CAPA, change control, document control, training compliance, internal audits, supplier quality, and inspection readiness.
-
-Tip: Product type (drug, biologic, device).`, 'B', 'E'],
-
-["GMP", "What are cGMP regulations?",
-`**Answer:** Current Good Manufacturing Practice: 21 CFR 210/211 (drugs), 600s (biologics), 820/QMSR (devices), EU GMP guidelines and ICH Q7 (APIs). They cover facilities, equipment, personnel, production controls, laboratory controls, records and complaints.
-
-Tip: Know your regulations.`, 'B', 'E'],
-
-["Deviations", "How do you handle a deviation?",
-`**Answer:** Document immediately, assess product impact and risk, contain affected product, investigate root cause (5 Whys, fishbone), determine CAPA, assess batch disposition, and close timely (often 30 days).
-
-Tip: Product impact.`, 'B', 'M'],
-
-["Root Cause", "Why is 'human error' a weak root cause?",
-`**Answer:** It rarely explains why the error happened; investigate contributing factors — procedures, training, design, workload — so CAPA prevents recurrence.
-
-Tip: Dig deeper.`, 'B', 'M'],
-
-["CAPA", "What makes a CAPA effective?",
-`**Answer:** Addresses true root cause, specific actions with owners and dates, preventive scope beyond the event, and effectiveness verification with criteria.
-
-Tip: Effectiveness checks.`, 'B', 'M'],
-
-["Batch Release", "What do you review before releasing a batch?",
-`**Answer:** Executed batch record completeness and accuracy, deviations closed or assessed, in-process and release testing results in spec, environmental monitoring, equipment and materials status, and label reconciliation.
-
-Tip: Completeness.`, 'B', 'M'],
-
-["Data Integrity", "How do you ensure data integrity?",
-`**Answer:** ALCOA+ principles, validated systems with audit trails, access controls, review of audit trails, good documentation practices and training.
-
-Tip: Audit trail review.`, 'B', 'M'],
-
-["GDP", "What are good documentation practices?",
-`**Answer:** Record contemporaneously in permanent ink, sign and date, correct errors with a single line, initial, date and reason, no blank spaces or backdating.
-
-Tip: Single-line corrections.`, 'B', 'E'],
-
-["Change Control", "How does change control work?",
-`**Answer:** Propose change, assess impact (quality, validation, regulatory), approve by cross-functional team, implement with documentation and training, and verify effectiveness.
-
-Tip: Regulatory impact.`, 'B', 'M'],
-
-["Validation", "Explain process validation stages.",
-`**Answer:** FDA guidance: Stage 1 process design, Stage 2 process qualification (facility/equipment qualification and PPQ batches), Stage 3 continued process verification.
-
-Tip: Three stages.`, 'D', 'M'],
-
-["CSV", "What is computer system validation?",
-`**Answer:** Demonstrating GxP computerized systems are fit for intended use and maintain data integrity — risk-based approaches like GAMP 5 and FDA's Computer Software Assurance guidance.
-
-Tip: CSA.`, 'D', 'M'],
-
-["OOS", "How do you handle an out-of-specification result?",
-`**Answer:** Phase I lab investigation (assignable lab error?), if none, Phase II full-scale investigation including manufacturing; no testing into compliance; document and determine batch disposition per FDA OOS guidance.
-
-Tip: No testing into compliance.`, 'D', 'M'],
-
-["Audits", "How do you conduct an internal audit?",
-`**Answer:** Plan scope and checklist, review documents, observe operations, interview staff, record objective evidence, classify findings, report and track CAPAs.
-
-Tip: Objective evidence.`, 'B', 'M'],
-
-["Suppliers", "How do you manage supplier quality?",
-`**Answer:** Qualification (audits, questionnaires), quality agreements, incoming inspection, performance monitoring, and requalification.
-
-Tip: Quality agreements.`, 'B', 'M'],
-
-["Complaints", "How do you handle product complaints?",
-`**Answer:** Log and assess, determine reportability (adverse events, MDRs), investigate, trend, CAPA, and respond to customers.
-
-Tip: Reportability.`, 'B', 'M'],
-
-["Risk", "How do you use quality risk management?",
-`**Answer:** ICH Q9(R1) principles with tools like FMEA, risk ranking and HACCP to focus controls on highest risks.
-
-Tip: ICH Q9.`, 'B', 'M'],
-
-["Training", "How do you ensure training compliance?",
-`**Answer:** Role-based curricula, training before performing tasks, effectiveness checks, and tracking in LMS.
-
-Tip: Before tasks.`, 'B', 'E'],
-
-["Inspections", "How do you prepare for an FDA inspection?",
-`**Answer:** Readiness assessments, mock inspections, storyboards for key topics, front/back room setup, SME preparation and document retrieval processes.
-
-Tip: Storyboards.`, 'B', 'M'],
-
-["Annual Review", "What is an annual product quality review?",
-`**Answer:** Annual evaluation of batches, deviations, complaints, changes, stability, and trends to determine need for process improvements (APR/PQR).
-
-Tip: Trends.`, 'D', 'M'],
-
-["Environmental", "Why is environmental monitoring important?",
-`**Answer:** Especially for sterile manufacturing — monitoring viable and non-viable particles in cleanrooms to ensure aseptic conditions; excursions trigger investigation.
-
-Tip: Aseptic.`, 'D', 'M'],
-
-["Behavioral", "Tell me about an investigation you led.",
-`**Sample answer:** "Repeated tablet weight variation was blamed on operators. I found worn tooling and inconsistent granule moisture. CAPA included tooling inspection schedules and moisture limits; deviations dropped 80%."
-
-Tip: True root cause.`, 'B', 'M'],
-
-["Behavioral", "Tell me about rejecting a batch under pressure.",
-`**Answer:** Explain how you held to quality standards with data despite supply pressure, communicated clearly, and found alternatives.
-
-Tip: Integrity.`, 'B', 'M'],
-
-["Behavioral", "How do you build quality culture?",
-`**Answer:** Make quality everyone's responsibility, encourage reporting, be present on the floor, and help operations find solutions.
-
-Tip: Partner.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** ASQ CQA (auditor), CQE, CMQ/OE, and RAC.
-
-Tip: CQA.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** QA manager, head of quality.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I find true root causes and keep sites inspection-ready — cutting repeat deviations 80% while partnering with operations."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Stability", "What is a stability program?",
-`**Answer:** Testing products over time under defined conditions (ICH Q1A) to establish shelf life and storage conditions, with ongoing commitment batches.
-
-Tip: ICH Q1A.`, 'D', 'M'],
-
-["Cleaning", "What is cleaning validation?",
-`**Answer:** Demonstrating cleaning procedures consistently remove residues (product, detergents, microbes) to acceptable limits based on toxicology (e.g. PDE-based limits).
-
-Tip: PDE.`, 'D', 'M'],
-
-["Qualification", "What are IQ/OQ/PQ?",
-`**Answer:** Installation, Operational and Performance Qualification of equipment and systems.
-
-Tip: Equipment qualification.`, 'B', 'E'],
-
-["Recall", "What triggers a recall and how is it managed?",
-`**Answer:** Products violating regulations or posing risk; assess health hazard, classify (Class I–III), notify FDA, execute recall strategy and effectiveness checks.
-
-Tip: Classes.`, 'D', 'M'],
-
-["Metrics", "Which quality metrics do you track?",
-`**Answer:** Deviation rates and aging, CAPA timeliness and effectiveness, right-first-time batches, complaint rates, audit findings, and lot acceptance rates.
-
-Tip: Right first time.`, 'B', 'E'],
-
-["Scenario", "Operations wants to release product before a deviation closes. What do you do?",
-`**Answer:** Assess product impact with data; release only if impact assessment supports it per procedures; otherwise hold.
-
-Tip: Procedures.`, 'B', 'M'],
-
-["Scenario", "You find a falsified record. What do you do?",
-`**Answer:** Secure evidence, escalate to quality leadership, assess product impact, investigate broadly, and take corrective actions — data integrity breaches are serious.
-
-Tip: Escalate.`, 'D', 'M'],
-
-["Biologics", "What's different about biologics QA?",
-`**Answer:** Complex processes, contamination risks (viral, microbial), cell bank controls, and stricter aseptic requirements.
-
-Tip: Process complexity.`, 'D', 'M'],
-
-["Annex 1", "What is EU GMP Annex 1?",
-`**Answer:** Revised guidance for sterile manufacturing requiring a contamination control strategy, increased use of barrier technologies and quality risk management.
-
-Tip: CCS.`, 'D', 'S'],
-
-["Systems", "Which QMS systems have you used?",
-`**Answer:** Veeva Vault QMS, MasterControl, TrackWise, SAP QM and LIMS.
-
-Tip: eQMS.`, 'B', 'E'],
-
-["Management Review", "What is management review?",
-`**Answer:** Periodic leadership review of QMS performance, metrics, audits, CAPAs, and resources to drive improvement.
-
-Tip: Leadership accountability.`, 'B', 'E'],
-
-["Labels", "Why is label control critical?",
-`**Answer:** Labeling mix-ups are a major recall cause; controls include reconciliation, segregation, line clearance and verification.
-
-Tip: Line clearance.`, 'B', 'M'],
-
-["Partnership", "How do you balance compliance with operations' speed?",
-`**Answer:** Risk-based decisions, clear procedures, quick turnaround on reviews, and improving processes so compliance is easier.
-
-Tip: Risk-based.`, 'B', 'E'],
-
-["Questions", "What would you ask in a QA interview?",
-`**Answer:** Recent inspection history, quality metrics, team structure, systems, and quality culture.
-
-Tip: Inspection history.`, 'B', 'E']
-];
-
-QB['ls-qa'] = (QB['ls-qa']||[]).concat([
-["Line Clearance", "What is line clearance?",
-`**Answer:** Verifying that the production line is free of materials, labels and documents from the previous batch before starting a new one, to prevent mix-ups. It is documented and independently verified.
-
-Tip: Independent verification.`, 'B', 'E'],
-["SOPs", "What makes a good SOP?",
-`**Answer:** Clear purpose and scope, defined responsibilities, step-by-step instructions written for the user, references and definitions, version control and periodic review, and training before it takes effect.
-
-Tip: User-friendly.`, 'B', 'E'],
-["Trending", "Why trend deviations and complaints?",
-`**Answer:** Trending reveals recurring issues and systemic problems that individual investigations miss, and drives preventive CAPAs and management review.
-
-Tip: Systemic issues.`, 'B', 'M'],
-["Investigational Tools", "Which investigation tools do you use?",
-`**Answer:** 5 Whys, fishbone (Ishikawa), fault tree analysis, is/is-not analysis, process mapping and change analysis (what changed?).
-
-Tip: Change analysis.`, 'B', 'E'],
-["Material Release", "How are incoming materials released?",
-`**Answer:** Receipt and quarantine, sampling and testing (or certificate of analysis with periodic verification for qualified suppliers), QA review, then release to approved status.
-
-Tip: Quarantine status.`, 'B', 'M'],
-["QMSR", "What changed with FDA's QMSR for devices?",
-`**Answer:** FDA's Quality Management System Regulation (effective February 2026) aligns 21 CFR 820 with ISO 13485:2016, replacing much of the old QSR terminology while keeping FDA-specific requirements.
-
-Tip: ISO 13485 alignment.`, 'D', 'M'],
-["Contract Manufacturers", "How do you oversee contract manufacturers?",
-`**Answer:** Qualification audits, quality agreements defining responsibilities, review of their batch records and deviations, performance metrics, periodic audits and joint CAPA.
-
-Tip: Quality agreements.`, 'B', 'M'],
-["Temperature", "How do you handle a temperature excursion during shipping?",
-`**Answer:** Quarantine the product, review the data logger, evaluate against stability data and allowed excursion limits, decide on disposition with QA approval, and investigate the cause with logistics.
-
-Tip: Stability data.`, 'B', 'M'],
-["Continuous Improvement", "How does QA drive continuous improvement?",
-`**Answer:** Use quality data trends, right-first-time metrics, lean tools in quality processes, and management review to prioritize improvements.
-
-Tip: Data-driven.`, 'B', 'E'],
-["Scenario", "An inspector asks for a document you can't find. What do you do?",
-`**Answer:** Stay calm and honest, explain that the back room is retrieving it, provide it as soon as it's located, and if it's missing, acknowledge it and explain the controls. Never fabricate.
-
-Tip: Never fabricate.`, 'B', 'M']
+QB["ls-qa"] = (QB["ls-qa"] || []).concat([
+["Role", "What does a GMP QA specialist do?", "**Why they ask:** scope.\n\n**Answer:** Ensures products are manufactured consistently to quality standards under cGMP: batch record review and release, deviations and investigations, CAPA, change control, document control, training compliance, internal audits, supplier quality, and inspection readiness.\n\nTip: Product type (drug, biologic, device).", "B", "E"],
+["GMP", "What are cGMP regulations?", "**Why they ask:** the regulatory foundation of the job.\n\n**Answer:**\n\"Current Good Manufacturing Practice. In the US that's 21 CFR 210 and 211 for drugs, the 600s for biologics and Part 820, now the QMSR, for devices. Internationally, EU GMP and ICH Q7 for APIs. They cover facilities, equipment, personnel, production and lab controls, records and complaints. The 'current' matters: inspectors expect today's practices, not the minimum from when the rule was written.\"\n\nTip: Know your regulations.", "B", "E"],
+["Deviations", "How do you handle a deviation?", "**Why they ask:** the core daily QA workflow.\n\n**Answer:**\n\"Document it immediately, contain affected product, and assess impact and risk. Then investigate root cause with 5 Whys or a fishbone, define the CAPA, decide batch disposition, and close on time — usually within 30 days. If a mixing step ran 10 minutes long, the key question is whether it affected blend uniformity, so I'd check the validated range and the test results before deciding.\"\n\nTip: Product impact.", "B", "M"],
+["Root Cause", "Why is 'human error' a weak root cause?", "**Why they ask:** investigation maturity.\n\n**Answer:**\n\"Because it describes what happened, not why. If an operator skipped a step, I ask whether the SOP was unclear, the training was weak, the form didn't prompt the step, or they were rushed covering two lines. Retraining alone rarely prevents recurrence; fixing the procedure or the design does.\"\n\nTip: Dig deeper.", "B", "M"],
+["CAPA", "What makes a CAPA effective?", "**Why they ask:** whether your fixes actually work.\n\n**Answer:**\n\"It addresses the true root cause, has specific actions with owners and dates, extends preventively to similar products and lines, and has an effectiveness check with measurable criteria — for example, zero recurrence across the next 20 batches.\"\n\nTip: Effectiveness checks.", "B", "M"],
+["Batch Release", "What do you review before releasing a batch?", "**Why they ask:** release is QA's highest-stakes decision.\n\n**Answer:**\n\"A complete and accurate executed batch record, all deviations closed or assessed for impact, in-process and release results within spec, environmental monitoring, equipment and material status, and label reconciliation. If anything's open, the batch doesn't go.\"\n\nTip: Completeness.", "B", "M"],
+["Data Integrity", "How do you ensure data integrity?", "**Why they ask:** a top inspection focus area.\n\n**Answer:**\n\"ALCOA+ — attributable, legible, contemporaneous, original, accurate, plus complete, consistent, enduring and available. That means validated systems with audit trails, unique logins with no shared accounts, regular audit trail review, good documentation practices, and training so people understand why it matters.\"\n\nTip: Audit trail review.", "B", "M"],
+["GDP", "What are good documentation practices?", "**Why they ask:** basics every QA person enforces.\n\n**Answer:**\n\"Record at the time of the activity in permanent ink, sign and date, correct errors with a single line plus initials, date and reason so the original stays readable, no blank spaces, no backdating and no obliterating entries.\"\n\nTip: Single-line corrections.", "B", "E"],
+["Change Control", "How does change control work?", "**Why they ask:** controlled change is GMP's backbone.\n\n**Answer:**\n\"Propose the change, assess impact on quality, validation and regulatory filings, get cross-functional approval, implement with documentation and training, then verify effectiveness. The regulatory piece is critical: a change to a filed process may need a prior-approval supplement before you can ship product made with it.\"\n\nTip: Regulatory impact.", "B", "M"],
+["Validation", "Explain process validation stages.", "**Why they ask:** validation lifecycle knowledge.\n\n**Answer:**\n\"FDA's 2011 guidance defines three stages. Stage 1, process design, builds understanding of critical parameters. Stage 2, process qualification, qualifies the facility and equipment and runs PPQ batches to show the process is reproducible. Stage 3, continued process verification, monitors routine production to make sure it stays in control.\"\n\nTip: Three stages.", "D", "M"],
+["CSV", "What is computer system validation?", "**Why they ask:** systems are central to GxP data.\n\n**Answer:**\n\"Demonstrating that GxP computerized systems are fit for intended use and protect data integrity. Using a risk-based approach like GAMP 5 and FDA's Computer Software Assurance guidance, you focus testing on functions that affect product quality or patient safety instead of documenting every screen.\"\n\nTip: CSA.", "D", "M"],
+["OOS", "How do you handle an out-of-specification result?", "**Why they ask:** a classic compliance trap.\n\n**Answer:**\n\"Phase I is a lab investigation for an assignable cause — wrong dilution, instrument issue. If none is found, Phase II expands to manufacturing. Following FDA's OOS guidance, you never retest until you get a passing result; that's testing into compliance. Everything is documented and drives the batch disposition.\"\n\nTip: No testing into compliance.", "D", "M"],
+["Audits", "How do you conduct an internal audit?", "**Why they ask:** auditing skill.\n\n**Answer:**\n\"Plan the scope and checklist, review documents in advance, observe operations, interview staff, record objective evidence, classify findings by risk, then report and track the CAPAs to closure. A finding without evidence is just an opinion.\"\n\nTip: Objective evidence.", "B", "M"],
+["Suppliers", "How do you manage supplier quality?", "**Why they ask:** suppliers are a major risk source.\n\n**Answer:**\n\"Qualify suppliers through audits and questionnaires, put quality agreements in place, do incoming inspection, monitor performance like rejection rates and on-time CoAs, and requalify periodically based on risk.\"\n\nTip: Quality agreements.", "B", "M"],
+["Complaints", "How do you handle product complaints?", "**Why they ask:** patient safety link.\n\n**Answer:**\n\"Log and assess each complaint, determine reportability — adverse events go to PV, device issues may need an MDR — investigate, trend across complaints, implement CAPA, and respond to the customer.\"\n\nTip: Reportability.", "B", "M"],
+["Risk", "How do you use quality risk management?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"Following ICH Q9(R1), I use tools like FMEA, risk ranking and HACCP to focus controls where risk is highest. In an FMEA, severity times occurrence times detection gives a priority number, so a high-severity failure with poor detection gets attention first.\"\n\nTip: ICH Q9.", "B", "M"],
+["Training", "How do you ensure training compliance?", "**Why they ask:** a frequent audit finding.\n\n**Answer:**\n\"Role-based curricula, training completed before anyone performs a task, effectiveness checks for critical procedures, and tracking in the LMS with alerts before SOP revisions go effective.\"\n\nTip: Before tasks.", "B", "E"],
+["Inspections", "How do you prepare for an FDA inspection?", "**Why they ask:** inspection readiness.\n\n**Answer:**\n\"Readiness assessments and mock inspections, storyboards for high-risk topics like recent deviations and data integrity, a front room and back room setup, SME coaching on answering clearly and only the question asked, and a fast document retrieval process.\"\n\nTip: Storyboards.", "B", "M"],
+["Annual Review", "What is an annual product quality review?", "**Why they ask:** trend oversight.\n\n**Answer:**\n\"The annual APR or PQR evaluates batches, deviations, complaints, changes, stability and trends for each product to decide whether specs or processes need improvement.\"\n\nTip: Trends.", "D", "M"],
+["Environmental", "Why is environmental monitoring important?", "**Why they ask:** sterile manufacturing knowledge.\n\n**Answer:**\n\"Especially in sterile manufacturing, monitoring viable and non-viable particles in cleanrooms shows that aseptic conditions are maintained. Excursions trigger investigation and an impact assessment on product made during that time.\"\n\nTip: Aseptic.", "D", "M"],
+["Behavioral", "Tell me about an investigation you led.", "**Why they ask:** real investigation depth.\n\n**Answer:**\n\"We kept seeing tablet weight variation, and earlier investigations had blamed operators. I found worn tooling and inconsistent granule moisture. The CAPA added tooling inspection schedules and moisture limits, and deviations dropped 80%.\"\n\nTip: True root cause.", "B", "M"],
+["Behavioral", "Tell me about rejecting a batch under pressure.", "**Why they ask:** integrity under pressure.\n\n**Answer:**\n\"Supply was tight and operations pushed to release a batch with an unresolved contamination signal in EM. I showed the data, explained the patient risk, and held it. Meanwhile I helped expedite testing on the next batch so we could ship within a week. The investigation confirmed the batch couldn't have been released.\"\n\nTip: Integrity.", "B", "M"],
+["Behavioral", "How do you build quality culture?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Make quality everyone's responsibility, encourage reporting without blame, be on the floor rather than only in the office, and help operations find solutions instead of just saying no.\"\n\nTip: Partner.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** professional credibility.\n\n**Answer:**\n\"ASQ's CQA for auditing, CQE for quality engineering, CMQ/OE for management, and RAC if I move toward regulatory.\"\n\nTip: CQA.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward QA manager and eventually head of quality.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I find true root causes and keep sites inspection-ready — I cut repeat deviations 80% while partnering with operations instead of fighting them.\"\n\nTip: Proof.", "B", "E"],
+["Stability", "What is a stability program?", "**Why they ask:** shelf-life knowledge.\n\n**Answer:**\n\"Testing product over time under defined conditions per ICH Q1A — for example long-term at 25°C and 60% humidity and accelerated at 40°C and 75% — to establish shelf life and storage conditions, plus ongoing commitment batches each year.\"\n\nTip: ICH Q1A.", "D", "M"],
+["Cleaning", "What is cleaning validation?", "**Why they ask:** cross-contamination control.\n\n**Answer:**\n\"Demonstrating cleaning procedures consistently remove product residue, detergents and microbes to acceptable limits. Limits are now based on toxicology, using PDE values — the daily dose of a residue that's safe for a lifetime — rather than old rules like 10 ppm.\"\n\nTip: PDE.", "D", "M"],
+["Qualification", "What are IQ/OQ/PQ?", "**Why they ask:** equipment qualification basics.\n\n**Answer:**\n\"Installation Qualification confirms the equipment is installed per spec, Operational Qualification confirms it works across its operating ranges, and Performance Qualification confirms it performs consistently with the actual process.\"\n\nTip: Equipment qualification.", "B", "E"],
+["Recall", "What triggers a recall and how is it managed?", "**Why they ask:** crisis readiness.\n\n**Answer:**\n\"Products that violate regulations or pose a risk. You assess the health hazard, classify it — Class I is reasonable probability of serious harm, Class III unlikely to cause harm — notify FDA, execute the recall strategy to the right distribution level, and run effectiveness checks.\"\n\nTip: Classes.", "D", "M"],
+["Metrics", "Which quality metrics do you track?", "**Why they ask:** data-driven management.\n\n**Answer:**\n\"Deviation rates and aging, CAPA timeliness and effectiveness, right-first-time batches, complaint rates, audit findings and lot acceptance rates. Right-first-time is the one I watch most because it reflects the whole system.\"\n\nTip: Right first time.", "B", "E"],
+["Scenario", "Operations wants to release product before a deviation closes. What do you do?", "**Why they ask:** pressure judgment.\n\n**Answer:**\n\"Assess product impact with data. If the procedure allows release with a documented impact assessment showing no effect on quality, it can go with QA approval. If the assessment isn't complete or shows risk, the product stays on hold.\"\n\nTip: Procedures.", "B", "M"],
+["Scenario", "You find a falsified record. What do you do?", "**Why they ask:** data integrity ethics.\n\n**Answer:**\n\"Secure the evidence, escalate to quality leadership, assess product impact, investigate how widespread it is — other records, other people — and take corrective actions. Data integrity breaches undermine trust in all your data, so they're treated very seriously.\"\n\nTip: Escalate.", "D", "M"],
+["Biologics", "What's different about biologics QA?", "**Why they ask:** product-type depth.\n\n**Answer:**\n\"Processes are complex and living-cell based, so small changes can affect the product. There are viral and microbial contamination risks, cell bank controls, and stricter aseptic requirements. The saying is the process is the product.\"\n\nTip: Process complexity.", "D", "M"],
+["Annex 1", "What is EU GMP Annex 1?", "**Why they ask:** sterile regulation awareness.\n\n**Answer:**\n\"The revised guidance for sterile manufacturing, effective 2023. It requires a documented contamination control strategy, encourages barrier technologies like isolators and RABS, and expects quality risk management throughout.\"\n\nTip: CCS.", "D", "S"],
+["Systems", "Which QMS systems have you used?", "**Why they ask:** tooling.\n\n**Answer:**\n\"Veeva Vault QMS, MasterControl and TrackWise for deviations and CAPAs, SAP QM for inspection lots, and LIMS for lab data.\"\n\nTip: eQMS.", "B", "E"],
+["Management Review", "What is management review?", "**Why they ask:** QMS governance.\n\n**Answer:**\n\"Periodic leadership review of QMS performance — metrics, audits, CAPAs, complaints and resources — so leadership owns quality and funds improvements.\"\n\nTip: Leadership accountability.", "B", "E"],
+["Labels", "Why is label control critical?", "**Why they ask:** a top recall cause.\n\n**Answer:**\n\"Labeling mix-ups are a major cause of recalls, and a wrong strength on a label can directly harm patients. Controls include label reconciliation, segregated storage, line clearance and verification by scanning.\"\n\nTip: Line clearance.", "B", "M"],
+["Partnership", "How do you balance compliance with operations' speed?", "**Why they ask:** partnership.\n\n**Answer:**\n\"Risk-based decisions, clear procedures, fast review turnaround — I target batch record review within 48 hours — and simplifying processes so compliance is the easy path.\"\n\nTip: Risk-based.", "B", "E"],
+["Questions", "What would you ask in a QA interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What was the outcome of your last inspection? What do your quality metrics look like? How is the team structured, which systems do you use, and how would you describe quality culture here?\"\n\nTip: Inspection history.", "B", "E"]
+]);
+
+QB["ls-qa"] = (QB["ls-qa"] || []).concat([
+["Line Clearance", "What is line clearance?", "**Why they ask:** mix-up prevention.\n\n**Answer:**\n\"Verifying that the production line is free of materials, labels and documents from the previous batch before starting a new one. It's documented and independently verified by a second person.\"\n\nTip: Independent verification.", "B", "E"],
+["SOPs", "What makes a good SOP?", "**Why they ask:** documentation quality.\n\n**Answer:**\n\"Clear purpose and scope, defined responsibilities, step-by-step instructions written for the person doing the job, references and definitions, version control with periodic review, and training before it goes effective.\"\n\nTip: User-friendly.", "B", "E"],
+["Trending", "Why trend deviations and complaints?", "**Why they ask:** systemic thinking.\n\n**Answer:**\n\"Trending reveals recurring issues individual investigations miss. Five 'unrelated' minor deviations on one line in a quarter may point to equipment or training, and that drives preventive CAPA and management review.\"\n\nTip: Systemic issues.", "B", "M"],
+["Investigational Tools", "Which investigation tools do you use?", "**Why they ask:** methodology.\n\n**Answer:**\n\"5 Whys, fishbone diagrams, fault tree analysis, is/is-not analysis, process mapping, and change analysis — asking what changed — which often solves things fastest.\"\n\nTip: Change analysis.", "B", "E"],
+["Material Release", "How are incoming materials released?", "**Why they ask:** material control.\n\n**Answer:**\n\"Receipt into quarantine, sampling and testing — or reliance on the supplier's CoA with periodic verification for qualified suppliers — QA review, then release to approved status in the system.\"\n\nTip: Quarantine status.", "B", "M"],
+["QMSR", "What changed with FDA's QMSR for devices?", "**Why they ask:** current device regulation.\n\n**Answer:**\n\"FDA's Quality Management System Regulation, effective February 2026, aligns 21 CFR 820 with ISO 13485:2016 by incorporating it by reference, replacing much of the old QSR terminology while keeping some FDA-specific requirements.\"\n\nTip: ISO 13485 alignment.", "D", "M"],
+["Contract Manufacturers", "How do you oversee contract manufacturers?", "**Why they ask:** outsourcing oversight.\n\n**Answer:**\n\"Qualification audits, quality agreements defining who does what, review of their batch records and deviations, performance metrics, periodic audits and joint CAPAs. Outsourcing the work doesn't outsource the responsibility.\"\n\nTip: Quality agreements.", "B", "M"],
+["Temperature", "How do you handle a temperature excursion during shipping?", "**Why they ask:** cold-chain judgment.\n\n**Answer:**\n\"Quarantine the product, pull the data logger, and evaluate the time and temperature against stability data and allowed excursion limits. If a 2–8°C product hit 12°C for 3 hours and stability data supports that, QA can approve release; otherwise reject. Then investigate the cause with logistics.\"\n\nTip: Stability data.", "B", "M"],
+["Continuous Improvement", "How does QA drive continuous improvement?", "**Why they ask:** beyond compliance.\n\n**Answer:**\n\"Use quality data trends and right-first-time metrics, apply lean tools to quality processes like review cycle time, and use management review to prioritize improvements.\"\n\nTip: Data-driven.", "B", "E"],
+["Scenario", "An inspector asks for a document you can't find. What do you do?", "**Why they ask:** inspection composure.\n\n**Answer:**\n\"Stay calm and honest: tell the inspector the back room is retrieving it, and provide it as soon as it's found. If it's genuinely missing, acknowledge it and explain the controls around it. Never fabricate or recreate a document.\"\n\nTip: Never fabricate.", "B", "M"]
 ]);
