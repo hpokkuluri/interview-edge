@@ -1,38 +1,11 @@
-QB['bk-aml'] = (QB['bk-aml']||[]).concat([
-["Risk Rating", "How are customers risk-rated for AML?",
-`**Answer:** Scoring factors such as customer type, industry, geography, products, transaction volume, PEP status and negative news give low, medium or high ratings, which drive review frequency and EDD.
-
-Tip: Drives review frequency.`, 'B', 'M'],
-["Periodic Review", "What is a periodic KYC review?",
-`**Answer:** Refreshing customer information, checking activity against the expected profile, re-screening, updating the risk rating, and escalating concerns. It happens annually for high risk and less often for lower risk.
-
-Tip: Risk-based frequency.`, 'B', 'E'],
-["MSB", "Why are money services businesses higher risk?",
-`**Answer:** High cash volume, cross-border transfers and the potential for misuse. Banks must verify FinCEN registration, state licensing and the MSB's AML program.
-
-Tip: Registration.`, 'D', 'M'],
-["Wire Transfers", "What red flags appear in wire transfers?",
-`**Answer:** Round-dollar wires to high-risk jurisdictions, rapid in-and-out movements, wires inconsistent with the business, multiple originators sending to one beneficiary, and missing originator information.
-
-Tip: In-and-out.`, 'B', 'E'],
-["Cash Intensive", "How do you assess cash-intensive businesses?",
-`**Answer:** Compare deposits to expected sales for the business type and size, look for structuring, seasonal patterns and peer comparisons, and conduct site visits for high-risk cases.
-
-Tip: Expected sales.`, 'B', 'M'],
-["Typologies", "What is a money mule?",
-`**Answer:** A person who moves illicit funds through their accounts, often recruited through job scams or romance scams. Indicators include new accounts receiving incoming transfers quickly sent out, and many unrelated payers.
-
-Tip: Recruited victims.`, 'B', 'M'],
-["Sanctions Evasion", "How do sanctioned parties evade controls?",
-`**Answer:** Front companies, falsified documents, transshipment through third countries, ownership structures below 50%, and the use of crypto. Watch for routing anomalies.
-
-Tip: Transshipment.`, 'D', 'M'],
-["Independent Testing", "What does independent AML testing evaluate?",
-`**Answer:** The adequacy of policies, risk assessment, CDD, transaction monitoring, SAR and CTR filings, training, and the BSA officer function, with testing of samples and reporting of findings.
-
-Tip: Sample testing.`, 'D', 'M'],
-["Scenario", "A long-time customer's activity suddenly spikes with international wires. What do you do?",
-`**Answer:** Review KYC and the business rationale, request an explanation through the relationship manager, verify counterparties and jurisdictions, update the profile if the activity is legitimate, or escalate and file a SAR if it's suspicious.
-
-Tip: Business rationale.`, 'B', 'M']
+QB["bk-aml"] = (QB["bk-aml"] || []).concat([
+["Risk Rating", "How are customers risk-rated for AML?", "**Why they ask:** risk methodology.\n\n**Answer:**\n\"A scoring model weighs customer type, industry, geography, products, transaction volume, PEP status and negative news into low, medium or high. The rating drives review frequency and whether EDD applies.\"\n\nTip: Drives review frequency.", "B", "M"],
+["Periodic Review", "What is a periodic KYC review?", "**Why they ask:** ongoing monitoring.\n\n**Answer:**\n\"Refreshing customer information, comparing actual activity to the expected profile, re-screening, updating the risk rating and escalating concerns — annually for high risk and every two to three years for lower risk, depending on policy.\"\n\nTip: Risk-based frequency.", "B", "E"],
+["MSB", "Why are money services businesses higher risk?", "**Why they ask:** customer-type risk.\n\n**Answer:**\n\"High cash volume, cross-border transfers and potential misuse. Banks must verify FinCEN registration and state licensing and understand the MSB's own AML program.\"\n\nTip: Registration.", "D", "M"],
+["Wire Transfers", "What red flags appear in wire transfers?", "**Why they ask:** typology knowledge.\n\n**Answer:**\n\"Round-dollar wires to high-risk jurisdictions, rapid in-and-out movement, wires inconsistent with the business, many originators sending to one beneficiary, and missing originator information.\"\n\nTip: In-and-out.", "B", "E"],
+["Cash Intensive", "How do you assess cash-intensive businesses?", "**Why they ask:** practical analysis.\n\n**Answer:**\n\"Compare deposits to expected sales for that business type and size — a small laundromat depositing $80,000 a month in cash is out of line with peers — look for structuring and seasonal patterns, and do site visits for high-risk cases.\"\n\nTip: Expected sales.", "B", "M"],
+["Typologies", "What is a money mule?", "**Why they ask:** fraud-AML overlap.\n\n**Answer:**\n\"Someone who moves illicit funds through their accounts, often recruited through job or romance scams and sometimes unaware. Indicators: new accounts receiving incoming transfers that are quickly sent out, and many unrelated payers.\"\n\nTip: Recruited victims.", "B", "M"],
+["Sanctions Evasion", "How do sanctioned parties evade controls?", "**Why they ask:** sanctions depth.\n\n**Answer:**\n\"Front companies, falsified documents, transshipment through third countries, ownership kept under OFAC's 50% rule, and crypto. I watch for routing anomalies — like goods to a neighbor of a sanctioned country with no business reason.\"\n\nTip: Transshipment.", "D", "M"],
+["Independent Testing", "What does independent AML testing evaluate?", "**Why they ask:** program assurance.\n\n**Answer:**\n\"The adequacy of policies, the risk assessment, CDD, transaction monitoring, SAR and CTR filings, training and the BSA officer function — testing samples and reporting findings to the board.\"\n\nTip: Sample testing.", "D", "M"],
+["Scenario", "A long-time customer's activity suddenly spikes with international wires. What do you do?", "**Why they ask:** applied judgment.\n\n**Answer:**\n\"Review KYC and the business rationale, ask for an explanation through the relationship manager, verify counterparties and jurisdictions, then update the profile if the activity is legitimate — say they started importing from a new supplier — or escalate and file a SAR if it isn't.\"\n\nTip: Business rationale.", "B", "M"]
 ]);

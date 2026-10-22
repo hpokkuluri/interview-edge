@@ -1,249 +1,57 @@
 // bk-aml — generated from src/bk-aml-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // AML / KYC Compliance Analyst. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['bk-aml'] = [
-["Role", "What does an AML analyst do?",
-`**Why they ask:** baseline.
-
-**Answer:** Detects and investigates potential money laundering and terrorist financing: reviews transaction monitoring alerts, performs customer due diligence (KYC, EDD), investigates suspicious activity, writes SAR narratives, screens sanctions, and supports regulatory compliance under the BSA.
-
-Tip: Alert review vs investigations.`, 'B', 'E'],
-
-["Stages", "What are the three stages of money laundering?",
-`**Answer:** **Placement** (introducing illicit cash into the financial system), **layering** (complex transactions to obscure origin), **integration** (reintroducing funds as apparently legitimate).
-
-Tip: Examples of each.`, 'B', 'E'],
-
-["BSA", "What does the Bank Secrecy Act require?",
-`**Answer:** AML program (internal controls, BSA officer, training, independent testing, CDD), Currency Transaction Reports for cash over $10,000, Suspicious Activity Reports, recordkeeping, and customer identification.
-
-Tip: Pillars.`, 'B', 'M'],
-
-["Pillars", "What are the pillars of an AML program?",
-`**Answer:** Internal policies and controls, designated BSA/AML officer, ongoing training, independent testing, and customer due diligence (including beneficial ownership) — the "fifth pillar."
-
-Tip: Five pillars.`, 'B', 'E'],
-
-["CDD", "What is customer due diligence?",
-`**Answer:** Identifying and verifying customers and beneficial owners, understanding the nature and purpose of the relationship, building a risk profile, and ongoing monitoring.
-
-Tip: Risk profile.`, 'B', 'E'],
-
-["EDD", "When is enhanced due diligence required?",
-`**Answer:** For high-risk customers: PEPs, high-risk jurisdictions, cash-intensive businesses, MSBs, complex ownership structures, private banking and correspondent banking — collecting source of funds/wealth, more frequent reviews.
-
-Tip: Source of wealth.`, 'B', 'M'],
-
-["Red Flags", "What are common AML red flags?",
-`**Answer:** Structuring cash deposits just under $10,000, rapid movement of funds, transactions inconsistent with business profile, use of multiple accounts, high-risk jurisdictions, unexplained third-party payments, and reluctance to provide information.
-
-Tip: Inconsistent with profile.`, 'B', 'E'],
-
-["Structuring", "What is structuring?",
-`**Answer:** Breaking cash transactions into amounts under $10,000 to evade CTR filing — itself a crime regardless of source of funds.
-
-Tip: Crime itself.`, 'B', 'E'],
-
-["Investigation", "How do you investigate an alert?",
-`**Answer:** Review the alert and customer profile (KYC, expected activity), analyze transaction history and counterparties, check negative news and prior SARs, contact relationship managers if appropriate, determine whether activity is explainable, and document disposition.
-
-Tip: Documentation.`, 'B', 'M'],
-
-["SAR", "When must a SAR be filed?",
-`**Answer:** For suspicious transactions involving at least $5,000 (bank, with a suspect) — within 30 days of initial detection (up to 60 if no suspect identified); continuing activity reviews every 90 days. SARs are confidential — no tipping off.
-
-Tip: No tipping off.`, 'B', 'M'],
-
-["SAR Narrative", "What makes a good SAR narrative?",
-`**Answer:** Answers who, what, when, where, why and how clearly and concisely, chronologically, with amounts, dates, accounts and reasons for suspicion.
-
-Tip: 5 Ws and H.`, 'B', 'M'],
-
-["Sanctions", "How does OFAC screening work?",
-`**Answer:** Screen customers and transactions against OFAC lists (SDN and others), resolve potential matches by comparing identifiers, block or reject as required, and report to OFAC within 10 business days.
-
-Tip: True match vs false positive.`, 'B', 'M'],
-
-["PEP", "What is a PEP?",
-`**Answer:** A politically exposed person — someone with a prominent public function (and family/close associates) — higher corruption risk requiring EDD.
-
-Tip: Family and associates.`, 'B', 'E'],
-
-["Beneficial Ownership", "What is beneficial ownership?",
-`**Answer:** Individuals owning 25% or more of a legal entity customer and one individual with significant control — banks must identify and verify them.
-
-Tip: 25% and control.`, 'B', 'E'],
-
-["Trade-based", "What is trade-based money laundering?",
-`**Answer:** Disguising proceeds through trade transactions: over/under invoicing, multiple invoicing, misrepresented goods or phantom shipments.
-
-Tip: Invoice manipulation.`, 'D', 'M'],
-
-["Crypto", "What AML risks come with cryptocurrency?",
-`**Answer:** Pseudonymity, mixers, rapid cross-border transfers, unregulated exchanges, ransomware payments — mitigated with blockchain analytics and travel rule compliance.
-
-Tip: Blockchain analytics.`, 'D', 'M'],
-
-["Monitoring", "How is transaction monitoring tuned?",
-`**Answer:** Analyze alert productivity (SAR conversion rates), below-the-line testing, adjust thresholds and scenarios by risk, document rationale and model validation.
-
-Tip: Below-the-line testing.`, 'D', 'M'],
-
-["Risk Assessment", "What is an AML risk assessment?",
-`**Answer:** Evaluating inherent risks (customers, products, geographies, channels), controls, and residual risk to guide the program.
-
-Tip: Inherent vs residual.`, 'D', 'M'],
-
-["Fraud vs AML", "How do fraud and AML differ?",
-`**Answer:** Fraud targets the bank or customers for illicit gain; AML focuses on disguising criminal proceeds. They overlap (fraud proceeds get laundered) and teams often coordinate.
-
-Tip: Overlap.`, 'B', 'E'],
-
-["Human Trafficking", "What indicators suggest human trafficking?",
-`**Answer:** Multiple people's wages deposited to one account, payments for many hotel stays, frequent prepaid card purchases, and third parties controlling accounts — FinCEN advisories describe more.
-
-Tip: FinCEN advisories.`, 'D', 'M'],
-
-["Elder Abuse", "What are signs of elder financial exploitation?",
-`**Answer:** Sudden large withdrawals, new authorized users, changes in behavior, unusual wire transfers, caregivers directing transactions.
-
-Tip: Behavior changes.`, 'B', 'E'],
-
-["Behavioral", "Tell me about a complex investigation.",
-`**Sample answer:** "Alerts showed a car dealership receiving many cash deposits under $10K and wires to a high-risk country. I mapped related accounts and filed a SAR documenting $2.1M in structured deposits."
-
-Tip: Specifics.`, 'B', 'M'],
-
-["Behavioral", "How do you handle high alert volumes?",
-`**Answer:** Prioritize by risk and deadlines, use efficient research methods, stay consistent and accurate, and flag tuning opportunities.
-
-Tip: Quality and speed.`, 'B', 'E'],
-
-["Behavioral", "Tell me about disagreeing with a decision on a case.",
-`**Answer:** Present evidence calmly to the reviewer, accept the final decision or escalate per procedure, and document.
-
-Tip: Procedure.`, 'B', 'E'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** CAMS (ACAMS), CFE (fraud), CGSS (sanctions), CRCM.
-
-Tip: CAMS.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior investigator, AML manager, or BSA officer.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I investigate thoroughly, write clear SARs and meet deadlines consistently — and I understand the risks behind the alerts."
-
-Tip: Proof.`, 'B', 'E'],
-
-["CTR", "What is a CTR?",
-`**Answer:** Currency Transaction Report filed for cash transactions over $10,000 in a business day (aggregated), within 15 days.
-
-Tip: Aggregation.`, 'B', 'E'],
-
-["Shell Companies", "Why are shell companies a concern?",
-`**Answer:** They can hide ownership and move funds without real business activity; look for minimal operations, nominee owners, and pass-through transactions.
-
-Tip: Pass-through.`, 'B', 'M'],
-
-["Negative News", "How do you perform adverse media searches?",
-`**Answer:** Search names with risk keywords across reliable sources and databases (LexisNexis, World-Check), verify identity matches, and document relevance.
-
-Tip: Verify match.`, 'B', 'E'],
-
-["Correspondent", "What risks come with correspondent banking?",
-`**Answer:** Foreign banks' customers are indirectly accessing the US system; due diligence on respondent banks' AML controls is required, and shell banks are prohibited.
-
-Tip: Nested accounts.`, 'D', 'M'],
-
-["314", "What are 314(a) and 314(b)?",
-`**Answer:** **314(a):** FinCEN requests to search records for subjects of law enforcement investigations. **314(b):** voluntary information sharing between financial institutions with safe harbor.
-
-Tip: Information sharing.`, 'D', 'M'],
-
-["Regulators", "Who enforces AML in the US?",
-`**Answer:** FinCEN (Treasury), banking regulators (OCC, Fed, FDIC), SEC/FINRA for broker-dealers, and DOJ for criminal enforcement — with large penalties for failures.
-
-Tip: Penalties.`, 'B', 'E'],
-
-["AML Act", "What did the AML Act of 2020 introduce?",
-`**Answer:** Corporate Transparency Act beneficial ownership reporting to FinCEN, expanded whistleblower program, national AML priorities, and modernization goals (BOI reporting scope has since been narrowed for domestic companies).
-
-Tip: Stay current.`, 'D', 'M'],
-
-["Scenario", "A customer asks why their account is under review. What do you say?",
-`**Answer:** Never disclose SAR considerations; follow scripts provided by compliance, request needed documentation neutrally.
-
-Tip: No tipping off.`, 'B', 'E'],
-
-["Scenario", "A potential OFAC match appears on a wire. What do you do?",
-`**Answer:** Hold the transaction, compare identifiers (DOB, address, nationality), escalate per procedure; if true match, block/reject and report to OFAC; if false positive, document and release.
-
-Tip: Document.`, 'B', 'M'],
-
-["Exit", "When should a bank exit a relationship?",
-`**Answer:** Repeated suspicious activity, inability to complete due diligence, or risk beyond appetite — following documented decision processes.
-
-Tip: Risk appetite.`, 'B', 'M'],
-
-["Quality", "How do you ensure investigation quality?",
-`**Answer:** Checklists, QA reviews, consistent standards, and feedback loops.
-
-Tip: QA.`, 'B', 'E'],
-
-["Tools", "Which tools have you used?",
-`**Answer:** Actimize (NICE), Oracle FCCM (Mantas), SAS AML, Verafin, LexisNexis, World-Check, and Chainalysis.
-
-Tip: Platforms.`, 'B', 'E'],
-
-["AI", "How is AI used in AML?",
-`**Answer:** Machine learning alert scoring, entity resolution, network analysis and narrative drafting — with model governance and explainability for regulators.
-
-Tip: Explainability.`, 'B', 'M'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Alert volumes and productivity expectations, tools, QA process, training and career paths.
-
-Tip: Volumes.`, 'B', 'E']
-];
-
-QB['bk-aml'] = (QB['bk-aml']||[]).concat([
-["Risk Rating", "How are customers risk-rated for AML?",
-`**Answer:** Scoring factors such as customer type, industry, geography, products, transaction volume, PEP status and negative news give low, medium or high ratings, which drive review frequency and EDD.
-
-Tip: Drives review frequency.`, 'B', 'M'],
-["Periodic Review", "What is a periodic KYC review?",
-`**Answer:** Refreshing customer information, checking activity against the expected profile, re-screening, updating the risk rating, and escalating concerns. It happens annually for high risk and less often for lower risk.
-
-Tip: Risk-based frequency.`, 'B', 'E'],
-["MSB", "Why are money services businesses higher risk?",
-`**Answer:** High cash volume, cross-border transfers and the potential for misuse. Banks must verify FinCEN registration, state licensing and the MSB's AML program.
-
-Tip: Registration.`, 'D', 'M'],
-["Wire Transfers", "What red flags appear in wire transfers?",
-`**Answer:** Round-dollar wires to high-risk jurisdictions, rapid in-and-out movements, wires inconsistent with the business, multiple originators sending to one beneficiary, and missing originator information.
-
-Tip: In-and-out.`, 'B', 'E'],
-["Cash Intensive", "How do you assess cash-intensive businesses?",
-`**Answer:** Compare deposits to expected sales for the business type and size, look for structuring, seasonal patterns and peer comparisons, and conduct site visits for high-risk cases.
-
-Tip: Expected sales.`, 'B', 'M'],
-["Typologies", "What is a money mule?",
-`**Answer:** A person who moves illicit funds through their accounts, often recruited through job scams or romance scams. Indicators include new accounts receiving incoming transfers quickly sent out, and many unrelated payers.
-
-Tip: Recruited victims.`, 'B', 'M'],
-["Sanctions Evasion", "How do sanctioned parties evade controls?",
-`**Answer:** Front companies, falsified documents, transshipment through third countries, ownership structures below 50%, and the use of crypto. Watch for routing anomalies.
-
-Tip: Transshipment.`, 'D', 'M'],
-["Independent Testing", "What does independent AML testing evaluate?",
-`**Answer:** The adequacy of policies, risk assessment, CDD, transaction monitoring, SAR and CTR filings, training, and the BSA officer function, with testing of samples and reporting of findings.
-
-Tip: Sample testing.`, 'D', 'M'],
-["Scenario", "A long-time customer's activity suddenly spikes with international wires. What do you do?",
-`**Answer:** Review KYC and the business rationale, request an explanation through the relationship manager, verify counterparties and jurisdictions, update the profile if the activity is legitimate, or escalate and file a SAR if it's suspicious.
-
-Tip: Business rationale.`, 'B', 'M']
+QB["bk-aml"] = (QB["bk-aml"] || []).concat([
+["Role", "What does an AML analyst do?", "**Why they ask:** baseline.\n\n**Answer:** Detects and investigates potential money laundering and terrorist financing: reviews transaction monitoring alerts, performs customer due diligence (KYC, EDD), investigates suspicious activity, writes SAR narratives, screens sanctions, and supports regulatory compliance under the BSA.\n\nTip: Alert review vs investigations.", "B", "E"],
+["Stages", "What are the three stages of money laundering?", "**Why they ask:** the foundation of AML.\n\n**Answer:**\n\"Placement introduces illicit cash into the financial system — say a drug trafficker depositing cash across several branches. Layering moves it through complex transactions to obscure the origin — wires between shell companies in different countries. Integration brings it back as apparently legitimate wealth — buying real estate or a business with the 'clean' funds.\"\n\nTip: Examples of each.", "B", "E"],
+["BSA", "What does the Bank Secrecy Act require?", "**Why they ask:** regulatory baseline.\n\n**Answer:**\n\"An AML program with internal controls, a BSA officer, training, independent testing and customer due diligence; Currency Transaction Reports for cash over $10,000; Suspicious Activity Reports; recordkeeping, like the $3,000 funds transfer rule; and a Customer Identification Program.\"\n\nTip: Pillars.", "B", "M"],
+["Pillars", "What are the pillars of an AML program?", "**Why they ask:** program structure.\n\n**Answer:**\n\"Five pillars: internal policies, procedures and controls; a designated BSA/AML officer; ongoing training; independent testing; and customer due diligence including beneficial ownership — added as the fifth pillar by FinCEN's 2016 CDD Rule.\"\n\nTip: Five pillars.", "B", "E"],
+["CDD", "What is customer due diligence?", "**Why they ask:** KYC fundamentals.\n\n**Answer:**\n\"Identifying and verifying customers and their beneficial owners, understanding the nature and purpose of the relationship, building a risk profile of expected activity, and ongoing monitoring against it. If a florist expects $40,000 a month in card sales, $300,000 in cash deposits is a deviation I'll catch because the profile exists.\"\n\nTip: Risk profile.", "B", "E"],
+["EDD", "When is enhanced due diligence required?", "**Why they ask:** risk-based thinking.\n\n**Answer:**\n\"For high-risk customers: PEPs, high-risk jurisdictions, cash-intensive businesses, money services businesses, complex ownership structures, private banking and correspondent banking. EDD means documenting source of funds and source of wealth, senior approval, and more frequent reviews.\"\n\nTip: Source of wealth.", "B", "M"],
+["Red Flags", "What are common AML red flags?", "**Why they ask:** detection skill.\n\n**Answer:**\n\"Cash deposits just under $10,000, rapid in-and-out movement of funds, activity inconsistent with the business profile, use of multiple accounts, high-risk jurisdictions, unexplained third-party payments, and reluctance to provide information. The key is always inconsistency with what we know about the customer.\"\n\nTip: Inconsistent with profile.", "B", "E"],
+["Structuring", "What is structuring?", "**Why they ask:** a core typology.\n\n**Answer:**\n\"Breaking cash transactions into amounts under $10,000 to evade CTR filing — like depositing $9,500 on Monday and $9,800 on Tuesday. It's a crime itself, even if the money is completely legitimate.\"\n\nTip: Crime itself.", "B", "E"],
+["Investigation", "How do you investigate an alert?", "**Why they ask:** investigative method.\n\n**Answer:**\n\"Review the alert and the customer profile — KYC and expected activity — analyze transaction history and counterparties, check negative news and prior SARs, contact the relationship manager when appropriate, decide whether the activity is reasonably explained, and document the disposition so another reviewer could follow my reasoning.\"\n\nTip: Documentation.", "B", "M"],
+["SAR", "When must a SAR be filed?", "**Why they ask:** compliance timelines.\n\n**Answer:**\n\"For banks, suspicious transactions of $5,000 or more where a suspect is identified — within 30 days of initial detection, extendable to 60 if no suspect is identified. Continuing activity is reviewed and filed every 90 days. SARs are confidential: you can't tell the customer, and tipping off is itself a violation.\"\n\nTip: No tipping off.", "B", "M"],
+["SAR Narrative", "What makes a good SAR narrative?", "**Why they ask:** writing for law enforcement.\n\n**Answer:**\n\"It answers who, what, when, where, why and how — clearly, concisely and chronologically, with amounts, dates, account numbers and the specific reasons for suspicion. Law enforcement should understand the case without calling us.\"\n\nTip: 5 Ws and H.", "B", "M"],
+["Sanctions", "How does OFAC screening work?", "**Why they ask:** sanctions knowledge.\n\n**Answer:**\n\"Customers and transactions are screened against OFAC lists like the SDN list. Potential matches get resolved by comparing identifiers — date of birth, address, nationality. True matches are blocked or rejected as required and reported to OFAC within 10 business days; false positives are documented and released.\"\n\nTip: True match vs false positive.", "B", "M"],
+["PEP", "What is a PEP?", "**Why they ask:** EDD triggers.\n\n**Answer:**\n\"A politically exposed person — someone in a prominent public function like a senior official, judge or head of a state-owned company — plus their family members and close associates. They carry higher corruption and bribery risk, so they get EDD.\"\n\nTip: Family and associates.", "B", "E"],
+["Beneficial Ownership", "What is beneficial ownership?", "**Why they ask:** entity transparency.\n\n**Answer:**\n\"Under the CDD Rule, the individuals owning 25% or more of a legal entity customer, plus one individual with significant control, like the CEO. Banks must identify and verify them — so a company owned 30% by one person and 70% split among many small holders has one ownership-prong owner plus a control person.\"\n\nTip: 25% and control.", "B", "E"],
+["Trade-based", "What is trade-based money laundering?", "**Why they ask:** complex typologies.\n\n**Answer:**\n\"Disguising proceeds through trade: over- or under-invoicing — shipping $50,000 of goods invoiced at $500,000 moves $450,000 of value — multiple invoicing for one shipment, misrepresenting goods, or phantom shipments that never happen.\"\n\nTip: Invoice manipulation.", "D", "M"],
+["Crypto", "What AML risks come with cryptocurrency?", "**Why they ask:** emerging risk.\n\n**Answer:**\n\"Pseudonymity, mixers that obscure trails, rapid cross-border transfers, weakly regulated exchanges and ransomware payments. Mitigations include blockchain analytics tools like Chainalysis and travel rule compliance for transfers.\"\n\nTip: Blockchain analytics.", "D", "M"],
+["Monitoring", "How is transaction monitoring tuned?", "**Why they ask:** program effectiveness.\n\n**Answer:**\n\"Analyze alert productivity — SAR conversion rates by scenario — do below-the-line testing, sampling activity just under thresholds to see if we're missing suspicious cases, adjust thresholds and scenarios by risk segment, and document the rationale with model validation. A scenario with 2,000 alerts and zero SARs a year needs tuning.\"\n\nTip: Below-the-line testing.", "D", "M"],
+["Risk Assessment", "What is an AML risk assessment?", "**Why they ask:** program foundation.\n\n**Answer:**\n\"Evaluating inherent risk across customers, products, geographies and channels, then the strength of controls, to get residual risk. It drives where the program spends resources.\"\n\nTip: Inherent vs residual.", "D", "M"],
+["Fraud vs AML", "How do fraud and AML differ?", "**Why they ask:** scope clarity.\n\n**Answer:**\n\"Fraud targets the bank or its customers for illicit gain; AML focuses on disguising criminal proceeds. They overlap — fraud proceeds get laundered through mule accounts — so the teams coordinate and often share cases.\"\n\nTip: Overlap.", "B", "E"],
+["Human Trafficking", "What indicators suggest human trafficking?", "**Why they ask:** high-impact typology.\n\n**Answer:**\n\"Multiple people's wages deposited into one account, payments for many hotel stays, frequent prepaid card purchases, and third parties controlling accounts or doing all the talking. FinCEN advisories list more indicators and SAR key terms.\"\n\nTip: FinCEN advisories.", "D", "M"],
+["Elder Abuse", "What are signs of elder financial exploitation?", "**Why they ask:** vulnerable customer protection.\n\n**Answer:**\n\"Sudden large withdrawals, new authorized users, changes in behavior, unusual wires, and caregivers directing transactions — like an 82-year-old who never wired money suddenly sending $40,000 overseas with a new 'friend' present.\"\n\nTip: Behavior changes.", "B", "E"],
+["Behavioral", "Tell me about a complex investigation.", "**Why they ask:** real investigative depth.\n\n**Answer:**\n\"Alerts showed a car dealership receiving many cash deposits under $10,000 and wires to a high-risk country. I mapped related accounts across the owner's family and filed a SAR documenting $2.1 million in structured deposits.\"\n\nTip: Specifics.", "B", "M"],
+["Behavioral", "How do you handle high alert volumes?", "**Why they ask:** productivity under pressure.\n\n**Answer:**\n\"Prioritize by risk and deadlines, use efficient research steps, stay consistent and accurate, and flag tuning opportunities when I see the same false positives repeatedly.\"\n\nTip: Quality and speed.", "B", "E"],
+["Behavioral", "Tell me about disagreeing with a decision on a case.", "**Why they ask:** professional judgment.\n\n**Answer:**\n\"A reviewer wanted to close an alert I believed warranted a SAR. I laid out the evidence — the pattern across three months — calmly. They still disagreed, so I escalated per procedure to the SAR committee, which decided to file. Either way, I documented my reasoning.\"\n\nTip: Procedure.", "B", "E"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"CAMS from ACAMS most of all, then CFE for fraud, CGSS for sanctions and CRCM for broader compliance.\"\n\nTip: CAMS.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior investigator and AML manager, and eventually BSA officer.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I investigate thoroughly, write clear SARs and meet deadlines consistently — and I understand the risks behind the alerts, not just the checklist.\"\n\nTip: Proof.", "B", "E"],
+["CTR", "What is a CTR?", "**Why they ask:** reporting basics.\n\n**Answer:**\n\"A Currency Transaction Report filed for cash transactions over $10,000 in one business day — aggregated across transactions by or for the same person — within 15 days. Two $6,000 deposits on the same day trigger it.\"\n\nTip: Aggregation.", "B", "E"],
+["Shell Companies", "Why are shell companies a concern?", "**Why they ask:** ownership risk.\n\n**Answer:**\n\"They can hide ownership and move funds without real business activity. I look for minimal operations, nominee owners, a registered agent address, and pass-through activity where money comes in and leaves within days.\"\n\nTip: Pass-through.", "B", "M"],
+["Negative News", "How do you perform adverse media searches?", "**Why they ask:** research method.\n\n**Answer:**\n\"Search names with risk keywords like fraud, laundering or indicted across reliable sources and databases like LexisNexis and World-Check, verify it's actually the same person with identifiers, and document relevance.\"\n\nTip: Verify match.", "B", "E"],
+["Correspondent", "What risks come with correspondent banking?", "**Why they ask:** institutional risk.\n\n**Answer:**\n\"Foreign banks' customers indirectly access the US system through us. We need due diligence on the respondent bank's AML controls and must watch for nested accounts — other banks using the respondent's account. Shell banks are prohibited.\"\n\nTip: Nested accounts.", "D", "M"],
+["314", "What are 314(a) and 314(b)?", "**Why they ask:** information sharing.\n\n**Answer:**\n\"314(a) is FinCEN requesting banks search their records for subjects of law enforcement investigations, typically within two weeks. 314(b) is voluntary information sharing between registered financial institutions, with safe harbor protection.\"\n\nTip: Information sharing.", "D", "M"],
+["Regulators", "Who enforces AML in the US?", "**Why they ask:** regulatory landscape.\n\n**Answer:**\n\"FinCEN at Treasury, the banking regulators — OCC, Fed and FDIC — SEC and FINRA for broker-dealers, and DOJ for criminal enforcement. Penalties for program failures have reached billions of dollars.\"\n\nTip: Penalties.", "B", "E"],
+["AML Act", "What did the AML Act of 2020 introduce?", "**Why they ask:** current awareness.\n\n**Answer:**\n\"The Corporate Transparency Act's beneficial ownership reporting to FinCEN, an expanded whistleblower program, national AML priorities and modernization goals. BOI reporting has since been narrowed so it no longer applies to US domestic companies, so I'd check the current rule before relying on it.\"\n\nTip: Stay current.", "D", "M"],
+["Scenario", "A customer asks why their account is under review. What do you say?", "**Why they ask:** tipping-off awareness.\n\n**Answer:**\n\"I'd never mention SAR considerations. I follow compliance's script — something like 'we periodically review accounts and need updated information' — and request the documentation neutrally.\"\n\nTip: No tipping off.", "B", "E"],
+["Scenario", "A potential OFAC match appears on a wire. What do you do?", "**Why they ask:** sanctions procedure.\n\n**Answer:**\n\"Hold the wire, compare identifiers — date of birth, address, nationality — and escalate per procedure. If it's a true match, block or reject it and report to OFAC within 10 business days. If it's a false positive, document why and release it.\"\n\nTip: Document.", "B", "M"],
+["Exit", "When should a bank exit a relationship?", "**Why they ask:** risk appetite.\n\n**Answer:**\n\"After repeated suspicious activity, when due diligence can't be completed, or when risk exceeds appetite — following a documented decision process so exits are consistent.\"\n\nTip: Risk appetite.", "B", "M"],
+["Quality", "How do you ensure investigation quality?", "**Why they ask:** consistency.\n\n**Answer:**\n\"Checklists, QA reviews, consistent standards across the team and feedback loops from QA findings back into training.\"\n\nTip: QA.", "B", "E"],
+["Tools", "Which tools have you used?", "**Why they ask:** tooling fit.\n\n**Answer:**\n\"NICE Actimize, Oracle FCCM, SAS AML and Verafin for monitoring, LexisNexis and World-Check for screening and research, and Chainalysis for crypto.\"\n\nTip: Platforms.", "B", "E"],
+["AI", "How is AI used in AML?", "**Why they ask:** current trends.\n\n**Answer:**\n\"Machine learning alert scoring, entity resolution, network analysis and narrative drafting — with model governance and explainability, because regulators need to understand why an alert was suppressed.\"\n\nTip: Explainability.", "B", "M"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What are alert volumes and productivity expectations? Which tools? How does QA work, and what training and career paths exist?\"\n\nTip: Volumes.", "B", "E"]
+]);
+
+QB["bk-aml"] = (QB["bk-aml"] || []).concat([
+["Risk Rating", "How are customers risk-rated for AML?", "**Why they ask:** risk methodology.\n\n**Answer:**\n\"A scoring model weighs customer type, industry, geography, products, transaction volume, PEP status and negative news into low, medium or high. The rating drives review frequency and whether EDD applies.\"\n\nTip: Drives review frequency.", "B", "M"],
+["Periodic Review", "What is a periodic KYC review?", "**Why they ask:** ongoing monitoring.\n\n**Answer:**\n\"Refreshing customer information, comparing actual activity to the expected profile, re-screening, updating the risk rating and escalating concerns — annually for high risk and every two to three years for lower risk, depending on policy.\"\n\nTip: Risk-based frequency.", "B", "E"],
+["MSB", "Why are money services businesses higher risk?", "**Why they ask:** customer-type risk.\n\n**Answer:**\n\"High cash volume, cross-border transfers and potential misuse. Banks must verify FinCEN registration and state licensing and understand the MSB's own AML program.\"\n\nTip: Registration.", "D", "M"],
+["Wire Transfers", "What red flags appear in wire transfers?", "**Why they ask:** typology knowledge.\n\n**Answer:**\n\"Round-dollar wires to high-risk jurisdictions, rapid in-and-out movement, wires inconsistent with the business, many originators sending to one beneficiary, and missing originator information.\"\n\nTip: In-and-out.", "B", "E"],
+["Cash Intensive", "How do you assess cash-intensive businesses?", "**Why they ask:** practical analysis.\n\n**Answer:**\n\"Compare deposits to expected sales for that business type and size — a small laundromat depositing $80,000 a month in cash is out of line with peers — look for structuring and seasonal patterns, and do site visits for high-risk cases.\"\n\nTip: Expected sales.", "B", "M"],
+["Typologies", "What is a money mule?", "**Why they ask:** fraud-AML overlap.\n\n**Answer:**\n\"Someone who moves illicit funds through their accounts, often recruited through job or romance scams and sometimes unaware. Indicators: new accounts receiving incoming transfers that are quickly sent out, and many unrelated payers.\"\n\nTip: Recruited victims.", "B", "M"],
+["Sanctions Evasion", "How do sanctioned parties evade controls?", "**Why they ask:** sanctions depth.\n\n**Answer:**\n\"Front companies, falsified documents, transshipment through third countries, ownership kept under OFAC's 50% rule, and crypto. I watch for routing anomalies — like goods to a neighbor of a sanctioned country with no business reason.\"\n\nTip: Transshipment.", "D", "M"],
+["Independent Testing", "What does independent AML testing evaluate?", "**Why they ask:** program assurance.\n\n**Answer:**\n\"The adequacy of policies, the risk assessment, CDD, transaction monitoring, SAR and CTR filings, training and the BSA officer function — testing samples and reporting findings to the board.\"\n\nTip: Sample testing.", "D", "M"],
+["Scenario", "A long-time customer's activity suddenly spikes with international wires. What do you do?", "**Why they ask:** applied judgment.\n\n**Answer:**\n\"Review KYC and the business rationale, ask for an explanation through the relationship manager, verify counterparties and jurisdictions, then update the profile if the activity is legitimate — say they started importing from a new supplier — or escalate and file a SAR if it isn't.\"\n\nTip: Business rationale.", "B", "M"]
 ]);
