@@ -1,213 +1,44 @@
 // Healthcare Revenue Cycle Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['hc-rcm'] = [
-["Role", "What does a revenue cycle manager do?",
-`**Why they ask:** end-to-end understanding.
-
-**Answer:** Manages the process from patient scheduling and registration through coding, charge capture, claims submission, payment posting, denials management and collections — maximizing reimbursement, reducing denials and days in AR while ensuring compliance.
-
-Tip: Name scope and systems.`, 'B', 'E'],
-
-["Cycle", "Walk through the revenue cycle.",
-`**Answer:** Front end: scheduling, registration, insurance eligibility verification, prior authorization, patient estimates and collections. Mid cycle: clinical documentation, coding (ICD-10, CPT/HCPCS), charge capture, CDI. Back end: claim submission and scrubbing, payment posting, denials and appeals, patient billing, collections and reporting.
-
-Tip: Front, mid, back.`, 'B', 'E'],
-
-["KPIs", "Which revenue cycle KPIs do you track?",
-`**Answer:** Days in AR (target <40–45), clean claim rate (>95%), initial denial rate (<5–10%), net collection rate (>95%), AR over 90 days, cost to collect, point-of-service collections and charge lag.
-
-Tip: Benchmarks.`, 'B', 'M'],
-
-["Days in AR", "How do you calculate days in AR?",
-`**Answer:** Total AR / average daily charges (gross charges over a period / days).
-
-**Example:** AR $6M, average daily charges $150K → 40 days.
-
-Tip: Simple.`, 'B', 'E'],
-
-["Net Collection", "What is net collection rate?",
-`**Answer:** Payments / (charges − contractual adjustments). Shows how much collectible revenue was actually collected.
-
-**Example:** payments $900K, collectible $940K → 95.7%.
-
-Tip: Excludes contractuals.`, 'B', 'M'],
-
-["Denials", "How do you reduce claim denials?",
-`**Answer:** Analyze denial reasons (CARC codes) by payer and category — eligibility, authorization, coding, medical necessity, timely filing — fix root causes upstream (front-end verification, prior auth processes, coding education), automate claim scrubbing, and appeal effectively.
-
-Tip: Prevent upstream.`, 'B', 'M'],
-
-["Appeals", "How do you manage appeals?",
-`**Answer:** Prioritize by value and likelihood, use templates with clinical documentation, meet payer deadlines, track overturn rates, and escalate patterns to payer relations.
-
-Tip: Overturn rates.`, 'B', 'M'],
-
-["Front End", "Why is front-end accuracy so important?",
-`**Answer:** Registration and eligibility errors cause a large share of denials; verifying insurance, demographics and authorization upfront prevents rework.
-
-Tip: Prevention cheaper.`, 'B', 'E'],
-
-["Prior Auth", "How do you improve prior authorization?",
-`**Answer:** Centralized auth team, payer requirement databases, electronic prior authorization tools, scheduling coordination, and tracking turnaround.
-
-Tip: Centralize.`, 'B', 'M'],
-
-["Coding", "What coding systems are used?",
-`**Answer:** ICD-10-CM (diagnoses), ICD-10-PCS (inpatient procedures), CPT and HCPCS (outpatient procedures and supplies), with modifiers; inpatient DRGs determine payment.
-
-Tip: DRGs.`, 'B', 'E'],
-
-["CDI", "What is clinical documentation improvement?",
-`**Answer:** Specialists review records to ensure documentation accurately reflects patient severity and care — improving coding accuracy, DRG assignment, quality metrics and compliance.
-
-Tip: Severity capture.`, 'D', 'M'],
-
-["Charge Capture", "How do you prevent missed charges?",
-`**Answer:** Charge reconciliation by department, charge lag monitoring, CDM maintenance, audits and integration of clinical workflows with charging.
-
-Tip: Reconciliation.`, 'B', 'M'],
-
-["CDM", "What is the chargemaster?",
-`**Answer:** The charge description master lists billable items with codes, descriptions and prices — must be maintained for accuracy, compliance and price transparency.
-
-Tip: Annual updates.`, 'D', 'M'],
-
-["Price Transparency", "What are price transparency requirements?",
-`**Answer:** Hospitals must publish machine-readable files of standard charges and a consumer-friendly display of shoppable services; No Surprises Act requires good faith estimates for uninsured/self-pay patients.
-
-Tip: Good faith estimates.`, 'D', 'M'],
-
-["Patient Collections", "How do you improve patient collections compassionately?",
-`**Answer:** Upfront estimates, point-of-service collection, clear statements, online payment options, payment plans, financial assistance screening, and respectful communication.
-
-Tip: Financial assistance.`, 'B', 'M'],
-
-["Compliance", "What compliance risks exist in revenue cycle?",
-`**Answer:** Upcoding, unbundling, billing for undocumented services, False Claims Act exposure, HIPAA privacy, Stark and Anti-Kickback issues — mitigated by audits, education and compliance programs.
-
-Tip: Audits.`, 'B', 'M'],
-
-["Payers", "How do you work with payers?",
-`**Answer:** Understand contracts and reimbursement terms, monitor underpayments with contract modeling, escalate issues through payer reps, and participate in contract negotiations with data.
-
-Tip: Underpayment detection.`, 'D', 'M'],
-
-["Underpayments", "How do you identify underpayments?",
-`**Answer:** Contract management software comparing expected vs actual reimbursement, variance reports, and follow-up with payers.
-
-Tip: Expected reimbursement.`, 'D', 'M'],
-
-["Technology", "Which systems have you used?",
-`**Answer:** Epic Resolute, Cerner/Oracle Health Revenue Cycle, athenahealth, claim scrubbers, clearinghouses (Availity, Change Healthcare), and analytics tools.
-
-Tip: Epic.`, 'B', 'E'],
-
-["Automation", "How is automation used in revenue cycle?",
-`**Answer:** RPA for eligibility and claim status checks, AI-assisted coding, denial prediction, automated prior auth and patient payment estimates.
-
-Tip: AI coding.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing denials.",
-`**Sample answer:** "Denials were 14%. I analyzed CARC codes and found authorization issues drove 40%. We centralized prior auth and added scheduling hard stops; denials fell to 7% and cash improved $3.2M annually."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing AR days.",
-`**Sample answer:** "AR days were 58. We worked aged claims by value, fixed coding backlogs and improved clean claim rate to 96%; AR days fell to 42."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about leading a team through change.",
-`**Answer:** Example of an EHR conversion or centralization with training, communication and KPIs.
-
-Tip: Change leadership.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** HFMA CRCR (Certified Revenue Cycle Representative), CHFP, AAPC CPC, AHIMA CCS/RHIA.
-
-Tip: CRCR.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Director/VP of revenue cycle.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I improve cash and reduce denials by fixing root causes — halving denial rates and cutting AR days 16."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Timely Filing", "How do you prevent timely filing denials?",
-`**Answer:** Track payer deadlines, monitor unbilled claims and holds, prioritize aging claims, and keep proof of submission.
-
-Tip: Unbilled monitoring.`, 'B', 'E'],
-
-["Medicare", "What's important about Medicare billing?",
-`**Answer:** Medical necessity (LCD/NCD), correct claim forms (UB-04 for facilities, CMS-1500 for professionals), MACs, ABNs for non-covered services, and audit programs (RAC).
-
-Tip: ABNs.`, 'D', 'M'],
-
-["Medicaid", "What challenges come with Medicaid?",
-`**Answer:** State-specific rules, eligibility changes, managed care plans, lower reimbursement and redetermination impacts.
-
-Tip: State rules.`, 'B', 'M'],
-
-["Credit Balances", "How do you handle credit balances?",
-`**Answer:** Investigate overpayments, refund payers or patients timely per regulations (Medicare 60-day rule), and report as required.
-
-Tip: 60-day rule.`, 'D', 'M'],
-
-["Bad Debt", "Bad debt vs charity care?",
-`**Answer:** **Charity care** is free or discounted care for patients meeting financial assistance criteria; **bad debt** is uncollected amounts from patients able to pay but who didn't.
-
-Tip: Screen for assistance.`, 'B', 'M'],
-
-["Staff", "How do you manage productivity in a billing team?",
-`**Answer:** Work queues prioritized by value and age, productivity standards, quality audits, training and recognition.
-
-Tip: Prioritized queues.`, 'B', 'E'],
-
-["Outsourcing", "When do you outsource revenue cycle work?",
-`**Answer:** For backlogs, specialized tasks (complex denials, old AR), or cost efficiency — with performance monitoring and compliance oversight.
-
-Tip: Vendor KPIs.`, 'D', 'M'],
-
-["Scenario", "Cash collections suddenly drop. How do you investigate?",
-`**Answer:** Check charge volumes, billing holds, clearinghouse rejections, payer payment delays or policy changes, posting backlogs, and system issues.
-
-Tip: Follow the flow.`, 'B', 'M'],
-
-["Scenario", "A payer starts denying a common procedure. What do you do?",
-`**Answer:** Analyze denial details, check policy changes, appeal with documentation, escalate to payer rep and contracting, and educate clinicians on documentation.
-
-Tip: Escalate patterns.`, 'B', 'M'],
-
-["Value-Based", "How does value-based care affect revenue cycle?",
-`**Answer:** Shared savings and risk contracts require accurate risk adjustment coding (HCCs), quality reporting and population health data in addition to fee-for-service billing.
-
-Tip: HCC coding.`, 'D', 'M'],
-
-["Patient Experience", "How does billing affect patient experience?",
-`**Answer:** Confusing bills and surprise costs hurt satisfaction; clear estimates, simple statements and helpful staff improve it.
-
-Tip: Clarity.`, 'B', 'E'],
-
-["Reporting", "What reports go to leadership?",
-`**Answer:** Cash vs target, AR days and aging, denial trends, clean claim rate, net collection rate, and cost to collect.
-
-Tip: Trends.`, 'B', 'E'],
-
-["Audit", "How do you run coding audits?",
-`**Answer:** Sample claims by risk, compare coding to documentation, measure accuracy, provide education, and track improvement.
-
-Tip: Education.`, 'B', 'M'],
-
-["No Surprises", "What does the No Surprises Act require?",
-`**Answer:** Protects patients from surprise out-of-network bills for emergency services and certain non-emergency services at in-network facilities, with an independent dispute resolution process between providers and payers.
-
-Tip: IDR.`, 'D', 'M'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Current KPIs and challenges, systems, team structure, payer mix, and leadership priorities.
-
-Tip: Payer mix.`, 'B', 'E']
-];
+QB["hc-rcm"] = (QB["hc-rcm"] || []).concat([
+["Role", "What does a revenue cycle manager do?", "**Why they ask:** end-to-end understanding.\n\n**Answer:** Manages the process from patient scheduling and registration through coding, charge capture, claims submission, payment posting, denials management and collections — maximizing reimbursement, reducing denials and days in AR while ensuring compliance.\n\nTip: Name scope and systems.", "B", "E"],
+["Cycle", "Walk through the revenue cycle.", "**Why they ask:** end-to-end understanding.\n\n**Answer:**\n\"Three parts. Front end: scheduling, registration, insurance eligibility verification, prior authorization, patient estimates and point-of-service collections. Mid cycle: clinical documentation, coding in ICD-10, CPT and HCPCS, charge capture and CDI. Back end: claim submission and scrubbing, payment posting, denials and appeals, patient billing, collections and reporting. Most back-end problems are created at the front end.\"\n\nTip: Front, mid, back.", "B", "E"],
+["KPIs", "Which revenue cycle KPIs do you track?", "**Why they ask:** performance management.\n\n**Answer:**\n\"Days in AR — target under 40 to 45 — clean claim rate above 95%, initial denial rate under 5 to 10%, net collection rate above 95%, AR over 90 days, cost to collect, point-of-service collections, and charge lag. I watch the trend, not just the monthly number.\"\n\nTip: Benchmarks.", "B", "M"],
+["Days in AR", "How do you calculate days in AR?", "**Why they ask:** core metric.\n\n**Answer:**\n\"Total AR divided by average daily charges — gross charges for a period divided by the days in it. With $6 million in AR and average daily charges of $150,000, that's 40 days.\"\n\nTip: Simple.", "B", "E"],
+["Net Collection", "What is net collection rate?", "**Why they ask:** collection effectiveness.\n\n**Answer:**\n\"Payments divided by charges minus contractual adjustments — how much of the collectible revenue we actually collected. $900,000 collected against $940,000 collectible is about 95.7%. It excludes contractual write-offs, so it shows real performance.\"\n\nTip: Excludes contractuals.", "B", "M"],
+["Denials", "How do you reduce claim denials?", "**Why they ask:** the biggest cash lever.\n\n**Answer:**\n\"Analyze denial reasons by CARC code, payer and category — eligibility, authorization, coding, medical necessity, timely filing — then fix root causes upstream: front-end verification, prior auth processes, coding education. Add automated claim scrubbing and appeal effectively. Preventing a denial costs a fraction of working one.\"\n\nTip: Prevent upstream.", "B", "M"],
+["Appeals", "How do you manage appeals?", "**Why they ask:** recovery skill.\n\n**Answer:**\n\"Prioritize by dollar value and likelihood of overturn, use templates supported by clinical documentation, meet payer deadlines, track overturn rates by payer and reason, and escalate recurring patterns to payer relations rather than appealing the same issue forever.\"\n\nTip: Overturn rates.", "B", "M"],
+["Front End", "Why is front-end accuracy so important?", "**Why they ask:** prevention mindset.\n\n**Answer:**\n\"Registration and eligibility errors cause a large share of denials. Verifying insurance, demographics and authorization upfront prevents rework that costs far more later — a wrong subscriber ID caught at check-in takes a minute; caught after denial it takes weeks.\"\n\nTip: Prevention cheaper.", "B", "E"],
+["Prior Auth", "How do you improve prior authorization?", "**Why they ask:** a common denial driver.\n\n**Answer:**\n\"A centralized authorization team, a maintained database of payer requirements, electronic prior authorization tools, coordination with scheduling so procedures aren't booked before auth is secured, and tracking turnaround times.\"\n\nTip: Centralize.", "B", "M"],
+["Coding", "What coding systems are used?", "**Why they ask:** coding fundamentals.\n\n**Answer:**\n\"ICD-10-CM for diagnoses, ICD-10-PCS for inpatient procedures, CPT and HCPCS for outpatient procedures and supplies, with modifiers. Inpatient payment is driven by DRGs, which come from the diagnoses and procedures coded.\"\n\nTip: DRGs.", "B", "E"],
+["CDI", "What is clinical documentation improvement?", "**Why they ask:** mid-cycle knowledge.\n\n**Answer:**\n\"CDI specialists review records while the patient is still in house to make sure documentation accurately reflects severity and care — for example, querying whether 'low sodium' is clinically hyponatremia. That improves coding accuracy, DRG assignment, quality metrics and compliance.\"\n\nTip: Severity capture.", "D", "M"],
+["Charge Capture", "How do you prevent missed charges?", "**Why they ask:** revenue integrity.\n\n**Answer:**\n\"Daily charge reconciliation by department, charge lag monitoring, chargemaster maintenance, audits, and building charging into clinical workflows so documenting the service drops the charge.\"\n\nTip: Reconciliation.", "B", "M"],
+["CDM", "What is the chargemaster?", "**Why they ask:** pricing foundation.\n\n**Answer:**\n\"The charge description master lists every billable item with its codes, description and price. It must be maintained — at least annually with code updates — for accurate billing, compliance and price transparency.\"\n\nTip: Annual updates.", "D", "M"],
+["Price Transparency", "What are price transparency requirements?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"Hospitals must publish a machine-readable file of standard charges, including negotiated rates, and a consumer-friendly display of shoppable services. Under the No Surprises Act, providers must give good faith estimates to uninsured and self-pay patients.\"\n\nTip: Good faith estimates.", "D", "M"],
+["Patient Collections", "How do you improve patient collections compassionately?", "**Why they ask:** balancing cash and care.\n\n**Answer:**\n\"Upfront estimates, point-of-service collection, clear statements, online payment options, payment plans, financial assistance screening before sending anyone to collections, and respectful communication.\"\n\nTip: Financial assistance.", "B", "M"],
+["Compliance", "What compliance risks exist in revenue cycle?", "**Why they ask:** risk awareness.\n\n**Answer:**\n\"Upcoding, unbundling, billing for services not documented, False Claims Act exposure, HIPAA privacy, and Stark and Anti-Kickback issues — mitigated through audits, education and a strong compliance program.\"\n\nTip: Audits.", "B", "M"],
+["Payers", "How do you work with payers?", "**Why they ask:** payer relations.\n\n**Answer:**\n\"Understand contract terms, monitor underpayments with contract modeling, escalate issues through payer representatives, and support contract negotiations with data on denials and underpayments by payer.\"\n\nTip: Underpayment detection.", "D", "M"],
+["Underpayments", "How do you identify underpayments?", "**Why they ask:** revenue integrity.\n\n**Answer:**\n\"Contract management software that compares expected reimbursement against actual payment, variance reports by payer and service, and systematic follow-up. Small underpayments across thousands of claims add up to real money.\"\n\nTip: Expected reimbursement.", "D", "M"],
+["Technology", "Which systems have you used?", "**Why they ask:** tooling.\n\n**Answer:**\n\"Epic Resolute, Oracle Health revenue cycle, athenahealth, claim scrubbers, clearinghouses like Availity and Change Healthcare, and analytics tools for denial and AR reporting.\"\n\nTip: Epic.", "B", "E"],
+["Automation", "How is automation used in revenue cycle?", "**Why they ask:** modernization.\n\n**Answer:**\n\"RPA for eligibility and claim status checks, AI-assisted coding, denial prediction before submission, automated prior authorization, and patient payment estimates.\"\n\nTip: AI coding.", "B", "M"],
+["Behavioral", "Tell me about reducing denials.", "**Why they ask:** proof.\n\n**Answer:**\n\"Denials were 14%. CARC analysis showed authorization issues drove 40% of them. We centralized prior auth and added scheduling hard stops, and denials fell to 7%, improving cash by $3.2 million a year.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about reducing AR days.", "**Why they ask:** proof.\n\n**Answer:**\n\"AR days were 58. We worked aged claims by value, cleared a coding backlog and raised the clean claim rate to 96%. AR days fell to 42.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about leading a team through change.", "**Why they ask:** change leadership.\n\n**Answer:**\n\"We centralized registration and authorization from 12 clinics into one team. I explained why with denial data, involved staff in designing workflows, trained everyone on scripts and payer rules, and posted daily KPIs. After a rough first month, denials dropped and turnover on the team actually fell.\"\n\nTip: Change leadership.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"HFMA's CRCR and CHFP, AAPC's CPC, and AHIMA's CCS or RHIA.\"\n\nTip: CRCR.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward director and then VP of revenue cycle.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I improve cash and reduce denials by fixing root causes — I halved a denial rate and cut AR days by 16.\"\n\nTip: Proof.", "B", "E"],
+["Timely Filing", "How do you prevent timely filing denials?", "**Why they ask:** avoidable losses.\n\n**Answer:**\n\"Track each payer's filing deadline, monitor unbilled claims and holds daily, prioritize aging claims, and keep proof of submission for every claim.\"\n\nTip: Unbilled monitoring.", "B", "E"],
+["Medicare", "What's important about Medicare billing?", "**Why they ask:** Medicare rules.\n\n**Answer:**\n\"Medical necessity under LCDs and NCDs, correct claim forms — UB-04 for facilities, CMS-1500 for professionals — the regional MACs, ABNs for services likely to be non-covered, and audit programs like RAC.\"\n\nTip: ABNs.", "D", "M"],
+["Medicaid", "What challenges come with Medicaid?", "**Why they ask:** payer complexity.\n\n**Answer:**\n\"State-specific rules, frequent eligibility changes, managed care plans with their own requirements, lower reimbursement, and redetermination cycles that cause coverage gaps.\"\n\nTip: State rules.", "B", "M"],
+["Credit Balances", "How do you handle credit balances?", "**Why they ask:** compliance.\n\n**Answer:**\n\"Investigate overpayments, refund payers or patients promptly per regulations — Medicare requires returning identified overpayments within 60 days — and report as required.\"\n\nTip: 60-day rule.", "D", "M"],
+["Bad Debt", "Bad debt vs charity care?", "**Why they ask:** definitions.\n\n**Answer:**\n\"Charity care is free or discounted care for patients who meet financial assistance criteria. Bad debt is amounts patients could pay but didn't. Screening for assistance before collections keeps eligible patients out of bad debt.\"\n\nTip: Screen for assistance.", "B", "M"],
+["Staff", "How do you manage productivity in a billing team?", "**Why they ask:** team management.\n\n**Answer:**\n\"Work queues prioritized by dollar value and age, productivity standards, quality audits, training and recognition.\"\n\nTip: Prioritized queues.", "B", "E"],
+["Outsourcing", "When do you outsource revenue cycle work?", "**Why they ask:** sourcing judgment.\n\n**Answer:**\n\"For backlogs, specialized work like complex denials or old AR, or cost efficiency — always with performance KPIs and compliance oversight.\"\n\nTip: Vendor KPIs.", "D", "M"],
+["Scenario", "Cash collections suddenly drop. How do you investigate?", "**Why they ask:** diagnosis.\n\n**Answer:**\n\"Follow the flow: charge volumes, billing holds, clearinghouse rejections, payer payment delays or policy changes, posting backlogs, and system issues like a broken interface.\"\n\nTip: Follow the flow.", "B", "M"],
+["Scenario", "A payer starts denying a common procedure. What do you do?", "**Why they ask:** payer management.\n\n**Answer:**\n\"Analyze the denial details, check for a policy change, appeal with documentation, escalate to the payer rep and our contracting team, and educate clinicians if documentation needs to change.\"\n\nTip: Escalate patterns.", "B", "M"],
+["Value-Based", "How does value-based care affect revenue cycle?", "**Why they ask:** industry shift.\n\n**Answer:**\n\"Shared savings and risk contracts require accurate risk adjustment coding through HCCs, quality reporting and population health data, in addition to fee-for-service billing.\"\n\nTip: HCC coding.", "D", "M"],
+["Patient Experience", "How does billing affect patient experience?", "**Why they ask:** patient focus.\n\n**Answer:**\n\"Confusing bills and surprise costs hurt satisfaction and payment rates. Clear estimates, simple statements and helpful staff improve both.\"\n\nTip: Clarity.", "B", "E"],
+["Reporting", "What reports go to leadership?", "**Why they ask:** executive reporting.\n\n**Answer:**\n\"Cash against target, AR days and aging, denial trends, clean claim rate, net collection rate and cost to collect — as trends.\"\n\nTip: Trends.", "B", "E"],
+["Audit", "How do you run coding audits?", "**Why they ask:** quality control.\n\n**Answer:**\n\"Sample claims by risk, compare coding to documentation, measure accuracy, provide targeted education, and track improvement over time.\"\n\nTip: Education.", "B", "M"],
+["No Surprises", "What does the No Surprises Act require?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"It protects patients from surprise out-of-network bills for emergency services and certain non-emergency services at in-network facilities, and sets an independent dispute resolution process between providers and payers.\"\n\nTip: IDR.", "D", "M"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What are current KPIs and biggest challenges? Which systems are used? How is the team structured? What's the payer mix? What are leadership's priorities?\"\n\nTip: Payer mix.", "B", "E"]
+]);
