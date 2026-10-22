@@ -1,297 +1,39 @@
 // Skip-level with senior director — additional questions.
-QB['w-skip'] = (QB['w-skip'] || []).concat([
-["Team Health", "How is morale on the team?",
-`**Why they ask:** skip-levels are an early warning system for leaders.
-
-**Sample answer:**
-"Morale is generally good — people are proud of {wins}. The pressure point is workload during {projects}. Recognition from leadership when we hit the next milestone would go a long way."
-
-Tip: Be honest and constructive, never personal.`, 'B'],
-
-["Team Health", "Is anyone at risk of leaving?",
-`**Why they ask:** retention of key people.
-
-**Sample answer:**
-"I don't want to speak for individuals, but in general people want clear growth paths and fair workload. Investing in development and backup coverage would reduce that risk."
-
-Tip: Protect confidences; talk about themes.`, 'D'],
-
-["Manager", "How is your manager doing?",
-`**Why they ask:** a direct check on leadership — handle it carefully.
-
-**Sample answer:**
-"{manager} has been very supportive — especially in shielding the team during escalations and backing our priorities. One thing that would help us even more is earlier visibility of leadership priorities, which I think depends on information flowing down to both of us."
-
-Tip: Lead with genuine positives. Frame suggestions as system improvements, not criticism.`, 'D'],
-
-["Manager", "What could your manager do better?",
-`**Why they ask:** they may be gathering feedback — or testing your loyalty.
-
-**Sample answer:**
-"I'd frame it as what would help the team: clearer prioritization across competing requests. That's something {manager} and I are already working on together."
-
-Tip: Never undermine your manager. Show partnership.`, 'D'],
-
-["Working", "What's working well?",
-`**Why they ask:** to reinforce good practices.
-
-**Sample answer:**
-"Our collaboration with the business on {projects} — regular reviews and quick decisions have kept us on track. Also, our incident response has improved; recurring issues are down."
-
-Tip: Specific examples with outcomes.`, 'B'],
-
-["Not Working", "What's not working?",
-`**Why they ask:** they want problems surfaced early.
-
-**Sample answer:**
-"Request intake across teams. Urgent requests arrive through many channels and disrupt planned work. A single intake and a monthly priority review with business leaders would make delivery more predictable."
-
-Tip: One systemic issue with a solution.`, 'B'],
-
-["Ideas", "If you were in my role, what would you change?",
-`**Why they ask:** strategic thinking.
-
-**Sample answer:**
-"I'd invest in automation of routine operations and cross-training, so the team spends more time on {priorities} and less on manual work."
-
-Tip: Business-level ideas.`, 'D'],
-
-["Strategy", "Do you understand our strategy?",
-`**Why they ask:** alignment check.
-
-**Sample answer:**
-"My understanding is we're focused on {priorities}. Our work on {projects} supports that directly. Is there anything changing that I should prepare the team for?"
-
-Tip: Restate it, connect your work, ask a question.`, 'B'],
-
-["Career", "How do you see your growth here?",
-`**Why they ask:** talent planning at the next level up.
-
-**Sample answer:**
-"I want to grow toward {goals}. {manager} and I have a development plan. From your perspective, what experiences would make someone ready at that level?"
-
-Tip: Show alignment with your manager and seek advice.`, 'B'],
-
-["Career", "How can I mention promotion in a skip-level?",
-`**Why they ask:** (your own question) delicate.
-
-**Sample answer (what to say):**
-"I'm working toward the next level with {manager}. What would you want to see from someone ready for that role?"
-
-Tip: Ask for criteria, don't lobby. Tell your manager afterward.`, 'D'],
-
-["Visibility", "What are you working on that I should know about?",
-`**Why they ask:** visibility into impact.
-
-**Sample answer:**
-"{projects}, which supports {priorities}. A recent milestone was {wins}. The next phase lands next quarter and will reduce manual effort for the business."
-
-Tip: Business outcomes first.`, 'B'],
-
-["Risks", "What risks keep you up at night?",
-`**Why they ask:** risk awareness.
-
-**Sample answer:**
-"Single points of knowledge on critical systems, and the timing of {challenges}. We're addressing both with cross-training and phased plans."
-
-Tip: Risks with mitigation.`, 'D'],
-
-["Customers", "What are our business customers saying?",
-`**Why they ask:** voice of the customer.
-
-**Sample answer:**
-"They appreciate responsiveness and the results on {wins}. Their main request is more predictability on when changes will land."
-
-Tip: Balanced.`, 'B'],
-
-["Support", "What can I do to help your team?",
-`**Why they ask:** senior leaders can remove bigger obstacles.
-
-**Sample answer:**
-"Help align business leaders on priorities at your level, so conflicting urgent requests get resolved earlier. And recognition for the team after {wins} would mean a lot."
-
-Tip: Ask for things only they can do.`, 'B'],
-
-["Culture", "How would you describe our culture?",
-`**Why they ask:** cultural insight.
-
-**Sample answer:**
-"Collaborative and committed — people go above and beyond during critical moments. The opportunity is better planning so heroics aren't needed as often."
-
-Tip: Honest and constructive.`, 'D'],
-
-["Process", "Where do you see waste in how we work?",
-`**Why they ask:** improvement ideas.
-
-**Sample answer:**
-"Duplicate status reporting and manual data pulls. A shared dashboard could save several hours per person per week."
-
-Tip: Quantify.`, 'B'],
-
-["Cross-team", "How is collaboration with other teams?",
-`**Why they ask:** organizational friction.
-
-**Sample answer:**
-"Good with most teams. With one partner team, priorities sometimes conflict. Clear escalation rules and a shared roadmap would help."
-
-Tip: Systemic, not personal.`, 'B'],
-
-["Preparation", "What should I bring to a skip-level?",
-`**Why they ask:** (your own question) preparation shows respect.
-
-**Sample answer (checklist):**
-- Three wins with business impact.
-- One improvement idea with a solution.
-- One question about strategy.
-- Your career goal (briefly).
-- Tell your manager it's happening and share key points afterward.
-
-Tip: Never use it to complain about your manager.`, 'B'],
-
-["Loyalty", "Are you planning to leave?",
-`**Why they ask:** retention risk, sometimes asked directly.
-
-**Sample answer:**
-"No — I'm committed to the work and the team. Like anyone, I want to keep growing, and I'm working with {manager} on a path toward {goals}."
-
-Tip: Reassure, then link to growth.`, 'D'],
-
-["Feedback", "What feedback do you have for leadership?",
-`**Why they ask:** upward feedback.
-
-**Sample answer:**
-"Town halls are helpful. More context on why priorities change would help teams adapt faster and feel included."
-
-Tip: Respectful and specific.`, 'B'],
-
-["Recognition", "Who on your team deserves recognition?",
-`**Why they ask:** leaders want to know stars.
-
-**Sample answer:**
-"A team member led the testing that made {wins} possible. A note from you would be very motivating."
-
-Tip: Name names generously.`, 'B'],
-
-["Change", "How is the team handling recent changes?",
-`**Why they ask:** change readiness.
-
-**Sample answer:**
-"People understand the direction but want clarity on roles and timelines. Regular updates from leadership would reduce uncertainty."
-
-Tip: Constructive.`, 'B'],
-
-["Confidentiality", "Will what I say get back to my manager?",
-`**Why they ask:** (your own question) understanding norms.
-
-**Sample answer (approach):**
-Assume themes may be shared. Speak in a way you'd be comfortable with your manager hearing.
-
-Tip: No surprises for your manager.`, 'D'],
-
-["After", "What should I do after the skip-level?",
-`**Why they ask:** (your own question) close the loop.
-
-**Sample answer (approach):**
-Send a short thank-you note with any follow-ups, and brief your manager on topics discussed.
-
-Tip: Transparency with your manager.`, 'B'],
-
-["Industry", "What trends do you see affecting our area?",
-`**Why they ask:** broader perspective.
-
-**Sample answer:**
-"AI-assisted operations, cloud platform changes and tighter security expectations. We should build skills now so we're ready to support {priorities}."
-
-Tip: Connect trends to action.`, 'D'],
-
-["Wins", "What are you most proud of?",
-`**Why they ask:** impact and values.
-
-**Sample answer:**
-"{wins} — especially how the team pulled together and how we kept the business informed throughout."
-
-Tip: Credit the team.`, 'B'],
-
-["Growth", "What skills are you developing?",
-`**Why they ask:** development mindset.
-
-**Sample answer:**
-"Executive communication and strategic planning, plus skills related to {priorities}. I'm taking on a cross-team initiative to practise."
-
-Tip: Show action.`, 'B'],
-
-["Questions", "What should I ask a senior director?",
-`**Why they ask:** (your own question) good questions build rapport.
-
-**Sample answer (questions):**
-- "What are your top priorities for the next year?"
-- "What would make our team even more valuable to you?"
-- "What do you see as our biggest risk?"
-- "What advice would you give someone growing toward {goals}?"
-
-Tip: Strategic and curious.`, 'B'],
-
-["Conflicts", "What if I disagree with a decision from above?",
-`**Why they ask:** maturity.
-
-**Sample answer:**
-"I'd share concerns with data through the right channel, and once a decision is made, I'd support it fully with my team."
-
-Tip: Disagree and commit.`, 'D'],
-
-["Tone", "How formal should a skip-level be?",
-`**Why they ask:** (your own question) calibration.
-
-**Sample answer (approach):**
-Professional but conversational: prepared, concise, and open. Treat it as a relationship-building conversation.
-
-Tip: Prepared, not scripted.`, 'B'],
-
-["Resources", "Does your team have what it needs?",
-`**Why they ask:** resource planning.
-
-**Sample answer:**
-"Mostly. Our gap is backup coverage on critical systems and capacity during peaks like {projects}."
-
-Tip: Specific gaps.`, 'B'],
-
-["Engagement", "What motivates you?",
-`**Why they ask:** retention and fit.
-
-**Sample answer:**
-"Solving meaningful business problems, seeing the impact of our work, and growing people on the team."
-
-Tip: Genuine.`, 'B'],
-
-["Remote", "How do you keep the team connected?",
-`**Why they ask:** team cohesion.
-
-**Sample answer:**
-"Regular stand-ups, a weekly win-sharing slot and occasional in-person sessions. Recognition keeps energy up."
-
-Tip: Concrete practices.`, 'B'],
-
-["Hard Truth", "What's something leadership doesn't want to hear?",
-`**Why they ask:** candor test.
-
-**Sample answer:**
-"That we're relying on heroics during peak periods. It works, but it isn't sustainable — investing in automation and coverage would reduce risk."
-
-Tip: Honest, solution-oriented.`, 'D'],
-
-["Closing", "Anything else on your mind?",
-`**Why they ask:** a final open door.
-
-**Sample answer:**
-"Just thank you for the time. I'm excited about {projects} and happy to help with anything that supports {priorities}."
-
-Tip: End positively.`, 'B'],
-
-["Follow-through", "How do I show I acted on their advice?",
-`**Why they ask:** (your own question) follow-through builds credibility.
-
-**Sample answer (approach):**
-At the next interaction, reference their advice and what you did: "You suggested X; I've done Y, and here's the result."
-
-Tip: Closes the loop.`, 'B']
+QB["w-skip"] = (QB["w-skip"] || []).concat([
+["Team Health", "How is morale on the team?", "**Why they ask:** skip-levels are an early warning system for leaders.\n\n**Sample answer:**\n\"Morale is generally good — people are proud of {wins}. The pressure point is workload during {projects}. Recognition from leadership when we hit the next milestone would go a long way.\"\n\nTip: Be honest and constructive, never personal.", "B", null, null, {"f":["What if morale is low?","Say so with causes and ideas."]}],
+["Team Health", "Is anyone at risk of leaving?", "**Why they ask:** retention of key people.\n\n**Sample answer:**\n\"I don't want to speak for individuals, but in general people want clear growth paths and fair workload. Investing in development and backup coverage would reduce that risk.\"\n\nTip: Protect confidences; talk about themes.", "D", null, null, {"t":1,"f":["Should I name people at risk?","Be careful; share patterns rather than names unless asked and appropriate."]}],
+["Manager", "How is your manager doing?", "**Why they ask:** a direct check on leadership — handle it carefully.\n\n**Sample answer:**\n\"{manager} has been very supportive — especially in shielding the team during escalations and backing our priorities. One thing that would help us even more is earlier visibility of leadership priorities, which I think depends on information flowing down to both of us.\"\n\nTip: Lead with genuine positives. Frame suggestions as system improvements, not criticism.", "D", null, null, {"t":1,"f":["What if I have concerns about my manager?","Raise them constructively, focusing on impact."]}],
+["Manager", "What could your manager do better?", "**Why they ask:** they may be gathering feedback — or testing your loyalty.\n\n**Sample answer:**\n\"I'd frame it as what would help the team: clearer prioritization across competing requests. That's something {manager} and I are already working on together.\"\n\nTip: Never undermine your manager. Show partnership.", "D", null, null, {"f":["How do I answer fairly?","Mention strengths too, and keep it about behavior."]}],
+["Working", "What's working well?", "**Why they ask:** to reinforce good practices.\n\n**Sample answer:**\n\"Our collaboration with the business on {projects} — regular reviews and quick decisions have kept us on track. Also, our incident response has improved; recurring issues are down.\"\n\nTip: Specific examples with outcomes.", "B", null, null, {"f":["How do I make \"working well\" useful?","Explain why it works so it can be repeated."]}],
+["Not Working", "What's not working?", "**Why they ask:** they want problems surfaced early.\n\n**Sample answer:**\n\"Request intake across teams. Urgent requests arrive through many channels and disrupt planned work. A single intake and a monthly priority review with business leaders would make delivery more predictable.\"\n\nTip: One systemic issue with a solution.", "B", null, null, {"f":["How do I raise problems?","With a suggestion for each."]}],
+["Ideas", "If you were in my role, what would you change?", "**Why they ask:** strategic thinking.\n\n**Sample answer:**\n\"I'd invest in automation of routine operations and cross-training, so the team spends more time on {priorities} and less on manual work.\"\n\nTip: Business-level ideas.", "D", null, null, {"t":1,"f":["What's a safe answer?","One focused improvement with its benefit."]}],
+["Strategy", "Do you understand our strategy?", "**Why they ask:** alignment check.\n\n**Sample answer:**\n\"My understanding is we're focused on {priorities}. Our work on {projects} supports that directly. Is there anything changing that I should prepare the team for?\"\n\nTip: Restate it, connect your work, ask a question.", "B", null, null, {"f":["How do I show strategic thinking?","Link my work to the strategy."]}],
+["Career", "How do you see your growth here?", "**Why they ask:** talent planning at the next level up.\n\n**Sample answer:**\n\"I want to grow toward {goals}. {manager} and I have a development plan. From your perspective, what experiences would make someone ready at that level?\"\n\nTip: Show alignment with your manager and seek advice.", "B", null, null, {"f":["How do I talk about growth?","Name skills and scope I'm building."]}],
+["Career", "How can I mention promotion in a skip-level?", "**Why they ask:** (your own question) delicate.\n\n**Sample answer (what to say):**\n\"I'm working toward the next level with {manager}. What would you want to see from someone ready for that role?\"\n\nTip: Ask for criteria, don't lobby. Tell your manager afterward.", "D", null, null, {"t":1,"f":["How do I raise promotion appropriately?","Ask what the next level looks like, not for a decision."]}],
+["Visibility", "What are you working on that I should know about?", "**Why they ask:** visibility into impact.\n\n**Sample answer:**\n\"{projects}, which supports {priorities}. A recent milestone was {wins}. The next phase lands next quarter and will reduce manual effort for the business.\"\n\nTip: Business outcomes first.", "B", null, null, {"f":["What should I mention?","High-impact work they'd want to know."]}],
+["Risks", "What risks keep you up at night?", "**Why they ask:** risk awareness.\n\n**Sample answer:**\n\"Single points of knowledge on critical systems, and the timing of {challenges}. We're addressing both with cross-training and phased plans.\"\n\nTip: Risks with mitigation.", "D", null, null, {"f":["How do I raise risks?","With impact and mitigation."]}],
+["Customers", "What are our business customers saying?", "**Why they ask:** voice of the customer.\n\n**Sample answer:**\n\"They appreciate responsiveness and the results on {wins}. Their main request is more predictability on when changes will land.\"\n\nTip: Balanced.", "B", null, null, {"f":["How do I share customer feedback?","Honestly, with what we're doing about it."]}],
+["Support", "What can I do to help your team?", "**Why they ask:** senior leaders can remove bigger obstacles.\n\n**Sample answer:**\n\"Help align business leaders on priorities at your level, so conflicting urgent requests get resolved earlier. And recognition for the team after {wins} would mean a lot.\"\n\nTip: Ask for things only they can do.", "B", null, null, {"f":["What help can I ask for?","A specific decision or resource."]}],
+["Culture", "How would you describe our culture?", "**Why they ask:** cultural insight.\n\n**Sample answer:**\n\"Collaborative and committed — people go above and beyond during critical moments. The opportunity is better planning so heroics aren't needed as often.\"\n\nTip: Honest and constructive.", "D", null, null, {"f":["How do I describe culture honestly?","Strengths and one area to improve."]}],
+["Process", "Where do you see waste in how we work?", "**Why they ask:** improvement ideas.\n\n**Sample answer:**\n\"Duplicate status reporting and manual data pulls. A shared dashboard could save several hours per person per week.\"\n\nTip: Quantify.", "B", null, null, {"f":["How do I raise waste?","With a specific fix."]}],
+["Cross-team", "How is collaboration with other teams?", "**Why they ask:** organizational friction.\n\n**Sample answer:**\n\"Good with most teams. With one partner team, priorities sometimes conflict. Clear escalation rules and a shared roadmap would help.\"\n\nTip: Systemic, not personal.", "B", null, null, {"f":["What if collaboration is poor?","Describe the impact and an idea to improve it."]}],
+["Preparation", "What should I bring to a skip-level?", "**Why they ask:** (your own question) preparation shows respect.\n\n**Sample answer (checklist):**\n- Three wins with business impact.\n- One improvement idea with a solution.\n- One question about strategy.\n- Your career goal (briefly).\n- Tell your manager it's happening and share key points afterward.\n\nTip: Never use it to complain about your manager.", "B", null, null, {"f":["What should I bring?","Updates with numbers and one idea."]}],
+["Loyalty", "Are you planning to leave?", "**Why they ask:** retention risk, sometimes asked directly.\n\n**Sample answer:**\n\"No — I'm committed to the work and the team. Like anyone, I want to keep growing, and I'm working with {manager} on a path toward {goals}.\"\n\nTip: Reassure, then link to growth.", "D", null, null, {"f":["How do I answer if I'm looking?","Focus on what would keep me engaged."]}],
+["Feedback", "What feedback do you have for leadership?", "**Why they ask:** upward feedback.\n\n**Sample answer:**\n\"Town halls are helpful. More context on why priorities change would help teams adapt faster and feel included.\"\n\nTip: Respectful and specific.", "B", null, null, {"f":["What feedback is useful?","Specific and constructive."]}],
+["Recognition", "Who on your team deserves recognition?", "**Why they ask:** leaders want to know stars.\n\n**Sample answer:**\n\"A team member led the testing that made {wins} possible. A note from you would be very motivating.\"\n\nTip: Name names generously.", "B", null, null, {"f":["How do I highlight team members?","Specific contributions and impact."]}],
+["Change", "How is the team handling recent changes?", "**Why they ask:** change readiness.\n\n**Sample answer:**\n\"People understand the direction but want clarity on roles and timelines. Regular updates from leadership would reduce uncertainty.\"\n\nTip: Constructive.", "B", null, null, {"f":["How do I describe change impact?","Honestly, with what's helping."]}],
+["Confidentiality", "Will what I say get back to my manager?", "**Why they ask:** (your own question) understanding norms.\n\n**Sample answer (approach):**\nAssume themes may be shared. Speak in a way you'd be comfortable with your manager hearing.\n\nTip: No surprises for your manager.", "D", null, null, {"t":1,"f":["What should I assume?","It might; say only what I'd say in front of my manager."]}],
+["After", "What should I do after the skip-level?", "**Why they ask:** (your own question) close the loop.\n\n**Sample answer (approach):**\nSend a short thank-you note with any follow-ups, and brief your manager on topics discussed.\n\nTip: Transparency with your manager.", "B", null, null, {"t":1,"f":["What should I do after?","Thank them and follow up on promises."]}],
+["Industry", "What trends do you see affecting our area?", "**Why they ask:** broader perspective.\n\n**Sample answer:**\n\"AI-assisted operations, cloud platform changes and tighter security expectations. We should build skills now so we're ready to support {priorities}.\"\n\nTip: Connect trends to action.", "D", null, null, {"f":["How do I share trends?","Link them to opportunities."]}],
+["Wins", "What are you most proud of?", "**Why they ask:** impact and values.\n\n**Sample answer:**\n\"{wins} — especially how the team pulled together and how we kept the business informed throughout.\"\n\nTip: Credit the team.", "B", null, null, {"f":["How do I share pride?","Credit the team."]}],
+["Growth", "What skills are you developing?", "**Why they ask:** development mindset.\n\n**Sample answer:**\n\"Executive communication and strategic planning, plus skills related to {priorities}. I'm taking on a cross-team initiative to practise.\"\n\nTip: Show action.", "B", null, null, {"f":["How do I show development?","Skills tied to business needs."]}],
+["Questions", "What should I ask a senior director?", "**Why they ask:** (your own question) good questions build rapport.\n\n**Sample answer (questions):**\n- \"What are your top priorities for the next year?\"\n- \"What would make our team even more valuable to you?\"\n- \"What do you see as our biggest risk?\"\n- \"What advice would you give someone growing toward {goals}?\"\n\nTip: Strategic and curious.", "B", null, null, {"f":["What's a good question?","What should our team focus on next year?"]}],
+["Conflicts", "What if I disagree with a decision from above?", "**Why they ask:** maturity.\n\n**Sample answer:**\n\"I'd share concerns with data through the right channel, and once a decision is made, I'd support it fully with my team.\"\n\nTip: Disagree and commit.", "D", null, null, {"f":["How do I raise disagreement upward?","Respectfully, with data, then commit."]}],
+["Tone", "How formal should a skip-level be?", "**Why they ask:** (your own question) calibration.\n\n**Sample answer (approach):**\nProfessional but conversational: prepared, concise, and open. Treat it as a relationship-building conversation.\n\nTip: Prepared, not scripted.", "B", null, null, {"f":["How formal should it be?","Prepared but conversational."]}],
+["Resources", "Does your team have what it needs?", "**Why they ask:** resource planning.\n\n**Sample answer:**\n\"Mostly. Our gap is backup coverage on critical systems and capacity during peaks like {projects}.\"\n\nTip: Specific gaps.", "B", null, null, {"f":["What if we lack resources?","Explain impact and options."]}],
+["Engagement", "What motivates you?", "**Why they ask:** retention and fit.\n\n**Sample answer:**\n\"Solving meaningful business problems, seeing the impact of our work, and growing people on the team.\"\n\nTip: Genuine.", "B", null, null, {"f":["How do I answer?","Genuinely, with an example."]}],
+["Remote", "How do you keep the team connected?", "**Why they ask:** team cohesion.\n\n**Sample answer:**\n\"Regular stand-ups, a weekly win-sharing slot and occasional in-person sessions. Recognition keeps energy up.\"\n\nTip: Concrete practices.", "B", null, null, {"f":["What helps connection?","Regular rituals and recognition."]}],
+["Hard Truth", "What's something leadership doesn't want to hear?", "**Why they ask:** candor test.\n\n**Sample answer:**\n\"That we're relying on heroics during peak periods. It works, but it isn't sustainable — investing in automation and coverage would reduce risk.\"\n\nTip: Honest, solution-oriented.", "D", null, null, {"f":["How do I say it?","Carefully, with facts and a suggestion."]}],
+["Closing", "Anything else on your mind?", "**Why they ask:** a final open door.\n\n**Sample answer:**\n\"Just thank you for the time. I'm excited about {projects} and happy to help with anything that supports {priorities}.\"\n\nTip: End positively.", "B", null, null, {"f":["What's worth raising?","One last idea or concern."]}],
+["Follow-through", "How do I show I acted on their advice?", "**Why they ask:** (your own question) follow-through builds credibility.\n\n**Sample answer (approach):**\nAt the next interaction, reference their advice and what you did: \"You suggested X; I've done Y, and here's the result.\"\n\nTip: Closes the loop.", "B", null, null, {"f":["How do I show action?","Follow up with what I did."]}]
 ]);
