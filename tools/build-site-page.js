@@ -12,7 +12,8 @@ const FALLBACK = { title: 'Senior ERP Analyst', team: 'the ERP applications team
   challenges: 'a tight go-live date and one open role on the team',
   goals: 'leading a larger team within the next year', priorities: 'a reliable close, fewer manual steps and faster delivery for finance' };
 const fill = t => t.replace(/\{(title|team|manager|resp|projects|wins|challenges|goals|priorities)\}/g, (m, k) => FALLBACK[k]);
-const qs = (QB[bankId] || []).map(q => [q[0], fill(q[1]), fill(q[2]), q[3]]);
+const qs = (QB[bankId] || []).map(q => { const x = q[6] || {}; return [q[0], fill(q[1]), fill(q[2]), q[3], !!x.t, x.f ? [fill(x.f[0]), fill(x.f[1])] : null]; });
+const nTop = qs.filter(q => q[4]).length;
 if (!qs.length) throw new Error('No questions for ' + bankId);
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -40,9 +41,9 @@ const pageTitle = `${roleTitle} Interview Questions (${qs.length}) | Interview E
 const url = `https://arahasoft.com/interview/${slug}/`;
 
 const items = qs.map((q, i) => `
-<details class="q" data-topic="${esc(q[0])}" data-level="${q[3]}">
-  <summary><span class="qn">${i + 1}</span><span class="qt">${inline(q[1])}</span><span class="meta"><span class="tag">${esc(q[0])}</span><span class="tag lvl">${q[3] === 'B' ? 'Basic' : 'In-depth'}</span></span></summary>
-  <div class="ans">${md(q[2])}</div>
+<details class="q" data-topic="${esc(q[0])}" data-level="${q[3]}"${q[4] ? ' data-top="1"' : ''}>
+  <summary><span class="qn">${i + 1}</span><span class="qt">${inline(q[1])}</span><span class="meta"><span class="tag">${esc(q[0])}</span><span class="tag lvl">${q[3] === 'B' ? 'Basic' : 'In-depth'}</span>${q[4] ? '<span class="tag top">Top question</span>' : ''}</span></summary>
+  <div class="ans">${md(q[2])}${q[5] ? `<div class="fu"><p class="fu-h">Likely follow-up</p><p class="fu-q">${inline(q[5][0])}</p>${md(q[5][1])}</div>` : ''}</div>
 </details>`).join('');
 
 const faq = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: qs.map(q => ({ '@type': 'Question', name: q[1], acceptedAnswer: { '@type': 'Answer', text: q[2].replace(/\*\*/g, '') } })) };
@@ -97,6 +98,12 @@ summary::-webkit-details-marker { display:none; }
 .meta { grid-column:2; display:flex; gap:0.35rem; flex-wrap:wrap; }
 .tag { font-size:0.7rem; color:var(--gray-600); background:var(--gray-100); border-radius:4px; padding:0.05rem 0.45rem; }
 .tag.lvl { background:var(--blue-light); color:var(--accent); }
+.tag.top { background:#FEF3C7; color:#92400E; font-weight:600; }
+.ans .fu { margin-top:0.85rem; border-left:3px solid #D97706; background:#FFFBEB; border-radius:0 6px 6px 0; padding:0.55rem 0.8rem; }
+.ans .fu-h { font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:#92400E; font-weight:700; margin:0; }
+.ans .fu-q { font-weight:600; color:var(--navy); }
+.tools { gap:1rem; }
+.tools button.on { font-weight:700; text-decoration:underline; }
 summary::after { content:"Show answer"; grid-column:2; font-size:0.78rem; color:var(--accent); font-weight:500; }
 details[open] summary::after { content:"Hide answer"; }
 .ans { padding:0 1rem 1rem 3.35rem; color:var(--text); }
@@ -139,13 +146,14 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
   <div class="stats">
     <span class="stat"><b>${qs.length}</b> questions</span>
     <span class="stat"><b>${basics}</b> basic</span>
-    <span class="stat"><b>${qs.length - basics}</b> in-depth</span>
+    <span class="stat"><b>${qs.length - basics}</b> in-depth</span>${nTop ? `
+    <span class="stat"><b>${nTop}</b> top questions</span>` : ''}
   </div>
   ${topics.length > 1 && topics.length <= 14 ? `<div class="filters" id="filters">
     <button class="on" data-f="all">All</button>
     ${topics.map(t => `<button data-f="${esc(t)}">${esc(t)}</button>`).join('\n    ')}
   </div>` : ''}
-  <div class="tools"><button id="toggleAll">Show all answers</button></div>
+  <div class="tools">${nTop ? `<button id="topOnly">Top ${nTop} questions only</button>` : ''}<button id="toggleAll">Show all answers</button></div>
   <div id="list">${items}
   </div>
   <section class="cta">
@@ -163,6 +171,13 @@ footer { text-align:center; font-size:0.8rem; color:var(--gray-600); padding:2re
     this.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
     var f = b.getAttribute('data-f');
     qs.forEach(function (q) { q.style.display = (f === 'all' || q.getAttribute('data-topic') === f) ? '' : 'none'; });
+    if (tb && topOn) { topOn = false; tb.classList.remove('on'); tb.textContent = 'Top ${nTop} questions only'; }
+  });
+  var tb = document.getElementById('topOnly'), topOn = false;
+  if (tb) tb.addEventListener('click', function () {
+    topOn = !topOn; tb.classList.toggle('on', topOn); tb.textContent = topOn ? 'Show all questions' : 'Top ${nTop} questions only';
+    if (fl) fl.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x.getAttribute('data-f') === 'all'); });
+    qs.forEach(function (q) { q.style.display = (!topOn || q.getAttribute('data-top')) ? '' : 'none'; });
   });
   var open = false, t = document.getElementById('toggleAll');
   t.addEventListener('click', function () {
