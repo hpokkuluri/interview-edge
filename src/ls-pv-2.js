@@ -1,42 +1,12 @@
-QB['ls-pv'] = (QB['ls-pv']||[]).concat([
-["SUSAR", "What is a SUSAR?",
-`**Answer:** A Suspected Unexpected Serious Adverse Reaction in a clinical trial: serious, related to the investigational product (reasonable possibility), and unexpected per the reference safety information. It must be reported on an expedited basis.
-
-Tip: All three criteria.`, 'B', 'E'],
-["Disproportionality", "Explain the PRR.",
-`**Answer:** The Proportional Reporting Ratio compares how often an event is reported for a drug against all other drugs in a database: PRR = (a/(a+b)) / (c/(c+d)). A PRR ≥ 2 with at least 3 cases and chi-square ≥ 4 is a common signal threshold.
-
-Tip: Thresholds.`, 'D', 'S'],
-["PSMF", "What is the PSMF?",
-`**Answer:** The Pharmacovigilance System Master File (EU) describes the company's PV system: organization, QPPV, procedures, databases, partners and compliance metrics. It must be kept current and available for inspection.
-
-Tip: Inspection-ready.`, 'D', 'M'],
-["Medical Information", "How do medical information inquiries relate to PV?",
-`**Answer:** Inquiries that mention adverse events or special situations must be forwarded to PV within the required timelines. MI and PV reconcile cases regularly.
-
-Tip: Reconciliation.`, 'B', 'E'],
-["Patient Support Programs", "Why do patient support programs need PV oversight?",
-`**Answer:** Programs that interact with patients (nurse calls, reimbursement support) collect adverse events and must have reporting procedures, training and reconciliation with PV.
-
-Tip: Hidden case sources.`, 'D', 'M'],
-["E2B", "What is E2B?",
-`**Answer:** The ICH standard for electronic transmission of ICSRs between companies and regulators. E2B(R3) is the current format, used for FAERS and EudraVigilance submissions.
-
-Tip: E2B(R3).`, 'D', 'M'],
-["Unblinding", "When are cases unblinded for reporting?",
-`**Answer:** SUSARs are generally unblinded by the safety team (not the study team) for expedited reporting, while the blind is preserved for the trial team.
-
-Tip: Protect trial integrity.`, 'D', 'M'],
-["Metrics", "Which PV metrics do you track?",
-`**Answer:** On-time submission rates, case processing cycle time, QC error rates, backlog, follow-up success, and reconciliation completeness.
-
-Tip: On-time rate.`, 'B', 'E'],
-["Training", "Who needs PV training in a company?",
-`**Answer:** Everyone who might hear about adverse events: sales, medical, call centers, patient programs, social media teams and partners. They learn to recognize and report within timelines.
-
-Tip: Company-wide.`, 'B', 'E'],
-["Scenario", "A literature article reports a fatal case with your drug. What do you do?",
-`**Answer:** Treat it as a valid case if minimum criteria are met. Day 0 is the date the article was identified. Process it with priority, assess expectedness and causality, report within 15 days if serious and unexpected, and evaluate for signals.
-
-Tip: Day 0 from identification.`, 'B', 'M']
+QB["ls-pv"] = (QB["ls-pv"] || []).concat([
+["SUSAR", "What is a SUSAR?", "**Why they ask:** trial safety.\n\n**Answer:**\n\"A Suspected Unexpected Serious Adverse Reaction in a clinical trial: serious, with a reasonable possibility of relation to the investigational product, and unexpected per the reference safety information. All three must apply, and it's reported on an expedited basis.\"\n\nTip: All three criteria.", "B", "E"],
+["Disproportionality", "Explain the PRR.", "**Why they ask:** signal detection math.\n\n**Answer:**\n\"The Proportional Reporting Ratio compares how often an event is reported for one drug against all other drugs in a database: a over a plus b, divided by c over c plus d. If 30 of 1,000 reports for our drug mention the event — 3% — versus 1% for all other drugs, the PRR is 3. A common threshold is PRR of at least 2 with at least 3 cases and chi-square of at least 4.\"\n\nTip: Thresholds.", "D", "S"],
+["PSMF", "What is the PSMF?", "**Why they ask:** EU compliance.\n\n**Answer:**\n\"The Pharmacovigilance System Master File describes the company's PV system — organization, QPPV, procedures, databases, partners and compliance metrics. It must be current and available for inspection.\"\n\nTip: Inspection-ready.", "D", "M"],
+["Medical Information", "How do medical information inquiries relate to PV?", "**Why they ask:** case sources.\n\n**Answer:**\n\"Inquiries mentioning adverse events or special situations must be forwarded to PV within required timelines, and MI and PV reconcile regularly to make sure nothing was missed.\"\n\nTip: Reconciliation.", "B", "E"],
+["Patient Support Programs", "Why do patient support programs need PV oversight?", "**Why they ask:** hidden case sources.\n\n**Answer:**\n\"Programs that talk to patients — nurse calls, reimbursement support — hear about adverse events. They need reporting procedures, training and reconciliation with PV, and they're a common inspection finding.\"\n\nTip: Hidden case sources.", "D", "M"],
+["E2B", "What is E2B?", "**Why they ask:** submission standards.\n\n**Answer:**\n\"The ICH standard for electronic transmission of ICSRs between companies and regulators. E2B(R3) is the current format for FAERS and EudraVigilance submissions.\"\n\nTip: E2B(R3).", "D", "M"],
+["Unblinding", "When are cases unblinded for reporting?", "**Why they ask:** trial integrity.\n\n**Answer:**\n\"SUSARs are generally unblinded by the safety team, not the study team, for expedited reporting, so regulators know whether the subject got the drug while the trial team stays blinded.\"\n\nTip: Protect trial integrity.", "D", "M"],
+["Metrics", "Which PV metrics do you track?", "**Why they ask:** performance management.\n\n**Answer:**\n\"On-time submission rates, case processing cycle time, QC error rates, backlog, follow-up success and reconciliation completeness.\"\n\nTip: On-time rate.", "B", "E"],
+["Training", "Who needs PV training in a company?", "**Why they ask:** system thinking.\n\n**Answer:**\n\"Everyone who might hear about an adverse event: sales, medical, call centers, patient programs, social media teams and partners — so they recognize events and report within timelines.\"\n\nTip: Company-wide.", "B", "E"],
+["Scenario", "A literature article reports a fatal case with your drug. What do you do?", "**Why they ask:** applied process.\n\n**Answer:**\n\"Treat it as a valid case if minimum criteria are met, with Day 0 as the date the article was identified. Process it as a priority, assess expectedness and causality, submit within 15 days if serious and unexpected, and evaluate whether it contributes to a signal.\"\n\nTip: Day 0 from identification.", "B", "M"]
 ]);

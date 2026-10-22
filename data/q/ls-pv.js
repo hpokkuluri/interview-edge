@@ -1,248 +1,57 @@
 // ls-pv — generated from src/ls-pv-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Pharmacovigilance / Drug Safety Specialist. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['ls-pv'] = [
-["Role", "What does a pharmacovigilance specialist do?",
-`**Why they ask:** baseline.
-
-**Answer:** Monitors the safety of medicines: case intake and processing of adverse event reports, medical coding, assessing seriousness, expectedness and causality, regulatory reporting, literature screening, signal detection support, and aggregate safety reports.
-
-Tip: Case processing vs signals.`, 'B', 'E'],
-
-["Definitions", "What makes an ICSR valid?",
-`**Answer:** Four minimum criteria: an identifiable patient, an identifiable reporter, a suspect product, and an adverse event.
-
-Tip: Four elements.`, 'B', 'E'],
-
-["Seriousness", "What are seriousness criteria?",
-`**Answer:** Death, life-threatening, hospitalization or prolongation, persistent or significant disability, congenital anomaly, or other important medical event.
-
-Tip: Seriousness ≠ severity.`, 'B', 'E'],
-
-["Expectedness", "What is expectedness?",
-`**Answer:** Whether the event is listed in the reference safety information (e.g. Investigator's Brochure for trials, label/CCDS for marketed products) with matching nature and severity.
-
-Tip: Reference safety information.`, 'B', 'M'],
-
-["Causality", "How do you assess causality?",
-`**Answer:** Consider temporal relationship, dechallenge/rechallenge, alternative explanations, biological plausibility and known class effects — using methods like WHO-UMC categories or Naranjo scale.
-
-Tip: Dechallenge.`, 'B', 'M'],
-
-["Timelines", "What are expedited reporting timelines?",
-`**Answer:** Clinical trials: fatal or life-threatening SUSARs within 7 calendar days, other SUSARs within 15 days. Postmarketing (US): serious unexpected within 15 calendar days (15-day Alert reports). Day 0 is when minimum criteria are received by anyone in the company.
-
-Tip: Day 0.`, 'B', 'M'],
-
-["Coding", "How do you code events?",
-`**Answer:** MedDRA for adverse events and medical history (choosing the lowest level term closest to reported verbatim), WHO Drug Dictionary for medications.
-
-Tip: MedDRA LLT.`, 'B', 'E'],
-
-["Narrative", "What makes a good case narrative?",
-`**Answer:** Chronological, concise summary of patient details, relevant history, product exposure, event onset and course, treatment, outcome, dechallenge/rechallenge, and reporter's causality assessment.
-
-Tip: Chronological.`, 'B', 'E'],
-
-["Aggregate", "What are aggregate safety reports?",
-`**Answer:** PBRER/PSUR (periodic benefit-risk evaluation), DSUR (development safety update report, annual), and US PADER for marketed products.
-
-Tip: Benefit-risk.`, 'D', 'M'],
-
-["Signals", "What is signal detection?",
-`**Answer:** Identifying new or changed safety information potentially caused by a medicine — through case review, disproportionality analysis (PRR, ROR) of databases (FAERS, EudraVigilance), literature, and trials — followed by validation, assessment and action.
-
-Tip: Disproportionality.`, 'D', 'M'],
-
-["Literature", "Why is literature screening required?",
-`**Answer:** Published reports of adverse events are reportable cases; companies must screen literature regularly (e.g. weekly) for their products.
-
-Tip: Weekly.`, 'B', 'E'],
-
-["Follow-up", "How do you handle follow-up information?",
-`**Answer:** Request missing information from reporters, update the case, reassess seriousness and causality, and submit follow-up reports within timelines if significant.
-
-Tip: Reassess.`, 'B', 'E'],
-
-["Special Situations", "What are special situations in PV?",
-`**Answer:** Pregnancy exposure, overdose, misuse, abuse, medication errors, off-label use, lack of efficacy, and occupational exposure — collected even without an adverse event.
-
-Tip: Pregnancy follow-up.`, 'B', 'M'],
-
-["RMP", "What is a Risk Management Plan?",
-`**Answer:** EU document describing the safety profile, pharmacovigilance plan and risk minimization measures; US equivalent elements include REMS when required.
-
-Tip: Risk minimization.`, 'D', 'M'],
-
-["GVP", "What is GVP?",
-`**Answer:** EU Good Pharmacovigilance Practices modules guiding PV systems, including the QPPV role, PSMF, signal management and reporting.
-
-Tip: QPPV.`, 'D', 'M'],
-
-["Systems", "Which safety databases have you used?",
-`**Answer:** Oracle Argus Safety, ArisGlobal LifeSphere, Veeva Vault Safety.
-
-Tip: Argus.`, 'B', 'E'],
-
-["Quality", "How do you ensure case quality?",
-`**Answer:** QC checks, consistent coding conventions, training, and metrics on accuracy and timeliness.
-
-Tip: QC.`, 'B', 'E'],
-
-["Compliance", "How do you track reporting compliance?",
-`**Answer:** Monitor late submissions, investigate causes, CAPA, and report metrics to management.
-
-Tip: Late reports.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling high case volume.",
-`**Sample answer:** "During a product launch, case volume tripled. I prioritized serious cases by due date, created triage guidelines, and we maintained 99% on-time reporting."
-
-Tip: Prioritization.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a time you identified a safety concern.",
-`**Answer:** Describe noticing a pattern, escalating to safety physicians, and resulting evaluation.
-
-Tip: Escalation.`, 'B', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior PV scientist, signal management, or safety physician support/management.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I process cases accurately and on time, understand regulations deeply, and spot patterns that matter for patient safety."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Day 0", "When does the reporting clock start?",
-`**Answer:** When any employee or partner of the company first receives minimum criteria for a valid case — including sales reps or call centers.
-
-Tip: Anyone in the company.`, 'B', 'M'],
-
-["Partners", "How do safety data exchange agreements work?",
-`**Answer:** Contracts defining responsibilities and timelines for exchanging safety information between partners/licensees.
-
-Tip: SDEA.`, 'D', 'M'],
-
-["Clinical Trials", "How is safety handled in clinical trials?",
-`**Answer:** SAE reporting from sites within 24 hours, assessment of SUSARs, expedited reporting to regulators, ethics committees and investigators, and DSURs.
-
-Tip: SUSARs.`, 'B', 'M'],
-
-["Benefit-Risk", "How is benefit-risk assessed?",
-`**Answer:** Weighing therapeutic benefits against risks using data across sources, structured frameworks, and context (disease severity, alternatives).
-
-Tip: Context matters.`, 'D', 'M'],
-
-["Social Media", "Do social media posts need PV review?",
-`**Answer:** Company-sponsored digital channels must be monitored for adverse events; reports meeting minimum criteria are processed.
-
-Tip: Company channels.`, 'D', 'M'],
-
-["Audits", "What do PV audits and inspections examine?",
-`**Answer:** Case processing timeliness and quality, PSMF, SOPs, training, signal management, partner agreements and CAPA.
-
-Tip: PSMF.`, 'D', 'M'],
-
-["Duplicates", "How do you detect duplicate cases?",
-`**Answer:** Search by patient identifiers, dates, product and event details, and reporter; merge appropriately.
-
-Tip: Search criteria.`, 'B', 'E'],
-
-["Medical Review", "What's the role of medical review?",
-`**Answer:** Safety physicians review serious cases for causality, expectedness, medical accuracy and company comment.
-
-Tip: Physician oversight.`, 'B', 'E'],
-
-["Devices", "How does device vigilance differ?",
-`**Answer:** Medical Device Reports (MDRs) in the US within 30 days (5 days for some), EU vigilance under MDR, focusing on malfunctions and serious incidents.
-
-Tip: MDRs.`, 'D', 'M'],
-
-["Labeling", "When does PV trigger labeling changes?",
-`**Answer:** Validated signals with sufficient evidence lead to updates of safety information in labels and CCDS, coordinated with regulatory.
-
-Tip: CCDS.`, 'D', 'M'],
-
-["Scenario", "A sales rep hears about a patient's side effect at a dinner. What happens?",
-`**Answer:** The rep must report it to PV within one business day (per SOP); Day 0 is when the rep heard it.
-
-Tip: Day 0.`, 'B', 'E'],
-
-["Scenario", "You find a case was reported late. What do you do?",
-`**Answer:** Submit immediately, document reason, investigate root cause, and implement CAPA.
-
-Tip: CAPA.`, 'B', 'E'],
-
-["AI", "How is AI used in pharmacovigilance?",
-`**Answer:** Automating case intake (extracting data from documents), duplicate detection, MedDRA coding suggestions, literature screening and signal detection — with validation and human oversight.
-
-Tip: Human oversight.`, 'B', 'M'],
-
-["Pregnancy", "How are pregnancy exposures handled?",
-`**Answer:** Collected and followed up through pregnancy outcome and infant follow-up; may be reported if associated with adverse events.
-
-Tip: Follow-up to outcome.`, 'B', 'M'],
-
-["Communication", "How do you communicate safety information to stakeholders?",
-`**Answer:** Clear, accurate summaries for medical, regulatory and commercial teams; Dear HCP letters when needed.
-
-Tip: Accuracy.`, 'B', 'E'],
-
-["Teamwork", "How does PV work with other functions?",
-`**Answer:** Clinical (SAEs), regulatory (reporting, labeling), medical information (inquiries), quality (complaints) and commercial (training on reporting).
-
-Tip: Cross-functional.`, 'B', 'E'],
-
-["Ethics", "Why does PV matter?",
-`**Answer:** Clinical trials can't detect all risks; real-world monitoring protects patients throughout a product's life.
-
-Tip: Patient safety.`, 'B', 'E'],
-
-["Questions", "What would you ask in a PV interview?",
-`**Answer:** Case volume and products, database, team structure, outsourcing model and growth paths.
-
-Tip: Volume.`, 'B', 'E']
-];
-
-QB['ls-pv'] = (QB['ls-pv']||[]).concat([
-["SUSAR", "What is a SUSAR?",
-`**Answer:** A Suspected Unexpected Serious Adverse Reaction in a clinical trial: serious, related to the investigational product (reasonable possibility), and unexpected per the reference safety information. It must be reported on an expedited basis.
-
-Tip: All three criteria.`, 'B', 'E'],
-["Disproportionality", "Explain the PRR.",
-`**Answer:** The Proportional Reporting Ratio compares how often an event is reported for a drug against all other drugs in a database: PRR = (a/(a+b)) / (c/(c+d)). A PRR ≥ 2 with at least 3 cases and chi-square ≥ 4 is a common signal threshold.
-
-Tip: Thresholds.`, 'D', 'S'],
-["PSMF", "What is the PSMF?",
-`**Answer:** The Pharmacovigilance System Master File (EU) describes the company's PV system: organization, QPPV, procedures, databases, partners and compliance metrics. It must be kept current and available for inspection.
-
-Tip: Inspection-ready.`, 'D', 'M'],
-["Medical Information", "How do medical information inquiries relate to PV?",
-`**Answer:** Inquiries that mention adverse events or special situations must be forwarded to PV within the required timelines. MI and PV reconcile cases regularly.
-
-Tip: Reconciliation.`, 'B', 'E'],
-["Patient Support Programs", "Why do patient support programs need PV oversight?",
-`**Answer:** Programs that interact with patients (nurse calls, reimbursement support) collect adverse events and must have reporting procedures, training and reconciliation with PV.
-
-Tip: Hidden case sources.`, 'D', 'M'],
-["E2B", "What is E2B?",
-`**Answer:** The ICH standard for electronic transmission of ICSRs between companies and regulators. E2B(R3) is the current format, used for FAERS and EudraVigilance submissions.
-
-Tip: E2B(R3).`, 'D', 'M'],
-["Unblinding", "When are cases unblinded for reporting?",
-`**Answer:** SUSARs are generally unblinded by the safety team (not the study team) for expedited reporting, while the blind is preserved for the trial team.
-
-Tip: Protect trial integrity.`, 'D', 'M'],
-["Metrics", "Which PV metrics do you track?",
-`**Answer:** On-time submission rates, case processing cycle time, QC error rates, backlog, follow-up success, and reconciliation completeness.
-
-Tip: On-time rate.`, 'B', 'E'],
-["Training", "Who needs PV training in a company?",
-`**Answer:** Everyone who might hear about adverse events: sales, medical, call centers, patient programs, social media teams and partners. They learn to recognize and report within timelines.
-
-Tip: Company-wide.`, 'B', 'E'],
-["Scenario", "A literature article reports a fatal case with your drug. What do you do?",
-`**Answer:** Treat it as a valid case if minimum criteria are met. Day 0 is the date the article was identified. Process it with priority, assess expectedness and causality, report within 15 days if serious and unexpected, and evaluate for signals.
-
-Tip: Day 0 from identification.`, 'B', 'M']
+QB["ls-pv"] = (QB["ls-pv"] || []).concat([
+["Role", "What does a pharmacovigilance specialist do?", "**Why they ask:** baseline.\n\n**Answer:** Monitors the safety of medicines: case intake and processing of adverse event reports, medical coding, assessing seriousness, expectedness and causality, regulatory reporting, literature screening, signal detection support, and aggregate safety reports.\n\nTip: Case processing vs signals.", "B", "E"],
+["Definitions", "What makes an ICSR valid?", "**Why they ask:** the first PV fundamental.\n\n**Answer:**\n\"Four minimum criteria: an identifiable patient, an identifiable reporter, a suspect product, and an adverse event. 'A 60-year-old woman' counts as identifiable; 'some patients' doesn't. Once all four are known by anyone in the company, the case is valid and the reporting clock starts.\"\n\nTip: Four elements.", "B", "E"],
+["Seriousness", "What are seriousness criteria?", "**Why they ask:** drives reporting timelines.\n\n**Answer:**\n\"Death, life-threatening, hospitalization or prolonged hospitalization, persistent or significant disability, congenital anomaly, or another important medical event. Seriousness isn't severity: a severe headache is severe but usually not serious; a mild event that leads to hospital admission is serious.\"\n\nTip: Seriousness ≠ severity.", "B", "E"],
+["Expectedness", "What is expectedness?", "**Why they ask:** determines expedited reporting.\n\n**Answer:**\n\"Whether the event is listed in the reference safety information — the Investigator's Brochure for trials, the label or CCDS for marketed products — with matching nature and severity. If the label lists 'hepatic enzyme increase' and the case is liver failure, it's unexpected because it's more severe.\"\n\nTip: Reference safety information.", "B", "M"],
+["Causality", "How do you assess causality?", "**Why they ask:** analytical judgment.\n\n**Answer:**\n\"Consider the temporal relationship, dechallenge and rechallenge — did the event resolve when the drug stopped and return when restarted — alternative explanations like underlying disease or other drugs, biological plausibility and known class effects, using frameworks like the WHO-UMC categories or the Naranjo scale.\"\n\nTip: Dechallenge.", "B", "M"],
+["Timelines", "What are expedited reporting timelines?", "**Why they ask:** compliance essentials.\n\n**Answer:**\n\"In clinical trials, fatal or life-threatening SUSARs within 7 calendar days and other SUSARs within 15. Post-marketing in the US, serious unexpected reports go to FDA within 15 calendar days as 15-day Alert reports. Day 0 is when anyone in the company first receives the minimum criteria.\"\n\nTip: Day 0.", "B", "M"],
+["Coding", "How do you code events?", "**Why they ask:** data standards.\n\n**Answer:**\n\"MedDRA for adverse events and medical history — choosing the lowest level term closest to the reporter's verbatim — and the WHO Drug Dictionary for medications. Coding 'felt like the room was spinning' as vertigo rather than dizziness keeps signal detection accurate.\"\n\nTip: MedDRA LLT.", "B", "E"],
+["Narrative", "What makes a good case narrative?", "**Why they ask:** writing quality.\n\n**Answer:**\n\"A chronological, concise summary: patient details, relevant history, product exposure, event onset and course, treatment, outcome, dechallenge and rechallenge, and the reporter's causality assessment — so a reviewer understands the case without opening another document.\"\n\nTip: Chronological.", "B", "E"],
+["Aggregate", "What are aggregate safety reports?", "**Why they ask:** periodic reporting knowledge.\n\n**Answer:**\n\"The PBRER or PSUR — periodic benefit-risk evaluation for marketed products — the annual DSUR for products in development, and the US PADER for marketed products. They look at the overall safety profile and benefit-risk, not individual cases.\"\n\nTip: Benefit-risk.", "D", "M"],
+["Signals", "What is signal detection?", "**Why they ask:** proactive safety.\n\n**Answer:**\n\"Identifying new or changed safety information that may be caused by a medicine — through case review, disproportionality analysis like PRR and ROR in databases such as FAERS and EudraVigilance, literature and trial data — then validating, assessing and acting on the signal.\"\n\nTip: Disproportionality.", "D", "M"],
+["Literature", "Why is literature screening required?", "**Why they ask:** case sources.\n\n**Answer:**\n\"Published reports of adverse events are reportable cases, so companies must screen the literature regularly — typically weekly — for their products. Day 0 is the date the article is identified.\"\n\nTip: Weekly.", "B", "E"],
+["Follow-up", "How do you handle follow-up information?", "**Why they ask:** case lifecycle.\n\n**Answer:**\n\"Request missing information from the reporter, update the case, reassess seriousness, expectedness and causality, and submit a follow-up report within timelines if the information is significant — new information can make a non-serious case serious.\"\n\nTip: Reassess.", "B", "E"],
+["Special Situations", "What are special situations in PV?", "**Why they ask:** completeness.\n\n**Answer:**\n\"Pregnancy exposure, overdose, misuse, abuse, medication errors, off-label use, lack of efficacy, and occupational exposure. They're collected even when no adverse event occurred, and pregnancies are followed to outcome.\"\n\nTip: Pregnancy follow-up.", "B", "M"],
+["RMP", "What is a Risk Management Plan?", "**Why they ask:** risk minimization.\n\n**Answer:**\n\"An EU document describing the product's safety profile, the pharmacovigilance plan and risk minimization measures. In the US, FDA may require a REMS with elements like medication guides or restricted distribution.\"\n\nTip: Risk minimization.", "D", "M"],
+["GVP", "What is GVP?", "**Why they ask:** EU framework.\n\n**Answer:**\n\"Good Pharmacovigilance Practices — the EU modules that guide PV systems, including the QPPV role, the PSMF, signal management and reporting requirements.\"\n\nTip: QPPV.", "D", "M"],
+["Systems", "Which safety databases have you used?", "**Why they ask:** tooling.\n\n**Answer:**\n\"Oracle Argus Safety primarily, plus ArisGlobal LifeSphere and Veeva Vault Safety.\"\n\nTip: Argus.", "B", "E"],
+["Quality", "How do you ensure case quality?", "**Why they ask:** quality discipline.\n\n**Answer:**\n\"QC checks on key fields and narratives, consistent coding conventions, training, and metrics on accuracy and timeliness — with recurring errors fed back into training.\"\n\nTip: QC.", "B", "E"],
+["Compliance", "How do you track reporting compliance?", "**Why they ask:** compliance management.\n\n**Answer:**\n\"Monitor late submissions, investigate the cause of each, implement CAPAs, and report compliance metrics to management. Regulators typically expect on-time rates well above 95%.\"\n\nTip: Late reports.", "B", "M"],
+["Behavioral", "Tell me about handling high case volume.", "**Why they ask:** pressure handling.\n\n**Answer:**\n\"During a product launch, case volume tripled. I prioritized serious cases by due date, created triage guidelines for the team, and we maintained 99% on-time reporting.\"\n\nTip: Prioritization.", "B", "M"],
+["Behavioral", "Tell me about a time you identified a safety concern.", "**Why they ask:** vigilance.\n\n**Answer:**\n\"While processing cases I noticed three reports of severe skin reactions within two months for one product, more than I'd seen before. I flagged it to the safety physician with the case numbers; a formal signal evaluation followed and the label's warnings were strengthened.\"\n\nTip: Escalation.", "B", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior PV scientist and signal management.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I process cases accurately and on time, understand the regulations deeply, and spot the patterns that matter for patient safety.\"\n\nTip: Proof.", "B", "E"],
+["Day 0", "When does the reporting clock start?", "**Why they ask:** a common compliance trap.\n\n**Answer:**\n\"When any employee or partner of the company first receives the minimum criteria — including sales reps, call centers and patient support programs, not just the PV department.\"\n\nTip: Anyone in the company.", "B", "M"],
+["Partners", "How do safety data exchange agreements work?", "**Why they ask:** partner management.\n\n**Answer:**\n\"They're contracts defining responsibilities and timelines for exchanging safety information between partners and licensees — who processes, who submits, and how fast cases move between companies.\"\n\nTip: SDEA.", "D", "M"],
+["Clinical Trials", "How is safety handled in clinical trials?", "**Why they ask:** trial safety.\n\n**Answer:**\n\"Sites report SAEs to the sponsor within 24 hours, the safety team assesses them for SUSARs, SUSARs go on an expedited basis to regulators, ethics committees and investigators, and the annual DSUR summarizes the safety profile.\"\n\nTip: SUSARs.", "B", "M"],
+["Benefit-Risk", "How is benefit-risk assessed?", "**Why they ask:** strategic safety thinking.\n\n**Answer:**\n\"By weighing therapeutic benefits against risks using data from all sources, with structured frameworks and context — disease severity and available alternatives. A serious risk can be acceptable for a cancer drug that wouldn't be for an allergy medicine.\"\n\nTip: Context matters.", "D", "M"],
+["Social Media", "Do social media posts need PV review?", "**Why they ask:** digital sources.\n\n**Answer:**\n\"Company-sponsored digital channels must be monitored for adverse events, and posts meeting minimum criteria are processed as cases. Companies generally aren't expected to scan the whole internet, but must monitor what they own.\"\n\nTip: Company channels.", "D", "M"],
+["Audits", "What do PV audits and inspections examine?", "**Why they ask:** inspection readiness.\n\n**Answer:**\n\"Case processing timeliness and quality, the PSMF, SOPs, training records, signal management, partner agreements and CAPA effectiveness.\"\n\nTip: PSMF.", "D", "M"],
+["Duplicates", "How do you detect duplicate cases?", "**Why they ask:** data quality.\n\n**Answer:**\n\"Search on patient identifiers like initials, age and sex, event dates, product, event details and reporter, then merge appropriately — the same event reported by a patient and their doctor is one case.\"\n\nTip: Search criteria.", "B", "E"],
+["Medical Review", "What's the role of medical review?", "**Why they ask:** process knowledge.\n\n**Answer:**\n\"Safety physicians review serious cases for causality, expectedness and medical accuracy, and add the company comment.\"\n\nTip: Physician oversight.", "B", "E"],
+["Devices", "How does device vigilance differ?", "**Why they ask:** breadth.\n\n**Answer:**\n\"In the US, manufacturers file Medical Device Reports within 30 days, or 5 days for events needing remedial action to prevent serious harm; in the EU, vigilance falls under the MDR. The focus includes malfunctions that could cause harm, not just actual injuries.\"\n\nTip: MDRs.", "D", "M"],
+["Labeling", "When does PV trigger labeling changes?", "**Why they ask:** safety impact.\n\n**Answer:**\n\"When a validated signal has enough evidence, the safety information in the CCDS and labels is updated, coordinated with regulatory affairs.\"\n\nTip: CCDS.", "D", "M"],
+["Scenario", "A sales rep hears about a patient's side effect at a dinner. What happens?", "**Why they ask:** practical compliance.\n\n**Answer:**\n\"The rep must report it to PV, typically within one business day per SOP. Day 0 is the day the rep heard it, not the day PV received it, so delays by the rep eat into the reporting timeline.\"\n\nTip: Day 0.", "B", "E"],
+["Scenario", "You find a case was reported late. What do you do?", "**Why they ask:** accountability.\n\n**Answer:**\n\"Submit it immediately, document the reason for the delay, investigate the root cause, and implement a CAPA so it doesn't happen again.\"\n\nTip: CAPA.", "B", "E"],
+["AI", "How is AI used in pharmacovigilance?", "**Why they ask:** current trends.\n\n**Answer:**\n\"Automating case intake by extracting data from source documents, duplicate detection, MedDRA coding suggestions, literature screening and signal detection — always with validation and human oversight, since errors affect patient safety and compliance.\"\n\nTip: Human oversight.", "B", "M"],
+["Pregnancy", "How are pregnancy exposures handled?", "**Why they ask:** special situations.\n\n**Answer:**\n\"They're collected and followed up through the pregnancy outcome and infant follow-up, and reported as cases if associated with adverse events.\"\n\nTip: Follow-up to outcome.", "B", "M"],
+["Communication", "How do you communicate safety information to stakeholders?", "**Why they ask:** communication.\n\n**Answer:**\n\"Clear, accurate summaries tailored for medical, regulatory and commercial teams, and Dear Healthcare Provider letters when prescribers need to be informed directly.\"\n\nTip: Accuracy.", "B", "E"],
+["Teamwork", "How does PV work with other functions?", "**Why they ask:** cross-functional understanding.\n\n**Answer:**\n\"Clinical for SAEs, regulatory for reporting and labeling, medical information for inquiries, quality for product complaints that involve adverse events, and commercial for training reps on reporting.\"\n\nTip: Cross-functional.", "B", "E"],
+["Ethics", "Why does PV matter?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Clinical trials involve a few thousand patients and can't detect rare risks. Real-world monitoring across millions of patients is what finds them and protects patients for the life of the product.\"\n\nTip: Patient safety.", "B", "E"],
+["Questions", "What would you ask in a PV interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What's the case volume and product portfolio? Which safety database? How is the team structured, and what's outsourced? What growth paths exist?\"\n\nTip: Volume.", "B", "E"]
+]);
+
+QB["ls-pv"] = (QB["ls-pv"] || []).concat([
+["SUSAR", "What is a SUSAR?", "**Why they ask:** trial safety.\n\n**Answer:**\n\"A Suspected Unexpected Serious Adverse Reaction in a clinical trial: serious, with a reasonable possibility of relation to the investigational product, and unexpected per the reference safety information. All three must apply, and it's reported on an expedited basis.\"\n\nTip: All three criteria.", "B", "E"],
+["Disproportionality", "Explain the PRR.", "**Why they ask:** signal detection math.\n\n**Answer:**\n\"The Proportional Reporting Ratio compares how often an event is reported for one drug against all other drugs in a database: a over a plus b, divided by c over c plus d. If 30 of 1,000 reports for our drug mention the event — 3% — versus 1% for all other drugs, the PRR is 3. A common threshold is PRR of at least 2 with at least 3 cases and chi-square of at least 4.\"\n\nTip: Thresholds.", "D", "S"],
+["PSMF", "What is the PSMF?", "**Why they ask:** EU compliance.\n\n**Answer:**\n\"The Pharmacovigilance System Master File describes the company's PV system — organization, QPPV, procedures, databases, partners and compliance metrics. It must be current and available for inspection.\"\n\nTip: Inspection-ready.", "D", "M"],
+["Medical Information", "How do medical information inquiries relate to PV?", "**Why they ask:** case sources.\n\n**Answer:**\n\"Inquiries mentioning adverse events or special situations must be forwarded to PV within required timelines, and MI and PV reconcile regularly to make sure nothing was missed.\"\n\nTip: Reconciliation.", "B", "E"],
+["Patient Support Programs", "Why do patient support programs need PV oversight?", "**Why they ask:** hidden case sources.\n\n**Answer:**\n\"Programs that talk to patients — nurse calls, reimbursement support — hear about adverse events. They need reporting procedures, training and reconciliation with PV, and they're a common inspection finding.\"\n\nTip: Hidden case sources.", "D", "M"],
+["E2B", "What is E2B?", "**Why they ask:** submission standards.\n\n**Answer:**\n\"The ICH standard for electronic transmission of ICSRs between companies and regulators. E2B(R3) is the current format for FAERS and EudraVigilance submissions.\"\n\nTip: E2B(R3).", "D", "M"],
+["Unblinding", "When are cases unblinded for reporting?", "**Why they ask:** trial integrity.\n\n**Answer:**\n\"SUSARs are generally unblinded by the safety team, not the study team, for expedited reporting, so regulators know whether the subject got the drug while the trial team stays blinded.\"\n\nTip: Protect trial integrity.", "D", "M"],
+["Metrics", "Which PV metrics do you track?", "**Why they ask:** performance management.\n\n**Answer:**\n\"On-time submission rates, case processing cycle time, QC error rates, backlog, follow-up success and reconciliation completeness.\"\n\nTip: On-time rate.", "B", "E"],
+["Training", "Who needs PV training in a company?", "**Why they ask:** system thinking.\n\n**Answer:**\n\"Everyone who might hear about an adverse event: sales, medical, call centers, patient programs, social media teams and partners — so they recognize events and report within timelines.\"\n\nTip: Company-wide.", "B", "E"],
+["Scenario", "A literature article reports a fatal case with your drug. What do you do?", "**Why they ask:** applied process.\n\n**Answer:**\n\"Treat it as a valid case if minimum criteria are met, with Day 0 as the date the article was identified. Process it as a priority, assess expectedness and causality, submit within 15 days if serious and unexpected, and evaluate whether it contributes to a signal.\"\n\nTip: Day 0 from identification.", "B", "M"]
 ]);
