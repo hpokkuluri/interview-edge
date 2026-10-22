@@ -1,42 +1,12 @@
-QB['bk-claims'] = (QB['bk-claims']||[]).concat([
-["Recorded Statements", "How do you take a good recorded statement?",
-`**Answer:** Get permission to record, identify the parties, ask open-ended questions in chronological order, clarify details (time, location, speed, actions), avoid leading questions, and summarize at the end.
-
-Tip: Open-ended questions.`, 'B', 'E'],
-["Examination Under Oath", "When is an examination under oath used?",
-`**Answer:** In property claims with suspicious circumstances or significant discrepancies, a policy condition requires the insured to answer questions under oath, usually with counsel involved.
-
-Tip: Policy condition.`, 'D', 'M'],
-["Appraisal", "What is the appraisal clause?",
-`**Answer:** It resolves disputes over the amount of loss (not coverage). Each side picks an appraiser, and they select an umpire if they disagree.
-
-Tip: Amount, not coverage.`, 'D', 'M'],
-["Additional Living Expense", "What is ALE in homeowners claims?",
-`**Answer:** Additional living expenses: the increased costs of living elsewhere while the home is uninhabitable, such as hotel and meals above normal costs, up to policy limits.
-
-Tip: Above normal costs.`, 'B', 'E'],
-["Medicare", "Why does Medicare matter in injury claims?",
-`**Answer:** Insurers must report settlements with Medicare beneficiaries (Section 111) and protect Medicare's interests through conditional payment repayment and potentially Medicare set-asides.
-
-Tip: Section 111.`, 'D', 'M'],
-["Statute of Limitations", "Why track statutes of limitations?",
-`**Answer:** Claimants must file suit within statutory deadlines, and subrogation recovery is also time-limited. Missing deadlines affects outcomes.
-
-Tip: Diary deadlines.`, 'B', 'E'],
-["Complex Claims", "How do you manage a complex commercial claim?",
-`**Answer:** Early team assembly (independent adjusters, experts, coverage counsel), a claim plan with milestones, regular stakeholder reports, reserve reviews, and careful documentation.
-
-Tip: Claim plan.`, 'D', 'M'],
-["Quality Audits", "What do claims file audits review?",
-`**Answer:** Timely contact, coverage analysis, investigation completeness, reserve accuracy, evaluation documentation, settlement rationale, subrogation pursuit and regulatory compliance.
-
-Tip: Best practices.`, 'B', 'M'],
-["Empathy", "How do you show empathy after a loss?",
-`**Answer:** Acknowledge the impact, explain the next steps simply, set expectations, follow up proactively, and make advance payments when appropriate.
-
-Tip: Advance payments.`, 'B', 'E'],
-["Scenario", "An insured is unhappy with the repair estimate. What do you do?",
-`**Answer:** Review their contractor's estimate line by line, reinspect jointly if needed, reconcile the differences, explain your reasoning, and use appraisal if the dispute continues.
-
-Tip: Line-by-line.`, 'B', 'E']
+QB["bk-claims"] = (QB["bk-claims"] || []).concat([
+["Recorded Statements", "How do you take a good recorded statement?", "**Why they ask:** investigation skill.\n\n**Answer:**\n\"Get permission on the recording, identify everyone present, ask open-ended questions in chronological order, clarify time, location, speed and actions, avoid leading questions, and summarize at the end so they can confirm.\"\n\nTip: Open-ended questions.", "B", "E"],
+["Examination Under Oath", "When is an examination under oath used?", "**Why they ask:** fraud tools.\n\n**Answer:**\n\"In property claims with suspicious circumstances or major discrepancies. It's a policy condition requiring the insured to answer questions under oath, usually with counsel involved.\"\n\nTip: Policy condition.", "D", "M"],
+["Appraisal", "What is the appraisal clause?", "**Why they ask:** dispute resolution.\n\n**Answer:**\n\"It resolves disputes over the amount of loss — not coverage. Each side picks an appraiser, and if they can't agree, an umpire decides; agreement by any two is binding.\"\n\nTip: Amount, not coverage.", "D", "M"],
+["Additional Living Expense", "What is ALE in homeowners claims?", "**Why they ask:** property coverage detail.\n\n**Answer:**\n\"Additional living expenses — the increased cost of living elsewhere while the home is uninhabitable. If a family normally spends $800 a month on groceries and now spends $1,500 eating out, ALE pays the $700 difference, plus hotel or rental, up to limits.\"\n\nTip: Above normal costs.", "B", "E"],
+["Medicare", "Why does Medicare matter in injury claims?", "**Why they ask:** compliance.\n\n**Answer:**\n\"Insurers must report settlements with Medicare beneficiaries under Section 111 and protect Medicare's interests by repaying conditional payments and, in some cases, using Medicare set-asides for future medical.\"\n\nTip: Section 111.", "D", "M"],
+["Statute of Limitations", "Why track statutes of limitations?", "**Why they ask:** deadline discipline.\n\n**Answer:**\n\"Claimants must sue within statutory deadlines, and our subrogation rights are time-limited too. Missing a deadline can lose a recovery entirely, so I diary them on every file.\"\n\nTip: Diary deadlines.", "B", "E"],
+["Complex Claims", "How do you manage a complex commercial claim?", "**Why they ask:** complexity management.\n\n**Answer:**\n\"Assemble the team early — independent adjusters, experts, coverage counsel — build a claim plan with milestones, send regular stakeholder reports, review reserves and document carefully.\"\n\nTip: Claim plan.", "D", "M"],
+["Quality Audits", "What do claims file audits review?", "**Why they ask:** quality standards.\n\n**Answer:**\n\"Timely contact, coverage analysis, investigation completeness, reserve accuracy, evaluation documentation, settlement rationale, subrogation pursuit and regulatory compliance.\"\n\nTip: Best practices.", "B", "M"],
+["Empathy", "How do you show empathy after a loss?", "**Why they ask:** customer care.\n\n**Answer:**\n\"Acknowledge the impact, explain next steps simply, set expectations, follow up before they have to chase me, and issue advance payments when appropriate so they can get a hotel or start repairs.\"\n\nTip: Advance payments.", "B", "E"],
+["Scenario", "An insured is unhappy with the repair estimate. What do you do?", "**Why they ask:** dispute handling.\n\n**Answer:**\n\"Review their contractor's estimate line by line against ours, reinspect jointly if needed, reconcile the differences — often it's scope or pricing on a few items — explain my reasoning, and use appraisal if we still can't agree.\"\n\nTip: Line-by-line.", "B", "E"]
 ]);

@@ -1,204 +1,43 @@
 // Insurance Claims Manager / Adjuster. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['bk-claims'] = [
-["Role", "What does a claims adjuster/manager do?",
-`**Why they ask:** fairness and efficiency.
-
-**Answer:** Investigates and resolves insurance claims: verifies coverage, investigates facts and liability, evaluates damages, sets reserves, negotiates settlements, manages vendors and litigation, detects fraud, and delivers good customer service — managers also lead teams and monitor claim metrics.
-
-Tip: Lines and authority level.`, 'B', 'E'],
-
-["Process", "Walk through the claims process.",
-`**Answer:** First notice of loss → acknowledgment and contact within regulatory timelines → coverage review → investigation (statements, inspections, documents) → evaluation of liability and damages → reserving → negotiation and settlement or denial → payment → closure or subrogation.
-
-Tip: Timelines.`, 'B', 'E'],
-
-["Coverage", "How do you analyze coverage?",
-`**Answer:** Confirm the policy was in force, insured and location covered, the loss falls within insuring agreement, check exclusions, conditions (notice, cooperation), endorsements, limits and deductibles.
-
-Tip: Insuring agreement first.`, 'B', 'M'],
-
-["Reservation of Rights", "What is a reservation of rights letter?",
-`**Answer:** Notifies the insured that the insurer is investigating or defending while reserving the right to deny coverage later based on specified policy provisions.
-
-Tip: Protects both parties.`, 'B', 'M'],
-
-["Reserves", "How do you set reserves?",
-`**Answer:** Estimate ultimate cost of the claim (indemnity and expense) based on facts, damages, liability and jurisdiction; update as information develops; avoid stair-stepping.
-
-Tip: Accurate early.`, 'B', 'M'],
-
-["Liability", "How do you determine liability?",
-`**Answer:** Investigate facts (statements, police reports, photos, scene), apply negligence law and jurisdiction rules (comparative or contributory negligence), and assess percentages of fault.
-
-Tip: Jurisdiction rules.`, 'B', 'M'],
-
-["Negotiation", "How do you negotiate a settlement?",
-`**Answer:** Thorough evaluation and range, understand claimant's position, communicate rationale, make reasoned offers, and document; aim for fair resolution.
-
-Tip: Documented evaluation.`, 'B', 'M'],
-
-["Fraud", "What are indicators of claims fraud?",
-`**Answer:** Recent policy changes or purchase before loss, inconsistent statements, reluctance to provide documents, excessive damages, prior claims history, and staged accident patterns — refer to SIU.
-
-Tip: SIU referral.`, 'B', 'M'],
-
-["Bad Faith", "What is bad faith and how do you avoid it?",
-`**Answer:** Unreasonably denying or delaying claims or failing to investigate; avoid with prompt communication, thorough investigation, fair evaluation, documented decisions, and compliance with unfair claims practices acts.
-
-Tip: Document everything.`, 'B', 'M'],
-
-["Subrogation", "What is subrogation?",
-`**Answer:** After paying a claim, the insurer seeks recovery from the responsible third party — reducing loss costs.
-
-Tip: Preserve evidence.`, 'B', 'E'],
-
-["Property", "How do you handle a large property loss?",
-`**Answer:** Prompt contact and inspection, mitigation of further damage, independent adjusters and experts (engineers, forensic accountants for business interruption), advance payments, and regular communication.
-
-Tip: Mitigation.`, 'D', 'M'],
-
-["Business Interruption", "How is business interruption calculated?",
-`**Answer:** Lost net income plus continuing expenses during the period of restoration, based on financial records — often with forensic accountants.
-
-Tip: Period of restoration.`, 'D', 'M'],
-
-["Workers Comp", "How do workers' comp claims differ?",
-`**Answer:** No-fault coverage of medical and lost wages per state statutes, return-to-work focus, medical management, and state reporting requirements.
-
-Tip: Return to work.`, 'B', 'M'],
-
-["Litigation", "How do you manage litigated claims?",
-`**Answer:** Select and guide defense counsel, budgets and litigation plans, evaluate settlement opportunities, attend mediations, and monitor costs.
-
-Tip: Litigation plans.`, 'D', 'M'],
-
-["Catastrophe", "How do you handle catastrophe claims surges?",
-`**Answer:** Cat response plans, deploying field and desk adjusters, prioritizing severe losses, technology (aerial imagery, virtual inspections), and clear communication.
-
-Tip: Prioritization.`, 'D', 'M'],
-
-["Customer Service", "How do you deliver good claims service?",
-`**Answer:** Fast contact, empathy, clear explanations of process and coverage, regular updates and prompt payments.
-
-Tip: Empathy.`, 'B', 'E'],
-
-["Metrics", "Which claims metrics matter?",
-`**Answer:** Cycle time, closure rates, reserve accuracy, loss adjustment expense, litigation rate, customer satisfaction (NPS), reopen rates, and leakage.
-
-Tip: Leakage.`, 'B', 'M'],
-
-["Leakage", "What is claims leakage?",
-`**Answer:** Unnecessary claim costs from overpayment, missed subrogation, process failures or fraud — identified via file audits.
-
-Tip: File audits.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a difficult claim.",
-`**Sample answer:** "A fire loss had suspicious circumstances. I worked with SIU and a cause-and-origin expert, documented thoroughly, and the evidence supported arson by a third party — we paid promptly and subrogated."
-
-Tip: Fairness.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling an angry claimant.",
-`**Answer:** Listen, acknowledge, explain clearly, provide timelines, follow through.
-
-Tip: Follow-through.`, 'B', 'E'],
-
-["Behavioral", "Tell me about improving claims operations.",
-`**Sample answer:** "I introduced virtual inspections for minor auto claims, reducing cycle time from 12 days to 5 and cutting expenses 18%."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Licensing", "Do adjusters need licenses?",
-`**Answer:** Many states require adjuster licenses with continuing education; designated home state licenses enable reciprocity.
-
-Tip: State licensing.`, 'B', 'E'],
-
-["Certifications", "Which designations help?",
-`**Answer:** AIC (Associate in Claims), CPCU, SCLA.
-
-Tip: AIC.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior adjuster, claims manager, or complex claims specialist.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I resolve claims fairly and fast with strong documentation — cutting cycle times and controlling costs."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Auto", "How do you handle an auto liability claim?",
-`**Answer:** Contact parties, obtain statements and police report, inspect vehicles, determine liability, evaluate injuries and damages, and negotiate or arrange repairs.
-
-Tip: Statements.`, 'B', 'E'],
-
-["Bodily Injury", "How do you evaluate bodily injury claims?",
-`**Answer:** Medical records and bills, causation, treatment reasonableness, lost wages, pain and suffering factors, jurisdiction verdict values, and liability.
-
-Tip: Causation.`, 'D', 'M'],
-
-["Total Loss", "How do you handle a total loss vehicle?",
-`**Answer:** Determine actual cash value using valuation tools and comparables, explain to the insured, handle salvage and title transfer.
-
-Tip: ACV.`, 'B', 'E'],
-
-["ACV", "Actual cash value vs replacement cost?",
-`**Answer:** **ACV** = replacement cost minus depreciation. **Replacement cost** pays to replace with new of like kind without deduction for depreciation (often after repair/replacement).
-
-Tip: Policy terms.`, 'B', 'E'],
-
-["Regulation", "What do unfair claims settlement practices laws require?",
-`**Answer:** Prompt acknowledgment and investigation, fair settlement offers, explanations for denials, and no misrepresentation of policy provisions — specific timelines by state.
-
-Tip: State timelines.`, 'B', 'M'],
-
-["Team", "How do you manage a claims team?",
-`**Answer:** Workload balance, authority levels, file reviews and coaching, metrics and recognition.
-
-Tip: File reviews.`, 'B', 'E'],
-
-["Vendors", "How do you manage vendors?",
-`**Answer:** Approved networks, performance metrics (quality, speed, cost), audits and feedback.
-
-Tip: Metrics.`, 'B', 'E'],
-
-["Technology", "How is technology changing claims?",
-`**Answer:** AI for triage and fraud detection, photo-based estimating, straight-through processing, drones and telematics data.
-
-Tip: Triage.`, 'B', 'M'],
-
-["Scenario", "Coverage is unclear on a claim. What do you do?",
-`**Answer:** Review policy carefully, seek coverage counsel if needed, issue reservation of rights while investigating, and decide promptly.
-
-Tip: Coverage counsel.`, 'B', 'M'],
-
-["Scenario", "A claimant's attorney sends a time-limited demand. What do you do?",
-`**Answer:** Evaluate promptly, gather needed info, respond within the deadline (or request extension in writing), and consider policy limits exposure to avoid bad faith.
-
-Tip: Policy limits demand.`, 'D', 'M'],
-
-["Documentation", "Why is file documentation so important?",
-`**Answer:** Supports decisions, regulatory audits, litigation defense and bad faith protection.
-
-Tip: Contemporaneous notes.`, 'B', 'E'],
-
-["Mediation", "How do you prepare for mediation?",
-`**Answer:** Updated evaluation and authority, understanding of strengths and weaknesses, settlement strategy, and documentation.
-
-Tip: Authority.`, 'D', 'M'],
-
-["Ethics", "How do you balance company cost and fairness to claimants?",
-`**Answer:** Pay what is owed under the policy — no more, no less — promptly and fairly.
-
-Tip: What is owed.`, 'B', 'E'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Lines handled, caseload, authority, technology, training and career path.
-
-Tip: Caseload.`, 'B', 'E'],
-
-["Communication", "How do you explain a denial?",
-`**Answer:** Clear written explanation citing policy language, empathy, and information on appeal or next steps.
-
-Tip: Cite policy.`, 'B', 'E']
-];
+QB["bk-claims"] = (QB["bk-claims"] || []).concat([
+["Role", "What does a claims adjuster/manager do?", "**Why they ask:** fairness and efficiency.\n\n**Answer:** Investigates and resolves insurance claims: verifies coverage, investigates facts and liability, evaluates damages, sets reserves, negotiates settlements, manages vendors and litigation, detects fraud, and delivers good customer service — managers also lead teams and monitor claim metrics.\n\nTip: Lines and authority level.", "B", "E"],
+["Process", "Walk through the claims process.", "**Why they ask:** end-to-end understanding.\n\n**Answer:**\n\"It starts with first notice of loss. I acknowledge and contact the insured within the regulatory timeline — often within 24 to 48 hours internally, and well inside state deadlines. Then coverage review, investigation through statements, inspections and documents, evaluation of liability and damages, setting reserves, negotiation and settlement or a documented denial, payment, and finally closure or subrogation.\"\n\nTip: Timelines.", "B", "E"],
+["Coverage", "How do you analyze coverage?", "**Why they ask:** coverage is the first decision on every file.\n\n**Answer:**\n\"I confirm the policy was in force on the date of loss, that the insured, property and location are covered, and that the loss falls within the insuring agreement. Then I check exclusions, conditions like notice and cooperation, endorsements, limits and deductibles. Insuring agreement first — if it isn't in there, exclusions don't matter.\"\n\nTip: Insuring agreement first.", "B", "M"],
+["Reservation of Rights", "What is a reservation of rights letter?", "**Why they ask:** coverage handling.\n\n**Answer:**\n\"It tells the insured we're investigating or defending the claim while reserving the right to deny coverage later based on specific policy provisions, which it cites. It protects the insurer from waiving a coverage defense and gives the insured fair notice.\"\n\nTip: Protects both parties.", "B", "M"],
+["Reserves", "How do you set reserves?", "**Why they ask:** financial accuracy.\n\n**Answer:**\n\"Estimate the ultimate cost — indemnity plus expense — based on the facts, damages, liability and jurisdiction, and update as information develops. I avoid stair-stepping, where reserves creep up in small increments; if a soft-tissue claim turns into a surgery case, I move the reserve to the realistic value in one step.\"\n\nTip: Accurate early.", "B", "M"],
+["Liability", "How do you determine liability?", "**Why they ask:** core adjusting skill.\n\n**Answer:**\n\"Investigate the facts — statements, police reports, photos, the scene — then apply negligence law for that jurisdiction. Rules matter: with $100,000 in damages and a claimant 30% at fault, pure comparative pays $70,000; a modified 51% bar state pays $70,000 too, but at 51% fault they'd get nothing; a contributory negligence state could bar recovery at 1%.\"\n\nTip: Jurisdiction rules.", "B", "M"],
+["Negotiation", "How do you negotiate a settlement?", "**Why they ask:** results and fairness.\n\n**Answer:**\n\"Start with a thorough evaluation and a settlement range, understand the claimant's position, communicate my rationale, make reasoned offers rather than lowballs, and document each step. The goal is a fair resolution that I could defend to a regulator or a jury.\"\n\nTip: Documented evaluation.", "B", "M"],
+["Fraud", "What are indicators of claims fraud?", "**Why they ask:** fraud awareness.\n\n**Answer:**\n\"Policy purchased or coverage increased shortly before the loss, inconsistent statements, reluctance to provide documents, inflated damages, prior claims history and staged accident patterns. Indicators aren't proof, so I refer to SIU rather than accusing anyone.\"\n\nTip: SIU referral.", "B", "M"],
+["Bad Faith", "What is bad faith and how do you avoid it?", "**Why they ask:** legal risk.\n\n**Answer:**\n\"Unreasonably denying or delaying a claim or failing to investigate properly. I avoid it with prompt communication, thorough investigation, fair evaluation, documented decisions and compliance with the state's unfair claims practices act. If it isn't documented, it didn't happen.\"\n\nTip: Document everything.", "B", "M"],
+["Subrogation", "What is subrogation?", "**Why they ask:** cost recovery.\n\n**Answer:**\n\"After paying a claim, the insurer steps into the insured's shoes to recover from the responsible party — like recovering a $25,000 water loss from the plumber whose fitting failed. Preserving evidence, like the failed part, is what makes recovery possible.\"\n\nTip: Preserve evidence.", "B", "E"],
+["Property", "How do you handle a large property loss?", "**Why they ask:** complex claim handling.\n\n**Answer:**\n\"Prompt contact and inspection, mitigation to prevent further damage, bringing in independent adjusters and experts — engineers, forensic accountants for business interruption — advance payments so the insured can start recovering, and regular communication.\"\n\nTip: Mitigation.", "D", "M"],
+["Business Interruption", "How is business interruption calculated?", "**Why they ask:** commercial claims skill.\n\n**Answer:**\n\"Lost net income plus continuing normal expenses during the period of restoration, based on financial records. If a restaurant earns $30,000 a month net and has $20,000 of continuing expenses like rent and key payroll, a four-month restoration means about $200,000. Forensic accountants usually help on larger losses.\"\n\nTip: Period of restoration.", "D", "M"],
+["Workers Comp", "How do workers' comp claims differ?", "**Why they ask:** line-specific knowledge.\n\n**Answer:**\n\"They're no-fault — medical and lost wages are paid under state statutes regardless of who caused the injury — with a strong return-to-work focus, medical management and state reporting requirements.\"\n\nTip: Return to work.", "B", "M"],
+["Litigation", "How do you manage litigated claims?", "**Why they ask:** litigation management.\n\n**Answer:**\n\"Select and guide defense counsel, require budgets and litigation plans, keep evaluating settlement opportunities, attend mediations, and monitor costs so defense spend stays proportional to exposure.\"\n\nTip: Litigation plans.", "D", "M"],
+["Catastrophe", "How do you handle catastrophe claims surges?", "**Why they ask:** operational resilience.\n\n**Answer:**\n\"Activate the cat response plan, deploy field and desk adjusters, prioritize severe losses like uninhabitable homes, use aerial imagery and virtual inspections for faster assessment, and communicate clearly about timelines.\"\n\nTip: Prioritization.", "D", "M"],
+["Customer Service", "How do you deliver good claims service?", "**Why they ask:** customer focus.\n\n**Answer:**\n\"Fast contact, empathy, clear explanations of the process and coverage, regular updates — even when there's nothing new — and prompt payments.\"\n\nTip: Empathy.", "B", "E"],
+["Metrics", "Which claims metrics matter?", "**Why they ask:** performance management.\n\n**Answer:**\n\"Cycle time, closure rates, reserve accuracy, loss adjustment expense, litigation rate, customer satisfaction or NPS, reopen rates and leakage.\"\n\nTip: Leakage.", "B", "M"],
+["Leakage", "What is claims leakage?", "**Why they ask:** cost control.\n\n**Answer:**\n\"Unnecessary claim cost from overpayment, missed subrogation, process failures or fraud. It's found through file audits — industry estimates often put it in the range of several percent of paid losses.\"\n\nTip: File audits.", "D", "M"],
+["Behavioral", "Tell me about a difficult claim.", "**Why they ask:** judgment and fairness.\n\n**Answer:**\n\"A fire loss had suspicious circumstances. I worked with SIU and a cause-and-origin expert and documented thoroughly. The evidence showed arson by a third party, not the insured, so we paid promptly and subrogated.\"\n\nTip: Fairness.", "B", "M"],
+["Behavioral", "Tell me about handling an angry claimant.", "**Why they ask:** de-escalation.\n\n**Answer:**\n\"A claimant called furious after three weeks without a decision. I listened, acknowledged the delay was frustrating, explained exactly what was pending and gave a date. I called back on that date with the decision, and the complaint went no further.\"\n\nTip: Follow-through.", "B", "E"],
+["Behavioral", "Tell me about improving claims operations.", "**Why they ask:** process improvement.\n\n**Answer:**\n\"I introduced virtual inspections for minor auto claims, cutting cycle time from 12 days to 5 and expenses by 18%.\"\n\nTip: Measured.", "B", "M"],
+["Licensing", "Do adjusters need licenses?", "**Why they ask:** compliance.\n\n**Answer:**\n\"Many states require adjuster licenses with continuing education. A designated home state license allows reciprocity for working claims in other states, which is essential during catastrophes.\"\n\nTip: State licensing.", "B", "E"],
+["Certifications", "Which designations help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"AIC — Associate in Claims — CPCU and SCLA.\"\n\nTip: AIC.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior adjuster and complex claims, and eventually claims manager.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I resolve claims fairly and fast with strong documentation — cutting cycle times and controlling costs.\"\n\nTip: Proof.", "B", "E"],
+["Auto", "How do you handle an auto liability claim?", "**Why they ask:** core workflow.\n\n**Answer:**\n\"Contact all parties, take statements, get the police report, inspect vehicles, determine liability, evaluate injuries and damages, then negotiate or arrange repairs. Early statements matter most — memories change fast.\"\n\nTip: Statements.", "B", "E"],
+["Bodily Injury", "How do you evaluate bodily injury claims?", "**Why they ask:** evaluation skill.\n\n**Answer:**\n\"Medical records and bills, causation — was this injury caused by this accident or pre-existing — reasonableness of treatment, lost wages, pain and suffering factors, jury verdict values in that venue, and liability.\"\n\nTip: Causation.", "D", "M"],
+["Total Loss", "How do you handle a total loss vehicle?", "**Why they ask:** auto claims.\n\n**Answer:**\n\"Determine actual cash value with valuation tools and local comparables, explain it clearly to the insured, then handle salvage and title transfer. A vehicle is typically a total loss when repair plus salvage exceeds ACV, or past a state threshold like 75%.\"\n\nTip: ACV.", "B", "E"],
+["ACV", "Actual cash value vs replacement cost?", "**Why they ask:** valuation basics.\n\n**Answer:**\n\"ACV is replacement cost minus depreciation. A roof that costs $20,000 to replace, with a 20-year life and 10 years old, has ACV of $10,000. Replacement cost pays the full $20,000, less deductible, usually after the work is actually done — the policy terms control.\"\n\nTip: Policy terms.", "B", "E"],
+["Regulation", "What do unfair claims settlement practices laws require?", "**Why they ask:** regulatory compliance.\n\n**Answer:**\n\"Prompt acknowledgment and investigation, fair settlement offers, written explanations for denials, and no misrepresentation of policy provisions — with specific timelines that vary by state.\"\n\nTip: State timelines.", "B", "M"],
+["Team", "How do you manage a claims team?", "**Why they ask:** leadership.\n\n**Answer:**\n\"Balance workloads, set authority levels by experience, do regular file reviews with coaching, track metrics and recognize good work.\"\n\nTip: File reviews.", "B", "E"],
+["Vendors", "How do you manage vendors?", "**Why they ask:** cost and quality.\n\n**Answer:**\n\"Approved networks, performance metrics on quality, speed and cost, audits and regular feedback.\"\n\nTip: Metrics.", "B", "E"],
+["Technology", "How is technology changing claims?", "**Why they ask:** current trends.\n\n**Answer:**\n\"AI triage and fraud detection, photo-based estimating, straight-through processing for simple claims, drones for roofs and telematics data for auto. It frees adjusters for the complex files.\"\n\nTip: Triage.", "B", "M"],
+["Scenario", "Coverage is unclear on a claim. What do you do?", "**Why they ask:** coverage judgment.\n\n**Answer:**\n\"Review the policy carefully, get coverage counsel if needed, issue a reservation of rights while investigating, and decide promptly — uncertainty doesn't justify delay.\"\n\nTip: Coverage counsel.", "B", "M"],
+["Scenario", "A claimant's attorney sends a time-limited demand. What do you do?", "**Why they ask:** bad-faith exposure.\n\n**Answer:**\n\"Evaluate it immediately, gather what's needed, and respond before the deadline or request an extension in writing. If it's a policy-limits demand and the case value likely exceeds limits, rejecting it can expose the insurer to an excess verdict, so I escalate quickly.\"\n\nTip: Policy limits demand.", "D", "M"],
+["Documentation", "Why is file documentation so important?", "**Why they ask:** professional discipline.\n\n**Answer:**\n\"It supports decisions, regulatory audits, litigation defense and bad-faith protection. Contemporaneous notes carry far more weight than reconstructions.\"\n\nTip: Contemporaneous notes.", "B", "E"],
+["Mediation", "How do you prepare for mediation?", "**Why they ask:** negotiation readiness.\n\n**Answer:**\n\"An updated evaluation and authority, a clear view of strengths and weaknesses on both sides, a settlement strategy, and the documentation to back it.\"\n\nTip: Authority.", "D", "M"],
+["Ethics", "How do you balance company cost and fairness to claimants?", "**Why they ask:** values.\n\n**Answer:**\n\"Pay what's owed under the policy — no more, no less — promptly and fairly. Overpaying hurts other policyholders; underpaying hurts the claimant and the company's reputation.\"\n\nTip: What is owed.", "B", "E"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"Which lines would I handle? What's the caseload and authority? Which technology, what training, and what's the career path?\"\n\nTip: Caseload.", "B", "E"],
+["Communication", "How do you explain a denial?", "**Why they ask:** communication.\n\n**Answer:**\n\"A clear written explanation quoting the specific policy language, delivered with empathy, plus information on appeal or next steps.\"\n\nTip: Cite policy.", "B", "E"]
+]);
