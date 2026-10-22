@@ -1,254 +1,57 @@
 // sm-mkt — generated from src/sm-mkt-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Digital / Growth Marketing Manager. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sm-mkt'] = [
-["Role", "What does a digital marketing manager do?",
-`**Why they ask:** channel breadth and results.
-
-**Answer:** Plans and runs digital campaigns across paid search, paid social, SEO, email, content and website to generate awareness, leads and revenue — managing budgets, analytics, testing and agencies, and reporting performance against goals.
-
-Tip: Name channels and budgets managed.`, 'B', 'E'],
-
-["Funnel", "Explain the marketing funnel.",
-`**Answer:** Awareness → consideration → conversion → retention/advocacy. Different channels and content serve each stage; measure conversion between stages.
-
-Tip: Stage-specific metrics.`, 'B', 'E'],
-
-["Metrics", "Which marketing metrics matter most?",
-`**Answer:** CAC, ROAS, conversion rate, cost per lead/acquisition, MQL-to-SQL conversion, pipeline and revenue influenced, LTV, CTR, and engagement — tied to business goals.
-
-Tip: Revenue metrics.`, 'B', 'E'],
-
-["ROAS", "How do you calculate ROAS and CAC?",
-`**Answer:** ROAS = revenue from ads / ad spend. CAC = total acquisition cost / new customers.
-
-**Example:** $20K spend → $80K revenue = 4x ROAS; $50K marketing + sales costs / 100 customers = $500 CAC.
-
-Tip: Show math.`, 'B', 'E'],
-
-["Paid Search", "How do you optimize a Google Ads campaign?",
-`**Answer:** Tight keyword and ad group structure, negative keywords, compelling ad copy with extensions/assets, landing page relevance, smart bidding with conversion data, testing, and monitoring search terms and quality score.
-
-Tip: Negative keywords.`, 'B', 'M'],
-
-["Paid Social", "How do you run effective paid social campaigns?",
-`**Answer:** Clear audience targeting (lookalikes, retargeting, interests), creative testing (formats, hooks), frequency management, platform-native content, and measuring incrementality.
-
-Tip: Creative is the biggest lever.`, 'B', 'M'],
-
-["SEO", "What are the pillars of SEO?",
-`**Answer:** Technical SEO (crawlability, speed, Core Web Vitals, structured data), on-page (keywords, content quality, intent match), and off-page (backlinks, authority). Now also optimizing for AI search summaries.
-
-Tip: Search intent.`, 'B', 'M'],
-
-["Content", "How do you build a content strategy?",
-`**Answer:** Define audience personas and needs, keyword and topic research, content mapped to funnel stages, editorial calendar, distribution plan, and measurement.
-
-Tip: Distribution.`, 'B', 'M'],
-
-["Email", "How do you improve email marketing performance?",
-`**Answer:** Segmentation and personalization, strong subject lines, clear CTAs, automated nurture flows, testing, list hygiene and deliverability (SPF/DKIM/DMARC).
-
-Tip: Segmentation.`, 'B', 'E'],
-
-["Attribution", "How do you approach marketing attribution?",
-`**Answer:** Multi-touch models (linear, time decay, position-based, data-driven) supplemented by incrementality testing and marketing mix modeling, since privacy changes limit tracking.
-
-Tip: Incrementality.`, 'D', 'M'],
-
-["Testing", "How do you run A/B tests?",
-`**Answer:** Hypothesis, one variable, enough sample size for statistical significance, run full cycles, and implement winners.
-
-Tip: Significance.`, 'B', 'E'],
-
-["Budget", "How do you allocate a marketing budget?",
-`**Answer:** Based on goals and channel performance (CAC, ROAS), with test budgets for new channels (10–20%), and regular reallocation.
-
-Tip: Test budget.`, 'B', 'M'],
-
-["Analytics", "Which analytics tools do you use?",
-`**Answer:** GA4, Google Tag Manager, Looker Studio, HubSpot/Marketo, Salesforce, ad platform analytics and Mixpanel/Amplitude.
-
-Tip: GA4.`, 'B', 'E'],
-
-["Privacy", "How have privacy changes affected digital marketing?",
-`**Answer:** Cookie restrictions, iOS tracking limits and privacy laws reduce tracking; marketers invest in first-party data, consent management, server-side tracking and modeling.
-
-Tip: First-party data.`, 'D', 'M'],
-
-["B2B", "How is B2B marketing different?",
-`**Answer:** Longer cycles, multiple decision-makers, account-based marketing, content for education, lead nurturing and alignment with sales.
-
-Tip: ABM.`, 'B', 'M'],
-
-["ABM", "What is account-based marketing?",
-`**Answer:** Targeting specific high-value accounts with personalized campaigns across channels in coordination with sales.
-
-Tip: Sales alignment.`, 'D', 'M'],
-
-["Lead Scoring", "How do you design lead scoring?",
-`**Answer:** Combine fit (firmographics, role) and engagement (behavior) scores, set MQL threshold with sales, and refine based on conversion data.
-
-Tip: Fit + behavior.`, 'D', 'M'],
-
-["Landing Pages", "What makes a high-converting landing page?",
-`**Answer:** Message match with the ad, clear headline and value proposition, social proof, minimal distractions, short forms, fast load and strong CTA.
-
-Tip: Message match.`, 'B', 'E'],
-
-["Brand", "How do you balance brand and performance marketing?",
-`**Answer:** Performance captures existing demand; brand creates future demand. Allocate to both and measure brand via search volume, share of voice and lift studies.
-
-Tip: Both matter.`, 'D', 'M'],
-
-["AI", "How do you use AI in marketing?",
-`**Answer:** Content drafting, personalization, ad creative variations, audience insights, predictive analytics, and optimizing for AI search — with human review for brand and accuracy.
-
-Tip: Human review.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a campaign you're proud of.",
-`**Sample answer:** "I launched a paid search and LinkedIn campaign for a new product. Through landing page testing and audience refinement, CAC dropped 35% and we generated $2.4M pipeline in a quarter."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a campaign that failed.",
-`**Sample answer:** "A TikTok test underperformed because our audience wasn't there. I cut spend quickly, documented learnings, and reallocated to LinkedIn."
-
-Tip: Fast learning.`, 'B', 'E'],
-
-["Behavioral", "How do you work with sales?",
-`**Answer:** Shared definitions, regular feedback, joint pipeline goals and closed-loop reporting.
-
-Tip: Closed-loop.`, 'B', 'E'],
-
-["Certifications", "Which certifications help?",
-`**Answer:** Google Ads, GA4, HubSpot, Meta Blueprint, and LinkedIn Marketing Labs.
-
-Tip: Hands-on results matter.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Director of growth/demand generation or head of marketing.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I run data-driven campaigns that lower CAC and grow pipeline — cutting CAC 35% and generating millions in pipeline."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Retention", "How does marketing support retention?",
-`**Answer:** Onboarding emails, customer education, community, loyalty programs and upsell campaigns.
-
-Tip: Lifecycle marketing.`, 'B', 'E'],
-
-["LTV", "How do you calculate LTV?",
-`**Answer:** LTV ≈ average revenue per customer per period × gross margin / churn rate.
-
-**Example:** $100/month × 80% margin / 2% monthly churn = $4,000.
-
-Tip: Use margin.`, 'D', 'M'],
-
-["Conversion Rate", "How do you improve conversion rates?",
-`**Answer:** Analyze funnel drop-offs, user research, simplify forms, improve messaging and trust signals, page speed and A/B tests.
-
-Tip: Find the biggest drop-off.`, 'B', 'E'],
-
-["Social Media", "How do you grow organic social?",
-`**Answer:** Consistent valuable content, employee advocacy, engagement with community, platform-native formats and analytics.
-
-Tip: Employee advocacy.`, 'B', 'E'],
-
-["Agencies", "How do you manage agencies?",
-`**Answer:** Clear goals and KPIs, regular reviews, transparent reporting, and holding them accountable while sharing context.
-
-Tip: Shared KPIs.`, 'B', 'E'],
-
-["Martech", "How do you choose marketing technology?",
-`**Answer:** Requirements, integration with CRM, ease of use, cost and scalability.
-
-Tip: CRM integration.`, 'B', 'E'],
-
-["Scenario", "Leads dropped 40% this month. How do you investigate?",
-`**Answer:** Check tracking first, then channel by channel performance, budget changes, algorithm updates, landing page issues, seasonality and competitor activity.
-
-Tip: Tracking first.`, 'B', 'M'],
-
-["Scenario", "Leadership wants to cut budget 25%. What do you do?",
-`**Answer:** Cut lowest-efficiency spend first based on CAC/ROAS, protect top performers, and show expected impact on pipeline.
-
-Tip: Data-driven cuts.`, 'B', 'M'],
-
-["Scenario", "Sales says leads are low quality. What do you do?",
-`**Answer:** Review data together, refine ICP and scoring, adjust targeting and forms, and agree SLAs.
-
-Tip: Joint review.`, 'B', 'E'],
-
-["Personas", "How do you build buyer personas?",
-`**Answer:** Customer interviews, sales input, data analysis — capturing goals, challenges, buying process and channels.
-
-Tip: Interviews.`, 'B', 'E'],
-
-["Video", "How do you use video in marketing?",
-`**Answer:** Short-form for social, explainer and demo videos, testimonials and webinars, optimized for each platform.
-
-Tip: Short-form.`, 'B', 'E'],
-
-["Events", "How do you measure event ROI?",
-`**Answer:** Leads and meetings generated, pipeline and revenue influenced, cost per opportunity, and brand impact.
-
-Tip: Pipeline influenced.`, 'B', 'E'],
-
-["Reporting", "What goes into a monthly marketing report?",
-`**Answer:** Performance vs goals, channel metrics, pipeline contribution, insights, and next month's plan.
-
-Tip: Insights, not just numbers.`, 'B', 'E'],
-
-["Ecommerce", "How do you grow ecommerce sales?",
-`**Answer:** Product feed optimization, shopping ads, retargeting, email flows (abandoned cart), conversion optimization and loyalty.
-
-Tip: Abandoned cart flows.`, 'B', 'M'],
-
-["MMM", "What is marketing mix modeling?",
-`**Answer:** Statistical modeling of aggregate sales against channel spend and external factors to estimate each channel's contribution — useful when user-level tracking is limited.
-
-Tip: Privacy-resilient.`, 'D', 'S'],
-
-["Positioning", "How do you test messaging?",
-`**Answer:** Ad copy tests, landing page tests, surveys and customer interviews.
-
-Tip: Real data.`, 'B', 'E']
-];
-
-QB['sm-mkt'] = (QB['sm-mkt']||[]).concat([
-["GA4", "What changed with GA4 compared with Universal Analytics?",
-`**Answer:** An event-based data model instead of sessions and pageviews, cross-device tracking, privacy features, predictive metrics, explorations for analysis, and BigQuery export.
-
-Tip: Event-based model.`, 'B', 'M'],
-["Quality Score", "What affects Google Ads Quality Score?",
-`**Answer:** Expected click-through rate, ad relevance and landing page experience. A higher Quality Score lowers cost per click and improves ad position.
-
-Tip: Relevance.`, 'B', 'M'],
-["Retargeting", "How do you use retargeting effectively?",
-`**Answer:** Segment by behavior (product viewers, cart abandoners, past customers), cap frequency, tailor messages to the stage, and exclude converters.
-
-Tip: Exclusions.`, 'B', 'E'],
-["Influencers", "How do you evaluate influencer marketing?",
-`**Answer:** Audience fit and authenticity, engagement quality (not just followers), clear deliverables, tracking codes and links, and incremental sales or sign-ups measured.
-
-Tip: Engagement quality.`, 'B', 'M'],
-["Webinars", "How do you run a webinar program that generates pipeline?",
-`**Answer:** Topics tied to buyer pain, credible speakers, multi-channel promotion, interactive sessions, quick follow-up by sales, and on-demand repurposing.
-
-Tip: Fast follow-up.`, 'B', 'E'],
-["GEO", "How do you optimize for AI-generated search answers?",
-`**Answer:** Authoritative, well-structured content that directly answers questions, structured data, brand mentions on trusted sites, and monitoring how AI assistants describe your brand.
-
-Tip: Clear answers.`, 'D', 'M'],
-["Product Launch", "How do you plan a product launch campaign?",
-`**Answer:** Positioning and messaging, target audience, channels and content, sales enablement, PR and analyst outreach, launch timeline, and success metrics.
-
-Tip: Sales enablement.`, 'B', 'M'],
-["Scenario", "CAC has risen 50% over a year. What do you do?",
-`**Answer:** Diagnose by channel (auction competition, creative fatigue, conversion rate drops), refresh creative, improve conversion rates, diversify channels, invest in organic and referral, and focus on higher-LTV segments.
-
-Tip: Diagnose by channel.`, 'D', 'M']
+QB["sm-mkt"] = (QB["sm-mkt"] || []).concat([
+["Role", "What does a digital marketing manager do?", "**Why they ask:** channel breadth and results.\n\n**Answer:** Plans and runs digital campaigns across paid search, paid social, SEO, email, content and website to generate awareness, leads and revenue — managing budgets, analytics, testing and agencies, and reporting performance against goals.\n\nTip: Name channels and budgets managed.", "B", "E"],
+["Funnel", "Explain the marketing funnel.", "**Why they ask:** marketing fundamentals.\n\n**Answer:**\n\"Awareness, consideration, conversion, then retention and advocacy. Different channels and content serve each stage — social video and PR for awareness, comparison guides and webinars for consideration, demos and free trials for conversion, onboarding and community for retention — and I measure conversion between stages to find where prospects leak out.\"\n\nTip: Stage-specific metrics.", "B", "E"],
+["Metrics", "Which marketing metrics matter most?", "**Why they ask:** business orientation.\n\n**Answer:**\n\"CAC, ROAS, conversion rate, cost per lead and per acquisition, MQL-to-SQL conversion, pipeline and revenue influenced, LTV, click-through rate and engagement — always tied back to business goals. Leadership cares about pipeline and revenue; clicks only matter if they lead there.\"\n\nTip: Revenue metrics.", "B", "E"],
+["ROAS", "How do you calculate ROAS and CAC?", "**Why they ask:** numeracy.\n\n**Answer:**\n\"ROAS is revenue from ads divided by ad spend — $80K revenue from $20K spend is 4x. CAC is total acquisition cost, marketing plus sales, divided by new customers — $50K across 100 customers is $500. A 4x ROAS can still lose money if margins are thin, so I check it against gross margin.\"\n\nTip: Show math.", "B", "E"],
+["Paid Search", "How do you optimize a Google Ads campaign?", "**Why they ask:** hands-on paid search.\n\n**Answer:**\n\"Tight keyword and ad group structure, negative keywords, strong ad copy with assets, landing pages that match the search intent, smart bidding fed with good conversion data, ongoing testing, and regular review of search terms and Quality Score. On one account, adding negatives like 'free' and 'jobs' cut wasted spend by about 20% in the first month.\"\n\nTip: Negative keywords.", "B", "M"],
+["Paid Social", "How do you run effective paid social campaigns?", "**Why they ask:** social advertising.\n\n**Answer:**\n\"Clear audience targeting — lookalikes, retargeting, interests — lots of creative testing across formats and opening hooks, frequency management so people don't tune out, platform-native content, and measuring incrementality rather than trusting platform-reported conversions. Creative is usually the biggest lever.\"\n\nTip: Creative is the biggest lever.", "B", "M"],
+["SEO", "What are the pillars of SEO?", "**Why they ask:** organic growth.\n\n**Answer:**\n\"Technical SEO — crawlability, speed, Core Web Vitals, structured data; on-page — keywords, content quality and matching search intent; and off-page — backlinks and authority. Now also optimizing for AI search summaries, which favor clear, authoritative answers.\"\n\nTip: Search intent.", "B", "M"],
+["Content", "How do you build a content strategy?", "**Why they ask:** content planning.\n\n**Answer:**\n\"Define audience personas and their questions, do keyword and topic research, map content to funnel stages, build an editorial calendar, plan distribution, and measure. Distribution deserves as much effort as creation — great content nobody sees does nothing.\"\n\nTip: Distribution.", "B", "M"],
+["Email", "How do you improve email marketing performance?", "**Why they ask:** owned-channel skill.\n\n**Answer:**\n\"Segmentation and personalization, strong subject lines, one clear call to action, automated nurture flows, testing, list hygiene, and deliverability set up properly with SPF, DKIM and DMARC. Segmenting a monthly newsletter by industry roughly doubled click-through for one client.\"\n\nTip: Segmentation.", "B", "E"],
+["Attribution", "How do you approach marketing attribution?", "**Why they ask:** measurement maturity.\n\n**Answer:**\n\"Multi-touch models — linear, time decay, position-based, data-driven — supplemented with incrementality tests and marketing mix modeling, because privacy changes mean user-level tracking misses a lot. No single model is the truth; together they show direction.\"\n\nTip: Incrementality.", "D", "M"],
+["Testing", "How do you run A/B tests?", "**Why they ask:** testing rigor.\n\n**Answer:**\n\"A clear hypothesis, one variable changed, enough sample for statistical significance, running through full weekly cycles, and implementing the winner. Stopping a test the day it looks good is the most common mistake.\"\n\nTip: Significance.", "B", "E"],
+["Budget", "How do you allocate a marketing budget?", "**Why they ask:** resource judgment.\n\n**Answer:**\n\"Based on goals and proven channel performance — CAC and ROAS — with 10 to 20% reserved to test new channels, and regular reallocation toward what's working.\"\n\nTip: Test budget.", "B", "M"],
+["Analytics", "Which analytics tools do you use?", "**Why they ask:** tooling.\n\n**Answer:**\n\"GA4 with Google Tag Manager, Looker Studio for dashboards, HubSpot or Marketo, Salesforce, ad platform analytics, and Mixpanel or Amplitude for product analytics.\"\n\nTip: GA4.", "B", "E"],
+["Privacy", "How have privacy changes affected digital marketing?", "**Why they ask:** current landscape.\n\n**Answer:**\n\"Cookie restrictions, iOS tracking limits and privacy laws mean far less tracking. Marketers invest in first-party data, consent management, server-side tracking and modeled measurement like MMM and conversion modeling.\"\n\nTip: First-party data.", "D", "M"],
+["B2B", "How is B2B marketing different?", "**Why they ask:** segment understanding.\n\n**Answer:**\n\"Longer cycles, multiple decision-makers, account-based marketing, educational content, lead nurturing over months, and tight alignment with sales — the buyer is a committee, not one person.\"\n\nTip: ABM.", "B", "M"],
+["ABM", "What is account-based marketing?", "**Why they ask:** B2B strategy.\n\n**Answer:**\n\"Targeting a defined list of high-value accounts with personalized campaigns across channels, coordinated with sales — ads to the buying committee, tailored content, direct mail, and sales outreach timed together.\"\n\nTip: Sales alignment.", "D", "M"],
+["Lead Scoring", "How do you design lead scoring?", "**Why they ask:** funnel quality.\n\n**Answer:**\n\"Combine a fit score — firmographics and role — with an engagement score — page visits, content downloads, demo requests — set the MQL threshold with sales, and refine it against which leads actually convert. A pricing page visit from a VP at a target account should outweigh ten blog reads from a student.\"\n\nTip: Fit + behavior.", "D", "M"],
+["Landing Pages", "What makes a high-converting landing page?", "**Why they ask:** conversion skill.\n\n**Answer:**\n\"Message match with the ad that brought them, a clear headline and value proposition, social proof, minimal distractions, a short form, fast load time and a strong call to action.\"\n\nTip: Message match.", "B", "E"],
+["Brand", "How do you balance brand and performance marketing?", "**Why they ask:** strategic thinking.\n\n**Answer:**\n\"Performance captures existing demand; brand creates future demand. I fund both and measure brand through branded search volume, share of voice and lift studies — cutting brand entirely usually shows up in performance costs a few quarters later.\"\n\nTip: Both matter.", "D", "M"],
+["AI", "How do you use AI in marketing?", "**Why they ask:** current practice.\n\n**Answer:**\n\"Drafting content, personalization, generating ad creative variations, audience insights, predictive analytics, and optimizing for AI search — with human review for brand voice and accuracy.\"\n\nTip: Human review.", "B", "M"],
+["Behavioral", "Tell me about a campaign you're proud of.", "**Why they ask:** proof.\n\n**Answer:**\n\"I launched paid search and LinkedIn campaigns for a new product. Through landing page testing and audience refinement, CAC dropped 35% and we generated $2.4 million in pipeline in a quarter.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about a campaign that failed.", "**Why they ask:** learning.\n\n**Answer:**\n\"A TikTok test underperformed because our B2B audience simply wasn't there. I cut spend after two weeks, documented the learnings, and reallocated the budget to LinkedIn.\"\n\nTip: Fast learning.", "B", "E"],
+["Behavioral", "How do you work with sales?", "**Why they ask:** alignment.\n\n**Answer:**\n\"Shared definitions of MQL and SQL, regular feedback sessions, joint pipeline goals, and closed-loop reporting so marketing sees which leads became revenue.\"\n\nTip: Closed-loop.", "B", "E"],
+["Certifications", "Which certifications help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"Google Ads and GA4, HubSpot, Meta Blueprint and LinkedIn Marketing Labs — though campaign results matter more.\"\n\nTip: Hands-on results matter.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward director of growth or demand generation, then head of marketing.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I run data-driven campaigns that lower CAC and grow pipeline — I cut CAC 35% and generated $2.4 million in pipeline in a quarter.\"\n\nTip: Proof.", "B", "E"],
+["Retention", "How does marketing support retention?", "**Why they ask:** full lifecycle.\n\n**Answer:**\n\"Onboarding emails, customer education, community, loyalty programs and upsell campaigns — keeping a customer is far cheaper than acquiring one.\"\n\nTip: Lifecycle marketing.", "B", "E"],
+["LTV", "How do you calculate LTV?", "**Why they ask:** unit economics.\n\n**Answer:**\n\"Roughly average revenue per customer per period times gross margin, divided by churn rate. $100 a month at 80% margin with 2% monthly churn: $80 divided by 0.02 is $4,000.\"\n\nTip: Use margin.", "D", "M"],
+["Conversion Rate", "How do you improve conversion rates?", "**Why they ask:** CRO skill.\n\n**Answer:**\n\"Find the biggest drop-off in the funnel, do user research there, simplify forms, sharpen messaging and trust signals, improve page speed, and A/B test changes.\"\n\nTip: Find the biggest drop-off.", "B", "E"],
+["Social Media", "How do you grow organic social?", "**Why they ask:** organic channels.\n\n**Answer:**\n\"Consistent valuable content, employee advocacy — employees' posts usually reach far more people than the brand page — community engagement, platform-native formats, and analytics to double down on what works.\"\n\nTip: Employee advocacy.", "B", "E"],
+["Agencies", "How do you manage agencies?", "**Why they ask:** vendor management.\n\n**Answer:**\n\"Clear goals and KPIs, regular reviews, transparent reporting, sharing business context so they can do their best work, and holding them accountable to the same numbers I'm measured on.\"\n\nTip: Shared KPIs.", "B", "E"],
+["Martech", "How do you choose marketing technology?", "**Why they ask:** martech judgment.\n\n**Answer:**\n\"Requirements first, then CRM integration, ease of use, cost and scalability. A tool that doesn't sync with the CRM creates data silos.\"\n\nTip: CRM integration.", "B", "E"],
+["Scenario", "Leads dropped 40% this month. How do you investigate?", "**Why they ask:** diagnosis.\n\n**Answer:**\n\"Check tracking first — a broken form or tag is the most common cause — then performance channel by channel, budget changes, algorithm updates, landing page issues, seasonality and competitor activity.\"\n\nTip: Tracking first.", "B", "M"],
+["Scenario", "Leadership wants to cut budget 25%. What do you do?", "**Why they ask:** prioritization.\n\n**Answer:**\n\"Cut the least efficient spend first based on CAC and ROAS, protect the top performers, and show leadership the expected impact on pipeline so the trade-off is explicit.\"\n\nTip: Data-driven cuts.", "B", "M"],
+["Scenario", "Sales says leads are low quality. What do you do?", "**Why they ask:** alignment.\n\n**Answer:**\n\"Review the data together — which leads converted and which didn't — refine the ICP and scoring, adjust targeting and form fields, and agree an SLA on follow-up, since slow follow-up also makes good leads look bad.\"\n\nTip: Joint review.", "B", "E"],
+["Personas", "How do you build buyer personas?", "**Why they ask:** audience understanding.\n\n**Answer:**\n\"Customer interviews, sales input and data analysis, capturing goals, challenges, buying process and preferred channels — grounded in evidence rather than assumptions.\"\n\nTip: Interviews.", "B", "E"],
+["Video", "How do you use video in marketing?", "**Why they ask:** content formats.\n\n**Answer:**\n\"Short-form for social, explainer and demo videos for consideration, customer testimonials, and webinars — each optimized for its platform, with captions since most social video plays muted.\"\n\nTip: Short-form.", "B", "E"],
+["Events", "How do you measure event ROI?", "**Why they ask:** event accountability.\n\n**Answer:**\n\"Leads and meetings generated, pipeline and revenue influenced, cost per opportunity, and brand impact. A $60K trade show that produced $900K of pipeline is easy to justify.\"\n\nTip: Pipeline influenced.", "B", "E"],
+["Reporting", "What goes into a monthly marketing report?", "**Why they ask:** reporting.\n\n**Answer:**\n\"Performance against goals, channel metrics, pipeline contribution, insights — what we learned and why — and next month's plan.\"\n\nTip: Insights, not just numbers.", "B", "E"],
+["Ecommerce", "How do you grow ecommerce sales?", "**Why they ask:** ecommerce skill.\n\n**Answer:**\n\"Product feed optimization, shopping ads, retargeting, email flows — abandoned cart flows are often the highest-ROI email — conversion rate optimization and loyalty programs.\"\n\nTip: Abandoned cart flows.", "B", "M"],
+["MMM", "What is marketing mix modeling?", "**Why they ask:** measurement depth.\n\n**Answer:**\n\"Statistical modeling of aggregate sales against channel spend and external factors like seasonality and pricing, to estimate each channel's contribution. It's useful when user-level tracking is limited, which is more and more common.\"\n\nTip: Privacy-resilient.", "D", "S"],
+["Positioning", "How do you test messaging?", "**Why they ask:** message validation.\n\n**Answer:**\n\"Ad copy tests, landing page tests, surveys and customer interviews — real market data rather than internal opinions about which headline is best.\"\n\nTip: Real data.", "B", "E"]
+]);
+
+QB["sm-mkt"] = (QB["sm-mkt"] || []).concat([
+["GA4", "What changed with GA4 compared with Universal Analytics?", "**Why they ask:** current analytics knowledge.\n\n**Answer:**\n\"GA4 uses an event-based data model instead of sessions and pageviews, tracks across devices, adds privacy features and predictive metrics, offers explorations for analysis, and exports to BigQuery.\"\n\nTip: Event-based model.", "B", "M"],
+["Quality Score", "What affects Google Ads Quality Score?", "**Why they ask:** paid search depth.\n\n**Answer:**\n\"Expected click-through rate, ad relevance and landing page experience. A higher Quality Score lowers cost per click and improves ad position — relevance pays.\"\n\nTip: Relevance.", "B", "M"],
+["Retargeting", "How do you use retargeting effectively?", "**Why they ask:** campaign skill.\n\n**Answer:**\n\"Segment by behavior — product viewers, cart abandoners, past customers — cap frequency, tailor messages to the stage, and exclude people who already converted so we don't pay to annoy customers.\"\n\nTip: Exclusions.", "B", "E"],
+["Influencers", "How do you evaluate influencer marketing?", "**Why they ask:** channel evaluation.\n\n**Answer:**\n\"Audience fit and authenticity, engagement quality rather than follower counts, clear deliverables, tracking codes and links, and measured incremental sales or sign-ups.\"\n\nTip: Engagement quality.", "B", "M"],
+["Webinars", "How do you run a webinar program that generates pipeline?", "**Why they ask:** B2B demand gen.\n\n**Answer:**\n\"Topics tied to buyer pain, credible speakers including customers, multi-channel promotion, interactive sessions, sales follow-up within 48 hours, and repurposing recordings on demand.\"\n\nTip: Fast follow-up.", "B", "E"],
+["GEO", "How do you optimize for AI-generated search answers?", "**Why they ask:** emerging channel.\n\n**Answer:**\n\"Authoritative, well-structured content that directly answers questions, structured data, brand mentions on trusted sites, and monitoring how AI assistants describe our brand and competitors.\"\n\nTip: Clear answers.", "D", "M"],
+["Product Launch", "How do you plan a product launch campaign?", "**Why they ask:** launch planning.\n\n**Answer:**\n\"Positioning and messaging, target audience, channels and content, sales enablement so reps can explain it on day one, PR and analyst outreach, a launch timeline, and success metrics.\"\n\nTip: Sales enablement.", "B", "M"],
+["Scenario", "CAC has risen 50% over a year. What do you do?", "**Why they ask:** problem-solving.\n\n**Answer:**\n\"Diagnose by channel — auction competition, creative fatigue, falling conversion rates — refresh creative, improve conversion rates, diversify channels, invest in organic and referral, and focus on higher-LTV segments where a higher CAC is still profitable.\"\n\nTip: Diagnose by channel.", "D", "M"]
 ]);
