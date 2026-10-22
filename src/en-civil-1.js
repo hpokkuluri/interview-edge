@@ -1,219 +1,46 @@
 // Civil / Structural Engineer. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['en-civil'] = [
-["Role", "What does a civil/structural engineer do?",
-`**Why they ask:** specialty focus.
-
-**Answer:** Designs and analyzes infrastructure and buildings — structural systems, site/civil (grading, drainage, utilities), transportation or geotechnical — preparing calculations, drawings and specifications, ensuring code compliance, coordinating with architects and contractors, and providing construction support.
-
-Tip: Specialty and project types.`, 'B', 'E'],
-
-["Loads", "What loads do you consider in structural design?",
-`**Answer:** Dead, live, snow, wind, seismic, rain, soil and hydrostatic, thermal — combined per ASCE 7 load combinations (LRFD e.g. 1.2D + 1.6L).
-
-Tip: ASCE 7.`, 'B', 'E'],
-
-["LRFD", "LRFD vs ASD?",
-`**Answer:** **LRFD** applies load factors and resistance factors (φ) for strength design; **ASD** uses service loads with allowable stresses (safety factor Ω). Both are permitted by AISC.
-
-Tip: Factors.`, 'B', 'M'],
-
-["Beams", "How do you design a steel beam?",
-`**Answer:** Determine loads and moments/shears, select a section with adequate flexural strength (φMn considering lateral-torsional buckling and unbraced length), shear capacity, deflection limits (L/360 live load), and connections — per AISC 360.
-
-Tip: Lateral bracing.`, 'B', 'M'],
-
-["Concrete", "How do you design a reinforced concrete beam?",
-`**Answer:** Calculate factored moment, determine required steel area using ACI 318 (Mn = As fy (d − a/2)), check minimum and maximum steel, shear reinforcement (stirrups), development lengths, and deflection/cracking.
-
-Tip: Tension-controlled.`, 'B', 'M'],
-
-["Seismic", "How do you approach seismic design?",
-`**Answer:** Determine site class and seismic design category, select lateral system (moment frames, braced frames, shear walls) with R factor, calculate base shear (equivalent lateral force or modal analysis), detail for ductility, and check drift.
-
-Tip: Ductility.`, 'D', 'M'],
-
-["Wind", "How do you calculate wind loads?",
-`**Answer:** ASCE 7: basic wind speed, exposure category, topography and importance, velocity pressure qz = 0.00256 Kz Kzt Kd Ke V², then pressures for MWFRS and components and cladding.
-
-Tip: Exposure category.`, 'D', 'M'],
-
-["Foundations", "How do you choose a foundation type?",
-`**Answer:** Based on geotechnical report (bearing capacity, settlement), loads, groundwater and cost — spread footings, mat foundations, or deep foundations (piles, drilled shafts).
-
-Tip: Geotech report.`, 'B', 'M'],
-
-["Geotech", "What's in a geotechnical report?",
-`**Answer:** Soil borings and lab tests, allowable bearing pressure, settlement estimates, groundwater, seismic site class, foundation and earthwork recommendations.
-
-Tip: Recommendations.`, 'B', 'E'],
-
-["Retaining", "How do you design a retaining wall?",
-`**Answer:** Determine lateral earth pressures (active, at-rest, surcharge, water), check overturning, sliding and bearing, design stem and footing reinforcement, and provide drainage.
-
-Tip: Drainage.`, 'D', 'M'],
-
-["Stormwater", "How do you design stormwater management?",
-`**Answer:** Calculate runoff (Rational Method Q = CiA or TR-55), size pipes and inlets, detention/retention to meet release rates, water quality BMPs, and comply with local regulations.
-
-Tip: Rational method.`, 'B', 'M'],
-
-["Grading", "What are site grading considerations?",
-`**Answer:** Drainage away from buildings, ADA accessible slopes (≤ 5% walks, ≤ 8.33% ramps, ≤ 2% cross slope), earthwork balance, and erosion control.
-
-Tip: ADA slopes.`, 'B', 'M'],
-
-["Transportation", "What goes into roadway design?",
-`**Answer:** Design speed, horizontal and vertical alignment, cross sections, sight distance, pavement design, drainage and traffic control — per AASHTO and state DOT standards.
-
-Tip: AASHTO.`, 'D', 'M'],
-
-["Pavement", "How do you design pavement?",
-`**Answer:** Traffic loading (ESALs), subgrade strength (CBR/resilient modulus), material selection, and thickness design using AASHTO or mechanistic-empirical methods.
-
-Tip: ESALs.`, 'D', 'M'],
-
-["Software", "Which software do you use?",
-`**Answer:** Civil 3D, AutoCAD, Revit, ETABS, SAP2000, RISA, RAM Structural System, STAAD, HEC-RAS, and Bluebeam.
-
-Tip: Specialty tools.`, 'B', 'E'],
-
-["Codes", "Which codes govern your work?",
-`**Answer:** IBC, ASCE 7, ACI 318, AISC 360, NDS (wood), TMS 402 (masonry), AASHTO LRFD Bridge Design, and local amendments.
-
-Tip: Local amendments.`, 'B', 'E'],
-
-["Construction", "What is your role during construction?",
-`**Answer:** Respond to RFIs, review submittals and shop drawings, site observations, address field changes, and inspect special conditions.
-
-Tip: Submittals.`, 'B', 'E'],
-
-["QA", "How do you check your calculations?",
-`**Answer:** Independent peer review, hand checks of software results, sanity checks of reactions and deflections, and checklists.
-
-Tip: Peer review.`, 'B', 'E'],
-
-["Wood", "What are key considerations in wood design?",
-`**Answer:** Adjustment factors (load duration, moisture, size), connections, shear walls and diaphragms for lateral loads, and fire protection.
-
-Tip: Adjustment factors.`, 'D', 'M'],
-
-["Steel Connections", "How do you design steel connections?",
-`**Answer:** Determine forces, choose bolted or welded connections, check bolt shear and bearing, weld strength, block shear, and prying action per AISC.
-
-Tip: Block shear.`, 'D', 'M'],
-
-["Permits", "How do you manage permitting?",
-`**Answer:** Understand jurisdiction requirements, prepare complete submissions, respond to comments promptly, and coordinate with agencies early.
-
-Tip: Early coordination.`, 'B', 'E'],
-
-["Sustainability", "How do you incorporate sustainability?",
-`**Answer:** Efficient structural systems, low-carbon materials (mass timber, recycled steel, SCMs in concrete), green infrastructure and LEED/Envision credits.
-
-Tip: Embodied carbon.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a challenging project.",
-`**Sample answer:** "On a mid-rise over a podium, a late architectural change moved columns. I re-analyzed transfer beams overnight and coordinated with the contractor, avoiding a 3-week delay."
-
-Tip: Problem-solving.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a design error you caught.",
-`**Answer:** Describe a peer review catching an error, correcting it before construction, and improving checklists.
-
-Tip: QA culture.`, 'B', 'E'],
-
-["Behavioral", "How do you work with architects?",
-`**Answer:** Early collaboration on structural systems, clear communication of constraints, and creative solutions supporting design intent.
-
-Tip: Collaboration.`, 'B', 'E'],
-
-["Licensure", "What is the path to PE/SE?",
-`**Answer:** ABET degree, FE exam, ~4 years experience under a PE, PE exam; SE license (16-hour exam) for significant structures in some states.
-
-Tip: SE in some states.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Project engineer/manager, principal, or technical specialist.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I produce accurate, code-compliant designs and solve field issues fast — keeping projects on schedule."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Deflection", "Why do deflection limits matter?",
-`**Answer:** Excessive deflection causes cracking of finishes, ponding, vibration discomfort and serviceability problems even if strength is adequate.
-
-Tip: Serviceability.`, 'B', 'E'],
-
-["Vibration", "How do you check floor vibration?",
-`**Answer:** AISC Design Guide 11 for walking-induced vibration; natural frequency and acceleration checks against human comfort criteria.
-
-Tip: DG 11.`, 'D', 'S'],
-
-["Bridges", "What are key bridge design considerations?",
-`**Answer:** AASHTO LRFD loads (HL-93), girder design, bearings, expansion joints, scour, fatigue and inspection access.
-
-Tip: HL-93.`, 'D', 'M'],
-
-["Water", "How do you design a water distribution system?",
-`**Answer:** Demand calculations, fire flow requirements, pipe sizing for pressure (minimum ~20 psi in fire conditions), hydraulic modeling (WaterCAD/EPANET), valves and hydrants.
-
-Tip: Fire flow.`, 'D', 'M'],
-
-["Sewer", "How do you design sanitary sewers?",
-`**Answer:** Flow estimates with peaking factors, minimum slopes for self-cleansing velocity (~2 ft/s), manhole spacing and pipe materials.
-
-Tip: Minimum velocity.`, 'D', 'M'],
-
-["Erosion", "What is an erosion and sediment control plan?",
-`**Answer:** Measures during construction (silt fences, inlet protection, stabilized entrances, sediment basins) to meet NPDES permits.
-
-Tip: SWPPP.`, 'B', 'M'],
-
-["Existing Buildings", "How do you assess an existing structure?",
-`**Answer:** Review drawings, site investigation, material testing, analysis for current loads and codes (IEBC), and recommendations for repair or strengthening.
-
-Tip: IEBC.`, 'D', 'M'],
-
-["Scenario", "Field crews found a beam installed in the wrong location. What do you do?",
-`**Answer:** Assess structural impact with analysis, propose fix or approve if adequate, document via field directive, and update records.
-
-Tip: Analyze, don't guess.`, 'B', 'M'],
-
-["Scenario", "The contractor wants to substitute materials to save cost. What do you do?",
-`**Answer:** Evaluate equivalency for strength, durability and code compliance; approve, reject or request more information formally.
-
-Tip: Equivalency.`, 'B', 'E'],
-
-["Load Path", "What is a continuous load path?",
-`**Answer:** A complete path transferring loads from roof to foundation through connections and members — critical for wind and seismic resistance.
-
-Tip: Connections matter.`, 'B', 'M'],
-
-["Diaphragms", "What is a diaphragm?",
-`**Answer:** Horizontal elements (floors, roofs) that transfer lateral loads to vertical lateral systems — flexible or rigid behavior affects distribution.
-
-Tip: Rigid vs flexible.`, 'D', 'M'],
-
-["Fees", "How do you estimate design effort?",
-`**Answer:** Break down by phases and deliverables, compare similar projects, include coordination and construction support.
-
-Tip: Construction support hours.`, 'B', 'E'],
-
-["BIM", "How do you use BIM?",
-`**Answer:** Revit models for coordination, clash detection with MEP, quantity takeoffs and better documentation.
-
-Tip: Clash detection.`, 'B', 'E'],
-
-["Safety", "How do engineers contribute to construction safety?",
-`**Answer:** Design for constructability and safety, temporary works considerations, clear sequencing notes, and responding to field concerns.
-
-Tip: Constructability.`, 'B', 'E'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Project types, mentoring and PE support, software, field exposure, and growth path.
-
-Tip: PE support.`, 'B', 'E']
-];
+QB["en-civil"] = (QB["en-civil"] || []).concat([
+["Role", "What does a civil/structural engineer do?", "**Why they ask:** specialty focus.\n\n**Answer:** Designs and analyzes infrastructure and buildings — structural systems, site/civil (grading, drainage, utilities), transportation or geotechnical — preparing calculations, drawings and specifications, ensuring code compliance, coordinating with architects and contractors, and providing construction support.\n\nTip: Specialty and project types.", "B", "E"],
+["Loads", "What loads do you consider in structural design?", "**Why they ask:** the starting point of every design.\n\n**Answer:**\n\"Dead, live, snow, wind, seismic, rain, soil and hydrostatic pressure, and thermal effects — combined using the ASCE 7 load combinations. For strength design, a floor with 50 psf dead and 80 psf live gives 1.2 times 50 plus 1.6 times 80, which is 188 psf, and I check that against 1.4D and the wind and seismic combinations to find the governing case.\"\n\nTip: ASCE 7.", "B", "E"],
+["LRFD", "LRFD vs ASD?", "**Why they ask:** design philosophy fundamentals.\n\n**Answer:**\n\"LRFD factors the loads up and the resistance down with φ factors, and checks that factored load is at most φ times nominal strength. ASD uses unfactored service loads against allowable strength — nominal strength divided by a safety factor Ω. AISC permits both and they're calibrated to give similar results; LRFD gives more consistent reliability when dead and live load ratios vary.\"\n\nTip: Factors.", "B", "M"],
+["Beams", "How do you design a steel beam?", "**Why they ask:** a core structural skill.\n\n**Answer:**\n\"Find the loads, moments and shears — a 30-foot simple span with 2 kips per foot factored gives wL squared over 8, 225 kip-feet. Select a section with φMn at least that, accounting for lateral-torsional buckling based on the unbraced length — bracing at the deck changes everything. Then check shear, live load deflection against L/360, which is 1 inch on 30 feet, and design the connections per AISC 360.\"\n\nTip: Lateral bracing.", "B", "M"],
+["Concrete", "How do you design a reinforced concrete beam?", "**Why they ask:** concrete design fundamentals.\n\n**Answer:**\n\"Calculate the factored moment, then size the steel per ACI 318. For a 12-inch-wide beam with d of 20 inches, 3 square inches of Grade 60 steel and 4 ksi concrete: a equals As fy over 0.85 f'c b, which is 180 over 40.8, about 4.4 inches. Mn is 180 times 20 minus 2.2, about 3,200 kip-inches or 267 kip-feet, so φMn is about 240 kip-feet. Then check minimum and maximum steel so it's tension-controlled, stirrups for shear, development lengths, and deflection and cracking.\"\n\nTip: Tension-controlled.", "B", "M"],
+["Seismic", "How do you approach seismic design?", "**Why they ask:** life-safety design.\n\n**Answer:**\n\"Determine the site class and seismic design category, select the lateral system — moment frames, braced frames or shear walls — with its R factor, and calculate base shear. With the equivalent lateral force method, Cs is SDS over R over Ie: SDS of 1.0 with R of 8 gives 0.125, so a 10,000-kip building sees 1,250 kips base shear. Then detail for ductility and check story drift.\"\n\nTip: Ductility.", "D", "M"],
+["Wind", "How do you calculate wind loads?", "**Why they ask:** a common lateral load calc.\n\n**Answer:**\n\"Using ASCE 7: basic wind speed, exposure category, topography and importance, then velocity pressure qz equals 0.00256 Kz Kzt Kd Ke V squared. At 115 mph, V squared is 13,225, times 0.00256 is about 34 psf; with Kz of 0.85 and Kd of 0.85 that's about 24.5 psf. Then I apply pressure coefficients separately for the main wind force resisting system and for components and cladding, which see higher local pressures.\"\n\nTip: Exposure category.", "D", "M"],
+["Foundations", "How do you choose a foundation type?", "**Why they ask:** geotechnical judgment.\n\n**Answer:**\n\"Based on the geotech report — bearing capacity and settlement — plus loads, groundwater and cost. Good soil with modest loads means spread footings. Heavy loads or settlement concerns may mean a mat. Weak or compressible soil near the surface means deep foundations: driven piles or drilled shafts to competent layers.\"\n\nTip: Geotech report.", "B", "M"],
+["Geotech", "What's in a geotechnical report?", "**Why they ask:** coordination with geotechnical engineers.\n\n**Answer:**\n\"Soil borings and lab test results, allowable bearing pressure, settlement estimates, groundwater levels, seismic site class, and recommendations for foundations, earthwork, slabs and retaining walls.\"\n\nTip: Recommendations.", "B", "E"],
+["Retaining", "How do you design a retaining wall?", "**Why they ask:** applied geotechnical-structural design.\n\n**Answer:**\n\"Determine lateral earth pressures — active, at-rest, surcharge and water. For a 10-foot wall with 120 pcf soil and Ka of one-third, the active force is half times Ka times gamma times H squared — 2,000 pounds per foot acting at H over 3. Then check overturning, sliding and bearing, typically with factors of safety of at least 1.5, design the stem and footing reinforcement, and provide drainage so water pressure doesn't build up.\"\n\nTip: Drainage.", "D", "M"],
+["Stormwater", "How do you design stormwater management?", "**Why they ask:** site civil skill.\n\n**Answer:**\n\"Calculate runoff — for small sites the Rational Method, Q equals CiA. A 2-acre parking lot with C of 0.9 and 4 inches per hour intensity gives 7.2 cfs. Then size pipes and inlets, design detention or retention to meet allowed release rates, add water quality BMPs, and comply with local regulations. Larger watersheds call for TR-55 or hydrograph methods.\"\n\nTip: Rational method.", "B", "M"],
+["Grading", "What are site grading considerations?", "**Why they ask:** practical site design.\n\n**Answer:**\n\"Drain away from buildings, keep ADA slopes — walks at 5% or less, ramps at 8.33% or less, cross slopes at 2% or less — balance cut and fill to limit import or export, and control erosion.\"\n\nTip: ADA slopes.", "B", "M"],
+["Transportation", "What goes into roadway design?", "**Why they ask:** transportation knowledge.\n\n**Answer:**\n\"Design speed drives everything: horizontal and vertical alignment, cross sections, stopping sight distance, pavement design, drainage and traffic control — following AASHTO and the state DOT standards.\"\n\nTip: AASHTO.", "D", "M"],
+["Pavement", "How do you design pavement?", "**Why they ask:** pavement engineering basics.\n\n**Answer:**\n\"Traffic loading expressed in ESALs — trucks dominate, since damage rises roughly with the fourth power of axle load — subgrade strength through CBR or resilient modulus, material selection, and thickness design with AASHTO 93 or mechanistic-empirical methods.\"\n\nTip: ESALs.", "D", "M"],
+["Software", "Which software do you use?", "**Why they ask:** tooling fit.\n\n**Answer:**\n\"Civil 3D and AutoCAD for site work, Revit for models, ETABS, SAP2000, RISA and RAM for structural analysis, HEC-RAS for hydraulics, and Bluebeam for reviews.\"\n\nTip: Specialty tools.", "B", "E"],
+["Codes", "Which codes govern your work?", "**Why they ask:** code literacy.\n\n**Answer:**\n\"The IBC, ASCE 7 for loads, ACI 318 for concrete, AISC 360 for steel, NDS for wood, TMS 402 for masonry, AASHTO LRFD for bridges — and always the local amendments, which can change things like snow loads or seismic requirements.\"\n\nTip: Local amendments.", "B", "E"],
+["Construction", "What is your role during construction?", "**Why they ask:** construction administration.\n\n**Answer:**\n\"Respond to RFIs, review submittals and shop drawings, perform site observations, address field changes, and inspect special conditions. Fast, clear RFI responses keep the contractor from guessing.\"\n\nTip: Submittals.", "B", "E"],
+["QA", "How do you check your calculations?", "**Why they ask:** quality control.\n\n**Answer:**\n\"Independent peer review, hand checks of software results, and sanity checks — total reactions should equal total applied load, and deflections should look right for the span. Plus checklists for common misses.\"\n\nTip: Peer review.", "B", "E"],
+["Wood", "What are key considerations in wood design?", "**Why they ask:** material-specific knowledge.\n\n**Answer:**\n\"Adjustment factors for load duration, moisture, size and temperature; connections, which often govern; shear walls and diaphragms for lateral loads; and fire protection.\"\n\nTip: Adjustment factors.", "D", "M"],
+["Steel Connections", "How do you design steel connections?", "**Why they ask:** connection detailing.\n\n**Answer:**\n\"Determine the forces, choose bolted or welded, then check bolt shear and bearing, weld strength, block shear — where a chunk of the connected plate tears out along shear and tension planes — and prying action, per AISC.\"\n\nTip: Block shear.", "D", "M"],
+["Permits", "How do you manage permitting?", "**Why they ask:** project delivery.\n\n**Answer:**\n\"Understand the jurisdiction's requirements, prepare complete submissions, respond to comments quickly, and coordinate with agencies early — a pre-application meeting often saves a full review cycle.\"\n\nTip: Early coordination.", "B", "E"],
+["Sustainability", "How do you incorporate sustainability?", "**Why they ask:** modern design priorities.\n\n**Answer:**\n\"Efficient structural systems that use less material, low-carbon materials — mass timber, recycled steel, supplementary cementitious materials like fly ash or slag in concrete — green infrastructure for stormwater, and LEED or Envision credits.\"\n\nTip: Embodied carbon.", "B", "M"],
+["Behavioral", "Tell me about a challenging project.", "**Why they ask:** problem-solving under pressure.\n\n**Answer:**\n\"On a mid-rise over a concrete podium, a late architectural change moved columns. I re-analyzed the transfer beams overnight and coordinated revised details with the contractor, avoiding a three-week delay.\"\n\nTip: Problem-solving.", "B", "M"],
+["Behavioral", "Tell me about a design error you caught.", "**Why they ask:** quality culture.\n\n**Answer:**\n\"During peer review I found a footing designed for service loads instead of factored loads — undersized by about 30%. We corrected it before construction, and I added a load-basis check to our review checklist.\"\n\nTip: QA culture.", "B", "E"],
+["Behavioral", "How do you work with architects?", "**Why they ask:** collaboration.\n\n**Answer:**\n\"Collaborate early on structural systems, explain constraints clearly, and look for creative solutions that support design intent — like using a transfer truss so they keep an open lobby.\"\n\nTip: Collaboration.", "B", "E"],
+["Licensure", "What is the path to PE/SE?", "**Why they ask:** career progression.\n\n**Answer:**\n\"An ABET-accredited degree, the FE exam, about four years of experience under a PE, then the PE exam. Some states require the SE license — a 16-hour exam — for significant structures like hospitals and schools.\"\n\nTip: SE in some states.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward project engineer and project manager, and eventually principal — while staying technically strong.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I produce accurate, code-compliant designs and solve field issues fast — keeping projects on schedule.\"\n\nTip: Proof.", "B", "E"],
+["Deflection", "Why do deflection limits matter?", "**Why they ask:** serviceability awareness.\n\n**Answer:**\n\"A beam can be strong enough and still fail in use: excessive deflection cracks finishes and partitions, causes ponding on roofs, and makes floors feel bouncy. Limits like L/360 for live load keep it serviceable.\"\n\nTip: Serviceability.", "B", "E"],
+["Vibration", "How do you check floor vibration?", "**Why they ask:** advanced serviceability.\n\n**Answer:**\n\"Using AISC Design Guide 11 for walking-induced vibration — calculate the floor's natural frequency and peak acceleration and compare against human comfort criteria, like 0.5% of g for offices. Long-span, light floors are the usual problems.\"\n\nTip: DG 11.", "D", "S"],
+["Bridges", "What are key bridge design considerations?", "**Why they ask:** bridge knowledge.\n\n**Answer:**\n\"AASHTO LRFD loads, including the HL-93 truck and lane loading, girder design, bearings, expansion joints, scour at piers, fatigue of steel details, and access for inspection.\"\n\nTip: HL-93.", "D", "M"],
+["Water", "How do you design a water distribution system?", "**Why they ask:** municipal engineering.\n\n**Answer:**\n\"Calculate demands and fire flow, size pipes to keep pressure — at least 20 psi during fire flow — model hydraulics in WaterCAD or EPANET, and lay out valves and hydrants. Fire flow usually governs pipe size.\"\n\nTip: Fire flow.", "D", "M"],
+["Sewer", "How do you design sanitary sewers?", "**Why they ask:** utility design.\n\n**Answer:**\n\"Estimate flows with peaking factors, set minimum slopes for self-cleansing velocity — about 2 feet per second when flowing full — space manholes per standards, and select pipe materials.\"\n\nTip: Minimum velocity.", "D", "M"],
+["Erosion", "What is an erosion and sediment control plan?", "**Why they ask:** environmental compliance.\n\n**Answer:**\n\"Construction-phase measures — silt fence, inlet protection, stabilized construction entrances, sediment basins — documented in a SWPPP to meet the NPDES permit.\"\n\nTip: SWPPP.", "B", "M"],
+["Existing Buildings", "How do you assess an existing structure?", "**Why they ask:** renovation work.\n\n**Answer:**\n\"Review existing drawings, investigate the site, test materials if needed, analyze for the new loads and code requirements under the IEBC, and recommend repair or strengthening.\"\n\nTip: IEBC.", "D", "M"],
+["Scenario", "Field crews found a beam installed in the wrong location. What do you do?", "**Why they ask:** field judgment.\n\n**Answer:**\n\"Analyze the structural impact before deciding anything. If it works as installed, approve it; if not, propose a fix like adding a beam or reinforcement. Document it through a field directive and update the record drawings.\"\n\nTip: Analyze, don't guess.", "B", "M"],
+["Scenario", "The contractor wants to substitute materials to save cost. What do you do?", "**Why they ask:** substitution evaluation.\n\n**Answer:**\n\"Evaluate equivalency for strength, durability and code compliance, then formally approve, reject or request more information. Savings are welcome, but the burden of showing equivalence is on the contractor.\"\n\nTip: Equivalency.", "B", "E"],
+["Load Path", "What is a continuous load path?", "**Why they ask:** structural fundamentals.\n\n**Answer:**\n\"A complete path that carries loads from the roof down to the foundation through members and connections. In a hurricane, roofs come off at missing connections, not because the rafters are weak.\"\n\nTip: Connections matter.", "B", "M"],
+["Diaphragms", "What is a diaphragm?", "**Why they ask:** lateral systems.\n\n**Answer:**\n\"Floors and roofs acting as horizontal beams that carry lateral loads to the vertical system. A rigid diaphragm, like a concrete slab, distributes by relative stiffness; a flexible one, like wood sheathing, distributes by tributary area.\"\n\nTip: Rigid vs flexible.", "D", "M"],
+["Fees", "How do you estimate design effort?", "**Why they ask:** project management.\n\n**Answer:**\n\"Break it down by phase and deliverable, compare with similar past projects, and include coordination and construction support — which is often underestimated.\"\n\nTip: Construction support hours.", "B", "E"],
+["BIM", "How do you use BIM?", "**Why they ask:** digital workflows.\n\n**Answer:**\n\"Revit models for coordination, clash detection with MEP in Navisworks, quantity takeoffs, and better documentation. Finding a duct running through a beam in the model costs nothing; in the field it costs weeks.\"\n\nTip: Clash detection.", "B", "E"],
+["Safety", "How do engineers contribute to construction safety?", "**Why they ask:** responsibility.\n\n**Answer:**\n\"Design for constructability, consider temporary conditions and stability during erection, add clear sequencing notes, and respond quickly to field concerns.\"\n\nTip: Constructability.", "B", "E"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What project types will I work on? How do you support PE licensure and mentoring? Which software, how much field exposure, and what's the growth path?\"\n\nTip: PE support.", "B", "E"]
+]);
