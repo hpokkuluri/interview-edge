@@ -1,30 +1,9 @@
-QB['en-elec'] = (QB['en-elec']||[]).concat([
-["Load Calculation", "How do you perform a building load calculation?",
-`**Answer:** List the connected loads (lighting, receptacles, HVAC, motors, equipment) and apply NEC demand factors (Article 220). Add 125% of the largest motor, plus continuous load factors and spare capacity, to size the service and feeders.
-
-Tip: NEC Article 220.`, 'B', 'M'],
-["Breakers", "What breaker types do you specify?",
-`**Answer:** Thermal-magnetic for general use, electronic trip units (LSIG settings) for adjustable coordination, GFCI for personnel protection, AFCI for dwelling circuits, and ground fault protection on large services (above 1,000 A at 480 V).
-
-Tip: LSIG.`, 'D', 'M'],
-["Data Centers", "What's unique about data center electrical design?",
-`**Answer:** High reliability (Tier levels), redundancy (2N, N+1), UPS and generators, power distribution units, monitoring, and efficiency metrics like PUE.
-
-Tip: Redundancy.`, 'D', 'M'],
-["Motor Starting", "Why does motor starting matter?",
-`**Answer:** Inrush current (often 6–8× full load) causes voltage dips affecting other equipment. Use soft starters, VFDs or reduced-voltage starting, and size generators for starting kVA.
-
-Tip: Generator sizing.`, 'B', 'M'],
-["Maintenance", "What electrical maintenance practices matter?",
-`**Answer:** Infrared thermography, breaker testing and exercising, torque checks, insulation resistance testing, cleaning, and following NFPA 70B (now a standard).
-
-Tip: NFPA 70B.`, 'B', 'M'],
-["Cybersecurity", "Why does OT cybersecurity matter for control engineers?",
-`**Answer:** Connected PLCs and SCADA systems can be attacked. Use segmentation, secure remote access, patching, least privilege and IEC 62443 practices.
-
-Tip: Segmentation.`, 'D', 'M'],
-["Scenario", "A new production line causes lights to flicker plant-wide. What do you do?",
-`**Answer:** Measure power quality (voltage sags, flicker, harmonics), identify the large starting or cyclic loads, and mitigate with soft starts, dedicated feeders, transformer changes or filters.
-
-Tip: Power quality meter.`, 'D', 'M']
+QB["en-elec"] = (QB["en-elec"] || []).concat([
+["Load Calculation", "How do you perform a building load calculation?", "**Why they ask:** service sizing.\n\n**Answer:**\n\"List connected loads — lighting, receptacles, HVAC, motors, equipment — and apply NEC Article 220 demand factors. Add 25% of the largest motor, apply continuous load factors and spare capacity, then size the service and feeders.\"\n\nTip: NEC Article 220.", "B", "M"],
+["Breakers", "What breaker types do you specify?", "**Why they ask:** protection knowledge.\n\n**Answer:**\n\"Thermal-magnetic for general use, electronic trip units with LSIG — long, short, instantaneous and ground — for adjustable coordination, GFCI for personnel protection, AFCI for dwelling circuits, and ground fault protection on large services, required at 1,000 amps and above on 480 volt wye systems.\"\n\nTip: LSIG.", "D", "M"],
+["Data Centers", "What's unique about data center electrical design?", "**Why they ask:** mission-critical design.\n\n**Answer:**\n\"Very high reliability targets by Tier level, redundancy like 2N or N+1, UPS and generators, power distribution units, detailed monitoring, and efficiency measured as PUE — total facility power over IT power.\"\n\nTip: Redundancy.", "D", "M"],
+["Motor Starting", "Why does motor starting matter?", "**Why they ask:** system impact.\n\n**Answer:**\n\"Inrush is often 6 to 8 times full-load current, causing voltage dips that can drop out contactors and computers. Soft starters, VFDs or reduced-voltage starting help, and generators must be sized for starting kVA, not just running load.\"\n\nTip: Generator sizing.", "B", "M"],
+["Maintenance", "What electrical maintenance practices matter?", "**Why they ask:** reliability and safety.\n\n**Answer:**\n\"Infrared thermography, breaker testing and exercising, torque checks, insulation resistance testing, cleaning, and following NFPA 70B, which is now an enforceable standard rather than just a recommended practice.\"\n\nTip: NFPA 70B.", "B", "M"],
+["Cybersecurity", "Why does OT cybersecurity matter for control engineers?", "**Why they ask:** current risk.\n\n**Answer:**\n\"Connected PLCs and SCADA systems can be attacked, with physical consequences. I design for network segmentation, secure remote access, patching, least privilege and IEC 62443 practices.\"\n\nTip: Segmentation.", "D", "M"],
+["Scenario", "A new production line causes lights to flicker plant-wide. What do you do?", "**Why they ask:** power quality troubleshooting.\n\n**Answer:**\n\"Put a power quality meter on it to measure voltage sags, flicker and harmonics, identify the large starting or cyclic loads, then mitigate — soft starts, a dedicated feeder or transformer, or filters.\"\n\nTip: Power quality meter.", "D", "M"]
 ]);
