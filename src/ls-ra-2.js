@@ -1,38 +1,11 @@
-QB['ls-ra'] = (QB['ls-ra']||[]).concat([
-["IND", "What goes into an IND?",
-`**Answer:** Forms (1571), an investigator's brochure, the clinical protocol, CMC information, pharmacology and toxicology data, and previous human experience. The 30-day review period applies before trials can start unless FDA places a clinical hold.
-
-Tip: 30-day review.`, 'B', 'M'],
-["Clinical Hold", "What is a clinical hold and how do you respond?",
-`**Answer:** FDA orders a delay or suspension of trials over safety or other deficiencies. Respond with a complete response addressing every issue; FDA replies within 30 days.
-
-Tip: Complete response.`, 'D', 'M'],
-["PDUFA", "What is PDUFA?",
-`**Answer:** The Prescription Drug User Fee Act. Companies pay user fees and FDA commits to review timelines: a 10-month standard review and 6-month priority review from the 60-day filing date for new molecular entities.
-
-Tip: Review clocks.`, 'D', 'M'],
-["Advisory Committee", "What is an FDA advisory committee?",
-`**Answer:** Independent experts who review data and vote on questions about an application. FDA isn't bound by the vote but usually considers it heavily. Preparation includes briefing documents and presentations.
-
-Tip: Preparation.`, 'D', 'S'],
-["510(k)", "What makes a strong 510(k)?",
-`**Answer:** A well-chosen predicate, a clear substantial equivalence comparison (intended use and technological characteristics), complete performance testing against recognized standards, biocompatibility, software and cybersecurity documentation, and accurate labeling. Use the eSTAR format.
-
-Tip: eSTAR.`, 'B', 'M'],
-["Cybersecurity", "What are FDA cybersecurity requirements for devices?",
-`**Answer:** For cyber devices, premarket submissions must include a cybersecurity plan, SBOM, threat modeling, testing, and processes for post-market vulnerability management (section 524B).
-
-Tip: SBOM.`, 'D', 'M'],
-["Real-world Evidence", "How is real-world evidence used in regulatory decisions?",
-`**Answer:** RWE from EHRs, claims and registries can support label expansions, post-market requirements and some device decisions, with FDA guidance on data quality and study design.
-
-Tip: Data quality.`, 'D', 'M'],
-["Health Canada", "What other markets have you worked with?",
-`**Answer:** Health Canada, PMDA (Japan), NMPA (China), TGA (Australia) and others, each with local requirements, agents and timelines. Mention your actual experience.
-
-Tip: Be specific.`, 'D', 'M'],
-["Scenario", "The commercial team wants to launch in a new country quickly. What do you do?",
-`**Answer:** Assess the regulatory pathway, timelines and requirements (local testing, clinical data, in-country representative), use reliance pathways if available, and give realistic timelines and options.
-
-Tip: Reliance pathways.`, 'B', 'M']
+QB["ls-ra"] = (QB["ls-ra"] || []).concat([
+["IND", "What goes into an IND?", "**Why they ask:** early development knowledge.\n\n**Answer:**\n\"Form 1571, the investigator's brochure, the clinical protocol, CMC information, pharmacology and toxicology data, and any previous human experience. After submission there's a 30-day review period; trials can begin unless FDA places a clinical hold.\"\n\nTip: 30-day review.", "B", "M"],
+["Clinical Hold", "What is a clinical hold and how do you respond?", "**Why they ask:** crisis handling.\n\n**Answer:**\n\"FDA orders a delay or suspension of trials over safety or other deficiencies. We submit a complete response addressing every issue, and FDA replies within 30 days. A partial response restarts nothing, so completeness is everything.\"\n\nTip: Complete response.", "D", "M"],
+["PDUFA", "What is PDUFA?", "**Why they ask:** timeline planning.\n\n**Answer:**\n\"The Prescription Drug User Fee Act. Companies pay user fees and FDA commits to review goals. For new molecular entities, standard review is 10 months and priority review 6 months from the 60-day filing date — so roughly 12 or 8 months from submission.\"\n\nTip: Review clocks.", "D", "M"],
+["Advisory Committee", "What is an FDA advisory committee?", "**Why they ask:** approval process knowledge.\n\n**Answer:**\n\"Independent experts who review data and vote on questions about an application. FDA isn't bound by the vote but usually weighs it heavily. Preparation means briefing documents, presentations and intensive rehearsal for tough questions.\"\n\nTip: Preparation.", "D", "S"],
+["510(k)", "What makes a strong 510(k)?", "**Why they ask:** device submission skill.\n\n**Answer:**\n\"A well-chosen predicate, a clear substantial equivalence comparison on intended use and technological characteristics, complete performance testing against recognized standards, biocompatibility, software and cybersecurity documentation, and accurate labeling — all in the eSTAR format, which is now required.\"\n\nTip: eSTAR.", "B", "M"],
+["Cybersecurity", "What are FDA cybersecurity requirements for devices?", "**Why they ask:** current device rules.\n\n**Answer:**\n\"Under section 524B, premarket submissions for cyber devices must include a cybersecurity plan, an SBOM, threat modeling, security testing, and processes for postmarket vulnerability management and patching.\"\n\nTip: SBOM.", "D", "M"],
+["Real-world Evidence", "How is real-world evidence used in regulatory decisions?", "**Why they ask:** evidence trends.\n\n**Answer:**\n\"RWE from EHRs, claims and registries can support label expansions, postmarket requirements and some device decisions, following FDA guidance on data quality and study design.\"\n\nTip: Data quality.", "D", "M"],
+["Health Canada", "What other markets have you worked with?", "**Why they ask:** global experience.\n\n**Answer:**\n\"Health Canada and the TGA in Australia, plus support on PMDA filings in Japan. Each has local requirements, agents and timelines — Japan, for example, often expects Japanese patient data or bridging studies.\"\n\nTip: Be specific.", "D", "M"],
+["Scenario", "The commercial team wants to launch in a new country quickly. What do you do?", "**Why they ask:** business partnership.\n\n**Answer:**\n\"Assess the pathway, timelines and requirements — local testing, clinical data, an in-country representative — use reliance pathways where available, where the country leans on FDA or EMA approval, and give realistic timelines with options.\"\n\nTip: Reliance pathways.", "B", "M"]
 ]);
