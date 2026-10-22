@@ -31,6 +31,8 @@ const LEVELS = { E: 'Entry', M: 'Mid', S: 'Senior', X: 'Leadership' };
 const DIFF = { B: 'Basic', D: 'In-depth' };
 const hash = s => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); };
 const qid = (pos, item) => (item[5] || pos) + ':' + hash(item[1]);   // Essentials questions share progress across roles
+const isTop = x => !!(x[6] && x[6].t);   // x[6] = { t: 1 (top question), f: [follow-up question, follow-up answer] }
+const fuHTML = x => { const f = x[6] && x[6].f; return f ? `<div class="fu"><h4>Likely follow-up</h4><p class="fu-q">${esc(f[0])}</p><details><summary>Show follow-up answer</summary><div class="fu-a">${fmt(f[1])}</div></details></div>` : ''; };
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
@@ -500,6 +502,7 @@ function vPos(ctx, id) {
       if (ls.diff !== 'all' && x[3] !== ls.diff) return false;
       if (ls.lvl !== 'all' && x[4] && x[4] !== ls.lvl) return false;
       if (ls.stat === 'star' && !s.star) return false;
+      if (ls.stat === 'top' && !isTop(x)) return false;
       if (ls.stat === 'r' && s.s !== 'r') return false;
       if (ls.stat === 'new' && s.s) return false;
       if (ls.stat === 'k' && s.s !== 'k') return false;
@@ -509,8 +512,9 @@ function vPos(ctx, id) {
     const rows = () => { const idx = filtered(); ctx.list = idx;
       if (!idx.length) return '<div class="empty">No questions match.</div>';
       return idx.map(i => { const x = bank[i], s = st(qid(id, x));
-        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
-    const statChips = [['all', 'All'], ['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']];
+        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}${isTop(x) ? '<span class="lvl T">Top</span>' : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
+    const nTop = bank.filter(isTop).length;
+    const statChips = [['all', 'All']].concat(nTop ? [['top', `Top ${nTop}`]] : [], [['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']]);
     ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}">
       <div id="head">${head()}</div>${tracks}${isWork(p) ? `<div class="card" style="margin-top:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>${hasProfile() ? 'Answers use your saved role' : 'Make the answers about you'}</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ')) : 'Add your role, projects, wins and goals.'}</p></div><button class="chip c" data-go="profile">${hasProfile() ? 'Edit' : 'Set up'}</button></div>
         <a class="btn pri" style="margin-top:12px;text-decoration:none" target="_blank" rel="noopener" href="https://claude.ai/new?q=${encodeURIComponent(workPrepPrompt(p))}">Prepare with Claude</a></div>` : ''}
@@ -522,6 +526,7 @@ function vPos(ctx, id) {
       </div>
       ${lvls.length > 1 ? `<div class="sec-h" style="margin:18px 2px 8px">Career level</div><div class="seg" id="lc">${[['all', 'All']].concat(lvls.map(l => [l, LEVELS[l]])).map(([k, l]) => `<button data-l="${k}" class="${ls.lvl === k ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
       ${hasDiff ? `<div class="seg" id="dc" style="margin-top:${lvls.length > 1 ? 10 : 18}px">${[['all', 'All'], ['B', 'Basic'], ['D', 'In-depth']].map(([k, l]) => `<button data-d="${k}" class="${ls.diff === k ? 'on' : ''}">${l}</button>`).join('')}</div>` : ''}
+      ${nTop ? `<button class="btn ${ls.stat === 'top' ? 'navy' : 'ghost'} wide" id="topq" style="margin-top:14px">${I.star} ${ls.stat === 'top' ? 'Showing top questions — show all' : `Top questions · quick review of the ${nTop} most asked`}</button>` : ''}
       <label class="search">${I.search}<input id="qs" type="search" placeholder="Search ${bank.length} questions" value="${esc(ls.q)}" autocomplete="off"></label>
       <div class="chips" id="sc">${statChips.map(([k, l]) => `<button class="fchip ${ls.stat === k ? 'on' : ''}" data-st="${k}">${l}</button>`).join('')}</div>
       <div class="chips" id="cc">${cats.map(c => `<button class="fchip ${ls.cat === c ? 'on' : ''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('')}</div>
@@ -531,7 +536,9 @@ function vPos(ctx, id) {
     const lc = $('#lc', ctx.el); if (lc) lc.addEventListener('click', e => { const b = e.target.closest('[data-l]'); if (!b) return; ls.lvl = b.dataset.l; $$('#lc button', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     if (hasDiff) $('#dc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-d]'); if (!b) return; ls.diff = b.dataset.d; $$('#dc button', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     const tsw = $('#tsw', ctx.el); if (tsw) tsw.addEventListener('click', e => { const b = e.target.closest('[data-t]'); if (!b || b.dataset.t === id) return; go(`pos/${b.dataset.t}`, { replace: true, dir: 0 }); store.set('ip.last', b.dataset.t); });
-    $('#sc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; ls.stat = b.dataset.st; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
+    const topB = () => { const t = $('#topq', ctx.el); if (!t) return; const on = ls.stat === 'top'; t.className = `btn ${on ? 'navy' : 'ghost'} wide`; t.innerHTML = `${I.star} ${on ? 'Showing top questions — show all' : `Top questions · quick review of the ${nTop} most asked`}`; };
+    $('#sc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-st]'); if (!b) return; ls.stat = b.dataset.st; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); topB(); R(); });
+    const tq = $('#topq', ctx.el); if (tq) tq.addEventListener('click', () => { ls.stat = ls.stat === 'top' ? 'all' : 'top'; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x.dataset.st === ls.stat)); topB(); R(); });
     $('#cc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; ls.cat = b.dataset.cat; $$('#cc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     $('#rows', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (!b) return; qList[id] = ctx.list.slice(); go(`q/${id}/${b.dataset.q}`); });
     $('#voiceq', ctx.el).addEventListener('click', () => { const i = Math.floor(Math.random() * bank.length); qList[id] = shuffle(bank.map((x, j) => j)); go(`q/${id}/${i}/voice`); });
@@ -552,13 +559,13 @@ function vQ(ctx, id, idxStr, mode) {
     const s = st(key);
     ctx.el.innerHTML = `${bar(ctx, pos >= 0 ? `${pos + 1} of ${list.length}` : `Question ${i + 1}`, `<button class="icon-btn" id="sp" aria-label="Read aloud">${I.speaker}</button><button class="icon-btn" id="star" aria-label="Star" style="color:${s.star ? 'var(--gold)' : ''}">${s.star ? I.star : I.starO}</button>`)}
     <div class="wrap" style="${famVars(f)}">
-      <div class="q-cat"><span class="chip c">${esc(x[0])}</span>${x[3] ? `<span class="chip">${DIFF[x[3]]}</span>` : ''}<span class="chip">${esc(p.full)}</span></div>
+      <div class="q-cat"><span class="chip c">${esc(x[0])}</span>${isTop(x) ? '<span class="chip top">Top question</span>' : ''}${x[3] ? `<span class="chip">${DIFF[x[3]]}</span>` : ''}<span class="chip">${esc(p.full)}</span></div>
       <h2 class="q-text">${esc(x[1])}</h2>
       <div class="practice" id="pr" ${voice || drafts[key] ? '' : 'hidden'}><h4>Your answer</h4><p>Say it out loud or type it, then compare with the model answer.</p>
         <textarea class="ans" id="mine" placeholder="Tap the mic and start talking…">${esc(drafts[key] || '')}</textarea>
         <div class="rec-row"><button class="mic" id="mic" data-label="Speak">${I.mic}<span>Speak</span></button><small id="wc"></small></div></div>
       ${voice || drafts[key] ? '' : `<button class="btn ghost wide" id="try" style="margin-bottom:12px">${I.mic} Practice your answer first</button>`}
-      <div id="ans">${shown ? `<div class="answer">${fmt(x[2])}</div>` : `<button class="reveal" id="rv">Show model answer<small>Think it through first — what would you say?</small></button>`}</div>
+      <div id="ans">${shown ? `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}` : `<button class="reveal" id="rv">Show model answer<small>Think it through first — what would you say?</small></button>`}</div>
       <div class="actions"><button class="btn k ${s.s === 'k' ? 'on' : ''}" id="mk">${I.check} Got it</button><button class="btn r ${s.s === 'r' ? 'on' : ''}" id="mr">${I.redo} Review again</button></div>
       <div class="pager"><button class="btn ghost" id="prev" ${pos <= 0 ? 'disabled' : ''}>${I.back} Previous</button><button class="btn navy" id="next" ${pos < 0 || pos >= list.length - 1 ? 'disabled' : ''}>Next ${I.arrow}</button></div>
     </div>`;
@@ -567,7 +574,7 @@ function vQ(ctx, id, idxStr, mode) {
     ta.addEventListener('input', count); count();
     $('#mic', ctx.el).addEventListener('click', e => dictate(ta, e.currentTarget, count));
     const tryB = $('#try', ctx.el); if (tryB) tryB.addEventListener('click', () => { $('#pr', ctx.el).hidden = false; tryB.remove(); ta.focus(); });
-    const rv = $('#rv', ctx.el); if (rv) rv.addEventListener('click', () => { shown = true; stopDictation(); $('#ans', ctx.el).innerHTML = `<div class="answer">${fmt(x[2])}</div>`; });
+    const rv = $('#rv', ctx.el); if (rv) rv.addEventListener('click', () => { shown = true; stopDictation(); $('#ans', ctx.el).innerHTML = `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}`; });
     $('#star', ctx.el).addEventListener('click', e => { const on = toggleStar(key); e.currentTarget.innerHTML = on ? I.star : I.starO; e.currentTarget.style.color = on ? 'var(--gold)' : ''; toast(on ? 'Starred' : 'Removed star'); });
     $('#sp', ctx.el).addEventListener('click', () => speak(x[1] + (shown ? '. ' + x[2] : '')));
     $('#mk', ctx.el).addEventListener('click', () => { setStatus(key, 'k'); const s2 = st(key); $('#mk', ctx.el).classList.toggle('on', s2.s === 'k'); $('#mr', ctx.el).classList.remove('on'); if (s2.s === 'k' && pos >= 0 && pos < list.length - 1) setTimeout(() => step(1), 250); });
@@ -591,7 +598,7 @@ function vMock(ctx, id) {
     let session = null, timer = null;
     ctx.cleanup.push(() => clearInterval(timer));
     const wrap = () => $('.wrap', ctx.el);
-    const pool = () => bank.map((x, i) => i).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
+    const pool = () => bank.map((x, i) => i).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'top' && isTop(bank[i])) || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
 
     function setup() {
       clearInterval(timer);
@@ -601,7 +608,7 @@ function vMock(ctx, id) {
         <div class="panel"><h3>Set up</h3>
           <div class="field"><label>Questions</label>${seg('n', [[5, '5'], [8, '8'], [12, '12'], [20, '20']])}</div>
           <div class="field"><label>Time per question</label>${seg('mins', [[2, '2 min'], [3, '3 min'], [5, '5 min'], [0, 'No limit']])}</div>
-          <div class="field"><label>Draw from</label>${seg('pool', [['all', 'All'], ['new', 'Unmarked'], ['review', 'Review'], ['star', 'Starred']])}</div>
+          <div class="field"><label>Draw from</label>${seg('pool', [['all', 'All']].concat(bank.some(isTop) ? [['top', 'Top']] : [], [['new', 'Unmarked'], ['review', 'Review'], ['star', 'Starred']]))}</div>
           <div class="field">
             <label class="toggle"><span><b>Answer by voice</b><span>Your spoken answer is transcribed so you can read it back</span></span><input type="checkbox" class="sw" id="cv" ${cfg.voice ? 'checked' : ''}></label>
             <label class="toggle"><span><b>Read questions aloud</b><span>Like an interviewer asking you</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label>
@@ -643,7 +650,7 @@ function vMock(ctx, id) {
       function reveal() {
         if (revealed) return; revealed = true; clearInterval(timer); stopDictation(); stopSpeak();
         session.answers[n] = ta ? ta.value : '';
-        $('#after', ctx.el).innerHTML = `<div class="answer" style="margin-top:14px"><h4>Model answer</h4>${fmt(x[2])}</div>
+        $('#after', ctx.el).innerHTML = `<div class="answer" style="margin-top:14px"><h4>Model answer</h4>${fmt(x[2])}</div>${fuHTML(x)}
           <div class="panel"><h3>How did you do?</h3><p>Score your answer against the model answer.</p><div class="score">${[1, 2, 3, 4, 5].map(v => `<button data-s="${v}">${v}<small>${SCORE_L[v]}</small></button>`).join('')}</div></div>`;
         $('#after .score', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (!b) return; const v = +b.dataset.s;
           $$('#after .score button', ctx.el).forEach(z => z.classList.toggle('on', z === b));
@@ -680,11 +687,11 @@ function vFlash(ctx, id) {
     const wrap = () => $('.wrap', ctx.el);
     const sets = () => {
       const all = bank.map((x, i) => i), s = i => st(qid(id, bank[i]));
-      return { new: all.filter(i => !s(i).s), review: all.filter(i => s(i).s === 'r'), star: all.filter(i => s(i).star), all };
+      return { top: all.filter(i => isTop(bank[i])), new: all.filter(i => !s(i).s), review: all.filter(i => s(i).s === 'r'), star: all.filter(i => s(i).star), all };
     };
     function pick() {
       const S2 = sets();
-      const lab = { new: ['Not marked', 'Fresh cards'], review: ['To review', 'Ones you missed'], star: ['Starred', 'Your picks'], all: ['All cards', 'Whole set'] };
+      const lab = { top: ['Top questions', 'Most asked'], new: ['Not marked', 'Fresh cards'], review: ['To review', 'Ones you missed'], star: ['Starred', 'Your picks'], all: ['All cards', 'Whole set'] };
       wrap().innerHTML = `<div class="pos-hero"><span class="chip">${esc(p.full)}</span><h2>Flashcards</h2><p>Tap a card to flip it. “Got it” marks it known; “Again” puts it on your review list.</p></div>
         <div class="panel"><h3>Choose a deck</h3><p>Cards are shuffled each time.</p><div class="deck-pick">${Object.keys(lab).map(k => `<button data-d="${k}" class="${which === k ? 'on' : ''}" ${S2[k].length ? '' : 'disabled style="opacity:.45"'}><b>${S2[k].length}</b><span>${lab[k][0]}</span></button>`).join('')}</div>
         <button class="btn pri wide" id="go" style="margin-top:14px">${I.play} Start</button></div>`;
@@ -695,7 +702,7 @@ function vFlash(ctx, id) {
       if (at >= deck.length) return finish();
       const x = bank[deck[at]];
       wrap().innerHTML = `<div class="flip"><div class="fcard" id="fc"><div class="face f-front"><span class="chip c" style="align-self:flex-start">${esc(x[0])}</span><h2 class="q-text">${esc(x[1])}</h2><small>Tap to flip</small></div>
-        <div class="face f-back"><div class="answer">${fmt(x[2])}</div></div></div></div>
+        <div class="face f-back"><div class="answer">${fmt(x[2])}</div>${fuHTML(x)}</div></div></div>
         <div class="fc-count">${at + 1} / ${deck.length}</div>
         <div class="actions"><button class="btn r on" id="again">${I.redo} Again</button><button class="btn k on" id="got">${I.check} Got it</button></div>
         <button class="btn ghost wide" id="end">End session</button>`;
