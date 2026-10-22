@@ -1,248 +1,57 @@
 // cs-mc — generated from src/cs-mc-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Management Consultant (Strategy / Operations). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['cs-mc'] = [
-["Case", "How do you approach a case interview?",
-`**Why they ask:** structured problem solving.
-
-**Answer:** Clarify the objective and context, ask clarifying questions, build a MECE structure (issue tree), prioritize hypotheses, analyze data and do math clearly, synthesize insights, and conclude with a recommendation, risks and next steps.
-
-Tip: Hypothesis-driven.`, 'B', 'E'],
-
-["Profitability", "A client's profits are declining. How do you structure it?",
-`**Answer:** Profit = Revenue − Costs. Revenue = price × volume (by segment, product, channel); Costs = fixed + variable. Compare over time and against competitors to isolate the driver, then investigate root causes (market, competition, internal) and recommend actions.
-
-Tip: Segment the data.`, 'B', 'E'],
-
-["Market Entry", "Should a client enter a new market?",
-`**Answer:** Market attractiveness (size, growth, profitability, competition), client capabilities and fit, entry options (build, buy, partner) and economics (investment, breakeven, risks), then recommendation.
-
-Tip: Entry modes.`, 'B', 'M'],
-
-["Market Sizing", "Estimate the US market for electric bikes.",
-`**Answer:** US population ~335M → adults ~260M → interested in cycling ~20% (52M) → e-bike buyers per year ~3% of those (~1.5M) → average price ~$1,500 → ~$2.3B/year. State assumptions and sanity-check against known data.
-
-Tip: Clear assumptions.`, 'B', 'M'],
-
-["M&A Case", "Should our client acquire a competitor?",
-`**Answer:** Strategic rationale, target attractiveness (financials, market position), synergies (cost and revenue), valuation and price, integration risks and culture, financing, then recommend.
-
-Tip: Synergies vs price.`, 'B', 'M'],
-
-["MECE", "What does MECE mean?",
-`**Answer:** Mutually Exclusive, Collectively Exhaustive — categories don't overlap and together cover everything, ensuring structured analysis.
-
-Tip: Example.`, 'B', 'E'],
-
-["Synthesis", "How do you synthesize findings?",
-`**Answer:** Lead with the answer (pyramid principle), support with 2–3 key insights backed by data, then implications and next steps.
-
-Tip: Answer first.`, 'B', 'E'],
-
-["Math", "A product costs $40 to make and sells for $60; fixed costs are $2M. What's breakeven volume?",
-`**Answer:** Contribution margin $20 per unit → breakeven = $2M / $20 = 100,000 units.
-
-Tip: Mental math.`, 'B', 'E'],
-
-["Operations", "How would you reduce operating costs for a client?",
-`**Answer:** Baseline spend by category, benchmark against peers, levers: procurement savings, process efficiency (lean, automation), organizational spans and layers, footprint consolidation, and demand management — prioritize by impact and ease.
-
-Tip: Impact/ease matrix.`, 'B', 'M'],
-
-["Stakeholders", "How do you manage client stakeholders?",
-`**Answer:** Understand priorities and concerns, engage early and often, align on hypotheses, pre-wire key findings before big meetings, and build trust through quality work.
-
-Tip: Pre-wiring.`, 'B', 'M'],
-
-["Slides", "What makes a good consulting slide?",
-`**Answer:** Action title stating the takeaway, one message per slide, clear chart supporting it, sources and minimal clutter.
-
-Tip: Action titles.`, 'B', 'E'],
-
-["Excel", "Which analytical skills do you use?",
-`**Answer:** Excel modeling (scenarios, sensitivities), data analysis (pivot tables, SQL, Python), and visualization.
-
-Tip: Modeling.`, 'B', 'E'],
-
-["Interviews", "How do you run expert or client interviews?",
-`**Answer:** Prepare hypotheses and questions, listen actively, probe for data, take notes, and synthesize patterns.
-
-Tip: Hypotheses.`, 'B', 'E'],
-
-["Frameworks", "Which frameworks do you use and how?",
-`**Answer:** Porter's Five Forces (industry attractiveness), 3Cs (company, customers, competitors), value chain, BCG matrix, 7S — as starting points tailored to the problem, not rigid templates.
-
-Tip: Tailor.`, 'B', 'M'],
-
-["Implementation", "How do you ensure recommendations get implemented?",
-`**Answer:** Involve client owners early, build practical roadmaps with owners and KPIs, quick wins, change management, and governance.
-
-Tip: Client ownership.`, 'B', 'M'],
-
-["Digital", "How do you approach a digital transformation engagement?",
-`**Answer:** Clarify business outcomes, assess current capabilities, prioritize use cases by value and feasibility, design the target operating model and technology roadmap, and drive adoption.
-
-Tip: Outcomes first.`, 'D', 'M'],
-
-["AI", "How would you help a client capture value from AI?",
-`**Answer:** Identify high-value use cases tied to business KPIs, assess data readiness, pilot and measure, address risks and governance, and scale with process and talent changes.
-
-Tip: Value measurement.`, 'D', 'M'],
-
-["Behavioral", "Tell me about a time you led a team.",
-`**Sample answer:** "I led a 4-person workstream on procurement savings, set clear priorities, coached a new analyst, and delivered $18M in identified savings to the client CFO."
-
-Tip: Impact.`, 'B', 'M'],
-
-["Behavioral", "Tell me about handling a difficult client.",
-`**Sample answer:** "A client executive rejected our early findings. I met him one-on-one, understood his concerns about data accuracy, validated with his team, and he became a sponsor."
-
-Tip: Listen.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a time you failed.",
-`**Answer:** Honest example, ownership, learning and change in behavior.
-
-Tip: Learning.`, 'B', 'E'],
-
-["Fit", "Why consulting?",
-`**Answer:** Variety of problems, accelerated learning, impact on client businesses, and working with strong teams — linked to your experience.
-
-Tip: Specific reasons.`, 'B', 'E'],
-
-["Fit", "Why our firm?",
-`**Answer:** Specific practice areas, culture, people you've met, and how your background fits.
-
-Tip: Research.`, 'B', 'E'],
-
-["Career", "Where do you see yourself in five years?",
-`**Answer:** Growing to engagement manager/principal, or industry leadership with consulting skills.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I structure ambiguous problems, analyze quickly and communicate clearly — and I've delivered measurable client impact."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Pricing", "How would you set pricing for a new product?",
-`**Answer:** Consider value to customer (willingness to pay), competitor prices, costs (floor), strategy (penetration vs skimming), and test.
-
-Tip: Value-based.`, 'B', 'M'],
-
-["Growth", "How would you grow revenue for a client?",
-`**Answer:** Existing customers (retention, upsell, price), new customers (segments, geographies, channels), new products, and M&A.
-
-Tip: Ansoff matrix.`, 'B', 'M'],
-
-["Competitive Response", "A competitor cut prices 20%. How should our client respond?",
-`**Answer:** Understand why (cost advantage, desperation), assess customer sensitivity and impact, options (match, differentiate, target segments, cost reduction), and model financial outcomes.
-
-Tip: Don't automatically match.`, 'B', 'M'],
-
-["Estimation", "How many gas stations are in the US?",
-`**Answer:** ~290M vehicles, each fills up weekly → ~290M fills/week; a station handles ~2,000 fills/week → ~145,000 stations (actual ~145,000–150,000). Show logic.
-
-Tip: Sanity check.`, 'B', 'M'],
-
-["Chart", "How do you interpret a chart in a case?",
-`**Answer:** Read titles, axes and units, identify the key trend or outlier, quantify it, and relate to the case question.
-
-Tip: So what?`, 'B', 'E'],
-
-["Brainstorming", "How do you brainstorm in a case?",
-`**Answer:** Structured categories (internal/external, demand/supply, short/long-term) to generate comprehensive ideas, then prioritize.
-
-Tip: Structure.`, 'B', 'E'],
-
-["Teamwork", "How do you handle a team member not pulling their weight?",
-`**Answer:** Talk privately, understand obstacles, clarify expectations, offer help, and escalate if needed.
-
-Tip: Direct conversation.`, 'B', 'E'],
-
-["Pressure", "How do you handle tight deadlines and long hours?",
-`**Answer:** Prioritize ruthlessly (80/20), communicate early on trade-offs, and protect quality on what matters.
-
-Tip: 80/20.`, 'B', 'E'],
-
-["Supply Chain Case", "A client's delivery times are worsening. How do you analyze it?",
-`**Answer:** Map end-to-end process (order, warehouse, transport), find bottlenecks with data, compare to benchmarks, and recommend process, capacity or network changes.
-
-Tip: Process map.`, 'B', 'M'],
-
-["Turnaround", "How do you approach a business turnaround?",
-`**Answer:** Stabilize cash (liquidity), diagnose core issues, quick wins on costs, refocus strategy on profitable segments, and strengthen leadership and governance.
-
-Tip: Cash first.`, 'D', 'M'],
-
-["Org Design", "How do you approach an org design engagement?",
-`**Answer:** Strategy-driven design principles, spans and layers analysis, decision rights (RAPID), role definitions and transition plan.
-
-Tip: Decision rights.`, 'D', 'M'],
-
-["Hypothesis", "What's a hypothesis-driven approach?",
-`**Answer:** Form an early answer based on initial facts, then test it with targeted analysis — refining or discarding quickly, instead of boiling the ocean.
-
-Tip: Don't boil the ocean.`, 'B', 'E'],
-
-["Industry Expertise", "How do you ramp up on a new industry quickly?",
-`**Answer:** Industry reports, expert calls, annual reports of key players, client documents, and key metrics.
-
-Tip: Key metrics.`, 'B', 'E'],
-
-["Ethics", "What would you do if a client asked you to manipulate analysis?",
-`**Answer:** Refuse, explain professional standards, escalate to the partner.
-
-Tip: Integrity.`, 'B', 'E'],
-
-["Questions", "What would you ask your interviewer?",
-`**Answer:** Recent engagement experience, how teams are staffed, training and mentorship, and culture.
-
-Tip: Genuine.`, 'B', 'E'],
-
-["Recommendation", "How do you deliver a final recommendation in a case?",
-`**Answer:** "I recommend X because of A, B, C. Risks include Y; next steps are Z." — concise and confident.
-
-Tip: Confident close.`, 'B', 'E']
-];
-
-QB['cs-mc'] = (QB['cs-mc']||[]).concat([
-["Issue Tree", "Build an issue tree for 'Why are hospital wait times increasing?'",
-`**Answer:** Split into demand (more patients: population, seasonality, closures nearby) and supply/capacity (staffing levels, beds, process efficiency like triage, labs, discharge delays). Then drill into each with data to find the main drivers.
-
-Tip: Demand vs supply.`, 'B', 'M'],
-["Pyramid Principle", "What is the pyramid principle?",
-`**Answer:** Communication structured with the main conclusion first, supported by grouped key arguments, each backed by data: top-down, logical and MECE.
-
-Tip: Barbara Minto.`, 'B', 'E'],
-["80/20", "How do you apply the 80/20 rule in consulting?",
-`**Answer:** Focus on the analyses that drive most of the answer, use good-enough data, and avoid perfect analysis that doesn't change the recommendation.
-
-Tip: Decision-relevant.`, 'B', 'E'],
-["Benchmarking", "How do you use benchmarking?",
-`**Answer:** Compare client metrics with peers or best practice to size gaps and opportunities, normalizing for differences in scale and mix.
-
-Tip: Normalize.`, 'B', 'M'],
-["Due Diligence", "What is commercial due diligence?",
-`**Answer:** Assessing a target's market, competitive position, customers and growth plan credibility for investors, using market sizing, customer interviews and competitor analysis.
-
-Tip: Customer calls.`, 'D', 'M'],
-["Workshop", "How do you facilitate a client workshop?",
-`**Answer:** Clear objectives, pre-reads, structured agenda with interactive exercises, parking lot, documented decisions and follow-up actions.
-
-Tip: Decisions documented.`, 'B', 'E'],
-["Scoping", "How do you scope a consulting engagement?",
-`**Answer:** Clarify the client's key question and success criteria, define deliverables, timeline, team, data needs and governance, and write it into the proposal.
-
-Tip: Key question.`, 'B', 'M'],
-["Sales", "How do consultants help sell work?",
-`**Answer:** Build trusted relationships, identify follow-on needs, contribute to proposals and point-of-view thought leadership, and deliver quality work that earns extensions.
-
-Tip: Quality sells.`, 'D', 'M'],
-["Mental Math", "What is 18% of 450?",
-`**Answer:** 10% = 45, 8% = 36, so 81. Break problems into easy components.
-
-Tip: Decompose.`, 'B', 'E'],
-["Scenario", "Halfway through a case, you realize your structure was wrong. What do you do?",
-`**Answer:** Say so, explain what you learned, adjust the structure and continue. Interviewers value adaptability over rigidly defending a flawed path.
-
-Tip: Adapt openly.`, 'B', 'E']
+QB["cs-mc"] = (QB["cs-mc"] || []).concat([
+["Case", "How do you approach a case interview?", "**Why they ask:** structured problem solving.\n\n**Answer:** Clarify the objective and context, ask clarifying questions, build a MECE structure (issue tree), prioritize hypotheses, analyze data and do math clearly, synthesize insights, and conclude with a recommendation, risks and next steps.\n\nTip: Hypothesis-driven.", "B", "E"],
+["Profitability", "A client's profits are declining. How do you structure it?", "**Why they ask:** the classic profitability case.\n\n**Answer:**\n\"Profit is revenue minus costs, so I'd split it there. Revenue is price times volume, which I'd break down by segment, product and channel. Costs split into fixed and variable. I'd compare each piece over time and against competitors to isolate the driver — say revenue is flat but variable cost per unit rose 15% — then dig into root causes, whether market, competition or internal, and recommend actions.\"\n\nTip: Segment the data.", "B", "E"],
+["Market Entry", "Should a client enter a new market?", "**Why they ask:** market entry case.\n\n**Answer:**\n\"Four buckets. Market attractiveness: size, growth, profitability and competition. Client fit: capabilities and right to win. Entry options: build, buy or partner. Economics: investment, breakeven and risks. Then a clear recommendation — for example, 'enter through a partnership, because the market is attractive but we lack local distribution, and a partner cuts breakeven from five years to three.'\"\n\nTip: Entry modes.", "B", "M"],
+["Market Sizing", "Estimate the US market for electric bikes.", "**Why they ask:** structured estimation.\n\n**Answer:**\n\"I'll go top-down. The US has about 335 million people, roughly 260 million adults. Say 20% are interested in cycling — 52 million. If about 3% of those buy an e-bike each year, that's around 1.5 million units. At an average price of $1,500, the market is roughly $2.3 billion a year. As a sanity check, that's in the range of published industry estimates of a few billion dollars, so the logic holds.\"\n\nTip: Clear assumptions.", "B", "M"],
+["M&A Case", "Should our client acquire a competitor?", "**Why they ask:** M&A case.\n\n**Answer:**\n\"I'd look at strategic rationale, target attractiveness — financials and market position — synergies on both cost and revenue, valuation versus price, integration risk including culture, and financing. The core test: do realistic synergies justify the premium? If we're paying a $200 million premium and credible synergies are worth $120 million, I'd recommend walking away or renegotiating.\"\n\nTip: Synergies vs price.", "B", "M"],
+["MECE", "What does MECE mean?", "**Why they ask:** structured thinking basics.\n\n**Answer:**\n\"Mutually exclusive, collectively exhaustive — categories don't overlap and together cover everything. Splitting customers into 'new' and 'existing' is MECE; splitting them into 'young' and 'online' isn't, because they overlap and miss people.\"\n\nTip: Example.", "B", "E"],
+["Synthesis", "How do you synthesize findings?", "**Why they ask:** communication.\n\n**Answer:**\n\"Answer first, using the pyramid principle: 'The client should exit the low-end segment.' Then two or three key insights backed by data, then implications and next steps.\"\n\nTip: Answer first.", "B", "E"],
+["Math", "A product costs $40 to make and sells for $60; fixed costs are $2M. What's breakeven volume?", "**Why they ask:** quick math.\n\n**Answer:**\n\"Contribution margin is $60 minus $40, so $20 per unit. Breakeven is $2 million divided by $20 — 100,000 units.\"\n\nTip: Mental math.", "B", "E"],
+["Operations", "How would you reduce operating costs for a client?", "**Why they ask:** cost case.\n\n**Answer:**\n\"Baseline spend by category, benchmark against peers, then work the levers: procurement savings, process efficiency through lean and automation, spans and layers, footprint consolidation and demand management. I'd plot each on an impact-versus-ease matrix and start with high-impact, easy wins.\"\n\nTip: Impact/ease matrix.", "B", "M"],
+["Stakeholders", "How do you manage client stakeholders?", "**Why they ask:** client skills.\n\n**Answer:**\n\"Understand each stakeholder's priorities and concerns, engage early and often, align on hypotheses, and pre-wire key findings one-on-one before big meetings so no executive is surprised in front of peers. Trust comes from quality work.\"\n\nTip: Pre-wiring.", "B", "M"],
+["Slides", "What makes a good consulting slide?", "**Why they ask:** communication craft.\n\n**Answer:**\n\"An action title that states the takeaway — 'Northeast drives 70% of the margin decline' rather than 'Margin by region' — one message per slide, a clear chart that proves it, sources, and minimal clutter.\"\n\nTip: Action titles.", "B", "E"],
+["Excel", "Which analytical skills do you use?", "**Why they ask:** toolkit.\n\n**Answer:**\n\"Excel modeling with scenarios and sensitivities, data analysis with pivot tables, SQL and Python, and visualization in Tableau or PowerPoint charts.\"\n\nTip: Modeling.", "B", "E"],
+["Interviews", "How do you run expert or client interviews?", "**Why they ask:** primary research.\n\n**Answer:**\n\"Prepare hypotheses and targeted questions, listen actively, probe for specific numbers and examples, take detailed notes, and synthesize patterns across interviews.\"\n\nTip: Hypotheses.", "B", "E"],
+["Frameworks", "Which frameworks do you use and how?", "**Why they ask:** structured but not rigid thinking.\n\n**Answer:**\n\"Porter's Five Forces for industry attractiveness, the 3Cs, value chain, the BCG matrix and McKinsey 7S — as starting points tailored to the specific problem, never forced templates.\"\n\nTip: Tailor.", "B", "M"],
+["Implementation", "How do you ensure recommendations get implemented?", "**Why they ask:** impact focus.\n\n**Answer:**\n\"Involve client owners from the start so it's their plan, build a practical roadmap with owners and KPIs, deliver quick wins for momentum, manage change and set up governance to track progress.\"\n\nTip: Client ownership.", "B", "M"],
+["Digital", "How do you approach a digital transformation engagement?", "**Why they ask:** modern engagements.\n\n**Answer:**\n\"Start with business outcomes, assess current capabilities, prioritize use cases by value and feasibility, design the target operating model and technology roadmap, and drive adoption — technology alone doesn't transform anything.\"\n\nTip: Outcomes first.", "D", "M"],
+["AI", "How would you help a client capture value from AI?", "**Why they ask:** current client demand.\n\n**Answer:**\n\"Identify high-value use cases tied to business KPIs, assess data readiness, pilot and measure actual impact, address risk and governance, then scale with process and talent changes.\"\n\nTip: Value measurement.", "D", "M"],
+["Behavioral", "Tell me about a time you led a team.", "**Why they ask:** leadership.\n\n**Answer:**\n\"I led a four-person workstream on procurement savings. I set clear priorities, coached a new analyst through her first client interviews, and we delivered $18 million in identified savings to the client CFO.\"\n\nTip: Impact.", "B", "M"],
+["Behavioral", "Tell me about handling a difficult client.", "**Why they ask:** relationship skills.\n\n**Answer:**\n\"A client executive rejected our early findings in a steering meeting. I met him one-on-one, learned his concern was data accuracy, validated the numbers with his team, and he became our strongest sponsor.\"\n\nTip: Listen.", "B", "M"],
+["Behavioral", "Tell me about a time you failed.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"On my first project I spent a week perfecting a market model before checking it with the manager. The core assumption was wrong, and we lost time. Now I share rough drafts early — a 'ghost deck' on day two — so direction gets corrected before I invest heavily.\"\n\nTip: Learning.", "B", "E"],
+["Fit", "Why consulting?", "**Why they ask:** motivation.\n\n**Answer:**\n\"Variety of problems, accelerated learning, real impact on client businesses, and working with strong teams. In my last role I enjoyed the strategy projects most, and consulting lets me do that full time across industries.\"\n\nTip: Specific reasons.", "B", "E"],
+["Fit", "Why our firm?", "**Why they ask:** genuine interest.\n\n**Answer:**\n\"Your operations practice and focus on implementation, the people I met who described real ownership early on, and how my supply chain background fits the work you do.\"\n\nTip: Research.", "B", "E"],
+["Career", "Where do you see yourself in five years?", "**Why they ask:** career direction.\n\n**Answer:**\n\"Growing to engagement manager or principal, leading teams and client relationships.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I structure ambiguous problems, analyze quickly and communicate clearly — and I've delivered measurable client impact, like $18 million in savings.\"\n\nTip: Proof.", "B", "E"],
+["Pricing", "How would you set pricing for a new product?", "**Why they ask:** pricing case.\n\n**Answer:**\n\"Cost sets the floor, customer value and willingness to pay set the ceiling, and competitor prices show where we sit. Then strategy — penetration to win share or skimming for early adopters — and test before committing.\"\n\nTip: Value-based.", "B", "M"],
+["Growth", "How would you grow revenue for a client?", "**Why they ask:** growth case.\n\n**Answer:**\n\"Existing customers through retention, upsell and price; new customers through segments, geographies and channels; new products; and M&A — essentially the Ansoff matrix, ordered from lowest to highest risk.\"\n\nTip: Ansoff matrix.", "B", "M"],
+["Competitive Response", "A competitor cut prices 20%. How should our client respond?", "**Why they ask:** competitive response.\n\n**Answer:**\n\"First understand why — a cost advantage or desperation. Then assess how price-sensitive our customers are and the likely impact. Options are matching, differentiating, targeting specific segments, or cutting costs. I'd model each: matching a 20% cut on a 30% gross margin product wipes out two-thirds of margin, so it would need a big volume defense to make sense.\"\n\nTip: Don't automatically match.", "B", "M"],
+["Estimation", "How many gas stations are in the US?", "**Why they ask:** estimation.\n\n**Answer:**\n\"About 290 million vehicles, each filling up roughly once a week — 290 million fills a week. A station with about eight pumps handles maybe 2,000 fills a week. 290 million divided by 2,000 is about 145,000 stations, which is close to the actual figure.\"\n\nTip: Sanity check.", "B", "M"],
+["Chart", "How do you interpret a chart in a case?", "**Why they ask:** data reading.\n\n**Answer:**\n\"Read the title, axes and units, find the key trend or outlier, quantify it — 'margins fell from 18% to 11% in two years, mostly in Product B' — and tie it back to the case question.\"\n\nTip: So what?", "B", "E"],
+["Brainstorming", "How do you brainstorm in a case?", "**Why they ask:** structured creativity.\n\n**Answer:**\n\"Use structured categories — internal versus external, demand versus supply, short versus long term — to generate ideas comprehensively, then prioritize the most promising.\"\n\nTip: Structure.", "B", "E"],
+["Teamwork", "How do you handle a team member not pulling their weight?", "**Why they ask:** teamwork.\n\n**Answer:**\n\"Talk privately, understand obstacles — maybe they're overloaded on another workstream — clarify expectations, offer help, and escalate to the manager only if it doesn't improve.\"\n\nTip: Direct conversation.", "B", "E"],
+["Pressure", "How do you handle tight deadlines and long hours?", "**Why they ask:** resilience.\n\n**Answer:**\n\"Prioritize ruthlessly on the 20% of analysis that drives 80% of the answer, flag trade-offs early to the manager, and protect quality on what matters most.\"\n\nTip: 80/20.", "B", "E"],
+["Supply Chain Case", "A client's delivery times are worsening. How do you analyze it?", "**Why they ask:** operations case.\n\n**Answer:**\n\"Map the end-to-end process — order entry, warehouse picking, transport — measure time at each step to find the bottleneck, compare with benchmarks, and recommend process, capacity or network changes.\"\n\nTip: Process map.", "B", "M"],
+["Turnaround", "How do you approach a business turnaround?", "**Why they ask:** turnaround thinking.\n\n**Answer:**\n\"Stabilize cash first, then diagnose the core problems, take quick cost wins, refocus strategy on profitable segments, and strengthen leadership and governance.\"\n\nTip: Cash first.", "D", "M"],
+["Org Design", "How do you approach an org design engagement?", "**Why they ask:** organization work.\n\n**Answer:**\n\"Start from strategy-driven design principles, analyze spans and layers, clarify decision rights using RAPID, define roles, and build a transition plan.\"\n\nTip: Decision rights.", "D", "M"],
+["Hypothesis", "What's a hypothesis-driven approach?", "**Why they ask:** consulting method.\n\n**Answer:**\n\"Form an early answer based on initial facts, then run targeted analyses to test it — refining or discarding quickly, instead of analyzing everything and hoping an answer emerges.\"\n\nTip: Don't boil the ocean.", "B", "E"],
+["Industry Expertise", "How do you ramp up on a new industry quickly?", "**Why they ask:** learning speed.\n\n**Answer:**\n\"Industry reports, two or three expert calls, annual reports of key players, client documents, and learning the five or six metrics that matter in that industry.\"\n\nTip: Key metrics.", "B", "E"],
+["Ethics", "What would you do if a client asked you to manipulate analysis?", "**Why they ask:** integrity.\n\n**Answer:**\n\"Refuse, explain our professional standards, and escalate to the partner. The firm's credibility is worth more than any engagement.\"\n\nTip: Integrity.", "B", "E"],
+["Questions", "What would you ask your interviewer?", "**Why they ask:** genuine interest.\n\n**Answer:**\n\"What was your most recent engagement like? How are teams staffed? What training and mentorship do new consultants get, and how would you describe the culture?\"\n\nTip: Genuine.", "B", "E"],
+["Recommendation", "How do you deliver a final recommendation in a case?", "**Why they ask:** closing well.\n\n**Answer:**\n\"'I recommend X because of A, B and C. The main risks are Y, and next steps are Z.' Concise and confident.\"\n\nTip: Confident close.", "B", "E"]
+]);
+
+QB["cs-mc"] = (QB["cs-mc"] || []).concat([
+["Issue Tree", "Build an issue tree for 'Why are hospital wait times increasing?'", "**Why they ask:** structuring.\n\n**Answer:**\n\"Split into demand and capacity. Demand: more patients from population growth, seasonality or a nearby facility closing. Capacity: staffing levels, beds, and process efficiency — triage, lab turnaround and discharge delays. Then I'd test each branch with data to find the main drivers.\"\n\nTip: Demand vs supply.", "B", "M"],
+["Pyramid Principle", "What is the pyramid principle?", "**Why they ask:** communication method.\n\n**Answer:**\n\"Barbara Minto's structure: the main conclusion first, supported by grouped key arguments, each backed by data — top-down, logical and MECE.\"\n\nTip: Barbara Minto.", "B", "E"],
+["80/20", "How do you apply the 80/20 rule in consulting?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Focus on the analyses that drive most of the answer, use good-enough data, and skip perfect analysis that won't change the recommendation.\"\n\nTip: Decision-relevant.", "B", "E"],
+["Benchmarking", "How do you use benchmarking?", "**Why they ask:** analysis method.\n\n**Answer:**\n\"Compare client metrics with peers or best practice to size gaps and opportunities, normalizing for differences in scale and mix — cost per unit, not total cost.\"\n\nTip: Normalize.", "B", "M"],
+["Due Diligence", "What is commercial due diligence?", "**Why they ask:** PE work.\n\n**Answer:**\n\"Assessing a target's market, competitive position, customers and the credibility of its growth plan for investors — using market sizing, customer interviews and competitor analysis.\"\n\nTip: Customer calls.", "D", "M"],
+["Workshop", "How do you facilitate a client workshop?", "**Why they ask:** facilitation.\n\n**Answer:**\n\"Clear objectives, pre-reads, a structured agenda with interactive exercises, a parking lot for side topics, and documented decisions and follow-up actions.\"\n\nTip: Decisions documented.", "B", "E"],
+["Scoping", "How do you scope a consulting engagement?", "**Why they ask:** engagement management.\n\n**Answer:**\n\"Clarify the client's key question and success criteria, define deliverables, timeline, team, data needs and governance, and write it into the proposal so everyone agrees on what done looks like.\"\n\nTip: Key question.", "B", "M"],
+["Sales", "How do consultants help sell work?", "**Why they ask:** commercial awareness.\n\n**Answer:**\n\"Build trusted relationships, spot follow-on needs, contribute to proposals and thought leadership, and above all deliver quality work that earns extensions.\"\n\nTip: Quality sells.", "D", "M"],
+["Mental Math", "What is 18% of 450?", "**Why they ask:** mental math.\n\n**Answer:**\n\"10% is 45 and 8% is 36, so 81.\"\n\nTip: Decompose.", "B", "E"],
+["Scenario", "Halfway through a case, you realize your structure was wrong. What do you do?", "**Why they ask:** adaptability.\n\n**Answer:**\n\"Say so, explain what I learned, adjust the structure and continue — 'Given the cost data, this looks like a demand problem, so I'll shift focus there.' Interviewers value adaptability over defending a flawed path.\"\n\nTip: Adapt openly.", "B", "E"]
 ]);
