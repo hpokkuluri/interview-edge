@@ -1,38 +1,11 @@
-QB['sm-sdir'] = (QB['sm-sdir']||[]).concat([
-["1:1s", "What does a good 1:1 with a rep look like?",
-`**Answer:** Rep-led agenda. Cover pipeline progress and next steps on key deals, skill development (from call reviews), obstacles you can remove, and career goals. Keep it consistent and focused on coaching rather than just status.
-
-Tip: Coaching, not status.`, 'B', 'E'],
-["Win/Loss", "How do you run win/loss analysis?",
-`**Answer:** Interview customers (won and lost) through a neutral party, analyze patterns (pricing, product gaps, competitor, sales execution), and feed the findings into enablement, product and positioning.
-
-Tip: Neutral interviews.`, 'D', 'M'],
-["SDRs", "How do you structure SDR and AE collaboration?",
-`**Answer:** Clear handoff criteria (qualified meeting definition), SDR-to-AE ratios (often 1:2 to 1:3), shared goals on pipeline created, feedback loops, and a career path from SDR to AE.
-
-Tip: Meeting acceptance criteria.`, 'B', 'M'],
-["Deal Desk", "What does a deal desk do?",
-`**Answer:** It reviews non-standard deals for pricing, terms and approvals, speeding up complex deals while protecting margin and compliance.
-
-Tip: Speed plus control.`, 'B', 'E'],
-["Rep Productivity", "How do you increase rep selling time?",
-`**Answer:** Remove admin through automation, use SDRs for prospecting, provide quick access to content, keep internal meetings lean, and offer deal desk support. Reps often spend under 30% of their time actually selling.
-
-Tip: Selling time.`, 'B', 'M'],
-["Leading Indicators", "Which leading indicators predict a team's quarter?",
-`**Answer:** Pipeline created in prior quarters, stage progression rates, meetings with economic buyers, mutual action plans in place, and activity quality.
-
-Tip: Earlier signals.`, 'D', 'M'],
-["Promotion", "How do you develop reps into leaders?",
-`**Answer:** Give them stretch roles (mentoring new reps, leading deal reviews), leadership training, and a clear assessment of coaching ability, not just selling performance.
-
-Tip: Top sellers aren't always the best managers.`, 'B', 'M'],
-["Scenario", "Marketing leads aren't converting and sales blames marketing. What do you do?",
-`**Answer:** Analyze the funnel data together, align on ICP and lead definitions, enforce follow-up SLAs, review lead quality jointly, and fix the issues on both sides.
-
-Tip: Shared data.`, 'B', 'M'],
-["Scenario", "Your company raises prices 15%. How do you prepare the team?",
-`**Answer:** Explain the value rationale, train reps on messaging and objection handling, define grandfathering and approval rules, and monitor win rates and discounting.
-
-Tip: Value messaging.`, 'B', 'M']
+QB["sm-sdir"] = (QB["sm-sdir"] || []).concat([
+["1:1s", "What does a good 1:1 with a rep look like?", "**Why they ask:** coaching practice.\n\n**Answer:**\n\"The rep sets the agenda. We cover progress and next steps on key deals, one skill to develop from a recent call review, obstacles I can remove, and career goals — consistent every week and focused on coaching, not just status.\"\n\nTip: Coaching, not status.", "B", "E"],
+["Win/Loss", "How do you run win/loss analysis?", "**Why they ask:** learning systems.\n\n**Answer:**\n\"Interview customers — both won and lost — through a neutral party, look for patterns in pricing, product gaps, competitors and sales execution, and feed the findings into enablement, product and positioning.\"\n\nTip: Neutral interviews.", "D", "M"],
+["SDRs", "How do you structure SDR and AE collaboration?", "**Why they ask:** team design.\n\n**Answer:**\n\"Clear handoff criteria for a qualified meeting, SDR-to-AE ratios often around 1 to 2 or 1 to 3, shared goals on pipeline created, feedback loops, and a career path from SDR to AE.\"\n\nTip: Meeting acceptance criteria.", "B", "M"],
+["Deal Desk", "What does a deal desk do?", "**Why they ask:** operational knowledge.\n\n**Answer:**\n\"It reviews non-standard deals for pricing, terms and approvals, speeding up complex deals while protecting margin and compliance.\"\n\nTip: Speed plus control.", "B", "E"],
+["Rep Productivity", "How do you increase rep selling time?", "**Why they ask:** productivity.\n\n**Answer:**\n\"Automate admin, use SDRs for prospecting, give quick access to content, keep internal meetings lean, and provide deal desk support. Studies regularly find reps spend under a third of their time actually selling.\"\n\nTip: Selling time.", "B", "M"],
+["Leading Indicators", "Which leading indicators predict a team's quarter?", "**Why they ask:** forecasting insight.\n\n**Answer:**\n\"Pipeline created in prior quarters, stage progression rates, meetings with economic buyers, mutual action plans in place, and activity quality.\"\n\nTip: Earlier signals.", "D", "M"],
+["Promotion", "How do you develop reps into leaders?", "**Why they ask:** succession.\n\n**Answer:**\n\"Stretch roles like mentoring new reps or leading deal reviews, leadership training, and an honest assessment of their coaching ability — top sellers aren't always the best managers.\"\n\nTip: Top sellers aren't always the best managers.", "B", "M"],
+["Scenario", "Marketing leads aren't converting and sales blames marketing. What do you do?", "**Why they ask:** cross-functional leadership.\n\n**Answer:**\n\"Analyze the funnel data together, align on ICP and lead definitions, enforce follow-up SLAs on my side, review lead quality jointly, and fix the issues on both sides.\"\n\nTip: Shared data.", "B", "M"],
+["Scenario", "Your company raises prices 15%. How do you prepare the team?", "**Why they ask:** change leadership.\n\n**Answer:**\n\"Explain the value rationale, train reps on messaging and objection handling, define grandfathering and approval rules, and monitor win rates and discounting closely for the first quarter.\"\n\nTip: Value messaging.", "B", "M"]
 ]);

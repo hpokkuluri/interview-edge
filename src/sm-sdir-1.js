@@ -1,213 +1,44 @@
 // Sales Manager / Director of Sales. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['sm-sdir'] = [
-["Role", "What does a sales director do?",
-`**Why they ask:** shift from seller to leader.
-
-**Answer:** Leads a sales team to hit revenue targets: hiring and developing reps, setting territories and quotas, managing pipeline and forecasts, coaching deals, building processes, partnering with marketing and customer success, and reporting to leadership.
-
-Tip: Team size and results.`, 'B', 'E'],
-
-["Hiring", "How do you hire great sellers?",
-`**Answer:** Define the profile from top performers, structured interviews testing discovery, objection handling and coachability, role plays, verify past attainment with references, and assess motivation and resilience.
-
-Tip: Role plays.`, 'B', 'M'],
-
-["Coaching", "How do you coach reps?",
-`**Answer:** Weekly 1:1s on pipeline and skills, call reviews (Gong), deal strategy sessions, role plays, and individualized development plans — focusing on behaviors that drive results.
-
-Tip: Call reviews.`, 'B', 'M'],
-
-["Forecasting", "How do you build an accurate forecast?",
-`**Answer:** Clear stage definitions with exit criteria, deal-by-deal inspection, historical conversion rates, commit/best-case categories, and accountability for accuracy.
-
-Tip: Inspection.`, 'B', 'M'],
-
-["Pipeline", "How do you inspect pipeline health?",
-`**Answer:** Coverage vs quota (3–4x), stage distribution, aging deals, deal velocity, next steps quality, and win rates by stage and rep.
-
-Tip: Velocity.`, 'B', 'M'],
-
-["Velocity", "What is sales velocity?",
-`**Answer:** Velocity = (number of opportunities × win rate × average deal size) / sales cycle length.
-
-**Example:** 50 opps × 25% × $40K / 90 days ≈ $5,556 per day.
-
-Tip: Four levers.`, 'D', 'M'],
-
-["Underperformance", "How do you handle an underperforming rep?",
-`**Answer:** Diagnose (activity, skill, or will), set clear expectations and metrics, coach intensively, track progress, and make decisions if no improvement after a fair period.
-
-Tip: Diagnose first.`, 'B', 'M'],
-
-["Quota", "How do you set quotas?",
-`**Answer:** Top-down from company targets and bottom-up from territory potential and historical performance, aiming for 60–70% of reps hitting quota; consider ramp for new reps.
-
-Tip: Attainable distribution.`, 'D', 'M'],
-
-["Territories", "How do you design territories?",
-`**Answer:** Balance by account potential, workload and geography or industry; avoid frequent reshuffling; use data on total addressable market.
-
-Tip: Balanced potential.`, 'D', 'M'],
-
-["Compensation", "How do you design a sales comp plan?",
-`**Answer:** Aligned to strategy, simple to understand, OTE competitive, accelerators above quota, appropriate pay mix, and avoiding caps that demotivate top performers.
-
-Tip: Simplicity.`, 'D', 'M'],
-
-["Process", "How do you build a repeatable sales process?",
-`**Answer:** Document stages and exit criteria, qualification methodology, playbooks, enablement and CRM workflows; inspect adherence and refine.
-
-Tip: Playbooks.`, 'B', 'M'],
-
-["Ramp", "How do you ramp new reps faster?",
-`**Answer:** Structured onboarding, certification on pitch and product, shadowing, early wins with smaller deals, ramped quotas, and mentoring.
-
-Tip: Certifications.`, 'B', 'M'],
-
-["Marketing", "How do you partner with marketing?",
-`**Answer:** Agree on ICP and lead definitions (MQL/SQL), SLAs for follow-up, feedback loops on lead quality, and shared pipeline goals.
-
-Tip: SLAs.`, 'B', 'M'],
-
-["Metrics", "Which metrics do you manage the team on?",
-`**Answer:** Quota attainment, pipeline generation, win rate, deal size, cycle length, forecast accuracy, activity leading indicators and ramp time.
-
-Tip: Leading indicators.`, 'B', 'E'],
-
-["Culture", "How do you build a winning sales culture?",
-`**Answer:** Clear expectations, recognition, healthy competition, collaboration, coaching, integrity and celebrating wins and learning from losses.
-
-Tip: Integrity.`, 'B', 'M'],
-
-["Deal Coaching", "How do you help reps win big deals?",
-`**Answer:** Deal reviews with MEDDICC gaps, exec sponsorship, strategy on stakeholders and competition, and joining key meetings.
-
-Tip: Gaps analysis.`, 'B', 'M'],
-
-["Behavioral", "Tell me about turning around a struggling team.",
-`**Sample answer:** "I inherited a team at 68% of plan. I introduced MEDDICC, weekly deal reviews and coaching, and replaced two reps. Within three quarters we reached 108% of plan."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a hire that didn't work out.",
-`**Sample answer:** "I hired a rep based on big-company credentials who struggled without brand support. I now test for resourcefulness and startup prospecting skills."
-
-Tip: Learning.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a forecast miss.",
-`**Answer:** Explain what happened, root cause (e.g. weak stage evidence), and the inspection changes you made.
-
-Tip: Ownership.`, 'B', 'M'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** VP of Sales or CRO.
-
-Tip: Direction.`, 'B', 'M'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I build teams that hit their number predictably — turning a 68% team into 108% through process, coaching and the right hires."
-
-Tip: Proof.`, 'B', 'M'],
-
-["Retention", "How do you retain top performers?",
-`**Answer:** Fair territories, uncapped earnings, recognition, career paths, removing obstacles, and listening.
-
-Tip: Remove obstacles.`, 'B', 'E'],
-
-["CRM Adoption", "How do you get reps to update CRM?",
-`**Answer:** Make it useful (forecasting, insights), keep it simple, automate data capture, and inspect in 1:1s.
-
-Tip: Use it in reviews.`, 'B', 'E'],
-
-["Pricing", "How do you manage discounting?",
-`**Answer:** Approval levels, deal desk, train value selling, track discount trends and tie to comp where appropriate.
-
-Tip: Deal desk.`, 'B', 'M'],
-
-["Scenario", "Your team is 30% behind with 6 weeks left in the quarter. What do you do?",
-`**Answer:** Scrub pipeline for realistic deals, focus resources on top opportunities, exec involvement, remove obstacles, and communicate honestly upward.
-
-Tip: Focus.`, 'B', 'M'],
-
-["Scenario", "Your top rep is toxic to the team. What do you do?",
-`**Answer:** Address behaviors directly with clear expectations; culture matters more than one rep's numbers; follow through if no change.
-
-Tip: Culture.`, 'B', 'M'],
-
-["Enablement", "What does good sales enablement include?",
-`**Answer:** Onboarding, product and messaging training, battle cards, case studies, content and tools, and ongoing skill coaching.
-
-Tip: Battle cards.`, 'B', 'E'],
-
-["Channel", "How do you manage partner/channel sales?",
-`**Answer:** Partner recruitment and enablement, clear rules of engagement, deal registration, joint planning and incentives.
-
-Tip: Deal registration.`, 'D', 'M'],
-
-["Data", "How do you use data to improve sales?",
-`**Answer:** Analyze win/loss, funnel conversion, rep performance patterns, and conversation intelligence to coach and refine strategy.
-
-Tip: Conversation intelligence.`, 'B', 'M'],
-
-["Planning", "How do you build an annual sales plan?",
-`**Answer:** Revenue targets, capacity planning (reps × productivity), territory and quota design, hiring plan, enablement, and key initiatives.
-
-Tip: Capacity model.`, 'D', 'M'],
-
-["Capacity", "How do you calculate sales capacity?",
-`**Answer:** Number of ramped reps × average productivity, adjusted for ramping reps and attrition.
-
-**Example:** 10 ramped reps × $800K + 4 new reps × 50% × $800K = $9.6M capacity.
-
-Tip: Ramp adjustments.`, 'D', 'M'],
-
-["Customer Success", "How do sales and CS work together?",
-`**Answer:** Clean handoffs, shared account plans, renewal and expansion collaboration, and feedback loops.
-
-Tip: Handoffs.`, 'B', 'E'],
-
-["Executive", "How do you report to the CRO/CEO?",
-`**Answer:** Forecast with risks and upside, pipeline health, key deals, team performance, and needs.
-
-Tip: Risks.`, 'B', 'E'],
-
-["Diversity", "How do you build diverse sales teams?",
-`**Answer:** Broader sourcing, structured interviews, inclusive culture and fair territories.
-
-Tip: Fair processes.`, 'B', 'E'],
-
-["Motivation", "How do you motivate different personalities?",
-`**Answer:** Learn individual motivators (money, recognition, growth, autonomy) and tailor coaching and recognition.
-
-Tip: Individualize.`, 'B', 'E'],
-
-["Remote", "How do you lead remote sales teams?",
-`**Answer:** Clear cadences, virtual coaching with call recordings, team connection rituals, and outcome focus.
-
-Tip: Call recordings.`, 'B', 'E'],
-
-["Methodology", "How do you roll out a new methodology?",
-`**Answer:** Train, embed in CRM fields and deal reviews, coach consistently, and measure adoption and impact.
-
-Tip: Embed in reviews.`, 'D', 'M'],
-
-["Ethics", "A rep is sandbagging deals to next quarter. What do you do?",
-`**Answer:** Address directly, clarify expectations, align comp to discourage it, and inspect pipeline timing.
-
-Tip: Transparency.`, 'B', 'M'],
-
-["Conflict", "Two reps fight over an account. What do you do?",
-`**Answer:** Apply rules of engagement fairly, decide quickly, and communicate reasoning.
-
-Tip: Clear rules.`, 'B', 'E'],
-
-["AI", "How is AI changing sales leadership?",
-`**Answer:** Forecasting accuracy, automated coaching insights, rep productivity tools and AI SDRs — leaders must integrate tools and redesign roles.
-
-Tip: Productivity.`, 'B', 'M'],
-
-["Win Rate", "How do you improve win rates?",
-`**Answer:** Better qualification, discovery quality, competitive positioning, executive alignment and proof points.
-
-Tip: Qualify harder.`, 'B', 'M']
-];
+QB["sm-sdir"] = (QB["sm-sdir"] || []).concat([
+["Role", "What does a sales director do?", "**Why they ask:** shift from seller to leader.\n\n**Answer:** Leads a sales team to hit revenue targets: hiring and developing reps, setting territories and quotas, managing pipeline and forecasts, coaching deals, building processes, partnering with marketing and customer success, and reporting to leadership.\n\nTip: Team size and results.", "B", "E"],
+["Hiring", "How do you hire great sellers?", "**Why they ask:** the team is the strategy.\n\n**Answer:**\n\"Define the profile from what my current top performers actually do, run structured interviews testing discovery, objection handling and coachability, include a role play — I play a skeptical CFO — verify past attainment with references and W-2s where appropriate, and assess motivation and resilience. How someone takes feedback in the role play predicts more than their resume.\"\n\nTip: Role plays.", "B", "M"],
+["Coaching", "How do you coach reps?", "**Why they ask:** leadership through coaching.\n\n**Answer:**\n\"Weekly one-on-ones on pipeline and skills, call reviews in Gong, deal strategy sessions on key opportunities, role plays, and an individual development plan per rep — coaching the behaviors that drive results, like asking for the economic buyer, rather than just the outcome.\"\n\nTip: Call reviews.", "B", "M"],
+["Forecasting", "How do you build an accurate forecast?", "**Why they ask:** credibility with leadership.\n\n**Answer:**\n\"Clear stage definitions with evidence-based exit criteria, deal-by-deal inspection, historical conversion rates as a sanity check, commit and best-case categories, and holding reps accountable for accuracy, not just attainment. I got my team's forecast within 5% of actuals by refusing to accept commit deals without a confirmed signature path.\"\n\nTip: Inspection.", "B", "M"],
+["Pipeline", "How do you inspect pipeline health?", "**Why they ask:** management discipline.\n\n**Answer:**\n\"Coverage against quota — 3 to 4x — stage distribution, aging deals stuck too long, deal velocity, the quality of next steps, and win rates by stage and by rep. A deal with no next step dated in the next two weeks isn't really progressing.\"\n\nTip: Velocity.", "B", "M"],
+["Velocity", "What is sales velocity?", "**Why they ask:** sales math.\n\n**Answer:**\n\"Number of opportunities times win rate times average deal size, divided by sales cycle length. 50 opportunities at a 25% win rate and $40K average deal, over a 90-day cycle, is $500K divided by 90 — about $5,556 a day. There are four levers, and shortening the cycle is often the easiest.\"\n\nTip: Four levers.", "D", "M"],
+["Underperformance", "How do you handle an underperforming rep?", "**Why they ask:** performance management.\n\n**Answer:**\n\"Diagnose first — is it activity, skill or will? Then set clear expectations and metrics, coach intensively on the specific gap, track progress weekly, and make a decision if there's no improvement after a fair period, usually 60 to 90 days.\"\n\nTip: Diagnose first.", "B", "M"],
+["Quota", "How do you set quotas?", "**Why they ask:** planning fairness.\n\n**Answer:**\n\"Top-down from company targets and bottom-up from territory potential and historical performance, aiming for 60 to 70% of reps hitting quota, with ramped quotas for new hires. If only 30% hit, the quotas are wrong, not the team.\"\n\nTip: Attainable distribution.", "D", "M"],
+["Territories", "How do you design territories?", "**Why they ask:** fairness and coverage.\n\n**Answer:**\n\"Balance territories by account potential, workload and geography or industry, using total addressable market data, and avoid reshuffling every year — reps lose relationships and trust each time.\"\n\nTip: Balanced potential.", "D", "M"],
+["Compensation", "How do you design a sales comp plan?", "**Why they ask:** incentive design.\n\n**Answer:**\n\"Aligned to strategy, simple enough to explain in one sentence, a competitive OTE, accelerators above quota, the right pay mix for the role, and no caps that demotivate top performers. If reps need a spreadsheet to know what a deal pays them, it's too complex.\"\n\nTip: Simplicity.", "D", "M"],
+["Process", "How do you build a repeatable sales process?", "**Why they ask:** scalability.\n\n**Answer:**\n\"Document the stages and exit criteria, adopt a qualification methodology, build playbooks, provide enablement and CRM workflows that match the process, then inspect adherence and refine based on win-loss data.\"\n\nTip: Playbooks.", "B", "M"],
+["Ramp", "How do you ramp new reps faster?", "**Why they ask:** productivity.\n\n**Answer:**\n\"Structured onboarding, certification on the pitch and product before they face customers, shadowing top reps, early wins with smaller deals, ramped quotas, and a mentor. We cut ramp from six months to four with certification gates.\"\n\nTip: Certifications.", "B", "M"],
+["Marketing", "How do you partner with marketing?", "**Why they ask:** alignment.\n\n**Answer:**\n\"Agree the ICP and lead definitions, set SLAs for follow-up — inbound leads called within an hour — create feedback loops on lead quality, and share pipeline goals so we win and lose together.\"\n\nTip: SLAs.", "B", "M"],
+["Metrics", "Which metrics do you manage the team on?", "**Why they ask:** management system.\n\n**Answer:**\n\"Quota attainment, pipeline generation, win rate, deal size, cycle length, forecast accuracy, leading activity indicators and ramp time. Leading indicators let me act before the quarter is lost.\"\n\nTip: Leading indicators.", "B", "E"],
+["Culture", "How do you build a winning sales culture?", "**Why they ask:** culture leadership.\n\n**Answer:**\n\"Clear expectations, recognition, healthy competition balanced with collaboration, coaching, integrity — no sandbagging, no overpromising — celebrating wins and learning openly from losses.\"\n\nTip: Integrity.", "B", "M"],
+["Deal Coaching", "How do you help reps win big deals?", "**Why they ask:** deal leadership.\n\n**Answer:**\n\"Deal reviews that expose MEDDICC gaps, executive sponsorship from our side, strategy on stakeholders and competition, and joining the key meetings myself — especially with the economic buyer.\"\n\nTip: Gaps analysis.", "B", "M"],
+["Behavioral", "Tell me about turning around a struggling team.", "**Why they ask:** proof.\n\n**Answer:**\n\"I inherited a team at 68% of plan. I introduced MEDDICC, weekly deal reviews and structured coaching, and replaced two reps who weren't a fit. Within three quarters we reached 108% of plan.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about a hire that didn't work out.", "**Why they ask:** self-awareness.\n\n**Answer:**\n\"I hired a rep with big-company credentials who struggled without a strong brand opening doors. Now I test for resourcefulness and self-sourced pipeline in interviews, not just logos on the resume.\"\n\nTip: Learning.", "B", "M"],
+["Behavioral", "Tell me about a forecast miss.", "**Why they ask:** accountability.\n\n**Answer:**\n\"I called $2.1 million for a quarter and landed $1.7 million because two commit deals slipped on procurement. The root cause was weak stage evidence — we hadn't confirmed their procurement steps. I added a 'procurement path confirmed' requirement for commit, and accuracy improved to within 5% the next three quarters.\"\n\nTip: Ownership.", "B", "M"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward VP of Sales and eventually CRO.\"\n\nTip: Direction.", "B", "M"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I build teams that hit their number predictably — turning a 68% team into 108% through process, coaching and the right hires.\"\n\nTip: Proof.", "B", "M"],
+["Retention", "How do you retain top performers?", "**Why they ask:** retention.\n\n**Answer:**\n\"Fair territories, uncapped earnings, recognition, career paths, removing internal obstacles, and listening. Top reps leave when bureaucracy slows their deals.\"\n\nTip: Remove obstacles.", "B", "E"],
+["CRM Adoption", "How do you get reps to update CRM?", "**Why they ask:** practical leadership.\n\n**Answer:**\n\"Make it useful to them for forecasting and insights, keep required fields minimal, automate data capture, and run every one-on-one and forecast call from the CRM — if it's not in the CRM, it doesn't exist.\"\n\nTip: Use it in reviews.", "B", "E"],
+["Pricing", "How do you manage discounting?", "**Why they ask:** margin protection.\n\n**Answer:**\n\"Approval levels by discount size, a deal desk, training in value selling, tracking discount trends by rep, and tying comp to margin where appropriate.\"\n\nTip: Deal desk.", "B", "M"],
+["Scenario", "Your team is 30% behind with 6 weeks left in the quarter. What do you do?", "**Why they ask:** pressure response.\n\n**Answer:**\n\"Scrub the pipeline for realistic deals, focus resources on the top opportunities, bring in executives where it helps, remove internal obstacles like slow legal reviews, and communicate honestly upward about what's achievable.\"\n\nTip: Focus.", "B", "M"],
+["Scenario", "Your top rep is toxic to the team. What do you do?", "**Why they ask:** values.\n\n**Answer:**\n\"Address the behaviors directly with specific examples and clear expectations, and follow through if nothing changes. Culture matters more than one rep's numbers — a toxic top performer can cost me three good reps.\"\n\nTip: Culture.", "B", "M"],
+["Enablement", "What does good sales enablement include?", "**Why they ask:** team capability.\n\n**Answer:**\n\"Onboarding, product and messaging training, battle cards against key competitors, case studies, content and tools, and ongoing skill coaching.\"\n\nTip: Battle cards.", "B", "E"],
+["Channel", "How do you manage partner/channel sales?", "**Why they ask:** channel experience.\n\n**Answer:**\n\"Partner recruitment and enablement, clear rules of engagement, deal registration so partners trust we won't compete with them, joint planning and incentives.\"\n\nTip: Deal registration.", "D", "M"],
+["Data", "How do you use data to improve sales?", "**Why they ask:** analytical leadership.\n\n**Answer:**\n\"Win-loss analysis, funnel conversion by stage, rep performance patterns, and conversation intelligence — for example, Gong showed our winning calls had the customer talking 60% of the time, so we coached to that.\"\n\nTip: Conversation intelligence.", "B", "M"],
+["Planning", "How do you build an annual sales plan?", "**Why they ask:** planning.\n\n**Answer:**\n\"Revenue targets, a capacity model — reps times productivity — territory and quota design, a hiring plan timed for ramp, enablement, and a few key initiatives.\"\n\nTip: Capacity model.", "D", "M"],
+["Capacity", "How do you calculate sales capacity?", "**Why they ask:** planning math.\n\n**Answer:**\n\"Ramped reps times average productivity, plus ramping reps at a reduced rate, adjusted for attrition. 10 ramped reps at $800K is $8 million, plus 4 new reps at 50% productivity is another $1.6 million — $9.6 million capacity before attrition.\"\n\nTip: Ramp adjustments.", "D", "M"],
+["Customer Success", "How do sales and CS work together?", "**Why they ask:** customer lifecycle.\n\n**Answer:**\n\"Clean handoffs with documented commitments, shared account plans, collaboration on renewals and expansion, and feedback loops on what customers were promised.\"\n\nTip: Handoffs.", "B", "E"],
+["Executive", "How do you report to the CRO/CEO?", "**Why they ask:** upward communication.\n\n**Answer:**\n\"Forecast with risks and upside, pipeline health, key deals, team performance, and what I need from them — no surprises.\"\n\nTip: Risks.", "B", "E"],
+["Diversity", "How do you build diverse sales teams?", "**Why they ask:** team building.\n\n**Answer:**\n\"Broader sourcing beyond the usual networks, structured interviews scored consistently, an inclusive culture and fair territory assignment.\"\n\nTip: Fair processes.", "B", "E"],
+["Motivation", "How do you motivate different personalities?", "**Why they ask:** individualized leadership.\n\n**Answer:**\n\"Learn what drives each person — money, recognition, growth, autonomy — and tailor coaching and recognition. Some reps want public praise; others want a quiet thank-you and a bigger territory.\"\n\nTip: Individualize.", "B", "E"],
+["Remote", "How do you lead remote sales teams?", "**Why they ask:** remote leadership.\n\n**Answer:**\n\"Clear cadences, virtual coaching using call recordings, team connection rituals, and a focus on outcomes rather than hours online.\"\n\nTip: Call recordings.", "B", "E"],
+["Methodology", "How do you roll out a new methodology?", "**Why they ask:** change management.\n\n**Answer:**\n\"Train the team, embed it in CRM fields and deal reviews so it's used daily, coach consistently, and measure adoption and impact on win rates.\"\n\nTip: Embed in reviews.", "D", "M"],
+["Ethics", "A rep is sandbagging deals to next quarter. What do you do?", "**Why they ask:** integrity management.\n\n**Answer:**\n\"Address it directly, clarify expectations about forecasting honestly, align comp so it doesn't reward pushing deals, and inspect pipeline close dates more closely.\"\n\nTip: Transparency.", "B", "M"],
+["Conflict", "Two reps fight over an account. What do you do?", "**Why they ask:** conflict resolution.\n\n**Answer:**\n\"Apply the rules of engagement fairly, decide quickly, and explain my reasoning to both. If the rules were unclear, I fix them for everyone.\"\n\nTip: Clear rules.", "B", "E"],
+["AI", "How is AI changing sales leadership?", "**Why they ask:** future of sales.\n\n**Answer:**\n\"More accurate forecasting, automated coaching insights, rep productivity tools and AI SDRs. Leaders need to integrate these tools and redesign roles around them.\"\n\nTip: Productivity.", "B", "M"],
+["Win Rate", "How do you improve win rates?", "**Why they ask:** performance levers.\n\n**Answer:**\n\"Better qualification so we stop chasing bad deals, stronger discovery, competitive positioning, executive alignment and proof points like references.\"\n\nTip: Qualify harder.", "B", "M"]
+]);
