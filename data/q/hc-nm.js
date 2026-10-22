@@ -1,252 +1,57 @@
 // hc-nm — generated from src/hc-nm-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Nurse Manager / Director of Nursing. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['hc-nm'] = [
-["Role", "What does a nurse manager do?",
-`**Why they ask:** leadership scope.
-
-**Answer:** Leads a nursing unit: staffing and scheduling, budget, quality and patient safety, patient experience, staff hiring, development, retention and performance, regulatory compliance, and collaboration with physicians and other departments — 24/7 accountability.
-
-Tip: Unit size and outcomes.`, 'B', 'E'],
-
-["Staffing", "How do you manage staffing shortages?",
-`**Answer:** Flexible scheduling, float pool and per diem staff, incentive shifts, cross-training, travel nurses as a last resort, adjusting assignments by acuity, and addressing root causes of turnover.
-
-Tip: Root causes.`, 'B', 'M'],
-
-["Retention", "How do you reduce nurse turnover?",
-`**Answer:** Supportive onboarding and preceptorship, manageable workloads, shared governance, recognition, career development, flexible scheduling, and visible, approachable leadership. Stay interviews help.
-
-Tip: Stay interviews.`, 'B', 'M'],
-
-["Budget", "How do you manage a unit budget?",
-`**Answer:** Monitor productivity (hours per patient day — HPPD), overtime, agency spend, supplies, and variance reports; adjust staffing to census and acuity; explain variances.
-
-**Example:** target HPPD 9.5 with average census 30 → ~285 nursing hours per day.
-
-Tip: HPPD.`, 'D', 'M'],
-
-["Quality", "How do you improve quality metrics like falls or CAUTI?",
-`**Answer:** Analyze data and root causes, engage staff in solutions, implement evidence-based bundles, audit compliance, give feedback, and celebrate improvements.
-
-Tip: Staff engagement.`, 'B', 'M'],
-
-["Patient Experience", "How do you improve HCAHPS scores?",
-`**Answer:** Leader rounding on patients, hourly rounding by staff, bedside shift report, communication training (AIDET), discharge phone calls and service recovery.
-
-Tip: Leader rounding.`, 'B', 'M'],
-
-["Performance", "How do you handle an underperforming nurse?",
-`**Answer:** Clarify expectations, give specific feedback, identify causes, provide education and support, document, follow progressive discipline if needed, while ensuring patient safety.
-
-Tip: Patient safety first.`, 'B', 'M'],
-
-["Just Culture", "What is just culture?",
-`**Answer:** Distinguishing human error (console), at-risk behavior (coach) and reckless behavior (discipline) — encouraging error reporting and system improvement rather than blame.
-
-Tip: Three behaviors.`, 'B', 'M'],
-
-["Conflict", "How do you handle conflict between nurses and physicians?",
-`**Answer:** Facilitate respectful discussion focused on patient care, use structured communication, involve medical leadership if needed, and address disruptive behavior per policy.
-
-Tip: Patient focus.`, 'B', 'M'],
-
-["Regulatory", "How do you prepare for a Joint Commission survey?",
-`**Answer:** Continuous readiness: tracer audits, policy compliance, documentation reviews, staff education on National Patient Safety Goals, environment of care checks.
-
-Tip: Always ready.`, 'B', 'M'],
-
-["Shared Governance", "What is shared governance?",
-`**Answer:** Nurses participate in decisions about practice, quality and education through councils — increasing engagement and Magnet alignment.
-
-Tip: Magnet.`, 'B', 'E'],
-
-["Magnet", "What is Magnet recognition?",
-`**Answer:** ANCC designation for nursing excellence based on transformational leadership, structural empowerment, exemplary professional practice, new knowledge and innovation, and empirical outcomes.
-
-Tip: Five components.`, 'D', 'M'],
-
-["Change", "How do you lead change on a unit?",
-`**Answer:** Explain why, involve staff early, pilot with champions, provide education, gather feedback, and reinforce.
-
-Tip: Champions.`, 'B', 'E'],
-
-["Communication", "How do you communicate with staff across shifts?",
-`**Answer:** Huddles, rounding on all shifts, email/newsletters, communication boards and accessible leadership.
-
-Tip: All shifts.`, 'B', 'E'],
-
-["Safety Events", "How do you respond to a serious safety event?",
-`**Answer:** Ensure patient safety, disclosure per policy, support staff (second victim), report, participate in root cause analysis, and implement system fixes.
-
-Tip: Second victim support.`, 'B', 'M'],
-
-["Workplace Violence", "How do you address workplace violence against nurses?",
-`**Answer:** Training in de-escalation, security partnerships, reporting systems, behavioral flags, post-incident support and advocacy for policies.
-
-Tip: Reporting.`, 'B', 'M'],
-
-["Hiring", "What do you look for when hiring nurses?",
-`**Answer:** Clinical competence, critical thinking, communication, teamwork, compassion and alignment with unit culture — using behavioral interviews and peer interviews.
-
-Tip: Peer interviews.`, 'B', 'E'],
-
-["Onboarding", "How do you onboard new graduate nurses?",
-`**Answer:** Residency programs, extended orientation with trained preceptors, competency checklists, regular check-ins and mentorship.
-
-Tip: Residency.`, 'B', 'E'],
-
-["Data", "Which metrics do you track?",
-`**Answer:** Nurse-sensitive indicators (falls, pressure injuries, CAUTI, CLABSI), HCAHPS, turnover and vacancy, overtime, HPPD, and staff engagement.
-
-Tip: Balanced scorecard.`, 'B', 'E'],
-
-["Behavioral", "Tell me about improving a unit's outcomes.",
-`**Sample answer:** "Our falls rate was double the benchmark. We implemented hourly rounding, bed alarms and a post-fall huddle; falls dropped 55% within six months."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about reducing turnover.",
-`**Sample answer:** "Turnover was 28%. I introduced self-scheduling, a preceptor recognition program and monthly listening sessions; turnover fell to 15% in a year."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a difficult decision as a leader.",
-`**Answer:** Example of terminating a popular nurse for safety violations — following just culture, supporting the team afterward.
-
-Tip: Principles.`, 'B', 'M'],
-
-["Certifications", "Which certifications matter?",
-`**Answer:** CNML (Certified Nurse Manager and Leader), NE-BC, NEA-BC, plus BSN/MSN degrees.
-
-Tip: MSN for directors.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Director of nursing or CNO.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I lead units that are safe, engaged and efficient — cutting falls 55% and turnover nearly in half."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Acuity", "How do you match staffing to acuity?",
-`**Answer:** Use acuity tools to balance assignments, adjust ratios for high-acuity patients, and communicate needs to staffing office.
-
-Tip: Acuity tools.`, 'B', 'M'],
-
-["Overtime", "How do you control overtime?",
-`**Answer:** Monitor trends, schedule appropriately, approve overtime prospectively, use float staff, and address chronic gaps with hiring.
-
-Tip: Prospective approval.`, 'B', 'E'],
-
-["Interdisciplinary", "How do you improve interdisciplinary collaboration?",
-`**Answer:** Interdisciplinary rounds, shared goals, respectful communication norms and joint quality projects.
-
-Tip: Daily rounds.`, 'B', 'E'],
-
-["Education", "How do you maintain staff competency?",
-`**Answer:** Annual competencies, skills fairs, simulation training, certification support and just-in-time education.
-
-Tip: Simulation.`, 'B', 'E'],
-
-["Burnout", "How do you address staff burnout?",
-`**Answer:** Monitor workload, ensure breaks, support resources, recognition, flexible scheduling and listening to concerns.
-
-Tip: Breaks.`, 'B', 'E'],
-
-["Throughput", "How do you improve patient throughput?",
-`**Answer:** Early discharge planning, discharge-by-noon goals, bed huddles, coordination with case management and transport.
-
-Tip: Discharge planning.`, 'D', 'M'],
-
-["Scenario", "Staff complain about unfair scheduling. What do you do?",
-`**Answer:** Review data, create transparent scheduling rules, consider self-scheduling with guidelines, and communicate openly.
-
-Tip: Transparency.`, 'B', 'E'],
-
-["Scenario", "A physician is repeatedly disrespectful to nurses. What do you do?",
-`**Answer:** Document incidents, address with the physician or medical director, use the medical staff code of conduct process, and support nurses.
-
-Tip: Code of conduct.`, 'B', 'M'],
-
-["Scenario", "Census spikes and you're short 3 nurses. What do you do?",
-`**Answer:** Call float pool and per diems, offer incentive shifts, adjust assignments, request help from house supervisor, and escalate per surge plan.
-
-Tip: Surge plan.`, 'B', 'E'],
-
-["Technology", "How do you lead technology adoption (e.g. new EHR)?",
-`**Answer:** Super-users, training, workflow redesign with staff input, go-live support and feedback loops.
-
-Tip: Super-users.`, 'B', 'E'],
-
-["Diversity", "How do you build an inclusive unit?",
-`**Answer:** Fair scheduling and opportunities, respect for differences, addressing bias, and diverse hiring panels.
-
-Tip: Fairness.`, 'B', 'E'],
-
-["Recognition", "How do you recognize staff?",
-`**Answer:** Timely specific praise, DAISY award nominations, peer recognition and celebrating milestones.
-
-Tip: DAISY award.`, 'B', 'E'],
-
-["Policy", "How do you ensure policy compliance?",
-`**Answer:** Education, audits, feedback, and making correct processes easy.
-
-Tip: Easy to do right.`, 'B', 'E'],
-
-["Finance", "How do you justify adding staff?",
-`**Answer:** Data on acuity, census trends, overtime and agency costs, quality impacts and turnover costs.
-
-Tip: Cost of agency vs hiring.`, 'D', 'M'],
-
-["Patient Complaints", "How do you handle patient complaints?",
-`**Answer:** Listen, apologize where appropriate, investigate, resolve and follow up — service recovery.
-
-Tip: Service recovery.`, 'B', 'E'],
-
-["Vision", "What is your leadership philosophy?",
-`**Answer:** Servant leadership: support staff so they can give excellent care, with clear expectations and accountability.
-
-Tip: Authentic.`, 'B', 'E'],
-
-["Questions", "What would you ask the CNO in an interview?",
-`**Answer:** Unit challenges and priorities, staffing resources, budget autonomy, support for leaders, and organizational goals.
-
-Tip: Priorities.`, 'B', 'E']
-];
-
-QB['hc-nm'] = (QB['hc-nm']||[]).concat([
-["Agency", "How do you reduce reliance on travel nurses?",
-`**Answer:** Improve retention, build an internal float pool and per diem staff, create new-graduate residency pipelines, offer incentive pay programs, use flexible scheduling options and recruitment partnerships. Track agency cost per hour against core staff.
-
-Tip: Internal pools.`, 'D', 'M'],
-["Rounding", "What is leader rounding?",
-`**Answer:** Structured, regular visits by leaders to patients and staff to gather feedback, recognize good work, fix problems quickly and model expectations.
-
-Tip: Follow through on issues.`, 'B', 'E'],
-["Engagement Survey", "How do you act on staff engagement survey results?",
-`**Answer:** Share the results transparently, run staff action-planning sessions on the top two or three issues, assign owners, communicate progress and re-measure.
-
-Tip: Top issues only.`, 'B', 'E'],
-["Scope", "What does scope of practice mean for managers?",
-`**Answer:** Make sure RNs, LPNs and CNAs work within their licensed scope and competencies, with delegation and assignments matching their roles and state nurse practice acts.
-
-Tip: State practice acts.`, 'B', 'M'],
-["Readmissions", "How do nursing units reduce readmissions?",
-`**Answer:** Discharge education with teach-back, medication reconciliation, follow-up appointments scheduled before discharge, follow-up phone calls and coordination with case management.
-
-Tip: Teach-back.`, 'B', 'M'],
-["Self-Scheduling", "What are the pros and cons of self-scheduling?",
-`**Answer:** It increases autonomy and satisfaction, but needs clear rules for coverage, weekends and holidays, and manager oversight to balance skill mix.
-
-Tip: Clear rules.`, 'B', 'E'],
-["Ethics", "How do you handle a staff member's HIPAA violation?",
-`**Answer:** Investigate with the privacy office, assess what was accessed or disclosed, apply policy consistently (education or discipline), report as required, and reinforce training.
-
-Tip: Privacy office.`, 'B', 'M'],
-["Scenario", "Your unit's CLABSI rate has doubled. What do you do?",
-`**Answer:** Review each case with infection prevention, audit compliance with the insertion and maintenance bundles, retrain staff, use daily line necessity reviews, and track progress publicly on the unit.
-
-Tip: Bundle audits.`, 'B', 'M']
+QB["hc-nm"] = (QB["hc-nm"] || []).concat([
+["Role", "What does a nurse manager do?", "**Why they ask:** leadership scope.\n\n**Answer:** Leads a nursing unit: staffing and scheduling, budget, quality and patient safety, patient experience, staff hiring, development, retention and performance, regulatory compliance, and collaboration with physicians and other departments — 24/7 accountability.\n\nTip: Unit size and outcomes.", "B", "E"],
+["Staffing", "How do you manage staffing shortages?", "**Why they ask:** the defining challenge of nursing leadership.\n\n**Answer:**\n\"In the short term: flexible scheduling, the float pool and per diem staff, incentive shifts, cross-training, adjusting assignments by acuity, and travel nurses only as a last resort. Longer term, I go after the root causes of turnover, because every nurse who stays is one I don't have to replace. On my last unit, fixing scheduling fairness did more for vacancies than any bonus.\"\n\nTip: Root causes.", "B", "M"],
+["Retention", "How do you reduce nurse turnover?", "**Why they ask:** retention is cost and quality.\n\n**Answer:**\n\"Supportive onboarding with trained preceptors, manageable workloads, shared governance so nurses have a voice in practice, recognition, career development, flexible scheduling, and visible, approachable leadership. I also hold stay interviews — asking 'what keeps you here and what might make you leave?' before people resign.\"\n\nTip: Stay interviews.", "B", "M"],
+["Budget", "How do you manage a unit budget?", "**Why they ask:** financial accountability.\n\n**Answer:**\n\"I monitor productivity in hours per patient day, overtime, agency spend, supplies and variance reports, adjust staffing to census and acuity, and explain variances to finance. With a target of 9.5 HPPD and an average census of 30, that's about 285 nursing hours a day; if we run 320, I need to know whether it was acuity, sitters or poor scheduling.\"\n\nTip: HPPD.", "D", "M"],
+["Quality", "How do you improve quality metrics like falls or CAUTI?", "**Why they ask:** quality leadership.\n\n**Answer:**\n\"Analyze the data and root causes for each event, engage frontline staff in designing solutions, implement evidence-based bundles — for CAUTI, daily catheter necessity review and removal protocols — audit compliance, give feedback, and celebrate improvements publicly.\"\n\nTip: Staff engagement.", "B", "M"],
+["Patient Experience", "How do you improve HCAHPS scores?", "**Why they ask:** patient experience.\n\n**Answer:**\n\"Leader rounding on patients, hourly purposeful rounding by staff, bedside shift report so patients are part of the handoff, communication training like AIDET, discharge phone calls, and prompt service recovery when something goes wrong.\"\n\nTip: Leader rounding.", "B", "M"],
+["Performance", "How do you handle an underperforming nurse?", "**Why they ask:** performance management.\n\n**Answer:**\n\"Patient safety comes first, so if there's immediate risk I adjust assignments right away. Then I clarify expectations, give specific feedback, explore causes — skills, workload, personal issues — provide education and support, document, and follow progressive discipline if it doesn't improve.\"\n\nTip: Patient safety first.", "B", "M"],
+["Just Culture", "What is just culture?", "**Why they ask:** safety culture.\n\n**Answer:**\n\"A framework that distinguishes human error, which we console; at-risk behavior, which we coach; and reckless behavior, which warrants discipline. It encourages people to report errors so we can fix systems rather than blame individuals — a nurse who reports a near miss should be thanked, not punished.\"\n\nTip: Three behaviors.", "B", "M"],
+["Conflict", "How do you handle conflict between nurses and physicians?", "**Why they ask:** interprofessional relationships.\n\n**Answer:**\n\"Facilitate a respectful conversation focused on the patient, use structured communication like SBAR, involve medical leadership when needed, and address disruptive behavior through policy. Keeping the discussion on patient care lowers the temperature.\"\n\nTip: Patient focus.", "B", "M"],
+["Regulatory", "How do you prepare for a Joint Commission survey?", "**Why they ask:** regulatory readiness.\n\n**Answer:**\n\"Continuous readiness rather than a scramble: regular tracer audits, policy compliance checks, documentation reviews, staff education on the National Patient Safety Goals, and environment of care rounds. If we're ready every day, survey week is just another week.\"\n\nTip: Always ready.", "B", "M"],
+["Shared Governance", "What is shared governance?", "**Why they ask:** professional practice model.\n\n**Answer:**\n\"Nurses participating in decisions about practice, quality and education through unit and organizational councils. It increases engagement and ownership, and it's a core element of Magnet.\"\n\nTip: Magnet.", "B", "E"],
+["Magnet", "What is Magnet recognition?", "**Why they ask:** excellence frameworks.\n\n**Answer:**\n\"An ANCC designation for nursing excellence built on five components: transformational leadership, structural empowerment, exemplary professional practice, new knowledge and innovation, and empirical outcomes.\"\n\nTip: Five components.", "D", "M"],
+["Change", "How do you lead change on a unit?", "**Why they ask:** change leadership.\n\n**Answer:**\n\"Explain the why, involve staff early, pilot with respected champions, provide education, gather feedback and adjust, then reinforce. Nurses trust a peer champion more than a memo.\"\n\nTip: Champions.", "B", "E"],
+["Communication", "How do you communicate with staff across shifts?", "**Why they ask:** inclusion of all shifts.\n\n**Answer:**\n\"Daily huddles, rounding on nights and weekends too, a newsletter, communication boards and being reachable. Night shift notices quickly when leadership only shows up at 10 a.m.\"\n\nTip: All shifts.", "B", "E"],
+["Safety Events", "How do you respond to a serious safety event?", "**Why they ask:** crisis leadership.\n\n**Answer:**\n\"Make the patient safe first, ensure disclosure per policy, support the staff involved — second victim support matters, these nurses are often devastated — report the event, participate in the root cause analysis, and implement system fixes.\"\n\nTip: Second victim support.", "B", "M"],
+["Workplace Violence", "How do you address workplace violence against nurses?", "**Why they ask:** staff safety.\n\n**Answer:**\n\"De-escalation training, partnership with security, a reporting culture where incidents are always reported, behavioral flags in the chart, post-incident support for staff, and advocating for stronger policies.\"\n\nTip: Reporting.", "B", "M"],
+["Hiring", "What do you look for when hiring nurses?", "**Why they ask:** hiring judgment.\n\n**Answer:**\n\"Clinical competence, critical thinking, communication, teamwork, compassion and fit with the unit culture — assessed through behavioral interviews and peer interviews, since staff often spot fit issues I miss.\"\n\nTip: Peer interviews.", "B", "E"],
+["Onboarding", "How do you onboard new graduate nurses?", "**Why they ask:** pipeline building.\n\n**Answer:**\n\"A nurse residency program, extended orientation with trained preceptors, competency checklists, regular check-ins at 30, 60 and 90 days, and ongoing mentorship through their first year — when new graduates are most likely to leave.\"\n\nTip: Residency.", "B", "E"],
+["Data", "Which metrics do you track?", "**Why they ask:** data-driven leadership.\n\n**Answer:**\n\"Nurse-sensitive indicators — falls, pressure injuries, CAUTI, CLABSI — HCAHPS, turnover and vacancy, overtime, HPPD and staff engagement, as a balanced scorecard posted on the unit.\"\n\nTip: Balanced scorecard.", "B", "E"],
+["Behavioral", "Tell me about improving a unit's outcomes.", "**Why they ask:** proof.\n\n**Answer:**\n\"Our falls rate was double the benchmark. We implemented hourly rounding, bed alarms for high-risk patients and post-fall huddles. Falls dropped 55% within six months.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about reducing turnover.", "**Why they ask:** retention proof.\n\n**Answer:**\n\"Turnover was 28%. I introduced self-scheduling, a preceptor recognition program and monthly listening sessions. Turnover fell to 15% within a year.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "Tell me about a difficult decision as a leader.", "**Why they ask:** principled leadership.\n\n**Answer:**\n\"I had to terminate a well-liked nurse after repeated reckless medication safety violations, despite coaching. I followed just culture principles, documented carefully, and then met with the team to explain — within privacy limits — that safety standards apply to everyone. Trust actually grew because people saw consistency.\"\n\nTip: Principles.", "B", "M"],
+["Certifications", "Which certifications matter?", "**Why they ask:** credentials.\n\n**Answer:**\n\"CNML — Certified Nurse Manager and Leader — NE-BC and NEA-BC, plus BSN and MSN degrees. An MSN is usually expected for director roles.\"\n\nTip: MSN for directors.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward director of nursing and eventually CNO.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I lead units that are safe, engaged and efficient — I cut falls 55% and turnover nearly in half.\"\n\nTip: Proof.", "B", "E"],
+["Acuity", "How do you match staffing to acuity?", "**Why they ask:** safe staffing.\n\n**Answer:**\n\"Use an acuity tool to balance assignments, adjust ratios for high-acuity patients — a fresh post-op on a drip counts differently than a stable discharge — and communicate needs to the staffing office early.\"\n\nTip: Acuity tools.", "B", "M"],
+["Overtime", "How do you control overtime?", "**Why they ask:** cost control.\n\n**Answer:**\n\"Monitor trends, schedule to demand, approve overtime prospectively rather than finding out at payroll, use float staff, and address chronic gaps by hiring instead of relying on overtime.\"\n\nTip: Prospective approval.", "B", "E"],
+["Interdisciplinary", "How do you improve interdisciplinary collaboration?", "**Why they ask:** teamwork.\n\n**Answer:**\n\"Daily interdisciplinary rounds, shared goals like discharge targets, respectful communication norms and joint quality projects with physicians, pharmacy and case management.\"\n\nTip: Daily rounds.", "B", "E"],
+["Education", "How do you maintain staff competency?", "**Why they ask:** quality of care.\n\n**Answer:**\n\"Annual competencies, skills fairs, simulation training for high-risk, low-frequency events, certification support and just-in-time education when practice changes.\"\n\nTip: Simulation.", "B", "E"],
+["Burnout", "How do you address staff burnout?", "**Why they ask:** wellbeing.\n\n**Answer:**\n\"Watch workload, make sure breaks actually happen, connect people to support resources, recognize effort, offer flexible scheduling and listen to concerns — and act on them.\"\n\nTip: Breaks.", "B", "E"],
+["Throughput", "How do you improve patient throughput?", "**Why they ask:** operational flow.\n\n**Answer:**\n\"Discharge planning from admission, discharge-by-noon goals, daily bed huddles, and coordination with case management, pharmacy and transport so the ED isn't boarding patients waiting for our beds.\"\n\nTip: Discharge planning.", "D", "M"],
+["Scenario", "Staff complain about unfair scheduling. What do you do?", "**Why they ask:** fairness.\n\n**Answer:**\n\"Review the scheduling data, create transparent rules for weekends, holidays and requests, consider self-scheduling within guidelines, and communicate openly about how decisions are made.\"\n\nTip: Transparency.", "B", "E"],
+["Scenario", "A physician is repeatedly disrespectful to nurses. What do you do?", "**Why they ask:** advocacy.\n\n**Answer:**\n\"Document each incident, raise it with the physician or medical director, use the medical staff code of conduct process, and make sure my nurses know I've got their backs.\"\n\nTip: Code of conduct.", "B", "M"],
+["Scenario", "Census spikes and you're short 3 nurses. What do you do?", "**Why they ask:** real-time judgment.\n\n**Answer:**\n\"Call the float pool and per diems, offer incentive shifts, adjust assignments and use support staff creatively, ask the house supervisor for help, and escalate through the surge plan if we still can't staff safely.\"\n\nTip: Surge plan.", "B", "E"],
+["Technology", "How do you lead technology adoption (e.g. new EHR)?", "**Why they ask:** change leadership.\n\n**Answer:**\n\"Super-users on every shift, training, workflow redesign with staff input, strong go-live support, and feedback loops to fix problems quickly.\"\n\nTip: Super-users.", "B", "E"],
+["Diversity", "How do you build an inclusive unit?", "**Why they ask:** culture.\n\n**Answer:**\n\"Fair scheduling and opportunities, respect for differences, addressing bias when it shows up, and diverse hiring panels.\"\n\nTip: Fairness.", "B", "E"],
+["Recognition", "How do you recognize staff?", "**Why they ask:** engagement.\n\n**Answer:**\n\"Timely, specific praise, DAISY award nominations, peer recognition, and celebrating milestones like certifications and anniversaries.\"\n\nTip: DAISY award.", "B", "E"],
+["Policy", "How do you ensure policy compliance?", "**Why they ask:** standards.\n\n**Answer:**\n\"Education, audits with feedback, and making the correct process the easy one — supplies stocked where the protocol needs them.\"\n\nTip: Easy to do right.", "B", "E"],
+["Finance", "How do you justify adding staff?", "**Why they ask:** business case.\n\n**Answer:**\n\"Data on acuity, census trends, overtime and agency costs, quality impacts and turnover. Agency nurses can cost two to three times core staff per hour, so hiring often pays for itself.\"\n\nTip: Cost of agency vs hiring.", "D", "M"],
+["Patient Complaints", "How do you handle patient complaints?", "**Why they ask:** service recovery.\n\n**Answer:**\n\"Listen, apologize where appropriate, investigate, resolve what I can quickly, and follow up — service recovery done well often turns a complaint into loyalty.\"\n\nTip: Service recovery.", "B", "E"],
+["Vision", "What is your leadership philosophy?", "**Why they ask:** authenticity.\n\n**Answer:**\n\"Servant leadership: my job is to remove obstacles so my nurses can give excellent care, with clear expectations and fair accountability.\"\n\nTip: Authentic.", "B", "E"],
+["Questions", "What would you ask the CNO in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"What are this unit's biggest challenges and priorities? What staffing resources are available? How much budget autonomy will I have? How are nurse leaders supported? What are the organization's goals for the next year?\"\n\nTip: Priorities.", "B", "E"]
+]);
+
+QB["hc-nm"] = (QB["hc-nm"] || []).concat([
+["Agency", "How do you reduce reliance on travel nurses?", "**Why they ask:** cost and continuity.\n\n**Answer:**\n\"Improve retention, build an internal float pool and per diem staff, create new-graduate residency pipelines, offer internal incentive programs, use flexible scheduling and recruitment partnerships, and track agency cost per hour against core staff.\"\n\nTip: Internal pools.", "D", "M"],
+["Rounding", "What is leader rounding?", "**Why they ask:** leadership practice.\n\n**Answer:**\n\"Structured, regular visits by leaders to patients and staff to gather feedback, recognize good work, fix problems quickly and model expectations — and following through on what we hear, or rounding loses credibility.\"\n\nTip: Follow through on issues.", "B", "E"],
+["Engagement Survey", "How do you act on staff engagement survey results?", "**Why they ask:** engagement follow-through.\n\n**Answer:**\n\"Share results transparently, run action-planning sessions with staff on the top two or three issues, assign owners, communicate progress, and re-measure.\"\n\nTip: Top issues only.", "B", "E"],
+["Scope", "What does scope of practice mean for managers?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"Making sure RNs, LPNs and CNAs work within their licensed scope and competencies, with delegation and assignments matching their roles under the state nurse practice act.\"\n\nTip: State practice acts.", "B", "M"],
+["Readmissions", "How do nursing units reduce readmissions?", "**Why they ask:** outcomes.\n\n**Answer:**\n\"Discharge education using teach-back, medication reconciliation, follow-up appointments booked before discharge, follow-up phone calls and coordination with case management.\"\n\nTip: Teach-back.", "B", "M"],
+["Self-Scheduling", "What are the pros and cons of self-scheduling?", "**Why they ask:** scheduling judgment.\n\n**Answer:**\n\"It increases autonomy and satisfaction, but needs clear rules for coverage, weekends and holidays, and manager oversight to keep the skill mix safe on every shift.\"\n\nTip: Clear rules.", "B", "E"],
+["Ethics", "How do you handle a staff member's HIPAA violation?", "**Why they ask:** privacy compliance.\n\n**Answer:**\n\"Investigate with the privacy office, assess what was accessed or disclosed, apply policy consistently — education or discipline depending on severity — report as required, and reinforce training for the unit.\"\n\nTip: Privacy office.", "B", "M"],
+["Scenario", "Your unit's CLABSI rate has doubled. What do you do?", "**Why they ask:** quality response.\n\n**Answer:**\n\"Review each case with infection prevention, audit compliance with the insertion and maintenance bundles, retrain staff, add daily line-necessity reviews, and track days since the last CLABSI publicly on the unit.\"\n\nTip: Bundle audits.", "B", "M"]
 ]);

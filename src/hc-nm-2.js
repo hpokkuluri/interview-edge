@@ -1,34 +1,10 @@
-QB['hc-nm'] = (QB['hc-nm']||[]).concat([
-["Agency", "How do you reduce reliance on travel nurses?",
-`**Answer:** Improve retention, build an internal float pool and per diem staff, create new-graduate residency pipelines, offer incentive pay programs, use flexible scheduling options and recruitment partnerships. Track agency cost per hour against core staff.
-
-Tip: Internal pools.`, 'D', 'M'],
-["Rounding", "What is leader rounding?",
-`**Answer:** Structured, regular visits by leaders to patients and staff to gather feedback, recognize good work, fix problems quickly and model expectations.
-
-Tip: Follow through on issues.`, 'B', 'E'],
-["Engagement Survey", "How do you act on staff engagement survey results?",
-`**Answer:** Share the results transparently, run staff action-planning sessions on the top two or three issues, assign owners, communicate progress and re-measure.
-
-Tip: Top issues only.`, 'B', 'E'],
-["Scope", "What does scope of practice mean for managers?",
-`**Answer:** Make sure RNs, LPNs and CNAs work within their licensed scope and competencies, with delegation and assignments matching their roles and state nurse practice acts.
-
-Tip: State practice acts.`, 'B', 'M'],
-["Readmissions", "How do nursing units reduce readmissions?",
-`**Answer:** Discharge education with teach-back, medication reconciliation, follow-up appointments scheduled before discharge, follow-up phone calls and coordination with case management.
-
-Tip: Teach-back.`, 'B', 'M'],
-["Self-Scheduling", "What are the pros and cons of self-scheduling?",
-`**Answer:** It increases autonomy and satisfaction, but needs clear rules for coverage, weekends and holidays, and manager oversight to balance skill mix.
-
-Tip: Clear rules.`, 'B', 'E'],
-["Ethics", "How do you handle a staff member's HIPAA violation?",
-`**Answer:** Investigate with the privacy office, assess what was accessed or disclosed, apply policy consistently (education or discipline), report as required, and reinforce training.
-
-Tip: Privacy office.`, 'B', 'M'],
-["Scenario", "Your unit's CLABSI rate has doubled. What do you do?",
-`**Answer:** Review each case with infection prevention, audit compliance with the insertion and maintenance bundles, retrain staff, use daily line necessity reviews, and track progress publicly on the unit.
-
-Tip: Bundle audits.`, 'B', 'M']
+QB["hc-nm"] = (QB["hc-nm"] || []).concat([
+["Agency", "How do you reduce reliance on travel nurses?", "**Why they ask:** cost and continuity.\n\n**Answer:**\n\"Improve retention, build an internal float pool and per diem staff, create new-graduate residency pipelines, offer internal incentive programs, use flexible scheduling and recruitment partnerships, and track agency cost per hour against core staff.\"\n\nTip: Internal pools.", "D", "M"],
+["Rounding", "What is leader rounding?", "**Why they ask:** leadership practice.\n\n**Answer:**\n\"Structured, regular visits by leaders to patients and staff to gather feedback, recognize good work, fix problems quickly and model expectations — and following through on what we hear, or rounding loses credibility.\"\n\nTip: Follow through on issues.", "B", "E"],
+["Engagement Survey", "How do you act on staff engagement survey results?", "**Why they ask:** engagement follow-through.\n\n**Answer:**\n\"Share results transparently, run action-planning sessions with staff on the top two or three issues, assign owners, communicate progress, and re-measure.\"\n\nTip: Top issues only.", "B", "E"],
+["Scope", "What does scope of practice mean for managers?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"Making sure RNs, LPNs and CNAs work within their licensed scope and competencies, with delegation and assignments matching their roles under the state nurse practice act.\"\n\nTip: State practice acts.", "B", "M"],
+["Readmissions", "How do nursing units reduce readmissions?", "**Why they ask:** outcomes.\n\n**Answer:**\n\"Discharge education using teach-back, medication reconciliation, follow-up appointments booked before discharge, follow-up phone calls and coordination with case management.\"\n\nTip: Teach-back.", "B", "M"],
+["Self-Scheduling", "What are the pros and cons of self-scheduling?", "**Why they ask:** scheduling judgment.\n\n**Answer:**\n\"It increases autonomy and satisfaction, but needs clear rules for coverage, weekends and holidays, and manager oversight to keep the skill mix safe on every shift.\"\n\nTip: Clear rules.", "B", "E"],
+["Ethics", "How do you handle a staff member's HIPAA violation?", "**Why they ask:** privacy compliance.\n\n**Answer:**\n\"Investigate with the privacy office, assess what was accessed or disclosed, apply policy consistently — education or discipline depending on severity — report as required, and reinforce training for the unit.\"\n\nTip: Privacy office.", "B", "M"],
+["Scenario", "Your unit's CLABSI rate has doubled. What do you do?", "**Why they ask:** quality response.\n\n**Answer:**\n\"Review each case with infection prevention, audit compliance with the insertion and maintenance bundles, retrain staff, add daily line-necessity reviews, and track days since the last CLABSI publicly on the unit.\"\n\nTip: Bundle audits.", "B", "M"]
 ]);
