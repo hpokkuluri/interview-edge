@@ -1,0 +1,26 @@
+module.exports = {
+top: [1, 3, 4, 9, 11, 12, 16, 17, 18, 21],
+fu: {
+1: [`Why are the flexfields hard to change later?`, `Every asset is created with those segment combinations, and reports and accounting depend on them. Changing the category structure after go-live usually means a mass reclassification of every asset, which is painful.`],
+2: [`What happens if the clearing account on the category is wrong?`, `AP charges invoices to one clearing account while Assets relieves another, so clearing never zeroes out. I reconcile the clearing account every month to catch it early.`],
+3: [`When can't you roll back depreciation?`, `Once the period is closed. After that, corrections go through adjustments in the current period, either amortized or expensed.`],
+4: [`Which would you choose when correcting a life that was keyed wrong at addition?`, `Expensed, because the original life was simply an error, so catch-up depreciation fixes history in the current period. Amortized fits a genuine change in estimate going forward.`],
+5: [`What if actual units exceed the expected total?`, `Depreciation stops when net book value reaches salvage value. If usage estimates were wrong, I'd adjust the total units as a change in estimate.`],
+6: [`How do you check a mass transfer before running it?`, `Run the preview report, compare asset counts and cost totals to what's expected, and test with a small group first.`],
+7: [`Which one changes the asset cost account?`, `Reclassification, because changing the category changes the cost and reserve accounts. A transfer only changes the assignment, like the expense account.`],
+8: [`Where does the gain or loss go on a retirement?`, `To the gain and loss accounts on the book controls, calculated as proceeds minus cost of removal minus net book value.`],
+9: [`Why would an invoice charged to clearing not show up in Assets?`, `It hasn't been accounted, Create Mass Additions hasn't run, or the line's account isn't a clearing account on any category. I check those in that order.`],
+10: [`What if freight arrives after the asset is already capitalized?`, `I add it as a cost adjustment to the existing asset, through Add to Asset in mass additions, rather than creating a separate small asset.`],
+11: [`When should a CIP project be capitalized?`, `When the asset is ready for its intended use, not when the project closes financially. Waiting too long understates depreciation.`],
+12: [`What doesn't Periodic Mass Copy bring over?`, `Changes the tax book doesn't allow, like certain adjustments, depending on the book's mass copy rules. Tax-specific changes, such as bonus depreciation, are made directly in the tax book.`],
+13: [`How do you decide the impairment amount?`, `Finance determines it by comparing carrying amount with recoverable amount under IAS 36, or fair value under US GAAP; Oracle records the result.`],
+14: [`Where does a revaluation increase go?`, `To the revaluation reserve in equity, unless it reverses an earlier decrease that went to profit or loss.`],
+15: [`What do you do with assets found but not in the register?`, `Investigate whether they were expensed or belong to another location, then add them if they meet capitalization rules, with approval.`],
+16: [`The cost summary ties but the reserve doesn't. Where do you look?`, `Depreciation journals not transferred or posted in GL, manual GL entries to accumulated depreciation, or a rollback rerun after transfer.`],
+17: [`How do you validate converted depreciation?`, `Run depreciation for the first period in a test environment and compare monthly expense with legacy by category. Large differences point to wrong lives or methods.`],
+18: [`What discount rate do you use if the rate implicit in the lease isn't known?`, `The incremental borrowing rate: what the company would pay to borrow over a similar term with similar security.`],
+19: [`What's a modification that creates a separate lease?`, `Adding a right to use another asset, like an extra floor, priced at standalone price. That's accounted as a new lease rather than a remeasurement.`],
+20: [`Which data is hardest to collect for lease onboarding?`, `Options and how likely they are, because they need judgment from real estate or business owners, not just contract data.`],
+21: [`What story would you tell about keeping CIP moving?`, `A monthly CIP review with project managers that cut assets waiting to be placed in service by half, so depreciation started on time.`],
+}
+};
