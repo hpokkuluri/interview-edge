@@ -1,44 +1,12 @@
-QB['bk-uw'] = (QB['bk-uw']||[]).concat([
-["Exposure Base", "What are common exposure bases for rating?",
-`**Answer:** Sales or receipts (general liability), payroll (workers' comp, some GL classes), building values (property), number of vehicles (auto), and revenue or employee counts (professional and cyber).
-
-Tip: Match exposure to risk.`, 'B', 'E'],
-["Experience Rating", "How does experience rating work?",
-`**Answer:** It adjusts the premium based on the insured's own loss experience compared with the expected losses for its class and size. Credibility weighting increases with account size.
-
-Tip: Credibility.`, 'D', 'M'],
-["Contract Review", "Why review contracts in liability underwriting?",
-`**Answer:** Indemnification and additional insured requirements shift risk. Good contractual risk transfer to subcontractors lowers the insured's exposure.
-
-Tip: Risk transfer.`, 'B', 'M'],
-["Valuation", "Why do property values matter?",
-`**Answer:** Underinsurance causes coinsurance penalties and inadequate premium. Verify replacement cost values with valuation tools and inflation trends.
-
-Tip: Insurance to value.`, 'B', 'M'],
-["Coinsurance", "How does a coinsurance clause work?",
-`**Answer:** If the insured carries less than the required percentage (for example 80%) of value, the loss payment is reduced proportionally.
-
-**Example:** value $1M with 80% required = $800K, but only $600K carried. A $100K loss pays $100K × 600/800 = $75K (less the deductible).
-
-Tip: Show the math.`, 'D', 'M'],
-["Products", "How do you underwrite products liability?",
-`**Answer:** Product types and uses, distribution (consumer vs industrial), quality control, recalls, warnings and labels, contractual transfers with suppliers, and claims history.
-
-Tip: Consumer exposure.`, 'D', 'M'],
-["Terrorism", "What is TRIA?",
-`**Answer:** The Terrorism Risk Insurance Act provides a federal backstop for certified terrorism losses. Insurers must offer terrorism coverage on certain commercial lines.
-
-Tip: Must offer.`, 'D', 'M'],
-["Quote Strategy", "How do you decide on quote terms to win profitably?",
-`**Answer:** Understand the competition and the broker's needs, price to target margin, use deductibles, sublimits and exclusions strategically, and stay disciplined if the price won't support the risk.
-
-Tip: Discipline.`, 'B', 'M'],
-["Audits", "What are premium audits?",
-`**Answer:** Post-policy reviews of actual exposures (payroll, sales) to adjust the final premium, ensuring the premium matches the actual exposure.
-
-Tip: Final premium.`, 'B', 'E'],
-["Scenario", "A new submission is in an industry you've never written. What do you do?",
-`**Answer:** Check whether it's within appetite and guidelines, research the industry's hazards, consult experienced underwriters or loss control, request detailed information, and refer if needed.
-
-Tip: Refer if unsure.`, 'B', 'E']
+QB["bk-uw"] = (QB["bk-uw"] || []).concat([
+["Exposure Base", "What are common exposure bases for rating?", "**Why they ask:** rating knowledge.\n\n**Answer:**\n\"Sales or receipts for general liability, payroll for workers' comp and some GL classes, building values for property, number of vehicles for auto, and revenue or employee counts for professional and cyber.\"\n\nTip: Match exposure to risk.", "B", "E"],
+["Experience Rating", "How does experience rating work?", "**Why they ask:** pricing mechanics.\n\n**Answer:**\n\"It adjusts premium based on the insured's own losses compared with expected losses for its class and size. Credibility weighting rises with account size — a large account's history counts heavily, a small one's barely moves the price.\"\n\nTip: Credibility.", "D", "M"],
+["Contract Review", "Why review contracts in liability underwriting?", "**Why they ask:** risk transfer.\n\n**Answer:**\n\"Indemnification and additional insured requirements shift risk. Good contractual transfer to subcontractors lowers our insured's exposure, while a broad indemnity they gave a customer raises it.\"\n\nTip: Risk transfer.", "B", "M"],
+["Valuation", "Why do property values matter?", "**Why they ask:** insurance to value.\n\n**Answer:**\n\"Underinsurance causes coinsurance penalties for the insured and inadequate premium for us. I verify replacement cost values with valuation tools and construction cost trends.\"\n\nTip: Insurance to value.", "B", "M"],
+["Coinsurance", "How does a coinsurance clause work?", "**Why they ask:** a classic calculation.\n\n**Answer:**\n\"If the insured carries less than the required percentage of value, losses are paid proportionally. Value $1 million with 80% coinsurance requires $800,000. If they carry $600,000 and have a $100,000 loss, we pay 600 over 800 times $100,000 — $75,000, less the deductible.\"\n\nTip: Show the math.", "D", "M"],
+["Products", "How do you underwrite products liability?", "**Why they ask:** casualty depth.\n\n**Answer:**\n\"Product types and uses, distribution — consumer versus industrial — quality control, recall history and plans, warnings and labels, contractual transfers with suppliers, and claims history. Consumer products used by children carry far more exposure.\"\n\nTip: Consumer exposure.", "D", "M"],
+["Terrorism", "What is TRIA?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"The Terrorism Risk Insurance Act provides a federal backstop for certified terrorism losses, and insurers must offer terrorism coverage on certain commercial lines — the insured can decline it.\"\n\nTip: Must offer.", "D", "M"],
+["Quote Strategy", "How do you decide on quote terms to win profitably?", "**Why they ask:** competitive judgment.\n\n**Answer:**\n\"Understand the competition and the broker's needs, price to target margin, and use deductibles, sublimits and exclusions strategically. If the price the market wants won't support the risk, I walk away.\"\n\nTip: Discipline.", "B", "M"],
+["Audits", "What are premium audits?", "**Why they ask:** premium accuracy.\n\n**Answer:**\n\"Post-policy reviews of actual exposures like payroll or sales, adjusting the final premium. If estimated payroll was $2 million but actual was $2.5 million, the insured owes additional premium on the extra $500,000.\"\n\nTip: Final premium.", "B", "E"],
+["Scenario", "A new submission is in an industry you've never written. What do you do?", "**Why they ask:** judgment and learning.\n\n**Answer:**\n\"Check whether it's within appetite and guidelines, research the industry's hazards, consult experienced underwriters or loss control, request detailed information, and refer if I'm unsure.\"\n\nTip: Refer if unsure.", "B", "E"]
 ]);

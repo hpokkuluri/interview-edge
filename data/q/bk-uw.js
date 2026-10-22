@@ -1,252 +1,57 @@
 // bk-uw — generated from src/bk-uw-*.js by tools/merge.js. Edit the src files, then run: node tools/merge.js
 // Insurance Underwriter (Commercial P&C). Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['bk-uw'] = [
-["Role", "What does a commercial underwriter do?",
-`**Why they ask:** risk selection and pricing.
-
-**Answer:** Evaluates insurance applications to decide whether to accept risks and on what terms: analyzes exposures, loss history and controls, sets pricing, terms, conditions and limits within authority, works with brokers, and manages portfolio profitability.
-
-Tip: Lines of business.`, 'B', 'E'],
-
-["Process", "Walk through how you underwrite a new account.",
-`**Answer:** Review submission (application, loss runs, financials, exposure details), assess risk quality against appetite and guidelines, request missing info or inspections, rate and price, determine terms and coverage, refer if outside authority, quote and negotiate with the broker, then bind and document.
-
-Tip: Appetite first.`, 'B', 'E'],
-
-["Loss Ratio", "What are loss ratio and combined ratio?",
-`**Answer:** Loss ratio = incurred losses (and LAE) / earned premium. Expense ratio = expenses / written premium. Combined ratio = loss + expense ratios; under 100% means underwriting profit.
-
-**Example:** 62% loss + 32% expense = 94% combined.
-
-Tip: Underwriting profit.`, 'B', 'E'],
-
-["Loss Runs", "What do you look for in loss runs?",
-`**Answer:** Frequency vs severity, trends, causes, open reserves, large losses, and corrective actions taken — usually 5 years.
-
-Tip: Frequency vs severity.`, 'B', 'M'],
-
-["Pricing", "How do you price a risk?",
-`**Answer:** Start with rating manual/base rates by class and exposure, apply experience modification (loss history), schedule credits/debits for risk characteristics, consider market conditions and target loss ratio.
-
-Tip: Schedule rating.`, 'B', 'M'],
-
-["Property", "What is COPE in property underwriting?",
-`**Answer:** Construction (frame, masonry, fire resistive), Occupancy (use and hazards), Protection (sprinklers, fire department, alarms), Exposure (neighboring hazards, catastrophe exposure).
-
-Tip: COPE.`, 'B', 'E'],
-
-["Liability", "How do you underwrite general liability?",
-`**Answer:** Operations and products, premises hazards, contracts and risk transfer (indemnification, additional insured requirements), loss history, safety programs and exposure basis (sales, payroll).
-
-Tip: Contractual risk transfer.`, 'B', 'M'],
-
-["Workers Comp", "How do you underwrite workers' compensation?",
-`**Answer:** Class codes and payroll, experience mod (EMR), loss history, safety programs and return-to-work, state regulations and employee concentration.
-
-Tip: EMR.`, 'B', 'M'],
-
-["Catastrophe", "How do you manage catastrophe exposure?",
-`**Answer:** Cat models (RMS, Verisk) for probable maximum loss, aggregate limits by zone, pricing for cat load, deductibles (named storm, earthquake) and reinsurance.
-
-Tip: PML.`, 'D', 'M'],
-
-["Reinsurance", "How does reinsurance affect underwriting?",
-`**Answer:** Treaty terms define what risks and limits the insurer can write net; facultative reinsurance covers individual large risks outside treaties.
-
-Tip: Treaty limits.`, 'D', 'M'],
-
-["Market Cycle", "What are hard and soft markets?",
-`**Answer:** **Hard market:** rising rates, tighter terms and capacity after losses. **Soft market:** competition lowers rates and loosens terms. Underwriters must maintain discipline through cycles.
-
-Tip: Discipline.`, 'B', 'E'],
-
-["Brokers", "How do you manage broker relationships?",
-`**Answer:** Responsive service, clear appetite communication, quick declinations when not a fit, fair negotiation and consistent decisions.
-
-Tip: Fast no.`, 'B', 'E'],
-
-["Authority", "What is underwriting authority?",
-`**Answer:** Limits on premium size, limits, classes and exceptions an underwriter can approve; beyond that, refer to senior underwriters.
-
-Tip: Referrals.`, 'B', 'E'],
-
-["Cyber", "How do you underwrite cyber insurance?",
-`**Answer:** Assess security controls (MFA, EDR, backups, patching, incident response plans), revenue and data types, industry, prior incidents, and vendor dependencies; require minimum controls.
-
-Tip: MFA and backups.`, 'D', 'M'],
-
-["Professional", "What's important in professional liability underwriting?",
-`**Answer:** Profession and services, revenue, contracts, client types, risk management practices, claims history and claims-made policy features.
-
-Tip: Claims-made.`, 'D', 'M'],
-
-["Claims-made", "Occurrence vs claims-made policies?",
-`**Answer:** **Occurrence** covers incidents during the policy period regardless of when claims are made. **Claims-made** covers claims made during the policy period (with retroactive date), often requiring tail coverage.
-
-Tip: Tail coverage.`, 'B', 'M'],
-
-["Data", "How do underwriters use data and analytics?",
-`**Answer:** Predictive models for pricing and risk scoring, third-party data (property characteristics, telematics), portfolio analytics, and automation for small accounts.
-
-Tip: Predictive models.`, 'B', 'M'],
-
-["Portfolio", "How do you manage portfolio profitability?",
-`**Answer:** Track loss ratios by class and segment, adjust appetite and pricing, non-renew poor performers, and grow profitable segments.
-
-Tip: Segment analysis.`, 'D', 'M'],
-
-["Behavioral", "Tell me about declining a large account.",
-`**Sample answer:** "A $400K premium warehouse account had poor sprinkler maintenance and frequent losses. I declined but offered terms if they fixed protection; they did, and we wrote it the next year profitably."
-
-Tip: Discipline with path forward.`, 'B', 'M'],
-
-["Behavioral", "Tell me about improving a book's performance.",
-`**Sample answer:** "My restaurant book ran a 78% loss ratio. I added cooking equipment inspection requirements and repriced high-risk classes; loss ratio fell to 58% in two years."
-
-Tip: Measured.`, 'B', 'M'],
-
-["Behavioral", "How do you handle broker pressure?",
-`**Answer:** Explain rationale clearly, stay within guidelines, offer alternatives, and keep relationships respectful.
-
-Tip: Consistency.`, 'B', 'E'],
-
-["Certifications", "Which designations help?",
-`**Answer:** CPCU, AU (Associate in Commercial Underwriting), CIC, ARM.
-
-Tip: CPCU.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior underwriter, underwriting manager, or product leader.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I write profitable business with discipline and strong broker relationships — improving a book's loss ratio 20 points."
-
-Tip: Proof.`, 'B', 'E'],
-
-["Loss Control", "How do you use loss control reports?",
-`**Answer:** Inspections verify COPE and safety, identify hazards, and generate recommendations that become conditions of coverage.
-
-Tip: Recommendations.`, 'B', 'E'],
-
-["Moral Hazard", "What is moral hazard vs morale hazard?",
-`**Answer:** **Moral hazard**: dishonesty (e.g. fraud). **Morale hazard**: carelessness because of insurance. Both influence underwriting decisions.
-
-Tip: Distinction.`, 'B', 'E'],
-
-["Deductibles", "How do deductibles affect risk?",
-`**Answer:** Higher deductibles reduce small claims frequency, lower premium, and align insured incentives with loss prevention.
-
-Tip: Alignment.`, 'B', 'E'],
-
-["Umbrella", "How do you underwrite umbrella/excess?",
-`**Answer:** Review underlying limits and carriers, exposure severity (auto fleets, products), loss history and attachment points.
-
-Tip: Underlying adequacy.`, 'D', 'M'],
-
-["Auto", "What matters in commercial auto underwriting?",
-`**Answer:** Fleet size and vehicle types, radius, driver MVRs and hiring standards, telematics, safety programs and loss history — a challenging line due to severity trends.
-
-Tip: Driver quality.`, 'D', 'M'],
-
-["Social Inflation", "What is social inflation?",
-`**Answer:** Rising claim costs from larger jury verdicts, litigation funding and legal trends — affecting liability pricing.
-
-Tip: Liability trends.`, 'D', 'M'],
-
-["Scenario", "A renewal has a large loss this year. What do you do?",
-`**Answer:** Investigate cause, corrective actions, whether it's an anomaly; adjust pricing, deductibles or terms, or non-renew if risk changed.
-
-Tip: Corrective actions.`, 'B', 'M'],
-
-["Scenario", "The broker wants broader coverage at the same price. What do you do?",
-`**Answer:** Evaluate exposure added, price appropriately or offer alternatives; maintain discipline.
-
-Tip: Price for exposure.`, 'B', 'E'],
-
-["Regulation", "How does regulation affect underwriting?",
-`**Answer:** Rate and form filings with states, admitted vs surplus lines markets, unfair discrimination rules and data use regulations.
-
-Tip: Admitted vs E&S.`, 'D', 'M'],
-
-["E&S", "What is excess and surplus lines?",
-`**Answer:** Non-admitted market covering hard-to-place risks with more freedom of rates and forms.
-
-Tip: Flexibility.`, 'B', 'M'],
-
-["Communication", "How do you write an underwriting file note?",
-`**Answer:** Summary of risk, key exposures, analysis, pricing rationale, terms, referrals and approvals — clear for audits.
-
-Tip: Audit trail.`, 'B', 'E'],
-
-["Automation", "How is AI changing underwriting?",
-`**Answer:** Submission intake automation, data enrichment, risk scoring and straight-through processing for small commercial; underwriters focus on complex risks.
-
-Tip: Complex risks.`, 'B', 'M'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Lines and appetite, authority levels, book size, broker relationships and tools.
-
-Tip: Authority.`, 'B', 'E'],
-
-["Retention", "How do you retain profitable accounts?",
-`**Answer:** Early renewal engagement, value-added services (loss control), fair pricing and responsiveness.
-
-Tip: Early engagement.`, 'B', 'E'],
-
-["Ethics", "How do you handle pressure to write a bad risk?",
-`**Answer:** Present analysis, follow guidelines and referral processes, and protect portfolio integrity.
-
-Tip: Integrity.`, 'B', 'E'],
-
-["Earned Premium", "Written vs earned premium?",
-`**Answer:** **Written** premium is booked when policies start; **earned** premium is recognized over the policy term as coverage is provided.
-
-Tip: Earned over time.`, 'B', 'E']
-];
-
-QB['bk-uw'] = (QB['bk-uw']||[]).concat([
-["Exposure Base", "What are common exposure bases for rating?",
-`**Answer:** Sales or receipts (general liability), payroll (workers' comp, some GL classes), building values (property), number of vehicles (auto), and revenue or employee counts (professional and cyber).
-
-Tip: Match exposure to risk.`, 'B', 'E'],
-["Experience Rating", "How does experience rating work?",
-`**Answer:** It adjusts the premium based on the insured's own loss experience compared with the expected losses for its class and size. Credibility weighting increases with account size.
-
-Tip: Credibility.`, 'D', 'M'],
-["Contract Review", "Why review contracts in liability underwriting?",
-`**Answer:** Indemnification and additional insured requirements shift risk. Good contractual risk transfer to subcontractors lowers the insured's exposure.
-
-Tip: Risk transfer.`, 'B', 'M'],
-["Valuation", "Why do property values matter?",
-`**Answer:** Underinsurance causes coinsurance penalties and inadequate premium. Verify replacement cost values with valuation tools and inflation trends.
-
-Tip: Insurance to value.`, 'B', 'M'],
-["Coinsurance", "How does a coinsurance clause work?",
-`**Answer:** If the insured carries less than the required percentage (for example 80%) of value, the loss payment is reduced proportionally.
-
-**Example:** value $1M with 80% required = $800K, but only $600K carried. A $100K loss pays $100K × 600/800 = $75K (less the deductible).
-
-Tip: Show the math.`, 'D', 'M'],
-["Products", "How do you underwrite products liability?",
-`**Answer:** Product types and uses, distribution (consumer vs industrial), quality control, recalls, warnings and labels, contractual transfers with suppliers, and claims history.
-
-Tip: Consumer exposure.`, 'D', 'M'],
-["Terrorism", "What is TRIA?",
-`**Answer:** The Terrorism Risk Insurance Act provides a federal backstop for certified terrorism losses. Insurers must offer terrorism coverage on certain commercial lines.
-
-Tip: Must offer.`, 'D', 'M'],
-["Quote Strategy", "How do you decide on quote terms to win profitably?",
-`**Answer:** Understand the competition and the broker's needs, price to target margin, use deductibles, sublimits and exclusions strategically, and stay disciplined if the price won't support the risk.
-
-Tip: Discipline.`, 'B', 'M'],
-["Audits", "What are premium audits?",
-`**Answer:** Post-policy reviews of actual exposures (payroll, sales) to adjust the final premium, ensuring the premium matches the actual exposure.
-
-Tip: Final premium.`, 'B', 'E'],
-["Scenario", "A new submission is in an industry you've never written. What do you do?",
-`**Answer:** Check whether it's within appetite and guidelines, research the industry's hazards, consult experienced underwriters or loss control, request detailed information, and refer if needed.
-
-Tip: Refer if unsure.`, 'B', 'E']
+QB["bk-uw"] = (QB["bk-uw"] || []).concat([
+["Role", "What does a commercial underwriter do?", "**Why they ask:** risk selection and pricing.\n\n**Answer:** Evaluates insurance applications to decide whether to accept risks and on what terms: analyzes exposures, loss history and controls, sets pricing, terms, conditions and limits within authority, works with brokers, and manages portfolio profitability.\n\nTip: Lines of business.", "B", "E"],
+["Process", "Walk through how you underwrite a new account.", "**Why they ask:** end-to-end process.\n\n**Answer:**\n\"First I check appetite — if it's outside, I tell the broker the same day. If it fits, I review the submission: application, five years of loss runs, financials and exposure details. I assess risk quality against guidelines, request missing information or an inspection, rate and price it, set terms and coverage, refer anything outside my authority, then quote and negotiate with the broker, bind and document the file.\"\n\nTip: Appetite first.", "B", "E"],
+["Loss Ratio", "What are loss ratio and combined ratio?", "**Why they ask:** profitability fundamentals.\n\n**Answer:**\n\"Loss ratio is incurred losses, usually including loss adjustment expense, over earned premium. Expense ratio is underwriting expenses over written premium. Combined ratio adds them, and under 100% means an underwriting profit. A 62% loss ratio plus 32% expense ratio is 94% — six cents of profit per premium dollar before investment income.\"\n\nTip: Underwriting profit.", "B", "E"],
+["Loss Runs", "What do you look for in loss runs?", "**Why they ask:** risk evaluation.\n\n**Answer:**\n\"Frequency versus severity, trends, causes, open reserves, large losses and what corrective action was taken — usually over five years. Many small slip-and-falls signal a housekeeping problem; one large loss with a fixed cause may be fine.\"\n\nTip: Frequency vs severity.", "B", "M"],
+["Pricing", "How do you price a risk?", "**Why they ask:** pricing method.\n\n**Answer:**\n\"Start with base rates by class and exposure from the rating manual, apply experience modification for the insured's loss history, add schedule credits or debits for specific characteristics — good safety program, older building — and then consider market conditions and the target loss ratio for the segment.\"\n\nTip: Schedule rating.", "B", "M"],
+["Property", "What is COPE in property underwriting?", "**Why they ask:** property fundamentals.\n\n**Answer:**\n\"Construction — frame, masonry, fire resistive. Occupancy — what's done in the building and its hazards. Protection — sprinklers, alarms and fire department capability. Exposure — neighboring hazards and catastrophe exposure. A sprinklered masonry office is a very different risk from an unsprinklered frame woodworking shop next to a chemical plant.\"\n\nTip: COPE.", "B", "E"],
+["Liability", "How do you underwrite general liability?", "**Why they ask:** casualty skills.\n\n**Answer:**\n\"Operations and products, premises hazards, contracts and risk transfer — indemnification and additional insured requirements — loss history, safety programs, and the exposure basis like sales or payroll. A contractor who gets proper indemnity and AI status from subs is a much better risk.\"\n\nTip: Contractual risk transfer.", "B", "M"],
+["Workers Comp", "How do you underwrite workers' compensation?", "**Why they ask:** line knowledge.\n\n**Answer:**\n\"Class codes and payroll, the experience mod, loss history, safety and return-to-work programs, state regulations and employee concentration in one location. An EMR of 0.85 means 15% better than expected losses — a $100,000 manual premium becomes $85,000.\"\n\nTip: EMR.", "B", "M"],
+["Catastrophe", "How do you manage catastrophe exposure?", "**Why they ask:** cat risk management.\n\n**Answer:**\n\"Use cat models like RMS and Verisk to estimate probable maximum loss, manage aggregate limits by zone, price in a cat load, use named-storm or earthquake deductibles, and stay within reinsurance capacity.\"\n\nTip: PML.", "D", "M"],
+["Reinsurance", "How does reinsurance affect underwriting?", "**Why they ask:** capacity awareness.\n\n**Answer:**\n\"Treaty terms define which risks and limits we can write and what we keep net. Anything outside the treaty — say a $25 million property limit when the treaty covers $10 million — needs facultative reinsurance for that individual risk.\"\n\nTip: Treaty limits.", "D", "M"],
+["Market Cycle", "What are hard and soft markets?", "**Why they ask:** cycle awareness.\n\n**Answer:**\n\"In a hard market, after big losses, rates rise and terms and capacity tighten. In a soft market, competition lowers rates and loosens terms. Good underwriters stay disciplined in soft markets so they aren't fixing a bad book when the cycle turns.\"\n\nTip: Discipline.", "B", "E"],
+["Brokers", "How do you manage broker relationships?", "**Why they ask:** distribution matters.\n\n**Answer:**\n\"Responsive service, clear communication of appetite, quick declinations when it isn't a fit, fair negotiation and consistent decisions. Brokers value a fast no almost as much as a yes.\"\n\nTip: Fast no.", "B", "E"],
+["Authority", "What is underwriting authority?", "**Why they ask:** governance.\n\n**Answer:**\n\"Limits on premium size, policy limits, classes and exceptions an underwriter can approve alone. Beyond that, I refer to a senior underwriter or manager with my analysis and recommendation.\"\n\nTip: Referrals.", "B", "E"],
+["Cyber", "How do you underwrite cyber insurance?", "**Why they ask:** a fast-growing line.\n\n**Answer:**\n\"Assess security controls — MFA, EDR, offline backups, patching and incident response plans — plus revenue, data types, industry, prior incidents and vendor dependencies. Without MFA and tested backups, ransomware risk is too high, so those are minimum requirements.\"\n\nTip: MFA and backups.", "D", "M"],
+["Professional", "What's important in professional liability underwriting?", "**Why they ask:** specialty knowledge.\n\n**Answer:**\n\"The profession and services, revenue, contracts, client types, risk management practices like engagement letters and peer review, claims history, and claims-made features like the retroactive date.\"\n\nTip: Claims-made.", "D", "M"],
+["Claims-made", "Occurrence vs claims-made policies?", "**Why they ask:** coverage triggers.\n\n**Answer:**\n\"Occurrence covers incidents during the policy period no matter when the claim is made — even years later. Claims-made covers claims made during the policy period for incidents after the retroactive date, so when coverage ends you often need tail coverage for late claims.\"\n\nTip: Tail coverage.", "B", "M"],
+["Data", "How do underwriters use data and analytics?", "**Why they ask:** modern underwriting.\n\n**Answer:**\n\"Predictive models for pricing and risk scoring, third-party data like property characteristics and telematics, portfolio analytics, and automation for small accounts so underwriters spend time on complex risks.\"\n\nTip: Predictive models.", "B", "M"],
+["Portfolio", "How do you manage portfolio profitability?", "**Why they ask:** book management.\n\n**Answer:**\n\"Track loss ratios by class and segment, adjust appetite and pricing, non-renew poor performers, and grow the profitable segments.\"\n\nTip: Segment analysis.", "D", "M"],
+["Behavioral", "Tell me about declining a large account.", "**Why they ask:** discipline.\n\n**Answer:**\n\"A $400,000-premium warehouse account had poor sprinkler maintenance and frequent losses. I declined but laid out what it would take — fix the protection, document inspections. They did, and we wrote it profitably the next year.\"\n\nTip: Discipline with path forward.", "B", "M"],
+["Behavioral", "Tell me about improving a book's performance.", "**Why they ask:** measurable results.\n\n**Answer:**\n\"My restaurant book ran a 78% loss ratio. I added cooking equipment and hood cleaning requirements and repriced high-risk classes. The loss ratio fell to 58% in two years.\"\n\nTip: Measured.", "B", "M"],
+["Behavioral", "How do you handle broker pressure?", "**Why they ask:** consistency.\n\n**Answer:**\n\"Explain my rationale clearly, stay within guidelines, offer alternatives like a higher deductible or sublimit, and keep it respectful. Consistency is what earns broker trust.\"\n\nTip: Consistency.", "B", "E"],
+["Certifications", "Which designations help?", "**Why they ask:** credentials.\n\n**Answer:**\n\"CPCU most of all, plus AU — Associate in Commercial Underwriting — CIC and ARM.\"\n\nTip: CPCU.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior underwriter and underwriting manager, and eventually product leadership.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I write profitable business with discipline and strong broker relationships — I improved a book's loss ratio by 20 points.\"\n\nTip: Proof.", "B", "E"],
+["Loss Control", "How do you use loss control reports?", "**Why they ask:** risk assessment.\n\n**Answer:**\n\"Inspections verify COPE and safety practices, identify hazards and produce recommendations. Critical recommendations become conditions of coverage, with deadlines.\"\n\nTip: Recommendations.", "B", "E"],
+["Moral Hazard", "What is moral hazard vs morale hazard?", "**Why they ask:** underwriting concepts.\n\n**Answer:**\n\"Moral hazard is dishonesty — like setting a fire for the insurance money. Morale hazard is carelessness because you're insured — like not bothering to lock up. Both shape underwriting decisions.\"\n\nTip: Distinction.", "B", "E"],
+["Deductibles", "How do deductibles affect risk?", "**Why they ask:** structuring.\n\n**Answer:**\n\"Higher deductibles cut small-claim frequency, lower premium, and give the insured a financial stake in loss prevention.\"\n\nTip: Alignment.", "B", "E"],
+["Umbrella", "How do you underwrite umbrella/excess?", "**Why they ask:** layered coverage.\n\n**Answer:**\n\"Review underlying limits and carriers, severity exposures like auto fleets and products, loss history and the attachment point. If the underlying auto limit is too thin, the umbrella effectively becomes primary.\"\n\nTip: Underlying adequacy.", "D", "M"],
+["Auto", "What matters in commercial auto underwriting?", "**Why they ask:** a difficult line.\n\n**Answer:**\n\"Fleet size and vehicle types, radius of operation, driver MVRs and hiring standards, telematics, safety programs and loss history. It's been unprofitable for years industry-wide because of severity trends, so driver quality is critical.\"\n\nTip: Driver quality.", "D", "M"],
+["Social Inflation", "What is social inflation?", "**Why they ask:** market awareness.\n\n**Answer:**\n\"Rising claim costs from larger jury verdicts, litigation funding and legal trends, beyond economic inflation. It's driving up liability pricing, especially for auto and umbrella.\"\n\nTip: Liability trends.", "D", "M"],
+["Scenario", "A renewal has a large loss this year. What do you do?", "**Why they ask:** renewal judgment.\n\n**Answer:**\n\"Investigate the cause and corrective actions, decide whether it's an anomaly or a pattern, then adjust pricing, deductibles or terms — or non-renew if the risk has fundamentally changed.\"\n\nTip: Corrective actions.", "B", "M"],
+["Scenario", "The broker wants broader coverage at the same price. What do you do?", "**Why they ask:** pricing discipline.\n\n**Answer:**\n\"Evaluate the added exposure and price for it, or offer alternatives like a sublimit. Broader coverage for free erodes the book's margin.\"\n\nTip: Price for exposure.", "B", "E"],
+["Regulation", "How does regulation affect underwriting?", "**Why they ask:** regulatory awareness.\n\n**Answer:**\n\"Rate and form filings with states, the admitted versus surplus lines distinction, unfair discrimination rules, and rules on data use in pricing.\"\n\nTip: Admitted vs E&S.", "D", "M"],
+["E&S", "What is excess and surplus lines?", "**Why they ask:** market structure.\n\n**Answer:**\n\"The non-admitted market for hard-to-place risks, with more freedom on rates and forms — like a high-hazard manufacturer the admitted market won't write.\"\n\nTip: Flexibility.", "B", "M"],
+["Communication", "How do you write an underwriting file note?", "**Why they ask:** documentation.\n\n**Answer:**\n\"A summary of the risk, key exposures, my analysis, pricing rationale, terms, and any referrals and approvals — clear enough for an auditor to follow the decision.\"\n\nTip: Audit trail.", "B", "E"],
+["Automation", "How is AI changing underwriting?", "**Why they ask:** current trends.\n\n**Answer:**\n\"Automated submission intake, data enrichment, risk scoring and straight-through processing for small commercial, so underwriters focus on complex risks.\"\n\nTip: Complex risks.", "B", "M"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"Which lines and appetite? What authority level? How big is the book, what are broker relationships like, and which tools do you use?\"\n\nTip: Authority.", "B", "E"],
+["Retention", "How do you retain profitable accounts?", "**Why they ask:** retention.\n\n**Answer:**\n\"Engage early on renewals — 90 to 120 days out — offer value-added services like loss control, price fairly and stay responsive.\"\n\nTip: Early engagement.", "B", "E"],
+["Ethics", "How do you handle pressure to write a bad risk?", "**Why they ask:** integrity.\n\n**Answer:**\n\"Present my analysis, follow guidelines and the referral process, and protect the portfolio. If a senior decision-maker approves an exception, it's documented as theirs.\"\n\nTip: Integrity.", "B", "E"],
+["Earned Premium", "Written vs earned premium?", "**Why they ask:** accounting basics.\n\n**Answer:**\n\"Written premium is booked when a policy starts; earned premium is recognized over the term as coverage is provided. A $12,000 annual policy written January 1 has earned $3,000 by March 31.\"\n\nTip: Earned over time.", "B", "E"]
+]);
+
+QB["bk-uw"] = (QB["bk-uw"] || []).concat([
+["Exposure Base", "What are common exposure bases for rating?", "**Why they ask:** rating knowledge.\n\n**Answer:**\n\"Sales or receipts for general liability, payroll for workers' comp and some GL classes, building values for property, number of vehicles for auto, and revenue or employee counts for professional and cyber.\"\n\nTip: Match exposure to risk.", "B", "E"],
+["Experience Rating", "How does experience rating work?", "**Why they ask:** pricing mechanics.\n\n**Answer:**\n\"It adjusts premium based on the insured's own losses compared with expected losses for its class and size. Credibility weighting rises with account size — a large account's history counts heavily, a small one's barely moves the price.\"\n\nTip: Credibility.", "D", "M"],
+["Contract Review", "Why review contracts in liability underwriting?", "**Why they ask:** risk transfer.\n\n**Answer:**\n\"Indemnification and additional insured requirements shift risk. Good contractual transfer to subcontractors lowers our insured's exposure, while a broad indemnity they gave a customer raises it.\"\n\nTip: Risk transfer.", "B", "M"],
+["Valuation", "Why do property values matter?", "**Why they ask:** insurance to value.\n\n**Answer:**\n\"Underinsurance causes coinsurance penalties for the insured and inadequate premium for us. I verify replacement cost values with valuation tools and construction cost trends.\"\n\nTip: Insurance to value.", "B", "M"],
+["Coinsurance", "How does a coinsurance clause work?", "**Why they ask:** a classic calculation.\n\n**Answer:**\n\"If the insured carries less than the required percentage of value, losses are paid proportionally. Value $1 million with 80% coinsurance requires $800,000. If they carry $600,000 and have a $100,000 loss, we pay 600 over 800 times $100,000 — $75,000, less the deductible.\"\n\nTip: Show the math.", "D", "M"],
+["Products", "How do you underwrite products liability?", "**Why they ask:** casualty depth.\n\n**Answer:**\n\"Product types and uses, distribution — consumer versus industrial — quality control, recall history and plans, warnings and labels, contractual transfers with suppliers, and claims history. Consumer products used by children carry far more exposure.\"\n\nTip: Consumer exposure.", "D", "M"],
+["Terrorism", "What is TRIA?", "**Why they ask:** regulatory knowledge.\n\n**Answer:**\n\"The Terrorism Risk Insurance Act provides a federal backstop for certified terrorism losses, and insurers must offer terrorism coverage on certain commercial lines — the insured can decline it.\"\n\nTip: Must offer.", "D", "M"],
+["Quote Strategy", "How do you decide on quote terms to win profitably?", "**Why they ask:** competitive judgment.\n\n**Answer:**\n\"Understand the competition and the broker's needs, price to target margin, and use deductibles, sublimits and exclusions strategically. If the price the market wants won't support the risk, I walk away.\"\n\nTip: Discipline.", "B", "M"],
+["Audits", "What are premium audits?", "**Why they ask:** premium accuracy.\n\n**Answer:**\n\"Post-policy reviews of actual exposures like payroll or sales, adjusting the final premium. If estimated payroll was $2 million but actual was $2.5 million, the insured owes additional premium on the extra $500,000.\"\n\nTip: Final premium.", "B", "E"],
+["Scenario", "A new submission is in an industry you've never written. What do you do?", "**Why they ask:** judgment and learning.\n\n**Answer:**\n\"Check whether it's within appetite and guidelines, research the industry's hazards, consult experienced underwriters or loss control, request detailed information, and refer if I'm unsure.\"\n\nTip: Refer if unsure.", "B", "E"]
 ]);
