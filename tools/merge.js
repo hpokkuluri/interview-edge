@@ -27,3 +27,4 @@ for (const id in MODS) {
     (own ? own + '\n\n' : '') + `QB['${id}'] = (QB['${id}'] || []).concat(${JSON.stringify(extra, null, 0)});\n`);
 }
 require('./build-counts.js');
+require('./build-resume-index.js');

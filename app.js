@@ -71,6 +71,7 @@ function loadRaw(id) {
 const mergesEssentials = id => id !== 'common' && !id.startsWith('ora-mod-') && !id.startsWith('w-');
 function loadBank(id) {
   if (BANKS[id]) return Promise.resolve(BANKS[id]);
+  if (id === 'resume') return resumeBank().then(b => BANKS[id] = b);
   const own = loadRaw(id);
   if (!mergesEssentials(id)) return own.then(b => BANKS[id] = b);
   return Promise.all([own, loadRaw('common').catch(() => [])]).then(([b, c]) =>
@@ -135,6 +136,138 @@ function vProfile(ctx) {
   ctx.el.addEventListener('input', save);
   $('#pf-save', ctx.el).addEventListener('click', () => { save(); $('#pf-msg', ctx.el).textContent = 'Saved.'; setTimeout(() => history.back(), 500); });
 }
+/* ---------- Resume Match: read a resume on the device, pick the role, build a practice set ----------
+   The resume is read in the browser (resume.js) and saved only in this browser's storage. */
+const RES_FAM = { id: 'resume', name: 'Resume Match', short: 'Resume', glyph: 'CV', color: '#0F5E9C', tint: '#E4EEF8',
+  tag: 'Upload your resume — get questions for your latest job, or the next step up' };
+let RS = store.get('ip.resume', null);   // { name, text, at, title, target }
+const saveRS = () => { try { store.set('ip.resume', RS); } catch (e) { toast('Could not save on this device'); } };
+const RPOS = () => Object.values(POS).filter(p => p.id !== 'common' && p.id !== 'resume' && !p.id.startsWith('w-')).map(p => ({
+  id: p.id, full: p.full, title: p.title, level: p.level, famId: p.fam.id, famName: p.fam.name, field: (fieldOf(p.fam) || {}).id, track: p.track, module: p.id.startsWith('ora-mod-') }));
+let rIndex = null;
+function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('load')); document.head.appendChild(s); }); }
+const needIndex = () => rIndex || (rIndex = (window.RINDEX ? Promise.resolve() : loadScript('data/resume-index.js')).catch(e => { rIndex = null; throw e; }));
+function resumeMatch() {
+  const r = RESUME.parse(RS.text);
+  const m = RESUME.matchBanks(r, RPOS(), window.RINDEX, RS.title != null ? RS.title : r.title);
+  return { r, m };
+}
+function setResumePos() {
+  if (!RS || !RS.target || !POS[RS.target]) { delete POS.resume; return; }
+  const t = POS[RS.target];
+  POS.resume = { id: 'resume', fam: RES_FAM, srcFam: t.fam, role: {}, title: t.full, full: t.full, level: t.level,
+    blurb: 'Built from your resume: the top questions for this role, the ones closest to your experience, related deep dives and the essentials.' };
+}
+setResumePos();
+function resumeBank() {
+  if (!RS || !RS.target || !POS[RS.target]) return Promise.reject(new Error('none'));
+  return needIndex().then(() => {
+    const { m } = resumeMatch();
+    const rel = m.related.filter(x => x.p.id !== RS.target).slice(0, 2);
+    return Promise.all([loadRaw(RS.target), loadRaw('common').catch(() => []), ...rel.map(x => loadRaw(x.p.id).catch(() => []))]).then(([tb, cb, ...rb]) =>
+      RESUME.buildSet({ target: RS.target, targetBank: tb, common: cb, rf: m.rf, related: rel.map((x, i) => ({ id: x.p.id, label: x.p.full, bank: rb[i] })) }));
+  });
+}
+// Background lines for the AI interviewer (only sent if the person opens it).
+function resumeBrief() {
+  if (!RS || !RS.text || !window.RINDEX) return '';
+  const { r, m } = resumeMatch();
+  const block = r.block.slice(0, 14).join('\n').slice(0, 900);
+  return `\n\nCandidate background (from their resume):\n- Latest role: ${RS.title != null ? RS.title : r.title || 'not stated'}${r.company ? ' at ' + r.company : ''}${r.years ? `; about ${r.years} years of experience` : ''}\n- Skills: ${m.skills.join(', ')}\n- Latest job details:\n${block}\nAsk about their real projects and claims — probe for their own role, numbers and decisions.`;
+}
+function vResume(ctx) {
+  const wrapStyle = famVars(RES_FAM);
+  const pretty = (k, text) => { const re = new RegExp('\\b' + k.split(' ').map(w => w.slice(0, Math.max(3, w.length - 2)).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\w&+#]*').join('[\\s-]+') + '\\b', 'i'); const mm = text.match(re); return mm ? mm[0].replace(/\s+/g, ' ') : k; };
+  const GENERIC = /^(hub|functional|software|developer|engineer|accounting|finance|manager|senior|lead|implementation|solution|design|process|business|system|data|technical|support|management|invoice|patient|nurse)$/;
+  const showSkills = (m, title) => { const tc = RESUME.titleCore(title || '', true); return m.skills.filter(k => !GENERIC.test(k) && !k.split(' ').every(w => tc.has(w))); };
+  const render = () => {
+    if (!RS || !RS.text) return renderUpload();
+    ctx.el.innerHTML = `${bar(ctx, 'Resume Match')}<div class="wrap" style="${wrapStyle}"><div class="empty">Reading your resume…</div></div>`;
+    needIndex().then(renderMatch).catch(() => { $('.wrap', ctx.el).innerHTML = '<div class="empty">Couldn’t load the role list. Check your connection and try again.</div>'; });
+  };
+  const hero = sub => `<div class="pos-hero"><span class="chip">Stays on this device</span><h2>Resume Match</h2><p>${sub}</p></div>`;
+  function renderUpload(msg) {
+    ctx.el.innerHTML = `${bar(ctx, 'Resume Match')}<div class="wrap" style="${wrapStyle}">
+      ${hero('Add your resume. We read your latest job and skills, suggest the role to practice for, and build a question set around your real experience.')}
+      <input type="file" id="rf" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" hidden>
+      <button class="btn pri wide" id="rpick" style="margin-top:14px">Choose resume file</button>
+      <p class="muted" style="text-align:center;margin:8px 0 0">PDF, Word (.docx) or text. Read on this device — not uploaded anywhere.</p>
+      <div id="rmsg" class="muted" style="text-align:center;margin-top:10px;color:var(--c)">${msg ? esc(msg) : ''}</div>
+      <details class="card" style="margin-top:16px"><summary style="font-weight:700;cursor:pointer">Or paste the text</summary>
+        <textarea class="txt" id="rtext" rows="8" style="margin-top:10px;resize:vertical" placeholder="Paste your resume here"></textarea>
+        <button class="btn navy wide" id="rgo" style="margin-top:10px">Read resume</button></details></div>`;
+    const accept = (text, name) => {
+      text = String(text || '').replace(/\u0000/g, '').trim();
+      if (text.replace(/\s/g, '').length < 80) { renderUpload(name.endsWith('.pdf') ? 'This PDF has no readable text (it may be a scan). Paste the text instead.' : 'That looks too short to be a resume. Try another file or paste the text.'); return; }
+      RS = { name, text: text.slice(0, 30000), at: Date.now(), title: null, target: null }; saveRS(); render();
+    };
+    $('#rpick', ctx.el).addEventListener('click', () => $('#rf', ctx.el).click());
+    $('#rf', ctx.el).addEventListener('change', e => {
+      const f = e.target.files[0]; if (!f) return;
+      $('#rmsg', ctx.el).textContent = 'Reading ' + f.name + '…';
+      RESUME.readFile(f, 'vendor/pdfjs/').then(t => accept(t, f.name.toLowerCase())).catch(err => renderUpload(
+        err.message === 'doc' ? 'Older .doc files can’t be read here. Save it as .docx or PDF, or paste the text.' :
+        err.message === 'too big' ? 'That file is over 8 MB. Try a smaller PDF or paste the text.' :
+        /pdf load/.test(err.message) ? 'The PDF reader needs a connection the first time. Try again online, or paste the text.' :
+        'Couldn’t read that file. Try a PDF or .docx, or paste the text.'));
+    });
+    $('#rgo', ctx.el).addEventListener('click', () => accept($('#rtext', ctx.el).value, 'pasted text'));
+  }
+  function renderMatch() {
+    const r0 = RESUME.parse(RS.text);
+    ctx.el.innerHTML = `${bar(ctx, 'Resume Match')}<div class="wrap" style="${wrapStyle}">
+      ${hero(`From ${esc(RS.name || 'your resume')}. Check your latest job title, then choose the job you’re interviewing for.`)}
+      <div id="rcur"></div>
+      <div class="card" style="margin-top:14px">
+        <div class="field" style="margin-top:0"><label for="rtitle">Your latest job title</label>
+          <input class="txt" id="rtitle" type="text" value="${esc((RS.title != null ? RS.title : r0.title) || '')}" placeholder="Type your latest job title" autocomplete="off"></div>
+        <p class="muted" style="margin:8px 0 0">${[r0.company, r0.years ? `about ${r0.years} years of experience` : ''].filter(Boolean).map(esc).join(' · ') || (r0.found ? '' : 'We couldn’t spot a job title — type it above.')}</p>
+        <div id="rskills"></div>
+      </div>
+      <div class="sec-h" style="margin:20px 4px 4px">Practice for</div>
+      <div class="list" id="ropts"></div>
+      <button class="btn ghost wide" id="rother" style="margin-top:12px">${I.search} Choose another role</button>
+      <div id="rpicker" hidden><label class="search" style="margin-top:10px">${I.search}<input id="rq" type="search" placeholder="Search roles, e.g. controller, data engineer" autocomplete="off"></label><div class="list" id="rres"></div></div>
+      <div style="display:flex;gap:10px;margin-top:22px"><button class="btn ghost" id="rnew" style="flex:1">New resume</button><button class="btn ghost" id="rdel" style="flex:1;color:#DC2626">Delete resume</button></div>
+      <p class="muted" style="text-align:center;margin-top:10px">Your resume is saved only in this browser. Delete removes it.</p></div>`;
+    const opt = (p, kind, label) => { const on = RS.target === p.id; return `<button class="card" data-pick="${p.id}" style="${on ? 'outline:2px solid var(--c);outline-offset:-2px' : ''}"><div class="pos-row"><span class="n" style="font-size:.66rem">${label}</span><div style="flex:1;min-width:0"><h3>${esc(p.full)}</h3><p>${kind ? esc(kind) + ' · ' : ''}${esc(p.famName)} · ${esc(p.level)}</p></div>${on ? '<span class="chip c">Selected</span>' : ''}</div></button>`; };
+    const draw = () => {
+      const { m } = resumeMatch();
+      const opts = [], ids = new Set();
+      const push = (p, kind, label) => { if (ids.has(p.id)) return; ids.add(p.id); opts.push(opt(p, kind, label)); };
+      if (m.same) push(m.same.p, 'Same level', 'NOW');
+      if (m.next) push(m.next.p, 'Step up', 'UP');
+      m.others.forEach(x => push(x.p, 'Also a match', 'ALT'));
+      if (RS.target && POS[RS.target] && !ids.has(RS.target)) { const t = POS[RS.target]; opts.unshift(opt({ id: t.id, full: t.full, famName: t.fam.name, level: t.level }, 'Your choice', 'YOU')); }
+      $('#ropts', ctx.el).innerHTML = opts.join('') || '<div class="empty" style="padding:16px">No close match yet — type your job title above or choose another role.</div>';
+      const sks = showSkills(m, RS.title != null ? RS.title : RESUME.parse(RS.text).title);
+      $('#rskills', ctx.el).innerHTML = sks.length ? `<div class="sec-h" style="margin:14px 0 8px">Skills we found</div><div style="display:flex;flex-wrap:wrap;gap:6px">${sks.map(k => `<span class="chip">${esc(pretty(k, RS.text))}</span>`).join('')}</div>` : '';
+      $('#rcur', ctx.el).innerHTML = RS.target && POS.resume ? `<button class="btn pri wide" data-go="pos/resume" style="margin-top:14px">${I.play} Open my practice set</button>` : '';
+    };
+    draw();
+    let t; $('#rtitle', ctx.el).addEventListener('input', e => { clearTimeout(t); t = setTimeout(() => { RS.title = e.target.value.trim(); saveRS(); draw(); }, 500); });
+    const pick = id => {
+      if (RS.title == null) RS.title = r0.title || '';
+      RS.target = id; saveRS(); setResumePos();
+      delete BANKS.resume; delete qList.resume; delete listState.resume;
+      draw(); go('pos/resume');
+    };
+    ctx.el.onclick = e => { const b = e.target.closest('[data-pick]'); if (b) pick(b.dataset.pick); };
+    $('#rother', ctx.el).addEventListener('click', () => { const pk = $('#rpicker', ctx.el); pk.hidden = !pk.hidden; if (!pk.hidden) $('#rq', ctx.el).focus(); });
+    $('#rq', ctx.el).addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase(), out = $('#rres', ctx.el);
+      if (q.length < 2) { out.innerHTML = ''; return; }
+      const hits = []; roleMatches(q).slice(0, 10).forEach(({ p }) => (p.tracks ? p.tracks.map(x => POS[x.id]) : [POS[p.id]]).forEach(x => { if (x && !x.id.startsWith('w-')) hits.push(x); }));
+      out.innerHTML = hits.length ? hits.map(x => opt({ id: x.id, full: x.full, famName: x.fam.name, level: x.level }, '', esc((x.fam.glyph || x.fam.short).slice(0, 3)))).join('') : '<div class="empty" style="padding:16px">No roles match.</div>';
+    });
+    const clear = () => { RS = null; store.del('ip.resume'); setResumePos(); delete BANKS.resume; };
+    $('#rnew', ctx.el).addEventListener('click', () => { clear(); renderUpload(); });
+    $('#rdel', ctx.el).addEventListener('click', () => { if (!confirm('Delete your resume and practice set from this device?')) return; clear(); toast('Resume deleted'); renderUpload(); });
+    ctx.refresh = draw;
+  }
+  render();
+}
+
 function fmt(text) {
   text = personalize(text);
   const out = []; let list = null;
@@ -280,6 +413,7 @@ function titleOf(route) {
   if (k === 'ai') return 'Interview';
   if (k === 'settings') return 'Settings';
   if (k === 'profile') return 'My role';
+  if (k === 'resume') return 'Resume';
   return 'Back';
 }
 const shortTitle = t => t.length > 18 ? t.split(/[,/]/)[0].trim().slice(0, 18) : t;
@@ -288,7 +422,7 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile }[k] || vHome)(ctx, a, b);
+  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
@@ -387,7 +521,7 @@ function vHome(ctx) {
     const total = Object.values(COUNTS).reduce((a, b) => a + b, 0);
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
-    const last = store.get('ip.last', null), lp = last && POS[last];
+    const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
     const ess = posProgress('common');
     ctx.el.innerHTML = `<div class="home">
       <div class="hero"><div class="hero-top"><div class="brand">${LOGO}<span>ARAHASOFT</span></div>
@@ -398,7 +532,9 @@ function vHome(ctx) {
         <button class="hsearch" data-go="search">${I.search}<span>Search all questions and roles</span></button></div></div>
       <div class="home-main"><div class="wrap">
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
-        <div class="sec-h">Choose a field</div>
+        <div class="sec-h">Start from your resume</div>
+        <button class="card esscard" data-go="resume" style="${famVars(RES_FAM)}"><div class="pos-row">${cubeSVG(RES_FAM)}<div style="flex:1;min-width:0"><h3>${esc(RES_FAM.name)}</h3><p>${RS && RS.target && POS[RS.target] ? 'Practicing for ' + esc(POS[RS.target].full) + ' — tap to open or change' : esc(RES_FAM.tag)}</p></div></div></button>
+        <div class="sec-h" style="margin-top:22px">Choose a field</div>
         <div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}">
           <span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span>
           <span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span>
@@ -407,6 +543,7 @@ function vHome(ctx) {
         <div class="sec-h" style="margin-top:22px">For every interview</div>
         <button class="card esscard" data-go="pos/common" style="${famVars(ESS)}"><div class="pos-row">${cubeSVG(ESS)}<div style="flex:1;min-width:0"><h3>${esc(ESS.name)}</h3><p>${esc(ESS.tag)}</p></div></div>
           <div class="pos-foot" style="padding-left:0"><span class="prog"><i class="k" style="width:${ess.total ? ess.k / ess.total * 100 : 0}%"></i></span><small>${ess.k}/${ess.total}</small></div></button>
+
         <p class="home-foot">Your progress stays on this device. © Arahasoft</p>
       </div></div></div>`;
   };
@@ -517,7 +654,7 @@ function vPos(ctx, id) {
     const statChips = [['all', 'All']].concat(nTop ? [['top', `Top ${nTop}`]] : [], [['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']]);
     ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}">
       <div id="head">${head()}</div>${tracks}${isWork(p) ? `<div class="card" style="margin-top:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>${hasProfile() ? 'Answers use your saved role' : 'Make the answers about you'}</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ')) : 'Add your role, projects, wins and goals.'}</p></div><button class="chip c" data-go="profile">${hasProfile() ? 'Edit' : 'Set up'}</button></div>
-        <a class="btn pri" style="margin-top:12px;text-decoration:none" target="_blank" rel="noopener" href="https://claude.ai/new?q=${encodeURIComponent(workPrepPrompt(p))}">Prepare with Claude</a></div>` : ''}
+        <a class="btn pri" style="margin-top:12px;text-decoration:none" target="_blank" rel="noopener" href="https://claude.ai/new?q=${encodeURIComponent(workPrepPrompt(p))}">Prepare with Claude</a></div>` : ''}${id === 'resume' ? `<button class="card" data-go="resume" style="margin-top:12px"><div class="pos-row"><span class="n">CV</span><div style="flex:1;min-width:0"><h3>${esc(RS && RS.title ? 'Your latest role: ' + RS.title : 'Built from your resume')}</h3><p>Pick a different role or use another resume.</p></div><span class="chip c">Change</span></div></button>` : ''}
       <div class="modes">
         <button class="mode" data-go="mock/${id}"><span class="ic">${I.timer}</span><b>Mock interview</b><span>Timed, random questions, score yourself</span></button>
         <button class="mode" data-go="flash/${id}"><span class="ic">${I.cards}</span><b>Flashcards</b><span>Flip, mark known or review</span></button>
@@ -559,7 +696,7 @@ function vQ(ctx, id, idxStr, mode) {
     const s = st(key);
     ctx.el.innerHTML = `${bar(ctx, pos >= 0 ? `${pos + 1} of ${list.length}` : `Question ${i + 1}`, `<button class="icon-btn" id="sp" aria-label="Read aloud">${I.speaker}</button><button class="icon-btn" id="star" aria-label="Star" style="color:${s.star ? 'var(--gold)' : ''}">${s.star ? I.star : I.starO}</button>`)}
     <div class="wrap" style="${famVars(f)}">
-      <div class="q-cat"><span class="chip c">${esc(x[0])}</span>${isTop(x) ? '<span class="chip top">Top question</span>' : ''}${x[3] ? `<span class="chip">${DIFF[x[3]]}</span>` : ''}<span class="chip">${esc(p.full)}</span></div>
+      <div class="q-cat"><span class="chip c">${esc(x[0])}</span>${isTop(x) ? '<span class="chip top">Top question</span>' : ''}${x[3] ? `<span class="chip">${DIFF[x[3]]}</span>` : ''}<span class="chip">${esc(id === 'resume' && POS[x[5]] ? POS[x[5]].full : p.full)}</span></div>
       <h2 class="q-text">${esc(x[1])}</h2>
       <div class="practice" id="pr" ${voice || drafts[key] ? '' : 'hidden'}><h4>Your answer</h4><p>Say it out loud or type it, then compare with the model answer.</p>
         <textarea class="ans" id="mine" placeholder="Tap the mic and start talking…">${esc(drafts[key] || '')}</textarea>
@@ -731,7 +868,7 @@ const PERSONAS = {
 };
 function aiSystem(p, bank, cfg) {
   if (isWork(p)) return workSystem(p, bank, cfg);
-  return `You are ${PERSONAS[cfg.persona][1]}, interviewing a candidate for the role "${p.full}" (${p.level}, ${p.fam.name} track). Role focus: ${p.blurb}
+  return `You are ${PERSONAS[cfg.persona][1]}, interviewing a candidate for the role "${p.full}" (${p.level}, ${(p.srcFam || p.fam).name} track). Role focus: ${p.blurb}
 
 Run a realistic interview:
 - Ask ONE question at a time. Keep each of your turns short (under 70 words) and conversational, like a real interviewer.
@@ -751,7 +888,7 @@ One or two lines each: what landed, what was missing.
 Three specific things.
 
 Be candid and specific; this is practice, so honest critique is the point. Topics you can draw from (the candidate's question bank — rephrase, combine and go beyond them):
-${bank.filter(x => !x[5]).map(x => '- ' + x[1]).join('\n')}
+${bank.filter(x => x[5] !== 'common').map(x => '- ' + x[1]).join('\n')}${p.id === 'resume' ? resumeBrief() : ''}
 
 Start by greeting the candidate briefly in character and asking your first question.`;
 }
@@ -784,7 +921,7 @@ Start by opening the meeting briefly in character and asking your first question
 }
 // Same interviewer brief, written as a message to paste into Claude (keeps the link a sensible length).
 function claudePrompt(p, bank, cfg) {
-  const topics = shuffle(bank.filter(x => !x[5])).slice(0, 20);
+  const topics = shuffle(bank.filter(x => x[5] !== 'common')).slice(0, 20);
   return aiSystem(p, topics, cfg)
     .replace(/^You are /, isWork(p) ? 'Please role-play a work meeting with me. You are ' : 'Please role-play a job interview with me. You are ')
     .replace('Start by opening the meeting briefly in character and asking your first question.', 'Start now: open the meeting in character and ask your first question. When I type END, give the feedback.')
