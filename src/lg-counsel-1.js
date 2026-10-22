@@ -1,199 +1,42 @@
 // Corporate Counsel / In-house Attorney. Format: [topic, question, answer, 'B'|'D', 'E'|'M'|'S'|'X']
-QB['lg-counsel'] = [
-["Role", "What does in-house counsel do?",
-`**Why they ask:** shift from law firm to business partner.
-
-**Answer:** Provides practical legal advice to the business: commercial contracts, risk management, employment, compliance, intellectual property, disputes and outside counsel management, corporate governance and transactions — balancing legal risk with business goals.
-
-Tip: Business partner.`, 'B', 'E'],
-
-["Law Firm vs In-house", "Why move in-house?",
-`**Answer:** Closer partnership with the business, involvement in decisions early, variety of issues, and seeing outcomes — show you understand the trade-offs (generalist breadth, cost-consciousness).
-
-Tip: Business focus.`, 'B', 'E'],
-
-["Risk", "How do you give risk-based advice?",
-`**Answer:** Identify the legal risk, likelihood and impact, business benefits, options to mitigate, and give a clear recommendation — not just "no."
-
-Tip: Options and recommendation.`, 'B', 'M'],
-
-["Contracts", "What are key provisions you review in commercial contracts?",
-`**Answer:** Scope and deliverables, pricing and payment, term and termination, warranties, indemnification, limitation of liability, IP ownership and licensing, confidentiality, data protection, insurance, governing law and dispute resolution.
-
-Tip: LoL and indemnity.`, 'B', 'M'],
-
-["Limitation of Liability", "How do you negotiate limitation of liability?",
-`**Answer:** Typically cap at fees paid (e.g. 12 months), exclude consequential damages, with carve-outs (indemnification, confidentiality/data breaches, gross negligence, willful misconduct) — balanced to risk and deal value.
-
-Tip: Carve-outs.`, 'D', 'M'],
-
-["Indemnification", "What should indemnification cover?",
-`**Answer:** Third-party claims arising from IP infringement, breach of law, bodily injury/property damage, data breaches or negligence — with procedures for notice, control of defense and limits.
-
-Tip: Third-party claims.`, 'D', 'M'],
-
-["Playbooks", "How do you scale contract review?",
-`**Answer:** Templates, negotiation playbooks with fallback positions, self-service for low-risk agreements, contract lifecycle management tools and AI review assistance.
-
-Tip: Playbooks.`, 'B', 'M'],
-
-["Employment", "Which employment issues come to in-house counsel?",
-`**Answer:** Terminations and separation agreements, discrimination and harassment complaints, wage-and-hour classification, restrictive covenants, leave and accommodation, and investigations.
-
-Tip: Partner with HR.`, 'B', 'M'],
-
-["Non-competes", "What's the status of non-compete agreements?",
-`**Answer:** Enforceability varies by state (California bans most); the FTC's nationwide rule was blocked; many states limit by salary thresholds. Use narrowly tailored covenants and rely on confidentiality and non-solicitation.
-
-Tip: State variation.`, 'D', 'M'],
-
-["IP", "How do you protect company IP?",
-`**Answer:** Invention assignment and confidentiality agreements, trade secret programs, patent and trademark filings, open-source policies, and enforcement.
-
-Tip: Trade secrets.`, 'B', 'M'],
-
-["Privacy", "How does in-house counsel handle privacy?",
-`**Answer:** Privacy policies and notices, data processing agreements, cross-border transfer mechanisms, breach response, and compliance with GDPR and state laws.
-
-Tip: DPAs.`, 'B', 'M'],
-
-["Litigation", "How do you manage litigation?",
-`**Answer:** Early case assessment, litigation holds, select and oversee outside counsel with budgets, settlement strategy based on risk and cost, and reporting to leadership.
-
-Tip: Early case assessment.`, 'B', 'M'],
-
-["Outside Counsel", "How do you manage outside counsel costs?",
-`**Answer:** Clear scope and budgets, alternative fee arrangements, billing guidelines, panel firms, and doing routine work in-house.
-
-Tip: AFAs.`, 'B', 'M'],
-
-["Privilege", "How do you protect attorney-client privilege in-house?",
-`**Answer:** Distinguish legal from business advice, label communications appropriately, limit distribution, and be careful with mixed-purpose communications.
-
-Tip: Legal vs business advice.`, 'D', 'M'],
-
-["Governance", "What corporate governance work do you handle?",
-`**Answer:** Board and committee meetings and minutes, entity management, resolutions, SEC filings for public companies, and compliance with bylaws.
-
-Tip: Minutes.`, 'D', 'M'],
-
-["M&A", "What is counsel's role in M&A?",
-`**Answer:** Due diligence, deal structure, negotiating purchase agreements (reps and warranties, indemnities, escrow), regulatory approvals, and integration.
-
-Tip: Reps and warranties.`, 'D', 'M'],
-
-["AI", "What legal issues arise with AI?",
-`**Answer:** IP ownership and infringement, data privacy, confidentiality of inputs, bias and discrimination, contract terms with AI vendors, and emerging AI regulation.
-
-Tip: Vendor terms.`, 'D', 'M'],
-
-["Communication", "How do you explain legal issues to executives?",
-`**Answer:** Lead with the bottom line and recommendation, explain risk simply, quantify where possible, and outline next steps.
-
-Tip: Bottom line first.`, 'B', 'E'],
-
-["Behavioral", "Tell me about saying no to the business.",
-`**Sample answer:** "Marketing wanted a sweepstakes without proper rules in several states. I explained the risk and drafted compliant official rules, and the campaign launched on time."
-
-Tip: Path to yes.`, 'B', 'M'],
-
-["Behavioral", "Tell me about a difficult negotiation.",
-`**Sample answer:** "A vendor insisted on unlimited liability for data breaches. I proposed a super-cap at 3x fees plus cyber insurance; we closed within a week."
-
-Tip: Creative solutions.`, 'B', 'M'],
-
-["Behavioral", "Tell me about prioritizing many requests.",
-`**Answer:** Triage by risk, revenue impact and deadlines, set expectations, and use self-service tools.
-
-Tip: Triage.`, 'B', 'E'],
-
-["Career", "Where do you want to grow?",
-`**Answer:** Senior counsel, deputy GC or general counsel.
-
-Tip: Direction.`, 'B', 'E'],
-
-["Closing", "Why should we hire you?",
-`**Sample answer:** "I give practical, fast legal advice that helps the business close deals and manage risk — with strong commercial and employment experience."
-
-Tip: Proof.`, 'B', 'E'],
-
-["SaaS", "What's special about SaaS contracts?",
-`**Answer:** Service levels and credits, data security and privacy, uptime, data ownership and return, subscription terms and renewals, and limitation of liability for data breaches.
-
-Tip: SLAs.`, 'D', 'M'],
-
-["NDA", "What should a good NDA contain?",
-`**Answer:** Definition of confidential information, exclusions, permitted use, protection obligations, term, return/destruction, remedies, and mutual vs one-way structure.
-
-Tip: Exclusions.`, 'B', 'E'],
-
-["Force Majeure", "How do force majeure clauses work?",
-`**Answer:** Excuse performance for events beyond control (natural disasters, war, pandemics if listed), typically requiring notice and mitigation; interpretation depends on wording.
-
-Tip: Wording matters.`, 'B', 'M'],
-
-["Data Breach", "What is counsel's role in a data breach?",
-`**Answer:** Lead privileged investigation, engage forensic firm through counsel, assess notification obligations (states, regulators, customers), coordinate communications, and manage litigation risk.
-
-Tip: Privileged investigation.`, 'D', 'M'],
-
-["Regulatory", "How do you handle a regulatory inquiry?",
-`**Answer:** Assess scope, preserve documents, engage specialized counsel, coordinate responses carefully, and remediate issues.
-
-Tip: Preservation.`, 'D', 'M'],
-
-["Litigation Hold", "What is a litigation hold?",
-`**Answer:** A notice requiring preservation of relevant documents and data when litigation is reasonably anticipated, suspending deletion policies.
-
-Tip: Reasonably anticipated.`, 'B', 'E'],
-
-["Templates", "Why maintain standard templates?",
-`**Answer:** Consistency, faster negotiations, reduced risk, and enabling business self-service.
-
-Tip: Speed.`, 'B', 'E'],
-
-["CLM", "What is contract lifecycle management?",
-`**Answer:** Systems managing contract requests, drafting, approvals, signatures, storage, obligations and renewals — improving visibility and efficiency.
-
-Tip: Obligations tracking.`, 'B', 'M'],
-
-["Ethics", "What ethical duties do in-house lawyers have?",
-`**Answer:** The client is the organization; confidentiality, competence, conflicts, and duties to report misconduct up the ladder (and SEC rules for public company lawyers).
-
-Tip: Up-the-ladder reporting.`, 'D', 'M'],
-
-["Scenario", "Sales wants to sign a customer's paper with unfavorable terms by end of quarter. What do you do?",
-`**Answer:** Prioritize key risks (liability, IP, payment), propose targeted changes, quantify risk for approval if accepting, and move fast.
-
-Tip: Prioritize.`, 'B', 'M'],
-
-["Scenario", "An employee threatens to sue after termination. What do you do?",
-`**Answer:** Review documentation, assess claims, consider a separation agreement with release, preserve documents, and coordinate with HR and outside counsel.
-
-Tip: Release.`, 'B', 'M'],
-
-["Budget", "How do you manage a legal department budget?",
-`**Answer:** Forecast outside counsel spend by matter, track accruals, negotiate rates, and report variances.
-
-Tip: Matter budgets.`, 'D', 'M'],
-
-["Technology", "How do you use legal technology?",
-`**Answer:** CLM, e-billing, matter management, e-discovery tools and generative AI for drafting and review with confidentiality safeguards.
-
-Tip: Safeguards.`, 'B', 'E'],
-
-["Training", "How do you train the business on legal topics?",
-`**Answer:** Short practical sessions on contracts, antitrust, privacy and harassment prevention with FAQs and templates.
-
-Tip: Practical.`, 'B', 'E'],
-
-["Questions", "What would you ask in an interview?",
-`**Answer:** Department structure, key legal risks, outside counsel use, business partnership expectations, and growth.
-
-Tip: Partnership.`, 'B', 'E'],
-
-["Bar", "Does bar admission matter in-house?",
-`**Answer:** You need active admission in at least one state; many states require registered in-house counsel status if not admitted locally.
-
-Tip: Registered in-house counsel.`, 'B', 'E']
-];
+QB["lg-counsel"] = (QB["lg-counsel"] || []).concat([
+["Role", "What does in-house counsel do?", "**Why they ask:** shift from law firm to business partner.\n\n**Answer:** Provides practical legal advice to the business: commercial contracts, risk management, employment, compliance, intellectual property, disputes and outside counsel management, corporate governance and transactions — balancing legal risk with business goals.\n\nTip: Business partner.", "B", "E"],
+["Law Firm vs In-house", "Why move in-house?", "**Why they ask:** motivation and realistic expectations.\n\n**Answer:**\n\"I want to be part of decisions early instead of reviewing them after the fact, work across a wide variety of issues, and see how my advice plays out in the business. I know the trade-offs — I'll be more generalist than specialist, I'll need to be cost-conscious about outside counsel, and speed often matters more than a perfect memo. That's the kind of practice I want.\"\n\nTip: Business focus.", "B", "E"],
+["Risk", "How do you give risk-based advice?", "**Why they ask:** the core skill of in-house lawyering.\n\n**Answer:**\n\"I identify the legal risk, its likelihood and impact, weigh it against the business benefit, lay out options to mitigate it, and give a clear recommendation. Instead of 'we can't run this promotion,' it's 'this carries moderate risk in three states; if we exclude them or register there, risk is low — I recommend registering.'\"\n\nTip: Options and recommendation.", "B", "M"],
+["Contracts", "What are key provisions you review in commercial contracts?", "**Why they ask:** contract fluency.\n\n**Answer:**\n\"Scope and deliverables, pricing and payment, term and termination, warranties, indemnification, limitation of liability, IP ownership and licensing, confidentiality, data protection, insurance, governing law and dispute resolution. Limitation of liability and indemnity are where most of the real risk allocation happens, so I spend the most time there.\"\n\nTip: LoL and indemnity.", "B", "M"],
+["Limitation of Liability", "How do you negotiate limitation of liability?", "**Why they ask:** risk allocation skill.\n\n**Answer:**\n\"The typical starting point is a cap at fees paid in the prior 12 months and a mutual exclusion of consequential damages, with carve-outs for indemnification, confidentiality and data breaches, gross negligence and willful misconduct. For a $200,000-a-year vendor holding sensitive customer data, a 12-month cap of $200,000 is too low for a breach, so I'd push for a separate super-cap for data breaches.\"\n\nTip: Carve-outs.", "D", "M"],
+["Indemnification", "What should indemnification cover?", "**Why they ask:** contract risk.\n\n**Answer:**\n\"Third-party claims arising from IP infringement, violations of law, bodily injury and property damage, data breaches or negligence — with procedures for prompt notice, who controls the defense, settlement consent and any limits.\"\n\nTip: Third-party claims.", "D", "M"],
+["Playbooks", "How do you scale contract review?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Strong templates, negotiation playbooks with pre-approved fallback positions so contract managers can negotiate without me, self-service for low-risk agreements like standard NDAs, a CLM tool, and AI review assistance. That frees lawyers for high-value deals.\"\n\nTip: Playbooks.", "B", "M"],
+["Employment", "Which employment issues come to in-house counsel?", "**Why they ask:** breadth.\n\n**Answer:**\n\"Terminations and separation agreements, discrimination and harassment complaints, wage-and-hour classification, restrictive covenants, leave and accommodation questions, and investigations — always in close partnership with HR.\"\n\nTip: Partner with HR.", "B", "M"],
+["Non-competes", "What's the status of non-compete agreements?", "**Why they ask:** current legal landscape.\n\n**Answer:**\n\"Enforceability varies by state: California bans most non-competes, and many states limit them by salary thresholds or notice requirements. The FTC's nationwide ban was blocked in court and the agency has since moved away from defending it. So I use narrowly tailored covenants where enforceable and rely more on confidentiality and non-solicitation provisions — and I'd check current law before advising.\"\n\nTip: State variation.", "D", "M"],
+["IP", "How do you protect company IP?", "**Why they ask:** asset protection.\n\n**Answer:**\n\"Invention assignment and confidentiality agreements for every employee and contractor, a trade secret program with access controls, patent and trademark filings, an open-source policy, and enforcement when needed.\"\n\nTip: Trade secrets.", "B", "M"],
+["Privacy", "How does in-house counsel handle privacy?", "**Why they ask:** privacy is everywhere.\n\n**Answer:**\n\"Privacy policies and notices, data processing agreements with vendors, cross-border transfer mechanisms like standard contractual clauses or the EU-US Data Privacy Framework, breach response planning, and compliance with GDPR and state laws.\"\n\nTip: DPAs.", "B", "M"],
+["Litigation", "How do you manage litigation?", "**Why they ask:** dispute management.\n\n**Answer:**\n\"Early case assessment of merits and exposure, a litigation hold, selecting and overseeing outside counsel with budgets, a settlement strategy based on risk and cost, and regular reporting to leadership.\"\n\nTip: Early case assessment.", "B", "M"],
+["Outside Counsel", "How do you manage outside counsel costs?", "**Why they ask:** cost discipline.\n\n**Answer:**\n\"Clear scope and budgets per matter, alternative fee arrangements like fixed fees for routine work, billing guidelines, a panel of preferred firms with negotiated rates, and bringing routine work in-house.\"\n\nTip: AFAs.", "B", "M"],
+["Privilege", "How do you protect attorney-client privilege in-house?", "**Why they ask:** a unique in-house challenge.\n\n**Answer:**\n\"Courts scrutinize in-house communications because we give business advice too. I separate legal from business advice, label legal communications, limit distribution to people who need it, and avoid burying a legal question in a mixed-purpose email to 20 people.\"\n\nTip: Legal vs business advice.", "D", "M"],
+["Governance", "What corporate governance work do you handle?", "**Why they ask:** governance experience.\n\n**Answer:**\n\"Board and committee meetings and minutes, entity management, resolutions, SEC filings for public companies, and compliance with bylaws and charters.\"\n\nTip: Minutes.", "D", "M"],
+["M&A", "What is counsel's role in M&A?", "**Why they ask:** transactional experience.\n\n**Answer:**\n\"Due diligence, deal structure, negotiating the purchase agreement — reps and warranties, indemnities, escrow — regulatory approvals like HSR, and integration of contracts, employees and compliance afterward.\"\n\nTip: Reps and warranties.", "D", "M"],
+["AI", "What legal issues arise with AI?", "**Why they ask:** current issues.\n\n**Answer:**\n\"IP ownership and infringement, data privacy, confidentiality of what employees put into tools, bias and discrimination in AI-driven decisions, contract terms with AI vendors — like whether they train on our data — and emerging regulation such as the EU AI Act and state laws.\"\n\nTip: Vendor terms.", "D", "M"],
+["Communication", "How do you explain legal issues to executives?", "**Why they ask:** communication.\n\n**Answer:**\n\"Bottom line and recommendation first, then the risk in plain terms, quantified where possible, and next steps. Executives want 'yes, with these two changes,' not a memo.\"\n\nTip: Bottom line first.", "B", "E"],
+["Behavioral", "Tell me about saying no to the business.", "**Why they ask:** finding the path to yes.\n\n**Answer:**\n\"Marketing wanted to launch a sweepstakes without proper official rules, which created problems in several states. I explained the risk and drafted compliant official rules the same week, and the campaign launched on time.\"\n\nTip: Path to yes.", "B", "M"],
+["Behavioral", "Tell me about a difficult negotiation.", "**Why they ask:** creative problem-solving.\n\n**Answer:**\n\"A vendor insisted we accept unlimited liability for data breaches on our side. I proposed a super-cap at three times fees backed by cyber insurance, and we closed within a week.\"\n\nTip: Creative solutions.", "B", "M"],
+["Behavioral", "Tell me about prioritizing many requests.", "**Why they ask:** workload management.\n\n**Answer:**\n\"I triage by risk, revenue impact and deadlines, tell requesters honestly when they'll get an answer, and push routine work to self-service templates. During quarter end, revenue contracts go first.\"\n\nTip: Triage.", "B", "E"],
+["Career", "Where do you want to grow?", "**Why they ask:** career fit.\n\n**Answer:**\n\"Toward senior counsel and deputy general counsel, and eventually general counsel.\"\n\nTip: Direction.", "B", "E"],
+["Closing", "Why should we hire you?", "**Why they ask:** your closing pitch.\n\n**Answer:**\n\"I give practical, fast legal advice that helps the business close deals and manage risk — with strong commercial and employment experience.\"\n\nTip: Proof.", "B", "E"],
+["SaaS", "What's special about SaaS contracts?", "**Why they ask:** tech contracting.\n\n**Answer:**\n\"Service levels and credits — 99.9% uptime allows about 43 minutes of downtime a month — data security and privacy, data ownership and return at termination, subscription terms and auto-renewals, and liability caps for data breaches.\"\n\nTip: SLAs.", "D", "M"],
+["NDA", "What should a good NDA contain?", "**Why they ask:** everyday contracts.\n\n**Answer:**\n\"A definition of confidential information, standard exclusions — already known, public, independently developed, received from a third party — permitted use, protection obligations, term, return or destruction, remedies including injunctive relief, and whether it's mutual or one-way.\"\n\nTip: Exclusions.", "B", "E"],
+["Force Majeure", "How do force majeure clauses work?", "**Why they ask:** contract interpretation.\n\n**Answer:**\n\"They excuse performance for events beyond a party's control — natural disasters, war, and pandemics if they're listed — usually requiring notice and mitigation. Interpretation depends heavily on the exact wording, as many companies learned in 2020.\"\n\nTip: Wording matters.", "B", "M"],
+["Data Breach", "What is counsel's role in a data breach?", "**Why they ask:** crisis response.\n\n**Answer:**\n\"Lead a privileged investigation, engage the forensic firm through counsel, assess notification obligations to states, regulators and customers — some deadlines are as short as 72 hours — coordinate communications, and manage litigation risk.\"\n\nTip: Privileged investigation.", "D", "M"],
+["Regulatory", "How do you handle a regulatory inquiry?", "**Why they ask:** regulatory response.\n\n**Answer:**\n\"Assess the scope, preserve documents, engage specialized counsel, coordinate responses carefully so they're accurate and consistent, and remediate any issues found.\"\n\nTip: Preservation.", "D", "M"],
+["Litigation Hold", "What is a litigation hold?", "**Why they ask:** preservation duties.\n\n**Answer:**\n\"A notice requiring preservation of relevant documents and data once litigation is reasonably anticipated — suspending normal deletion. Failing to issue one can lead to sanctions for spoliation.\"\n\nTip: Reasonably anticipated.", "B", "E"],
+["Templates", "Why maintain standard templates?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"Consistency, faster negotiations, reduced risk and business self-service. Deals on our paper close faster and on better terms.\"\n\nTip: Speed.", "B", "E"],
+["CLM", "What is contract lifecycle management?", "**Why they ask:** legal operations.\n\n**Answer:**\n\"Systems that manage contract requests, drafting, approvals, signatures, storage, obligations and renewals — so we don't miss an auto-renewal or a notice deadline.\"\n\nTip: Obligations tracking.", "B", "M"],
+["Ethics", "What ethical duties do in-house lawyers have?", "**Why they ask:** professional responsibility.\n\n**Answer:**\n\"The client is the organization, not any individual executive. Confidentiality, competence and conflicts apply, plus the duty to report misconduct up the ladder — and for public company lawyers, SEC Part 205 rules.\"\n\nTip: Up-the-ladder reporting.", "D", "M"],
+["Scenario", "Sales wants to sign a customer's paper with unfavorable terms by end of quarter. What do you do?", "**Why they ask:** speed versus risk.\n\n**Answer:**\n\"Focus on the few terms that really matter — liability, IP and payment — propose targeted changes rather than a full redline, quantify any remaining risk for business approval, and turn it around fast.\"\n\nTip: Prioritize.", "B", "M"],
+["Scenario", "An employee threatens to sue after termination. What do you do?", "**Why they ask:** employment risk.\n\n**Answer:**\n\"Review the documentation, assess the potential claims, consider a separation agreement with a release, issue a litigation hold, and coordinate with HR and outside counsel.\"\n\nTip: Release.", "B", "M"],
+["Budget", "How do you manage a legal department budget?", "**Why they ask:** financial discipline.\n\n**Answer:**\n\"Forecast outside counsel spend by matter, track accruals monthly, negotiate rates, and report variances to finance early.\"\n\nTip: Matter budgets.", "D", "M"],
+["Technology", "How do you use legal technology?", "**Why they ask:** efficiency.\n\n**Answer:**\n\"CLM, e-billing, matter management, e-discovery tools and generative AI for drafting and review — with safeguards on confidentiality and human review of everything.\"\n\nTip: Safeguards.", "B", "E"],
+["Training", "How do you train the business on legal topics?", "**Why they ask:** preventive lawyering.\n\n**Answer:**\n\"Short practical sessions on contracts, antitrust, privacy and harassment prevention, backed by FAQs and templates people can use the next day.\"\n\nTip: Practical.", "B", "E"],
+["Questions", "What would you ask in an interview?", "**Why they ask:** due diligence.\n\n**Answer:**\n\"How is the department structured, what are the key legal risks, how much do you use outside counsel, what does the business expect from legal, and how do lawyers grow here?\"\n\nTip: Partnership.", "B", "E"],
+["Bar", "Does bar admission matter in-house?", "**Why they ask:** licensing.\n\n**Answer:**\n\"You need active admission in at least one state, and many states require registered in-house counsel status if you aren't admitted where you work.\"\n\nTip: Registered in-house counsel.", "B", "E"]
+]);

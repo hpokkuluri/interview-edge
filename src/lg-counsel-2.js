@@ -1,46 +1,13 @@
-QB['lg-counsel'] = (QB['lg-counsel']||[]).concat([
-["Warranties", "How do you approach warranty clauses?",
-`**Answer:** Define specific performance warranties with time limits, exclusive remedies (repair, replace, refund), disclaim implied warranties where enforceable (conspicuously, under the UCC), and align with product capabilities.
-
-Tip: Exclusive remedies.`, 'D', 'M'],
-["UCC", "When does the UCC apply?",
-`**Answer:** UCC Article 2 governs sales of goods (not services), with gap-filler rules on warranties, battle of the forms (2-207) and remedies. Mixed contracts use the predominant purpose test.
-
-Tip: Goods vs services.`, 'D', 'M'],
-["Battle of Forms", "What is the battle of the forms?",
-`**Answer:** It arises when parties exchange conflicting terms (purchase orders vs invoices). UCC 2-207 determines which terms govern. Use master agreements to avoid it.
-
-Tip: Master agreements.`, 'D', 'M'],
-["Open Source", "What open-source risks matter?",
-`**Answer:** Copyleft licenses (GPL) may require releasing source code if distributed. Manage this with policies, scanning tools and approval processes.
-
-Tip: Copyleft.`, 'D', 'M'],
-["Trademarks", "How do you protect trademarks?",
-`**Answer:** Clearance searches before launch, registration in key markets, proper use guidelines, monitoring, and enforcement against infringers.
-
-Tip: Clearance first.`, 'B', 'E'],
-["Arbitration", "What are the pros and cons of arbitration clauses?",
-`**Answer:** Pros: confidentiality, speed, expert arbitrators, limited discovery. Cons: limited appeal, potential cost, and enforceability issues for some employment and consumer claims.
-
-Tip: Context-dependent.`, 'D', 'M'],
-["Employment Agreements", "What should an executive employment agreement include?",
-`**Answer:** Role and duties, compensation and equity, termination provisions (cause, good reason), severance, restrictive covenants, IP assignment, confidentiality, and change-in-control terms.
-
-Tip: Good reason.`, 'D', 'M'],
-["Settlement", "How do you decide whether to settle?",
-`**Answer:** Compare expected litigation cost and outcome (probability-weighted), business distraction, precedent, reputation and insurance coverage against the settlement amount.
-
-Tip: Expected value.`, 'B', 'M'],
-["Insurance", "How do you use insurance in risk management?",
-`**Answer:** Review policies (D&O, cyber, E&O, general liability), give timely notice of claims, coordinate coverage counsel, and align contract insurance requirements.
-
-Tip: Timely notice.`, 'D', 'M'],
-["Export", "What legal issues arise in international expansion?",
-`**Answer:** Entity formation, local employment law, tax, data transfer rules, export controls and sanctions, anti-corruption, and IP registration.
-
-Tip: Local counsel.`, 'D', 'M'],
-["Scenario", "A product claim in marketing seems exaggerated. What do you do?",
-`**Answer:** Check substantiation (FTC requires a reasonable basis), suggest qualified or revised language, and approve only claims that are supported.
-
-Tip: Substantiation.`, 'B', 'E']
+QB["lg-counsel"] = (QB["lg-counsel"] || []).concat([
+["Warranties", "How do you approach warranty clauses?", "**Why they ask:** contract drafting.\n\n**Answer:**\n\"Specific performance warranties with time limits, exclusive remedies like repair, replace or refund, conspicuous disclaimers of implied warranties where enforceable under the UCC, and alignment with what the product actually does.\"\n\nTip: Exclusive remedies.", "D", "M"],
+["UCC", "When does the UCC apply?", "**Why they ask:** commercial law basics.\n\n**Answer:**\n\"Article 2 governs sales of goods, not services, with gap-filler rules on warranties, the battle of the forms in 2-207, and remedies. For mixed contracts, courts use the predominant purpose test.\"\n\nTip: Goods vs services.", "D", "M"],
+["Battle of Forms", "What is the battle of the forms?", "**Why they ask:** practical contracting.\n\n**Answer:**\n\"When parties exchange conflicting terms — our purchase order versus their invoice — UCC 2-207 determines which terms govern. A signed master agreement that controls over PO and invoice terms avoids it.\"\n\nTip: Master agreements.", "D", "M"],
+["Open Source", "What open-source risks matter?", "**Why they ask:** tech company risk.\n\n**Answer:**\n\"Copyleft licenses like the GPL may require releasing your source code if you distribute software containing it. I manage that with an open-source policy, scanning tools and an approval process.\"\n\nTip: Copyleft.", "D", "M"],
+["Trademarks", "How do you protect trademarks?", "**Why they ask:** brand protection.\n\n**Answer:**\n\"Clearance searches before launch, registration in key markets, proper use guidelines, monitoring and enforcement against infringers. Rebranding after launch is far more expensive than a clearance search.\"\n\nTip: Clearance first.", "B", "E"],
+["Arbitration", "What are the pros and cons of arbitration clauses?", "**Why they ask:** dispute resolution strategy.\n\n**Answer:**\n\"Pros: confidentiality, speed, expert arbitrators and limited discovery. Cons: very limited appeal, potentially high cost, and enforceability limits for some employment and consumer claims — like sexual harassment claims after the 2022 federal law. The right choice depends on context.\"\n\nTip: Context-dependent.", "D", "M"],
+["Employment Agreements", "What should an executive employment agreement include?", "**Why they ask:** employment drafting.\n\n**Answer:**\n\"Role and duties, compensation and equity, termination for cause and good reason, severance, restrictive covenants, IP assignment, confidentiality, and change-in-control terms. Good reason definitions often drive the biggest disputes.\"\n\nTip: Good reason.", "D", "M"],
+["Settlement", "How do you decide whether to settle?", "**Why they ask:** risk judgment.\n\n**Answer:**\n\"Compare the probability-weighted outcome plus litigation cost against the settlement amount, then factor in business distraction, precedent, reputation and insurance. If there's a 30% chance of a $2 million verdict and $400,000 in defense costs, expected cost is $1 million, so a $650,000 settlement is attractive.\"\n\nTip: Expected value.", "B", "M"],
+["Insurance", "How do you use insurance in risk management?", "**Why they ask:** risk transfer.\n\n**Answer:**\n\"Review policies — D&O, cyber, E&O, general liability — give timely notice of claims, since late notice can void coverage, coordinate with coverage counsel, and align insurance requirements in our contracts.\"\n\nTip: Timely notice.", "D", "M"],
+["Export", "What legal issues arise in international expansion?", "**Why they ask:** global experience.\n\n**Answer:**\n\"Entity formation, local employment law — often far more protective than the US — tax, data transfer rules, export controls and sanctions, anti-corruption, and IP registration. Good local counsel is essential.\"\n\nTip: Local counsel.", "D", "M"],
+["Scenario", "A product claim in marketing seems exaggerated. What do you do?", "**Why they ask:** advertising law.\n\n**Answer:**\n\"Check substantiation — the FTC requires a reasonable basis before the claim runs — suggest qualified or revised language, and approve only what we can support. 'Clinically proven' needs actual clinical evidence.\"\n\nTip: Substantiation.", "B", "E"]
 ]);
