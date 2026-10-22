@@ -1,44 +1,12 @@
-QB['cs-ops'] = (QB['cs-ops']||[]).concat([
-["Variance", "How do you explain a budget variance?",
-`**Answer:** Split it into volume, rate/price and efficiency effects. For example, labor cost over budget by $50K = $30K from higher volume (good), $15K from overtime premium and $5K from lower productivity, each with actions.
-
-Tip: Decompose drivers.`, 'B', 'M'],
-["Gemba", "What is gemba and why does it matter?",
-`**Answer:** "The real place": going to where work happens to observe, ask questions and understand problems first-hand rather than relying only on reports.
-
-Tip: Go and see.`, 'B', 'E'],
-["Tiered Huddles", "What are tiered huddles?",
-`**Answer:** Short daily meetings cascading from frontline teams to supervisors to managers, escalating issues quickly and aligning on priorities.
-
-Tip: Fast escalation.`, 'D', 'M'],
-["Scheduling", "How do you build effective shift schedules?",
-`**Answer:** Match staffing to demand patterns, comply with labor laws and agreements, ensure fairness and predictability, and allow flexibility through shift swaps.
-
-Tip: Predictability.`, 'B', 'E'],
-["Absenteeism", "How do you reduce absenteeism?",
-`**Answer:** Analyze patterns, fair attendance policies, return-to-work conversations, engagement efforts, and addressing causes like scheduling or supervisor issues.
-
-Tip: Patterns.`, 'B', 'E'],
-["Root Cause", "How do you run an A3 problem-solving exercise?",
-`**Answer:** One page covering background, current condition (data), goal, root cause analysis, countermeasures, implementation plan and follow-up.
-
-Tip: One page.`, 'D', 'M'],
-["Outsourcing", "How do you decide whether to outsource a function?",
-`**Answer:** Compare total cost, quality and control, strategic importance, vendor capability and risks, and transition complexity.
-
-Tip: Strategic importance.`, 'B', 'M'],
-["Capex", "How do you justify a capital investment?",
-`**Answer:** Business case with costs, savings or revenue, NPV/IRR/payback, risks, and alignment with strategy.
-
-**Example:** $500K machine saving $200K a year → 2.5-year payback.
-
-Tip: Payback.`, 'B', 'M'],
-["Recognition", "How do you recognize frontline teams?",
-`**Answer:** Timely, specific recognition in huddles, celebrating milestones, peer recognition and linking recognition to behaviors you want.
-
-Tip: Timely.`, 'B', 'E'],
-["Scenario", "A new system rollout is hurting productivity. What do you do?",
-`**Answer:** Diagnose the issues (training, bugs, workflow design), add floor support, fix the top issues quickly, adjust targets temporarily, and communicate progress.
-
-Tip: Floor support.`, 'B', 'M']
+QB["cs-ops"] = (QB["cs-ops"] || []).concat([
+["Variance", "How do you explain a budget variance?", "**Why they ask:** financial analysis.\n\n**Answer:**\n\"Split it into volume, rate and efficiency effects. If labor is $50,000 over budget, maybe $30,000 is higher volume — which is good — $15,000 is overtime premium and $5,000 is lower productivity. Each piece gets its own action.\"\n\nTip: Decompose drivers.", "B", "M"],
+["Gemba", "What is gemba and why does it matter?", "**Why they ask:** lean leadership.\n\n**Answer:**\n\"'The real place' — going to where the work happens to observe, ask questions and understand problems first-hand instead of relying only on reports.\"\n\nTip: Go and see.", "B", "E"],
+["Tiered Huddles", "What are tiered huddles?", "**Why they ask:** management system.\n\n**Answer:**\n\"Short daily meetings cascading from frontline teams to supervisors to managers, so an issue raised at 7 a.m. on the floor reaches the plant manager by 9 if it needs help.\"\n\nTip: Fast escalation.", "D", "M"],
+["Scheduling", "How do you build effective shift schedules?", "**Why they ask:** workforce management.\n\n**Answer:**\n\"Match staffing to demand patterns, comply with labor laws and agreements, keep it fair and predictable, and allow flexibility through shift swaps.\"\n\nTip: Predictability.", "B", "E"],
+["Absenteeism", "How do you reduce absenteeism?", "**Why they ask:** people management.\n\n**Answer:**\n\"Analyze patterns — Mondays, certain shifts, certain supervisors — apply a fair attendance policy, hold return-to-work conversations, and address root causes like scheduling or supervisor issues.\"\n\nTip: Patterns.", "B", "E"],
+["Root Cause", "How do you run an A3 problem-solving exercise?", "**Why they ask:** structured problem-solving.\n\n**Answer:**\n\"One page: background, current condition with data, goal, root cause analysis, countermeasures, implementation plan and follow-up. The one-page limit forces clear thinking.\"\n\nTip: One page.", "D", "M"],
+["Outsourcing", "How do you decide whether to outsource a function?", "**Why they ask:** strategic judgment.\n\n**Answer:**\n\"Compare total cost, quality and control, strategic importance, vendor capability and risk, and transition complexity. Core capabilities stay in-house; commodity functions are candidates.\"\n\nTip: Strategic importance.", "B", "M"],
+["Capex", "How do you justify a capital investment?", "**Why they ask:** business cases.\n\n**Answer:**\n\"A business case with costs, savings or revenue, NPV, IRR and payback, risks and strategic fit. A $500,000 machine saving $200,000 a year pays back in 2.5 years.\"\n\nTip: Payback.", "B", "M"],
+["Recognition", "How do you recognize frontline teams?", "**Why they ask:** engagement.\n\n**Answer:**\n\"Timely, specific recognition in huddles, celebrating milestones, peer recognition, and linking recognition to the behaviors I want — like a near-miss report, not just output records.\"\n\nTip: Timely.", "B", "E"],
+["Scenario", "A new system rollout is hurting productivity. What do you do?", "**Why they ask:** change recovery.\n\n**Answer:**\n\"Diagnose whether it's training, bugs or workflow design, put floor support in place, fix the top issues quickly, adjust targets temporarily, and communicate progress so people see it getting better.\"\n\nTip: Floor support.", "B", "M"]
 ]);
