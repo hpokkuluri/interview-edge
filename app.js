@@ -518,7 +518,7 @@ window.addEventListener('popstate', () => popScreen());
 function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
 function vHome(ctx) {
   const render = () => {
-    const total = Object.values(COUNTS).reduce((a, b) => a + b, 0);
+    const total = Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);   // questions plus their follow-up questions
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];

@@ -175,3 +175,5 @@ window.COUNTS = {
  "cs-ops": 50,
  "common": 50
 };
+// Follow-up questions (each has its own answer), added to the home-screen total.
+window.FU_TOTAL = 8786;
