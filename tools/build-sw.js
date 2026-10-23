@@ -14,10 +14,14 @@ self.addEventListener('activate', e => {
 // Network first (so new questions show up), falling back to the saved copy when offline.
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
-  e.respondWith(fetch(e.request).then(res => {
+  e.respondWith(fetch(e.request, { cache: 'no-cache' }).then(res => {
     if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(e.request, copy)); }
     return res;
   }).catch(() => caches.match(e.request, { ignoreSearch: true }).then(r => r || (e.request.mode === 'navigate' ? caches.match('index.html') : undefined))));
 });
 `);
+// Stamp the version on the page's scripts so browsers never keep an old copy.
+const ip = path.join(root, 'index.html');
+const stamp = version.replace('interview-edge-', '');
+fs.writeFileSync(ip, fs.readFileSync(ip, 'utf8').replace(/<script src="([^"?]+\.js)(\?v=\w+)?"><\/script>/g, (m, f) => `<script src="${f}?v=${stamp}"></script>`));
 console.log(version, files.length + ' files');
