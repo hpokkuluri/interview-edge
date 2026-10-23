@@ -1,5 +1,5 @@
 // Usage: node tools/deepen.js <batch.js> [<batch.js> ...]
-// Batch: module.exports = { '<bank-id>': { <1-based position>: 'new follow-up answer', ... }, ... }
+// Batch: module.exports = { '<bank-id>': { <1-based position>: 'new follow-up answer' | ['new follow-up question', 'answer'], ... }, ... }
 // Replaces only the follow-up ANSWER (keeps the follow-up question and the top marks), then runs tools/extras.js per bank.
 // Dump positions first with: node tools/deepen.js --dump <bank-id>
 const fs = require('fs'), path = require('path'), vm = require('vm'), cp = require('child_process');
@@ -24,7 +24,7 @@ args.forEach(file => {
     for (const pos in batch[bank]) {
       const q = items[+pos - 1];
       if (!q || !q[6] || !q[6].f) { console.error(`${bank} #${pos}: no follow-up at that position`); process.exitCode = 1; continue; }
-      fu[pos] = [q[6].f[0], batch[bank][pos]]; total++;
+      const v = batch[bank][pos]; fu[pos] = Array.isArray(v) ? v : [q[6].f[0], v]; total++;
     }
     fs.writeFileSync(tmp, 'module.exports = ' + JSON.stringify({ fu }) + ';\n');
     cp.execFileSync('node', [path.join(__dirname, 'extras.js'), tmp, bank], { stdio: 'inherit' });
