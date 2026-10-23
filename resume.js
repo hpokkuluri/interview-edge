@@ -142,7 +142,12 @@
     return sc;
   }
   const stripDates = s => s.replace(new RegExp(RANGE_RE.source, 'ig'), ' ').replace(new RegExp(SINGLE_DATE_RE.source, 'ig'), ' ');
-  const segments = line => stripDates(line).split(/\s+[|–—]\s+|\s+-\s+|\s{2,}|\t|,\s+|\s+@\s+|\s+at\s+(?=[A-Z])|\s*\|\s*/).map(x => x.replace(/^[\s,;:–—-]+|[\s,;:–—-]+$/g, '')).filter(Boolean);
+  const GENERIC_TITLE = /^(senior |sr\.? |associate |assistant |deputy |executive )?(vice president|vp|svp|evp|avp|director|manager|senior manager|head|lead|principal|partner|consultant|analyst|specialist|officer|associate)$/i;
+  const rawSegments = line => stripDates(line).split(/\s+[|–—]\s+|\s+-\s+|\s{2,}|\t|,\s+|\s+@\s+|\s+at\s+(?=[A-Z])|\s*\|\s*/).map(x => x.replace(/^[\s,;:–—-]+|[\s,;:–—-]+$/g, '')).filter(Boolean);
+  // "Senior Manager, Investor Relations" → keep the function with the level.
+  const segments = line => { const a = rawSegments(line), out = [];
+    for (let i = 0; i < a.length; i++) { if (GENERIC_TITLE.test(a[i]) && a[i + 1] && a[i + 1].split(/\s+/).length <= 5 && !ORG_WORD.test(a[i + 1]) && !LOCATION.test(a[i + 1])) { out.push(a[i] + ', ' + a[i + 1]); i++; } else out.push(a[i]); }
+    return out; };
 
   // Find the latest job: first dated line in the experience section, and the best title-like piece next to it.
   function parse(text, nowYear) {
@@ -257,7 +262,7 @@
     let next = null;
     if (same && cr < 9) {
       const want = Math.max(cr, same.lo) + 1;
-      const cands = roles.filter(x => x !== same && x.p.id !== same.p.id && (x.lo >= want || (x.hi >= want && x.lo > cr)) && x.lo <= want + 2 && !(x.p.track && same.p.track && x.p.track !== same.p.track) || false);
+      const cands = roles.filter(x => x !== same && x.p.id !== same.p.id && (x.lo >= want || (x.hi >= want && x.lo > cr) || (x.hi > same.hi && x.lo >= same.lo && x.hi >= want)) && x.lo <= want + 2 && !(x.p.track && same.p.track && x.p.track !== same.p.track) || false);
       cands.forEach(x => {
         const sameFam = x.p.famId === same.p.famId ? 0.35 : (x.p.field === same.p.field ? 0.1 : 0);
         const step = x.lo <= want ? 1 : x.lo === want + 1 ? 0.75 : 0.5;

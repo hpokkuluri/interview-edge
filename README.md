@@ -1,14 +1,14 @@
 # Interview Edge
 *by Arahasoft*
 
-Interview questions, model answers and practice modes for roles across **10 fields** — Technology, Finance, Supply Chain, HR, Sales & Marketing, Healthcare & Life Sciences, Engineering & Construction, Banking & Insurance, Legal/Consulting/Operations — plus **At Work** practice for 1:1s, reviews and promotions. 170+ positions, 172 question banks, ~8,700 questions. Every position has at least 50 questions, and every answer follows the same shape: **Why they ask → full answer or sample answer (worked examples for technical topics) → Tip**.
+Interview questions, model answers and practice modes for roles across **10 fields** — Technology, Finance, Supply Chain, HR, Sales & Marketing, Healthcare & Life Sciences, Engineering & Construction, Banking & Insurance, Legal/Consulting/Operations — plus **At Work** practice for 1:1s, reviews and promotions. 170+ positions, 174 question banks, ~8,800 questions. Every position has at least 50 questions, and every answer follows the same shape: **Why they ask → full answer or sample answer (worked examples for technical topics) → Tip**.
 
 On a phone, use *Share → Add to Home Screen* (iPhone) or *Install app* (Android). It works offline after the first visit.
 
 ## What's inside
 - **Home** — search across every question and role, then choose a field:
   - *Technology* — Oracle ERP · Oracle Modules · ERP Technical · SAP · Java & Engineering · Software Engineering (front end, back end, full stack, mobile, staff) · Data & AI (analyst, data/analytics engineer, BI, data scientist, ML, LLM/GenAI, architect, head of data) · Cloud & DevOps (cloud, DevOps, SRE, platform, Kubernetes, architect) · Cybersecurity (SOC analyst and manager, security/cloud security/IAM engineer, GRC, architect, CISO) · Infrastructure (sysadmin, network, DBA, solutions architect) · Enterprise Apps (Salesforce admin/dev, ServiceNow, Workday, Dynamics 365, NetSuite) · Product & Delivery (BA, PM/PO, Scrum Master, TPM, PMO) · Testing & QA · IT Leadership (director of enterprise apps, PMO, VP IT, CIO, CTO).
-  - *Finance & Accounting* — accounting and close, FP&A and treasury, audit and tax, specialists (revenue/ASC 606, cost, payroll, credit, corporate development, financial risk), leadership up to CFO.
+  - *Finance & Accounting* — accounting and close, financial analyst, FP&A and treasury, audit and tax, specialists (revenue/ASC 606, cost, payroll, credit, corporate development, financial risk, investor relations), leadership up to CFO.
   - *Supply Chain & Manufacturing* — procurement, planning, inventory, logistics, manufacturing and quality, specialists (supply chain analyst, S&OP, manufacturing engineer, EHS, trade compliance, reliability), leadership.
   - *Human Resources* — HR business partner, talent acquisition, compensation and benefits, CHRO.
   - *Sales & Marketing* — account executive, sales director, digital/growth marketing, customer success.

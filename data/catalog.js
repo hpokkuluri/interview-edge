@@ -132,6 +132,7 @@ window.CATALOG = [
     id: 'fpa', field: 'fin', name: 'FP&A & Treasury', short: 'FP&A', glyph: 'FPA', color: '#4D7C0F', tint: '#EEF5E2',
     tag: 'Budgeting, forecasting, analysis, cash and liquidity',
     positions: [
+      { id: 'fa-analyst', title: 'Financial Analyst', level: 'Entry → Senior', blurb: 'Three statements, variance and margin analysis, models, NPV/DCF, KPIs, cases.' },
       { id: 'fa-fpa', title: 'FP&A Analyst / Manager', level: 'Analyst → Manager', blurb: 'Budgets, forecasts, variance analysis, models, business partnering.' },
       { id: 'fa-treas', title: 'Treasury Analyst / Manager', level: 'Analyst → Manager', blurb: 'Cash positioning, forecasting, banking, FX, debt, investments.' }
     ]
@@ -301,14 +302,15 @@ window.CATALOG = [
   },
   {
     id: 'finspec', field: 'fin', name: 'Finance Specialists', short: 'Specialists', glyph: 'SPC', color: '#0F766E', tint: '#E3F4F2',
-    tag: 'Revenue, cost, payroll, credit, M&A / investment and financial risk',
+    tag: 'Revenue, cost, payroll, credit, M&A / investment, financial risk and investor relations',
     positions: [
       { id: 'fs-rev', title: 'Revenue Accountant (ASC 606)', level: 'Mid → Senior', blurb: 'Five steps, SSP allocation, variable consideration, deferred revenue.' },
       { id: 'fs-cost', title: 'Cost Accountant', level: 'Mid → Senior', blurb: 'Standard cost, variances, overhead, inventory reserves, margins.' },
       { id: 'fs-pay', title: 'Payroll Manager', level: 'Manager', blurb: 'Payroll cycle, taxes, FLSA, multi-state, controls, year-end.' },
       { id: 'fs-credit', title: 'Credit Analyst / Credit Manager', level: 'Mid → Manager', blurb: '5 Cs, ratios, limits, DSO, collections, CECL, bankruptcy.' },
       { id: 'fs-ib', title: 'Corporate Development / Investment Analyst', level: 'Mid → Senior', blurb: 'DCF, comps, WACC, LBO, accretion/dilution, due diligence.' },
-      { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' }
+      { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' },
+      { id: 'fs-ir', title: 'Investor Relations Manager / Director', level: 'Manager → Director', blurb: 'Earnings process, Reg FD, guidance, targeting, equity story, activism, proxy season.' }
     ]
   },
   {
