@@ -530,7 +530,9 @@ window.addEventListener('popstate', () => popScreen());
 /* ================= SCREENS ================= */
 
 /* ---------- Welcome: what the app is, Arahasoft branding, one tap to enter ---------- */
+const TERMS_V = '2026-10-24';   // change this date when the terms change, so everyone is asked to agree again
 function vWelcome(ctx) {
+  const ag = store.get('ip.terms', null), agreed = !!(ag && ag.v === TERMS_V);
   const roles = Object.keys(POS).filter(k => k !== 'common').length;
   const feats = [[I.check, 'Model answers', 'Clear, interview-ready answers with the likely follow-up'], [I.timer, 'Mock interviews', 'Timed, random questions — score yourself'], [I.cards, 'Flashcards & voice', 'Flip cards or answer out loud'], [I.bot, 'Resume Match', 'Questions built from your latest job']];
   ctx.el.innerHTML = `<div class="welcome"><div class="wl-in">
@@ -540,10 +542,15 @@ function vWelcome(ctx) {
     <div class="wl-stats"><div><b>${totalQ().toLocaleString()}</b><span>questions</span></div><div><b>${roles}</b><span>roles</span></div><div><b>${FIELDS.length}</b><span>fields</span></div></div>
     <div class="wl-fields">${FIELDS.map(f => `<i style="--c:${f.color}">${esc(f.name)}</i>`).join('')}</div>
     <div class="wl-feats">${feats.map(([ic, h, t]) => `<div class="wl-f"><span>${ic}</span><div><b>${h}</b><small>${t}</small></div></div>`).join('')}</div>
-    <div class="wl-cta">${PAY_ON && !isPro() ? `<p class="wl-offer"><b>${PAY.free} free questions in every role.</b> Unlock everything for just ${PAY.price}.</p>` : ''}<button class="wl-enter" id="enter">Enter ${I.arrow}</button><p class="wl-agree">By entering you agree to the <button data-go="legal">Terms &amp; Disclaimer</button>.</p></div>
+    <div class="wl-cta">${PAY_ON && !isPro() ? `<p class="wl-offer"><b>${PAY.free} free questions in every role.</b> Unlock everything for just ${PAY.price}.</p>` : ''}${agreed ? '' : `<label class="wl-check"><input type="checkbox" id="agree"><span>I have read and agree to the <button type="button" data-go="legal">Terms &amp; Disclaimer</button></span></label>`}<button class="wl-enter" id="enter" ${agreed ? '' : 'disabled'}>Enter ${I.arrow}</button>${agreed ? '<p class="wl-agree">You agreed to the <button data-go="legal">Terms &amp; Disclaimer</button>.</p>' : ''}</div>
     <p class="wl-foot">© ${new Date().getFullYear()} Arahasoft · arahasoft.com</p>
   </div></div>`;
-  $('#enter', ctx.el).addEventListener('click', () => go('home', { replace: true, dir: 1 }));
+  const cb = $('#agree', ctx.el), en = $('#enter', ctx.el);
+  if (cb) cb.addEventListener('change', () => { en.disabled = !cb.checked; });
+  en.addEventListener('click', () => {
+    if (!agreed) { if (!cb.checked) return; store.set('ip.terms', { v: TERMS_V, at: new Date().toISOString() }); }
+    go('home', { replace: true, dir: 1 });
+  });
 }
 
 /* ---------- Terms & disclaimer ---------- */
@@ -559,7 +566,7 @@ function vLegal(ctx) {
     ['Your agreement', 'By using Interview Edge you agree to these terms and agree to hold Arahasoft harmless from claims arising from your use of the app. If you do not agree, please do not use it. These terms are governed by the laws of the State of New Jersey, USA. If any part is found unenforceable, the rest remains in effect. We may update these terms; continued use means you accept the update.'],
     ['Purchases', 'The one-time unlock is processed by Google Play and is subject to Google Play’s terms and refund policy.']
   ];
-  ctx.el.innerHTML = `${bar(ctx, 'Terms & Disclaimer')}<div class="wrap legal"><h2>Terms &amp; Disclaimer</h2><p class="muted">Interview Edge by Arahasoft · Last updated October 24, 2026</p>
+  ctx.el.innerHTML = `${bar(ctx, 'Terms & Disclaimer')}<div class="wrap legal"><h2>Terms &amp; Disclaimer</h2><p class="muted">Interview Edge by Arahasoft · Last updated October 24, 2026${(store.get('ip.terms', null) || {}).at ? ' · You agreed on ' + new Date(store.get('ip.terms').at).toLocaleDateString() : ''}</p>
     ${sec.map(([h, t]) => `<h3>${h}</h3><p>${t}</p>`).join('')}<p class="muted" style="margin-top:22px">© ${new Date().getFullYear()} Arahasoft. All rights reserved.</p></div>`;
 }
 
