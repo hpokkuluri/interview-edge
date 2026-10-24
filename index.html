@@ -344,6 +344,32 @@ input.txt,select.txt,textarea.txt{width:100%;border:1px solid var(--line);border
 .wl-enter svg{width:20px;height:20px}
 .wl-foot{text-align:center;font-size:.75rem;color:rgba(255,255,255,.45);margin:4px 0 calc(var(--safe-b) + 18px)}
 
+/* ---------- Home (light, personal) ---------- */
+.home.light{background:var(--bg);color:var(--text)}
+.home.light .home-main{background:none;border-radius:0;padding-top:6px;min-height:0}
+.hm-head{max-width:760px;margin:0 auto;padding:calc(var(--safe-t) + 14px) 16px 18px}
+.hm-top{display:flex;align-items:center;justify-content:space-between}
+.hm-brand{display:flex;align-items:center;gap:10px}
+.hm-logo{width:38px;height:38px;border-radius:12px;background:var(--navy);display:grid;place-items:center}
+.hm-logo svg{width:30px;height:30px}
+.hm-brand b{font-family:var(--serif);font-weight:400;font-size:1.5rem;letter-spacing:-.01em}
+.hm-brand em{color:var(--gold)}
+.hm-gear{border:0;background:var(--surface);box-shadow:var(--shadow);color:var(--text-2);width:42px;height:42px;border-radius:14px;display:grid;place-items:center}
+.hm-gear svg{width:21px;height:21px}
+.hm-greet{font-size:1.65rem;font-weight:800;margin:22px 0 2px;letter-spacing:-.01em}
+.hm-sub{margin:0;color:var(--text-2)}
+.hm-search{display:flex;align-items:center;gap:10px;width:100%;margin-top:16px;border:1px solid var(--line);background:var(--surface);color:var(--text-3);border-radius:14px;padding:13px 14px;font-size:.95rem;text-align:left;box-shadow:var(--shadow)}
+.hm-search svg{width:18px;height:18px;flex-shrink:0}
+.hm-prog{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.hm-prog div{background:var(--surface);border-radius:14px;padding:10px 8px;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--line)}
+.hm-prog .k{border-top-color:var(--green)}.hm-prog .r{border-top-color:var(--amber)}.hm-prog .s{border-top-color:var(--gold)}.hm-prog .m{border-top-color:var(--blue)}
+.hm-prog b{display:block;font-size:1.2rem}
+.hm-prog span{font-size:.72rem;color:var(--text-3)}
+.hm-plan{display:flex;align-items:center;gap:10px;margin-top:12px;background:var(--surface);border-radius:14px;padding:10px 10px 10px 14px;font-size:.84rem;color:var(--text-2);box-shadow:var(--shadow)}
+.hm-plan > svg{width:16px;height:16px;color:var(--gold);flex-shrink:0}
+.hm-plan.on > svg{color:var(--green)}
+.hm-plan span{flex:1}.hm-plan b{color:var(--text)}
+.hm-plan .btn{padding:8px 12px;font-size:.85rem}
 /* ---------- Terms ---------- */
 .wl-check{display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:rgba(255,255,255,.82);margin:0 0 12px;cursor:pointer}
 .wl-check input{width:20px;height:20px;flex-shrink:0;margin:1px 0 0;accent-color:var(--gold)}
@@ -378,10 +404,10 @@ input.txt,select.txt,textarea.txt{width:100%;border:1px solid var(--line);border
 <body>
 <div id="stage"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="data/catalog.js?v=202610240856"></script>
-<script src="data/counts.js?v=202610240856"></script>
-<script src="config.js?v=202610240856"></script>
-<script src="resume.js?v=202610240856"></script>
-<script src="app.js?v=202610240856"></script>
+<script src="data/catalog.js?v=202610240900"></script>
+<script src="data/counts.js?v=202610240900"></script>
+<script src="config.js?v=202610240900"></script>
+<script src="resume.js?v=202610240900"></script>
+<script src="app.js?v=202610240900"></script>
 </body>
 </html>

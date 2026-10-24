@@ -620,13 +620,16 @@ function vHome(ctx) {
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
     const ess = posProgress('common');
-    ctx.el.innerHTML = `<div class="home">
-      <div class="hero"><div class="hero-top"><div class="brand">${LOGO}<span>ARAHASOFT</span></div>
-        <button class="icon-btn" data-go="settings" aria-label="Settings">${I.gear}</button></div>
-        <div class="hero-body"><h1>Interview <em>Edge</em></h1><div class="tagline">by Arahasoft</div>
-        <p>Questions, model answers and mock interviews for technology, finance and supply chain roles — from first job to the C-suite. Plus prep for 1:1s, reviews and promotion talks at work.</p>
-        <div class="stats"><div class="stat"><b>${total.toLocaleString()}</b><span>questions</span></div><div class="stat"><b>${known}</b><span>you know</span></div><div class="stat"><b>${mocks}</b><span>mock interviews</span></div></div>
-        <button class="hsearch" data-go="search">${I.search}<span>Search all questions and roles</span></button></div></div>
+    const rev = Object.values(PROG).filter(p => p.s === 'r').length, stars = Object.values(PROG).filter(p => p.star).length;
+    const h = new Date().getHours(), greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+    ctx.el.innerHTML = `<div class="home light">
+      <div class="hm-head"><div class="hm-top"><div class="hm-brand"><span class="hm-logo">${LOGO}</span><b>Interview <em>Edge</em></b></div>
+        <button class="hm-gear" data-go="settings" aria-label="Settings">${I.gear}</button></div>
+        <h1 class="hm-greet">${greet}.</h1><p class="hm-sub">What are you preparing for today?</p>
+        <button class="hm-search" data-go="search">${I.search}<span>Search ${total.toLocaleString()} questions and roles</span></button>
+        <div class="hm-prog"><div class="k"><b>${known}</b><span>Known</span></div><div class="r"><b>${rev}</b><span>To review</span></div><div class="s"><b>${stars}</b><span>Starred</span></div><div class="m"><b>${mocks}</b><span>Mocks</span></div></div>
+        ${PAY_ON ? (isPro() ? '<div class="hm-plan on">' + I.check + '<span><b>Full access</b> · every question unlocked</span></div>' : `<div class="hm-plan">${I.lock}<span><b>Free preview</b> · ${PAY.free} questions per role</span><button class="btn gold" data-buy>Upgrade ${PAY.price}</button></div>`) : ''}
+      </div>
       <div class="home-main"><div class="wrap">
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
         <div class="sec-h">Start from your resume</div>
