@@ -425,6 +425,8 @@ function titleOf(route) {
   if (k === 'settings') return 'Settings';
   if (k === 'profile') return 'My role';
   if (k === 'resume') return 'Resume';
+  if (k === 'welcome') return 'Welcome';
+  if (k === 'legal') return 'Terms';
   return 'Back';
 }
 const shortTitle = t => t.length > 18 ? t.split(/[,/]/)[0].trim().slice(0, 18) : t;
@@ -433,7 +435,7 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ welcome: vWelcome, home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
+  ({ legal: vLegal, welcome: vWelcome, home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
@@ -532,16 +534,33 @@ function vWelcome(ctx) {
   const roles = Object.keys(POS).filter(k => k !== 'common').length;
   const feats = [[I.check, 'Model answers', 'Clear, interview-ready answers with the likely follow-up'], [I.timer, 'Mock interviews', 'Timed, random questions — score yourself'], [I.cards, 'Flashcards & voice', 'Flip cards or answer out loud'], [I.bot, 'Resume Match', 'Questions built from your latest job']];
   ctx.el.innerHTML = `<div class="welcome"><div class="wl-in">
-    <div class="wl-brand">${LOGO}<div><b>ARAHASOFT</b><span>presents</span></div></div>
+    <div class="wl-brand">${LOGO}<div><b>ARAHASOFT</b></div></div>
     <h1 class="wl-title">Interview <em>Edge</em></h1>
     <p class="wl-tag">Walk into your next interview ready.</p>
     <div class="wl-stats"><div><b>${totalQ().toLocaleString()}</b><span>questions</span></div><div><b>${roles}</b><span>roles</span></div><div><b>${FIELDS.length}</b><span>fields</span></div></div>
     <div class="wl-fields">${FIELDS.map(f => `<i style="--c:${f.color}">${esc(f.name)}</i>`).join('')}</div>
     <div class="wl-feats">${feats.map(([ic, h, t]) => `<div class="wl-f"><span>${ic}</span><div><b>${h}</b><small>${t}</small></div></div>`).join('')}</div>
-    <div class="wl-cta">${PAY_ON && !isPro() ? `<p class="wl-offer"><b>${PAY.free} free questions in every role.</b> Unlock everything for just ${PAY.price}.</p>` : ''}<button class="wl-enter" id="enter">Enter ${I.arrow}</button></div>
+    <div class="wl-cta">${PAY_ON && !isPro() ? `<p class="wl-offer"><b>${PAY.free} free questions in every role.</b> Unlock everything for just ${PAY.price}.</p>` : ''}<button class="wl-enter" id="enter">Enter ${I.arrow}</button><p class="wl-agree">By entering you agree to the <button data-go="legal">Terms &amp; Disclaimer</button>.</p></div>
     <p class="wl-foot">© ${new Date().getFullYear()} Arahasoft · arahasoft.com</p>
   </div></div>`;
   $('#enter', ctx.el).addEventListener('click', () => go('home', { replace: true, dir: 1 }));
+}
+
+/* ---------- Terms & disclaimer ---------- */
+function vLegal(ctx) {
+  const sec = [
+    ['For practice and education only', 'Interview Edge gives sample interview questions, model answers and practice tools to help you prepare. It is general educational content. It is not career, legal, financial, accounting, tax, medical, immigration or other professional advice, and it does not replace advice from a qualified professional.'],
+    ['No guarantee of results', 'Using the app does not guarantee an interview, a job offer, a promotion, a certification, a salary or any other outcome. Interviewers, companies and roles differ, and you are solely responsible for how you prepare and what you say.'],
+    ['Accuracy', 'We work to keep the content accurate and current, but software products, regulations, accounting standards and business practices change. Questions and answers may contain errors or be out of date. Always check important facts against official sources.'],
+    ['AI features', 'The AI interviewer and Resume Match produce automated suggestions that can be wrong or incomplete. Review anything they produce before relying on it. Your resume is read on your device; the AI interviewer sends your conversation to the AI provider you choose.'],
+    ['Trademarks', 'Oracle, SAP, Workday, Salesforce, Microsoft and all other product and company names are trademarks of their respective owners. Arahasoft and Interview Edge are not affiliated with, endorsed by or sponsored by any of them.'],
+    ['Provided “as is”', 'The app and all content are provided “as is” and “as available”, without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, accuracy and non-infringement.'],
+    ['Limitation of liability', 'To the fullest extent permitted by law, Arahasoft and its owners, employees and contributors are not liable for any direct, indirect, incidental, special, consequential or punitive damages, or any loss of employment, opportunity, income, data or goodwill, arising from or related to your use of, or inability to use, the app or its content. If any liability is found despite this, it is limited to the amount you paid for the app in the twelve months before the claim.'],
+    ['Your agreement', 'By using Interview Edge you agree to these terms and agree to hold Arahasoft harmless from claims arising from your use of the app. If you do not agree, please do not use it. These terms are governed by the laws of the State of New Jersey, USA. If any part is found unenforceable, the rest remains in effect. We may update these terms; continued use means you accept the update.'],
+    ['Purchases', 'The one-time unlock is processed by Google Play and is subject to Google Play’s terms and refund policy.']
+  ];
+  ctx.el.innerHTML = `${bar(ctx, 'Terms & Disclaimer')}<div class="wrap legal"><h2>Terms &amp; Disclaimer</h2><p class="muted">Interview Edge by Arahasoft · Last updated October 24, 2026</p>
+    ${sec.map(([h, t]) => `<h3>${h}</h3><p>${t}</p>`).join('')}<p class="muted" style="margin-top:22px">© ${new Date().getFullYear()} Arahasoft. All rights reserved.</p></div>`;
 }
 
 /* ---------- Upgrade card (shown on a locked question) and purchases ---------- */
@@ -615,7 +634,7 @@ function vHome(ctx) {
         <button class="card esscard" data-go="pos/common" style="${famVars(ESS)}"><div class="pos-row">${cubeSVG(ESS)}<div style="flex:1;min-width:0"><h3>${esc(ESS.name)}</h3><p>${esc(ESS.tag)}</p></div></div>
           <div class="pos-foot" style="padding-left:0"><span class="prog"><i class="k" style="width:${ess.total ? ess.k / ess.total * 100 : 0}%"></i></span><small>${ess.k}/${ess.total}</small></div></button>
 
-        <p class="home-foot">Your progress stays on this device. © Arahasoft</p>
+        <p class="home-foot">Your progress stays on this device. © Arahasoft · <button class="lnk" data-go="legal">Terms &amp; Disclaimer</button></p>
       </div></div></div>`;
   };
   render(); ctx.refresh = render;
