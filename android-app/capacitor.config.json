@@ -1,0 +1,7 @@
+{
+  "appId": "com.arahasoft.interviewedge",
+  "appName": "Interview Edge",
+  "webDir": "www",
+  "backgroundColor": "#0E1B3D",
+  "android": { "allowMixedContent": false }
+}

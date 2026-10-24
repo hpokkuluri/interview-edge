@@ -33,6 +33,16 @@ const hash = s => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 
 const qid = (pos, item) => (item[5] || pos) + ':' + hash(item[1]);   // Essentials questions share progress across roles
 const isTop = x => !!(x[6] && x[6].t);   // x[6] = { t: 1 (top question), f: [follow-up question, follow-up answer] }
 const fuHTML = x => { const f = x[6] && x[6].f; return f ? `<div class="fu"><h4>Likely follow-up</h4><p class="fu-q">${esc(f[0])}</p><details><summary>Show follow-up answer</summary><div class="fu-a">${fmt(f[1])}</div></details></div>` : ''; };
+/* ---------------- free preview & one-time unlock ----------------
+   In the Android app the first PAY.free questions of every role are free; the rest need the one-time unlock.
+   On the web the lock is off unless you open the site once with ?paywall=1 (to test it); ?paywall=0 turns it off again. */
+const PAY = Object.assign({ free: 5, price: '$0.99', product: 'full_access', test: true }, window.PAYWALL || {});
+const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+(() => { const q = new URLSearchParams(location.search); if (q.get('paywall') === '1') store.set('ip.paywall', 1); if (q.get('paywall') === '0') { store.del('ip.paywall'); store.del('ip.pro'); } })();
+const PAY_ON = NATIVE || !!store.get('ip.paywall', 0);
+const isPro = () => !!store.get('ip.pro', 0);
+const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
+const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
@@ -288,6 +298,7 @@ function fmtAI(text) { return fmt(text.replace(/^#{1,4}\s+/gm, '## ').replace(/^
 
 /* ---------------- icons ---------------- */
 const I = {
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
   back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
   gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
   timer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>',
@@ -422,12 +433,14 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
+  ({ welcome: vWelcome, home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
   ctx.el.addEventListener('click', e => {
     if (e.target.closest('[data-back]')) { history.back(); return; }
+    if (e.target.closest('[data-buy]')) { buyPro(); return; }
+    if (e.target.closest('[data-restore]')) { restorePro(); return; }
     const g = e.target.closest('[data-go]'); if (g) go(g.dataset.go);
   });
 }
@@ -513,6 +526,65 @@ window.addEventListener('popstate', () => popScreen());
 })();
 
 /* ================= SCREENS ================= */
+
+/* ---------- Welcome: what the app is, Arahasoft branding, one tap to enter ---------- */
+function vWelcome(ctx) {
+  const roles = Object.keys(POS).filter(k => k !== 'common').length;
+  const feats = [[I.check, 'Model answers', 'Clear, interview-ready answers with the likely follow-up'], [I.timer, 'Mock interviews', 'Timed, random questions — score yourself'], [I.cards, 'Flashcards & voice', 'Flip cards or answer out loud'], [I.bot, 'Resume Match', 'Questions built from your latest job']];
+  ctx.el.innerHTML = `<div class="welcome"><div class="wl-in">
+    <div class="wl-brand">${LOGO}<div><b>ARAHASOFT</b><span>presents</span></div></div>
+    <h1 class="wl-title">Interview <em>Edge</em></h1>
+    <p class="wl-tag">Walk into your next interview ready.</p>
+    <div class="wl-stats"><div><b>${totalQ().toLocaleString()}</b><span>questions</span></div><div><b>${roles}</b><span>roles</span></div><div><b>${FIELDS.length}</b><span>fields</span></div></div>
+    <div class="wl-fields">${FIELDS.map(f => `<i style="--c:${f.color}">${esc(f.name)}</i>`).join('')}</div>
+    <div class="wl-feats">${feats.map(([ic, h, t]) => `<div class="wl-f"><span>${ic}</span><div><b>${h}</b><small>${t}</small></div></div>`).join('')}</div>
+    <div class="wl-cta">${PAY_ON && !isPro() ? `<p class="wl-offer"><b>${PAY.free} free questions in every role.</b> Unlock everything for just ${PAY.price}.</p>` : ''}<button class="wl-enter" id="enter">Enter ${I.arrow}</button></div>
+    <p class="wl-foot">© ${new Date().getFullYear()} Arahasoft · arahasoft.com</p>
+  </div></div>`;
+  $('#enter', ctx.el).addEventListener('click', () => go('home', { replace: true, dir: 1 }));
+}
+
+/* ---------- Upgrade card (shown on a locked question) and purchases ---------- */
+function upsellHTML() {
+  return `<div class="lockcard"><div class="lc-blur" aria-hidden="true">${'<i></i>'.repeat(14)}</div>
+    <div class="lc-over"><span class="lc-ic">${I.lock}</span><h3>Like it? Unlock everything.</h3>
+      <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions, model answers and follow-ups across every role. One time, no subscription.</p>
+      <button class="btn gold wide" data-buy>Upgrade for just ${PAY.price}</button>
+      <button class="lc-link" data-restore>Already bought it? Restore purchase</button></div></div>`;
+}
+function grantPro(quiet) {
+  if (isPro()) return;
+  store.set('ip.pro', 1);
+  if (!quiet) toast('Full access unlocked — thank you!');
+  const top = stack[stack.length - 1]; if (top) go(top.route, { replace: true, dir: 0 });
+}
+// Google Play Billing (cordova-plugin-purchase) — only inside the Android app.
+const Billing = { ready: false, st: null,
+  init() {
+    if (!window.CdvPurchase) return;
+    const { store: B, ProductType, Platform } = window.CdvPurchase; this.st = B;
+    B.register([{ id: PAY.product, type: ProductType.NON_CONSUMABLE, platform: Platform.GOOGLE_PLAY }]);
+    const check = () => { if (B.owned(PAY.product)) grantPro(); };
+    B.when().approved(t => t.finish()).finished(check).receiptUpdated(check).productUpdated(p => { if (p.id === PAY.product && p.pricing) PAY.price = p.pricing.price; });
+    B.initialize([Platform.GOOGLE_PLAY]).then(() => { this.ready = !!B.get(PAY.product); check(); }).catch(() => {});
+  }
+};
+document.addEventListener('deviceready', () => Billing.init(), false);
+async function buyPro() {
+  if (isPro()) { toast('Already unlocked'); return; }
+  if (Billing.ready) {
+    const offer = Billing.st.get(PAY.product).getOffer();
+    const err = offer && await offer.order();
+    if (err && err.code !== window.CdvPurchase.ErrorCode.PAYMENT_CANCELLED) toast('Purchase didn’t go through. Please try again.');
+    return;
+  }
+  if (PAY.test) { grantPro(true); toast('Test mode: unlocked without payment'); return; }
+  toast('Purchases are available in the Android app.');
+}
+function restorePro() {
+  if (Billing.ready) { Billing.st.restorePurchases().then(() => { if (!isPro()) toast('No purchase found on this Google account'); }); return; }
+  toast(isPro() ? 'Already unlocked' : 'Restore works in the Android app from Google Play');
+}
 
 /* ---------- Home: fields, essentials, search ---------- */
 function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
@@ -649,11 +721,11 @@ function vPos(ctx, id) {
     const rows = () => { const idx = filtered(); ctx.list = idx;
       if (!idx.length) return '<div class="empty">No questions match.</div>';
       return idx.map(i => { const x = bank[i], s = st(qid(id, x));
-        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}${isTop(x) ? '<span class="lvl T">Top</span>' : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${s.s || ''}"></span></button>`; }).join(''); };
+        return `<button class="qrow" data-q="${i}"><span class="num">${i + 1}</span><span class="qt">${esc(x[1])}<span class="qc">${esc(x[0])}${x[3] ? `<span class="lvl ${x[3]}">${DIFF[x[3]]}</span>` : ''}${x[4] ? `<span class="lvl L">${LEVELS[x[4]]}</span>` : ''}${isTop(x) ? '<span class="lvl T">Top</span>' : ''}</span></span>${s.star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}${locked(id, i) ? `<span class="lk">${I.lock}</span>` : `<span class="sdot ${s.s || ''}"></span>`}</button>`; }).join(''); };
     const nTop = bank.filter(isTop).length;
     const statChips = [['all', 'All']].concat(nTop ? [['top', `Top ${nTop}`]] : [], [['new', 'Not marked'], ['r', 'To review'], ['k', 'Known'], ['star', '★ Starred']]);
     ctx.el.innerHTML = `${bar(ctx, p.title)}<div class="wrap" style="${famVars(f)}">
-      <div id="head">${head()}</div>${tracks}${isWork(p) ? `<div class="card" style="margin-top:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>${hasProfile() ? 'Answers use your saved role' : 'Make the answers about you'}</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ')) : 'Add your role, projects, wins and goals.'}</p></div><button class="chip c" data-go="profile">${hasProfile() ? 'Edit' : 'Set up'}</button></div>
+      <div id="head">${head()}</div>${PAY_ON && !isPro() ? `<div class="upstrip"><span>${I.lock}<span><b>${Math.min(PAY.free, bank.length)} free questions here.</b> Unlock all ${totalQ().toLocaleString()} for ${PAY.price}.</span></span><button class="btn gold" data-buy>Upgrade</button></div>` : ''}${tracks}${isWork(p) ? `<div class="card" style="margin-top:12px"><div class="pos-row"><span class="n">ME</span><div style="flex:1;min-width:0"><h3>${hasProfile() ? 'Answers use your saved role' : 'Make the answers about you'}</h3><p>${hasProfile() ? esc([PROFILE.title, PROFILE.team].filter(Boolean).join(' · ')) : 'Add your role, projects, wins and goals.'}</p></div><button class="chip c" data-go="profile">${hasProfile() ? 'Edit' : 'Set up'}</button></div>
         <a class="btn pri" style="margin-top:12px;text-decoration:none" target="_blank" rel="noopener" href="https://claude.ai/new?q=${encodeURIComponent(workPrepPrompt(p))}">Prepare with Claude</a></div>` : ''}${id === 'resume' ? `<button class="card" data-go="resume" style="margin-top:12px"><div class="pos-row"><span class="n">CV</span><div style="flex:1;min-width:0"><h3>${esc(RS && RS.title ? 'Your latest role: ' + RS.title : 'Built from your resume')}</h3><p>Pick a different role or use another resume.</p></div><span class="chip c">Change</span></div></button>` : ''}
       <div class="modes">
         <button class="mode" data-go="mock/${id}"><span class="ic">${I.timer}</span><b>Mock interview</b><span>Timed, random questions, score yourself</span></button>
@@ -678,7 +750,7 @@ function vPos(ctx, id) {
     const tq = $('#topq', ctx.el); if (tq) tq.addEventListener('click', () => { ls.stat = ls.stat === 'top' ? 'all' : 'top'; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x.dataset.st === ls.stat)); topB(); R(); });
     $('#cc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; ls.cat = b.dataset.cat; $$('#cc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     $('#rows', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (!b) return; qList[id] = ctx.list.slice(); go(`q/${id}/${b.dataset.q}`); });
-    $('#voiceq', ctx.el).addEventListener('click', () => { const i = Math.floor(Math.random() * bank.length); qList[id] = shuffle(bank.map((x, j) => j)); go(`q/${id}/${i}/voice`); });
+    $('#voiceq', ctx.el).addEventListener('click', () => { const ok = bank.map((x, j) => j).filter(j => !locked(id, j)); const i = ok[Math.floor(Math.random() * ok.length)]; qList[id] = shuffle(ok); go(`q/${id}/${i}/voice`); });
     ctx.refresh = () => { $('#head', ctx.el).innerHTML = head(); R(); };
   }).catch(() => { $('.wrap', ctx.el).innerHTML = '<div class="empty">Couldn’t load these questions. Check your connection and try again.</div>'; });
 }
@@ -692,18 +764,19 @@ function vQ(ctx, id, idxStr, mode) {
   const voice = mode === 'voice';
   let shown = S.reveal && !voice;
   const drafts = store.get('ip.drafts', {});
+  const lk = locked(id, i);
   const render = () => {
     const s = st(key);
     ctx.el.innerHTML = `${bar(ctx, pos >= 0 ? `${pos + 1} of ${list.length}` : `Question ${i + 1}`, `<button class="icon-btn" id="sp" aria-label="Read aloud">${I.speaker}</button><button class="icon-btn" id="star" aria-label="Star" style="color:${s.star ? 'var(--gold)' : ''}">${s.star ? I.star : I.starO}</button>`)}
     <div class="wrap" style="${famVars(f)}">
       <div class="q-cat"><span class="chip c">${esc(x[0])}</span>${isTop(x) ? '<span class="chip top">Top question</span>' : ''}${x[3] ? `<span class="chip">${DIFF[x[3]]}</span>` : ''}<span class="chip">${esc(id === 'resume' && POS[x[5]] ? POS[x[5]].full : p.full)}</span></div>
       <h2 class="q-text">${esc(x[1])}</h2>
-      <div class="practice" id="pr" ${voice || drafts[key] ? '' : 'hidden'}><h4>Your answer</h4><p>Say it out loud or type it, then compare with the model answer.</p>
+      ${lk ? upsellHTML() : ''}<div class="practice" id="pr" ${!lk && (voice || drafts[key]) ? '' : 'hidden'}><h4>Your answer</h4><p>Say it out loud or type it, then compare with the model answer.</p>
         <textarea class="ans" id="mine" placeholder="Tap the mic and start talking…">${esc(drafts[key] || '')}</textarea>
         <div class="rec-row"><button class="mic" id="mic" data-label="Speak">${I.mic}<span>Speak</span></button><small id="wc"></small></div></div>
-      ${voice || drafts[key] ? '' : `<button class="btn ghost wide" id="try" style="margin-bottom:12px">${I.mic} Practice your answer first</button>`}
-      <div id="ans">${shown ? `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}` : `<button class="reveal" id="rv">Show model answer<small>Think it through first — what would you say?</small></button>`}</div>
-      <div class="actions"><button class="btn k ${s.s === 'k' ? 'on' : ''}" id="mk">${I.check} Got it</button><button class="btn r ${s.s === 'r' ? 'on' : ''}" id="mr">${I.redo} Review again</button></div>
+      ${lk || voice || drafts[key] ? '' : `<button class="btn ghost wide" id="try" style="margin-bottom:12px">${I.mic} Practice your answer first</button>`}
+      <div id="ans" ${lk ? 'hidden' : ''}>${shown ? `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}` : `<button class="reveal" id="rv">Show model answer<small>Think it through first — what would you say?</small></button>`}</div>
+      <div class="actions" ${lk ? 'style="display:none"' : ''}><button class="btn k ${s.s === 'k' ? 'on' : ''}" id="mk">${I.check} Got it</button><button class="btn r ${s.s === 'r' ? 'on' : ''}" id="mr">${I.redo} Review again</button></div>
       <div class="pager"><button class="btn ghost" id="prev" ${pos <= 0 ? 'disabled' : ''}>${I.back} Previous</button><button class="btn navy" id="next" ${pos < 0 || pos >= list.length - 1 ? 'disabled' : ''}>Next ${I.arrow}</button></div>
     </div>`;
     const ta = $('#mine', ctx.el), wc = $('#wc', ctx.el);
@@ -713,12 +786,12 @@ function vQ(ctx, id, idxStr, mode) {
     const tryB = $('#try', ctx.el); if (tryB) tryB.addEventListener('click', () => { $('#pr', ctx.el).hidden = false; tryB.remove(); ta.focus(); });
     const rv = $('#rv', ctx.el); if (rv) rv.addEventListener('click', () => { shown = true; stopDictation(); $('#ans', ctx.el).innerHTML = `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}`; });
     $('#star', ctx.el).addEventListener('click', e => { const on = toggleStar(key); e.currentTarget.innerHTML = on ? I.star : I.starO; e.currentTarget.style.color = on ? 'var(--gold)' : ''; toast(on ? 'Starred' : 'Removed star'); });
-    $('#sp', ctx.el).addEventListener('click', () => speak(x[1] + (shown ? '. ' + x[2] : '')));
+    $('#sp', ctx.el).addEventListener('click', () => speak(x[1] + (shown && !lk ? '. ' + x[2] : '')));
     $('#mk', ctx.el).addEventListener('click', () => { setStatus(key, 'k'); const s2 = st(key); $('#mk', ctx.el).classList.toggle('on', s2.s === 'k'); $('#mr', ctx.el).classList.remove('on'); if (s2.s === 'k' && pos >= 0 && pos < list.length - 1) setTimeout(() => step(1), 250); });
     $('#mr', ctx.el).addEventListener('click', () => { setStatus(key, 'r'); const s2 = st(key); $('#mr', ctx.el).classList.toggle('on', s2.s === 'r'); $('#mk', ctx.el).classList.remove('on'); });
     $('#prev', ctx.el).addEventListener('click', () => step(-1));
     $('#next', ctx.el).addEventListener('click', () => step(1));
-    if (voice && S.speak) speak(x[1]);
+    if (voice && S.speak && !lk) speak(x[1]);
   };
   const step = d => { const ni = list[pos + d]; if (ni === undefined) return; go(`q/${id}/${ni}${voice ? '/voice' : ''}`, { replace: true, dir: d }); };
   render();
@@ -735,7 +808,7 @@ function vMock(ctx, id) {
     let session = null, timer = null;
     ctx.cleanup.push(() => clearInterval(timer));
     const wrap = () => $('.wrap', ctx.el);
-    const pool = () => bank.map((x, i) => i).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'top' && isTop(bank[i])) || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
+    const pool = () => bank.map((x, i) => i).filter(i => !locked(id, i)).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'top' && isTop(bank[i])) || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
 
     function setup() {
       clearInterval(timer);
@@ -823,7 +896,7 @@ function vFlash(ctx, id) {
     let deck = [], at = 0, which = store.get('ip.deck', 'new'), done = { k: 0, r: 0 };
     const wrap = () => $('.wrap', ctx.el);
     const sets = () => {
-      const all = bank.map((x, i) => i), s = i => st(qid(id, bank[i]));
+      const all = bank.map((x, i) => i).filter(i => !locked(id, i)), s = i => st(qid(id, bank[i]));
       return { top: all.filter(i => isTop(bank[i])), new: all.filter(i => !s(i).s), review: all.filter(i => s(i).s === 'r'), star: all.filter(i => s(i).star), all };
     };
     function pick() {
@@ -1094,6 +1167,9 @@ function vAI(ctx, id) {
 function vSettings(ctx) {
   const seg = (name, opts) => `<div class="seg" data-k="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${S[name] === v ? 'on' : ''}">${l}</button>`).join('')}</div>`;
   ctx.el.innerHTML = `${bar(ctx, 'Settings')}<div class="wrap">
+    ${PAY_ON ? `<div class="panel"><h3>Full access</h3><p>${isPro() ? 'Unlocked on this device. Thank you!' : `${PAY.free} free questions in every role. Unlock all ${totalQ().toLocaleString()} questions for ${PAY.price}, one time.`}</p>
+      <div class="actions" style="margin-bottom:0">${isPro() ? '' : `<button class="btn gold" data-buy>Upgrade · ${PAY.price}</button>`}<button class="btn ghost" data-restore>Restore purchase</button></div>
+      ${PAY.test && isPro() ? '<button class="btn ghost wide" id="relock" style="margin-top:10px">Test mode: lock again</button>' : ''}</div>` : ''}
     <div class="panel"><h3>Display</h3>
       <div class="field"><label>Theme</label>${seg('theme', [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])}</div>
       <div class="field">
@@ -1127,6 +1203,7 @@ function vSettings(ctx) {
     try { await callClaude('Reply with the single word OK.', [{ role: 'user', content: 'Test' }]); m.textContent = '✓ Works — the AI interviewer is ready.'; }
     catch (e) { m.textContent = '✗ ' + (e.message === 'Failed to fetch' ? 'Couldn’t reach Anthropic — check your connection.' : e.message); }
   });
+  const rl = $('#relock', ctx.el); if (rl) rl.addEventListener('click', () => { store.del('ip.pro'); toast('Locked again (test mode)'); go('settings', { replace: true }); });
   $('#reset', ctx.el).addEventListener('click', () => {
     if (!confirm('Clear all your marks, stars, drafts and interview history on this device?')) return;
     PROG = {}; saveP(); ['ip.mocks', 'ip.drafts', 'ip.last'].forEach(store.del);
@@ -1137,12 +1214,12 @@ function vSettings(ctx) {
 
 /* ---------------- start ---------------- */
 (function start() {
-  const ctx = build('home'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
+  const ctx = build('welcome'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
   history.replaceState({ d: 1 }, '');
   const qp = new URLSearchParams(location.search);   // back from Stripe Checkout
   if (qp.has('paid')) {
     history.replaceState({ d: 1 }, '', location.pathname);
     if (qp.get('paid') === '1') { toast('Payment received — your minutes are being added'); setTimeout(edgeRefresh, 2500); }
   }
-  if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+  if (!NATIVE && 'serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 })();
