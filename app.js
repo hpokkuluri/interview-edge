@@ -41,6 +41,14 @@ const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && windo
 (() => { const q = new URLSearchParams(location.search); if (q.get('paywall') === '1') store.set('ip.paywall', 1); if (q.get('paywall') === '0') store.del('ip.paywall'); store.del('ip.pro'); })();
 const PAY_ON = NATIVE || !!store.get('ip.paywall', 0);
 const isPro = () => !!store.get('ip.unlocked', 0);   // set only by a real Google Play purchase
+// Owner access: a secret code entered in Settings (tap the version line 5 times). Only its SHA-256 hash is in the code.
+const VERSION_LABEL = '1.0';
+const ADMIN_HASH = '44e9bbbc18cfb41c96d350b91a518dacaa67531a4dd83e5bf25c75ea7c76072a';
+async function adminCheck(code) {
+  if (!(window.crypto && crypto.subtle)) return false;
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(code.trim().toUpperCase()));
+  return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, '0')).join('') === ADMIN_HASH;
+}
 const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
 const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -1213,7 +1221,10 @@ function vSettings(ctx) {
       <div class="muted" id="kmsg" style="margin-top:8px"></div></div>
     <div class="panel"><h3>Your progress</h3><p>${Object.keys(PROG).length} questions marked · ${store.get('ip.mocks', []).length} interviews completed. Saved only in this browser.</p>
       <button class="btn ghost wide" id="reset" style="color:var(--red)">Reset all progress</button></div>
-    <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p></div>`;
+    <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p>
+    <p class="home-foot" id="ver" style="margin-top:10px;user-select:none">Version ${VERSION_LABEL}${store.get('ip.unlocked', 0) === 'admin' ? ' · owner access' : ''}</p>
+    <div id="adm" hidden class="panel" style="margin-top:12px"><h3>Owner access</h3>
+      ${store.get('ip.unlocked', 0) === 'admin' ? '<button class="btn ghost wide" id="admoff">Turn owner access off (see the free preview)</button>' : '<div class="field"><input class="txt" id="admcode" autocomplete="off" autocapitalize="characters" placeholder="Owner code"></div><button class="btn navy wide" id="admgo">Unlock</button>'}</div></div>`;
   $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; S[sg.dataset.k] = b.dataset.v; saveS(); applyTheme(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); }));
   $('#rv', ctx.el).addEventListener('change', e => { S.reveal = e.target.checked; saveS(); });
   $('#sp', ctx.el).addEventListener('change', e => {
@@ -1231,6 +1242,12 @@ function vSettings(ctx) {
     try { await callClaude('Reply with the single word OK.', [{ role: 'user', content: 'Test' }]); m.textContent = '✓ Works — the AI interviewer is ready.'; }
     catch (e) { m.textContent = '✗ ' + (e.message === 'Failed to fetch' ? 'Couldn’t reach Anthropic — check your connection.' : e.message); }
   });
+  let taps = 0; $('#ver', ctx.el).addEventListener('click', () => { if (++taps >= 5) $('#adm', ctx.el).hidden = false; });
+  const ag = $('#admgo', ctx.el); if (ag) ag.addEventListener('click', async () => {
+    if (await adminCheck($('#admcode', ctx.el).value)) { store.set('ip.unlocked', 'admin'); toast('Owner access on — everything unlocked'); go('settings', { replace: true }); }
+    else toast('That code isn’t right');
+  });
+  const ao = $('#admoff', ctx.el); if (ao) ao.addEventListener('click', () => { store.del('ip.unlocked'); toast('Owner access off'); go('settings', { replace: true }); });
   $('#reset', ctx.el).addEventListener('click', () => {
     if (!confirm('Clear all your marks, stars, drafts and interview history on this device?')) return;
     PROG = {}; saveP(); ['ip.mocks', 'ip.drafts', 'ip.last'].forEach(store.del);
