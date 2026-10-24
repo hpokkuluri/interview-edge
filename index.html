@@ -399,15 +399,45 @@ input.txt,select.txt,textarea.txt{width:100%;border:1px solid var(--line);border
 .lc-ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:rgba(242,179,61,.18);color:var(--gold)}
 .lc-ic svg{width:22px;height:22px}
 .lc-link{border:0;background:none;color:var(--text-3);font-size:.8rem;margin-top:10px;text-decoration:underline}
+
+/* ---------- Opening intro (about 2.5 s) ---------- */
+html,body{background:#0E1B3D}
+#splash{position:fixed;inset:0;z-index:100;background:radial-gradient(70% 50% at 50% 45%,#16285A,#0E1B3D 70%);display:grid;place-items:center;color:#fff;transition:opacity .55s ease}
+#splash.out{opacity:0;pointer-events:none}
+.sp-in{display:flex;flex-direction:column;align-items:center}
+.sp-logo{width:110px;height:110px;overflow:visible}
+.sp-h{fill:none;stroke:#E2262E;stroke-width:2;stroke-dasharray:80;stroke-dashoffset:80;animation:spDraw .7s cubic-bezier(.6,0,.3,1) forwards}
+.sp-h.h2{animation-delay:.15s}.sp-h.h3{animation-delay:.3s}
+.sp-t{fill:#fff;font-family:Manrope,sans-serif;font-weight:800;text-anchor:middle;opacity:0;animation:spFade .4s ease forwards}
+.sp-t.t1{animation-delay:.55s}.sp-t.t2{animation-delay:.65s}.sp-t.t3{animation-delay:.75s}
+.sp-word{margin-top:22px;font-family:Manrope,sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.9em;padding-left:.9em;opacity:0;animation:spWord .9s cubic-bezier(.2,.8,.2,1) .8s forwards}
+.sp-app{margin-top:26px;font-family:'Instrument Serif',Georgia,serif;font-size:2.3rem;opacity:0;transform:translateY(8px);animation:spUp .6s ease 1.35s forwards}
+.sp-app em{color:#F2B33D}
+.sp-line{height:2px;width:0;margin-top:10px;background:linear-gradient(90deg,transparent,#F2B33D,transparent);animation:spLine .7s ease 1.6s forwards}
+@keyframes spDraw{to{stroke-dashoffset:0}}
+@keyframes spFade{to{opacity:1}}
+@keyframes spWord{from{opacity:0;letter-spacing:1.6em}to{opacity:1;letter-spacing:.42em;padding-left:.42em}}
+@keyframes spUp{to{opacity:1;transform:none}}
+@keyframes spLine{to{width:160px}}
+/* safety net: hide the intro even if the app script never runs */
+#splash{animation:spGone .5s ease 3.4s forwards}
+@keyframes spGone{to{opacity:0;visibility:hidden}}
+.splashing .wl-in > *{animation-play-state:paused}
 </style>
 </head>
-<body>
+<body class="splashing">
+<div id="splash" aria-hidden="true"><div class="sp-in"><svg class="sp-logo" viewBox="0 0 64 64" aria-hidden="true">
+  <polygon class="sp-h h1" points="27.0,32.0 21.0,42.4 9.0,42.4 3.0,32.0 9.0,21.6 21.0,21.6"/><polygon class="sp-h h2" points="48.0,20.0 42.0,30.4 30.0,30.4 24.0,20.0 30.0,9.6 42.0,9.6"/><polygon class="sp-h h3" points="48.0,44.0 42.0,54.4 30.0,54.4 24.0,44.0 30.0,33.6 42.0,33.6"/>
+  <text class="sp-t t1" x="15" y="37" font-size="13">a</text><text class="sp-t t2" x="36" y="25" font-size="12">ra</text><text class="sp-t t3" x="36" y="49" font-size="12">ha</text>
+</svg>
+  <div class="sp-word">ARAHASOFT</div>
+  <div class="sp-app">Interview <em>Edge</em></div><div class="sp-line"></div></div></div>
 <div id="stage"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="data/catalog.js?v=202610241508"></script>
-<script src="data/counts.js?v=202610241508"></script>
-<script src="config.js?v=202610241508"></script>
-<script src="resume.js?v=202610241508"></script>
-<script src="app.js?v=202610241508"></script>
+<script src="data/catalog.js?v=202610241515"></script>
+<script src="data/counts.js?v=202610241515"></script>
+<script src="config.js?v=202610241515"></script>
+<script src="resume.js?v=202610241515"></script>
+<script src="app.js?v=202610241515"></script>
 </body>
 </html>

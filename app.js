@@ -1258,6 +1258,11 @@ function vSettings(ctx) {
 
 /* ---------------- start ---------------- */
 (function start() {
+  // Opening intro: let the logo animation play (about 2.5 s), then fade into the app. Tap to skip.
+  const sp = document.getElementById('splash');
+  if (sp) { const done = () => { sp.classList.add('out'); document.body.classList.remove('splashing'); setTimeout(() => sp.remove(), 600); };
+    const t = setTimeout(done, matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 2600);
+    sp.addEventListener('click', () => { clearTimeout(t); done(); }); }
   const ctx = build('welcome'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
   history.replaceState({ d: 1 }, '');
   const qp = new URLSearchParams(location.search);   // back from Stripe Checkout
