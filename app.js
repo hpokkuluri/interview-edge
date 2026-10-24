@@ -36,11 +36,11 @@ const fuHTML = x => { const f = x[6] && x[6].f; return f ? `<div class="fu"><h4>
 /* ---------------- free preview & one-time unlock ----------------
    In the Android app the first PAY.free questions of every role are free; the rest need the one-time unlock.
    On the web the lock is off unless you open the site once with ?paywall=1 (to test it); ?paywall=0 turns it off again. */
-const PAY = Object.assign({ free: 5, price: '$0.99', product: 'full_access', test: true }, window.PAYWALL || {});
+const PAY = Object.assign({ free: 5, price: '$0.99', product: 'full_access' }, window.PAYWALL || {});
 const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
-(() => { const q = new URLSearchParams(location.search); if (q.get('paywall') === '1') store.set('ip.paywall', 1); if (q.get('paywall') === '0') { store.del('ip.paywall'); store.del('ip.pro'); } })();
+(() => { const q = new URLSearchParams(location.search); if (q.get('paywall') === '1') store.set('ip.paywall', 1); if (q.get('paywall') === '0') store.del('ip.paywall'); store.del('ip.pro'); })();
 const PAY_ON = NATIVE || !!store.get('ip.paywall', 0);
-const isPro = () => !!store.get('ip.pro', 0);
+const isPro = () => !!store.get('ip.unlocked', 0);   // set only by a real Google Play purchase
 const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
 const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -554,7 +554,7 @@ function upsellHTML() {
 }
 function grantPro(quiet) {
   if (isPro()) return;
-  store.set('ip.pro', 1);
+  store.set('ip.unlocked', 1);
   if (!quiet) toast('Full access unlocked — thank you!');
   const top = stack[stack.length - 1]; if (top) go(top.route, { replace: true, dir: 0 });
 }
@@ -578,8 +578,7 @@ async function buyPro() {
     if (err && err.code !== window.CdvPurchase.ErrorCode.PAYMENT_CANCELLED) toast('Purchase didn’t go through. Please try again.');
     return;
   }
-  if (PAY.test) { grantPro(true); toast('Test mode: unlocked without payment'); return; }
-  toast('Purchases are available in the Android app.');
+  toast(NATIVE ? 'Payments open when the app is live on Google Play.' : 'Purchases are available in the Android app.');
 }
 function restorePro() {
   if (Billing.ready) { Billing.st.restorePurchases().then(() => { if (!isPro()) toast('No purchase found on this Google account'); }); return; }
@@ -777,7 +776,7 @@ function vQ(ctx, id, idxStr, mode) {
       ${lk || voice || drafts[key] ? '' : `<button class="btn ghost wide" id="try" style="margin-bottom:12px">${I.mic} Practice your answer first</button>`}
       <div id="ans" ${lk ? 'hidden' : ''}>${shown ? `<div class="answer">${fmt(x[2])}</div>${fuHTML(x)}` : `<button class="reveal" id="rv">Show model answer<small>Think it through first — what would you say?</small></button>`}</div>
       <div class="actions" ${lk ? 'style="display:none"' : ''}><button class="btn k ${s.s === 'k' ? 'on' : ''}" id="mk">${I.check} Got it</button><button class="btn r ${s.s === 'r' ? 'on' : ''}" id="mr">${I.redo} Review again</button></div>
-      <div class="pager"><button class="btn ghost" id="prev" ${pos <= 0 ? 'disabled' : ''}>${I.back} Previous</button><button class="btn navy" id="next" ${pos < 0 || pos >= list.length - 1 ? 'disabled' : ''}>Next ${I.arrow}</button></div>
+      <div class="pager"><button class="btn ghost" id="prev" ${pos <= 0 ? 'disabled' : ''}>${I.back} Previous</button><button class="btn navy" id="next" ${lk || pos < 0 || pos >= list.length - 1 ? 'disabled' : ''}>Next ${I.arrow}</button></div>
     </div>`;
     const ta = $('#mine', ctx.el), wc = $('#wc', ctx.el);
     const count = () => { const n = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0; wc.textContent = n ? `${n} words · about ${Math.max(1, Math.round(n / 140))} min spoken` : ''; const d = store.get('ip.drafts', {}); if (ta.value.trim()) d[key] = ta.value; else delete d[key]; store.set('ip.drafts', d); };
@@ -793,7 +792,7 @@ function vQ(ctx, id, idxStr, mode) {
     $('#next', ctx.el).addEventListener('click', () => step(1));
     if (voice && S.speak && !lk) speak(x[1]);
   };
-  const step = d => { const ni = list[pos + d]; if (ni === undefined) return; go(`q/${id}/${ni}${voice ? '/voice' : ''}`, { replace: true, dir: d }); };
+  const step = d => { const ni = list[pos + d]; if (ni === undefined || (d > 0 && lk)) return; go(`q/${id}/${ni}${voice ? '/voice' : ''}`, { replace: true, dir: d }); };
   render();
 }
 
@@ -1169,7 +1168,7 @@ function vSettings(ctx) {
   ctx.el.innerHTML = `${bar(ctx, 'Settings')}<div class="wrap">
     ${PAY_ON ? `<div class="panel"><h3>Full access</h3><p>${isPro() ? 'Unlocked on this device. Thank you!' : `${PAY.free} free questions in every role. Unlock all ${totalQ().toLocaleString()} questions for ${PAY.price}, one time.`}</p>
       <div class="actions" style="margin-bottom:0">${isPro() ? '' : `<button class="btn gold" data-buy>Upgrade · ${PAY.price}</button>`}<button class="btn ghost" data-restore>Restore purchase</button></div>
-      ${PAY.test && isPro() ? '<button class="btn ghost wide" id="relock" style="margin-top:10px">Test mode: lock again</button>' : ''}</div>` : ''}
+</div>` : ''}
     <div class="panel"><h3>Display</h3>
       <div class="field"><label>Theme</label>${seg('theme', [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])}</div>
       <div class="field">
@@ -1203,7 +1202,6 @@ function vSettings(ctx) {
     try { await callClaude('Reply with the single word OK.', [{ role: 'user', content: 'Test' }]); m.textContent = '✓ Works — the AI interviewer is ready.'; }
     catch (e) { m.textContent = '✗ ' + (e.message === 'Failed to fetch' ? 'Couldn’t reach Anthropic — check your connection.' : e.message); }
   });
-  const rl = $('#relock', ctx.el); if (rl) rl.addEventListener('click', () => { store.del('ip.pro'); toast('Locked again (test mode)'); go('settings', { replace: true }); });
   $('#reset', ctx.el).addEventListener('click', () => {
     if (!confirm('Clear all your marks, stars, drafts and interview history on this device?')) return;
     PROG = {}; saveP(); ['ip.mocks', 'ip.drafts', 'ip.last'].forEach(store.del);

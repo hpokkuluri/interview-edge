@@ -13,6 +13,5 @@ window.EDGE = {
 
 // Free preview + one-time unlock (used in the Android app; on the web only after opening with ?paywall=1).
 // product must match the in-app product ID created in Google Play Console (one-time, non-consumable).
-// test: true lets the Upgrade button unlock without payment when Google Play Billing isn't available
-// (a sideloaded test build). Set it to false before publishing on the Play Store.
-window.PAYWALL = { free: 5, price: '$0.99', product: 'full_access', test: true };
+// There is no free unlock: question 6 onward stays locked until a real Google Play purchase.
+window.PAYWALL = { free: 5, price: '$0.99', product: 'full_access' };
