@@ -426,7 +426,10 @@ window.CATALOG = [
     tag: 'Compliance managers and in-house counsel',
     positions: [
       { id: 'lg-comp', title: 'Corporate Compliance Manager', level: 'Manager', blurb: 'DOJ program elements, FCPA, third parties, hotline, investigations.' },
-      { id: 'lg-counsel', title: 'Corporate Counsel (In-house)', level: 'Senior', blurb: 'Contracts, LoL and indemnity, employment, IP, privacy, litigation.' }
+      { id: 'lg-counsel', title: 'Corporate Counsel (In-house)', level: 'Senior', blurb: 'Contracts, LoL and indemnity, employment, IP, privacy, litigation.' },
+      { id: 'lg-paralegal', title: 'Paralegal / Legal Assistant', level: 'Entry → Senior', blurb: 'Drafting, filings, discovery, document management, deadlines, research.' },
+      { id: 'lg-contracts', title: 'Contracts Manager / Commercial Counsel', level: 'Mid → Senior', blurb: 'Redlines, MSAs, SOWs, risk terms, playbooks, CLM, negotiation.' },
+      { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' }
     ]
   },
   {
@@ -434,7 +437,58 @@ window.CATALOG = [
     tag: 'Management consultants and operations / general managers',
     positions: [
       { id: 'cs-mc', title: 'Management Consultant', level: 'Mid → Manager', blurb: 'Case interviews, MECE, market sizing, profitability, synthesis.' },
-      { id: 'cs-ops', title: 'Operations Manager / General Manager', level: 'Manager → Director', blurb: 'KPIs, P&L, labor planning, CI, people, crisis, capacity.' }
+      { id: 'cs-ops', title: 'Operations Manager / General Manager', level: 'Manager → Director', blurb: 'KPIs, P&L, labor planning, CI, people, crisis, capacity.' },
+      { id: 'cs-strategy', title: 'Strategy / Business Analyst', level: 'Mid → Senior', blurb: 'Market sizing, business cases, financial models, synthesis, recommendations.' },
+      { id: 'cs-pmo', title: 'Program Manager / PMO Lead', level: 'Senior → Director', blurb: 'Cross-functional delivery, dependencies, risks, governance, stakeholders, RAID.' },
+      { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' }
+    ]
+  },
+  {
+    id: 'hr-ops', field: 'hr', name: 'Talent & People Operations', short: 'People Ops', glyph: 'POPS', color: '#9333EA', tint: '#F3E8FD',
+    tag: 'Generalists, recruiters, HRIS, L&D, employee relations and payroll',
+    positions: [
+      { id: 'hr-gen', title: 'HR Generalist', level: 'Entry → Mid', blurb: 'Onboarding, policy, ER basics, HRIS, compliance, employee lifecycle.' },
+      { id: 'hr-rec', title: 'Recruiter / Technical Recruiter', level: 'Mid → Senior', blurb: 'Sourcing, screening, pipelines, candidate experience, closing, metrics.' },
+      { id: 'hr-hris', title: 'HRIS / People Systems Analyst', level: 'Mid → Senior', blurb: 'Workday/SuccessFactors, data integrity, reporting, security, integrations.' },
+      { id: 'hr-ld', title: 'Learning & Development Manager', level: 'Manager', blurb: 'Needs analysis, ADDIE, training, leadership programs, LMS, evaluation.' },
+      { id: 'hr-er', title: 'Employee Relations Manager', level: 'Mid → Senior', blurb: 'Investigations, performance, accommodations, terminations, policy, risk.' },
+      { id: 'hr-payroll', title: 'Payroll Manager', level: 'Mid → Manager', blurb: 'Multi-state payroll, taxes, garnishments, audits, compliance, systems.' }
+    ]
+  },
+  {
+    id: 'sm-spec', field: 'sales', name: 'Sales & Marketing Specialists', short: 'Specialists', glyph: 'SPC', color: '#DB2777', tint: '#FCE7F1',
+    tag: 'SDRs, sales engineers, RevOps, product marketing, content and demand gen',
+    positions: [
+      { id: 'sm-sdr', title: 'Sales Development Rep (SDR / BDR)', level: 'Entry → Mid', blurb: 'Prospecting, cold outreach, qualification, cadences, booking meetings, SLAs.' },
+      { id: 'sm-se', title: 'Sales Engineer / Solutions Consultant', level: 'Mid → Senior', blurb: 'Demos, discovery, POCs, technical objections, RFPs, value engineering.' },
+      { id: 'sm-revops', title: 'Sales Operations / RevOps', level: 'Mid → Senior', blurb: 'Forecasting, CRM, territories, comp plans, funnel metrics, tooling.' },
+      { id: 'sm-pmm', title: 'Product Marketing Manager', level: 'Mid → Senior', blurb: 'Positioning, messaging, launches, personas, enablement, competitive intel.' },
+      { id: 'sm-content', title: 'Content & SEO Marketing Manager', level: 'Mid → Senior', blurb: 'Content strategy, SEO, editorial, distribution, analytics, brand voice.' },
+      { id: 'sm-demandgen', title: 'Demand Generation Manager', level: 'Mid → Senior', blurb: 'Campaigns, lead funnel, MQL/SQL, nurture, attribution, marketing ops.' }
+    ]
+  },
+  {
+    id: 'en-spec', field: 'eng', name: 'Engineering & Field Roles', short: 'Eng & Field', glyph: 'EFR', color: '#CA8A04', tint: '#FBF3DC',
+    tag: 'Chemical, industrial, environmental engineers and construction field roles',
+    positions: [
+      { id: 'en-chem', title: 'Chemical / Process Engineer', level: 'Mid → Senior', blurb: 'Mass/energy balance, P&IDs, unit ops, scale-up, PHA/HAZOP, optimization.' },
+      { id: 'en-ind', title: 'Industrial Engineer', level: 'Mid → Senior', blurb: 'Lean, time studies, line balancing, layout, throughput, ergonomics, OEE.' },
+      { id: 'en-env', title: 'Environmental Engineer', level: 'Mid → Senior', blurb: 'Permits, air/water/waste, EPA/Clean Air Act, remediation, sampling, reporting.' },
+      { id: 'en-est', title: 'Construction Estimator', level: 'Mid → Senior', blurb: 'Takeoffs, bids, unit costs, quantities, subcontractors, contingency, margins.' },
+      { id: 'en-super', title: 'Site Superintendent / Field Supervisor', level: 'Mid → Senior', blurb: 'Scheduling, crews, subs, safety, quality, inspections, daily logs, closeout.' },
+      { id: 'en-safety', title: 'Construction Safety / HSE Manager', level: 'Mid → Senior', blurb: 'OSHA, JHAs, incident investigation, training, audits, fall protection, culture.' }
+    ]
+  },
+  {
+    id: 'bk-spec', field: 'bank', name: 'Banking, Risk & Insurance', short: 'Risk & Ins', glyph: 'RSK', color: '#1E40AF', tint: '#E5EAFB',
+    tag: 'Credit, retail banking, mortgage, actuarial, risk and insurance sales',
+    positions: [
+      { id: 'bk-credit', title: 'Credit Analyst / Credit Risk Analyst', level: 'Entry → Senior', blurb: 'Financial spreading, ratios, DSCR, PD/LGD, credit memos, covenants, ratings.' },
+      { id: 'bk-pb', title: 'Personal Banker / Branch Manager', level: 'Entry → Manager', blurb: 'Deposits, cross-sell, service, KYC, cash, branch goals, team, compliance.' },
+      { id: 'bk-mortgage', title: 'Mortgage Loan Officer / Underwriter', level: 'Mid → Senior', blurb: 'DTI, LTV, income docs, AUS, conforming/FHA, TRID, conditions, pipeline.' },
+      { id: 'bk-actuary', title: 'Actuary (Life / P&C / Health)', level: 'Entry → Senior', blurb: 'Reserving, pricing, exams, models, assumptions, loss triangles, capital.' },
+      { id: 'bk-risk', title: 'Risk Manager (Enterprise / Financial)', level: 'Mid → Senior', blurb: 'Risk appetite, KRIs, market/credit/op risk, stress tests, controls, Basel.' },
+      { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' }
     ]
   }
 ];
@@ -448,15 +502,15 @@ window.FIELDS = [
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
     families: ['proc', 'plan', 'logi', 'mfg', 'scmspec', 'scmlead'] },
   { id: 'hr', name: 'Human Resources', glyph: 'HR', color: '#9333EA', tint: '#F3E8FD', tag: 'HR business partners, talent acquisition, compensation and benefits, HR leadership',
-    families: ['hrcore'] },
+    families: ['hrcore', 'hr-ops'] },
   { id: 'sales', name: 'Sales & Marketing', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1', tag: 'Account executives, sales leaders, digital marketing and customer success',
-    families: ['salesmkt'] },
+    families: ['salesmkt', 'sm-spec'] },
   { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical trials, biostatistics, medical affairs, regulatory, quality and drug safety',
     families: ['hcare', 'lifesci'] },
   { id: 'eng', name: 'Engineering & Construction', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC', tag: 'Mechanical, electrical, civil/structural engineers and construction project managers',
-    families: ['engcore'] },
+    families: ['engcore', 'en-spec'] },
   { id: 'bank', name: 'Banking & Insurance', glyph: 'BNK', color: '#1E40AF', tint: '#E5EAFB', tag: 'Commercial banking, AML/KYC compliance, underwriting and claims',
-    families: ['bankins'] },
+    families: ['bankins', 'bk-spec'] },
   { id: 'biz', name: 'Legal, Consulting & Operations', glyph: 'BIZ', color: '#475569', tint: '#EEF1F5', tag: 'Compliance, corporate counsel, management consulting and operations leadership',
     families: ['legal', 'consult'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
