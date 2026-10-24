@@ -544,7 +544,7 @@ function vWelcome(ctx) {
   const roles = Object.keys(POS).filter(k => k !== 'common').length;
   const feats = [[I.check, 'Model answers', 'Clear, interview-ready answers with the likely follow-up'], [I.timer, 'Mock interviews', 'Timed, random questions — score yourself'], [I.cards, 'Flashcards & voice', 'Flip cards or answer out loud'], [I.bot, 'Resume Match', 'Questions built from your latest job']];
   ctx.el.innerHTML = `<div class="welcome"><div class="wl-in">
-    <div class="wl-brand">${LOGO}<div><b>ARAHASOFT</b></div></div>
+    <div class="wl-brand">${LOGO}<div><b>ARAHASOFT<sup>©</sup></b></div></div>
     <h1 class="wl-title">Interview <em>Edge</em></h1>
     <p class="wl-tag">Walk into your next interview ready.</p>
     <div class="wl-stats"><div><b>${totalQ().toLocaleString()}</b><span>questions</span></div><div><b>${roles}</b><span>roles</span></div><div><b>${FIELDS.length}</b><span>fields</span></div></div>
@@ -1261,7 +1261,7 @@ function vSettings(ctx) {
   // Opening intro: let the logo animation play (about 2.5 s), then fade into the app. Tap to skip.
   const sp = document.getElementById('splash');
   if (sp) { const done = () => { sp.classList.add('out'); document.body.classList.remove('splashing'); setTimeout(() => sp.remove(), 600); };
-    const t = setTimeout(done, matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 2600);
+    const t = setTimeout(done, matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 3500);
     sp.addEventListener('click', () => { clearTimeout(t); done(); }); }
   const ctx = build('welcome'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
   history.replaceState({ d: 1 }, '');

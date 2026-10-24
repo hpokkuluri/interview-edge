@@ -25,6 +25,7 @@ jobs:
           node copy-web.js
           npx cap add android
           npx capacitor-assets generate --android --iconBackgroundColor '#0E1B3D' --iconBackgroundColorDark '#0E1B3D' --splashBackgroundColor '#0E1B3D' --splashBackgroundColorDark '#0E1B3D'
+          cp -r res-overrides/* android/app/src/main/res/
           npx cap sync android
           cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon -q
           cp app/build/outputs/apk/debug/app-debug.apk ../InterviewEdge-test.apk
