@@ -70,13 +70,13 @@ window.COUNTS = {
  "qa-lead": 50,
  "qa-dir": 50,
  "qa-vp": 47,
- "it-csv": 0,
- "it-meddev": 0,
- "it-ehr": 0,
- "it-pay": 0,
- "it-ins": 0,
- "it-embed": 0,
- "it-telecom": 0,
+ "it-csv": 42,
+ "it-meddev": 40,
+ "it-ehr": 40,
+ "it-pay": 40,
+ "it-ins": 40,
+ "it-embed": 40,
+ "it-telecom": 40,
  "fa-acct": 51,
  "fa-ap": 50,
  "fa-ar": 50,
@@ -132,7 +132,7 @@ window.COUNTS = {
  "sec-eng": 50,
  "sec-cloud": 50,
  "sec-iam": 50,
- "sec-pentest": 0,
+ "sec-pentest": 18,
  "sec-grc": 50,
  "sec-socmgr": 50,
  "sec-arch": 50,
@@ -206,4 +206,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 9343;
+window.FU_TOTAL = 9643;
