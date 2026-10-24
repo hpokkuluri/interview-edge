@@ -49,6 +49,10 @@ async function adminCheck(code) {
   const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(code.trim().toUpperCase()));
   return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, '0')).join('') === ADMIN_HASH;
 }
+// Testing phase: the lock still shows after question 5, with a "continue" button so testers can keep going.
+// Turn off before the Play Store launch: set testPass: false in config.js.
+const PASSED = new Set();   // questions a tester continued past, this session only
+const poolLocked = (id, i) => locked(id, i) && !PAY.testPass;   // mock interviews and flashcards
 const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
 const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -584,7 +588,8 @@ function upsellHTML() {
     <div class="lc-over"><span class="lc-ic">${I.lock}</span><h3>Like it? Unlock everything.</h3>
       <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions, model answers and follow-ups across every role. One time, no subscription.</p>
       <button class="btn gold wide" data-buy>Upgrade for just ${PAY.price}</button>
-      <button class="lc-link" data-restore>Already bought it? Restore purchase</button></div></div>`;
+      <button class="lc-link" data-restore>Already bought it? Restore purchase</button>
+      ${PAY.testPass ? '<button class="btn ghost wide lc-test" data-testpass>Test version — tap to continue</button>' : ''}</div></div>`;
 }
 function grantPro(quiet) {
   if (isPro()) return;
@@ -786,7 +791,7 @@ function vPos(ctx, id) {
     const tq = $('#topq', ctx.el); if (tq) tq.addEventListener('click', () => { ls.stat = ls.stat === 'top' ? 'all' : 'top'; $$('#sc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x.dataset.st === ls.stat)); topB(); R(); });
     $('#cc', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (!b) return; ls.cat = b.dataset.cat; $$('#cc .fchip', ctx.el).forEach(x => x.classList.toggle('on', x === b)); R(); });
     $('#rows', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-q]'); if (!b) return; qList[id] = ctx.list.slice(); go(`q/${id}/${b.dataset.q}`); });
-    $('#voiceq', ctx.el).addEventListener('click', () => { const ok = bank.map((x, j) => j).filter(j => !locked(id, j)); const i = ok[Math.floor(Math.random() * ok.length)]; qList[id] = shuffle(ok); go(`q/${id}/${i}/voice`); });
+    $('#voiceq', ctx.el).addEventListener('click', () => { const ok = bank.map((x, j) => j).filter(j => !poolLocked(id, j)); const i = ok[Math.floor(Math.random() * ok.length)]; qList[id] = shuffle(ok); go(`q/${id}/${i}/voice`); });
     ctx.refresh = () => { $('#head', ctx.el).innerHTML = head(); R(); };
   }).catch(() => { $('.wrap', ctx.el).innerHTML = '<div class="empty">Couldn’t load these questions. Check your connection and try again.</div>'; });
 }
@@ -800,7 +805,7 @@ function vQ(ctx, id, idxStr, mode) {
   const voice = mode === 'voice';
   let shown = S.reveal && !voice;
   const drafts = store.get('ip.drafts', {});
-  const lk = locked(id, i);
+  const lk = locked(id, i) && !PASSED.has(key);
   const render = () => {
     const s = st(key);
     ctx.el.innerHTML = `${bar(ctx, pos >= 0 ? `${pos + 1} of ${list.length}` : `Question ${i + 1}`, `<button class="icon-btn" id="sp" aria-label="Read aloud">${I.speaker}</button><button class="icon-btn" id="star" aria-label="Star" style="color:${s.star ? 'var(--gold)' : ''}">${s.star ? I.star : I.starO}</button>`)}
@@ -828,6 +833,7 @@ function vQ(ctx, id, idxStr, mode) {
     $('#prev', ctx.el).addEventListener('click', () => step(-1));
     $('#next', ctx.el).addEventListener('click', () => step(1));
     if (voice && S.speak && !lk) speak(x[1]);
+    const tp = $('[data-testpass]', ctx.el); if (tp) tp.addEventListener('click', () => { PASSED.add(key); go(ctx.route, { replace: true, dir: 0 }); });
   };
   const step = d => { const ni = list[pos + d]; if (ni === undefined || (d > 0 && lk)) return; go(`q/${id}/${ni}${voice ? '/voice' : ''}`, { replace: true, dir: d }); };
   render();
@@ -844,7 +850,7 @@ function vMock(ctx, id) {
     let session = null, timer = null;
     ctx.cleanup.push(() => clearInterval(timer));
     const wrap = () => $('.wrap', ctx.el);
-    const pool = () => bank.map((x, i) => i).filter(i => !locked(id, i)).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'top' && isTop(bank[i])) || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
+    const pool = () => bank.map((x, i) => i).filter(i => !poolLocked(id, i)).filter(i => { const s = st(qid(id, bank[i])); return cfg.pool === 'all' || (cfg.pool === 'top' && isTop(bank[i])) || (cfg.pool === 'review' && s.s === 'r') || (cfg.pool === 'new' && !s.s) || (cfg.pool === 'star' && s.star); });
 
     function setup() {
       clearInterval(timer);
@@ -932,7 +938,7 @@ function vFlash(ctx, id) {
     let deck = [], at = 0, which = store.get('ip.deck', 'new'), done = { k: 0, r: 0 };
     const wrap = () => $('.wrap', ctx.el);
     const sets = () => {
-      const all = bank.map((x, i) => i).filter(i => !locked(id, i)), s = i => st(qid(id, bank[i]));
+      const all = bank.map((x, i) => i).filter(i => !poolLocked(id, i)), s = i => st(qid(id, bank[i]));
       return { top: all.filter(i => isTop(bank[i])), new: all.filter(i => !s(i).s), review: all.filter(i => s(i).s === 'r'), star: all.filter(i => s(i).star), all };
     };
     function pick() {

@@ -14,4 +14,5 @@ window.EDGE = {
 // Free preview + one-time unlock (used in the Android app; on the web only after opening with ?paywall=1).
 // product must match the in-app product ID created in Google Play Console (one-time, non-consumable).
 // There is no free unlock: question 6 onward stays locked until a real Google Play purchase.
-window.PAYWALL = { free: 5, price: '$0.99', product: 'full_access' };
+// testPass: true shows a "Test version — tap to continue" button on the lock so testers can keep going. Set false for launch.
+window.PAYWALL = { free: 5, price: '$0.99', product: 'full_access', testPass: true };
