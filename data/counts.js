@@ -177,20 +177,20 @@ window.COUNTS = {
  "hc-nm": 50,
  "hc-rcm": 50,
  "hc-epic": 50,
- "ls-ctc": 0,
+ "ls-ctc": 24,
  "ls-cra": 50,
- "ls-cpm": 0,
- "ls-cdm": 0,
- "ls-sp": 0,
- "ls-bio": 0,
- "ls-msl": 0,
+ "ls-cpm": 24,
+ "ls-cdm": 25,
+ "ls-sp": 23,
+ "ls-bio": 24,
+ "ls-msl": 22,
  "ls-ra": 50,
  "ls-qa": 50,
- "ls-qc": 0,
- "ls-val": 0,
- "ls-hoq": 0,
+ "ls-qc": 22,
+ "ls-val": 23,
+ "ls-hoq": 13,
  "ls-pv": 50,
- "ls-sales": 0,
+ "ls-sales": 22,
  "en-mech": 50,
  "en-elec": 50,
  "en-civil": 50,
@@ -206,4 +206,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 9643;
+window.FU_TOTAL = 9865;
