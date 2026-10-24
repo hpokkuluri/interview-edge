@@ -14,6 +14,10 @@ const store = {
 };
 const COUNTS = window.COUNTS || {};
 const FAMS = window.CATALOG;
+// Hide roles whose question bank isn't built yet (and areas left with no roles).
+FAMS.forEach(f => { f.positions = f.positions.filter(p => p.tracks ? (p.tracks = p.tracks.filter(t => COUNTS[t.id])).length : !!COUNTS[p.id]); });
+for (let i = FAMS.length - 1; i >= 0; i--) if (!FAMS[i].positions.length) FAMS.splice(i, 1);
+(window.FIELDS || []).forEach(fd => { fd.families = fd.families.filter(id => FAMS.some(f => f.id === id)); });
 // Flatten to one entry per question bank. A role with Finance/SCM tracks becomes one entry per track.
 const POS = {};
 FAMS.forEach(f => f.positions.forEach(p => {

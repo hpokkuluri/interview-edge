@@ -107,15 +107,40 @@ window.CATALOG = [
   },
   {
     id: 'qa', field: 'tech', name: 'Software Testing & QA', short: 'QA', glyph: 'QA', color: '#0E7490', tint: '#E2F3F6',
-    tag: 'Manual and automation testing, SDET, performance, ERP testing and QA leadership',
+    tag: 'The full testing ladder from first QA job to VP, plus automation, performance and specialist testers',
     positions: [
+      { id: 'qa-assoc', title: 'Associate / Junior QA Tester', level: 'Entry', blurb: 'Testing basics, writing test cases, bug reports, SDLC, first-job questions.' },
       { id: 'qa-manual', title: 'QA Analyst / Manual Tester', level: 'Entry–Mid', blurb: 'Test design, test cases, defects, SDLC/STLC, SQL, agile testing.' },
+      { id: 'qa-senior', title: 'Senior QA Analyst', level: 'Senior', blurb: 'Risk-based testing, test strategy for features, mentoring, release sign-off, metrics.' },
       { id: 'qa-auto', title: 'QA Automation Engineer', level: 'Mid–Senior', blurb: 'Selenium, Playwright, API testing, frameworks, CI, flaky tests.' },
       { id: 'qa-sdet', title: 'SDET', level: 'Senior', blurb: 'Coding, test architecture, contract tests, test data, shift-left quality.' },
       { id: 'qa-perf', title: 'Performance Test Engineer', level: 'Mid–Senior', blurb: 'JMeter, k6, LoadRunner, workload models, bottleneck analysis.' },
       { id: 'qa-erp', title: 'ERP / Oracle Cloud Tester', level: 'All levels', blurb: 'Business process testing, UAT, quarterly update regression, ERP automation.' },
+      { id: 'qa-arch', title: 'Test Architect', level: 'Principal', blurb: 'Framework and test-platform design, test pyramid, environments, test data, tooling choices.' },
+      { id: 'qa-mobile', title: 'Mobile App Tester', level: 'Mid → Senior', blurb: 'iOS/Android, device matrix, Appium, app store releases, offline, push, performance.' },
+      { id: 'qa-api', title: 'API / Microservices Tester', level: 'Mid → Senior', blurb: 'REST/GraphQL, Postman, contract testing, auth, mocks, service virtualization.' },
+      { id: 'qa-data', title: 'Data / ETL Tester', level: 'Mid → Senior', blurb: 'Source-to-target, SQL reconciliation, data quality, warehouse and BI report testing.' },
+      { id: 'qa-a11y', title: 'Accessibility Tester', level: 'Mid → Senior', blurb: 'WCAG 2.2, screen readers, keyboard, contrast, ADA/Section 508, audits and fixes.' },
+      { id: 'qa-uat', title: 'UAT Coordinator / Business Tester', level: 'Mid → Lead', blurb: 'UAT planning, business scripts, sign-off, defect triage with users, cutover readiness.' },
+      { id: 'qa-sap', title: 'SAP Tester', level: 'Mid → Senior', blurb: 'O2C/P2P/R2R process testing, S/4HANA, Tricentis Tosca, transports, regression.' },
+      { id: 'qa-sfdc', title: 'Salesforce Tester', level: 'Mid → Senior', blurb: 'Profiles and permissions, flows, Apex triggers, releases, sandboxes, Provar/Copado.' },
+      { id: 'qa-game', title: 'Game Tester / Game QA', level: 'Entry → Lead', blurb: 'Gameplay, repro steps, compliance (TRC/XR), performance, multiplayer, live ops.' },
       { id: 'qa-lead', title: 'QA Lead / Test Manager', level: 'Lead', blurb: 'Test strategy, planning, metrics, team, release quality decisions.' },
-      { id: 'qa-dir', title: 'Director of Quality Engineering', level: 'Director', blurb: 'QE strategy, org design, tooling, quality culture, AI in testing.' }
+      { id: 'qa-dir', title: 'Director of Quality Engineering', level: 'Director', blurb: 'QE strategy, org design, tooling, quality culture, AI in testing.' },
+      { id: 'qa-vp', title: 'Head of QA / VP Quality Engineering', level: 'Executive', blurb: 'Quality as a business outcome, budget, org at scale, board-level risk, vendors.' }
+    ]
+  },
+  {
+    id: 'indtest', field: 'tech', name: 'Industry Testing & Validation', short: 'Industry QA', glyph: 'IV&V', color: '#0F766E', tint: '#E1F3F1',
+    tag: 'Regulated and industry-specific testing: pharma, medical devices, healthcare, banking, insurance, automotive, telecom',
+    positions: [
+      { id: 'it-csv', title: 'Computer System Validation (CSV/CSA) Engineer', level: 'Mid → Lead', blurb: 'GxP, 21 CFR Part 11, GAMP 5, IQ/OQ/PQ, risk-based CSA, traceability, audits.' },
+      { id: 'it-meddev', title: 'Medical Device Software V&V Engineer', level: 'Mid → Senior', blurb: 'IEC 62304, design controls, ISO 14971 risk, verification vs validation, FDA submissions.' },
+      { id: 'it-ehr', title: 'Healthcare EHR Tester', level: 'Mid → Senior', blurb: 'Epic/Cerner workflows, HL7/FHIR interfaces, HIPAA test data, upgrades, clinical safety.' },
+      { id: 'it-pay', title: 'Banking & Payments Tester', level: 'Mid → Senior', blurb: 'Cards, ACH, wires, ISO 20022, core banking, reconciliation, PCI, regulatory testing.' },
+      { id: 'it-ins', title: 'Insurance Systems Tester (Guidewire)', level: 'Mid → Senior', blurb: 'Policy, billing and claims, rating, Guidewire, state forms, batch, integrations.' },
+      { id: 'it-embed', title: 'Automotive / Embedded Test Engineer', level: 'Mid → Senior', blurb: 'HIL/SIL, CAN, ISO 26262, ASPICE, firmware, sensors, test benches, OTA updates.' },
+      { id: 'it-telecom', title: 'Telecom / Network Test Engineer', level: 'Mid → Senior', blurb: '4G/5G, IMS/VoLTE, network functions, protocol testing, drive tests, OSS/BSS.' }
     ]
   },
   {
@@ -261,6 +286,7 @@ window.CATALOG = [
       { id: 'sec-eng', title: 'Security Engineer', level: 'Mid → Senior', blurb: 'Zero trust, crypto, vuln management, AppSec, secrets, hardening.' },
       { id: 'sec-cloud', title: 'Cloud Security Engineer', level: 'Senior', blurb: 'Shared responsibility, IAM, CSPM/CNAPP, guardrails, cloud incidents.' },
       { id: 'sec-iam', title: 'IAM Engineer', level: 'Mid → Senior', blurb: 'SAML/OIDC, MFA, JML lifecycle, IGA, PAM, conditional access.' },
+      { id: 'sec-pentest', title: 'Penetration Tester / Ethical Hacker', level: 'Mid → Senior', blurb: 'Scoping, rules of engagement, OWASP, AD attacks, reporting, retests, red vs blue.' },
       { id: 'sec-grc', title: 'GRC Analyst', level: 'Mid → Senior', blurb: 'ISO 27001, SOC 2, NIST, PCI, risk registers, audits, vendor risk.' },
       { id: 'sec-socmgr', title: 'SOC Manager', level: 'Manager', blurb: '24x7 staffing, metrics, MDR, playbooks, detection engineering, IR.' },
       { id: 'sec-arch', title: 'Security Architect', level: 'Principal', blurb: 'Zero trust design, threat modeling, data protection, AI security.' },
@@ -357,12 +383,22 @@ window.CATALOG = [
   },
   {
     id: 'lifesci', field: 'health', name: 'Pharma & Life Sciences', short: 'Life Sciences', glyph: 'RX', color: '#4F46E5', tint: '#ECEBFD',
-    tag: 'Clinical research, regulatory affairs, GMP quality and pharmacovigilance',
+    tag: 'Clinical operations, data and statistics, medical affairs, regulatory, quality, validation, safety and commercial',
     positions: [
+      { id: 'ls-ctc', title: 'Clinical Trial Coordinator / Assistant', level: 'Entry', blurb: 'Site coordination, ICH-GCP basics, consent, visit schedules, TMF, query resolution.' },
       { id: 'ls-cra', title: 'Clinical Research Associate / CTM', level: 'Mid → Senior', blurb: 'ICH-GCP, monitoring visits, consent, SDV, SAEs, deviations, TMF.' },
+      { id: 'ls-cpm', title: 'Clinical Project Manager / Clinical Ops Lead', level: 'Senior → Director', blurb: 'Study timelines, budgets, CROs, enrollment, risk-based monitoring, inspection readiness.' },
+      { id: 'ls-cdm', title: 'Clinical Data Manager', level: 'Mid → Senior', blurb: 'EDC build, CRFs, edit checks, data review, CDISC, database lock, reconciliation.' },
+      { id: 'ls-sp', title: 'Statistical Programmer (SAS / R)', level: 'Mid → Senior', blurb: 'SDTM, ADaM, TLFs, define.xml, validation, double programming, submissions.' },
+      { id: 'ls-bio', title: 'Biostatistician', level: 'Mid → Principal', blurb: 'Study design, sample size, SAP, estimands, missing data, interim analyses, regulators.' },
+      { id: 'ls-msl', title: 'Medical Science Liaison', level: 'Mid → Senior', blurb: 'KOL engagement, scientific exchange, compliance, insights, congresses, territory plans.' },
       { id: 'ls-ra', title: 'Regulatory Affairs Specialist / Manager', level: 'Mid → Manager', blurb: 'IND/NDA/BLA, 510(k)/PMA, eCTD, labeling, change control, EU MDR.' },
       { id: 'ls-qa', title: 'GMP Quality Assurance', level: 'Mid → Manager', blurb: 'Deviations, CAPA, batch release, data integrity, validation, OOS, audits.' },
-      { id: 'ls-pv', title: 'Pharmacovigilance / Drug Safety', level: 'Mid → Senior', blurb: 'ICSRs, seriousness, causality, timelines, MedDRA, signals, PBRER.' }
+      { id: 'ls-qc', title: 'QC Lab Analyst', level: 'Entry → Senior', blurb: 'HPLC, method validation, OOS/OOT, stability, ALCOA+, lab investigations, LIMS.' },
+      { id: 'ls-val', title: 'Validation Engineer (Equipment, Process, Cleaning)', level: 'Mid → Senior', blurb: 'IQ/OQ/PQ, process validation stages, cleaning validation, URS, change control.' },
+      { id: 'ls-hoq', title: 'Head of Quality / VP Quality', level: 'Director → VP', blurb: 'Quality systems, inspections, FDA 483s and warning letters, culture, QP/release, metrics.' },
+      { id: 'ls-pv', title: 'Pharmacovigilance / Drug Safety', level: 'Mid → Senior', blurb: 'ICSRs, seriousness, causality, timelines, MedDRA, signals, PBRER.' },
+      { id: 'ls-sales', title: 'Pharma Sales Rep / Key Account Manager', level: 'Entry → Manager', blurb: 'Territory plans, HCP calls, on-label selling, compliance, access, launch, quota.' }
     ]
   },
   {
@@ -406,7 +442,7 @@ window.CATALOG = [
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
   { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'itlead'] },
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'indtest', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finspec', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',
@@ -415,7 +451,7 @@ window.FIELDS = [
     families: ['hrcore'] },
   { id: 'sales', name: 'Sales & Marketing', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1', tag: 'Account executives, sales leaders, digital marketing and customer success',
     families: ['salesmkt'] },
-  { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical research, regulatory, quality and drug safety',
+  { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical trials, biostatistics, medical affairs, regulatory, quality and drug safety',
     families: ['hcare', 'lifesci'] },
   { id: 'eng', name: 'Engineering & Construction', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC', tag: 'Mechanical, electrical, civil/structural engineers and construction project managers',
     families: ['engcore'] },
