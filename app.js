@@ -38,8 +38,9 @@ const fuHTML = x => { const f = x[6] && x[6].f; return f ? `<div class="fu"><h4>
    On the web the lock is off unless you open the site once with ?paywall=1 (to test it); ?paywall=0 turns it off again. */
 const PAY = Object.assign({ free: 5, price: '$0.99', product: 'full_access' }, window.PAYWALL || {});
 const NATIVE = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
-(() => { const q = new URLSearchParams(location.search); if (q.get('paywall') === '1') store.set('ip.paywall', 1); if (q.get('paywall') === '0') store.del('ip.paywall'); store.del('ip.pro'); })();
-const PAY_ON = NATIVE || !!store.get('ip.paywall', 0);
+(() => { const q = new URLSearchParams(location.search); if (q.has('paywall')) store.set('ip.paywall', q.get('paywall') === '0' ? 0 : 1); store.del('ip.pro'); })();
+// On by default everywhere (PAYWALL.web); ?paywall=0 turns it off on one browser, ?paywall=1 back on.
+const PAY_ON = NATIVE || (PAY.web !== false && store.get('ip.paywall', 1) !== 0);
 const isPro = () => !!store.get('ip.unlocked', 0);   // set only by a real Google Play purchase
 // Owner access: a secret code entered in Settings (tap the version line 5 times). Only its SHA-256 hash is in the code.
 const VERSION_LABEL = '1.0';
