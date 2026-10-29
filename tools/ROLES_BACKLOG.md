@@ -107,14 +107,6 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [ ] tc-scrum — Scrum Master / Agile Coach (ceremonies, impediments, metrics, coaching)
 - [ ] tc-tpm — Technical Program Manager (cross-team delivery, dependencies, risk)
 
-### New field `edu` "Education & Training" (color #0D9488, tint #DCF5F1) — cube `edu-core` "Education"
-- [ ] ed-teacher — K-12 Teacher (lesson planning, classroom management, assessment, differentiation)
-- [ ] ed-prof — Professor / Instructor (curriculum, teaching, research, advising)
-- [ ] ed-principal — School Principal / Administrator (leadership, staff, budgets, outcomes)
-- [ ] ed-counselor — School Counselor (guidance, support, college/career, caseload)
-- [ ] ed-instrdesign — Instructional Designer (ADDIE, e-learning, LMS, assessment)
-- [ ] ed-sped — Special Education Teacher (IEPs, accommodations, inclusion, compliance)
-
 ### New field `gov` "Government & Public Sector" (color #7C3AED, tint #EFE9FD) — cube `gov-core` "Public Sector"
 - [ ] gv-analyst — Policy Analyst (research, briefs, stakeholders, evaluation)
 - [ ] gv-admin — Public Administrator / City Manager (operations, budgets, services, council)
@@ -142,3 +134,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 
 ## Done
 (Finished roles get moved here by the daily task.)
+- [x] ed-teacher — K-12 Teacher — 2026-10-29
+- [x] ed-prof — Professor / Instructor — 2026-10-29
+- [x] ed-principal — School Principal / Administrator — 2026-10-29
+- [x] ed-counselor — School Counselor — 2026-10-29
+- [x] ed-instrdesign — Instructional Designer — 2026-10-29
+- [x] ed-sped — Special Education Teacher — 2026-10-29

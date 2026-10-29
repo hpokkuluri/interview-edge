@@ -490,6 +490,18 @@ window.CATALOG = [
       { id: 'bk-risk', title: 'Risk Manager (Enterprise / Financial)', level: 'Mid → Senior', blurb: 'Risk appetite, KRIs, market/credit/op risk, stress tests, controls, Basel.' },
       { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' }
     ]
+  },
+  {
+    id: 'edu-core', field: 'edu', name: 'Education & Training', short: 'Education', glyph: 'EDU', color: '#0D9488', tint: '#DCF5F1',
+    tag: 'K-12 and higher-ed teaching, school leadership, counseling and instructional design',
+    positions: [
+      { id: 'ed-teacher', title: 'K-12 Teacher', level: 'Entry → Senior', blurb: 'Lesson planning, classroom management, assessment, differentiation, families.' },
+      { id: 'ed-prof', title: 'Professor / Instructor', level: 'Mid → Senior', blurb: 'Curriculum, teaching, research, advising, assessment, academic service.' },
+      { id: 'ed-principal', title: 'School Principal / Administrator', level: 'Manager → Senior', blurb: 'Instructional leadership, staff, budgets, culture, data, families, compliance.' },
+      { id: 'ed-counselor', title: 'School Counselor', level: 'Entry → Senior', blurb: 'Guidance, social-emotional support, college/career, caseload, confidentiality.' },
+      { id: 'ed-instrdesign', title: 'Instructional Designer', level: 'Entry → Senior', blurb: 'ADDIE, e-learning, LMS, learning objectives, assessment, SME partnership.' },
+      { id: 'ed-sped', title: 'Special Education Teacher', level: 'Entry → Senior', blurb: 'IEPs, accommodations, inclusion, IDEA compliance, data, co-teaching.' }
+    ]
   }
 ];
 
@@ -514,7 +526,9 @@ window.FIELDS = [
   { id: 'biz', name: 'Legal, Consulting & Operations', glyph: 'BIZ', color: '#475569', tint: '#EEF1F5', tag: 'Compliance, corporate counsel, management consulting and operations leadership',
     families: ['legal', 'consult'] },
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
-    families: ['w1on1', 'wcareer'] }
+    families: ['w1on1', 'wcareer'] },
+  { id: 'edu', name: 'Education & Training', glyph: 'EDU', color: '#0D9488', tint: '#DCF5F1', tag: 'K-12 and higher-ed teaching, school leadership, counseling and instructional design',
+    families: ['edu-core'] }
 ];
 // Shared bank shown in every role (and on the home screen).
 window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',
