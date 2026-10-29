@@ -233,13 +233,13 @@ window.COUNTS = {
  "bk-actuary": 11,
  "bk-risk": 12,
  "bk-agent": 11,
- "ed-teacher": 13,
- "ed-prof": 12,
- "ed-principal": 12,
- "ed-counselor": 12,
- "ed-instrdesign": 12,
- "ed-sped": 12,
+ "ed-teacher": 50,
+ "ed-prof": 51,
+ "ed-principal": 52,
+ "ed-counselor": 52,
+ "ed-instrdesign": 52,
+ "ed-sped": 52,
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 10291;
+window.FU_TOTAL = 10527;
