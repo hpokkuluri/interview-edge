@@ -633,7 +633,7 @@ function restorePro() {
 function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
 function vHome(ctx) {
   const render = () => {
-    const total = Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);   // questions plus their follow-up questions
+    const total = totalQ();   // questions plus their follow-up questions — one source of truth (also used on welcome, search, paywall)
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
@@ -697,7 +697,7 @@ const roleMatches = q => { const out = []; FAMS.forEach(f => f.positions.forEach
 function vSearch(ctx) {
   ctx.el.innerHTML = `${bar(ctx, 'Search')}<div class="wrap">
     <label class="search" style="margin-top:14px">${I.search}<input id="gs" type="search" placeholder="Try “IFRS 16”, “cycle count”, “controller”…" autocomplete="off" enterkeyhint="search"></label>
-    <div id="gres"><div class="empty">Search ${Object.values(COUNTS).reduce((a, b) => a + b, 0).toLocaleString()} questions across every role, plus role names.</div></div></div>`;
+    <div id="gres"><div class="empty">Search ${totalQ().toLocaleString()} questions across every role, plus role names.</div></div></div>`;
   const inp = $('#gs', ctx.el), out = $('#gres', ctx.el);
   setTimeout(() => inp.focus(), 350);
   let timer;
