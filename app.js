@@ -639,6 +639,7 @@ function vHome(ctx) {
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
     const ess = posProgress('common');
     const rev = Object.values(PROG).filter(p => p.s === 'r').length, stars = Object.values(PROG).filter(p => p.star).length;
+    const roleCount = Object.keys(COUNTS).filter(id => id !== 'common' && !id.startsWith('ora-mod-')).length;
     const h = new Date().getHours(), greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
     ctx.el.innerHTML = `<div class="home light">
       <div class="hm-head"><div class="hm-top"><div class="hm-brand"><span class="hm-logo">${LOGO}</span><b>Interview <em>Edge</em></b></div>
@@ -649,6 +650,7 @@ function vHome(ctx) {
         ${PAY_ON ? (isPro() ? '<div class="hm-plan on">' + I.check + '<span><b>Full access</b> · every question unlocked</span></div>' : `<div class="hm-plan">${I.lock}<span><b>Free preview</b> · ${PAY.free} questions per role</span><button class="btn gold" data-buy>Upgrade ${PAY.price}</button></div>`) : ''}
       </div>
       <div class="home-main"><div class="wrap">
+        <button class="hm-daily" data-go="search"><span class="hd-badge">DAILY</span><span class="hd-txt"><b>🚀 6 new roles &amp; ~300 questions added every day</b><span>Now ${roleCount} roles · ${total.toLocaleString()} questions — and growing</span></span>${I.arrow.replace('<svg', '<svg width="18" height="18" style="color:var(--gold);flex-shrink:0"')}</button>
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
         <div class="sec-h">Start from your resume</div>
         <button class="card esscard" data-go="resume" style="${famVars(RES_FAM)}"><div class="pos-row">${cubeSVG(RES_FAM)}<div style="flex:1;min-width:0"><h3>${esc(RES_FAM.name)}</h3><p>${RS && RS.target && POS[RS.target] ? 'Practicing for ' + esc(POS[RS.target].full) + ' — tap to open or change' : esc(RES_FAM.tag)}</p></div></div></button>
