@@ -579,6 +579,22 @@ window.CATALOG = [
       { id: 'md-journalist', title: 'Journalist / Reporter', level: 'Entry → Senior', blurb: 'Reporting, sources, accuracy, ethics, deadlines, interviewing, writing.' },
       { id: 'md-podcast', title: 'Podcast / Audio Producer', level: 'Entry → Senior', blurb: 'Production, editing, sound, guests, storytelling, distribution, growth.' }
     ]
+  },
+  {
+    id: 'trans-core', field: 'trans', name: 'Transportation & Aviation', short: 'Transport', glyph: 'TRN', color: '#0369A1', tint: '#E0F0F9',
+    tag: 'Pilots, air traffic control, truck drivers, fleet, aviation maintenance, flight crew, dispatch, transit and rail',
+    positions: [
+      { id: 'tl-pilot', title: 'Commercial Pilot', level: 'Mid → Senior', blurb: 'Flight safety, procedures, CRM, weather, decision-making, regulations.' },
+      { id: 'tl-atc', title: 'Air Traffic Controller', level: 'Mid → Senior', blurb: 'Separation, communication, situational awareness, pressure, safety.' },
+      { id: 'tl-cdl', title: 'Commercial Truck Driver (CDL)', level: 'Entry → Senior', blurb: 'Safety, HOS, inspections, logistics, DOT, defensive driving.' },
+      { id: 'tl-fleet', title: 'Fleet Manager', level: 'Mid → Senior', blurb: 'Vehicles, maintenance, drivers, compliance, cost, routing, uptime.' },
+      { id: 'tl-avmaint', title: 'Aviation Maintenance Technician', level: 'Entry → Senior', blurb: 'Airworthiness, FAA, inspections, troubleshooting, documentation, safety.' },
+      { id: 'tl-flightatt', title: 'Flight Attendant', level: 'Entry → Senior', blurb: 'Safety, emergencies, service, procedures, passengers, composure.' },
+      { id: 'tl-dispatch', title: 'Dispatcher', level: 'Entry → Senior', blurb: 'Coordination, routing, communication, prioritization, pressure, tracking.' },
+      { id: 'tl-transit', title: 'Transit / Bus Operator', level: 'Entry → Mid', blurb: 'Safety, schedules, passengers, defensive driving, service, composure.' },
+      { id: 'tl-rail', title: 'Railroad Conductor / Engineer', level: 'Entry → Senior', blurb: 'Operations, signals, safety rules, switching, communication, compliance.' },
+      { id: 'tl-logcoord', title: 'Transportation / Logistics Coordinator', level: 'Entry → Mid', blurb: 'Scheduling, carriers, freight, tracking, problems, documentation.' }
+    ]
   }
 ];
 
@@ -613,7 +629,9 @@ window.FIELDS = [
   { id: 'hosp', name: 'Hospitality, Retail & Real Estate', glyph: 'HSP', color: '#EA580C', tint: '#FCEEE2', tag: 'Hotel, restaurant, retail, real estate, property, events and facilities management',
     families: ['hosp-core'] },
   { id: 'media', name: 'Media, Creative & Communications', glyph: 'MED', color: '#DB2777', tint: '#FCE7F1', tag: 'UX and graphic design, social media, PR, copywriting and video production',
-    families: ['media-core'] }
+    families: ['media-core'] },
+  { id: 'trans', name: 'Transportation, Logistics & Aviation', glyph: 'TRN', color: '#0369A1', tint: '#E0F0F9', tag: 'Pilots, air traffic control, truck drivers, fleet, aviation maintenance, flight crew, dispatch, transit and rail',
+    families: ['trans-core'] }
 ];
 // Shared bank shown in every role (and on the home screen).
 window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',

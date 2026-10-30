@@ -286,7 +286,17 @@ window.COUNTS = {
  "md-photo": 12,
  "md-journalist": 12,
  "md-podcast": 12,
+ "tl-pilot": 12,
+ "tl-atc": 12,
+ "tl-cdl": 12,
+ "tl-fleet": 12,
+ "tl-avmaint": 0,
+ "tl-flightatt": 0,
+ "tl-dispatch": 0,
+ "tl-transit": 0,
+ "tl-rail": 0,
+ "tl-logcoord": 0,
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 11093;
+window.FU_TOTAL = 11141;
