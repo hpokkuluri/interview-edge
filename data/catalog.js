@@ -502,6 +502,22 @@ window.CATALOG = [
       { id: 'ed-instrdesign', title: 'Instructional Designer', level: 'Entry → Senior', blurb: 'ADDIE, e-learning, LMS, learning objectives, assessment, SME partnership.' },
       { id: 'ed-sped', title: 'Special Education Teacher', level: 'Entry → Senior', blurb: 'IEPs, accommodations, inclusion, IDEA compliance, data, co-teaching.' }
     ]
+  },
+  {
+    id: 'trades-core', field: 'trades', name: 'Skilled Trades', short: 'Trades', glyph: 'TRD', color: '#C2410C', tint: '#FBECE3',
+    tag: 'Electricians, plumbers, HVAC, welders, mechanics and industrial maintenance',
+    positions: [
+      { id: 'tr-electrician', title: 'Electrician', level: 'Apprentice → Master', blurb: 'NEC code, wiring, panels, troubleshooting, safety, lockout/tagout, inspections.' },
+      { id: 'tr-plumber', title: 'Plumber / Pipefitter', level: 'Apprentice → Master', blurb: 'Supply/DWV, code, fixtures, soldering, backflow, leaks, troubleshooting.' },
+      { id: 'tr-hvac', title: 'HVAC Technician', level: 'Entry → Senior', blurb: 'Refrigeration cycle, superheat/subcool, EPA 608, electrical, diagnostics, airflow.' },
+      { id: 'tr-welder', title: 'Welder / Fabricator', level: 'Entry → Senior', blurb: 'MIG/TIG/stick, joints, positions, blueprints, inspection, metallurgy, safety.' },
+      { id: 'tr-auto', title: 'Automotive Technician', level: 'Entry → Master', blurb: 'Diagnostics, OBD-II, brakes, engine, electrical, ASE, customer trust.' },
+      { id: 'tr-diesel', title: 'Diesel / Heavy Equipment Technician', level: 'Entry → Senior', blurb: 'Diesel engines, hydraulics, DOT, air brakes, electrical, fleet uptime.' },
+      { id: 'tr-machinist', title: 'CNC Machinist / Machinist', level: 'Entry → Senior', blurb: 'G-code, GD&T, tolerances, tooling, setup, measurement, quality.' },
+      { id: 'tr-maintenance', title: 'Industrial Maintenance Tech / Millwright', level: 'Entry → Senior', blurb: 'PLCs, hydraulics, pneumatics, bearings, alignment, PM, downtime, safety.' },
+      { id: 'tr-carpenter', title: 'Carpenter', level: 'Apprentice → Senior', blurb: 'Framing, finish, blueprints, layout, tools, code, measuring, safety.' },
+      { id: 'tr-lineworker', title: 'Electrical Lineworker', level: 'Apprentice → Journeyman', blurb: 'High voltage, poles, transformers, PPE, grounding, storm response, safety.' }
+    ]
   }
 ];
 
@@ -528,7 +544,9 @@ window.FIELDS = [
   { id: 'work', name: 'At Work: 1:1s & Reviews', glyph: '1:1', color: '#0F766E', tint: '#E3F4F1', tag: 'Meetings with your manager, skip-level and VP, reviews and promotion — tailored to your saved role',
     families: ['w1on1', 'wcareer'] },
   { id: 'edu', name: 'Education & Training', glyph: 'EDU', color: '#0D9488', tint: '#DCF5F1', tag: 'K-12 and higher-ed teaching, school leadership, counseling and instructional design',
-    families: ['edu-core'] }
+    families: ['edu-core'] },
+  { id: 'trades', name: 'Skilled Trades & Field Services', glyph: 'TRD', color: '#C2410C', tint: '#FBECE3', tag: 'Electricians, plumbers, HVAC, welders, mechanics, machinists, maintenance and lineworkers',
+    families: ['trades-core'] }
 ];
 // Shared bank shown in every role (and on the home screen).
 window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',

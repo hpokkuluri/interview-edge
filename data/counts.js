@@ -239,7 +239,17 @@ window.COUNTS = {
  "ed-counselor": 52,
  "ed-instrdesign": 52,
  "ed-sped": 52,
+ "tr-electrician": 13,
+ "tr-plumber": 12,
+ "tr-hvac": 12,
+ "tr-welder": 12,
+ "tr-auto": 12,
+ "tr-diesel": 12,
+ "tr-machinist": 13,
+ "tr-maintenance": 12,
+ "tr-carpenter": 12,
+ "tr-lineworker": 12,
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 10527;
+window.FU_TOTAL = 10649;
