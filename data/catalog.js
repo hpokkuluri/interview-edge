@@ -541,7 +541,11 @@ window.CATALOG = [
       { id: 'gv-grants', title: 'Grants Manager', level: 'Mid → Senior', blurb: 'Grant writing, federal funds, compliance, reporting, budgets, audits.' },
       { id: 'gv-social', title: 'Social Worker / Case Manager', level: 'Entry → Senior', blurb: 'Assessment, caseload, resources, ethics, documentation, advocacy.' },
       { id: 'gv-emergency', title: 'Emergency Management Specialist', level: 'Mid → Senior', blurb: 'Preparedness, response, FEMA, drills, continuity, incident command.' },
-      { id: 'gv-procurement', title: 'Government Procurement Officer', level: 'Mid → Senior', blurb: 'FAR, solicitations, bids, contracts, compliance, vendor management.' }
+      { id: 'gv-procurement', title: 'Government Procurement Officer', level: 'Mid → Senior', blurb: 'FAR, solicitations, bids, contracts, compliance, vendor management.' },
+      { id: 'gv-planner', title: 'Urban / City Planner', level: 'Entry → Senior', blurb: 'Zoning, land use, development review, community input, long-range plans.' },
+      { id: 'gv-publichealth', title: 'Public Health Administrator', level: 'Mid → Senior', blurb: 'Programs, population health, outbreaks, data, community, policy.' },
+      { id: 'gv-budget', title: 'Government Budget Analyst', level: 'Mid → Senior', blurb: 'Budget development, forecasting, appropriations, analysis, oversight.' },
+      { id: 'gv-clerk', title: 'Court / Administrative Clerk', level: 'Entry → Mid', blurb: 'Records, filings, procedures, public service, accuracy, confidentiality.' }
     ]
   },
   {
@@ -554,7 +558,10 @@ window.CATALOG = [
       { id: 'hs-realestate', title: 'Real Estate Agent / Broker', level: 'Entry → Senior', blurb: 'Listings, buyers, negotiation, closing, market, contracts, clients.' },
       { id: 'hs-property', title: 'Property Manager', level: 'Mid → Senior', blurb: 'Tenants, leasing, maintenance, budgets, rent, vendors, compliance.' },
       { id: 'hs-event', title: 'Event / Catering Manager', level: 'Mid → Senior', blurb: 'Planning, vendors, logistics, budgets, clients, execution, timelines.' },
-      { id: 'hs-facilities', title: 'Facilities Manager', level: 'Mid → Senior', blurb: 'Maintenance, vendors, safety, space, budgets, systems, compliance.' }
+      { id: 'hs-facilities', title: 'Facilities Manager', level: 'Mid → Senior', blurb: 'Maintenance, vendors, safety, space, budgets, systems, compliance.' },
+      { id: 'hs-travel', title: 'Travel / Tourism Manager', level: 'Mid → Senior', blurb: 'Itineraries, bookings, clients, vendors, service, destinations.' },
+      { id: 'hs-spa', title: 'Spa / Wellness Manager', level: 'Mid → Senior', blurb: 'Operations, services, staff, guest experience, retail, scheduling.' },
+      { id: 'hs-frontoffice', title: 'Front Office / Guest Services Manager', level: 'Mid → Senior', blurb: 'Front desk, check-in, guest issues, upsell, staff, systems.' }
     ]
   },
   {
@@ -566,7 +573,11 @@ window.CATALOG = [
       { id: 'md-social', title: 'Social Media Manager', level: 'Entry → Senior', blurb: 'Strategy, content, community, analytics, calendar, platforms, growth.' },
       { id: 'md-pr', title: 'PR / Communications Manager', level: 'Mid → Senior', blurb: 'Media relations, messaging, crisis, press, campaigns, reputation.' },
       { id: 'md-copywriter', title: 'Copywriter / Technical Writer', level: 'Entry → Senior', blurb: 'Clarity, audience, editing, voice, structure, documentation, SEO.' },
-      { id: 'md-video', title: 'Video Producer / Editor', level: 'Entry → Senior', blurb: 'Production, editing, storytelling, delivery, pacing, motion, assets.' }
+      { id: 'md-video', title: 'Video Producer / Editor', level: 'Entry → Senior', blurb: 'Production, editing, storytelling, delivery, pacing, motion, assets.' },
+      { id: 'md-artdir', title: 'Art Director', level: 'Mid → Senior', blurb: 'Creative vision, teams, concepts, brand, campaigns, review, direction.' },
+      { id: 'md-photo', title: 'Photographer', level: 'Entry → Senior', blurb: 'Composition, lighting, shoots, editing, clients, style, delivery.' },
+      { id: 'md-journalist', title: 'Journalist / Reporter', level: 'Entry → Senior', blurb: 'Reporting, sources, accuracy, ethics, deadlines, interviewing, writing.' },
+      { id: 'md-podcast', title: 'Podcast / Audio Producer', level: 'Entry → Senior', blurb: 'Production, editing, sound, guests, storytelling, distribution, growth.' }
     ]
   }
 ];
