@@ -518,6 +518,43 @@ window.CATALOG = [
       { id: 'tr-carpenter', title: 'Carpenter', level: 'Apprentice → Senior', blurb: 'Framing, finish, blueprints, layout, tools, code, measuring, safety.' },
       { id: 'tr-lineworker', title: 'Electrical Lineworker', level: 'Apprentice → Journeyman', blurb: 'High voltage, poles, transformers, PPE, grounding, storm response, safety.' }
     ]
+  },
+  {
+    id: 'gov-core', field: 'gov', name: 'Public Sector', short: 'Public Sector', glyph: 'GOV', color: '#7C3AED', tint: '#EFE9FD',
+    tag: 'Policy analysts, public administrators, grants, social work, emergency management and procurement',
+    positions: [
+      { id: 'gv-analyst', title: 'Policy Analyst', level: 'Entry → Senior', blurb: 'Research, policy briefs, stakeholders, program evaluation, data, recommendations.' },
+      { id: 'gv-admin', title: 'Public Administrator / City Manager', level: 'Mid → Exec', blurb: 'Operations, budgets, public services, council relations, staff, community.' },
+      { id: 'gv-grants', title: 'Grants Manager', level: 'Mid → Senior', blurb: 'Grant writing, federal funds, compliance, reporting, budgets, audits.' },
+      { id: 'gv-social', title: 'Social Worker / Case Manager', level: 'Entry → Senior', blurb: 'Assessment, caseload, resources, ethics, documentation, advocacy.' },
+      { id: 'gv-emergency', title: 'Emergency Management Specialist', level: 'Mid → Senior', blurb: 'Preparedness, response, FEMA, drills, continuity, incident command.' },
+      { id: 'gv-procurement', title: 'Government Procurement Officer', level: 'Mid → Senior', blurb: 'FAR, solicitations, bids, contracts, compliance, vendor management.' }
+    ]
+  },
+  {
+    id: 'hosp-core', field: 'hosp', name: 'Hospitality & Retail', short: 'Hospitality', glyph: 'HSP', color: '#EA580C', tint: '#FCEEE2',
+    tag: 'Hotel, restaurant, retail, real estate, property, events and facilities managers',
+    positions: [
+      { id: 'hs-hotel', title: 'Hotel / Hospitality Manager', level: 'Mid → Senior', blurb: 'Operations, guest service, revenue, staff, occupancy, standards.' },
+      { id: 'hs-restaurant', title: 'Restaurant Manager', level: 'Mid → Senior', blurb: 'Operations, food cost, labor, service, safety, scheduling, guests.' },
+      { id: 'hs-retail', title: 'Retail Store Manager', level: 'Mid → Senior', blurb: 'Sales, team, inventory, loss prevention, KPIs, customer experience.' },
+      { id: 'hs-realestate', title: 'Real Estate Agent / Broker', level: 'Entry → Senior', blurb: 'Listings, buyers, negotiation, closing, market, contracts, clients.' },
+      { id: 'hs-property', title: 'Property Manager', level: 'Mid → Senior', blurb: 'Tenants, leasing, maintenance, budgets, rent, vendors, compliance.' },
+      { id: 'hs-event', title: 'Event / Catering Manager', level: 'Mid → Senior', blurb: 'Planning, vendors, logistics, budgets, clients, execution, timelines.' },
+      { id: 'hs-facilities', title: 'Facilities Manager', level: 'Mid → Senior', blurb: 'Maintenance, vendors, safety, space, budgets, systems, compliance.' }
+    ]
+  },
+  {
+    id: 'media-core', field: 'media', name: 'Creative & Comms', short: 'Creative', glyph: 'MED', color: '#DB2777', tint: '#FCE7F1',
+    tag: 'UX and graphic designers, social media, PR, copywriters and video producers',
+    positions: [
+      { id: 'md-ux', title: 'UX / Product Designer', level: 'Entry → Senior', blurb: 'Research, wireframes, prototypes, usability, design systems, Figma.' },
+      { id: 'md-graphic', title: 'Graphic Designer', level: 'Entry → Senior', blurb: 'Brand, layout, typography, tools, feedback, production, consistency.' },
+      { id: 'md-social', title: 'Social Media Manager', level: 'Entry → Senior', blurb: 'Strategy, content, community, analytics, calendar, platforms, growth.' },
+      { id: 'md-pr', title: 'PR / Communications Manager', level: 'Mid → Senior', blurb: 'Media relations, messaging, crisis, press, campaigns, reputation.' },
+      { id: 'md-copywriter', title: 'Copywriter / Technical Writer', level: 'Entry → Senior', blurb: 'Clarity, audience, editing, voice, structure, documentation, SEO.' },
+      { id: 'md-video', title: 'Video Producer / Editor', level: 'Entry → Senior', blurb: 'Production, editing, storytelling, delivery, pacing, motion, assets.' }
+    ]
   }
 ];
 
@@ -546,7 +583,13 @@ window.FIELDS = [
   { id: 'edu', name: 'Education & Training', glyph: 'EDU', color: '#0D9488', tint: '#DCF5F1', tag: 'K-12 and higher-ed teaching, school leadership, counseling and instructional design',
     families: ['edu-core'] },
   { id: 'trades', name: 'Skilled Trades & Field Services', glyph: 'TRD', color: '#C2410C', tint: '#FBECE3', tag: 'Electricians, plumbers, HVAC, welders, mechanics, machinists, maintenance and lineworkers',
-    families: ['trades-core'] }
+    families: ['trades-core'] },
+  { id: 'gov', name: 'Government & Public Sector', glyph: 'GOV', color: '#7C3AED', tint: '#EFE9FD', tag: 'Policy analysts, public administrators, grants, social work, emergency management and procurement',
+    families: ['gov-core'] },
+  { id: 'hosp', name: 'Hospitality, Retail & Real Estate', glyph: 'HSP', color: '#EA580C', tint: '#FCEEE2', tag: 'Hotel, restaurant, retail, real estate, property, events and facilities management',
+    families: ['hosp-core'] },
+  { id: 'media', name: 'Media, Creative & Communications', glyph: 'MED', color: '#DB2777', tint: '#FCE7F1', tag: 'UX and graphic design, social media, PR, copywriting and video production',
+    families: ['media-core'] }
 ];
 // Shared bank shown in every role (and on the home screen).
 window.ESSENTIALS = { id: 'common', name: 'Interview Essentials', short: 'Essentials', glyph: 'ESS', color: '#BE185D', tint: '#FBE7F0',

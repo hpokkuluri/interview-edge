@@ -249,7 +249,26 @@ window.COUNTS = {
  "tr-maintenance": 12,
  "tr-carpenter": 12,
  "tr-lineworker": 12,
+ "gv-analyst": 12,
+ "gv-admin": 12,
+ "gv-grants": 12,
+ "gv-social": 12,
+ "gv-emergency": 12,
+ "gv-procurement": 12,
+ "hs-hotel": 12,
+ "hs-restaurant": 12,
+ "hs-retail": 12,
+ "hs-realestate": 12,
+ "hs-property": 12,
+ "hs-event": 12,
+ "hs-facilities": 12,
+ "md-ux": 12,
+ "md-graphic": 12,
+ "md-social": 12,
+ "md-pr": 12,
+ "md-copywriter": 12,
+ "md-video": 12,
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 10649;
+window.FU_TOTAL = 10877;
