@@ -382,6 +382,19 @@ window.CATALOG = [
     ]
   },
   {
+    id: 'health-clin', field: 'health', name: 'Clinical & Allied Health', short: 'Clinical', glyph: 'MD', color: '#0891B2', tint: '#E0F4F8',
+    tag: 'Nurse practitioners, pharmacists, physical therapists, lab and imaging techs, coders and practice managers',
+    positions: [
+      { id: 'hc-np', title: 'Nurse Practitioner', level: 'Mid → Senior', blurb: 'Assessment, diagnosis, prescribing, scope of practice, patient care, collaboration.' },
+      { id: 'hc-pharmacist', title: 'Pharmacist', level: 'Mid → Senior', blurb: 'Dispensing accuracy, interactions, counseling, MTM, compliance, verification.' },
+      { id: 'hc-pt', title: 'Physical Therapist', level: 'Entry → Senior', blurb: 'Evaluation, treatment plans, outcomes, documentation, patient motivation.' },
+      { id: 'hc-medtech', title: 'Medical Lab Technologist', level: 'Entry → Senior', blurb: 'Testing, QC, CLIA, specimen handling, accuracy, result integrity.' },
+      { id: 'hc-radtech', title: 'Radiologic Technologist', level: 'Entry → Senior', blurb: 'Imaging, positioning, radiation safety, ALARA, PACS, patient care.' },
+      { id: 'hc-coder', title: 'Medical Coder / Biller', level: 'Entry → Senior', blurb: 'ICD-10, CPT, compliance, denials, documentation, accuracy.' },
+      { id: 'hc-practice-mgr', title: 'Medical Practice Manager', level: 'Mid → Senior', blurb: 'Operations, staff, billing, scheduling, compliance, patient experience.' }
+    ]
+  },
+  {
     id: 'lifesci', field: 'health', name: 'Pharma & Life Sciences', short: 'Life Sciences', glyph: 'RX', color: '#4F46E5', tint: '#ECEBFD',
     tag: 'Clinical operations, data and statistics, medical affairs, regulatory, quality, validation, safety and commercial',
     positions: [
@@ -571,7 +584,7 @@ window.FIELDS = [
   { id: 'sales', name: 'Sales & Marketing', glyph: 'S&M', color: '#DB2777', tint: '#FCE7F1', tag: 'Account executives, sales leaders, digital marketing and customer success',
     families: ['salesmkt', 'sm-spec'] },
   { id: 'health', name: 'Healthcare & Life Sciences', glyph: 'MED', color: '#0891B2', tint: '#E0F4F8', tag: 'Nursing, healthcare operations, clinical informatics, clinical trials, biostatistics, medical affairs, regulatory, quality and drug safety',
-    families: ['hcare', 'lifesci'] },
+    families: ['hcare', 'health-clin', 'lifesci'] },
   { id: 'eng', name: 'Engineering & Construction', glyph: 'ENG', color: '#CA8A04', tint: '#FBF3DC', tag: 'Mechanical, electrical, civil/structural engineers and construction project managers',
     families: ['engcore', 'en-spec'] },
   { id: 'bank', name: 'Banking & Insurance', glyph: 'BNK', color: '#1E40AF', tint: '#E5EAFB', tag: 'Commercial banking, AML/KYC compliance, underwriting and claims',
