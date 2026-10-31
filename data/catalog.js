@@ -421,7 +421,8 @@ window.CATALOG = [
       { id: 'en-mech', title: 'Mechanical Engineer', level: 'Mid → Senior', blurb: 'Stress, fatigue, GD&T, tolerances, FEA, thermal, fluids, DFM, testing.' },
       { id: 'en-elec', title: 'Electrical Engineer (Power / Controls)', level: 'Mid → Senior', blurb: 'Three-phase, NEC sizing, short circuit, arc flash, motors, PLCs, PID.' },
       { id: 'en-civil', title: 'Civil / Structural Engineer', level: 'Mid → Senior', blurb: 'ASCE 7 loads, steel and concrete design, seismic, foundations, stormwater.' },
-      { id: 'en-cpm', title: 'Construction Project Manager', level: 'Senior', blurb: 'Delivery methods, CPM schedules, cost, change orders, RFIs, safety, closeout.' }
+      { id: 'en-cpm', title: 'Construction Project Manager', level: 'Senior', blurb: 'Delivery methods, CPM schedules, cost, change orders, RFIs, safety, closeout.' },
+      { id: 'en-aero', title: 'Aerospace Engineer', level: 'Mid → Senior', blurb: 'Aerodynamics, lift, structures, factor of safety, propulsion, FEA/CFD, FAR 25.' }
     ]
   },
   {
@@ -501,7 +502,8 @@ window.CATALOG = [
       { id: 'bk-mortgage', title: 'Mortgage Loan Officer / Underwriter', level: 'Mid → Senior', blurb: 'DTI, LTV, income docs, AUS, conforming/FHA, TRID, conditions, pipeline.' },
       { id: 'bk-actuary', title: 'Actuary (Life / P&C / Health)', level: 'Entry → Senior', blurb: 'Reserving, pricing, exams, models, assumptions, loss triangles, capital.' },
       { id: 'bk-risk', title: 'Risk Manager (Enterprise / Financial)', level: 'Mid → Senior', blurb: 'Risk appetite, KRIs, market/credit/op risk, stress tests, controls, Basel.' },
-      { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' }
+      { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' },
+      { id: 'bk-advisor', title: 'Financial Advisor / Wealth Manager', level: 'Entry → Senior', blurb: 'Planning, fiduciary vs Reg BI, allocation, retirement, tax efficiency, fees.' }
     ]
   },
   {
@@ -513,7 +515,8 @@ window.CATALOG = [
       { id: 'ed-principal', title: 'School Principal / Administrator', level: 'Manager → Senior', blurb: 'Instructional leadership, staff, budgets, culture, data, families, compliance.' },
       { id: 'ed-counselor', title: 'School Counselor', level: 'Entry → Senior', blurb: 'Guidance, social-emotional support, college/career, caseload, confidentiality.' },
       { id: 'ed-instrdesign', title: 'Instructional Designer', level: 'Entry → Senior', blurb: 'ADDIE, e-learning, LMS, learning objectives, assessment, SME partnership.' },
-      { id: 'ed-sped', title: 'Special Education Teacher', level: 'Entry → Senior', blurb: 'IEPs, accommodations, inclusion, IDEA compliance, data, co-teaching.' }
+      { id: 'ed-sped', title: 'Special Education Teacher', level: 'Entry → Senior', blurb: 'IEPs, accommodations, inclusion, IDEA compliance, data, co-teaching.' },
+      { id: 'ed-psych', title: 'School Psychologist', level: 'Entry → Senior', blurb: 'Assessment, MTSS/RTI, IEP eligibility, FBA/BIP, counseling, crisis, ethics.' }
     ]
   },
   {
@@ -529,7 +532,8 @@ window.CATALOG = [
       { id: 'tr-machinist', title: 'CNC Machinist / Machinist', level: 'Entry → Senior', blurb: 'G-code, GD&T, tolerances, tooling, setup, measurement, quality.' },
       { id: 'tr-maintenance', title: 'Industrial Maintenance Tech / Millwright', level: 'Entry → Senior', blurb: 'PLCs, hydraulics, pneumatics, bearings, alignment, PM, downtime, safety.' },
       { id: 'tr-carpenter', title: 'Carpenter', level: 'Apprentice → Senior', blurb: 'Framing, finish, blueprints, layout, tools, code, measuring, safety.' },
-      { id: 'tr-lineworker', title: 'Electrical Lineworker', level: 'Apprentice → Journeyman', blurb: 'High voltage, poles, transformers, PPE, grounding, storm response, safety.' }
+      { id: 'tr-lineworker', title: 'Electrical Lineworker', level: 'Apprentice → Journeyman', blurb: 'High voltage, poles, transformers, PPE, grounding, storm response, safety.' },
+      { id: 'tr-elevator', title: 'Elevator Installer / Mechanic', level: 'Apprentice → Journeyman', blurb: 'Traction vs hydraulic, governor & safeties, ASME A17.1, troubleshooting, LOTO.' }
     ]
   },
   {
@@ -561,7 +565,8 @@ window.CATALOG = [
       { id: 'hs-facilities', title: 'Facilities Manager', level: 'Mid → Senior', blurb: 'Maintenance, vendors, safety, space, budgets, systems, compliance.' },
       { id: 'hs-travel', title: 'Travel / Tourism Manager', level: 'Mid → Senior', blurb: 'Itineraries, bookings, clients, vendors, service, destinations.' },
       { id: 'hs-spa', title: 'Spa / Wellness Manager', level: 'Mid → Senior', blurb: 'Operations, services, staff, guest experience, retail, scheduling.' },
-      { id: 'hs-frontoffice', title: 'Front Office / Guest Services Manager', level: 'Mid → Senior', blurb: 'Front desk, check-in, guest issues, upsell, staff, systems.' }
+      { id: 'hs-frontoffice', title: 'Front Office / Guest Services Manager', level: 'Mid → Senior', blurb: 'Front desk, check-in, guest issues, upsell, staff, systems.' },
+      { id: 'hs-chef', title: 'Executive Chef / Culinary Director', level: 'Mid → Senior', blurb: 'Menu engineering, food & prime cost, HACCP, brigade, labor, consistency.' }
     ]
   },
   {
@@ -593,7 +598,8 @@ window.CATALOG = [
       { id: 'tl-dispatch', title: 'Dispatcher', level: 'Entry → Senior', blurb: 'Coordination, routing, communication, prioritization, pressure, tracking.' },
       { id: 'tl-transit', title: 'Transit / Bus Operator', level: 'Entry → Mid', blurb: 'Safety, schedules, passengers, defensive driving, service, composure.' },
       { id: 'tl-rail', title: 'Railroad Conductor / Engineer', level: 'Entry → Senior', blurb: 'Operations, signals, safety rules, switching, communication, compliance.' },
-      { id: 'tl-logcoord', title: 'Transportation / Logistics Coordinator', level: 'Entry → Mid', blurb: 'Scheduling, carriers, freight, tracking, problems, documentation.' }
+      { id: 'tl-logcoord', title: 'Transportation / Logistics Coordinator', level: 'Entry → Mid', blurb: 'Scheduling, carriers, freight, tracking, problems, documentation.' },
+      { id: 'tl-marine', title: 'Marine / Ship Captain (Merchant Mariner)', level: 'Mid → Senior', blurb: 'COLREGs, ECDIS/radar, BRM, SOLAS/MARPOL/STCW, stability (GM), emergencies.' }
     ]
   }
 ];

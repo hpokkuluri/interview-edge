@@ -162,6 +162,51 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Next
 
+> Note (2026-10-31): the older queue sections below (Finance/SCM/Healthcare/Tech `tc-*`,
+> and the `gov`/`hosp`/`media` fields) are now largely **already built under different ids**
+> — e.g. `fa-staff`≈`fa-acct`, `tc-ml`≈`da-ml`, `sc-warehouse`≈`sc-wh`, and every `gv-*`/`hs-*`/`md-*`
+> item is live. Before building any of them, run the catalog/src novelty check and **skip
+> semantic duplicates**. The **Fresh batch** below is verified not in the catalog as of 2026-10-31
+> — prefer it.
+
+### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
+
+Healthcare & Life Sciences (field `health`) — cube `health-clin` "Clinical & Allied Health":
+- [ ] hc-pa — Physician Assistant (assessment, diagnosis, prescribing, scope, collaboration)
+- [ ] hc-ot — Occupational Therapist (evaluation, treatment plans, ADLs, outcomes, documentation)
+- [ ] hc-rt — Respiratory Therapist (ventilators, ABGs, airway, protocols, critical care)
+- [ ] hc-slp — Speech-Language Pathologist (assessment, swallowing, therapy, IEP, documentation)
+- [ ] hc-sono — Diagnostic Medical Sonographer (ultrasound, anatomy, protocols, QA, ergonomics)
+- [ ] hc-crna — Nurse Anesthetist (CRNA) (anesthesia, airway, pharmacology, monitoring, safety)
+
+Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled Trades":
+- [ ] tr-wind — Wind Turbine Technician (climbing, hydraulics, electrical, SCADA, safety)
+- [ ] tr-solar — Solar PV Installer (racking, inverters, NEC, interconnection, safety)
+- [ ] tr-ironworker — Ironworker (structural steel, rigging, welding, heights, blueprints)
+- [ ] tr-instrument — Instrumentation & Controls Technician (calibration, PLCs, loops, P&IDs)
+
+Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
+- [ ] en-biomed — Biomedical Engineer (devices, design controls, FDA, testing, standards)
+- [ ] en-petro — Petroleum Engineer (reservoir, drilling, production, economics, safety)
+- [ ] en-robotics — Robotics Engineer (kinematics, controls, perception, integration, safety)
+
+Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
+- [ ] gv-epi — Epidemiologist (surveillance, study design, outbreaks, biostatistics, communication)
+- [ ] gv-fire — Firefighter / Fire Captain (suppression, rescue, incident command, EMS, safety)
+- [ ] gv-revenue — Tax Examiner / Revenue Agent (audits, compliance, tax law, documentation, ethics)
+
+Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
+- [ ] md-creativedir — Creative Director (vision, team, brand, pitches, cross-functional)
+- [ ] md-uxr — UX Researcher (methods, usability, synthesis, influence, ethics)
+
+Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
+- [ ] hs-casino — Casino / Gaming Operations Manager (floor ops, compliance, revenue, security, staff)
+
+Transportation, Logistics & Aviation (field `trans`) — cube `trans-core` "Transportation & Aviation":
+- [ ] tl-marineeng — Marine Engineer / Ship's Engineer (propulsion, auxiliaries, watchkeeping, maintenance, safety)
+
+### Older queue (verify novelty — many already built under other ids)
+
 New cubes to create as you go (put the cube's field in parentheses):
 
 ### Finance & Accounting (field `fin`) — new cube `fin-more` "Finance Specialists II"
@@ -235,3 +280,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] ed-counselor — School Counselor — 2026-10-29
 - [x] ed-instrdesign — Instructional Designer — 2026-10-29
 - [x] ed-sped — Special Education Teacher — 2026-10-29
+- [x] ed-psych — School Psychologist — 2026-10-31
+- [x] bk-advisor — Financial Advisor / Wealth Manager — 2026-10-31
+- [x] en-aero — Aerospace Engineer — 2026-10-31
+- [x] hs-chef — Executive Chef / Culinary Director — 2026-10-31
+- [x] tr-elevator — Elevator Installer / Mechanic — 2026-10-31
+- [x] tl-marine — Marine / Ship Captain (Merchant Mariner) — 2026-10-31

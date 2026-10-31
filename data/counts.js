@@ -202,6 +202,7 @@ window.COUNTS = {
  "en-elec": 50,
  "en-civil": 50,
  "en-cpm": 50,
+ "en-aero": 13,
  "bk-rm": 50,
  "bk-aml": 50,
  "bk-uw": 50,
@@ -240,12 +241,14 @@ window.COUNTS = {
  "bk-actuary": 11,
  "bk-risk": 12,
  "bk-agent": 11,
+ "bk-advisor": 13,
  "ed-teacher": 50,
  "ed-prof": 51,
  "ed-principal": 52,
  "ed-counselor": 52,
  "ed-instrdesign": 52,
  "ed-sped": 52,
+ "ed-psych": 13,
  "tr-electrician": 13,
  "tr-plumber": 12,
  "tr-hvac": 12,
@@ -256,6 +259,7 @@ window.COUNTS = {
  "tr-maintenance": 12,
  "tr-carpenter": 12,
  "tr-lineworker": 12,
+ "tr-elevator": 12,
  "gv-analyst": 12,
  "gv-admin": 12,
  "gv-grants": 12,
@@ -276,6 +280,7 @@ window.COUNTS = {
  "hs-travel": 12,
  "hs-spa": 12,
  "hs-frontoffice": 12,
+ "hs-chef": 12,
  "md-ux": 12,
  "md-graphic": 12,
  "md-social": 12,
@@ -296,7 +301,8 @@ window.COUNTS = {
  "tl-transit": 0,
  "tl-rail": 0,
  "tl-logcoord": 0,
+ "tl-marine": 13,
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 11141;
+window.FU_TOTAL = 11217;
