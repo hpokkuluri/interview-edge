@@ -92,12 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] bk-actuary — Actuary (Life / P&C / Health) (at 11, add ~39)
-- [ ] bk-agent — Insurance Agent / Broker (at 11, add ~39)
-- [ ] bk-pb — Personal Banker / Branch Manager (at 11, add ~39)
-- [ ] cs-strategy — Strategy / Business Analyst (at 11, add ~39)
-- [ ] lg-contracts — Contracts Manager / Commercial Counsel (at 11, add ~39)
-- [ ] lg-paralegal — Paralegal / Legal Assistant (at 11, add ~39)
 - [ ] sm-se — Sales Engineer / Solutions Consultant (at 11, add ~39)
 - [ ] bk-credit — Credit Analyst / Credit Risk Analyst (at 12, add ~38)
 - [ ] bk-mortgage — Mortgage Loan Officer / Underwriter (at 12, add ~38)
@@ -153,6 +147,12 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] bk-actuary — Actuary (Life / P&C / Health) — 2026-11-01
+- [x] bk-agent — Insurance Agent / Broker — 2026-11-01
+- [x] bk-pb — Personal Banker / Branch Manager — 2026-11-01
+- [x] cs-strategy — Strategy / Business Analyst — 2026-11-01
+- [x] lg-contracts — Contracts Manager / Commercial Counsel — 2026-11-01
+- [x] lg-paralegal — Paralegal / Legal Assistant — 2026-11-01
 - [x] ed-teacher — K-12 Teacher — 2026-10-29
 - [x] ed-prof — Professor / Instructor — 2026-10-29
 - [x] ed-principal — School Principal / Administrator — 2026-10-29
