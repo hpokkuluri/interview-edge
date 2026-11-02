@@ -22,8 +22,8 @@ jobs:
       matrix:
         include:
           - { ram: 8192, label: '8 GB phone', dl: 1 }
-          - { ram: 6144, label: '6 GB phone (minimum supported)', dl: 0 }
-          - { ram: 3072, label: '3 GB phone (below minimum — must fail cleanly)', dl: 0 }
+          - { ram: 4096, label: '4 GB phone (minimum supported)', dl: 0 }
+          - { ram: 3072, label: '3 GB phone (below minimum — must never crash the app)', dl: 0 }
     name: ${{ matrix.label }}
     steps:
       - uses: actions/checkout@v4

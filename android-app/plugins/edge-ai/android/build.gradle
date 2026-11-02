@@ -17,8 +17,6 @@ android {
         minSdkVersion 26
         targetSdkVersion 36
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // The crash test passes the model location and RAM profile in from the workflow.
-        testInstrumentationRunnerArguments clearPackageData: 'false'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21

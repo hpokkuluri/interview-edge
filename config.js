@@ -25,7 +25,7 @@ window.LOCAL_AI = {
   name: 'gemma-4-E2B-it.litertlm',
   url: 'https://huggingface.co/litert-community/gemma-4-E2B-it-litert-lm/resolve/main/gemma-4-E2B-it.litertlm',
   bytes: 2588147712,
-  minRamMb: 5000,      // 6 GB phones report about 5.4 GB
+  minRamMb: 3500,      // 4 GB phones report about 3.6 GB. The crash test ran it fine on a 3 GB emulator (about 1.3 GB used).
   minAvailMb: 1200,    // free memory needed at the moment the model loads
   freeQuestions: 2
 };

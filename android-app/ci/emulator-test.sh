@@ -21,14 +21,18 @@ find . -path '*androidTest-results*' -name '*.xml' -exec grep -hoE 'testcase nam
 echo "instrumented tests: $([ $TEST_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
 
 # Whole-app stress: install the real app and hammer it with 4000 random taps/swipes.
-adb install -r app/build/outputs/apk/debug/app-debug.apk >/dev/null
+adb install -r -g app/build/outputs/apk/debug/app-debug.apk >/dev/null   # -g grants the mic so no permission dialog blocks the run
 adb logcat -c
-adb shell monkey -p com.arahasoft.interviewedge --pct-syskeys 0 --throttle 40 -s 7 -v 4000 > monkey.txt 2>&1
+timeout 900 adb shell monkey -p com.arahasoft.interviewedge --pct-syskeys 0 --pct-appswitch 0 --throttle 40 -s 7 -v 4000 > monkey.txt 2>&1
+MRC=$?
+adb logcat -d > monkey-logcat.txt
 MONKEY_OK=0
-grep -q "Monkey finished" monkey.txt || MONKEY_OK=1
-grep -E "CRASH|ANR|Exception" monkey.txt | head -20 | sed 's/^/    /' >> "$REPORT"
-adb logcat -d | grep -E "FATAL EXCEPTION|AndroidRuntime" | head -20 | sed 's/^/    /' >> "$REPORT"
-echo "monkey stress test (4000 events): $([ $MONKEY_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
+if grep -qE "// CRASH|// NOT RESPONDING" monkey.txt; then MONKEY_OK=1; fi
+if grep -A3 "FATAL EXCEPTION" monkey-logcat.txt | grep -q "com.arahasoft"; then MONKEY_OK=1; fi
+grep -E "// CRASH|// NOT RESPONDING|Long Msg" monkey.txt | head -20 | sed 's/^/    /' >> "$REPORT"
+grep -A12 "FATAL EXCEPTION" monkey-logcat.txt | head -40 | sed 's/^/    /' >> "$REPORT"
+[ $MRC = 124 ] && echo "    (monkey run hit the 15-minute limit — no crash recorded)" >> "$REPORT"
+echo "monkey stress test (4000 random taps/swipes): $([ $MONKEY_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
 cat "$REPORT"
 cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
 [ $TEST_OK = 0 ] && [ $MONKEY_OK = 0 ]

@@ -1148,7 +1148,7 @@ async function callClaude(system, messages, sid) {
    Google's Gemma runs on the phone through the EdgeAI plugin, in its own process: if the phone runs out of memory
    only that process stops and the app carries on. The app drives the interview (which questions, when to follow up,
    when to finish); the model speaks as the interviewer and writes the debrief, grounded in the bank's model answers. */
-const LAI = Object.assign({ name: 'gemma-4-E2B-it.litertlm', url: '', bytes: 0, minRamMb: 5000, minAvailMb: 1200, freeQuestions: 2 }, window.LOCAL_AI || {});
+const LAI = Object.assign({ name: 'gemma-4-E2B-it.litertlm', url: '', bytes: 0, minRamMb: 3500, minAvailMb: 1200, freeQuestions: 2 }, window.LOCAL_AI || {});
 const gb = b => (b / 1073741824).toFixed(1) + ' GB';
 const lai = { info: null, loaded: false, loading: null };
 async function laiCheck() {
@@ -1160,7 +1160,7 @@ async function laiCheck() {
 function laiBlocker(d) {
   if (!d) return 'The on-device AI isn’t available in this version of the app.';
   if (!d.abiOk) return 'This phone’s processor isn’t supported by the on-device AI (it needs a 64-bit phone).';
-  if (d.totalMb < LAI.minRamMb) return `The on-device AI needs a phone with at least 6 GB of memory — this one has about ${Math.round(d.totalMb / 1024)} GB.`;
+  if (d.totalMb < LAI.minRamMb) return `The on-device AI needs a phone with at least 4 GB of memory — this one has about ${Math.round(d.totalMb / 1024)} GB.`;
   return null;
 }
 function laiLoad() {
