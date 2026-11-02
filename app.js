@@ -627,7 +627,7 @@ function vLegal(ctx) {
     ['For practice and education only', 'Interview Edge gives sample interview questions, model answers and practice tools to help you prepare. It is general educational content. It is not career, legal, financial, accounting, tax, medical, immigration or other professional advice, and it does not replace advice from a qualified professional.'],
     ['No guarantee of results', 'Using the app does not guarantee an interview, a job offer, a promotion, a certification, a salary or any other outcome. Interviewers, companies and roles differ, and you are solely responsible for how you prepare and what you say.'],
     ['Accuracy', 'We work to keep the content accurate and current, but software products, regulations, accounting standards and business practices change. Questions and answers may contain errors or be out of date. Always check important facts against official sources.'],
-    ['AI features', 'The AI interviewer and Resume Match produce automated suggestions that can be wrong or incomplete. Review anything they produce before relying on it. Your resume is read on your device; the AI interviewer sends your conversation to the AI provider you choose.'],
+    ['AI features', 'The AI interviewer and Resume Match produce automated suggestions that can be wrong or incomplete. Review anything they produce before relying on it. Your resume is read on your device. In the Android app the AI interviewer, the microphone and the voice run on your phone and nothing you say is sent anywhere; the “Interview me in Claude” option opens Claude, which has its own privacy terms. You can report any AI reply with the Report link under it. Privacy policy: arahasoft.com/interview/privacy.'],
     ['Trademarks', 'Oracle, SAP, Workday, Salesforce, Microsoft and all other product and company names are trademarks of their respective owners. Arahasoft and Interview Edge are not affiliated with, endorsed by or sponsored by any of them.'],
     ['Provided “as is”', 'The app and all content are provided “as is” and “as available”, without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, accuracy and non-infringement.'],
     ['Limitation of liability', 'To the fullest extent permitted by law, Arahasoft and its owners, employees and contributors are not liable for any direct, indirect, incidental, special, consequential or punitive damages, or any loss of employment, opportunity, income, data or goodwill, arising from or related to your use of, or inability to use, the app or its content. If any liability is found despite this, it is limited to the amount you paid for the app in the twelve months before the claim.'],
@@ -1182,6 +1182,23 @@ async function laiAsk(req, onToken) {
   try { return await run(); }
   catch (e) { if (e && (e.code === 'notloaded' || e.code === 'crashed')) { lai.loaded = false; onToken(null); return await run(); } throw e; }
 }
+// Report an AI reply (Google Play requires a way to flag AI output). Hides the reply, keeps a copy on the device,
+// and opens a pre-filled email to Arahasoft support with the reply text.
+const REPORT_EMAIL = 'support@arahasoft.com';
+function reportable(b, p) {
+  if (!b || b.querySelector('.rep')) return;
+  b.insertAdjacentHTML('beforeend', '<button class="rep" aria-label="Report this reply">Report</button>');
+  b.querySelector('.rep').addEventListener('click', () => {
+    const why = prompt('What’s wrong with this AI reply? (offensive, harmful, wrong, other)', 'Offensive or inappropriate');
+    if (why === null) return;
+    const text = (b.dataset.raw || b.innerText.replace(/Report$/, '')).trim();
+    const r = store.get('ip.reports', []); r.push({ at: Date.now(), role: p.id, why, text: text.slice(0, 2000) }); store.set('ip.reports', r.slice(-50));
+    b.classList.add('reported'); b.innerHTML = '<i>You reported this reply — it’s hidden. Thank you.</i>';
+    const body = `Reason: ${why}\nRole: ${p.full}\nApp version: ${VERSION_LABEL}\n\nAI reply:\n${text.slice(0, 1500)}`;
+    location.href = `mailto:${REPORT_EMAIL}?subject=${encodeURIComponent('Interview Edge — AI reply report')}&body=${encodeURIComponent(body)}`;
+    toast('Reported — thank you');
+  });
+}
 const ansText = a => cleanSpeech(String(a || '').replace(/^Tip:.*$/gim, '')).slice(0, 420);
 function localSystem(p, cfg) {
   return `You are ${PERSONAS[cfg.persona][1]}, interviewing a candidate for the role "${p.full}" (${p.level}). This is a spoken conversation.
@@ -1247,7 +1264,7 @@ function localInterview(ctx, p, bank, cfg, back) {
         txt += t; b.textContent = txt; speakUpTo(false); scrollEnd();
       });
       txt = reply.trim() || txt.trim();
-      b.className = 'msg ai'; b.textContent = txt; speakUpTo(true); stat('');
+      b.className = 'msg ai'; b.textContent = txt; b.dataset.raw = txt; reportable(b, p); speakUpTo(true); stat('');
       iv.hist.push({ role: 'user', content: message }, { role: 'model', content: txt });
       busy = false; $('#send', ctx.el).disabled = false;
       await speaking;
@@ -1297,7 +1314,7 @@ function localInterview(ctx, p, bank, cfg, back) {
     let txt = '';
     try {
       txt = await laiAsk(req, t => { if (t === null) { txt = ''; return; } if (b.classList.contains('typing')) b.className = 'msg ai'; txt += t; b.textContent = txt; scrollEnd(); });
-      b.className = 'msg ai'; b.innerHTML = fmtAI(txt.trim()); stat('');
+      b.className = 'msg ai'; b.innerHTML = fmtAI(txt.trim()); b.dataset.raw = txt.trim(); reportable(b, p); stat('');
       const m = txt.match(/(\d+(?:\.\d)?)\s*(?:\/|out of)\s*10/); const h = store.get('ip.mocks', []);
       h.push({ pos: p.id, at: Date.now(), n: asked.length, avg: m ? +m[1] / 2 : 0, ai: 1 }); store.set('ip.mocks', h.slice(-200));
       if (cfg.speak) { const ov = (txt.split(/##\s*Strengths/i)[0] || '').replace(/##\s*Overall/i, ''); speak(ov); }
@@ -1530,6 +1547,7 @@ function vSettings(ctx) {
     <div class="panel"><h3>Your progress</h3><p>${Object.keys(PROG).length} questions marked · ${store.get('ip.mocks', []).length} interviews completed. Saved only in this browser.</p>
       <button class="btn ghost wide" id="reset" style="color:var(--red)">Reset all progress</button></div>
     <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p>
+    <p class="home-foot" style="margin-top:10px"><a href="https://arahasoft.com/interview/privacy/" target="_blank" rel="noopener">Privacy policy</a> · <a href="mailto:support@arahasoft.com">support@arahasoft.com</a></p>
     <p class="home-foot" id="ver" style="margin-top:10px;user-select:none">Version ${VERSION_LABEL}${store.get('ip.unlocked', 0) === 'admin' ? ' · owner access' : ''}</p>
     <div id="adm" hidden class="panel" style="margin-top:12px"><h3>Owner access</h3>
       ${store.get('ip.unlocked', 0) === 'admin' ? '<button class="btn ghost wide" id="admoff">Turn owner access off (see the free preview)</button>' : '<div class="field"><input class="txt" id="admcode" autocomplete="off" autocapitalize="characters" placeholder="Owner code"></div><button class="btn navy wide" id="admgo">Unlock</button>'}</div></div>`;

@@ -28,13 +28,14 @@ jobs:
           npx capacitor-assets generate --android --iconBackgroundColor '#0E1B3D' --iconBackgroundColorDark '#0E1B3D' --splashBackgroundColor '#0E1B3D' --splashBackgroundColorDark '#0E1B3D'
           cp -r res-overrides/* android/app/src/main/res/
           npx cap sync android
+          mkdir -p ~/.android && cp signing/beta.keystore ~/.android/debug.keystore   # same key every build, so updates install over the old version
           cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon -q
-          cp app/build/outputs/apk/debug/app-debug.apk ../InterviewEdge-test.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../InterviewEdge.apk
       - name: Publish test APK
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete android-test -y --cleanup-tag || true
-          gh release create android-test android-app/InterviewEdge-test.apk --prerelease \
+          gh release create android-test android-app/InterviewEdge.apk --prerelease \
             --title "Interview Edge — Android test build" \
-            --notes "Test build from ${GITHUB_SHA::7}. Install on an Android phone (allow installs from your browser). Upgrade works in test mode without payment."
+            --notes "Beta build ${GITHUB_SHA::7}. Install page: https://arahasoft.com/app/"
