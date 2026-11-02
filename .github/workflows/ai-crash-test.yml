@@ -7,7 +7,9 @@ on:
   push:
     branches: [main, edge-ai]
     paths: ['android-app/plugins/**', 'android-app/ci/**', '.github/workflows/ai-crash-test.yml']
-concurrency: { group: ai-crash-test-${{ github.ref }}, cancel-in-progress: true }
+concurrency:
+  group: ai-crash-test-${{ github.ref }}
+  cancel-in-progress: true
 env:
   MODEL_URL: https://huggingface.co/litert-community/gemma-4-E2B-it-litert-lm/resolve/main/gemma-4-E2B-it.litertlm
   MODEL_BYTES: '2588147712'
@@ -55,7 +57,10 @@ jobs:
           cd android && chmod +x gradlew && ./gradlew assembleDebug :edge-ai:assembleDebugAndroidTest --no-daemon -q
       - name: Run on emulator
         uses: reactivecircus/android-emulator-runner@v2
-        env: { RAM: '${{ matrix.ram }}', MODEL: /home/runner/model/edge-model.litertlm, DL_TEST: '${{ matrix.dl }}' }
+        env:
+          RAM: ${{ matrix.ram }}
+          MODEL: /home/runner/model/edge-model.litertlm
+          DL_TEST: ${{ matrix.dl }}
         with:
           api-level: 34
           target: google_apis
@@ -69,4 +74,6 @@ jobs:
           script: bash android-app/ci/emulator-test.sh
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: report-${{ matrix.ram }}, path: report-*.txt }
+        with:
+          name: report-${{ matrix.ram }}
+          path: report-*.txt
