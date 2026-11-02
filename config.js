@@ -17,3 +17,15 @@ window.EDGE = {
 // testPass: true shows a "Test version — tap to continue" button on the lock so testers can keep going. Set false for launch.
 // web: true shows the same lock on the website (not just the Android app).
 window.PAYWALL = { free: 5, price: '$0.99', product: 'full_access', testPass: true, web: true };
+
+// On-device AI interviewer (Android app): Google's Gemma 4 (E2B) runs on the phone — no server, no API key, works offline.
+// The model downloads once after install (about 2.6 GB). Phones below minRamMb get the voice mock interview instead.
+// freeQuestions: questions per interview before the $0.99 unlock is needed (testPass in PAYWALL still lets testers continue).
+window.LOCAL_AI = {
+  name: 'gemma-4-E2B-it.litertlm',
+  url: 'https://huggingface.co/litert-community/gemma-4-E2B-it-litert-lm/resolve/main/gemma-4-E2B-it.litertlm',
+  bytes: 2588147712,
+  minRamMb: 5000,      // 6 GB phones report about 5.4 GB
+  minAvailMb: 1200,    // free memory needed at the moment the model loads
+  freeQuestions: 2
+};

@@ -65,7 +65,7 @@ function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.ad
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
 
 /* ---------------- settings & progress ---------------- */
-const S = Object.assign({ theme: 'auto', reveal: false, speak: false, model: 'claude-sonnet-5-5' }, store.get('ip.settings', {}));
+const S = Object.assign({ theme: 'auto', reveal: false, speak: false, model: 'claude-sonnet-5-5', voice: 'female', rate: 1, handsFree: true }, store.get('ip.settings', {}));
 const saveS = () => store.set('ip.settings', S);
 const applyTheme = () => { if (S.theme === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', S.theme); };
 applyTheme();
@@ -362,16 +362,45 @@ const LOGO = `<svg viewBox="0 0 64 64" aria-hidden="true">
   <text x="36" y="49" text-anchor="middle" font-family="Manrope,sans-serif" font-weight="800" font-size="12" fill="#fff">ha</text>
 </svg>`;
 
-/* ---------------- voice: dictation and read-aloud ---------------- */
+/* ---------------- voice: dictation and read-aloud ----------------
+   In the Android app the microphone and the spoken voice are native (EdgeAI plugin): the WebView has neither.
+   S.voice = 'female' | 'male', S.rate = speaking speed. On the web the browser's own voices are used. */
+const EAI = NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.EdgeAI || null;
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const canDictate = () => !!(EAI || SR);
 let rec = null, recBtn = null;
 function stopDictation() { if (rec) { try { rec.stop(); } catch (e) {} } }
+// Native speech recognition stops after each pause; this keeps listening until stop() so long answers work.
+function nativeListener({ onText, onEnd, onState }) {
+  let finals = '', partial = '', live = true, subs = [], idle = 0, api;
+  const text = () => (finals + ' ' + partial).replace(/\s+/g, ' ').trim();
+  const start = () => EAI.listen().catch(e => { live = false; toast(e.code === 'permission' ? 'Allow the microphone to answer by voice.' : (e.message || 'The microphone isn’t available.')); finish(); });
+  const finish = () => { subs.forEach(h => h.then(x => x.remove())); subs = []; live = false; onEnd && onEnd(text()); };
+  subs.push(EAI.addListener('speech', ev => {
+    if (!live) return;
+    if (ev.type === 'partial') { partial = ev.text || ''; onText(text()); }
+    else if (ev.type === 'final') { if (ev.text) finals += ' ' + ev.text; partial = ''; onText(text()); }
+    else if (ev.type === 'speaking') onState && onState('speaking');
+    else if (ev.type === 'end') { if (live) setTimeout(() => { if (live) start(); }, 250); }
+    else if (ev.type === 'error' && ev.code === 'permission') { toast('Allow the microphone to answer by voice.'); finish(); }
+    else if (ev.type === 'error' && ev.code === 'nomatch') {
+      // Nothing heard for a while and nothing said yet: stop instead of listening forever.
+      if (!text() && ++idle >= 4) { toast('Mic paused — tap it when you’re ready to answer.'); api.stop(); return; }
+      onState && onState('silence');
+    }
+  }));
+  start();
+  return api = { stop() { if (!live) return; live = false; EAI.stopListening().catch(() => {}); setTimeout(() => { subs.forEach(h => h.then(x => x.remove())); subs = []; onEnd && onEnd(text()); }, 400); }, text, get live() { return live; } };
+}
 function dictate(textarea, btn, onChange) {
-  if (!SR) { toast('Voice typing isn’t available in this browser — use the mic on your keyboard.'); textarea.focus(); return; }
+  if (!canDictate()) { toast('Voice typing isn’t available in this browser — use the mic on your keyboard.'); textarea.focus(); return; }
   if (rec && recBtn === btn) { stopDictation(); return; }
-  stopDictation();
-  const r = new SR(); r.lang = 'en-US'; r.continuous = true; r.interimResults = true;
+  stopDictation(); stopSpeak();
   const base = textarea.value ? textarea.value.replace(/\s*$/, ' ') : '';
+  const done = () => { btn.classList.remove('live'); if (btn.dataset.label) btn.querySelector('span').textContent = btn.dataset.label; rec = null; recBtn = null; };
+  btn.classList.add('live'); if (btn.dataset.label) btn.querySelector('span').textContent = 'Stop';
+  if (EAI) { rec = nativeListener({ onText: t => { textarea.value = base + t; onChange && onChange(); }, onEnd: done }); recBtn = btn; return; }
+  const r = new SR(); r.lang = 'en-US'; r.continuous = true; r.interimResults = true;
   let finals = '';
   r.onresult = e => {
     let interim = '';
@@ -382,45 +411,67 @@ function dictate(textarea, btn, onChange) {
     textarea.value = base + finals + interim; onChange && onChange();
   };
   r.onerror = e => { if (e.error === 'not-allowed') toast('Microphone permission was blocked.'); };
-  r.onend = () => { btn.classList.remove('live'); if (btn.dataset.label) btn.querySelector('span').textContent = btn.dataset.label; if (rec === r) { rec = null; recBtn = null; } };
-  rec = r; recBtn = btn; btn.classList.add('live');
-  if (btn.dataset.label) btn.querySelector('span').textContent = 'Stop';
-  try { r.start(); } catch (e) { btn.classList.remove('live'); }
+  r.onend = () => { if (rec === r) done(); else btn.classList.remove('live'); };
+  rec = r; recBtn = btn;
+  try { r.start(); } catch (e) { done(); }
 }
-// Read text aloud with the device's voice.
-// iPhone/iPad Safari only allows speech that starts from a tap, and drops speech started right after cancel(),
-// so we (1) unlock speech on the first tap anywhere, and (2) wait briefly after cancelling before speaking again.
-const TTS = 'speechSynthesis' in window;
-let ttsVoice = null;
+// Read text aloud. iPhone/iPad Safari only allows speech that starts from a tap, and drops speech started right after
+// cancel(), so on the web we (1) unlock speech on the first tap anywhere, and (2) wait briefly after cancelling.
+const TTS = !!EAI || 'speechSynthesis' in window;
+const VOICE_HINT = {
+  female: /female|samantha|victoria|karen|zira|susan|aria|jenny|ava|allison|serena|moira|tessa|fiona|joanna|salli|kendra|emma|libby|sonia|google us english$/i,
+  male: /\bmale|daniel|alex\b|fred|david|mark|guy|tom\b|aaron|arthur|oliver|ryan|matthew|joey|justin|eric|george|rishi|google uk english male/i
+};
+let ttsVoice = null, ttsExact = false;
 function pickVoice() {
-  if (!TTS) return;
-  const vs = speechSynthesis.getVoices();
-  ttsVoice = vs.find(v => /^en[-_]US/i.test(v.lang) && /natural|premium|enhanced|siri|samantha|google/i.test(v.name)) || vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  if (EAI || !('speechSynthesis' in window)) return;
+  const vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+  const want = S.voice === 'male' ? 'male' : 'female', other = want === 'male' ? 'female' : 'male';
+  const g = vs.filter(v => VOICE_HINT[want].test(v.name) && !(want === 'male' && VOICE_HINT.female.test(v.name) && /female/i.test(v.name)));
+  const us = a => a.find(v => /^en[-_]US/i.test(v.lang) && /natural|premium|enhanced|neural|online/i.test(v.name)) || a.find(v => /^en[-_]US/i.test(v.lang)) || a[0];
+  ttsVoice = us(g) || null; ttsExact = !!ttsVoice;
+  if (!ttsVoice) ttsVoice = us(vs.filter(v => !VOICE_HINT[other].test(v.name))) || us(vs) || null;
 }
-if (TTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+if (!EAI && 'speechSynthesis' in window) { setTimeout(pickVoice, 0); speechSynthesis.onvoiceschanged = pickVoice; }
 (function unlockSpeech() {
-  if (!TTS) return;
+  if (EAI || !('speechSynthesis' in window)) return;
   const unlock = () => {
     try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } catch (e) {}
     ['touchend', 'click', 'keydown'].forEach(t => document.removeEventListener(t, unlock, true));
   };
   ['touchend', 'click', 'keydown'].forEach(t => document.addEventListener(t, unlock, true));
 })();
-function speak(text) {
-  if (!TTS || !text) return;
-  const clean = String(text).replace(/\*\*/g, '').replace(/^#+\s*/gm, '').replace(/^\s*-\s+/gm, '').replace(/\s+/g, ' ').trim();
-  const say = () => {
-    const u = new SpeechSynthesisUtterance(clean);
-    u.lang = 'en-US'; u.rate = 1;
-    if (!ttsVoice) pickVoice();
-    if (ttsVoice) u.voice = ttsVoice;
-    speechSynthesis.speak(u);
-    if (speechSynthesis.paused) speechSynthesis.resume();
-  };
-  if (speechSynthesis.speaking || speechSynthesis.pending) { speechSynthesis.cancel(); setTimeout(say, 150); }
-  else say();
+const cleanSpeech = text => String(text).replace(/\*\*/g, '').replace(/^#+\s*/gm, '').replace(/^\s*-\s+/gm, '').replace(/\s+/g, ' ').trim();
+// Speaks text; returns a promise that resolves when the voice finishes (used by the hands-free interview).
+// queue: true adds to what is already being said (sentence-by-sentence streaming) instead of interrupting it.
+let ttsWaiters = {}, ttsSub = null;
+function speak(text, opts = {}) {
+  const clean = cleanSpeech(text || '');
+  if (!TTS || !clean) return Promise.resolve();
+  const gender = S.voice === 'male' ? 'male' : 'female', rate = +S.rate || 1;
+  if (EAI) {
+    if (!ttsSub) ttsSub = EAI.addListener('tts', ev => { const w = ttsWaiters[ev.id]; if (w) { delete ttsWaiters[ev.id]; w(); } });
+    return EAI.speak({ text: clean, gender, rate, queue: !!opts.queue }).then(r => r && r.id ? new Promise(res => { ttsWaiters[r.id] = res; setTimeout(res, 120000); }) : null).catch(() => {});
+  }
+  return new Promise(res => {
+    const say = () => {
+      const u = new SpeechSynthesisUtterance(clean);
+      u.lang = 'en-US'; u.rate = rate;
+      if (!ttsVoice) pickVoice();
+      if (ttsVoice) u.voice = ttsVoice;
+      if (!ttsExact) u.pitch = gender === 'male' ? 0.8 : 1.15;
+      u.onend = u.onerror = () => res();
+      speechSynthesis.speak(u);
+      if (speechSynthesis.paused) speechSynthesis.resume();
+    };
+    if (!opts.queue && (speechSynthesis.speaking || speechSynthesis.pending)) { speechSynthesis.cancel(); setTimeout(say, 150); }
+    else say();
+  });
 }
-const stopSpeak = () => { if ('speechSynthesis' in window) speechSynthesis.cancel(); };
+const stopSpeak = () => {
+  if (EAI) { EAI.stopSpeaking().catch(() => {}); Object.values(ttsWaiters).forEach(w => w()); ttsWaiters = {}; return; }
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+};
 
 /* ---------------- screen stack & navigation ---------------- */
 const stage = $('#stage');
@@ -1093,6 +1144,193 @@ async function callClaude(system, messages, sid) {
   }
   return (j.content || []).filter(c => c.type === 'text').map(c => c.text).join('\n').trim();
 }
+/* ---------------- on-device AI interviewer (Android app) ----------------
+   Google's Gemma runs on the phone through the EdgeAI plugin, in its own process: if the phone runs out of memory
+   only that process stops and the app carries on. The app drives the interview (which questions, when to follow up,
+   when to finish); the model speaks as the interviewer and writes the debrief, grounded in the bank's model answers. */
+const LAI = Object.assign({ name: 'gemma-4-E2B-it.litertlm', url: '', bytes: 0, minRamMb: 5000, minAvailMb: 1200, freeQuestions: 2 }, window.LOCAL_AI || {});
+const gb = b => (b / 1073741824).toFixed(1) + ' GB';
+const lai = { info: null, loaded: false, loading: null };
+async function laiCheck() {
+  if (!EAI) return null;
+  try { lai.info = await EAI.deviceCheck({ name: LAI.name, bytes: LAI.bytes }); lai.loaded = !!lai.info.loaded; } catch (e) { lai.info = null; }
+  return lai.info;
+}
+// Why this phone can't run the model (null = it can).
+function laiBlocker(d) {
+  if (!d) return 'The on-device AI isn’t available in this version of the app.';
+  if (!d.abiOk) return 'This phone’s processor isn’t supported by the on-device AI (it needs a 64-bit phone).';
+  if (d.totalMb < LAI.minRamMb) return `The on-device AI needs a phone with at least 6 GB of memory — this one has about ${Math.round(d.totalMb / 1024)} GB.`;
+  return null;
+}
+function laiLoad() {
+  if (lai.loaded) return Promise.resolve();
+  if (lai.loading) return lai.loading;
+  return lai.loading = EAI.load({ name: LAI.name, minAvailMb: LAI.minAvailMb })
+    .then(() => { lai.loaded = true; }).finally(() => { lai.loading = null; });
+}
+if (EAI) EAI.addListener('aiState', ev => { lai.loaded = false; if (ev.state === 'crashed') toast('The AI stopped — the phone ran low on memory. It will restart.'); });
+const laiErr = e => ({ lowmem: 'Your phone is short on free memory right now. Close a few apps and try again.', crashed: 'The AI stopped — the phone ran low on memory. Close other apps and try again.', oom: 'The phone ran out of memory for the AI. Close other apps and try again.', unsupported: 'This phone can’t run the on-device AI.', missing: 'The AI model isn’t downloaded yet.' }[e && e.code] || (e && e.message) || 'Something went wrong with the AI.');
+// One generation; streams text into onToken. Retries once after a crash/eviction by reloading the model.
+async function laiAsk(req, onToken) {
+  let sub = null;
+  const run = async () => {
+    await laiLoad();
+    sub = await EAI.addListener('token', ev => { if (ev.sid === req.sid) onToken(ev.text); });
+    try { return (await EAI.generate(req)).text || ''; } finally { if (sub) { sub.remove(); sub = null; } }
+  };
+  try { return await run(); }
+  catch (e) { if (e && (e.code === 'notloaded' || e.code === 'crashed')) { lai.loaded = false; onToken(null); return await run(); } throw e; }
+}
+const ansText = a => cleanSpeech(String(a || '').replace(/^Tip:.*$/gim, '')).slice(0, 420);
+function localSystem(p, cfg) {
+  return `You are ${PERSONAS[cfg.persona][1]}, interviewing a candidate for the role "${p.full}" (${p.level}). This is a spoken conversation.
+Rules: reply in 1 to 3 short sentences, under 60 words. Sound natural and friendly-professional. No lists, no markdown, no emojis. Never answer questions for the candidate and never give feedback or hints during the interview. Lines in brackets are private notes for you — follow them, never read them out.`;
+}
+
+function localInterview(ctx, p, bank, cfg, back) {
+  const wrap = () => $('.wrap', ctx.el);
+  const pool = bank.filter(x => x[5] !== 'common');
+  const pick = shuffle(pool.filter(isTop)).concat(shuffle(pool.filter(x => !isTop(x))));
+  const items = (pick.length >= cfg.len ? pick : pick.concat(shuffle(bank.filter(x => x[5] === 'common')))).slice(0, cfg.len);
+  const iv = { sid: 'iv' + Date.now(), qi: 0, phase: 'main', hist: [], log: items.map(x => ({ q: x[1], fq: x[6] && x[6].f ? x[6].f[0] : '', ref: ansText(x[2]), a: [] })), done: false };
+  let busy = false, listener = null, ended = false, silenceT = null;
+  const handsFree = () => !!S.handsFree;
+  const lockedAt = () => PAY_ON && !isPro() && !PAY.testPass && iv.qi >= LAI.freeQuestions;
+
+  wrap().innerHTML = `<div class="chat" id="chat"><div class="msg sys">${esc(PERSONAS[cfg.persona][0])} · ${esc(p.title)} · on-device AI</div></div>
+    <div class="composer"><div class="composer-in"><button class="round mic-b" id="mic" aria-label="Speak">${I.mic}</button><textarea id="in" rows="1" placeholder="Speak or type your answer…"></textarea><button class="round" id="send" aria-label="Send">${I.send}</button></div>
+    <div class="lai-status" id="lst"></div>
+    <div class="composer-tools"><button class="btn ghost" id="fb">End &amp; get feedback</button><button class="btn ghost" id="hf">${handsFree() ? 'Hands-free: on' : 'Hands-free: off'}</button></div></div>`;
+  const box = $('#chat', ctx.el), input = $('#in', ctx.el), micB = $('#mic', ctx.el), stat = t => { const e = $('#lst', ctx.el); if (e) e.textContent = t || ''; };
+  const grow = () => { input.style.height = 'auto'; input.style.height = Math.min(180, input.scrollHeight) + 'px'; };
+  const scrollEnd = () => requestAnimationFrame(() => { ctx.el.scrollTop = ctx.el.scrollHeight; });
+  const add = (cls, html) => { box.insertAdjacentHTML('beforeend', `<div class="msg ${cls}">${html}</div>`); scrollEnd(); return box.lastElementChild; };
+  ctx.cleanup.push(() => { ended = true; stopMic(); stopSpeak(); if (EAI) EAI.stop().catch(() => {}); });
+
+  function stopMic() { clearTimeout(silenceT); if (listener) { const l = listener; listener = null; l.stop(); } micB.classList.remove('live'); }
+  function startMic() {
+    if (ended || busy || listener || !canDictate()) return;
+    stopSpeak();
+    const base = input.value ? input.value.replace(/\s*$/, ' ') : '';
+    micB.classList.add('live'); stat(handsFree() ? 'Listening… pause for a few seconds when you’re done' : 'Listening… tap the mic or Send when you’re done');
+    const l = nativeListener({
+      onText: t => { input.value = base + t; grow(); clearTimeout(silenceT); },
+      onState: st => {   // hands-free: a long pause after speaking ends the answer
+        if (st === 'silence' && handsFree() && input.value.trim()) { clearTimeout(silenceT); silenceT = setTimeout(() => { if (listener === l) submit(); }, 900); }
+      },
+      onEnd: () => { if (listener === l) { listener = null; micB.classList.remove('live'); stat(''); } }
+    });
+    listener = l;
+  }
+  micB.addEventListener('click', () => { if (listener) stopMic(); else startMic(); });
+  input.addEventListener('input', grow);
+  $('#send', ctx.el).addEventListener('click', () => submit());
+  $('#fb', ctx.el).addEventListener('click', () => { if (!busy) feedback(); });
+  $('#hf', ctx.el).addEventListener('click', e => { S.handsFree = !S.handsFree; saveS(); e.currentTarget.textContent = S.handsFree ? 'Hands-free: on' : 'Hands-free: off'; toast(S.handsFree ? 'Hands-free on — the mic opens after each question' : 'Hands-free off — tap the mic to answer'); });
+
+  // Ask the model, stream its words into a bubble, and speak each sentence as soon as it is complete.
+  async function interviewer(message, maxTokens) {
+    busy = true; $('#send', ctx.el).disabled = true; stopMic();
+    const b = add('ai typing', '<i></i><i></i><i></i>');
+    let txt = '', said = 0, speaking = Promise.resolve();
+    const speakUpTo = final => {
+      if (!cfg.speak) return;
+      const rest = txt.slice(said), m = final ? rest.length : (rest.match(/^[\s\S]*[.!?](?=\s)/) || [''])[0].length;
+      if (m > 0 && rest.slice(0, m).trim()) { const piece = rest.slice(0, m); said += m; speaking = speak(piece, { queue: said > m }); }
+    };
+    if (!lai.loaded) stat('Getting the AI ready… (the first time can take up to a minute)');
+    try {
+      const reply = await laiAsk({ sid: iv.sid, system: localSystem(p, cfg), history: iv.hist, message, maxTokens }, t => {
+        if (t === null) { txt = ''; said = 0; b.className = 'msg ai typing'; b.innerHTML = '<i></i><i></i><i></i>'; stat('The AI restarted — continuing…'); return; }
+        if (b.classList.contains('typing')) { b.className = 'msg ai'; stat(''); }
+        txt += t; b.textContent = txt; speakUpTo(false); scrollEnd();
+      });
+      txt = reply.trim() || txt.trim();
+      b.className = 'msg ai'; b.textContent = txt; speakUpTo(true); stat('');
+      iv.hist.push({ role: 'user', content: message }, { role: 'model', content: txt });
+      busy = false; $('#send', ctx.el).disabled = false;
+      await speaking;
+      return txt;
+    } catch (e) {
+      b.className = 'msg err'; b.innerHTML = `${esc(laiErr(e))} <button class="btn" style="margin-top:8px" data-retry>Try again</button>`;
+      busy = false; $('#send', ctx.el).disabled = false; stat('');
+      b.querySelector('[data-retry]').addEventListener('click', () => { b.remove(); interviewer(message, maxTokens).then(afterTurn); });
+      return null;
+    }
+  }
+  const afterTurn = r => { if (r != null && !ended && !iv.done && handsFree()) startMic(); };
+
+  function lockCard() {
+    add('err', `${I.lock} The free preview covers ${LAI.freeQuestions} questions. Unlock the full AI interviewer and every question for ${esc(PAY.price)}, one time. <div class="actions" style="margin:10px 0 0"><button class="btn gold" data-buy>Upgrade · ${esc(PAY.price)}</button><button class="btn ghost" id="fb2">Get feedback so far</button></div>`);
+    $('#fb2', ctx.el).addEventListener('click', feedback);
+  }
+
+  async function submit() {
+    const t = input.value.trim(); if (!t || busy || iv.done) return;
+    stopMic(); input.value = ''; grow(); add('me', esc(t));
+    const it = iv.log[iv.qi]; it.a.push(t);
+    const words = t.split(/\s+/).length;
+    let msg;
+    if (iv.phase === 'main' && words < 110 && iv.qi < items.length) {
+      iv.phase = 'follow';
+      msg = `Candidate: ${t}\n[Note: react in a few words without judging, then ask ONE short follow-up that digs into their answer${it.fq ? `. A good angle: "${it.fq}"` : ''}.]`;
+      return afterTurn(await interviewer(msg, 120));
+    }
+    iv.qi++; iv.phase = 'main';
+    if (iv.qi >= items.length) { iv.done = true; await interviewer(`Candidate: ${t}\n[Note: that was the last question. Thank the candidate in one sentence and say you will share feedback now.]`, 60); return feedback(); }
+    if (lockedAt()) { iv.done = true; return lockCard(); }
+    msg = `Candidate: ${t}\n[Note: acknowledge briefly in a few words, then ask this next question exactly: "${items[iv.qi][1]}"]`;
+    afterTurn(await interviewer(msg, 140));
+  }
+
+  async function feedback() {
+    iv.done = true; stopMic(); stopSpeak();
+    const asked = iv.log.filter(x => x.a.length);
+    if (!asked.length) { add('sys', 'Answer at least one question to get feedback.'); iv.done = false; return; }
+    busy = true; $('#send', ctx.el).disabled = true;
+    const b = add('ai typing', '<i></i><i></i><i></i>'); stat('Writing your feedback…');
+    const brief = asked.map((x, i) => `Q${i + 1}: ${x.q}\nCandidate said: ${x.a.join(' / ').slice(0, 450)}\nA strong answer covers: ${x.ref}`).join('\n\n');
+    const req = { sid: iv.sid + '-fb', history: [], maxTokens: 650,
+      system: 'You are an expert interview coach. Be candid, specific and encouraging. Use exactly the headings asked for. Short sentences.',
+      message: `Give feedback on this practice interview for "${p.full}" (${p.level}).\n\n${brief}\n\nUse these headings:\n## Overall\nScore: N/10 and one sentence why.\n## Strengths\n## Gaps\n## Question by question\nOne line each: what landed, what was missing.\n## Practice next\nThree specific things.` };
+    let txt = '';
+    try {
+      txt = await laiAsk(req, t => { if (t === null) { txt = ''; return; } if (b.classList.contains('typing')) b.className = 'msg ai'; txt += t; b.textContent = txt; scrollEnd(); });
+      b.className = 'msg ai'; b.innerHTML = fmtAI(txt.trim()); stat('');
+      const m = txt.match(/(\d+(?:\.\d)?)\s*(?:\/|out of)\s*10/); const h = store.get('ip.mocks', []);
+      h.push({ pos: p.id, at: Date.now(), n: asked.length, avg: m ? +m[1] / 2 : 0, ai: 1 }); store.set('ip.mocks', h.slice(-200));
+      if (cfg.speak) { const ov = (txt.split(/##\s*Strengths/i)[0] || '').replace(/##\s*Overall/i, ''); speak(ov); }
+    } catch (e) { b.className = 'msg err'; b.textContent = laiErr(e); stat(''); }
+    busy = false;
+    box.insertAdjacentHTML('beforeend', `<div class="actions" style="margin:12px 0"><button class="btn pri" id="again">${I.play} New interview</button><button class="btn ghost" id="setup">Back to setup</button></div>`);
+    $('#again', ctx.el).addEventListener('click', () => localInterview(ctx, p, bank, cfg, back));
+    $('#setup', ctx.el).addEventListener('click', back);
+    scrollEnd();
+  }
+
+  interviewer(`[Note: greet the candidate in one short sentence as ${PERSONAS[cfg.persona][0].toLowerCase()} for the ${p.title} role, then ask this first question exactly: "${items[0][1]}"]`, 140).then(afterTurn);
+}
+
+// Setup panel shown at the top of the AI interviewer screen in the Android app.
+function localPanel(d) {
+  const block = laiBlocker(d);
+  if (block) return `<div class="panel"><h3>On-device AI interviewer</h3><p>${esc(block)}</p><p class="muted">You can still practise out loud: the voice mock interview reads each question in your chosen voice and listens to your answer.</p></div>`;
+  if (d.crashes >= 2) return `<div class="panel"><h3>On-device AI interviewer</h3><p>The AI stopped twice on this phone, usually because memory ran short. Close other apps (or restart the phone), then try again.</p><button class="btn pri wide" id="laiReset">Try again</button></div>`;
+  if (!d.ready) {
+    const need = LAI.bytes / 1048576 + 300, space = d.freeMb >= need;
+    return `<div class="panel"><h3>On-device AI interviewer</h3><p>Talk to a live AI interviewer — it asks, follows up and debriefs you. It runs entirely on your phone: private, no account, works offline.</p>
+      <p class="muted">One-time download: ${gb(LAI.bytes)} (Google Gemma). ${space ? `You have ${gb(d.freeMb * 1048576)} free.` : `<b style="color:var(--red)">Free up space first — you have ${gb(d.freeMb * 1048576)}, it needs ${gb(need * 1048576)}.</b>`}</p>
+      <div id="dlbox">${d.downloading ? '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="dlt">Downloading…</p><button class="btn ghost" id="dlx">Cancel</button>' : `<label class="toggle"><span><b>Wi-Fi only</b><span>Recommended — it’s a large file</span></span><input type="checkbox" class="sw" id="wifi" checked></label><button class="btn pri wide" id="dl" ${space ? '' : 'disabled'}>Download the AI (${gb(LAI.bytes)})</button>`}</div></div>`;
+  }
+  return null;   // ready: the caller shows the start panel
+}
+function voiceSeg() { return `<div class="seg" id="vsel">${[['female', 'Female'], ['male', 'Male']].map(([v, l]) => `<button data-voice="${v}" class="${(S.voice || 'female') === v ? 'on' : ''}">${l}</button>`).join('')}</div>`; }
+function wireVoiceSeg(el) {
+  const sg = $('#vsel', el); if (!sg) return;
+  sg.addEventListener('click', e => { const b = e.target.closest('[data-voice]'); if (!b) return; S.voice = b.dataset.voice; saveS(); pickVoice(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); speak(S.voice === 'male' ? 'Hi, I’ll be your interviewer today.' : 'Hi, I’ll be your interviewer today.'); });
+}
+
 const END_MSG = 'END — please stop the interview and give me your full feedback now.';
 function vAI(ctx, id) {
   const p = POS[id], f = p.fam;
@@ -1140,21 +1378,70 @@ function vAI(ctx, id) {
       $$('[data-pack]', ctx.el).forEach(b => b.addEventListener('click', () => edgeBuy(b.dataset.pack)));
     }
 
+    let dlTimer = null;
+    ctx.cleanup.push(() => clearInterval(dlTimer));
+    async function fillLocal() {
+      const host = () => $('#laiP', ctx.el);
+      if (!host()) return;
+      const d = await laiCheck(); if (!host()) return;
+      const pre = localPanel(d);
+      if (pre) { host().innerHTML = pre; wireLocalPre(d); return; }
+      host().innerHTML = `<div class="panel lai-go"><h3>Live AI interviewer · runs on your phone</h3>
+        <p>Speak your answers. It listens, asks follow-ups and debriefs you at the end — private and offline.</p>
+        <label class="toggle"><span><b>Hands-free</b><span>The mic opens after each question; pause a few seconds to finish your answer</span></span><input type="checkbox" class="sw" id="hfree" ${S.handsFree ? 'checked' : ''}></label>
+        <label class="toggle"><span><b>Interviewer speaks out loud</b><span>In the voice chosen above</span></span><input type="checkbox" class="sw" id="spk" ${cfg.speakL !== false ? 'checked' : ''}></label>
+        <button class="btn pri wide" id="startL" style="margin-top:6px">${I.mic} Start talking</button>
+        ${PAY_ON && !isPro() ? `<p class="muted" style="margin:8px 2px 0">Free preview: ${LAI.freeQuestions} questions per interview. Full access ${esc(PAY.price)}, one time.</p>` : ''}</div>`;
+      $('#hfree', ctx.el).addEventListener('change', e => { S.handsFree = e.target.checked; saveS(); });
+      $('#spk', ctx.el).addEventListener('change', e => { cfg.speakL = e.target.checked; store.set('ip.aicfg', cfg); });
+      $('#startL', ctx.el).addEventListener('click', () => {
+        if (!lai.loaded) laiLoad().catch(() => {});   // start warming the model up straight away
+        localInterview(ctx, p, bank, Object.assign({}, cfg, { speak: cfg.speakL !== false }), intro);
+      });
+      if (!lai.loaded) laiLoad().catch(() => {});      // preload while they read the setup
+    }
+    function wireLocalPre(d) {
+      const on = (sel, fn) => { const b = $(sel, ctx.el); if (b) b.addEventListener('click', fn); };
+      on('#laiReset', () => EAI.resetCrashes().then(fillLocal));
+      on('#dl', async () => {
+        const r = await EAI.download({ url: LAI.url, name: LAI.name, bytes: LAI.bytes, wifiOnly: !!($('#wifi', ctx.el) || {}).checked }).catch(e => ({ state: 'error', code: e.code }));
+        if (r.state === 'error') { toast(r.code === 'nospace' ? 'Not enough free space on the phone.' : 'The download couldn’t start — try again.'); return; }
+        $('#dlbox', ctx.el).innerHTML = '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="dlt">Starting…</p><button class="btn ghost" id="dlx">Cancel</button>';
+        wireLocalPre(d); poll();
+      });
+      on('#dlx', async () => { clearInterval(dlTimer); await EAI.cancelDownload({ name: LAI.name }).catch(() => {}); fillLocal(); });
+      if (d.downloading) poll();
+    }
+    function poll() {
+      clearInterval(dlTimer);
+      dlTimer = setInterval(async () => {
+        const r = await EAI.downloadProgress({ name: LAI.name, bytes: LAI.bytes }).catch(() => null); if (!r) return;
+        const bar = $('.dl i', ctx.el), t = $('#dlt', ctx.el); if (!bar) { clearInterval(dlTimer); return; }
+        const pct = r.total ? Math.min(100, r.received / r.total * 100) : 0;
+        bar.style.width = pct.toFixed(1) + '%';
+        if (r.state === 'running') t.textContent = `Downloading… ${gb(r.received || 0)} of ${gb(r.total || LAI.bytes)} (${pct.toFixed(0)}%). You can leave this screen — it keeps going.`;
+        else if (r.state === 'paused') t.textContent = { wifi: 'Waiting for Wi-Fi…', offline: 'Waiting for an internet connection…' }[r.code] || 'Paused — retrying…';
+        else if (r.state === 'done') { clearInterval(dlTimer); toast('The AI is ready'); fillLocal(); }
+        else if (r.state === 'error') { clearInterval(dlTimer); toast(r.code === 'nospace' ? 'The phone ran out of space.' : 'The download stopped — tap Download to try again.'); fillLocal(); }
+      }, 1000);
+    }
     function intro() {
       const seg = (name, opts) => `<div class="seg" data-k="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${String(cfg[name]) === String(v) ? 'on' : ''}">${l}</button>`).join('')}</div>`;
       wrap().innerHTML = `<div class="pos-hero"><span class="chip">${esc(p.level)}</span><h2>AI interviewer</h2><p>${esc(p.full)} — answer by typing or speaking. It follows up like a real panel and debriefs you at the end.</p></div>
         <div class="panel"><h3>Interview setup</h3>
           <div class="field"><label>Interviewer</label>${seg('persona', Object.entries(PERSONAS).map(([k, v]) => [k, v[0]]))}</div>
           <div class="field"><label>Length</label>${seg('len', [[4, 'Short'], [6, 'Standard'], [10, 'Full loop']])}</div>
+          ${EAI ? `<div class="field"><label>Interviewer voice</label>${voiceSeg()}</div></div><div id="laiP"><div class="panel"><h3>On-device AI interviewer</h3><p class="muted">Checking your phone…</p></div></div><div class="panel"><h3>Or interview in Claude</h3>` : ''}
           <a class="btn pri wide" id="claude" href="#" target="_blank" rel="noopener" style="margin-top:12px;text-decoration:none">${I.bot} Interview me in Claude</a>
           <p class="muted" style="margin:8px 2px 0">Opens Claude with this interview ready to go — uses your Claude plan, no extra cost. If the message box is empty, just paste — the setup is already copied.</p>
         </div>
         ${edgeOn() ? edgePanel() : ''}
-        ${(S.key || edgeOn()) ? `<div class="panel"><label class="toggle" style="margin:0"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>` : ''}
-        <div class="panel"><h3>${edgeOn() ? 'Or use your own API key' : 'Or interview right here'}</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed to you by Anthropic).</p>
+        ${!EAI && (S.key || edgeOn()) ? `<div class="panel"><label class="toggle" style="margin:0"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>` : ''}
+        ${EAI ? '' : `<div class="panel"><h3>${edgeOn() ? 'Or use your own API key' : 'Or interview right here'}</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed to you by Anthropic).</p>
           ${S.key ? `<button class="btn wide" id="start">${I.play} Start with my key</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
           ${S.key && conv && !conv.sid ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
-        </div>`;
+        </div>`}`;
+      if (EAI) { wireVoiceSeg(ctx.el); fillLocal(); }
       $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const k = sg.dataset.k; cfg[k] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); store.set('ip.aicfg', cfg); }));
       const csw = $('#cs', ctx.el); if (csw) csw.addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.aicfg', cfg); });
       const cl = $('#claude', ctx.el);
@@ -1224,14 +1511,19 @@ function vSettings(ctx) {
       <div class="field">
         <label class="toggle"><span><b>Show answers right away</b><span>Off = tap to reveal, so you think first</span></span><input type="checkbox" class="sw" id="rv" ${S.reveal ? 'checked' : ''}></label>
         <label class="toggle"><span><b>Read questions aloud by default</b><span>For mock interviews and voice practice</span></span><input type="checkbox" class="sw" id="sp" ${S.speak ? 'checked' : ''}></label>
-        <button class="btn ghost wide" id="ttstest" style="margin-top:4px">${I.speaker} Test the voice</button>
       </div></div>
-    <div class="panel"><h3>AI interviewer</h3><p>Uses Claude with your own Anthropic API key. The key is stored only on this device and sent only to Anthropic.</p>
+    <div class="panel"><h3>Voice</h3>
+      <div class="field"><label>Interviewer voice</label>${voiceSeg()}</div>
+      <div class="field"><label>Speaking speed</label><div class="seg" id="rsel">${[[0.9, 'Slower'], [1, 'Normal'], [1.15, 'Faster']].map(([v, l]) => `<button data-rate="${v}" class="${(+S.rate || 1) === v ? 'on' : ''}">${l}</button>`).join('')}</div></div>
+      <button class="btn ghost wide" id="ttstest" style="margin-top:4px">${I.speaker} Test the voice</button>
+      ${canDictate() ? '' : '<p class="muted" style="margin:8px 2px 0">Voice answers aren’t available in this browser — use the mic on your keyboard.</p>'}</div>
+    ${EAI ? '<div class="panel" id="laiS"><h3>On-device AI</h3><p class="muted">Checking…</p></div>' : ''}
+    ${EAI ? '' : `<div class="panel"><h3>AI interviewer</h3><p>Uses Claude with your own Anthropic API key. The key is stored only on this device and sent only to Anthropic.</p>
       <div class="field"><label for="key">API key</label><input class="txt" id="key" type="password" autocomplete="off" placeholder="sk-ant-…" value="${esc(S.key || '')}"></div>
       <div class="field"><label for="model">Model</label><select class="txt" id="model">
         ${[['claude-sonnet-5-5', 'Sonnet 5.5 · balanced'], ['claude-opus-5-5', 'Opus 5.5 · most thorough'], ['claude-haiku-5-5', 'Haiku 5.5 · fastest']].map(([v, l]) => `<option value="${v}" ${S.model === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
       <div class="actions" style="margin-bottom:0"><button class="btn pri" id="save">Save key</button><button class="btn ghost" id="test">Test it</button></div>
-      <div class="muted" id="kmsg" style="margin-top:8px"></div></div>
+      <div class="muted" id="kmsg" style="margin-top:8px"></div></div>`}
     <div class="panel"><h3>Your progress</h3><p>${Object.keys(PROG).length} questions marked · ${store.get('ip.mocks', []).length} interviews completed. Saved only in this browser.</p>
       <button class="btn ghost wide" id="reset" style="color:var(--red)">Reset all progress</button></div>
     <p class="home-foot">Interview Edge by Arahasoft · Model answers are a starting point — make them your own with your real examples and numbers.</p>
@@ -1246,6 +1538,17 @@ function vSettings(ctx) {
     if (S.speak) speak('Read aloud is on.');
   });
   $('#ttstest', ctx.el).addEventListener('click', () => { if (!TTS) { toast('This browser can’t read aloud.'); return; } speak('Tell me about a time you shortened the month-end close.'); toast('Playing — check your volume and silent switch'); });
+  wireVoiceSeg(ctx.el);
+  $('#rsel', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-rate]'); if (!b) return; S.rate = +b.dataset.rate; saveS(); $$('button', $('#rsel', ctx.el)).forEach(x => x.classList.toggle('on', x === b)); speak('This is the speaking speed.'); });
+  if (EAI) laiCheck().then(d => {
+    const el = $('#laiS', ctx.el); if (!el) return;
+    const block = laiBlocker(d);
+    el.innerHTML = `<h3>On-device AI</h3><p>${block ? esc(block) : d.ready ? `Installed (${gb(LAI.bytes)}) — the AI interviewer runs on this phone, offline.` : `Not downloaded yet (${gb(LAI.bytes)}). Download it from any role → AI interviewer.`}</p>
+      <p class="muted">Phone: ${esc(d ? d.model : '')} · ${d ? Math.round(d.totalMb / 1024) : '?'} GB memory · ${d ? gb(d.freeMb * 1048576) : '?'} free storage</p>
+      ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI model (frees space)</button>' : ''}`;
+    const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });
+  });
+  if (EAI) { /* own-API-key settings are web-only: the app has the on-device AI */ } else {
   $('#model', ctx.el).addEventListener('change', e => { S.model = e.target.value; saveS(); });
   $('#save', ctx.el).addEventListener('click', () => { S.key = $('#key', ctx.el).value.trim(); saveS(); $('#kmsg', ctx.el).textContent = S.key ? 'Saved on this device.' : 'Key removed.'; });
   $('#test', ctx.el).addEventListener('click', async () => {
@@ -1255,6 +1558,7 @@ function vSettings(ctx) {
     try { await callClaude('Reply with the single word OK.', [{ role: 'user', content: 'Test' }]); m.textContent = '✓ Works — the AI interviewer is ready.'; }
     catch (e) { m.textContent = '✗ ' + (e.message === 'Failed to fetch' ? 'Couldn’t reach Anthropic — check your connection.' : e.message); }
   });
+  }
   let taps = 0; $('#ver', ctx.el).addEventListener('click', () => { if (++taps >= 5) $('#adm', ctx.el).hidden = false; });
   const ag = $('#admgo', ctx.el); if (ag) ag.addEventListener('click', async () => {
     if (await adminCheck($('#admcode', ctx.el).value)) { store.set('ip.unlocked', 'admin'); toast('Owner access on — everything unlocked'); go('settings', { replace: true }); }

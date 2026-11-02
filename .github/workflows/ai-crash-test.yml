@@ -1,0 +1,72 @@
+# Crash & size test for the on-device AI (Gemma, ~2.6 GB). Runs the model on Android emulators with different
+# amounts of RAM: loads it, answers, sends an oversized prompt, loads/unloads repeatedly, kills the AI process
+# mid-answer (like an out-of-memory kill) and checks the app survives, then stress-tests the whole app.
+name: AI crash test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, edge-ai]
+    paths: ['android-app/plugins/**', 'android-app/ci/**', '.github/workflows/ai-crash-test.yml']
+concurrency: { group: ai-crash-test-${{ github.ref }}, cancel-in-progress: true }
+env:
+  MODEL_URL: https://huggingface.co/litert-community/gemma-4-E2B-it-litert-lm/resolve/main/gemma-4-E2B-it.litertlm
+  MODEL_BYTES: '2588147712'
+jobs:
+  emulator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { ram: 8192, label: '8 GB phone', dl: 1 }
+          - { ram: 6144, label: '6 GB phone (minimum supported)', dl: 0 }
+          - { ram: 3072, label: '3 GB phone (below minimum — must fail cleanly)', dl: 0 }
+    name: ${{ matrix.label }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /opt/hostedtoolcache/CodeQL && df -h /
+      - name: Cache the model
+        id: mc
+        uses: actions/cache@v4
+        with: { path: ~/model, key: gemma-4-E2B-it-litertlm-v1 }
+      - name: Download the model
+        if: steps.mc.outputs.cache-hit != 'true'
+        run: mkdir -p ~/model && curl -L --fail --retry 5 -o ~/model/edge-model.litertlm "$MODEL_URL" && ls -l ~/model
+      - name: Build app and tests
+        working-directory: android-app
+        run: |
+          npm install --no-audit --no-fund
+          node copy-web.js
+          npx cap add android
+          node patch-android.js
+          cp -r res-overrides/* android/app/src/main/res/
+          npx cap sync android
+          grep -q EdgeAIPlugin android/app/src/main/assets/capacitor.plugins.json && echo "EdgeAI plugin registered"
+          cd android && chmod +x gradlew && ./gradlew assembleDebug :edge-ai:assembleDebugAndroidTest --no-daemon -q
+      - name: Run on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        env: { RAM: '${{ matrix.ram }}', MODEL: /home/runner/model/edge-model.litertlm, DL_TEST: '${{ matrix.dl }}' }
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          ram-size: ${{ matrix.ram }}M
+          disk-size: 12G
+          heap-size: 512M
+          cores: 4
+          emulator-options: -no-window -no-snapshot -no-audio -no-boot-anim -camera-back none -gpu swiftshader_indirect
+          disable-animations: true
+          script: bash android-app/ci/emulator-test.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: report-${{ matrix.ram }}, path: report-*.txt }

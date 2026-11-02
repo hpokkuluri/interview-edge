@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths-ignore: ['**.md', 'src/**', 'tools/**']
+    paths-ignore: ['**.md', 'src/**', 'tools/**', 'android-app/plugins/edge-ai/android/src/androidTest/**']
 permissions:
   contents: write
 concurrency: { group: android, cancel-in-progress: true }
@@ -24,6 +24,7 @@ jobs:
           npm install --no-audit --no-fund
           node copy-web.js
           npx cap add android
+          node patch-android.js
           npx capacitor-assets generate --android --iconBackgroundColor '#0E1B3D' --iconBackgroundColorDark '#0E1B3D' --splashBackgroundColor '#0E1B3D' --splashBackgroundColorDark '#0E1B3D'
           cp -r res-overrides/* android/app/src/main/res/
           npx cap sync android

@@ -1,0 +1,8 @@
+{
+  "name": "edge-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interview Edge on-device AI: Gemma via LiteRT-LM in an isolated process, model download, speech recognition and text-to-speech.",
+  "main": "index.js",
+  "capacitor": { "android": { "src": "android" } }
+}
