@@ -1148,12 +1148,14 @@ async function callClaude(system, messages, sid) {
    Google's Gemma runs on the phone through the EdgeAI plugin, in its own process: if the phone runs out of memory
    only that process stops and the app carries on. The app drives the interview (which questions, when to follow up,
    when to finish); the model speaks as the interviewer and writes the debrief, grounded in the bank's model answers. */
-const LAI = Object.assign({ name: 'gemma-4-E2B-it.litertlm', url: '', bytes: 0, minRamMb: 3500, minAvailMb: 1200, freeQuestions: 2 }, window.LOCAL_AI || {});
+const LAI = Object.assign({ name: 'gemma-4-E2B-it.litertlm', url: '', bytes: 0, minRamMb: 3500, minAvailMb: 1200, freeQuestions: 2, voice: null }, window.LOCAL_AI || {});
+const LV = LAI.voice;   // natural voice pack
+const totalBytes = () => LAI.bytes + (LV ? LV.bytes : 0);
 const gb = b => (b / 1073741824).toFixed(1) + ' GB';
 const lai = { info: null, loaded: false, loading: null };
 async function laiCheck() {
   if (!EAI) return null;
-  try { lai.info = await EAI.deviceCheck({ name: LAI.name, bytes: LAI.bytes }); lai.loaded = !!lai.info.loaded; } catch (e) { lai.info = null; }
+  try { lai.info = await EAI.deviceCheck({ name: LAI.name, bytes: LAI.bytes, voice: LV && LV.name }); lai.loaded = !!lai.info.loaded; } catch (e) { lai.info = null; }
   return lai.info;
 }
 // Why this phone can't run the model (null = it can).
@@ -1210,7 +1212,7 @@ function localInterview(ctx, p, bank, cfg, back) {
   const pool = bank.filter(x => x[5] !== 'common');
   const pick = shuffle(pool.filter(isTop)).concat(shuffle(pool.filter(x => !isTop(x))));
   const items = (pick.length >= cfg.len ? pick : pick.concat(shuffle(bank.filter(x => x[5] === 'common')))).slice(0, cfg.len);
-  const iv = { sid: 'iv' + Date.now(), qi: 0, phase: 'main', hist: [], log: items.map(x => ({ q: x[1], fq: x[6] && x[6].f ? x[6].f[0] : '', ref: ansText(x[2]), a: [] })), done: false };
+  const iv = { sid: 'iv' + Date.now(), qi: 0, phase: 'main', hist: [], log: items.map(x => ({ x, q: x[1], fq: x[6] && x[6].f ? x[6].f[0] : '', ref: ansText(x[2]), a: [] })), done: false };
   let busy = false, listener = null, ended = false, silenceT = null;
   const handsFree = () => !!S.handsFree;
   const lockedAt = () => PAY_ON && !isPro() && !PAY.testPass && iv.qi >= LAI.freeQuestions;
@@ -1320,6 +1322,12 @@ function localInterview(ctx, p, bank, cfg, back) {
       if (cfg.speak) { const ov = (txt.split(/##\s*Strengths/i)[0] || '').replace(/##\s*Overall/i, ''); speak(ov); }
     } catch (e) { b.className = 'msg err'; b.textContent = laiErr(e); stat(''); }
     busy = false;
+    // The model answers from the question bank, next to what the candidate said.
+    const fa = t => fmt(isWork(p) ? personalize(t) : t);
+    box.insertAdjacentHTML('beforeend', `<div class="mans"><h3>Model answers</h3>${asked.map((x, i) => `<details class="mq"${i === 0 ? ' open' : ''}><summary><b>Q${i + 1}.</b> ${esc(x.q)}</summary>
+      <div class="mq-in"><h4>Your answer</h4><p class="mine">${esc(x.a[0] || '')}</p>
+      <h4>Model answer</h4>${fa(x.x[2])}
+      ${x.fq && x.a.length > 1 ? `<h4>Follow-up: ${esc(x.fq)}</h4><p class="mine">${esc(x.a.slice(1).join(' '))}</p>${x.x[6].f[1] ? `<h4>Model answer to the follow-up</h4>${fa(x.x[6].f[1])}` : ''}` : ''}</div></details>`).join('')}</div>`);
     box.insertAdjacentHTML('beforeend', `<div class="actions" style="margin:12px 0"><button class="btn pri" id="again">${I.play} New interview</button><button class="btn ghost" id="setup">Back to setup</button></div>`);
     $('#again', ctx.el).addEventListener('click', () => localInterview(ctx, p, bank, cfg, back));
     $('#setup', ctx.el).addEventListener('click', back);
@@ -1334,11 +1342,12 @@ function localPanel(d) {
   const block = laiBlocker(d);
   if (block) return `<div class="panel"><h3>On-device AI interviewer</h3><p>${esc(block)}</p><p class="muted">You can still practise out loud: the voice mock interview reads each question in your chosen voice and listens to your answer.</p></div>`;
   if (d.crashes >= 2) return `<div class="panel"><h3>On-device AI interviewer</h3><p>The AI stopped twice on this phone, usually because memory ran short. Close other apps (or restart the phone), then try again.</p><button class="btn pri wide" id="laiReset">Try again</button></div>`;
-  if (!d.ready) {
-    const need = LAI.bytes / 1048576 + 300, space = d.freeMb >= need;
+  if (d.ready && LV && !d.voiceReady && !d.downloading) return `<div class="panel"><h3>Natural voice</h3><p>Make the interviewer sound human — a one-time ${Math.round(LV.bytes / 1048576)} MB download that runs on your phone.</p><div id="dlbox"><button class="btn pri wide" id="dl">Download the natural voice</button></div></div>`;
+  if (!d.ready || d.downloading) {
+    const need = (d.ready ? 0 : LAI.bytes / 1048576) + (LV && !d.voiceReady ? LV.bytes / 1048576 : 0) + 300, space = d.freeMb >= need;
     return `<div class="panel"><h3>On-device AI interviewer</h3><p>Talk to a live AI interviewer — it asks, follows up and debriefs you. It runs entirely on your phone: private, no account, works offline.</p>
-      <p class="muted">One-time download: ${gb(LAI.bytes)} (Google Gemma). ${space ? `You have ${gb(d.freeMb * 1048576)} free.` : `<b style="color:var(--red)">Free up space first — you have ${gb(d.freeMb * 1048576)}, it needs ${gb(need * 1048576)}.</b>`}</p>
-      <div id="dlbox">${d.downloading ? '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="dlt">Downloading…</p><button class="btn ghost" id="dlx">Cancel</button>' : `<label class="toggle"><span><b>Wi-Fi only</b><span>Recommended — it’s a large file</span></span><input type="checkbox" class="sw" id="wifi" checked></label><button class="btn pri wide" id="dl" ${space ? '' : 'disabled'}>Download the AI (${gb(LAI.bytes)})</button>`}</div></div>`;
+      <p class="muted">One-time download: ${gb(totalBytes())} — the AI (Google Gemma) and its natural voice. ${space ? `You have ${gb(d.freeMb * 1048576)} free.` : `<b style="color:var(--red)">Free up space first — you have ${gb(d.freeMb * 1048576)}, it needs ${gb(need * 1048576)}.</b>`}</p>
+      <div id="dlbox">${d.downloading ? '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="dlt">Downloading…</p><button class="btn ghost" id="dlx">Cancel</button>' : `<label class="toggle"><span><b>Wi-Fi only</b><span>Recommended — it’s a large file</span></span><input type="checkbox" class="sw" id="wifi" checked></label><button class="btn pri wide" id="dl" ${space ? '' : 'disabled'}>Download the AI (${gb(totalBytes())})</button>`}</div></div>`;
   }
   return null;   // ready: the caller shows the start panel
 }
@@ -1418,27 +1427,38 @@ function vAI(ctx, id) {
         localInterview(ctx, p, bank, Object.assign({}, cfg, { speak: cfg.speakL !== false }), intro);
       });
       if (!lai.loaded) laiLoad().catch(() => {});      // preload while they read the setup
+      EAI.voicePreload().catch(() => {});
     }
     function wireLocalPre(d) {
       const on = (sel, fn) => { const b = $(sel, ctx.el); if (b) b.addEventListener('click', fn); };
       on('#laiReset', () => EAI.resetCrashes().then(fillLocal));
       on('#dl', async () => {
-        const r = await EAI.download({ url: LAI.url, name: LAI.name, bytes: LAI.bytes, wifiOnly: !!($('#wifi', ctx.el) || {}).checked }).catch(e => ({ state: 'error', code: e.code }));
+        const wifiOnly = !!($('#wifi', ctx.el) || {}).checked;
+        const v = LV && !d.voiceReady ? await EAI.download({ url: LV.url, name: LV.name, bytes: 0, wifiOnly, title: 'Interview Edge voice', reserveBytes: d.ready ? 0 : LAI.bytes }).catch(e => ({ state: 'error', code: e.code })) : { state: 'done' };
+        const r = d.ready ? { state: 'done' } : await EAI.download({ url: LAI.url, name: LAI.name, bytes: LAI.bytes, wifiOnly, title: 'Interview Edge AI' }).catch(e => ({ state: 'error', code: e.code }));
+        if (v.state === 'error' && r.state !== 'error') r.state = 'error', r.code = v.code;
         if (r.state === 'error') { toast(r.code === 'nospace' ? 'Not enough free space on the phone.' : 'The download couldn’t start — try again.'); return; }
         $('#dlbox', ctx.el).innerHTML = '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="dlt">Starting…</p><button class="btn ghost" id="dlx">Cancel</button>';
         wireLocalPre(d); poll();
       });
-      on('#dlx', async () => { clearInterval(dlTimer); await EAI.cancelDownload({ name: LAI.name }).catch(() => {}); fillLocal(); });
+      on('#dlx', async () => { clearInterval(dlTimer); await EAI.cancelDownload({ name: LAI.name }).catch(() => {}); if (LV) await EAI.cancelDownload({ name: LV.name }).catch(() => {}); fillLocal(); });
       if (d.downloading) poll();
     }
     function poll() {
       clearInterval(dlTimer);
       dlTimer = setInterval(async () => {
-        const r = await EAI.downloadProgress({ name: LAI.name, bytes: LAI.bytes }).catch(() => null); if (!r) return;
+        const m = await EAI.downloadProgress({ name: LAI.name, bytes: LAI.bytes }).catch(() => null); if (!m) return;
+        const v = LV ? await EAI.downloadProgress({ name: LV.name, bytes: 0 }).catch(() => null) || { state: 'done' } : { state: 'done' };
+        const part = (x, size) => x.state === 'done' ? size : x.state === 'idle' ? 0 : Math.min(size, x.received || 0);
+        const both = [m.state, v.state];
+        const r = { received: part(m, LAI.bytes) + (LV ? part(v, LV.bytes) : 0), total: totalBytes(),
+          state: both.includes('error') ? 'error' : both.every(x => x === 'done') ? 'done' : both.includes('running') ? 'running' : both.includes('extracting') ? 'extracting' : both.includes('paused') ? 'paused' : both.includes('idle') ? 'error' : 'running',
+          code: (m.state === 'error' ? m : v).code || (m.state === 'paused' ? m : v).code };
         const bar = $('.dl i', ctx.el), t = $('#dlt', ctx.el); if (!bar) { clearInterval(dlTimer); return; }
         const pct = r.total ? Math.min(100, r.received / r.total * 100) : 0;
         bar.style.width = pct.toFixed(1) + '%';
         if (r.state === 'running') t.textContent = `Downloading… ${gb(r.received || 0)} of ${gb(r.total || LAI.bytes)} (${pct.toFixed(0)}%). You can leave this screen — it keeps going.`;
+        else if (r.state === 'extracting') t.textContent = 'Setting up the voice…';
         else if (r.state === 'paused') t.textContent = { wifi: 'Waiting for Wi-Fi…', offline: 'Waiting for an internet connection…' }[r.code] || 'Paused — retrying…';
         else if (r.state === 'done') { clearInterval(dlTimer); toast('The AI is ready'); fillLocal(); }
         else if (r.state === 'error') { clearInterval(dlTimer); toast(r.code === 'nospace' ? 'The phone ran out of space.' : 'The download stopped — tap Download to try again.'); fillLocal(); }
@@ -1566,8 +1586,9 @@ function vSettings(ctx) {
     const block = laiBlocker(d);
     el.innerHTML = `<h3>On-device AI</h3><p>${block ? esc(block) : d.ready ? `Installed (${gb(LAI.bytes)}) — the AI interviewer runs on this phone, offline.` : `Not downloaded yet (${gb(LAI.bytes)}). Download it from any role → AI interviewer.`}</p>
       <p class="muted">Phone: ${esc(d ? d.model : '')} · ${d ? Math.round(d.totalMb / 1024) : '?'} GB memory · ${d ? gb(d.freeMb * 1048576) : '?'} free storage</p>
-      ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI model (frees space)</button>' : ''}`;
-    const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });
+      ${d && d.ready && LV ? `<p class="muted">Voice: ${d.voiceReady ? 'natural (on-device)' : 'built-in phone voice — the natural voice downloads from any role → AI interviewer'}</p>` : ''}
+      ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI and voice (frees space)</button>' : ''}`;
+    const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); if (LV) await EAI.deleteModel({ name: LV.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });
   });
   if (EAI || !OWN_KEY) { /* no own-API-key settings: the app has the on-device AI */ } else {
   $('#model', ctx.el).addEventListener('change', e => { S.model = e.target.value; saveS(); });

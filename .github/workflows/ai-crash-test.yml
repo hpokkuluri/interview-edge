@@ -48,6 +48,7 @@ jobs:
         working-directory: android-app
         run: |
           npm install --no-audit --no-fund
+          bash ci/fetch-sherpa.sh
           node copy-web.js
           npx cap add android
           node patch-android.js
@@ -69,7 +70,7 @@ jobs:
           disk-size: 12G
           heap-size: 512M
           cores: 4
-          emulator-options: -no-window -no-snapshot -no-audio -no-boot-anim -camera-back none -gpu swiftshader_indirect
+          emulator-options: -no-window -no-snapshot -no-boot-anim -camera-back none -gpu swiftshader_indirect
           disable-animations: true
           script: bash android-app/ci/emulator-test.sh
       - uses: actions/upload-artifact@v4

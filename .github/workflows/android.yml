@@ -22,6 +22,7 @@ jobs:
         working-directory: android-app
         run: |
           npm install --no-audit --no-fund
+          bash ci/fetch-sherpa.sh
           node copy-web.js
           npx cap add android
           node patch-android.js

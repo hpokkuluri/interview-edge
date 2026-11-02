@@ -61,7 +61,7 @@ class CrashTest {
     private fun haveModel() = File(modelPath).let { it.exists() && it.length() > 100_000_000 }
 
     @Test fun t1_deviceCheck() {
-        val b = ModelStore(ctx).deviceInfo("edge-model.litertlm", 0)
+        val b = ModelStore(ctx).deviceInfo("edge-model.litertlm", 0, null)
         log("DEVICE ram=${b.getLong("totalMb")}MB avail=${b.getLong("availMb")}MB free=${b.getLong("freeMb")}MB abiOk=${b.getBoolean("abiOk")} sdk=${b.getInt("sdk")}")
         assertTrue(b.getLong("totalMb") > 0)
     }
@@ -145,8 +145,8 @@ class CrashTest {
         val store = ModelStore(ctx)
         val name = "dl-test.litertlm"
         store.delete(name)
-        val s = store.start(url, name, bytes, wifiOnly = false)
-        log("DOWNLOAD start state=${s.getString("state")} code=${s.getString("code")} free=${store.deviceInfo(name, bytes).getLong("freeMb")}MB")
+        val s = store.start(url, name, bytes, wifiOnly = false, title = "test")
+        log("DOWNLOAD start state=${s.getString("state")} code=${s.getString("code")} free=${store.deviceInfo(name, bytes, null).getLong("freeMb")}MB")
         if (s.getString("code") == "nospace") { log("DOWNLOAD refused cleanly: not enough space"); return }
         val t0 = System.currentTimeMillis()
         var p = s
@@ -159,5 +159,46 @@ class CrashTest {
         assertEquals("done", p.getString("state"))
         assertEquals(bytes, store.file(name).length())
         store.delete(name)
+    }
+
+    /** Natural voice: download + unpack the voice pack, synthesize male and female, measure speed, play it. Runs with the AI loaded. */
+    @Test fun t8_naturalVoice() {
+        val url = args.getString("voiceUrl") ?: return
+        val store = ModelStore(ctx)
+        val name = EdgeAIPlugin.VOICE_PACK
+        store.delete(name)
+        var p = store.start(url, name, 0, wifiOnly = false, title = "voice test")
+        val t0 = System.currentTimeMillis()
+        while (System.currentTimeMillis() - t0 < 15 * 60_000) {
+            Thread.sleep(2000); p = store.progress(name, 0)
+            if (p.getString("state") == "done" || p.getString("state") == "error") break
+        }
+        log("VOICE-PACK state=${p.getString("state")} code=${p.getString("code")} in ${(System.currentTimeMillis() - t0) / 1000}s files=${store.folder(name).walk().count()}")
+        assertEquals("done", p.getString("state"))
+        val aiLoaded = haveModel() && load().ok      // speak while the AI model is also in memory (real use)
+        val done = mutableListOf<Pair<String, Boolean>>()
+        val v = KokoroVoice(store.folder(name)) { id, ok -> synchronized(done) { done.add(id to ok) } }
+        assertTrue(v.available())
+        for ((id, male) in listOf("f" to false, "m" to true)) {
+            val s0 = System.currentTimeMillis()
+            assertTrue(v.speak(id, "Thanks for that. Can you walk me through how you closed the books faster, with one specific example?", male, 1.0f, false))
+            var waited = 0
+            while (synchronized(done) { done.none { it.first == id } } && waited < 120_000) { Thread.sleep(100); waited += 100 }
+            val r = synchronized(done) { done.firstOrNull { it.first == id } }
+            log("VOICE ${if (male) "male" else "female"} ok=${r?.second} speak+play=${System.currentTimeMillis() - s0}ms aiLoaded=$aiLoaded phoneAvail=${availMb()}MB")
+            assertTrue("voice $id did not finish", r != null && r.second)
+        }
+        // Raw synthesis speed (real-time factor < 1 means faster than speaking).
+        val tts = com.k2fsa.sherpa.onnx.OfflineTts(config = com.k2fsa.sherpa.onnx.OfflineTtsConfig(model = com.k2fsa.sherpa.onnx.OfflineTtsModelConfig(
+            kokoro = com.k2fsa.sherpa.onnx.OfflineTtsKokoroModelConfig(model = java.io.File(store.folder(name), "model.int8.onnx").path, voices = java.io.File(store.folder(name), "voices.bin").path,
+                tokens = java.io.File(store.folder(name), "tokens.txt").path, dataDir = java.io.File(store.folder(name), "espeak-ng-data").path, lexicon = java.io.File(store.folder(name), "lexicon-us-en.txt").path, lang = "en-us"),
+            numThreads = 2)))
+        val g0 = System.currentTimeMillis()
+        val a = tts.generate("Tell me about a time you reduced the month end close from eight days to five.", KokoroVoice.FEMALE, 1.0f)
+        val secs = a.samples.size.toDouble() / a.sampleRate
+        log("VOICE-SPEED audio=${"%.1f".format(secs)}s synth=${System.currentTimeMillis() - g0}ms rtf=${"%.2f".format((System.currentTimeMillis() - g0) / 1000.0 / secs)}")
+        assertTrue(a.samples.size > a.sampleRate)   // at least one second of speech
+        tts.release(); v.release()
+        if (aiLoaded) call(2) { client.unload(it) }
     }
 }

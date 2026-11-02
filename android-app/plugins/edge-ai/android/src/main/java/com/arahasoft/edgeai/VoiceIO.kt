@@ -17,7 +17,17 @@ import java.util.Locale
  * Microphone (Android speech recognition) and spoken replies (Android text-to-speech) with a
  * male or female voice. Everything here runs on the main thread, as Android requires.
  */
-class VoiceIO(private val context: Context, private val emit: (String, Bundle) -> Unit) {
+class VoiceIO(private val context: Context, voiceDir: java.io.File, private val emit: (String, Bundle) -> Unit) {
+    /** The natural (Kokoro) voice, once its pack is downloaded; otherwise the phone's built-in voice is used. */
+    val natural = KokoroVoice(voiceDir) { id, ok ->
+        val req = pendingNatural.remove(id)
+        if (ok || req == null) emit("tts", Bundle().apply { putString("type", if (ok) "done" else "error"); putString("id", id) })
+        // The natural voice couldn't start on this phone: say it with the built-in voice instead, under the same id.
+        else speakBuiltIn(req.first, req.second, req.third, true) { bid -> alias[bid] = id }
+    }
+    private val pendingNatural = java.util.concurrent.ConcurrentHashMap<String, Triple<String, String, Float>>()
+    private val alias = java.util.concurrent.ConcurrentHashMap<String, String>()
+    private var nUtter = 0
     private val main = Handler(Looper.getMainLooper())
     private var recognizer: SpeechRecognizer? = null
     private var tts: TextToSpeech? = null
@@ -37,7 +47,7 @@ class VoiceIO(private val context: Context, private val emit: (String, Bundle) -
                 ttsReady = status == TextToSpeech.SUCCESS
                 tts?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
                     override fun onStart(id: String?) {}
-                    override fun onDone(id: String?) { if (id?.endsWith("-last") == true) emit("tts", Bundle().apply { putString("type", "done"); putString("id", id.removeSuffix("-last")) }) }
+                    override fun onDone(id: String?) { if (id?.endsWith("-last") == true) emit("tts", Bundle().apply { putString("type", "done"); putString("id", id.removeSuffix("-last").let { alias.remove(it) ?: it }) }) }
                     @Deprecated("Deprecated in Java") override fun onError(id: String?) { emit("tts", Bundle().apply { putString("type", "error"); putString("id", id ?: "") }) }
                     override fun onStop(id: String?, interrupted: Boolean) { if (id?.endsWith("-last") == true) emit("tts", Bundle().apply { putString("type", "stopped"); putString("id", id.removeSuffix("-last")) }) }
                 })
@@ -72,7 +82,18 @@ class VoiceIO(private val context: Context, private val emit: (String, Bundle) -
     }
 
     /** Speaks text in the chosen voice. If the phone has no voice of that gender, the default voice is pitched to match. */
-    fun speak(text: String, want: String, rate: Float, queue: Boolean, cb: (String) -> Unit) = initTts {
+    fun speak(text: String, want: String, rate: Float, queue: Boolean, cb: (String) -> Unit) {
+        if (natural.available()) {
+            tts?.stop()
+            val id = "n${++nUtter}"
+            pendingNatural[id] = Triple(text, want, rate)
+            if (natural.speak(id, text, want == "male", rate, queue)) { cb(id); return }
+            pendingNatural.remove(id)
+        }
+        speakBuiltIn(text, want, rate, queue, cb)
+    }
+
+    private fun speakBuiltIn(text: String, want: String, rate: Float, queue: Boolean, cb: (String) -> Unit) = initTts {
         val t = tts
         if (!ttsReady || t == null) { cb(""); return@initTts }
         if (!queue) t.stop()
@@ -103,13 +124,13 @@ class VoiceIO(private val context: Context, private val emit: (String, Bundle) -
         return out
     }
 
-    fun stopSpeaking() = main.post { tts?.stop() }
+    fun stopSpeaking() { natural.stop(); main.post { tts?.stop() } }
 
     // ---------------- microphone ----------------
     fun available() = SpeechRecognizer.isRecognitionAvailable(context)
 
     fun listen() = main.post {
-        tts?.stop()
+        tts?.stop(); natural.stop()
         recognizer?.destroy()
         val r = SpeechRecognizer.createSpeechRecognizer(context)
         recognizer = r
@@ -161,6 +182,7 @@ class VoiceIO(private val context: Context, private val emit: (String, Bundle) -
     fun stopListening() = main.post { try { recognizer?.stopListening() } catch (_: Exception) {} }
 
     fun release() = main.post {
+        natural.release()
         recognizer?.destroy(); recognizer = null
         tts?.shutdown(); tts = null; ttsReady = false
     }

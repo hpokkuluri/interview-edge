@@ -27,5 +27,7 @@ window.LOCAL_AI = {
   bytes: 2588147712,
   minRamMb: 3500,      // 4 GB phones report about 3.6 GB. The crash test ran it fine on a 3 GB emulator (about 1.3 GB used).
   minAvailMb: 1200,    // free memory needed at the moment the model loads
-  freeQuestions: 2
+  freeQuestions: 2,
+  // Natural, human-sounding voice (Kokoro, Apache-2.0), downloaded together with the AI. Name must match EdgeAIPlugin.VOICE_PACK.
+  voice: { name: 'kokoro-en-v1.zip', url: 'https://github.com/hpokkuluri/interview-edge/releases/download/voice-pack/kokoro-en-v1.zip', bytes: 125497886 }
 };

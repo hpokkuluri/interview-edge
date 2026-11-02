@@ -17,6 +17,7 @@ import com.getcapacitor.annotation.PermissionCallback
     permissions = [Permission(alias = "microphone", strings = [Manifest.permission.RECORD_AUDIO])]
 )
 class EdgeAIPlugin : Plugin() {
+    companion object { const val VOICE_PACK = "kokoro-en-v1.zip" }   // must match LOCAL_AI.voice.name in config.js
     private lateinit var ai: AiClient
     private lateinit var store: ModelStore
     private lateinit var voice: VoiceIO
@@ -24,7 +25,7 @@ class EdgeAIPlugin : Plugin() {
     override fun load() {
         ai = AiClient(context) { ev, b -> notifyListeners(ev, toJs(b)) }
         store = ModelStore(context)
-        voice = VoiceIO(context) { ev, b -> notifyListeners(ev, toJs(b)) }
+        voice = VoiceIO(context, store.folder(VOICE_PACK)) { ev, b -> notifyListeners(ev, toJs(b)) }
     }
 
     override fun handleOnDestroy() { voice.release(); super.handleOnDestroy() }
@@ -48,7 +49,7 @@ class EdgeAIPlugin : Plugin() {
     // ---------------- phone check & model download ----------------
     @PluginMethod fun deviceCheck(call: PluginCall) {
         val name = call.getString("name") ?: return call.reject("name required")
-        val b = store.deviceInfo(name, call.getLong("bytes") ?: 0L)
+        val b = store.deviceInfo(name, call.getLong("bytes") ?: 0L, call.getString("voice"))
         b.putInt("crashes", ai.crashes())
         b.putBoolean("loaded", ai.loaded)
         b.putBoolean("micAvailable", voice.available())
@@ -58,7 +59,8 @@ class EdgeAIPlugin : Plugin() {
     @PluginMethod fun download(call: PluginCall) {
         val url = call.getString("url") ?: return call.reject("url required")
         val name = call.getString("name") ?: return call.reject("name required")
-        call.resolve(toJs(store.start(url, name, call.getLong("bytes") ?: 0L, call.getBoolean("wifiOnly", true) == true)))
+        call.resolve(toJs(store.start(url, name, call.getLong("bytes") ?: 0L, call.getBoolean("wifiOnly", true) == true,
+            call.getString("title") ?: "Interview Edge AI", call.getLong("reserveBytes") ?: 0L)))
     }
 
     @PluginMethod fun downloadProgress(call: PluginCall) {
@@ -124,7 +126,9 @@ class EdgeAIPlugin : Plugin() {
 
     @PluginMethod fun stopListening(call: PluginCall) { voice.stopListening(); call.resolve() }
 
-    @PluginMethod fun voices(call: PluginCall) { voice.voices { call.resolve(toJs(it)) } }
+    @PluginMethod fun voices(call: PluginCall) { voice.voices { b -> b.putBoolean("natural", voice.natural.available()); call.resolve(toJs(b)) } }
+
+    @PluginMethod fun voicePreload(call: PluginCall) { voice.natural.preload(); call.resolve(JSObject().put("natural", voice.natural.available())) }
 
     @PluginMethod fun speak(call: PluginCall) {
         val text = call.getString("text") ?: ""
