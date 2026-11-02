@@ -180,30 +180,26 @@ Healthcare & Life Sciences (field `health`) — cube `health-clin` "Clinical & A
 - [ ] hc-crna — Nurse Anesthetist (CRNA) (anesthesia, airway, pharmacology, monitoring, safety)
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled Trades":
-- [ ] tr-wind — Wind Turbine Technician (climbing, hydraulics, electrical, SCADA, safety)
 - [ ] tr-solar — Solar PV Installer (racking, inverters, NEC, interconnection, safety)
 - [ ] tr-ironworker — Ironworker (structural steel, rigging, welding, heights, blueprints)
 - [ ] tr-instrument — Instrumentation & Controls Technician (calibration, PLCs, loops, P&IDs)
 
 Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
-- [ ] en-biomed — Biomedical Engineer (devices, design controls, FDA, testing, standards)
 - [ ] en-petro — Petroleum Engineer (reservoir, drilling, production, economics, safety)
 - [ ] en-robotics — Robotics Engineer (kinematics, controls, perception, integration, safety)
 
 Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
-- [ ] gv-epi — Epidemiologist (surveillance, study design, outbreaks, biostatistics, communication)
 - [ ] gv-fire — Firefighter / Fire Captain (suppression, rescue, incident command, EMS, safety)
 - [ ] gv-revenue — Tax Examiner / Revenue Agent (audits, compliance, tax law, documentation, ethics)
 
 Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
-- [ ] md-creativedir — Creative Director (vision, team, brand, pitches, cross-functional)
 - [ ] md-uxr — UX Researcher (methods, usability, synthesis, influence, ethics)
 
 Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
-- [ ] hs-casino — Casino / Gaming Operations Manager (floor ops, compliance, revenue, security, staff)
+(All fresh-batch hospitality roles built — see Done.)
 
 Transportation, Logistics & Aviation (field `trans`) — cube `trans-core` "Transportation & Aviation":
-- [ ] tl-marineeng — Marine Engineer / Ship's Engineer (propulsion, auxiliaries, watchkeeping, maintenance, safety)
+(All fresh-batch transportation roles built — see Done.)
 
 ### Older queue (verify novelty — many already built under other ids)
 
@@ -286,3 +282,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hs-chef — Executive Chef / Culinary Director — 2026-10-31
 - [x] tr-elevator — Elevator Installer / Mechanic — 2026-10-31
 - [x] tl-marine — Marine / Ship Captain (Merchant Mariner) — 2026-10-31
+- [x] en-biomed — Biomedical Engineer — 2026-11-02
+- [x] gv-epi — Epidemiologist — 2026-11-02
+- [x] md-creativedir — Creative Director — 2026-11-02
+- [x] tr-wind — Wind Turbine Technician — 2026-11-02
+- [x] hs-casino — Casino / Gaming Operations Manager — 2026-11-02
+- [x] tl-marineeng — Marine Engineer / Ship's Engineer — 2026-11-02
