@@ -10,4 +10,9 @@ const ag = path.join(__dirname, 'android', 'app', 'build.gradle');
 let g = fs.readFileSync(ag, 'utf8');
 if (!g.includes("lib/x86/**")) g = g.replace(/android\s*\{/, "android {\n    packagingOptions { jniLibs { excludes += ['lib/x86/**'] } }");
 fs.writeFileSync(ag, g);
-console.log('Patched android project: minSdk 26, no x86 libs');
+// The app also needs to find the voice library's local Maven repo (see ci/fetch-sherpa.sh).
+const rb = path.join(__dirname, 'android', 'build.gradle');
+let r = fs.readFileSync(rb, 'utf8');
+if (!r.includes('libs/maven')) r = r.replace(/allprojects\s*\{\s*repositories\s*\{/, m => m + "\n        maven { url \"$rootDir/../plugins/edge-ai/android/libs/maven\" }");
+fs.writeFileSync(rb, r);
+console.log('Patched android project: minSdk 26, no x86 libs, voice library repo');
