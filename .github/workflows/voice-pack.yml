@@ -1,0 +1,32 @@
+# Builds the natural-voice pack (Kokoro 82M int8, English voices only) the app downloads together with the AI,
+# and publishes it to the "voice-pack" release. Run once (or when changing the voice model).
+name: Voice pack
+on:
+  workflow_dispatch:
+  push:
+    branches: [voice-probe]
+    paths: ['.github/workflows/voice-pack.yml']
+permissions:
+  contents: write
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build English voice pack
+        run: |
+          curl -L --fail -o k.tar.bz2 https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-int8-multi-lang-v1_0.tar.bz2
+          tar xjf k.tar.bz2
+          S=kokoro-int8-multi-lang-v1_0; mkdir kokoro
+          cp $S/model.int8.onnx $S/voices.bin $S/tokens.txt $S/lexicon-us-en.txt $S/LICENSE kokoro/
+          cp -r $S/espeak-ng-data kokoro/
+          echo "kokoro-int8-multi-lang-v1_0 (k2-fsa/sherpa-onnx tts-models), English subset" > kokoro/SOURCE.txt
+          (cd kokoro && zip -qr -9 ../kokoro-en-v1.zip .)
+          ls -l kokoro-en-v1.zip; du -sh kokoro; unzip -l kokoro-en-v1.zip | tail -1
+          sha256sum kokoro-en-v1.zip
+      - name: Publish
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release delete voice-pack -y --cleanup-tag || true
+          gh release create voice-pack kokoro-en-v1.zip --title "Interview Edge natural voice pack" \
+            --notes "Kokoro 82M (int8) English voices for on-device speech, repackaged from k2-fsa/sherpa-onnx. Apache-2.0. Downloaded by the app together with the AI."
