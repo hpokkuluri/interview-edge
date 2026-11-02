@@ -8,7 +8,9 @@ fs.writeFileSync(v, s);
 // Leave out 32-bit x86 native libraries (emulator-only) to keep the APK smaller.
 const ag = path.join(__dirname, 'android', 'app', 'build.gradle');
 let g = fs.readFileSync(ag, 'utf8');
-if (!g.includes("lib/x86/**")) g = g.replace(/android\s*\{/, "android {\n    packagingOptions { jniLibs { excludes += ['lib/x86/**'] } }");
+// PHONE_ONLY=1 (the APK people install) also drops x86_64, which only emulators use; the crash test keeps it.
+const ex = process.env.PHONE_ONLY === '1' ? "'lib/x86/**', 'lib/x86_64/**'" : "'lib/x86/**'";
+if (!g.includes("lib/x86/**")) g = g.replace(/android\s*\{/, `android {\n    packagingOptions { jniLibs { excludes += [${ex}] } }`);
 fs.writeFileSync(ag, g);
 // The app also needs to find the voice library's local Maven repo (see ci/fetch-sherpa.sh).
 const rb = path.join(__dirname, 'android', 'build.gradle');

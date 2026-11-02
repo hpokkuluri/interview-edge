@@ -25,7 +25,7 @@ jobs:
           bash ci/fetch-sherpa.sh
           node copy-web.js
           npx cap add android
-          node patch-android.js
+          PHONE_ONLY=1 node patch-android.js
           npx capacitor-assets generate --android --iconBackgroundColor '#0E1B3D' --iconBackgroundColorDark '#0E1B3D' --splashBackgroundColor '#0E1B3D' --splashBackgroundColorDark '#0E1B3D'
           cp -r res-overrides/* android/app/src/main/res/
           npx cap sync android
