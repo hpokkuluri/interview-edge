@@ -1331,6 +1331,8 @@ function wireVoiceSeg(el) {
   sg.addEventListener('click', e => { const b = e.target.closest('[data-voice]'); if (!b) return; S.voice = b.dataset.voice; saveS(); pickVoice(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); speak(S.voice === 'male' ? 'Hi, I’ll be your interviewer today.' : 'Hi, I’ll be your interviewer today.'); });
 }
 
+// Own Anthropic API key inside the app: retired (the Android app runs the AI on the phone; elsewhere use the Claude link).
+const OWN_KEY = false;
 const END_MSG = 'END — please stop the interview and give me your full feedback now.';
 function vAI(ctx, id) {
   const p = POS[id], f = p.fam;
@@ -1431,13 +1433,14 @@ function vAI(ctx, id) {
         <div class="panel"><h3>Interview setup</h3>
           <div class="field"><label>Interviewer</label>${seg('persona', Object.entries(PERSONAS).map(([k, v]) => [k, v[0]]))}</div>
           <div class="field"><label>Length</label>${seg('len', [[4, 'Short'], [6, 'Standard'], [10, 'Full loop']])}</div>
+          ${!EAI ? `</div><div class="panel"><h3>Live voice AI interviewer</h3><p>Talk to an AI interviewer that listens, follows up and debriefs you — it runs on the phone itself, nothing to set up. Available in the Interview Edge Android app (iPhone app coming).</p><p class="muted">On this device: use <b>Interview me in Claude</b> below, or the <b>Mock interview</b> for spoken practice.</p></div><div class="panel"><h3>Interview in Claude</h3>` : ''}
           ${EAI ? `<div class="field"><label>Interviewer voice</label>${voiceSeg()}</div></div><div id="laiP"><div class="panel"><h3>On-device AI interviewer</h3><p class="muted">Checking your phone…</p></div></div><div class="panel"><h3>Or interview in Claude</h3>` : ''}
           <a class="btn pri wide" id="claude" href="#" target="_blank" rel="noopener" style="margin-top:12px;text-decoration:none">${I.bot} Interview me in Claude</a>
           <p class="muted" style="margin:8px 2px 0">Opens Claude with this interview ready to go — uses your Claude plan, no extra cost. If the message box is empty, just paste — the setup is already copied.</p>
         </div>
         ${edgeOn() ? edgePanel() : ''}
-        ${!EAI && (S.key || edgeOn()) ? `<div class="panel"><label class="toggle" style="margin:0"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>` : ''}
-        ${EAI ? '' : `<div class="panel"><h3>${edgeOn() ? 'Or use your own API key' : 'Or interview right here'}</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed to you by Anthropic).</p>
+        ${!EAI && ((OWN_KEY && S.key) || edgeOn()) ? `<div class="panel"><label class="toggle" style="margin:0"><span><b>Read interviewer aloud</b><span>Uses your device’s voice</span></span><input type="checkbox" class="sw" id="cs" ${cfg.speak ? 'checked' : ''}></label></div>` : ''}
+        ${EAI || !OWN_KEY ? '' : `<div class="panel"><h3>${edgeOn() ? 'Or use your own API key' : 'Or interview right here'}</h3><p>Runs inside this app with voice and read-aloud. Needs your own Anthropic API key (billed to you by Anthropic).</p>
           ${S.key ? `<button class="btn wide" id="start">${I.play} Start with my key</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
           ${S.key && conv && !conv.sid ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
         </div>`}`;
@@ -1518,7 +1521,7 @@ function vSettings(ctx) {
       <button class="btn ghost wide" id="ttstest" style="margin-top:4px">${I.speaker} Test the voice</button>
       ${canDictate() ? '' : '<p class="muted" style="margin:8px 2px 0">Voice answers aren’t available in this browser — use the mic on your keyboard.</p>'}</div>
     ${EAI ? '<div class="panel" id="laiS"><h3>On-device AI</h3><p class="muted">Checking…</p></div>' : ''}
-    ${EAI ? '' : `<div class="panel"><h3>AI interviewer</h3><p>Uses Claude with your own Anthropic API key. The key is stored only on this device and sent only to Anthropic.</p>
+    ${EAI || !OWN_KEY ? '' : `<div class="panel"><h3>AI interviewer</h3><p>Uses Claude with your own Anthropic API key. The key is stored only on this device and sent only to Anthropic.</p>
       <div class="field"><label for="key">API key</label><input class="txt" id="key" type="password" autocomplete="off" placeholder="sk-ant-…" value="${esc(S.key || '')}"></div>
       <div class="field"><label for="model">Model</label><select class="txt" id="model">
         ${[['claude-sonnet-5-5', 'Sonnet 5.5 · balanced'], ['claude-opus-5-5', 'Opus 5.5 · most thorough'], ['claude-haiku-5-5', 'Haiku 5.5 · fastest']].map(([v, l]) => `<option value="${v}" ${S.model === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
@@ -1548,7 +1551,7 @@ function vSettings(ctx) {
       ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI model (frees space)</button>' : ''}`;
     const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });
   });
-  if (EAI) { /* own-API-key settings are web-only: the app has the on-device AI */ } else {
+  if (EAI || !OWN_KEY) { /* no own-API-key settings: the app has the on-device AI */ } else {
   $('#model', ctx.el).addEventListener('change', e => { S.model = e.target.value; saveS(); });
   $('#save', ctx.el).addEventListener('click', () => { S.key = $('#key', ctx.el).value.trim(); saveS(); $('#kmsg', ctx.el).textContent = S.key ? 'Saved on this device.' : 'Key removed.'; });
   $('#test', ctx.el).addEventListener('click', async () => {
