@@ -391,7 +391,10 @@ window.CATALOG = [
       { id: 'hc-medtech', title: 'Medical Lab Technologist', level: 'Entry → Senior', blurb: 'Testing, QC, CLIA, specimen handling, accuracy, result integrity.' },
       { id: 'hc-radtech', title: 'Radiologic Technologist', level: 'Entry → Senior', blurb: 'Imaging, positioning, radiation safety, ALARA, PACS, patient care.' },
       { id: 'hc-coder', title: 'Medical Coder / Biller', level: 'Entry → Senior', blurb: 'ICD-10, CPT, compliance, denials, documentation, accuracy.' },
-      { id: 'hc-practice-mgr', title: 'Medical Practice Manager', level: 'Mid → Senior', blurb: 'Operations, staff, billing, scheduling, compliance, patient experience.' }
+      { id: 'hc-practice-mgr', title: 'Medical Practice Manager', level: 'Mid → Senior', blurb: 'Operations, staff, billing, scheduling, compliance, patient experience.' },
+      { id: 'hc-pa', title: 'Physician Assistant', level: 'Mid → Senior', blurb: 'Assessment, diagnosis, prescribing, scope, collaboration, patient care.' },
+      { id: 'hc-ot', title: 'Occupational Therapist', level: 'Entry → Senior', blurb: 'Evaluation, treatment plans, ADLs, adaptation, outcomes, documentation.' },
+      { id: 'hc-rt', title: 'Respiratory Therapist', level: 'Entry → Senior', blurb: 'Ventilators, ABGs, oxygen therapy, airway, critical care, education.' }
     ]
   },
   {
@@ -552,7 +555,9 @@ window.CATALOG = [
       { id: 'gv-publichealth', title: 'Public Health Administrator', level: 'Mid → Senior', blurb: 'Programs, population health, outbreaks, data, community, policy.' },
       { id: 'gv-budget', title: 'Government Budget Analyst', level: 'Mid → Senior', blurb: 'Budget development, forecasting, appropriations, analysis, oversight.' },
       { id: 'gv-clerk', title: 'Court / Administrative Clerk', level: 'Entry → Mid', blurb: 'Records, filings, procedures, public service, accuracy, confidentiality.' },
-      { id: 'gv-epi', title: 'Epidemiologist', level: 'Mid → Senior', blurb: 'Surveillance, study design, outbreak investigation, biostatistics, bias, risk communication.' }
+      { id: 'gv-epi', title: 'Epidemiologist', level: 'Mid → Senior', blurb: 'Surveillance, study design, outbreak investigation, biostatistics, bias, risk communication.' },
+      { id: 'gv-fire', title: 'Firefighter / Fire Captain', level: 'Entry → Senior', blurb: 'Fire behavior, incident command, EMS, rescue, safety, prevention, leadership.' },
+      { id: 'gv-revenue', title: 'Tax Examiner / Revenue Agent', level: 'Entry → Senior', blurb: 'Return examination, tax law, audits, integrity, documentation, fraud indicators.' }
     ]
   },
   {
@@ -587,7 +592,8 @@ window.CATALOG = [
       { id: 'md-photo', title: 'Photographer', level: 'Entry → Senior', blurb: 'Composition, lighting, shoots, editing, clients, style, delivery.' },
       { id: 'md-journalist', title: 'Journalist / Reporter', level: 'Entry → Senior', blurb: 'Reporting, sources, accuracy, ethics, deadlines, interviewing, writing.' },
       { id: 'md-podcast', title: 'Podcast / Audio Producer', level: 'Entry → Senior', blurb: 'Production, editing, sound, guests, storytelling, distribution, growth.' },
-      { id: 'md-creativedir', title: 'Creative Director', level: 'Senior → Exec', blurb: 'Creative vision, brand system, critique, pitching, leading teams, cross-functional.' }
+      { id: 'md-creativedir', title: 'Creative Director', level: 'Senior → Exec', blurb: 'Creative vision, brand system, critique, pitching, leading teams, cross-functional.' },
+      { id: 'md-uxr', title: 'UX Researcher', level: 'Entry → Senior', blurb: 'Methods, usability, synthesis, influence, metrics, bias, ethics.' }
     ]
   },
   {

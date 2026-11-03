@@ -184,6 +184,9 @@ window.COUNTS = {
  "hc-radtech": 12,
  "hc-coder": 12,
  "hc-practice-mgr": 12,
+ "hc-pa": 13,
+ "hc-ot": 13,
+ "hc-rt": 13,
  "ls-ctc": 24,
  "ls-cra": 50,
  "ls-cpm": 24,
@@ -273,6 +276,8 @@ window.COUNTS = {
  "gv-budget": 12,
  "gv-clerk": 12,
  "gv-epi": 12,
+ "gv-fire": 13,
+ "gv-revenue": 13,
  "hs-hotel": 12,
  "hs-restaurant": 12,
  "hs-retail": 12,
@@ -296,6 +301,7 @@ window.COUNTS = {
  "md-journalist": 12,
  "md-podcast": 12,
  "md-creativedir": 12,
+ "md-uxr": 13,
  "tl-pilot": 12,
  "tl-atc": 12,
  "tl-cdl": 12,
@@ -311,4 +317,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 11526;
+window.FU_TOTAL = 11604;

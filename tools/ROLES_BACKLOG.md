@@ -172,9 +172,6 @@ role banks automatically and are handled separately — not listed here.)
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
 Healthcare & Life Sciences (field `health`) — cube `health-clin` "Clinical & Allied Health":
-- [ ] hc-pa — Physician Assistant (assessment, diagnosis, prescribing, scope, collaboration)
-- [ ] hc-ot — Occupational Therapist (evaluation, treatment plans, ADLs, outcomes, documentation)
-- [ ] hc-rt — Respiratory Therapist (ventilators, ABGs, airway, protocols, critical care)
 - [ ] hc-slp — Speech-Language Pathologist (assessment, swallowing, therapy, IEP, documentation)
 - [ ] hc-sono — Diagnostic Medical Sonographer (ultrasound, anatomy, protocols, QA, ergonomics)
 - [ ] hc-crna — Nurse Anesthetist (CRNA) (anesthesia, airway, pharmacology, monitoring, safety)
@@ -189,11 +186,10 @@ Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Const
 - [ ] en-robotics — Robotics Engineer (kinematics, controls, perception, integration, safety)
 
 Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
-- [ ] gv-fire — Firefighter / Fire Captain (suppression, rescue, incident command, EMS, safety)
-- [ ] gv-revenue — Tax Examiner / Revenue Agent (audits, compliance, tax law, documentation, ethics)
+(All fresh-batch government roles built — see Done.)
 
 Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
-- [ ] md-uxr — UX Researcher (methods, usability, synthesis, influence, ethics)
+(All fresh-batch media roles built — see Done.)
 
 Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
 (All fresh-batch hospitality roles built — see Done.)
@@ -288,3 +284,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] tr-wind — Wind Turbine Technician — 2026-11-02
 - [x] hs-casino — Casino / Gaming Operations Manager — 2026-11-02
 - [x] tl-marineeng — Marine Engineer / Ship's Engineer — 2026-11-02
+- [x] gv-fire — Firefighter / Fire Captain — 2026-11-03
+- [x] gv-revenue — Tax Examiner / Revenue Agent — 2026-11-03
+- [x] md-uxr — UX Researcher — 2026-11-03
+- [x] hc-pa — Physician Assistant — 2026-11-03
+- [x] hc-ot — Occupational Therapist — 2026-11-03
+- [x] hc-rt — Respiratory Therapist — 2026-11-03
