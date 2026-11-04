@@ -201,4 +201,18 @@ class CrashTest {
         tts.release(); v.release()
         if (aiLoaded) call(2) { client.unload(it) }
     }
+
+    /** In-app update download: fetch the published update.json and web.zip from GitHub and unpack it. */
+    @Test fun t9_updateDownload() {
+        val u = Updater(ctx)
+        val m = try { u.fetchManifest() } catch (t: Throwable) { log("UPDATE manifest not reachable yet: ${t.message}"); return }
+        val url = m.optString("webUrl"); if (url.isEmpty()) { log("UPDATE manifest has no webUrl yet"); return }
+        val t0 = System.currentTimeMillis()
+        val dir = u.applyWeb(url, "test-" + m.optString("web")) { _, _ -> }
+        log("UPDATE web=${m.optString("web")} native=${m.optString("native")} downloaded+unpacked in ${System.currentTimeMillis() - t0}ms files=${dir.walk().count()}")
+        assertTrue(java.io.File(dir, "index.html").exists() && java.io.File(dir, "web-version.json").exists())
+        ctx.getSharedPreferences("CapWebViewSettings", Context.MODE_PRIVATE).edit().remove("serverBasePath").apply()
+        dir.deleteRecursively()
+    }
 }
+

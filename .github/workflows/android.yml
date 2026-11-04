@@ -23,20 +23,25 @@ jobs:
         run: |
           npm install --no-audit --no-fund
           bash ci/fetch-sherpa.sh
-          node copy-web.js
+          BUILD_STAMP="$(date -u +%Y%m%d%H%M)-${GITHUB_SHA::7}" node copy-web.js
           npx cap add android
-          PHONE_ONLY=1 node patch-android.js
+          PHONE_ONLY=1 VERSION_CODE=$((GITHUB_RUN_NUMBER + 100)) node patch-android.js
           npx capacitor-assets generate --android --iconBackgroundColor '#0E1B3D' --iconBackgroundColorDark '#0E1B3D' --splashBackgroundColor '#0E1B3D' --splashBackgroundColorDark '#0E1B3D'
           cp -r res-overrides/* android/app/src/main/res/
           npx cap sync android
           mkdir -p ~/.android && cp signing/beta.keystore ~/.android/debug.keystore   # same key every build, so updates install over the old version
           cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon -q
           cp app/build/outputs/apk/debug/app-debug.apk ../InterviewEdge.apk
+          # In-app updates: the app files on their own (web update) + update.json describing this build.
+          cd .. && (cd www && zip -qr -9 ../web.zip .)
+          B=https://github.com/hpokkuluri/interview-edge/releases/download/android-test
+          node -e "const v=require('./www/web-version.json'),fs=require('fs');fs.writeFileSync('update.json',JSON.stringify(Object.assign(v,{webUrl:'$B/web.zip',apkUrl:'$B/InterviewEdge.apk',webBytes:fs.statSync('web.zip').size,apkBytes:fs.statSync('InterviewEdge.apk').size})))"
+          cat update.json
       - name: Publish test APK
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete android-test -y --cleanup-tag || true
-          gh release create android-test android-app/InterviewEdge.apk --prerelease \
+          gh release create android-test android-app/InterviewEdge.apk android-app/web.zip android-app/update.json --prerelease \
             --title "Interview Edge — Android test build" \
             --notes "Beta build ${GITHUB_SHA::7}. Install page: https://arahasoft.com/app/"

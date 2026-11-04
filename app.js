@@ -1539,17 +1539,61 @@ function vAI(ctx, id) {
   });
 }
 
-/* ---------- Settings ---------- */
+/* ---------- In-app updates (Android) ----------
+   "web" update: new questions/screens/sounds download (a few MB) and the app reloads — seconds, no reinstall.
+   "app" update: the AI/voice engine changed, so the new app downloads and Android shows "Update this app?". */
+function wireUpdates(el) {
+  const btn = $('#updgo', el), txt = $('#updt', el), bar = $('#updbar', el);
+  let info = null, sub = null, busy = false;
+  const day = d => { try { return new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }); } catch (e) { return ''; } };
+  const prog = on => { bar.hidden = !on; if (!on) bar.firstElementChild.style.width = '0%'; };
+  const listen = async () => { if (sub) return; sub = await EAI.addListener('update', ev => { if (ev.total > 0) bar.firstElementChild.style.width = (ev.received / ev.total * 100).toFixed(0) + '%'; txt.textContent = `Downloading… ${(ev.received / 1048576).toFixed(0)}${ev.total > 0 ? ' of ' + (ev.total / 1048576).toFixed(0) : ''} MB`; }); };
+  const done = () => { busy = false; btn.disabled = false; if (sub) { sub.remove(); sub = null; } };
+  btn.addEventListener('click', async () => {
+    if (busy) return; busy = true; btn.disabled = true;
+    try {
+      if (!info || info.kind === 'none') {
+        txt.textContent = 'Checking…';
+        info = await EAI.checkUpdate();
+        if (info.kind === 'none') { txt.textContent = `You have the latest version (${day(info.currentDate)}).`; btn.innerHTML = `${I.check} Check again`; return done(); }
+        txt.textContent = info.kind === 'web'
+          ? `New version from ${day(info.latestDate)} — about ${Math.max(1, info.webMb)} MB. Takes a few seconds; your progress stays.`
+          : `New app version from ${day(info.latestDate)} — ${info.apkMb} MB. Android will ask “Update this app?” — tap Update. Your progress and the AI stay.`;
+        btn.innerHTML = `${I.play} ${info.kind === 'web' ? 'Update now' : 'Download & install update'}`;
+        return done();
+      }
+      await listen(); prog(true);
+      if (info.kind === 'web') {
+        store.set('ip.justUpdated', 1);
+        await EAI.applyWebUpdate({ url: info.webUrl, version: info.latest });
+        txt.textContent = 'Updated — restarting…';   // the app reloads itself
+      } else {
+        const r = await EAI.installAppUpdate({ url: info.apkUrl });
+        prog(false);
+        txt.textContent = r && r.needsPermission
+          ? 'One time only: turn on “Allow from this source” for Interview Edge, come back, and tap the button again.'
+          : 'Tap Update on the Android screen. The app restarts on the new version.';
+      }
+    } catch (e) { store.del('ip.justUpdated'); prog(false); txt.textContent = e.message || 'Something went wrong — try again.'; }
+    done();
+  });
+}
+
+
 function vSettings(ctx) {
   const seg = (name, opts) => `<div class="seg" data-k="${name}">${opts.map(([v, l]) => `<button data-v="${v}" class="${S[name] === v ? 'on' : ''}">${l}</button>`).join('')}</div>`;
   ctx.el.innerHTML = `${bar(ctx, 'Settings')}<div class="wrap">
     ${PAY_ON ? `<div class="panel"><h3>Full access</h3><p>${isPro() ? 'Unlocked on this device. Thank you!' : `${PAY.free} free questions in every role. Unlock all ${totalQ().toLocaleString()} questions for ${PAY.price}, one time.`}</p>
       <div class="actions" style="margin-bottom:0">${isPro() ? '' : `<button class="btn gold" data-buy>Upgrade · ${PAY.price}</button>`}<button class="btn ghost" data-restore>Restore purchase</button></div>
 </div>` : ''}
+    ${EAI && EAI.checkUpdate ? `<div class="panel" id="upd"><h3>App updates</h3><p class="muted" id="updt">Get the newest questions and features — no reinstall needed.</p>
+      <div class="dl" id="updbar" hidden><i style="width:0%"></i></div>
+      <button class="btn pri wide" id="updgo">${I.play} Check for updates</button></div>` : ''}
     <div class="panel"><h3>Display</h3>
       <div class="field"><label>Theme</label>${seg('theme', [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])}</div>
       <div class="field">
         <label class="toggle"><span><b>Show answers right away</b><span>Off = tap to reveal, so you think first</span></span><input type="checkbox" class="sw" id="rv" ${S.reveal ? 'checked' : ''}></label>
+        <label class="toggle"><span><b>Opening sound</b><span>Short tune when the app starts</span></span><input type="checkbox" class="sw" id="isnd" ${S.introSound !== false ? 'checked' : ''}></label>
         <label class="toggle"><span><b>Read questions aloud by default</b><span>For mock interviews and voice practice</span></span><input type="checkbox" class="sw" id="sp" ${S.speak ? 'checked' : ''}></label>
       </div></div>
     <div class="panel"><h3>Voice</h3>
@@ -1573,6 +1617,8 @@ function vSettings(ctx) {
       ${store.get('ip.unlocked', 0) === 'admin' ? '<button class="btn ghost wide" id="admoff">Turn owner access off (see the free preview)</button>' : '<div class="field"><input class="txt" id="admcode" autocomplete="off" autocapitalize="characters" placeholder="Owner code"></div><button class="btn navy wide" id="admgo">Unlock</button>'}</div></div>`;
   $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; S[sg.dataset.k] = b.dataset.v; saveS(); applyTheme(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); }));
   $('#rv', ctx.el).addEventListener('change', e => { S.reveal = e.target.checked; saveS(); });
+  if (EAI && EAI.checkUpdate) wireUpdates(ctx.el);
+  $('#isnd', ctx.el).addEventListener('change', e => { S.introSound = e.target.checked; saveS(); if (S.introSound) { try { new Audio('sounds/intro.mp3').play().catch(() => {}); } catch (x) {} } });
   $('#sp', ctx.el).addEventListener('change', e => {
     S.speak = e.target.checked; saveS();
     ['ip.mockcfg', 'ip.aicfg'].forEach(k => { const c = store.get(k, null); if (c) { c.speak = S.speak; store.set(k, c); } });
@@ -1619,10 +1665,17 @@ function vSettings(ctx) {
 (function start() {
   // Opening intro: let the logo animation play (about 2.5 s), then fade into the app. Tap to skip.
   const sp = document.getElementById('splash');
-  if (sp) { const done = () => { sp.classList.add('out'); document.body.classList.remove('splashing'); setTimeout(() => sp.remove(), 600); };
+  // Opening sound (sounds/intro.mp3, ~3 s). Plays in the Android app; browsers may block sound before a tap, then it's skipped.
+  let jingle = null;
+  if (sp && S.introSound !== false && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    try { jingle = new Audio('sounds/intro.mp3'); jingle.volume = .8; const pr = jingle.play(); if (pr && pr.catch) pr.catch(() => { jingle = null; }); } catch (e) { jingle = null; }
+  }
+  if (sp) { const done = () => { sp.classList.add('out'); document.body.classList.remove('splashing'); setTimeout(() => sp.remove(), 600);
+      if (jingle && !jingle.ended) { const a = jingle, v0 = a.volume; let k = 0; const fi = setInterval(() => { a.volume = Math.max(0, v0 * (1 - ++k / 8)); if (k >= 8) { clearInterval(fi); a.pause(); } }, 60); } };
     const t = setTimeout(done, matchMedia('(prefers-reduced-motion: reduce)').matches ? 900 : 3500);
     sp.addEventListener('click', () => { clearTimeout(t); done(); }); }
   const ctx = build('welcome'); wireCommon(ctx); stage.appendChild(ctx.el); stack.push(ctx);
+  if (store.get('ip.justUpdated', 0)) { store.del('ip.justUpdated'); setTimeout(() => toast('Updated to the latest version'), 3800); }
   history.replaceState({ d: 1 }, '');
   const qp = new URLSearchParams(location.search);   // back from Stripe Checkout
   if (qp.has('paid')) {

@@ -33,6 +33,30 @@ grep -E "// CRASH|// NOT RESPONDING|Long Msg" monkey.txt | head -20 | sed 's/^/ 
 grep -A12 "FATAL EXCEPTION" monkey-logcat.txt | head -40 | sed 's/^/    /' >> "$REPORT"
 [ $MRC = 124 ] && echo "    (monkey run hit the 15-minute limit — no crash recorded)" >> "$REPORT"
 echo "monkey stress test (4000 random taps/swipes): $([ $MONKEY_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
+# In-app web update: put a copy of the app files in the app's storage (as a downloaded update would),
+# point the app at it, relaunch, and check it loads from there without crashing.
+PKG=com.arahasoft.interviewedge
+UPD_OK=1
+rm -rf /tmp/webtest && cp -r ../www /tmp/webtest && echo "console.log('EDGE-WEB-UPDATE-SERVED');" >> /tmp/webtest/app.js
+adb push /tmp/webtest /data/local/tmp/webtest >/dev/null && adb shell chmod -R 755 /data/local/tmp/webtest
+adb shell am force-stop $PKG
+adb shell "run-as $PKG sh -c 'rm -rf files/web; mkdir -p files/web; cp -r /data/local/tmp/webtest files/web/v-test'"
+P=$(adb shell "run-as $PKG cat shared_prefs/CapWebViewSettings.xml" | tr -d '\r')
+if echo "$P" | grep -q lastBinaryVersionCode; then
+  echo "$P" | grep -v serverBasePath | sed "s#</map>#    <string name=\"serverBasePath\">/data/user/0/$PKG/files/web/v-test</string>\n</map>#" > /tmp/capprefs.xml
+  adb push /tmp/capprefs.xml /data/local/tmp/capprefs.xml >/dev/null && adb shell chmod 644 /data/local/tmp/capprefs.xml
+  adb shell "run-as $PKG sh -c 'cat /data/local/tmp/capprefs.xml > shared_prefs/CapWebViewSettings.xml'"
+  adb logcat -c
+  adb shell monkey -p $PKG -c android.intent.category.LAUNCHER 1 >/dev/null 2>&1
+  sleep 20
+  adb logcat -d > upd-logcat.txt
+  if grep -q "EDGE-WEB-UPDATE-SERVED" upd-logcat.txt && ! grep -A3 "FATAL EXCEPTION" upd-logcat.txt | grep -q arahasoft; then UPD_OK=0; fi
+  grep -E "EDGE-WEB-UPDATE-SERVED|FATAL EXCEPTION" upd-logcat.txt | head -5 | sed 's/^/    /' >> "$REPORT"
+else
+  echo "    (Capacitor prefs not found: $P)" >> "$REPORT"
+fi
+echo "in-app web update loads from downloaded files: $([ $UPD_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
+
 cat "$REPORT"
 cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
-[ $TEST_OK = 0 ] && [ $MONKEY_OK = 0 ]
+[ $TEST_OK = 0 ] && [ $MONKEY_OK = 0 ] && [ $UPD_OK = 0 ]

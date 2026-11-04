@@ -21,10 +21,15 @@ class EdgeAIPlugin : Plugin() {
     private lateinit var ai: AiClient
     private lateinit var store: ModelStore
     private lateinit var voice: VoiceIO
+    private lateinit var updater: Updater
+    @Volatile private var pendingApk: java.io.File? = null
 
     override fun load() {
+        // Let the opening sound play without a tap (only this app's own pages load in this WebView).
+        activity?.runOnUiThread { try { bridge.webView.settings.mediaPlaybackRequiresUserGesture = false } catch (_: Throwable) {} }
         ai = AiClient(context) { ev, b -> notifyListeners(ev, toJs(b)) }
         store = ModelStore(context)
+        updater = Updater(context)
         voice = VoiceIO(context, store.folder(VOICE_PACK)) { ev, b -> notifyListeners(ev, toJs(b)) }
     }
 
@@ -136,4 +141,55 @@ class EdgeAIPlugin : Plugin() {
     }
 
     @PluginMethod fun stopSpeaking(call: PluginCall) { voice.stopSpeaking(); call.resolve() }
+
+    // ---------------- in-app updates ----------------
+    /** { current, bundled, latest } version stamps, and what kind of update is available: "none" | "web" | "app". */
+    @PluginMethod fun checkUpdate(call: PluginCall) {
+        Thread {
+            try {
+                val cur = updater.current(); val mine = updater.bundled(); val m = updater.fetchManifest()
+                val kind = when {
+                    m.optString("native") != mine.optString("native") -> "app"
+                    m.optString("web") != cur.optString("web") -> "web"
+                    else -> "none"
+                }
+                call.resolve(JSObject().put("kind", kind).put("current", cur.optString("web")).put("latest", m.optString("web"))
+                    .put("latestDate", m.optString("date")).put("currentDate", cur.optString("date"))
+                    .put("webUrl", m.optString("webUrl")).put("apkUrl", m.optString("apkUrl")).put("webMb", m.optLong("webBytes") / 1048576).put("apkMb", m.optLong("apkBytes") / 1048576))
+            } catch (t: Throwable) { call.reject("Couldn’t check for updates — check your internet connection.", "network") }
+        }.start()
+    }
+
+    private fun progress(stage: String) = { got: Long, total: Long -> notifyListeners("update", JSObject().put("stage", stage).put("received", got).put("total", total)) }
+
+    /** Downloads the new app files and reloads the app from them (a few seconds, no reinstall). */
+    @PluginMethod fun applyWebUpdate(call: PluginCall) {
+        val url = call.getString("url") ?: return call.reject("url required")
+        val ver = call.getString("version") ?: return call.reject("version required")
+        Thread {
+            try {
+                val dir = updater.applyWeb(url, ver, progress("web"))
+                call.resolve(JSObject().put("ok", true))
+                bridge.webView.postDelayed({ bridge.setServerBasePath(dir.path) }, 300)
+            } catch (t: Throwable) { call.reject("The update didn’t download completely — try again.", "failed") }
+        }.start()
+    }
+
+    /** Downloads the new app and opens Android's "Update this app?" screen. */
+    @PluginMethod fun installAppUpdate(call: PluginCall) {
+        val url = call.getString("url") ?: return call.reject("url required")
+        val act = activity ?: return call.reject("no activity")
+        if (!updater.canInstallApks()) {
+            // One time only: Android asks to allow Interview Edge to install its own updates.
+            updater.openInstallPermission(act)
+            return call.resolve(JSObject().put("needsPermission", true))
+        }
+        Thread {
+            try {
+                val apk = pendingApk?.takeIf { it.exists() } ?: updater.downloadApk(url, progress("app"))
+                pendingApk = apk
+                act.runOnUiThread { try { updater.install(act, apk); call.resolve(JSObject().put("ok", true)) } catch (t: Throwable) { call.reject("Couldn’t open the installer.", "failed") } }
+            } catch (t: Throwable) { call.reject("The update didn’t download completely — try again.", "failed") }
+        }.start()
+    }
 }
