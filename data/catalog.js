@@ -78,6 +78,22 @@ window.CATALOG = [
     ]
   },
   {
+    id: 'hw', field: 'tech', name: 'Hardware Engineering', short: 'Hardware', glyph: 'HW', color: '#9A3412', tint: '#FBEDE6',
+    tag: 'Circuit and board design, FPGA, chips, embedded, test, power and hardware products',
+    positions: [
+      { id: 'hw-design', title: 'Hardware Design Engineer', level: 'Mid → Senior', blurb: 'Schematics, component selection, bring-up, DFM, debugging boards.' },
+      { id: 'hw-pcb', title: 'PCB Layout Engineer', level: 'Mid', blurb: 'Stack-up, placement, routing, impedance, DFM/DFA, Altium/Allegro.' },
+      { id: 'hw-fpga', title: 'FPGA Engineer', level: 'Mid → Senior', blurb: 'RTL in Verilog/VHDL, timing closure, CDC, simulation, on-chip debug.' },
+      { id: 'hw-asic', title: 'ASIC / Chip Design Engineer', level: 'Mid → Senior', blurb: 'RTL design, verification, synthesis, STA, low power, tape-out.' },
+      { id: 'hw-embed', title: 'Embedded Hardware Engineer', level: 'Mid', blurb: 'Microcontroller boards, sensors, interfaces, low power, bring-up.' },
+      { id: 'hw-test', title: 'Hardware Test Engineer', level: 'Entry → Mid', blurb: 'Test plans, fixtures, ATE, validation, failure analysis, yield.' },
+      { id: 'hw-si', title: 'Signal Integrity Engineer', level: 'Senior', blurb: 'High-speed links, impedance, crosstalk, S-parameters, PDN, simulation.' },
+      { id: 'hw-power', title: 'Power Electronics Engineer', level: 'Mid → Senior', blurb: 'Converters, magnetics, control loops, thermal, efficiency, safety.' },
+      { id: 'hw-fw', title: 'Firmware Engineer', level: 'Mid', blurb: 'C on microcontrollers, RTOS, drivers, interrupts, bootloaders, debug.' },
+      { id: 'hw-pm', title: 'Hardware Product Manager', level: 'Senior', blurb: 'Requirements, BOM cost, EVT/DVT/PVT, suppliers, NPI, launch.' }
+    ]
+  },
+  {
     id: 'itlead', field: 'tech', name: 'IT Leadership', short: 'IT Lead', color: '#3B3F9E', tint: '#ECECF8',
     tag: 'Enterprise applications, IT operations and the C-suite',
     positions: [
@@ -618,8 +634,8 @@ window.CATALOG = [
 
 // Fields: the top layer on the home screen. Each lists its families (cubes) in display order.
 window.FIELDS = [
-  { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, testing and IT leadership',
-    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'indtest', 'itlead'] },
+  { id: 'tech', name: 'Technology', glyph: 'IT', color: '#1B5CEB', tint: '#E6EEFD', tag: 'ERP functional and technical, SAP, engineering, hardware, testing and IT leadership',
+    families: ['oracle', 'oramod', 'erptech', 'sap', 'java', 'swe', 'data', 'cloud', 'sec', 'infra', 'entapps', 'prod', 'qa', 'indtest', 'hw', 'itlead'] },
   { id: 'fin', name: 'Finance & Accounting', glyph: 'FIN', color: '#15803D', tint: '#E6F4EA', tag: 'Accounting, close, FP&A, treasury, audit, tax and finance leadership',
     families: ['accops', 'fpa', 'audit', 'finspec', 'finlead'] },
   { id: 'scm', name: 'Supply Chain & Manufacturing', glyph: 'SCM', color: '#B45309', tint: '#FBF0E3', tag: 'Procurement, planning, inventory, logistics, manufacturing, quality and leadership',

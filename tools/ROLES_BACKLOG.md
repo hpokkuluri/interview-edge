@@ -89,9 +89,19 @@ Attach with push access and clone, work on `main`. Pushing triggers the Android 
 
 Existing banks below the 50-question standard, lowest first — bring each to **50+** role-specific
 questions by adding `src/<id>-N.js` files (don't duplicate existing question text). Prioritize
-these before adding brand-new roles. (Module banks `ora-mod-*` aggregate questions from the Oracle
+these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
+- [ ] hw-design — Hardware Design Engineer (at 12, add ~38)
+- [ ] hw-pcb — PCB Layout Engineer (at 12, add ~38)
+- [ ] hw-fpga — FPGA Engineer (at 12, add ~38)
+- [ ] hw-asic — ASIC / Chip Design Engineer (at 12, add ~38)
+- [ ] hw-embed — Embedded Hardware Engineer (at 12, add ~38)
+- [ ] hw-test — Hardware Test Engineer (at 12, add ~38)
+- [ ] hw-si — Signal Integrity Engineer (at 12, add ~38)
+- [ ] hw-power — Power Electronics Engineer (at 12, add ~38)
+- [ ] hw-fw — Firmware Engineer (at 12, add ~38)
+- [ ] hw-pm — Hardware Product Manager (at 12, add ~38)
 - [ ] cs-pmo — Program Manager / PMO Lead (at 12, add ~38)
 - [ ] en-chem — Chemical / Process Engineer (at 12, add ~38)
 - [ ] en-env — Environmental Engineer (at 12, add ~38)
