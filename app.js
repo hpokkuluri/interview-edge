@@ -493,6 +493,7 @@ function titleOf(route) {
   if (k === 'settings') return 'Settings';
   if (k === 'profile') return 'My role';
   if (k === 'resume') return 'Resume';
+  if (k === 'mine') return MINE[a] ? MINE[a][1] : 'Back';
   if (k === 'welcome') return 'Welcome';
   if (k === 'legal') return 'Terms';
   return 'Back';
@@ -503,7 +504,7 @@ function build(route) {
   const el = document.createElement('div'); el.className = 'screen';
   const [k, a, b] = route.split('/');
   const ctx = { el, route, cleanup: [], back: stack.length ? titleOf(stack[stack.length - 1].route) : 'Home' };
-  ({ legal: vLegal, welcome: vWelcome, home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume }[k] || vHome)(ctx, a, b);
+  ({ legal: vLegal, welcome: vWelcome, home: vHome, field: vField, search: vSearch, fam: vFam, pos: vPos, q: vQ, mock: vMock, flash: vFlash, ai: vAI, settings: vSettings, profile: vProfile, resume: vResume, mine: vMine }[k] || vHome)(ctx, a, b);
   return ctx;
 }
 function wireCommon(ctx) {
@@ -697,7 +698,7 @@ function vHome(ctx) {
         <button class="hm-gear" data-go="settings" aria-label="Settings">${I.gear}</button></div>
         <h1 class="hm-greet">${greet}.</h1><p class="hm-sub">What are you preparing for today?</p>
         <button class="hm-search" data-go="search">${I.search}<span>Search ${total.toLocaleString()} questions and roles</span></button>
-        <div class="hm-prog"><div class="k"><b>${known}</b><span>Known</span></div><div class="r"><b>${rev}</b><span>To review</span></div><div class="s"><b>${stars}</b><span>Starred</span></div><div class="m"><b>${mocks}</b><span>Mocks</span></div></div>
+        <div class="hm-prog"><button class="k" data-go="mine/k"><b>${known}</b><span>Known</span></button><button class="r" data-go="mine/r"><b>${rev}</b><span>To review</span></button><button class="s" data-go="mine/star"><b>${stars}</b><span>Starred</span></button><button class="m" data-go="mine/mocks"><b>${mocks}</b><span>Mocks</span></button></div>
         ${PAY_ON ? (isPro() ? '<div class="hm-plan on">' + I.check + '<span><b>Full access</b> · every question unlocked</span></div>' : `<div class="hm-plan">${I.lock}<span><b>Free preview</b> · ${PAY.free} questions per role</span><button class="btn gold" data-buy>Upgrade ${PAY.price}</button></div>`) : ''}
       </div>
       <div class="home-main"><div class="wrap">
@@ -719,6 +720,33 @@ function vHome(ctx) {
       </div></div></div>`;
   };
   render(); ctx.refresh = render;
+}
+
+/* ---------- My questions: Known / To review / Starred lists, and past mock interviews ---------- */
+const MINE = { k: ['Known', 'Known', 'Questions you marked as known'], r: ['To review', 'To review', 'Questions you marked to review'], star: ['Starred', 'Starred', 'Questions you starred'], mocks: ['Mock interviews', 'Mocks', 'Your past mock and AI interviews'] };
+function vMine(ctx, kind) {
+  const [title, , sub] = MINE[kind] || MINE.k;
+  const wrap = () => $('.wrap', ctx.el);
+  ctx.el.innerHTML = `${bar(ctx, title)}<div class="wrap"><div class="empty">Loading…</div></div>`;
+  const when = t => new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  if (kind === 'mocks') {
+    const h = store.get('ip.mocks', []).slice().reverse();
+    wrap().innerHTML = `<p class="muted" style="margin:4px 2px 12px">${esc(sub)}</p>` + (h.length ? h.map(m => { const p = POS[m.pos]; return `<button class="qrow" ${p ? `data-go="pos/${m.pos}"` : ''}><span class="num">${m.ai ? 'AI' : '★'}</span><span class="qt">${esc(p ? p.full : m.pos)}<span class="qc">${when(m.at)} · ${m.n} question${m.n === 1 ? '' : 's'}${m.avg ? ` · score ${m.ai ? (m.avg * 2).toFixed(1) + '/10' : m.avg.toFixed(1) + '/5'}` : ''}${m.ai ? '<span class="lvl T">AI interviewer</span>' : ''}</span></span></button>`; }).join('')
+      : '<div class="empty">No interviews yet. Open any role and tap <b>Mock interview</b> or <b>AI interviewer</b>.</div>');
+    return;
+  }
+  const match = kind === 'star' ? (o => o.star) : (o => o.s === kind);
+  const ids = Object.keys(PROG).filter(k => match(PROG[k]));
+  if (!ids.length) { wrap().innerHTML = `<div class="empty">Nothing here yet. Open a question and tap <b>${kind === 'star' ? '★ Star' : kind === 'k' ? 'Got it' : 'Review again'}</b> to add it.</div>`; return; }
+  const want = new Set(ids), banks = [...new Set(ids.map(k => k.slice(0, k.lastIndexOf(':'))))].filter(b => POS[b]);
+  Promise.all(banks.map(b => loadBank(b).then(bank => [b, bank]).catch(() => [b, null]))).then(res => {
+    const groups = res.filter(([, bank]) => bank).map(([b, bank]) => [b, bank.map((x, i) => i).filter(i => (bank[i][5] || b) === b && want.has(qid(b, bank[i])))]).filter(([, l]) => l.length);
+    const n = groups.reduce((a, [, l]) => a + l.length, 0);
+    wrap().innerHTML = `<p class="muted" style="margin:4px 2px 12px">${n} question${n === 1 ? '' : 's'} · ${esc(sub)}</p>` + groups.map(([b, l]) => { const p = POS[b], bank = BANKS[b];
+      return `<div class="sec-h" style="margin:16px 2px 8px">${esc(p.full)}</div>` + l.map(i => `<button class="qrow" data-b="${b}" data-q="${i}" style="${famVars(p.fam)}"><span class="num">${i + 1}</span><span class="qt">${esc(bank[i][1])}<span class="qc">${esc(bank[i][0])}</span></span>${PROG[qid(b, bank[i])].star ? I.star.replace('<svg', '<svg class="star-ic"') : ''}<span class="sdot ${PROG[qid(b, bank[i])].s || ''}"></span></button>`).join(''); }).join('');
+    wrap().addEventListener('click', e => { const r = e.target.closest('[data-q]'); if (!r) return; const b = r.dataset.b; qList[b] = groups.find(g => g[0] === b)[1].slice(); go(`q/${b}/${r.dataset.q}`); });
+  });
+  ctx.refresh = () => vMine(ctx, kind);
 }
 
 /* ---------- Field: the track cubes inside a field ---------- */
