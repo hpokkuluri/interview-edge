@@ -92,11 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] sm-se — Sales Engineer / Solutions Consultant (at 11, add ~39)
-- [ ] bk-credit — Credit Analyst / Credit Risk Analyst (at 12, add ~38)
-- [ ] bk-mortgage — Mortgage Loan Officer / Underwriter (at 12, add ~38)
-- [ ] bk-risk — Risk Manager (Enterprise / Financial) (at 12, add ~38)
-- [ ] cs-change — Change Management Consultant (at 12, add ~38)
 - [ ] cs-pmo — Program Manager / PMO Lead (at 12, add ~38)
 - [ ] en-chem — Chemical / Process Engineer (at 12, add ~38)
 - [ ] en-env — Environmental Engineer (at 12, add ~38)
@@ -147,6 +142,11 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] sm-se — Sales Engineer / Solutions Consultant — 2026-11-04
+- [x] bk-credit — Credit Analyst / Credit Risk Analyst — 2026-11-04
+- [x] bk-mortgage — Mortgage Loan Officer / Underwriter — 2026-11-04
+- [x] bk-risk — Risk Manager (Enterprise / Financial) — 2026-11-04
+- [x] cs-change — Change Management Consultant — 2026-11-04
 - [x] bk-actuary — Actuary (Life / P&C / Health) — 2026-11-01
 - [x] bk-agent — Insurance Agent / Broker — 2026-11-01
 - [x] bk-pb — Personal Banker / Branch Manager — 2026-11-01
