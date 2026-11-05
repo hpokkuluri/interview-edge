@@ -197,6 +197,9 @@ window.COUNTS = {
  "hc-pa": 13,
  "hc-ot": 13,
  "hc-rt": 13,
+ "hc-slp": 14,
+ "hc-sono": 13,
+ "hc-crna": 12,
  "ls-ctc": 24,
  "ls-cra": 50,
  "ls-cpm": 24,
@@ -275,6 +278,9 @@ window.COUNTS = {
  "tr-lineworker": 12,
  "tr-elevator": 12,
  "tr-wind": 12,
+ "tr-solar": 13,
+ "tr-ironworker": 13,
+ "tr-instrument": 13,
  "gv-analyst": 12,
  "gv-admin": 12,
  "gv-grants": 12,
@@ -327,4 +333,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 11918;
+window.FU_TOTAL = 11996;

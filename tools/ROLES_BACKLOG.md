@@ -182,14 +182,10 @@ role banks automatically and are handled separately — not listed here.)
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
 Healthcare & Life Sciences (field `health`) — cube `health-clin` "Clinical & Allied Health":
-- [ ] hc-slp — Speech-Language Pathologist (assessment, swallowing, therapy, IEP, documentation)
-- [ ] hc-sono — Diagnostic Medical Sonographer (ultrasound, anatomy, protocols, QA, ergonomics)
-- [ ] hc-crna — Nurse Anesthetist (CRNA) (anesthesia, airway, pharmacology, monitoring, safety)
+(All fresh-batch clinical roles built — see Done.)
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled Trades":
-- [ ] tr-solar — Solar PV Installer (racking, inverters, NEC, interconnection, safety)
-- [ ] tr-ironworker — Ironworker (structural steel, rigging, welding, heights, blueprints)
-- [ ] tr-instrument — Instrumentation & Controls Technician (calibration, PLCs, loops, P&IDs)
+(All fresh-batch trades roles built — see Done.)
 
 Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
 - [ ] en-petro — Petroleum Engineer (reservoir, drilling, production, economics, safety)
@@ -300,3 +296,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hc-pa — Physician Assistant — 2026-11-03
 - [x] hc-ot — Occupational Therapist — 2026-11-03
 - [x] hc-rt — Respiratory Therapist — 2026-11-03
+- [x] hc-slp — Speech-Language Pathologist — 2026-11-05
+- [x] hc-sono — Diagnostic Medical Sonographer — 2026-11-05
+- [x] hc-crna — Nurse Anesthetist (CRNA) — 2026-11-05
+- [x] tr-solar — Solar PV Installer — 2026-11-05
+- [x] tr-ironworker — Ironworker — 2026-11-05
+- [x] tr-instrument — Instrumentation & Controls Technician — 2026-11-05

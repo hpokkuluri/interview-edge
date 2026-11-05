@@ -410,7 +410,10 @@ window.CATALOG = [
       { id: 'hc-practice-mgr', title: 'Medical Practice Manager', level: 'Mid → Senior', blurb: 'Operations, staff, billing, scheduling, compliance, patient experience.' },
       { id: 'hc-pa', title: 'Physician Assistant', level: 'Mid → Senior', blurb: 'Assessment, diagnosis, prescribing, scope, collaboration, patient care.' },
       { id: 'hc-ot', title: 'Occupational Therapist', level: 'Entry → Senior', blurb: 'Evaluation, treatment plans, ADLs, adaptation, outcomes, documentation.' },
-      { id: 'hc-rt', title: 'Respiratory Therapist', level: 'Entry → Senior', blurb: 'Ventilators, ABGs, oxygen therapy, airway, critical care, education.' }
+      { id: 'hc-rt', title: 'Respiratory Therapist', level: 'Entry → Senior', blurb: 'Ventilators, ABGs, oxygen therapy, airway, critical care, education.' },
+      { id: 'hc-slp', title: 'Speech-Language Pathologist', level: 'Entry → Senior', blurb: 'Speech, language, swallowing/dysphagia, aphasia, AAC, fluency, IEPs, documentation.' },
+      { id: 'hc-sono', title: 'Diagnostic Medical Sonographer', level: 'Entry → Senior', blurb: 'Ultrasound physics, protocols, artifacts, Doppler, ALARA safety, ergonomics, image quality.' },
+      { id: 'hc-crna', title: 'Nurse Anesthetist (CRNA)', level: 'Senior', blurb: 'Anesthesia plan, airway, pharmacology, monitoring, regional, crisis management, safety.' }
     ]
   },
   {
@@ -554,7 +557,10 @@ window.CATALOG = [
       { id: 'tr-carpenter', title: 'Carpenter', level: 'Apprentice → Senior', blurb: 'Framing, finish, blueprints, layout, tools, code, measuring, safety.' },
       { id: 'tr-lineworker', title: 'Electrical Lineworker', level: 'Apprentice → Journeyman', blurb: 'High voltage, poles, transformers, PPE, grounding, storm response, safety.' },
       { id: 'tr-elevator', title: 'Elevator Installer / Mechanic', level: 'Apprentice → Journeyman', blurb: 'Traction vs hydraulic, governor & safeties, ASME A17.1, troubleshooting, LOTO.' },
-      { id: 'tr-wind', title: 'Wind Turbine Technician', level: 'Entry → Journeyman', blurb: 'Climbing & fall arrest, LOTO, bolt tensioning, hydraulics, SCADA faults, troubleshooting.' }
+      { id: 'tr-wind', title: 'Wind Turbine Technician', level: 'Entry → Journeyman', blurb: 'Climbing & fall arrest, LOTO, bolt tensioning, hydraulics, SCADA faults, troubleshooting.' },
+      { id: 'tr-solar', title: 'Solar PV Installer', level: 'Entry → Senior', blurb: 'Racking & flashing, string vs microinverters, NEC 690, rapid shutdown, grounding, fall protection.' },
+      { id: 'tr-ironworker', title: 'Ironworker', level: 'Apprentice → Journeyman', blurb: 'Structural steel erection, rigging, connecting, bolt-up, field welding, heights, blueprints.' },
+      { id: 'tr-instrument', title: 'Instrumentation & Controls Technician', level: 'Entry → Senior', blurb: 'Calibration, 4-20mA/HART, PID loops, PLC/DCS, P&IDs, hazardous areas, SIS, troubleshooting.' }
     ]
   },
   {
