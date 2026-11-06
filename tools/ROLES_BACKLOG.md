@@ -181,13 +181,7 @@ role banks automatically and are handled separately — not listed here.)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
-- [ ] inf-ea — Enterprise Architect (TOGAF, business/IT strategy, architecture domains, roadmaps, governance, stakeholder alignment) — cube `infra` "Infrastructure & Architecture" (field `tech`)
-- [ ] gv-evidence — Property & Evidence Technician (chain of custody, intake, storage, disposal, CPEI standards, testimony, inventory audits) — cube `gov-core` "Public Sector" (field `gov`)
-- [ ] eng-svp — SVP / EVP of Software Engineering (multi-org leadership, platform/architecture strategy at scale, exec & board influence, org design, large budgets & talent, between VP Eng and CTO) — cube `java` "Java & Engineering" (field `tech`)
-- [ ] hw-controls — Control Systems Engineer (feedback/PID control, state-space, Simulink/model-based design, PLC & embedded controls, automotive powertrain controls, tuning, V&V) — cube `hw` "Hardware Engineering" (field `tech`)
-- [ ] hw-mech — Mechatronics Engineer (mechanical + electrical + controls/software integration, actuators & sensors, motion systems, prototyping, automated products) — cube `hw` "Hardware Engineering" (field `tech`)
-- [ ] hw-rf — RF / Wireless Engineer (RF circuits, antennas, transceivers, link budgets, S-parameters, EMC/compliance, wireless standards) — cube `hw` "Hardware Engineering" (field `tech`)
-- [ ] hc-claims — Medical Claims Examiner / Health Claims Analyst (eligibility, benefits/coverage, CPT/ICD basics, EOBs, adjudication, denials & appeals, payer rules, compliance) — cube `hcare` "Healthcare" (field `health`)
+(All contact-added roles built — see Done.)
 
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
@@ -250,7 +244,7 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [ ] tc-mobile-dev — Mobile Developer (iOS/Android, lifecycle, performance, releases)
 - [ ] tc-dba — Database Administrator (tuning, backup/recovery, HA, security)
 - [ ] tc-network — Network Engineer (routing, switching, firewalls, troubleshooting)
-- [ ] tc-tech-support — IT Support / Help Desk Technician (troubleshooting, ticketing, SLAs)
+- [x] tc-tech-support — IT Support / Help Desk Technician (built 2026-11-06; placed in existing `infra` cube rather than a one-role `tech-more` cube)
 - [ ] tc-scrum — Scrum Master / Agile Coach (ceremonies, impediments, metrics, coaching)
 - [ ] tc-tpm — Technical Program Manager (cross-team delivery, dependencies, risk)
 
@@ -317,3 +311,11 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] lg-litig — Litigation Attorney / Trial Lawyer — 2026-11-06
 - [x] en-petro — Petroleum Engineer — 2026-11-06
 - [x] en-robotics — Robotics Engineer — 2026-11-06
+- [x] inf-ea — Enterprise Architect — 2026-11-06
+- [x] gv-evidence — Property & Evidence Technician — 2026-11-06
+- [x] eng-svp — SVP / EVP of Software Engineering — 2026-11-06
+- [x] hw-controls — Control Systems Engineer — 2026-11-06
+- [x] hw-mech — Mechatronics Engineer — 2026-11-06
+- [x] hw-rf — RF / Wireless Engineer — 2026-11-06
+- [x] hc-claims — Medical Claims Examiner / Health Claims Analyst — 2026-11-06
+- [x] tc-tech-support — IT Support / Help Desk Technician — 2026-11-06 (placed in `infra` cube)

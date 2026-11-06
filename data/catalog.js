@@ -74,7 +74,8 @@ window.CATALOG = [
       { id: 'java-arch', title: 'Principal Engineer / Java Architect', level: 'Principal', blurb: 'Distributed systems, microservices, system design, reliability.' },
       { id: 'eng-mgr', title: 'Engineering Manager', level: 'Manager', blurb: 'Teams, delivery, hiring, performance, technical judgment.' },
       { id: 'eng-dir', title: 'Director of Engineering', level: 'Director', blurb: 'Multiple teams, org design, planning, platform strategy.' },
-      { id: 'eng-vp', title: 'VP of Engineering', level: 'VP', blurb: 'Engineering org at scale, exec partnership, budget, culture.' }
+      { id: 'eng-vp', title: 'VP of Engineering', level: 'VP', blurb: 'Engineering org at scale, exec partnership, budget, culture.' },
+      { id: 'eng-svp', title: 'SVP / EVP of Software Engineering', level: 'SVP / EVP', blurb: 'Multi-org leadership, platform strategy at scale, board influence, org design, budgets and talent.' }
     ]
   },
   {
@@ -90,7 +91,10 @@ window.CATALOG = [
       { id: 'hw-si', title: 'Signal Integrity Engineer', level: 'Senior', blurb: 'High-speed links, impedance, crosstalk, S-parameters, PDN, simulation.' },
       { id: 'hw-power', title: 'Power Electronics Engineer', level: 'Mid → Senior', blurb: 'Converters, magnetics, control loops, thermal, efficiency, safety.' },
       { id: 'hw-fw', title: 'Firmware Engineer', level: 'Mid', blurb: 'C on microcontrollers, RTOS, drivers, interrupts, bootloaders, debug.' },
-      { id: 'hw-pm', title: 'Hardware Product Manager', level: 'Senior', blurb: 'Requirements, BOM cost, EVT/DVT/PVT, suppliers, NPI, launch.' }
+      { id: 'hw-pm', title: 'Hardware Product Manager', level: 'Senior', blurb: 'Requirements, BOM cost, EVT/DVT/PVT, suppliers, NPI, launch.' },
+      { id: 'hw-controls', title: 'Control Systems Engineer', level: 'Mid → Senior', blurb: 'Feedback/PID, state-space, Simulink/model-based design, PLC & embedded controls, tuning, V&V.' },
+      { id: 'hw-mech', title: 'Mechatronics Engineer', level: 'Mid → Senior', blurb: 'Mechanical + electrical + controls integration, actuators, sensors, motion systems, prototyping.' },
+      { id: 'hw-rf', title: 'RF / Wireless Engineer', level: 'Mid → Senior', blurb: 'RF circuits, antennas, transceivers, link budgets, S-parameters, EMC/compliance, wireless standards.' }
     ]
   },
   {
@@ -316,7 +320,9 @@ window.CATALOG = [
       { id: 'inf-sys', title: 'Systems Administrator / Engineer', level: 'Mid → Senior', blurb: 'Linux, Windows, AD, virtualization, backups, patching, automation.' },
       { id: 'inf-net', title: 'Network Engineer', level: 'Mid → Senior', blurb: 'Subnetting, routing, BGP/OSPF, firewalls, SD-WAN, Wi-Fi, cloud networking.' },
       { id: 'inf-dba', title: 'Database Administrator (SQL Server / PostgreSQL)', level: 'Mid → Senior', blurb: 'Backups, HA/DR, tuning, indexes, locking, upgrades, migrations.' },
-      { id: 'inf-sa', title: 'Solutions Architect', level: 'Senior → Principal', blurb: 'Requirements, NFRs, integration, build vs buy, cost, cloud, AI designs.' }
+      { id: 'inf-sa', title: 'Solutions Architect', level: 'Senior → Principal', blurb: 'Requirements, NFRs, integration, build vs buy, cost, cloud, AI designs.' },
+      { id: 'inf-ea', title: 'Enterprise Architect', level: 'Senior → Principal', blurb: 'TOGAF, business/IT strategy, capability maps, roadmaps, governance, stakeholder alignment.' },
+      { id: 'tc-tech-support', title: 'IT Support / Help Desk Technician', level: 'Entry → Mid', blurb: 'Troubleshooting, ticketing/ITSM, SLAs, accounts, remote support, imaging, escalation, customer service.' }
     ]
   },
   {
@@ -395,7 +401,8 @@ window.CATALOG = [
       { id: 'hc-rn', title: 'Registered Nurse', level: 'Mid → Senior', blurb: 'Prioritization, SBAR, safety, sepsis, delegation, patient advocacy.' },
       { id: 'hc-nm', title: 'Nurse Manager / Director of Nursing', level: 'Manager → Director', blurb: 'Staffing, HPPD, quality, HCAHPS, retention, just culture, Joint Commission.' },
       { id: 'hc-rcm', title: 'Revenue Cycle Manager', level: 'Manager', blurb: 'Denials, AR days, coding, prior auth, payers, compliance, collections.' },
-      { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' }
+      { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' },
+      { id: 'hc-claims', title: 'Medical Claims Examiner / Health Claims Analyst', level: 'Entry → Senior', blurb: 'Eligibility, benefits/coverage, CPT/ICD, EOBs, adjudication, denials & appeals, payer rules, compliance.' }
     ]
   },
   {
@@ -585,7 +592,8 @@ window.CATALOG = [
       { id: 'gv-clerk', title: 'Court / Administrative Clerk', level: 'Entry → Mid', blurb: 'Records, filings, procedures, public service, accuracy, confidentiality.' },
       { id: 'gv-epi', title: 'Epidemiologist', level: 'Mid → Senior', blurb: 'Surveillance, study design, outbreak investigation, biostatistics, bias, risk communication.' },
       { id: 'gv-fire', title: 'Firefighter / Fire Captain', level: 'Entry → Senior', blurb: 'Fire behavior, incident command, EMS, rescue, safety, prevention, leadership.' },
-      { id: 'gv-revenue', title: 'Tax Examiner / Revenue Agent', level: 'Entry → Senior', blurb: 'Return examination, tax law, audits, integrity, documentation, fraud indicators.' }
+      { id: 'gv-revenue', title: 'Tax Examiner / Revenue Agent', level: 'Entry → Senior', blurb: 'Return examination, tax law, audits, integrity, documentation, fraud indicators.' },
+      { id: 'gv-evidence', title: 'Property & Evidence Technician', level: 'Entry → Senior', blurb: 'Chain of custody, intake, storage, disposal, IAPE standards, testimony, inventory audits.' }
     ]
   },
   {

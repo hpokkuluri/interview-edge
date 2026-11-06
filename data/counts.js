@@ -39,6 +39,7 @@ window.COUNTS = {
  "eng-mgr": 50,
  "eng-dir": 50,
  "eng-vp": 50,
+ "eng-svp": 13,
  "hw-design": 12,
  "hw-pcb": 12,
  "hw-fpga": 12,
@@ -49,6 +50,9 @@ window.COUNTS = {
  "hw-power": 12,
  "hw-fw": 12,
  "hw-pm": 12,
+ "hw-controls": 13,
+ "hw-mech": 12,
+ "hw-rf": 13,
  "it-entapps": 50,
  "it-pmo": 50,
  "it-vp": 50,
@@ -151,6 +155,8 @@ window.COUNTS = {
  "inf-net": 50,
  "inf-dba": 50,
  "inf-sa": 50,
+ "inf-ea": 13,
+ "tc-tech-support": 13,
  "ea-sfadm": 50,
  "ea-sfdev": 50,
  "ea-snow": 50,
@@ -188,6 +194,7 @@ window.COUNTS = {
  "hc-nm": 50,
  "hc-rcm": 50,
  "hc-epic": 50,
+ "hc-claims": 12,
  "hc-np": 12,
  "hc-pharmacist": 12,
  "hc-pt": 12,
@@ -300,6 +307,7 @@ window.COUNTS = {
  "gv-epi": 12,
  "gv-fire": 13,
  "gv-revenue": 13,
+ "gv-evidence": 13,
  "hs-hotel": 12,
  "hs-restaurant": 12,
  "hs-retail": 12,
@@ -339,4 +347,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 12071;
+window.FU_TOTAL = 12173;
