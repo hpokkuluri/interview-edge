@@ -65,7 +65,7 @@ function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.ad
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
 
 /* ---------------- settings & progress ---------------- */
-const S = Object.assign({ theme: 'auto', reveal: false, speak: false, model: 'claude-sonnet-5-5', voice: 'female', rate: 1, handsFree: true }, store.get('ip.settings', {}));
+const S = Object.assign({ theme: 'auto', reveal: false, speak: false, model: 'claude-sonnet-5-5', voice: 'female', rate: 1, handsFree: true, homeLayout: 'gallery' }, store.get('ip.settings', {}));
 const saveS = () => store.set('ip.settings', S);
 const applyTheme = () => { if (S.theme === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', S.theme); };
 applyTheme();
@@ -683,6 +683,30 @@ function restorePro() {
 
 /* ---------- Home: fields, essentials, search ---------- */
 function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
+// --- Home field layouts (Gallery / Cube / Classic), chosen in Settings ---
+const fieldGlyphs = fd => fd.families.slice(0, 3).map(id => { const f = famById(id); return f ? (f.glyph || GLYPH[f.id] || f.short) : ''; }).filter(Boolean);
+function lcubeTop(mx, my, a, hh, col, txt) {
+  const b = a / 2, sh = f => shade(col, f);
+  const top = `${mx},${my} ${mx + a},${my + b} ${mx},${my + 2 * b} ${mx - a},${my + b}`;
+  const left = `${mx - a},${my + b} ${mx},${my + 2 * b} ${mx},${my + 2 * b + hh} ${mx - a},${my + b + hh}`;
+  const right = `${mx + a},${my + b} ${mx},${my + 2 * b} ${mx},${my + 2 * b + hh} ${mx + a},${my + b + hh}`;
+  const n = (txt || '').length, fs = n >= 4 ? 6.6 : n === 3 ? 8 : n === 2 ? 10.2 : 12;
+  return `<polygon points="${left}" fill="${sh(-.42)}"/><polygon points="${right}" fill="${sh(-.2)}"/><polygon points="${top}" fill="${sh(.42)}"/>`
+    + `<text x="${mx}" y="${my + b + .5}" text-anchor="middle" dominant-baseline="central" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="${fs}" fill="#0B1733">${esc(txt)}</text>`;
+}
+function cubeCluster(col, g) {
+  g = g && g.length ? g : ['•']; let s = '';
+  if (g.length >= 3) s += lcubeTop(50, 10, 17.5, 19, col, g[0]) + lcubeTop(25, 42, 17.5, 19, col, g[1]) + lcubeTop(75, 42, 17.5, 19, col, g[2]);
+  else if (g.length === 2) s += lcubeTop(32, 26, 18, 21, col, g[0]) + lcubeTop(68, 26, 18, 21, col, g[1]);
+  else s += lcubeTop(50, 20, 24, 27, col, g[0]);
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">${s}</svg>`;
+}
+function fieldsSection() {
+  const HL = S.homeLayout || 'gallery';
+  if (HL === 'gallery') return `<div class="fields-gal">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="gtile" data-go="field/${fd.id}" style="--g1:${shade(fd.color, .22)};--g2:${fd.color};--g3:${shade(fd.color, -.62)}"><span class="gt-glow"></span><span class="gt-cube">${cubeCluster(fd.color, g)}</span><span class="gt-meta"><b>${esc(fd.name)}</b><i>${p.roles} roles · ${p.total.toLocaleString()} Q</i></span></button>`; }).join('')}</div>`;
+  if (HL === 'cube') return `<div class="fields-cube">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="ccard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="cc-cube">${cubeCluster(fd.color, g)}</span><span class="cc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3);flex-shrink:0"')}</button>`; }).join('')}</div>`;
+  return `<div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span><span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span><span class="fc-fams">${fd.families.map(id => `<i>${esc(famById(id).name)}</i>`).join('')}</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>`;
+}
 function vHome(ctx) {
   const render = () => {
     const total = totalQ();   // questions plus their follow-up questions — one source of truth (also used on welcome, search, paywall)
@@ -707,11 +731,7 @@ function vHome(ctx) {
         <div class="sec-h">Start from your resume</div>
         <button class="card esscard" data-go="resume" style="${famVars(RES_FAM)}"><div class="pos-row">${cubeSVG(RES_FAM)}<div style="flex:1;min-width:0"><h3>${esc(RES_FAM.name)}</h3><p>${RS && RS.target && POS[RS.target] ? 'Practicing for ' + esc(POS[RS.target].full) + ' — tap to open or change' : esc(RES_FAM.tag)}</p></div></div></button>
         <div class="sec-h" style="margin-top:22px">Choose a field</div>
-        <div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}">
-          <span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span>
-          <span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span>
-          <span class="fc-fams">${fd.families.map(id => `<i>${esc(famById(id).name)}</i>`).join('')}</span>
-          <span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
+        ${fieldsSection()}
         <div class="sec-h" style="margin-top:22px">For every interview</div>
         <button class="card esscard" data-go="pos/common" style="${famVars(ESS)}"><div class="pos-row">${cubeSVG(ESS)}<div style="flex:1;min-width:0"><h3>${esc(ESS.name)}</h3><p>${esc(ESS.tag)}</p></div></div>
           <div class="pos-foot" style="padding-left:0"><span class="prog"><i class="k" style="width:${ess.total ? ess.k / ess.total * 100 : 0}%"></i></span><small>${ess.k}/${ess.total}</small></div></button>
@@ -1619,6 +1639,7 @@ function vSettings(ctx) {
       <button class="btn pri wide" id="updgo">${I.play} Check for updates</button></div>` : ''}
     <div class="panel"><h3>Display</h3>
       <div class="field"><label>Theme</label>${seg('theme', [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']])}</div>
+      <div class="field"><label>Home layout</label>${seg('homeLayout', [['gallery', 'Gallery'], ['cube', 'Cube'], ['classic', 'Classic']])}</div>
       <div class="field">
         <label class="toggle"><span><b>Show answers right away</b><span>Off = tap to reveal, so you think first</span></span><input type="checkbox" class="sw" id="rv" ${S.reveal ? 'checked' : ''}></label>
         <label class="toggle"><span><b>Opening sound</b><span>Short tune when the app starts</span></span><input type="checkbox" class="sw" id="isnd" ${S.introSound !== false ? 'checked' : ''}></label>

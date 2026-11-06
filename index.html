@@ -110,6 +110,28 @@ button{cursor:pointer}
 .fc-fams i{font-style:normal;font-size:.7rem;font-weight:700;color:var(--c);background:var(--tint);padding:2px 7px;border-radius:999px}
 .fieldcard .bar-p{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
 .fieldcard .bar-p i{display:block;height:100%;background:var(--c)}
+/* Gallery home layout */
+.fields-gal{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.gtile{position:relative;border:0;border-radius:22px;overflow:hidden;aspect-ratio:1/1.12;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;text-align:left;background:linear-gradient(158deg,var(--g1),var(--g2) 44%,var(--g3));box-shadow:0 12px 26px rgba(0,0,0,.28);width:100%}
+.gtile:active{transform:scale(.98)}
+.gtile::after{content:"";position:absolute;inset:0;border-radius:22px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);pointer-events:none}
+.gt-glow{position:absolute;top:-12%;left:50%;transform:translateX(-50%);width:130%;height:72%;background:radial-gradient(circle at 50% 32%,rgba(255,255,255,.4),transparent 62%);pointer-events:none}
+.gt-cube{position:absolute;top:7%;left:0;right:0;display:flex;justify-content:center}
+.gt-cube svg{width:98px;height:98px;filter:drop-shadow(0 8px 15px rgba(0,0,0,.45))}
+.gt-meta{position:relative;z-index:1}
+.gt-meta b{display:block;font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.03;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.gt-meta i{font-style:normal;display:block;margin-top:5px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.92);letter-spacing:.01em}
+/* Cube home layout */
+.fields-cube{display:flex;flex-direction:column;gap:12px}
+.ccard{border:0;background:var(--surface);border-radius:22px;padding:12px 14px;text-align:left;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;width:100%}
+.ccard:active{transform:scale(.99)}
+.cc-cube{flex-shrink:0;width:70px;height:70px;display:grid;place-items:center}
+.cc-cube svg{width:70px;height:70px}
+.cc-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.cc-txt h3{margin:0;font-size:1.12rem;line-height:1.2;font-weight:800}
+.cc-txt .meta{font-size:.8rem;color:var(--text-3)}
+.ccard .bar-p{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:2px}
+.ccard .bar-p i{display:block;height:100%;background:var(--c)}
 .esscard .pos-row svg{width:56px;height:56px;flex-shrink:0;margin:-4px 0}
 .lvl.L{background:color-mix(in srgb,var(--amber) 14%,transparent);color:var(--amber)}
 .continue{display:flex;align-items:center;gap:12px;width:100%;border:0;background:var(--surface);border-radius:18px;padding:14px 16px;box-shadow:var(--shadow);text-align:left;margin-bottom:22px}
@@ -464,10 +486,10 @@ html,body{background:#0E1B3D}
   <div class="sp-app">Interview <em>Edge</em></div><div class="sp-line"></div></div></div>
 <div id="stage"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="data/catalog.js?v=202611051129"></script>
-<script src="data/counts.js?v=202611051129"></script>
-<script src="config.js?v=202611051129"></script>
-<script src="resume.js?v=202611051129"></script>
-<script src="app.js?v=202611051129"></script>
+<script src="data/catalog.js?v=202611060136"></script>
+<script src="data/counts.js?v=202611060136"></script>
+<script src="config.js?v=202611060136"></script>
+<script src="resume.js?v=202611060136"></script>
+<script src="app.js?v=202611060136"></script>
 </body>
 </html>
