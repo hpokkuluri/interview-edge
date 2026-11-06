@@ -183,6 +183,7 @@ role banks automatically and are handled separately — not listed here.)
 
 - [ ] inf-ea — Enterprise Architect (TOGAF, business/IT strategy, architecture domains, roadmaps, governance, stakeholder alignment) — cube `infra` "Infrastructure & Architecture" (field `tech`)
 - [ ] gv-evidence — Property & Evidence Technician (chain of custody, intake, storage, disposal, CPEI standards, testimony, inventory audits) — cube `gov-core` "Public Sector" (field `gov`)
+- [ ] eng-svp — SVP / EVP of Software Engineering (multi-org leadership, platform/architecture strategy at scale, exec & board influence, org design, large budgets & talent, between VP Eng and CTO) — cube `java` "Java & Engineering" (field `tech`)
 
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
