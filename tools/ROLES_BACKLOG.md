@@ -187,6 +187,7 @@ role banks automatically and are handled separately — not listed here.)
 - [ ] hw-controls — Control Systems Engineer (feedback/PID control, state-space, Simulink/model-based design, PLC & embedded controls, automotive powertrain controls, tuning, V&V) — cube `hw` "Hardware Engineering" (field `tech`)
 - [ ] hw-mech — Mechatronics Engineer (mechanical + electrical + controls/software integration, actuators & sensors, motion systems, prototyping, automated products) — cube `hw` "Hardware Engineering" (field `tech`)
 - [ ] hw-rf — RF / Wireless Engineer (RF circuits, antennas, transceivers, link budgets, S-parameters, EMC/compliance, wireless standards) — cube `hw` "Hardware Engineering" (field `tech`)
+- [ ] hc-claims — Medical Claims Examiner / Health Claims Analyst (eligibility, benefits/coverage, CPT/ICD basics, EOBs, adjudication, denials & appeals, payer rules, compliance) — cube `hcare` "Healthcare" (field `health`)
 
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
