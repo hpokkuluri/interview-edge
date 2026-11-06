@@ -184,6 +184,9 @@ role banks automatically and are handled separately — not listed here.)
 - [ ] inf-ea — Enterprise Architect (TOGAF, business/IT strategy, architecture domains, roadmaps, governance, stakeholder alignment) — cube `infra` "Infrastructure & Architecture" (field `tech`)
 - [ ] gv-evidence — Property & Evidence Technician (chain of custody, intake, storage, disposal, CPEI standards, testimony, inventory audits) — cube `gov-core` "Public Sector" (field `gov`)
 - [ ] eng-svp — SVP / EVP of Software Engineering (multi-org leadership, platform/architecture strategy at scale, exec & board influence, org design, large budgets & talent, between VP Eng and CTO) — cube `java` "Java & Engineering" (field `tech`)
+- [ ] hw-controls — Control Systems Engineer (feedback/PID control, state-space, Simulink/model-based design, PLC & embedded controls, automotive powertrain controls, tuning, V&V) — cube `hw` "Hardware Engineering" (field `tech`)
+- [ ] hw-mech — Mechatronics Engineer (mechanical + electrical + controls/software integration, actuators & sensors, motion systems, prototyping, automated products) — cube `hw` "Hardware Engineering" (field `tech`)
+- [ ] hw-rf — RF / Wireless Engineer (RF circuits, antennas, transceivers, link budgets, S-parameters, EMC/compliance, wireless standards) — cube `hw` "Hardware Engineering" (field `tech`)
 
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
