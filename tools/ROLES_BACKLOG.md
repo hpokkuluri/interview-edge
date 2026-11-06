@@ -188,8 +188,7 @@ Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled
 (All fresh-batch trades roles built — see Done.)
 
 Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
-- [ ] en-petro — Petroleum Engineer (reservoir, drilling, production, economics, safety)
-- [ ] en-robotics — Robotics Engineer (kinematics, controls, perception, integration, safety)
+(All fresh-batch engineering roles built — see Done.)
 
 Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
 (All fresh-batch government roles built — see Done.)
@@ -302,3 +301,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] tr-solar — Solar PV Installer — 2026-11-05
 - [x] tr-ironworker — Ironworker — 2026-11-05
 - [x] tr-instrument — Instrumentation & Controls Technician — 2026-11-05
+- [x] bk-ib — Investment Banking Analyst / Associate — 2026-11-06
+- [x] sm-am — Account Manager / Key Account Manager — 2026-11-06
+- [x] cs-cos — Chief of Staff — 2026-11-06
+- [x] lg-litig — Litigation Attorney / Trial Lawyer — 2026-11-06
+- [x] en-petro — Petroleum Engineer — 2026-11-06
+- [x] en-robotics — Robotics Engineer — 2026-11-06

@@ -384,7 +384,8 @@ window.CATALOG = [
       { id: 'sm-ae', title: 'Account Executive (B2B / Enterprise)', level: 'Mid → Senior', blurb: 'MEDDICC, discovery, objections, pipeline, negotiation, closing.' },
       { id: 'sm-sdir', title: 'Sales Manager / Director', level: 'Manager → Director', blurb: 'Hiring, coaching, forecasting, quotas, territories, comp, culture.' },
       { id: 'sm-mkt', title: 'Digital / Growth Marketing Manager', level: 'Manager', blurb: 'Paid search/social, SEO, CAC/ROAS, attribution, testing, ABM.' },
-      { id: 'sm-csm', title: 'Customer Success Manager', level: 'Mid → Senior', blurb: 'Onboarding, health scores, churn, NRR, QBRs, renewals, expansion.' }
+      { id: 'sm-csm', title: 'Customer Success Manager', level: 'Mid → Senior', blurb: 'Onboarding, health scores, churn, NRR, QBRs, renewals, expansion.' },
+      { id: 'sm-am', title: 'Account Manager / Key Account Manager', level: 'Mid → Senior', blurb: 'Retention, expansion, multi-threading, QBRs, renewals, NRR, saving at-risk accounts.' }
     ]
   },
   {
@@ -445,7 +446,9 @@ window.CATALOG = [
       { id: 'en-civil', title: 'Civil / Structural Engineer', level: 'Mid → Senior', blurb: 'ASCE 7 loads, steel and concrete design, seismic, foundations, stormwater.' },
       { id: 'en-cpm', title: 'Construction Project Manager', level: 'Senior', blurb: 'Delivery methods, CPM schedules, cost, change orders, RFIs, safety, closeout.' },
       { id: 'en-aero', title: 'Aerospace Engineer', level: 'Mid → Senior', blurb: 'Aerodynamics, lift, structures, factor of safety, propulsion, FEA/CFD, FAR 25.' },
-      { id: 'en-biomed', title: 'Biomedical Engineer', level: 'Mid → Senior', blurb: 'Design controls (21 CFR 820.30), ISO 14971 risk, V&V, 510(k)/PMA, IEC 60601, ISO 10993.' }
+      { id: 'en-biomed', title: 'Biomedical Engineer', level: 'Mid → Senior', blurb: 'Design controls (21 CFR 820.30), ISO 14971 risk, V&V, 510(k)/PMA, IEC 60601, ISO 10993.' },
+      { id: 'en-petro', title: 'Petroleum Engineer', level: 'Mid → Senior', blurb: 'Reservoir drive, recovery stages, drilling and well control, production, decline curves, economics, HSE.' },
+      { id: 'en-robotics', title: 'Robotics Engineer', level: 'Mid → Senior', blurb: 'Kinematics, PID control, perception and sensor fusion, SLAM, motion planning, integration, safety.' }
     ]
   },
   {
@@ -466,7 +469,8 @@ window.CATALOG = [
       { id: 'lg-counsel', title: 'Corporate Counsel (In-house)', level: 'Senior', blurb: 'Contracts, LoL and indemnity, employment, IP, privacy, litigation.' },
       { id: 'lg-paralegal', title: 'Paralegal / Legal Assistant', level: 'Entry → Senior', blurb: 'Drafting, filings, discovery, document management, deadlines, research.' },
       { id: 'lg-contracts', title: 'Contracts Manager / Commercial Counsel', level: 'Mid → Senior', blurb: 'Redlines, MSAs, SOWs, risk terms, playbooks, CLM, negotiation.' },
-      { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' }
+      { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' },
+      { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' }
     ]
   },
   {
@@ -477,7 +481,8 @@ window.CATALOG = [
       { id: 'cs-ops', title: 'Operations Manager / General Manager', level: 'Manager → Director', blurb: 'KPIs, P&L, labor planning, CI, people, crisis, capacity.' },
       { id: 'cs-strategy', title: 'Strategy / Business Analyst', level: 'Mid → Senior', blurb: 'Market sizing, business cases, financial models, synthesis, recommendations.' },
       { id: 'cs-pmo', title: 'Program Manager / PMO Lead', level: 'Senior → Director', blurb: 'Cross-functional delivery, dependencies, risks, governance, stakeholders, RAID.' },
-      { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' }
+      { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' },
+      { id: 'cs-cos', title: 'Chief of Staff', level: 'Senior', blurb: 'Priorities, operating cadence, influence without authority, advising leaders, execution, discretion.' }
     ]
   },
   {
@@ -526,7 +531,8 @@ window.CATALOG = [
       { id: 'bk-actuary', title: 'Actuary (Life / P&C / Health)', level: 'Entry → Senior', blurb: 'Reserving, pricing, exams, models, assumptions, loss triangles, capital.' },
       { id: 'bk-risk', title: 'Risk Manager (Enterprise / Financial)', level: 'Mid → Senior', blurb: 'Risk appetite, KRIs, market/credit/op risk, stress tests, controls, Basel.' },
       { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' },
-      { id: 'bk-advisor', title: 'Financial Advisor / Wealth Manager', level: 'Entry → Senior', blurb: 'Planning, fiduciary vs Reg BI, allocation, retirement, tax efficiency, fees.' }
+      { id: 'bk-advisor', title: 'Financial Advisor / Wealth Manager', level: 'Entry → Senior', blurb: 'Planning, fiduciary vs Reg BI, allocation, retirement, tax efficiency, fees.' },
+      { id: 'bk-ib', title: 'Investment Banking Analyst / Associate', level: 'Entry → Mid', blurb: 'Valuation (comps, DCF, LBO), M&A process, accretion/dilution, modeling, deal execution.' }
     ]
   },
   {
