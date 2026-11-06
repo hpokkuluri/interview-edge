@@ -179,6 +179,11 @@ role banks automatically and are handled separately — not listed here.)
 > semantic duplicates**. The **Fresh batch** below is verified not in the catalog as of 2026-10-31
 > — prefer it.
 
+### From contacts (added 2026-11-06) — verified NOT in catalog; build first
+
+- [ ] inf-ea — Enterprise Architect (TOGAF, business/IT strategy, architecture domains, roadmaps, governance, stakeholder alignment) — cube `infra` "Infrastructure & Architecture" (field `tech`)
+- [ ] gv-evidence — Property & Evidence Technician (chain of custody, intake, storage, disposal, CPEI standards, testimony, inventory audits) — cube `gov-core` "Public Sector" (field `gov`)
+
 ### Fresh batch (added 2026-10-31) — verified NOT in catalog; prefer these
 
 Healthcare & Life Sciences (field `health`) — cube `health-clin` "Clinical & Allied Health":
