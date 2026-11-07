@@ -179,6 +179,49 @@ role banks automatically and are handled separately — not listed here.)
 > semantic duplicates**. The **Fresh batch** below is verified not in the catalog as of 2026-10-31
 > — prefer it.
 
+> Note (2026-11-07): the entire older queue below (Finance Specialists II `fa-*`, Supply Chain
+> Specialists II `sc-*`, Technology `tc-*`, and the `gov`/`hosp`/`media` fields) has been checked
+> against the live catalog and is now **fully duplicated under other ids** (e.g. `fa-internal-audit`≈
+> `fa-audit`, `fa-treasury`≈`fa-treas`, `fa-fpna`≈`fa-fpa`, `fa-controller`≈`fa-ctrl`, `sc-logistics`≈
+> `sc-log`, `sc-quality-mfg`≈`sc-qual`, `sc-production`≈`sc-prod`, `sc-sourcing`≈`sc-cat`, `tc-platform`≈
+> `cl-plat`, `tc-mobile-dev`≈`swe-mob`, `tc-dba`≈`inf-dba`, `tc-network`≈`inf-net`, `tc-scrum`≈`pd-sm`,
+> `tc-tpm`≈ Technical Program/Project Manager). **Skip all of it** — build the Fresh batch (2026-11-07)
+> below instead, which is verified NOT in the catalog.
+
+### Fresh batch (added 2026-11-07) — verified NOT in catalog; build these first
+
+Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & Allied Health":
+- [ ] hc-surgtech — Surgical Technologist (sterile field, instrumentation, counts, OR workflow, asepsis)
+- [ ] hc-paramedic — Paramedic / EMT (assessment, protocols, airway, trauma, scene safety, transport)
+- [ ] hc-pharmtech — Pharmacy Technician (dispensing, compounding basics, inventory, insurance, accuracy)
+- [ ] hc-genetic — Genetic Counselor (risk assessment, pedigrees, test interpretation, ethics, counseling)
+- [ ] hc-dentist — Dentist (General Dentist) (diagnosis, restorations, treatment planning, radiographs, ethics)
+- [ ] hc-optometrist — Optometrist (refraction, eye exams, ocular disease, prescribing, referrals)
+- [ ] hc-vet — Veterinarian (diagnosis, surgery, client communication, euthanasia ethics, practice)
+
+Finance & Accounting (field `fin`) — cube `finspec` "Finance Specialists" / `accops`:
+- [ ] fs-pe — Private Equity Associate (LBO modeling, deal sourcing, due diligence, portfolio value creation)
+- [ ] fs-fund — Fund Accountant (NAV, capital calls/distributions, investor allocations, reconciliations)
+
+Legal (field `biz`) — cube `legal` "Legal & Compliance":
+- [ ] lg-immig — Immigration Attorney (visas, green cards, USCIS process, RFEs, deadlines, client counseling)
+- [ ] lg-legalops — Legal Operations Manager (CLM, matter/spend management, metrics, vendor/outside counsel)
+
+Technology (field `tech`) — cubes `sec` / `data` / `swe` / existing tech families:
+- [ ] sec-ir — Incident Response / Digital Forensics Analyst (triage, containment, forensics, timelines, IR plan)
+- [ ] da-gov — Data Governance / Data Management Analyst (quality, lineage, catalog, stewardship, policy)
+- [ ] da-compvis — Computer Vision Engineer (CNNs, detection/segmentation, data pipelines, deployment, eval)
+- [ ] tc-gamedev — Game Developer / Gameplay Engineer (engines, game loop, physics, optimization, pipelines)
+- [ ] tc-release — Release / Build Engineer (CI/CD, build systems, versioning, artifacts, release trains)
+
+Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
+- [ ] sm-brand — Brand Manager (positioning, brand strategy, campaigns, P&L, agencies, metrics)
+- [ ] sm-mktops — Marketing Operations Manager (martech stack, attribution, lead routing, reporting, process)
+- [ ] sm-pricing — Pricing Analyst / Manager (pricing strategy, elasticity, margin, competitive, packaging)
+
+Business & Operations (field `biz`) — cube `consult` "Consulting & Operations":
+- [ ] biz-coo — Chief Operating Officer (COO) (operations strategy, scaling, cross-functional, P&L, execution)
+
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
 (All contact-added roles built — see Done.)
@@ -319,3 +362,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hw-rf — RF / Wireless Engineer — 2026-11-06
 - [x] hc-claims — Medical Claims Examiner / Health Claims Analyst — 2026-11-06
 - [x] tc-tech-support — IT Support / Help Desk Technician — 2026-11-06 (placed in `infra` cube)
+- [x] hc-dh — Dental Hygienist — 2026-11-07 (placed in `health-clin` cube)
+- [x] hc-rd — Registered Dietitian / Nutritionist — 2026-11-07 (placed in `health-clin` cube)
+- [x] fs-quant — Quantitative Analyst (Quant) — 2026-11-07 (placed in `finspec` cube)
+- [x] fa-forensic — Forensic Accountant — 2026-11-07 (placed in `audit` cube)
+- [x] lg-patent — Patent Attorney / Patent Agent — 2026-11-07 (placed in `legal` cube)
+- [x] sec-appsec — Application Security Engineer — 2026-11-07 (placed in `sec` cube)

@@ -100,6 +100,7 @@ window.COUNTS = {
  "fa-treas": 50,
  "fa-audit": 50,
  "fa-tax": 50,
+ "fa-forensic": 12,
  "fa-dir": 50,
  "fa-vp": 50,
  "fa-cfo": 51,
@@ -150,6 +151,7 @@ window.COUNTS = {
  "sec-grc": 50,
  "sec-socmgr": 50,
  "sec-arch": 50,
+ "sec-appsec": 12,
  "sec-ciso": 50,
  "inf-sys": 50,
  "inf-net": 50,
@@ -175,6 +177,7 @@ window.COUNTS = {
  "fs-ib": 50,
  "fs-risk": 50,
  "fs-ir": 50,
+ "fs-quant": 13,
  "ss-analyst": 50,
  "ss-sop": 50,
  "ss-mfgeng": 50,
@@ -208,6 +211,8 @@ window.COUNTS = {
  "hc-slp": 14,
  "hc-sono": 13,
  "hc-crna": 12,
+ "hc-dh": 13,
+ "hc-rd": 13,
  "ls-ctc": 24,
  "ls-cra": 50,
  "ls-cpm": 24,
@@ -240,6 +245,7 @@ window.COUNTS = {
  "lg-contracts": 50,
  "lg-privacy": 12,
  "lg-litig": 12,
+ "lg-patent": 12,
  "cs-mc": 50,
  "cs-ops": 50,
  "cs-strategy": 50,
@@ -347,4 +353,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 12173;
+window.FU_TOTAL = 12248;

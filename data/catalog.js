@@ -187,7 +187,8 @@ window.CATALOG = [
     tag: 'Internal audit, SOX, and corporate tax',
     positions: [
       { id: 'fa-audit', title: 'Internal Auditor / SOX Compliance', level: 'Staff → Manager', blurb: 'Risk-based audits, SOX controls testing, ITGCs, findings.' },
-      { id: 'fa-tax', title: 'Tax Accountant / Tax Manager', level: 'Staff → Manager', blurb: 'Income tax provision, sales and use tax, VAT, compliance, planning.' }
+      { id: 'fa-tax', title: 'Tax Accountant / Tax Manager', level: 'Staff → Manager', blurb: 'Income tax provision, sales and use tax, VAT, compliance, planning.' },
+      { id: 'fa-forensic', title: 'Forensic Accountant', level: 'Mid → Senior', blurb: 'Fraud investigation, fraud triangle, data analytics, chain of custody, damages, expert testimony.' }
     ]
   },
   {
@@ -310,6 +311,7 @@ window.CATALOG = [
       { id: 'sec-grc', title: 'GRC Analyst', level: 'Mid → Senior', blurb: 'ISO 27001, SOC 2, NIST, PCI, risk registers, audits, vendor risk.' },
       { id: 'sec-socmgr', title: 'SOC Manager', level: 'Manager', blurb: '24x7 staffing, metrics, MDR, playbooks, detection engineering, IR.' },
       { id: 'sec-arch', title: 'Security Architect', level: 'Principal', blurb: 'Zero trust design, threat modeling, data protection, AI security.' },
+      { id: 'sec-appsec', title: 'Application Security Engineer', level: 'Mid → Senior', blurb: 'Secure SDLC, threat modeling, SAST/DAST, injection and XSS, supply chain, auth flaws, dev partnership.' },
       { id: 'sec-ciso', title: 'CISO / Head of Security', level: 'Executive', blurb: 'Strategy, board reporting, budget, regulation, crisis leadership.' }
     ]
   },
@@ -358,7 +360,8 @@ window.CATALOG = [
       { id: 'fs-credit', title: 'Credit Analyst / Credit Manager', level: 'Mid → Manager', blurb: '5 Cs, ratios, limits, DSO, collections, CECL, bankruptcy.' },
       { id: 'fs-ib', title: 'Corporate Development / Investment Analyst', level: 'Mid → Senior', blurb: 'DCF, comps, WACC, LBO, accretion/dilution, due diligence.' },
       { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' },
-      { id: 'fs-ir', title: 'Investor Relations Manager / Director', level: 'Manager → Director', blurb: 'Earnings process, Reg FD, guidance, targeting, equity story, activism, proxy season.' }
+      { id: 'fs-ir', title: 'Investor Relations Manager / Director', level: 'Manager → Director', blurb: 'Earnings process, Reg FD, guidance, targeting, equity story, activism, proxy season.' },
+      { id: 'fs-quant', title: 'Quantitative Analyst (Quant)', level: 'Mid → Senior', blurb: 'Pricing models, Black-Scholes, VaR, Monte Carlo, risk-neutral measure, Greeks, overfitting, coding.' }
     ]
   },
   {
@@ -421,7 +424,9 @@ window.CATALOG = [
       { id: 'hc-rt', title: 'Respiratory Therapist', level: 'Entry → Senior', blurb: 'Ventilators, ABGs, oxygen therapy, airway, critical care, education.' },
       { id: 'hc-slp', title: 'Speech-Language Pathologist', level: 'Entry → Senior', blurb: 'Speech, language, swallowing/dysphagia, aphasia, AAC, fluency, IEPs, documentation.' },
       { id: 'hc-sono', title: 'Diagnostic Medical Sonographer', level: 'Entry → Senior', blurb: 'Ultrasound physics, protocols, artifacts, Doppler, ALARA safety, ergonomics, image quality.' },
-      { id: 'hc-crna', title: 'Nurse Anesthetist (CRNA)', level: 'Senior', blurb: 'Anesthesia plan, airway, pharmacology, monitoring, regional, crisis management, safety.' }
+      { id: 'hc-crna', title: 'Nurse Anesthetist (CRNA)', level: 'Senior', blurb: 'Anesthesia plan, airway, pharmacology, monitoring, regional, crisis management, safety.' },
+      { id: 'hc-dh', title: 'Dental Hygienist', level: 'Entry → Senior', blurb: 'Periodontal charting, prophylaxis vs. SRP, radiographs, infection control, patient education, scope.' },
+      { id: 'hc-rd', title: 'Registered Dietitian / Nutritionist', level: 'Entry → Senior', blurb: 'Nutrition assessment, medical nutrition therapy, diabetes and renal diets, counseling, evidence.' }
     ]
   },
   {
@@ -477,7 +482,8 @@ window.CATALOG = [
       { id: 'lg-paralegal', title: 'Paralegal / Legal Assistant', level: 'Entry → Senior', blurb: 'Drafting, filings, discovery, document management, deadlines, research.' },
       { id: 'lg-contracts', title: 'Contracts Manager / Commercial Counsel', level: 'Mid → Senior', blurb: 'Redlines, MSAs, SOWs, risk terms, playbooks, CLM, negotiation.' },
       { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' },
-      { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' }
+      { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' },
+      { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' }
     ]
   },
   {
