@@ -191,7 +191,6 @@ role banks automatically and are handled separately — not listed here.)
 ### Fresh batch (added 2026-11-07) — verified NOT in catalog; build these first
 
 Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & Allied Health":
-- [ ] hc-surgtech — Surgical Technologist (sterile field, instrumentation, counts, OR workflow, asepsis)
 - [ ] hc-paramedic — Paramedic / EMT (assessment, protocols, airway, trauma, scene safety, transport)
 - [ ] hc-pharmtech — Pharmacy Technician (dispensing, compounding basics, inventory, insurance, accuracy)
 - [ ] hc-genetic — Genetic Counselor (risk assessment, pedigrees, test interpretation, ethics, counseling)
@@ -200,15 +199,12 @@ Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & A
 - [ ] hc-vet — Veterinarian (diagnosis, surgery, client communication, euthanasia ethics, practice)
 
 Finance & Accounting (field `fin`) — cube `finspec` "Finance Specialists" / `accops`:
-- [ ] fs-pe — Private Equity Associate (LBO modeling, deal sourcing, due diligence, portfolio value creation)
-- [ ] fs-fund — Fund Accountant (NAV, capital calls/distributions, investor allocations, reconciliations)
+(Both finance fresh-batch roles built — see Done.)
 
 Legal (field `biz`) — cube `legal` "Legal & Compliance":
-- [ ] lg-immig — Immigration Attorney (visas, green cards, USCIS process, RFEs, deadlines, client counseling)
 - [ ] lg-legalops — Legal Operations Manager (CLM, matter/spend management, metrics, vendor/outside counsel)
 
 Technology (field `tech`) — cubes `sec` / `data` / `swe` / existing tech families:
-- [ ] sec-ir — Incident Response / Digital Forensics Analyst (triage, containment, forensics, timelines, IR plan)
 - [ ] da-gov — Data Governance / Data Management Analyst (quality, lineage, catalog, stewardship, policy)
 - [ ] da-compvis — Computer Vision Engineer (CNNs, detection/segmentation, data pipelines, deployment, eval)
 - [ ] tc-gamedev — Game Developer / Gameplay Engineer (engines, game loop, physics, optimization, pipelines)
@@ -220,7 +216,7 @@ Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
 - [ ] sm-pricing — Pricing Analyst / Manager (pricing strategy, elasticity, margin, competitive, packaging)
 
 Business & Operations (field `biz`) — cube `consult` "Consulting & Operations":
-- [ ] biz-coo — Chief Operating Officer (COO) (operations strategy, scaling, cross-functional, P&L, execution)
+(COO built — see Done.)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
@@ -368,3 +364,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] fa-forensic — Forensic Accountant — 2026-11-07 (placed in `audit` cube)
 - [x] lg-patent — Patent Attorney / Patent Agent — 2026-11-07 (placed in `legal` cube)
 - [x] sec-appsec — Application Security Engineer — 2026-11-07 (placed in `sec` cube)
+- [x] hc-surgtech — Surgical Technologist — 2026-11-08 (placed in `health-clin` cube)
+- [x] fs-pe — Private Equity Associate — 2026-11-08 (placed in `finspec` cube)
+- [x] fs-fund — Fund Accountant — 2026-11-08 (placed in `finspec` cube)
+- [x] lg-immig — Immigration Attorney — 2026-11-08 (placed in `legal` cube)
+- [x] sec-ir — Incident Response / Digital Forensics Analyst — 2026-11-08 (placed in `sec` cube)
+- [x] biz-coo — Chief Operating Officer (COO) — 2026-11-08 (placed in `consult` cube)

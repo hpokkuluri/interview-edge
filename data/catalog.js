@@ -312,6 +312,7 @@ window.CATALOG = [
       { id: 'sec-socmgr', title: 'SOC Manager', level: 'Manager', blurb: '24x7 staffing, metrics, MDR, playbooks, detection engineering, IR.' },
       { id: 'sec-arch', title: 'Security Architect', level: 'Principal', blurb: 'Zero trust design, threat modeling, data protection, AI security.' },
       { id: 'sec-appsec', title: 'Application Security Engineer', level: 'Mid → Senior', blurb: 'Secure SDLC, threat modeling, SAST/DAST, injection and XSS, supply chain, auth flaws, dev partnership.' },
+      { id: 'sec-ir', title: 'Incident Response / Digital Forensics Analyst', level: 'Mid → Senior', blurb: 'IR lifecycle, containment, forensics, order of volatility, chain of custody, ransomware, root cause.' },
       { id: 'sec-ciso', title: 'CISO / Head of Security', level: 'Executive', blurb: 'Strategy, board reporting, budget, regulation, crisis leadership.' }
     ]
   },
@@ -361,7 +362,9 @@ window.CATALOG = [
       { id: 'fs-ib', title: 'Corporate Development / Investment Analyst', level: 'Mid → Senior', blurb: 'DCF, comps, WACC, LBO, accretion/dilution, due diligence.' },
       { id: 'fs-risk', title: 'Financial Risk Analyst', level: 'Mid → Senior', blurb: 'VaR, stress tests, PD/LGD/EAD, liquidity, Basel, model risk.' },
       { id: 'fs-ir', title: 'Investor Relations Manager / Director', level: 'Manager → Director', blurb: 'Earnings process, Reg FD, guidance, targeting, equity story, activism, proxy season.' },
-      { id: 'fs-quant', title: 'Quantitative Analyst (Quant)', level: 'Mid → Senior', blurb: 'Pricing models, Black-Scholes, VaR, Monte Carlo, risk-neutral measure, Greeks, overfitting, coding.' }
+      { id: 'fs-quant', title: 'Quantitative Analyst (Quant)', level: 'Mid → Senior', blurb: 'Pricing models, Black-Scholes, VaR, Monte Carlo, risk-neutral measure, Greeks, overfitting, coding.' },
+      { id: 'fs-pe', title: 'Private Equity Associate', level: 'Mid → Senior', blurb: 'LBO modeling, IRR vs MOIC, due diligence, valuation, value creation, deal risk, portfolio monitoring.' },
+      { id: 'fs-fund', title: 'Fund Accountant', level: 'Mid → Senior', blurb: 'NAV calculation, capital calls and distributions, investor allocations, valuation, reconciliations, controls.' }
     ]
   },
   {
@@ -426,7 +429,8 @@ window.CATALOG = [
       { id: 'hc-sono', title: 'Diagnostic Medical Sonographer', level: 'Entry → Senior', blurb: 'Ultrasound physics, protocols, artifacts, Doppler, ALARA safety, ergonomics, image quality.' },
       { id: 'hc-crna', title: 'Nurse Anesthetist (CRNA)', level: 'Senior', blurb: 'Anesthesia plan, airway, pharmacology, monitoring, regional, crisis management, safety.' },
       { id: 'hc-dh', title: 'Dental Hygienist', level: 'Entry → Senior', blurb: 'Periodontal charting, prophylaxis vs. SRP, radiographs, infection control, patient education, scope.' },
-      { id: 'hc-rd', title: 'Registered Dietitian / Nutritionist', level: 'Entry → Senior', blurb: 'Nutrition assessment, medical nutrition therapy, diabetes and renal diets, counseling, evidence.' }
+      { id: 'hc-rd', title: 'Registered Dietitian / Nutritionist', level: 'Entry → Senior', blurb: 'Nutrition assessment, medical nutrition therapy, diabetes and renal diets, counseling, evidence.' },
+      { id: 'hc-surgtech', title: 'Surgical Technologist', level: 'Entry → Senior', blurb: 'Sterile field, instrument passing, surgical counts, asepsis, specimens, OR workflow, time-out safety.' }
     ]
   },
   {
@@ -483,7 +487,8 @@ window.CATALOG = [
       { id: 'lg-contracts', title: 'Contracts Manager / Commercial Counsel', level: 'Mid → Senior', blurb: 'Redlines, MSAs, SOWs, risk terms, playbooks, CLM, negotiation.' },
       { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' },
       { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' },
-      { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' }
+      { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' },
+      { id: 'lg-immig', title: 'Immigration Attorney', level: 'Entry → Senior', blurb: 'Visas and green cards, eligibility analysis, RFEs, removal defense, deadlines, candor, client counseling.' }
     ]
   },
   {
@@ -495,7 +500,8 @@ window.CATALOG = [
       { id: 'cs-strategy', title: 'Strategy / Business Analyst', level: 'Mid → Senior', blurb: 'Market sizing, business cases, financial models, synthesis, recommendations.' },
       { id: 'cs-pmo', title: 'Program Manager / PMO Lead', level: 'Senior → Director', blurb: 'Cross-functional delivery, dependencies, risks, governance, stakeholders, RAID.' },
       { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' },
-      { id: 'cs-cos', title: 'Chief of Staff', level: 'Senior', blurb: 'Priorities, operating cadence, influence without authority, advising leaders, execution, discretion.' }
+      { id: 'cs-cos', title: 'Chief of Staff', level: 'Senior', blurb: 'Priorities, operating cadence, influence without authority, advising leaders, execution, discretion.' },
+      { id: 'biz-coo', title: 'Chief Operating Officer (COO)', level: 'Executive', blurb: 'Strategy into execution, CEO partnership, scaling, operating cadence, metrics, turnarounds, risk.' }
     ]
   },
   {
