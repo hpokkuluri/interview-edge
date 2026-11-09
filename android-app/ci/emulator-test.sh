@@ -17,7 +17,7 @@ TEST_OK=0
   -Pandroid.testInstrumentationRunnerArguments.modelPath=/data/local/tmp/edge-model.litertlm $EXTRA || TEST_OK=1
 echo "" >> "$REPORT"; echo "#### Crash test results" >> "$REPORT"
 adb logcat -d -v brief | grep -E "EdgeAI-Test|EdgeAI-Service|EdgeAI-Voice|EdgeAI |lowmemorykiller|Kill 'com.arahasoft|FATAL|has died" | sed 's/^/    /' >> "$REPORT"
-find . -path '*androidTest-results*' -name '*.xml' -exec grep -hoE 'testcase name="[^"]+"|<failure message="[^"]{0,300}|<skipped' {} \; | sed 's/^/    /' >> "$REPORT"
+find .. -path '*androidTest-results*' -name '*.xml' -exec grep -hoE 'testcase name="[^"]+"|<failure message="[^"]{0,300}' {} \; | sed 's/^/    /' >> "$REPORT"
 echo "instrumented tests: $([ $TEST_OK = 0 ] && echo PASSED || echo FAILED)" >> "$REPORT"
 
 # Whole-app stress: install the real app and hammer it with 4000 random taps/swipes.

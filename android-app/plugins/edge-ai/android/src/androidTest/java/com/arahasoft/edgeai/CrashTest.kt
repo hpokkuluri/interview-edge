@@ -208,7 +208,13 @@ class CrashTest {
         val m = try { u.fetchManifest() } catch (t: Throwable) { log("UPDATE manifest not reachable yet: ${t.message}"); return }
         val url = m.optString("webUrl"); if (url.isEmpty()) { log("UPDATE manifest has no webUrl yet"); return }
         val t0 = System.currentTimeMillis()
-        val dir = u.applyWeb(url, "test-" + m.optString("web")) { _, _ -> }
+        var dir: java.io.File? = null
+        for (attempt in 1..3) {
+            try { dir = u.applyWeb(url, "test-" + m.optString("web")) { _, _ -> }; break }
+            catch (e: java.io.IOException) { log("UPDATE download attempt $attempt failed (network): ${e.message}"); Thread.sleep(15000) }
+            catch (e: IllegalStateException) { if (e.message?.startsWith("HTTP 5") == true || e.message == "download incomplete") { log("UPDATE download attempt $attempt failed: ${e.message}"); Thread.sleep(15000) } else throw e }
+        }
+        if (dir == null) { log("UPDATE skipped: GitHub downloads unavailable"); return }
         log("UPDATE web=${m.optString("web")} native=${m.optString("native")} downloaded+unpacked in ${System.currentTimeMillis() - t0}ms files=${dir.walk().count()}")
         assertTrue(java.io.File(dir, "index.html").exists() && java.io.File(dir, "web-version.json").exists())
         ctx.getSharedPreferences("CapWebViewSettings", Context.MODE_PRIVATE).edit().remove("serverBasePath").apply()
