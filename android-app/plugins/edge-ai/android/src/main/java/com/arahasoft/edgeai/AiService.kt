@@ -127,6 +127,10 @@ class AiService : Service() {
         }
         var e: Engine? = null
         var used = "CPU"
+        if (!gp.getBoolean("bad", false) && !hasOpenCl()) {
+            gp.edit().putBoolean("bad", true).commit()
+            Log.i(TAG, "no OpenCL on this phone — using CPU")
+        }
         if (!gp.getBoolean("bad", false) && data.getBoolean("allowGpu", true)) {
             gp.edit().putBoolean("trying", true).commit()
             try {
@@ -147,7 +151,27 @@ class AiService : Service() {
         send(reply, reqId, R_OK, Bundle().apply { putLong("ms", System.currentTimeMillis() - t0); putLong("pssKb", Debug.getPss()); putString("backend", used) })
     }
 
+    /** The GPU path needs the phone's OpenCL driver; many phones (including some recent ones) don't expose it to apps. */
+    private fun hasOpenCl(): Boolean = try { System.loadLibrary("OpenCL"); true } catch (_: Throwable) {
+        listOf("/vendor/lib64/libOpenCL.so", "/system/vendor/lib64/libOpenCL.so", "/system/lib64/libOpenCL.so").any { File(it).exists() }
+    }
+
+    /** If an answer fails on the GPU, switch this phone to the CPU for good, reload, and answer again. */
     private fun generate(data: Bundle, reply: Messenger?, reqId: Int) {
+        try { generateOnce(data, reply, reqId) }
+        catch (t: Throwable) {
+            if (backendName != "GPU" || t is OutOfMemoryError) throw t
+            val path = modelPath ?: throw t
+            Log.w(TAG, "answer failed on the GPU (${t.message}) — switching to CPU", t)
+            getSharedPreferences("edgeai-gpu", MODE_PRIVATE).edit().putBoolean("bad", true).putBoolean("active", false).commit()
+            closeAll()
+            engine = Engine(EngineConfig(modelPath = path, backend = Backend.CPU(), cacheDir = cacheDir.path)).also { it.initialize() }
+            modelPath = path; backendName = "CPU"
+            generateOnce(data, reply, reqId)
+        }
+    }
+
+    private fun generateOnce(data: Bundle, reply: Messenger?, reqId: Int) {
         val e = engine ?: throw IllegalStateException("not loaded")
         val sid = data.getString("sid") ?: "s"
         val system = data.getString("system") ?: ""
