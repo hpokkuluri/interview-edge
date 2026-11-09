@@ -1227,7 +1227,7 @@ async function laiAsk(req, onToken) {
   const run = async () => {
     await laiLoad();
     sub = await EAI.addListener('token', ev => { if (ev.sid === req.sid) onToken(ev.text); });
-    try { return (await EAI.generate(req)).text || ''; } finally { if (sub) { sub.remove(); sub = null; } }
+    try { const r = await EAI.generate(req); if (r && r.backend) store.set('ip.aiSpeed', { backend: r.backend, tps: r.tps || 0, firstMs: r.firstMs || 0, at: Date.now() }); return r.text || ''; } finally { if (sub) { sub.remove(); sub = null; } }
   };
   try { return await run(); }
   catch (e) { if (e && (e.code === 'notloaded' || e.code === 'crashed')) { lai.loaded = false; onToken(null); return await run(); } throw e; }
@@ -1681,6 +1681,7 @@ function vSettings(ctx) {
     const block = laiBlocker(d);
     el.innerHTML = `<h3>On-device AI</h3><p>${block ? esc(block) : d.ready ? `Installed (${gb(LAI.bytes)}) — the AI interviewer runs on this phone, offline.` : `Not downloaded yet (${gb(LAI.bytes)}). Download it from any role → AI interviewer.`}</p>
       <p class="muted">Phone: ${esc(d ? d.model : '')} · ${d ? Math.round(d.totalMb / 1024) : '?'} GB memory · ${d ? gb(d.freeMb * 1048576) : '?'} free storage</p>
+      ${(() => { const sp = store.get('ip.aiSpeed', null); return d && d.ready && sp ? `<p class="muted">Speed on this phone: ${sp.backend === 'GPU' ? 'graphics chip (fast mode)' : 'main processor'} · about ${Math.max(1, Math.round(sp.tps * .75))} words/sec · first words after ${(sp.firstMs / 1000).toFixed(1)} s</p>` : ''; })()}
       ${d && d.ready && LV ? `<p class="muted">Voice: ${d.voiceReady ? 'natural (on-device)' : 'built-in phone voice — the natural voice downloads from any role → AI interviewer'}</p>` : ''}
       ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI and voice (frees space)</button>' : ''}`;
     const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); if (LV) await EAI.deleteModel({ name: LV.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });

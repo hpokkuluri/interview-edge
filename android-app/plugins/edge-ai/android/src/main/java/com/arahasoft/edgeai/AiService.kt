@@ -59,6 +59,7 @@ class AiService : Service() {
     private var conv: Conversation? = null
     private var convKey: String? = null
     private var convSeen = 0
+    private var backendName = "CPU"
 
     private val messenger = Messenger(Handler(Looper.getMainLooper()) { msg ->
         val what = msg.what
@@ -110,12 +111,40 @@ class AiService : Service() {
         val f = File(path)
         if (!f.canRead()) throw IllegalStateException("model file missing")
         val t0 = System.currentTimeMillis()
-        // CPU backend: works on every 64-bit phone and avoids GPU-driver crashes on older devices.
-        val e = Engine(EngineConfig(modelPath = path, backend = Backend.CPU(), cacheDir = cacheDir.path))
-        e.initialize()
+        // Graphics chip (GPU) first: several times faster. If this phone's GPU can't run the model — init throws,
+        // or the AI process dies while trying — remember that and use the main processor (CPU) from then on.
+        val gp = getSharedPreferences("edgeai-gpu", MODE_PRIVATE)
+        // Died while starting on the GPU: never try it again. Died mid-answer on the GPU (could also be the app being
+        // swiped away): give up on the GPU only after it happens twice in a row.
+        if (gp.getBoolean("trying", false)) {
+            gp.edit().putBoolean("bad", true).putBoolean("trying", false).commit()
+            Log.w(TAG, "the AI process died starting on the GPU — using CPU on this phone")
+        }
+        if (gp.getBoolean("active", false)) {
+            val n = gp.getInt("deaths", 0) + 1
+            gp.edit().putInt("deaths", n).putBoolean("active", false).putBoolean("bad", gp.getBoolean("bad", false) || n >= 2).commit()
+            Log.w(TAG, "the AI process died mid-answer on the GPU ($n in a row)")
+        }
+        var e: Engine? = null
+        var used = "CPU"
+        if (!gp.getBoolean("bad", false) && data.getBoolean("allowGpu", true)) {
+            gp.edit().putBoolean("trying", true).commit()
+            try {
+                e = Engine(EngineConfig(modelPath = path, backend = Backend.GPU(), cacheDir = cacheDir.path)).also { it.initialize() }
+                used = "GPU"
+            } catch (t: Throwable) {
+                Log.w(TAG, "GPU not available (${t.message}) — using CPU", t)
+                try { e?.close() } catch (_: Throwable) {}
+                e = null
+                gp.edit().putBoolean("bad", true).commit()
+            } finally { gp.edit().putBoolean("trying", false).commit() }
+        }
+        if (e == null) e = Engine(EngineConfig(modelPath = path, backend = Backend.CPU(), cacheDir = cacheDir.path)).also { it.initialize() }
         engine = e
         modelPath = path
-        send(reply, reqId, R_OK, Bundle().apply { putLong("ms", System.currentTimeMillis() - t0); putLong("pssKb", Debug.getPss()) })
+        backendName = used
+        Log.i(TAG, "model loaded on $used in ${System.currentTimeMillis() - t0} ms")
+        send(reply, reqId, R_OK, Bundle().apply { putLong("ms", System.currentTimeMillis() - t0); putLong("pssKb", Debug.getPss()); putString("backend", used) })
     }
 
     private fun generate(data: Bundle, reply: Messenger?, reqId: Int) {
@@ -144,11 +173,16 @@ class AiService : Service() {
         val c = conv!!
         val out = StringBuilder()
         val latch = CountDownLatch(1)
+        val gp = getSharedPreferences("edgeai-gpu", MODE_PRIVATE)
+        if (backendName == "GPU") gp.edit().putBoolean("active", true).commit()
+        val tStart = System.currentTimeMillis(); var tFirst = 0L; var pieces = 0
         var err: Throwable? = null
         c.sendMessageAsync(message, object : MessageCallback {
             override fun onMessage(message: Message) {
                 val piece = message.toString()
                 if (piece.isEmpty()) return
+                if (tFirst == 0L) tFirst = System.currentTimeMillis()
+                pieces++
                 out.append(piece)
                 if (!stopFlag) send(reply, reqId, R_TOKEN, Bundle().apply { putString("text", piece) })
             }
@@ -156,9 +190,15 @@ class AiService : Service() {
             override fun onError(throwable: Throwable) { err = throwable; latch.countDown() }
         })
         if (!latch.await(10, TimeUnit.MINUTES)) throw IllegalStateException("timed out")
+        if (backendName == "GPU") gp.edit().putBoolean("active", false).putInt("deaths", 0).commit()
         err?.let { convKey = null; throw it }
         convSeen = roles.size + 2
-        send(reply, reqId, R_DONE, Bundle().apply { putString("text", out.toString()); putBoolean("stopped", stopFlag); putLong("pssKb", Debug.getPss()) })
+        val tEnd = System.currentTimeMillis()
+        val firstMs = if (tFirst > 0) tFirst - tStart else tEnd - tStart
+        val tps = if (tFirst > 0 && tEnd > tFirst && pieces > 1) (pieces - 1) * 1000.0 / (tEnd - tFirst) else 0.0
+        Log.i(TAG, "answer on $backendName: first word ${firstMs} ms, ${"%.1f".format(tps)} tokens/s, $pieces tokens")
+        send(reply, reqId, R_DONE, Bundle().apply { putString("text", out.toString()); putBoolean("stopped", stopFlag); putLong("pssKb", Debug.getPss())
+            putString("backend", backendName); putLong("firstMs", firstMs); putDouble("tps", tps) })
     }
 
     private fun closeAll() {

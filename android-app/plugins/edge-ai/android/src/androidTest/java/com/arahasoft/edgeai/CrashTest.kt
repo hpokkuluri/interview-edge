@@ -70,7 +70,7 @@ class CrashTest {
         assumeTrue("model not on device", haveModel())
         val t0 = System.currentTimeMillis()
         val r = load()
-        log("LOAD ok=${r.ok} code=${r.data.getString("code")} ms=${System.currentTimeMillis() - t0} ramMb=${ramMb()}")
+        log("LOAD ok=${r.ok} backend=${r.data.getString("backend")} code=${r.data.getString("code")} ms=${System.currentTimeMillis() - t0} ramMb=${ramMb()}")
         if (!r.ok) {
             // On a low-RAM phone the model may not fit: that must be a clean failure, never an app crash.
             assertTrue("load failed with unexpected error ${r.data.getString("code")}", r.data.getString("code") in setOf("crashed", "oom", "lowmem", "failed"))
@@ -79,7 +79,7 @@ class CrashTest {
         }
         log("MEM after load: aiProcessPss=${pss()}MB phoneAvail=${availMb()}MB")
         val a = ask("t2", "Tell me about yourself.")
-        log("ANSWER ok=${a.ok} tokens=${a.tokens} text=${a.text.toString().replace('\n', ' ').take(160)}")
+        log("ANSWER ok=${a.ok} backend=${a.data.getString("backend")} firstMs=${a.data.getLong("firstMs")} tps=${"%.1f".format(a.data.getDouble("tps"))} tokens=${a.tokens} text=${a.text.toString().replace('\n', ' ').take(160)}")
         assertTrue(a.ok); assertTrue(a.text.isNotBlank())
         val b = ask("t2", "Why do you want this role?", listOf("user" to "Tell me about yourself.", "model" to a.text.toString()))
         log("FOLLOWUP ok=${b.ok} tokens=${b.tokens}")
