@@ -21,7 +21,8 @@ jobs:
       - name: Build APK
         working-directory: android-app
         run: |
-          npm install --no-audit --no-fund
+          # Retry: a dependency (sharp, used for icons) downloads from GitHub, which sometimes times out
+          for i in 1 2 3 4; do npm install --no-audit --no-fund && break; echo retry; sleep 60; done
           bash ci/fetch-sherpa.sh
           BUILD_STAMP="$(date -u +%Y%m%d%H%M)-${GITHUB_SHA::7}" node copy-web.js
           npx cap add android

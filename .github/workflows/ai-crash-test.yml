@@ -47,7 +47,8 @@ jobs:
       - name: Build app and tests
         working-directory: android-app
         run: |
-          npm install --no-audit --no-fund
+          # --ignore-scripts: skips the icon tool's image library download, not needed for testing
+          for i in 1 2 3; do npm install --no-audit --no-fund --ignore-scripts && break; sleep 30; done
           bash ci/fetch-sherpa.sh
           node copy-web.js
           npx cap add android
