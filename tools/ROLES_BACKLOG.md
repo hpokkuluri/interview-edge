@@ -92,11 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] hw-design — Hardware Design Engineer (at 12, add ~38)
-- [ ] hw-pcb — PCB Layout Engineer (at 12, add ~38)
-- [ ] hw-fpga — FPGA Engineer (at 12, add ~38)
-- [ ] hw-asic — ASIC / Chip Design Engineer (at 12, add ~38)
-- [ ] hw-embed — Embedded Hardware Engineer (at 12, add ~38)
 - [ ] hw-test — Hardware Test Engineer (at 12, add ~38)
 - [ ] hw-si — Signal Integrity Engineer (at 12, add ~38)
 - [ ] hw-power — Power Electronics Engineer (at 12, add ~38)
@@ -152,6 +147,11 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] hw-design — Hardware Design Engineer — 2026-11-09
+- [x] hw-pcb — PCB Layout Engineer — 2026-11-09
+- [x] hw-fpga — FPGA Engineer — 2026-11-09
+- [x] hw-asic — ASIC / Chip Design Engineer — 2026-11-09
+- [x] hw-embed — Embedded Hardware Engineer — 2026-11-09
 - [x] sm-se — Sales Engineer / Solutions Consultant — 2026-11-04
 - [x] bk-credit — Credit Analyst / Credit Risk Analyst — 2026-11-04
 - [x] bk-mortgage — Mortgage Loan Officer / Underwriter — 2026-11-04

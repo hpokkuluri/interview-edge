@@ -40,11 +40,11 @@ window.COUNTS = {
  "eng-dir": 50,
  "eng-vp": 50,
  "eng-svp": 13,
- "hw-design": 12,
- "hw-pcb": 12,
- "hw-fpga": 12,
- "hw-asic": 12,
- "hw-embed": 12,
+ "hw-design": 51,
+ "hw-pcb": 50,
+ "hw-fpga": 50,
+ "hw-asic": 51,
+ "hw-embed": 50,
  "hw-test": 12,
  "hw-si": 12,
  "hw-power": 12,
@@ -359,4 +359,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 12322;
+window.FU_TOTAL = 12514;
