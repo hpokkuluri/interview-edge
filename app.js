@@ -367,6 +367,10 @@ const LOGO = `<svg viewBox="0 0 64 64" aria-hidden="true">
    S.voice = 'female' | 'male', S.rate = speaking speed. On the web the browser's own voices are used. */
 const EAI = NATIVE && window.Capacitor.Plugins && window.Capacitor.Plugins.EdgeAI || null;
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+// The speaker's English variety for speech recognition (Settings → Voice → Your accent). Defaults to the phone's own
+// English setting when it's one of these, otherwise US English.
+const ACCENTS = [['en-IN', 'India'], ['en-US', 'United States'], ['en-GB', 'United Kingdom'], ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IE', 'Ireland'], ['en-SG', 'Singapore'], ['en-PH', 'Philippines'], ['en-NG', 'Nigeria'], ['en-ZA', 'South Africa'], ['en-NZ', 'New Zealand']];
+const accent = () => S.accent || (ACCENTS.find(a => a[0].toLowerCase() === String(navigator.language || '').toLowerCase()) || ['en-US'])[0];
 const canDictate = () => !!(EAI || SR);
 let rec = null, recBtn = null;
 function stopDictation() { if (rec) { try { rec.stop(); } catch (e) {} } }
@@ -374,7 +378,7 @@ function stopDictation() { if (rec) { try { rec.stop(); } catch (e) {} } }
 function nativeListener({ onText, onEnd, onState }) {
   let finals = '', partial = '', live = true, subs = [], idle = 0, api;
   const text = () => (finals + ' ' + partial).replace(/\s+/g, ' ').trim();
-  const start = () => EAI.listen().catch(e => { live = false; toast(e.code === 'permission' ? 'Allow the microphone to answer by voice.' : (e.message || 'The microphone isn’t available.')); finish(); });
+  const start = () => EAI.listen({ lang: accent() }).catch(e => { live = false; toast(e.code === 'permission' ? 'Allow the microphone to answer by voice.' : (e.message || 'The microphone isn’t available.')); finish(); });
   const finish = () => { subs.forEach(h => h.then(x => x.remove())); subs = []; live = false; onEnd && onEnd(text()); };
   subs.push(EAI.addListener('speech', ev => {
     if (!live) return;
@@ -400,7 +404,7 @@ function dictate(textarea, btn, onChange) {
   const done = () => { btn.classList.remove('live'); if (btn.dataset.label) btn.querySelector('span').textContent = btn.dataset.label; rec = null; recBtn = null; };
   btn.classList.add('live'); if (btn.dataset.label) btn.querySelector('span').textContent = 'Stop';
   if (EAI) { rec = nativeListener({ onText: t => { textarea.value = base + t; onChange && onChange(); }, onEnd: done }); recBtn = btn; return; }
-  const r = new SR(); r.lang = 'en-US'; r.continuous = true; r.interimResults = true;
+  const r = new SR(); r.lang = accent(); r.continuous = true; r.interimResults = true;
   let finals = '';
   r.onresult = e => {
     let interim = '';
@@ -1647,6 +1651,7 @@ function vSettings(ctx) {
       </div></div>
     <div class="panel"><h3>Voice</h3>
       <div class="field"><label>Interviewer voice</label>${voiceSeg()}</div>
+      <div class="field"><label for="acc">Your accent</label><select id="acc" class="txt">${ACCENTS.map(([v, l]) => `<option value="${v}" ${accent() === v ? 'selected' : ''}>English — ${l}</option>`).join('')}</select><p class="muted" style="margin:6px 2px 0">Helps the microphone understand you when you answer out loud.</p></div>
       <div class="field"><label>Speaking speed</label><div class="seg" id="rsel">${[[0.9, 'Slower'], [1, 'Normal'], [1.15, 'Faster']].map(([v, l]) => `<button data-rate="${v}" class="${(+S.rate || 1) === v ? 'on' : ''}">${l}</button>`).join('')}</div></div>
       <button class="btn ghost wide" id="ttstest" style="margin-top:4px">${I.speaker} Test the voice</button>
       ${canDictate() ? '' : '<p class="muted" style="margin:8px 2px 0">Voice answers aren’t available in this browser — use the mic on your keyboard.</p>'}</div>
@@ -1675,6 +1680,7 @@ function vSettings(ctx) {
   });
   $('#ttstest', ctx.el).addEventListener('click', () => { if (!TTS) { toast('This browser can’t read aloud.'); return; } speak('Tell me about a time you shortened the month-end close.'); toast('Playing — check your volume and silent switch'); });
   wireVoiceSeg(ctx.el);
+  $('#acc', ctx.el).addEventListener('change', e => { S.accent = e.target.value; saveS(); toast('Accent saved — the mic will listen for English (' + ACCENTS.find(a => a[0] === S.accent)[1] + ')'); });
   $('#rsel', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-rate]'); if (!b) return; S.rate = +b.dataset.rate; saveS(); $$('button', $('#rsel', ctx.el)).forEach(x => x.classList.toggle('on', x === b)); speak('This is the speaking speed.'); });
   if (EAI) laiCheck().then(d => {
     const el = $('#laiS', ctx.el); if (!el) return;

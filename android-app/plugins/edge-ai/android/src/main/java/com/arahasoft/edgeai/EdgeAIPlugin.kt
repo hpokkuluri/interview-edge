@@ -118,14 +118,16 @@ class EdgeAIPlugin : Plugin() {
     }
 
     // ---------------- voice ----------------
+    private fun lang(call: PluginCall) = (call.getString("lang") ?: "en-US").takeIf { Regex("^[a-z]{2}-[A-Z]{2}$").matches(it) } ?: "en-US"
+
     @PluginMethod fun listen(call: PluginCall) {
         if (!voice.available()) return call.reject("Speech recognition isn't available on this phone", "unavailable")
         if (getPermissionState("microphone") != PermissionState.GRANTED) { requestPermissionForAlias("microphone", call, "micPermission"); return }
-        voice.listen(); call.resolve()
+        voice.listen(lang(call)); call.resolve()
     }
 
     @PermissionCallback private fun micPermission(call: PluginCall) {
-        if (getPermissionState("microphone") == PermissionState.GRANTED) { voice.listen(); call.resolve() }
+        if (getPermissionState("microphone") == PermissionState.GRANTED) { voice.listen(lang(call)); call.resolve() }
         else call.reject("Microphone permission was denied", "permission")
     }
 

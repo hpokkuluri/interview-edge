@@ -129,7 +129,8 @@ class VoiceIO(private val context: Context, voiceDir: java.io.File, private val 
     // ---------------- microphone ----------------
     fun available() = SpeechRecognizer.isRecognitionAvailable(context)
 
-    fun listen() = main.post {
+    /** lang: the speaker's English variety, e.g. en-IN for an Indian accent (Settings → Voice → Your accent). */
+    fun listen(lang: String = "en-US") = main.post {
         tts?.stop(); natural.stop()
         recognizer?.destroy()
         val r = SpeechRecognizer.createSpeechRecognizer(context)
@@ -164,7 +165,8 @@ class VoiceIO(private val context: Context, voiceDir: java.io.File, private val 
         })
         val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, lang)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, lang)
             putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
             // Interview answers have thinking pauses; ask the recognizer to wait longer before it stops.
