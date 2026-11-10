@@ -45,11 +45,11 @@ window.COUNTS = {
  "hw-fpga": 50,
  "hw-asic": 51,
  "hw-embed": 50,
- "hw-test": 12,
- "hw-si": 12,
- "hw-power": 12,
- "hw-fw": 12,
- "hw-pm": 12,
+ "hw-test": 51,
+ "hw-si": 52,
+ "hw-power": 52,
+ "hw-fw": 51,
+ "hw-pm": 52,
  "hw-controls": 13,
  "hw-mech": 12,
  "hw-rf": 13,
@@ -359,4 +359,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 12514;
+window.FU_TOTAL = 12712;
