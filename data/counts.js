@@ -217,6 +217,12 @@ window.COUNTS = {
  "hc-dh": 13,
  "hc-rd": 13,
  "hc-surgtech": 13,
+ "hc-paramedic": 12,
+ "hc-pharmtech": 12,
+ "hc-genetic": 12,
+ "hc-dentist": 12,
+ "hc-optometrist": 12,
+ "hc-vet": 12,
  "ls-ctc": 24,
  "ls-cra": 50,
  "ls-cpm": 24,
@@ -359,4 +365,4 @@ window.COUNTS = {
  "common": 50
 };
 // Follow-up questions (each has its own answer), added to the home-screen total.
-window.FU_TOTAL = 12712;
+window.FU_TOTAL = 12784;

@@ -191,12 +191,7 @@ role banks automatically and are handled separately — not listed here.)
 ### Fresh batch (added 2026-11-07) — verified NOT in catalog; build these first
 
 Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & Allied Health":
-- [ ] hc-paramedic — Paramedic / EMT (assessment, protocols, airway, trauma, scene safety, transport)
-- [ ] hc-pharmtech — Pharmacy Technician (dispensing, compounding basics, inventory, insurance, accuracy)
-- [ ] hc-genetic — Genetic Counselor (risk assessment, pedigrees, test interpretation, ethics, counseling)
-- [ ] hc-dentist — Dentist (General Dentist) (diagnosis, restorations, treatment planning, radiographs, ethics)
-- [ ] hc-optometrist — Optometrist (refraction, eye exams, ocular disease, prescribing, referrals)
-- [ ] hc-vet — Veterinarian (diagnosis, surgery, client communication, euthanasia ethics, practice)
+(All six fresh-batch clinical roles built — see Done.)
 
 Finance & Accounting (field `fin`) — cube `finspec` "Finance Specialists" / `accops`:
 (Both finance fresh-batch roles built — see Done.)
@@ -217,6 +212,44 @@ Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
 
 Business & Operations (field `biz`) — cube `consult` "Consulting & Operations":
 (COO built — see Done.)
+
+### Fresh batch (added 2026-11-11) — in-demand real titles, good salaries; run the catalog/src novelty check and skip any semantic duplicate before building
+
+Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & Allied Health":
+- [ ] hc-audiologist — Audiologist (hearing/balance testing, hearing aids, cochlear implants, pediatric/adult, counseling)
+- [ ] hc-podiatrist — Podiatrist (DPM) (diagnosis, foot/ankle surgery, diabetic foot, orthotics, wound care)
+- [ ] hc-midwife — Certified Nurse Midwife (prenatal care, labor/delivery, scope, risk, collaboration, patient-centered care)
+- [ ] hc-perfusion — Perfusionist (cardiopulmonary bypass, heart-lung machine, anticoagulation, crisis management, safety)
+
+Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
+- [ ] en-structural — Structural Engineer (loads, analysis, codes, materials, seismic, drawings, PE ethics)
+- [ ] en-geotech — Geotechnical Engineer (soils, foundations, site investigation, slope stability, settlement)
+- [ ] en-fire — Fire Protection Engineer (sprinklers, egress, codes/NFPA, smoke control, fire modeling)
+- [ ] en-mep — MEP / Building Systems Engineer (HVAC, electrical, plumbing design, loads, energy codes, coordination)
+
+Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled Trades":
+- [ ] tr-boilermaker — Boilermaker (fabrication, welding, pressure vessels, rigging, safety, codes)
+- [ ] tr-millwright — Millwright (machinery install/alignment, precision leveling, bearings, vibration, safety)
+- [ ] tr-crane — Crane Operator (load charts, rigging, signals, inspection, site safety, certification)
+
+Finance & Business (field `fin` / `biz`) — cubes `finspec` / `consult`:
+- [ ] biz-ma — Corporate Development / M&A Analyst (valuation, diligence, deal process, synergies, integration)
+- [ ] biz-esg — ESG / Sustainability Manager (reporting frameworks, materiality, carbon, stakeholders, assurance)
+- [ ] fin-reanalyst — Real Estate / Investment Analyst (underwriting, DCF/cap rates, market analysis, debt/equity, returns)
+
+Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
+- [ ] sm-growth — Growth Marketing Manager (experimentation, funnel, CAC/LTV, channels, analytics)
+- [ ] sm-ecommerce — E-commerce Manager (conversion, merchandising, platform, promotions, analytics, fulfillment)
+- [ ] sm-partner — Channel / Partnerships Manager (partner recruitment, enablement, co-sell, deal reg, GTM)
+
+Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
+- [ ] md-motion — Motion Designer / Animator (motion graphics, keyframing, storytelling, tools, delivery)
+
+Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
+- [ ] gv-parole — Probation / Parole Officer (supervision, risk assessment, case management, de-escalation, ethics)
+
+Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
+- [ ] hs-merchandiser — Retail Buyer / Merchandiser (assortment, open-to-buy, margin, vendors, trends, planning)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
@@ -370,3 +403,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] lg-immig — Immigration Attorney — 2026-11-08 (placed in `legal` cube)
 - [x] sec-ir — Incident Response / Digital Forensics Analyst — 2026-11-08 (placed in `sec` cube)
 - [x] biz-coo — Chief Operating Officer (COO) — 2026-11-08 (placed in `consult` cube)
+- [x] hc-paramedic — Paramedic / EMT — 2026-11-11 (placed in `health-clin` cube)
+- [x] hc-pharmtech — Pharmacy Technician — 2026-11-11 (placed in `health-clin` cube)
+- [x] hc-genetic — Genetic Counselor — 2026-11-11 (placed in `health-clin` cube)
+- [x] hc-dentist — Dentist (General) — 2026-11-11 (placed in `health-clin` cube)
+- [x] hc-optometrist — Optometrist — 2026-11-11 (placed in `health-clin` cube)
+- [x] hc-vet — Veterinarian — 2026-11-11 (placed in `health-clin` cube)

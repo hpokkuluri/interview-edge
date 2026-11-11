@@ -430,7 +430,13 @@ window.CATALOG = [
       { id: 'hc-crna', title: 'Nurse Anesthetist (CRNA)', level: 'Senior', blurb: 'Anesthesia plan, airway, pharmacology, monitoring, regional, crisis management, safety.' },
       { id: 'hc-dh', title: 'Dental Hygienist', level: 'Entry → Senior', blurb: 'Periodontal charting, prophylaxis vs. SRP, radiographs, infection control, patient education, scope.' },
       { id: 'hc-rd', title: 'Registered Dietitian / Nutritionist', level: 'Entry → Senior', blurb: 'Nutrition assessment, medical nutrition therapy, diabetes and renal diets, counseling, evidence.' },
-      { id: 'hc-surgtech', title: 'Surgical Technologist', level: 'Entry → Senior', blurb: 'Sterile field, instrument passing, surgical counts, asepsis, specimens, OR workflow, time-out safety.' }
+      { id: 'hc-surgtech', title: 'Surgical Technologist', level: 'Entry → Senior', blurb: 'Sterile field, instrument passing, surgical counts, asepsis, specimens, OR workflow, time-out safety.' },
+      { id: 'hc-paramedic', title: 'Paramedic / EMT', level: 'Entry → Senior', blurb: 'Primary assessment, airway, cardiac and trauma care, protocols and medical direction, scene safety, transport.' },
+      { id: 'hc-pharmtech', title: 'Pharmacy Technician', level: 'Entry → Mid', blurb: 'Dispensing accuracy, compounding basics, inventory and controlled substances, insurance billing, counting and verification.' },
+      { id: 'hc-genetic', title: 'Genetic Counselor', level: 'Mid → Senior', blurb: 'Risk assessment, pedigrees, test selection and interpretation, VUS, ethics, non-directive counseling.' },
+      { id: 'hc-dentist', title: 'Dentist (General)', level: 'Entry → Senior', blurb: 'Diagnosis, restorations, treatment planning, radiographs, local anesthesia, ethics and informed consent.' },
+      { id: 'hc-optometrist', title: 'Optometrist', level: 'Entry → Senior', blurb: 'Refraction, comprehensive eye exams, ocular disease, prescribing, co-management and referral.' },
+      { id: 'hc-vet', title: 'Veterinarian', level: 'Entry → Senior', blurb: 'Diagnosis, surgery and anesthesia, client communication, euthanasia ethics, practice and antibiotic stewardship.' }
     ]
   },
   {
