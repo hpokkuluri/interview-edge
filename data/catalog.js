@@ -269,7 +269,8 @@ window.CATALOG = [
       { id: 'swe-be', title: 'Backend Engineer (Node / Python / .NET)', level: 'Mid → Senior', blurb: 'APIs, databases, caching, messaging, security, scalability, observability.' },
       { id: 'swe-fs', title: 'Full-Stack Engineer', level: 'Mid → Senior', blurb: 'End-to-end features, API contracts, auth, payments, deployment, monitoring.' },
       { id: 'swe-mob', title: 'Mobile Engineer (iOS / Android)', level: 'Mid → Senior', blurb: 'SwiftUI, Jetpack Compose, React Native, offline, performance, releases.' },
-      { id: 'swe-staff', title: 'Staff / Principal Engineer', level: 'Staff · Principal', blurb: 'Technical strategy, cross-team architecture, influence, reliability, mentoring.' }
+      { id: 'swe-staff', title: 'Staff / Principal Engineer', level: 'Staff · Principal', blurb: 'Technical strategy, cross-team architecture, influence, reliability, mentoring.' },
+      { id: 'tc-gamedev', title: 'Game Developer / Gameplay Engineer', level: 'Mid → Senior', blurb: 'Game loop, delta time, frame budget, physics and collision, ECS, game feel, networking, optimization.' }
     ]
   },
   {
@@ -284,7 +285,9 @@ window.CATALOG = [
       { id: 'da-ml', title: 'Machine Learning Engineer', level: 'Mid → Senior', blurb: 'MLOps, feature stores, serving, monitoring, scaling, LLM deployment.' },
       { id: 'da-llm', title: 'AI / LLM Engineer', level: 'Mid → Senior', blurb: 'RAG, agents, evaluation, guardrails, prompt injection, cost and latency.' },
       { id: 'da-arch', title: 'Data Architect', level: 'Principal', blurb: 'Platform architecture, modeling, governance, MDM, security, cost.' },
-      { id: 'da-head', title: 'Head of Data & AI / CDO', level: 'Director · VP · CDO', blurb: 'Data and AI strategy, value, operating model, responsible AI, culture.' }
+      { id: 'da-head', title: 'Head of Data & AI / CDO', level: 'Director · VP · CDO', blurb: 'Data and AI strategy, value, operating model, responsible AI, culture.' },
+      { id: 'da-gov', title: 'Data Governance / Data Management Analyst', level: 'Mid → Senior', blurb: 'Data quality, metadata and catalog, lineage, business glossary, stewardship, MDM, classification, privacy.' },
+      { id: 'da-compvis', title: 'Computer Vision Engineer', level: 'Mid → Senior', blurb: 'CNNs and transformers, detection and segmentation, IoU/mAP, data and augmentation, optimization, deployment.' }
     ]
   },
   {
@@ -296,7 +299,8 @@ window.CATALOG = [
       { id: 'cl-sre', title: 'Site Reliability Engineer (SRE)', level: 'Mid → Senior', blurb: 'SLOs, error budgets, incidents, observability, toil, resilience.' },
       { id: 'cl-plat', title: 'Platform Engineer', level: 'Mid → Senior', blurb: 'Internal developer platforms, golden paths, Backstage, multi-tenancy.' },
       { id: 'cl-k8s', title: 'Kubernetes Engineer', level: 'Mid → Senior', blurb: 'Architecture, networking, security, scaling, troubleshooting, upgrades.' },
-      { id: 'cl-arch', title: 'Cloud Architect', level: 'Principal', blurb: 'Landing zones, security, resilience, migration, FinOps, governance.' }
+      { id: 'cl-arch', title: 'Cloud Architect', level: 'Principal', blurb: 'Landing zones, security, resilience, migration, FinOps, governance.' },
+      { id: 'tc-release', title: 'Release / Build Engineer', level: 'Mid → Senior', blurb: 'CI/CD pipelines, build systems, versioning, artifacts, reproducible builds, deployment strategies, rollback.' }
     ]
   },
   {
@@ -494,7 +498,8 @@ window.CATALOG = [
       { id: 'lg-privacy', title: 'Privacy / Data Protection Officer', level: 'Mid → Senior', blurb: 'GDPR, CCPA, DPIAs, breach response, DSARs, vendor data, records.' },
       { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' },
       { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' },
-      { id: 'lg-immig', title: 'Immigration Attorney', level: 'Entry → Senior', blurb: 'Visas and green cards, eligibility analysis, RFEs, removal defense, deadlines, candor, client counseling.' }
+      { id: 'lg-immig', title: 'Immigration Attorney', level: 'Entry → Senior', blurb: 'Visas and green cards, eligibility analysis, RFEs, removal defense, deadlines, candor, client counseling.' },
+      { id: 'lg-legalops', title: 'Legal Operations Manager', level: 'Mid → Senior', blurb: 'CLM, outside counsel and spend management, e-billing, intake, legal tech, metrics, process and stewardship.' }
     ]
   },
   {
@@ -531,7 +536,8 @@ window.CATALOG = [
       { id: 'sm-revops', title: 'Sales Operations / RevOps', level: 'Mid → Senior', blurb: 'Forecasting, CRM, territories, comp plans, funnel metrics, tooling.' },
       { id: 'sm-pmm', title: 'Product Marketing Manager', level: 'Mid → Senior', blurb: 'Positioning, messaging, launches, personas, enablement, competitive intel.' },
       { id: 'sm-content', title: 'Content & SEO Marketing Manager', level: 'Mid → Senior', blurb: 'Content strategy, SEO, editorial, distribution, analytics, brand voice.' },
-      { id: 'sm-demandgen', title: 'Demand Generation Manager', level: 'Mid → Senior', blurb: 'Campaigns, lead funnel, MQL/SQL, nurture, attribution, marketing ops.' }
+      { id: 'sm-demandgen', title: 'Demand Generation Manager', level: 'Mid → Senior', blurb: 'Campaigns, lead funnel, MQL/SQL, nurture, attribution, marketing ops.' },
+      { id: 'sm-brand', title: 'Brand Manager', level: 'Mid → Senior', blurb: 'Positioning, brand equity and health, strategy and planning, campaigns, pricing, agencies, consistency.' }
     ]
   },
   {
