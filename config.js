@@ -31,3 +31,19 @@ window.LOCAL_AI = {
   // Natural, human-sounding voice (Kokoro, Apache-2.0), downloaded together with the AI. Name must match EdgeAIPlugin.VOICE_PACK.
   voice: { name: 'kokoro-en-v1.zip', url: 'https://github.com/hpokkuluri/interview-edge/releases/download/voice-pack/kokoro-en-v1.zip', bytes: 125497886 }
 };
+
+// Live AI interviewer: Google Gemini (Live API) through Firebase AI Logic. Needs internet; listens to the real
+// audio (handles accents well), answers in about a second in a natural voice. Works in the Android app and the website.
+// firebase: paste the web app config from Firebase console → Project settings → Your apps. Until it's set, this is hidden.
+// appCheck: beta uses a registered debug token (Firebase console → App Check → Apps → Manage debug tokens).
+//   Before a public launch switch to { siteKey: '<reCAPTCHA Enterprise key>' } (see claude/friday-plan.md).
+// freeMinutes: interview minutes before the $0.99 unlock is needed (PAYWALL.testPass still lets testers continue).
+window.GEMINI = {
+  firebase: null,
+  appCheck: { debugToken: '80e95536-e2c3-4996-9440-04cee805e782' },
+  model: 'gemini-3.1-flash-live-preview',
+  textModel: 'gemini-2.5-flash',
+  voices: { female: 'Aoede', male: 'Charon' },
+  freeMinutes: 3,
+  maxMinutes: 14
+};

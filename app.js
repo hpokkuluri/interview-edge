@@ -1259,6 +1259,124 @@ function localSystem(p, cfg) {
 Rules: reply in 1 to 3 short sentences, under 60 words. Sound natural and friendly-professional. No lists, no markdown, no emojis. Never answer questions for the candidate and never give feedback or hints during the interview. Lines in brackets are private notes for you — follow them, never read them out.`;
 }
 
+/* ---------------- Live AI interviewer (Google Gemini Live via Firebase) ----------------
+   Real-time voice: the interviewer hears the candidate's actual audio (good with accents), replies in ~1 s in a
+   natural voice, can be interrupted, and follows up like a person. A written, scored report comes at the end. */
+const GEM = window.GEMINI || {};
+const gemOn = () => !!(GEM.firebase && GEM.firebase.apiKey);
+let gemLoad = null;
+function gemReady() {
+  if (window.GeminiLive) return Promise.resolve();
+  return gemLoad = gemLoad || new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'vendor/gemini-live.js?v=' + (window.ASSET_V || '1'); s.onload = res; s.onerror = () => { gemLoad = null; rej(new Error('load')); }; document.head.appendChild(s); });
+}
+const gemOpts = () => ({ firebase: GEM.firebase, appCheck: GEM.appCheck, textModel: GEM.textModel || 'gemini-2.5-flash' });
+const pickPlan = (bank, n) => {
+  const pool = bank.filter(x => x[5] !== 'common');
+  const pick = shuffle(pool.filter(isTop)).concat(shuffle(pool.filter(x => !isTop(x))));
+  return (pick.length >= n ? pick : pick.concat(shuffle(bank.filter(x => x[5] === 'common')))).slice(0, n);
+};
+const NAMES = { female: ['Priya', 'Sarah', 'Maria', 'Emily'], male: ['David', 'Rahul', 'Michael', 'James'] };
+function liveSystem(p, cfg, items, name) {
+  return `You are ${name}, ${PERSONAS[cfg.persona][1]}, running a real job interview by voice for the role "${p.full}" (${p.level}).
+Speak exactly like a real interviewer on a video call: warm, professional, natural. Keep every turn short — one to three sentences — then stop and let the candidate talk. Never use lists, markdown or emojis.
+How the interview goes:
+1. Open: greet them, say your name and role, one sentence about the job, then ask them to briefly introduce themselves.
+2. Then cover these questions in this order, one at a time, in your own natural words:
+${items.map((x, i) => `   Q${i + 1}. ${x[1]}`).join('\n')}
+3. After each answer, react briefly like a person would (a few words, no praise or judgement), and when the answer is vague, generic or short, ask ONE probing follow-up about specifics, numbers, their own role or trade-offs. Then move on.
+4. If they ask you to repeat or clarify, do it simply. If they go silent, gently prompt them. If they ask about the role or company, give a short, plausible answer.
+5. Never answer the questions for them, never coach, and never give feedback or scores during the interview.
+6. After the last question, ask if they have any questions for you, answer briefly, then thank them and close.
+The candidate may have a non-native or regional accent: be patient and never comment on it. If a message in square brackets arrives, it is a private instruction from the app — follow it, don't read it out.`;
+}
+
+function liveInterview(ctx, p, bank, cfg, back) {
+  const wrap = $('.wrap', ctx.el);
+  const items = pickPlan(bank, cfg.len);
+  const gender = S.voice === 'male' ? 'male' : 'female';
+  const name = NAMES[gender][Math.floor(Math.random() * 4)];
+  const lines = [];               // final transcript: { who: 'ai'|'me', text }
+  let ctl = null, t0 = 0, timer = null, ended = false, muted = false, live = { ai: null, me: null };
+  const limitMin = PAY_ON && !isPro() && !PAY.testPass ? (GEM.freeMinutes || 3) : (GEM.maxMinutes || 14);
+
+  wrap.innerHTML = `<div class="live-top"><div class="orb" id="orb"><i></i></div><div><b>${esc(name)}</b><span>${esc(PERSONAS[cfg.persona][0])} · ${esc(p.title)}</span><span id="lstate">Connecting…</span></div><span class="live-t" id="lt">0:00</span></div>
+    <div class="chat" id="chat"></div>
+    <div class="composer live-bar"><button class="btn ghost" id="mute">${I.mic} Mute</button><button class="btn pri" id="end">End &amp; get feedback</button></div>`;
+  const box = $('#chat', ctx.el), orb = $('#orb', ctx.el), st = $('#lstate', ctx.el);
+  const scrollEnd = () => requestAnimationFrame(() => { ctx.el.scrollTop = ctx.el.scrollHeight; });
+  const setState = s => { orb.className = 'orb ' + s; st.textContent = { connecting: 'Connecting…', listening: 'Listening — just talk', speaking: `${name} is speaking`, ended: 'Interview ended', error: 'Connection lost' }[s] || ''; };
+  const onText = (who, text, final) => {
+    if (who === 'sys') { box.insertAdjacentHTML('beforeend', `<div class="msg sys">${esc(text)}</div>`); return; }
+    if (!live[who]) { box.insertAdjacentHTML('beforeend', `<div class="msg ${who === 'ai' ? 'ai' : 'me'} ${final ? '' : 'part'}"></div>`); live[who] = box.lastElementChild; }
+    live[who].textContent = text.trim();
+    if (final) { live[who].classList.remove('part'); if (text.trim()) lines.push({ who, text: text.trim() }); live[who] = null; }
+    scrollEnd();
+  };
+  ctx.cleanup.push(() => { ended = true; clearInterval(timer); if (ctl) ctl.stop(); });
+
+  $('#mute', ctx.el).addEventListener('click', e => { muted = !muted; if (ctl) ctl.mute(muted); e.currentTarget.innerHTML = `${I.mic} ${muted ? 'Unmute' : 'Mute'}`; e.currentTarget.classList.toggle('on', muted); });
+  $('#end', ctx.el).addEventListener('click', () => finish(false));
+
+  (async () => {
+    try {
+      await gemReady();
+      ctl = await window.GeminiLive.start(Object.assign(gemOpts(), {
+        model: GEM.model, voice: (GEM.voices || {})[gender] || 'Aoede', system: liveSystem(p, cfg, items, name),
+        opening: '[The candidate has joined the call. Begin the interview now.]', onText, onState: s => { if (!ended) setState(s); },
+        onError: () => { if (!ended) { box.insertAdjacentHTML('beforeend', '<div class="msg err">The connection dropped. Tap “End &amp; get feedback” to see your report so far.</div>'); scrollEnd(); } }
+      }));
+      if (ended) { ctl.stop(); return; }
+      t0 = Date.now();
+      timer = setInterval(() => {
+        const sec = Math.floor((Date.now() - t0) / 1000); $('#lt', ctx.el).textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+        if (sec >= limitMin * 60) finish(true);
+      }, 1000);
+    } catch (e) {
+      setState('error');
+      const msg = e && e.code === 'mic' ? 'Allow the microphone to talk to the interviewer (phone Settings → Apps → Interview Edge → Permissions).'
+        : !navigator.onLine ? 'You’re offline. The live interviewer needs internet.' : 'Couldn’t connect to the AI interviewer. Check your internet and try again.';
+      box.insertAdjacentHTML('beforeend', `<div class="msg err">${esc(msg)}<div class="actions" style="margin:10px 0 0"><button class="btn" id="retry">Try again</button><button class="btn ghost" id="bk">Back</button></div></div>`);
+      $('#retry', ctx.el).addEventListener('click', () => liveInterview(ctx, p, bank, cfg, back));
+      $('#bk', ctx.el).addEventListener('click', back);
+      console.warn('live interviewer', e);
+    }
+  })();
+
+  async function finish(timeUp) {
+    if (ended) return; ended = true; clearInterval(timer);
+    const locked = timeUp && PAY_ON && !isPro() && !PAY.testPass;
+    if (ctl) { if (timeUp && !locked) { try { await ctl.say('[Time is up. Thank the candidate in one sentence and close the interview.]'); await new Promise(r => setTimeout(r, 5000)); } catch (e) {} } await ctl.stop(); }
+    setState('ended');
+    $('.live-bar', ctx.el).remove();
+    if (locked) box.insertAdjacentHTML('beforeend', `<div class="msg err">${I.lock} The free preview is ${limitMin} minutes. Unlock unlimited live interviews and every question for ${esc(PAY.price)}, one time.<div class="actions" style="margin:10px 0 0"><button class="btn gold" data-buy>Upgrade · ${esc(PAY.price)}</button></div></div>`);
+    if (!lines.some(l => l.who === 'me')) { box.insertAdjacentHTML('beforeend', '<div class="msg sys">No answers were recorded, so there’s no feedback this time.</div>'); return tail(); }
+    const b = document.createElement('div'); b.className = 'msg ai typing'; b.innerHTML = '<i></i><i></i><i></i>'; box.appendChild(b); scrollEnd();
+    const transcript = lines.map(l => `${l.who === 'ai' ? 'Interviewer' : 'Candidate'}: ${l.text}`).join('\n');
+    const plan = items.map((x, i) => `Q${i + 1}. ${x[1]}\nA strong answer covers: ${ansText(x[2])}`).join('\n\n');
+    let asked = items.map((x, i) => i);
+    try {
+      let txt = await window.GeminiLive.write(gemOpts(),
+        `Role: ${p.full} (${p.level}). Interview plan:\n\n${plan}\n\nTranscript (speech-to-text, may contain recognition errors — judge the content, not the wording or accent):\n${transcript}\n\n` +
+        `Write the candidate's feedback. First line exactly: "Asked: " followed by the plan numbers actually covered, e.g. "Asked: 1, 2, 3". Then use these headings:\n## Overall\nScore: N/10 and one sentence why.\n## Strengths\n## Gaps\n## Question by question\nOne line each for the questions covered: what landed, what was missing.\n## Practice next\nThree specific things.`,
+        'You are an expert interview coach. Be candid, specific and encouraging. Short sentences.');
+      const m = txt.match(/^\s*Asked:\s*([\d,\s]+)/i);
+      if (m) { const n = m[1].split(/[,\s]+/).map(Number).filter(v => v >= 1 && v <= items.length).map(v => v - 1); if (n.length) asked = n; txt = txt.replace(/^\s*Asked:.*\n?/i, ''); }
+      b.className = 'msg ai'; b.innerHTML = fmtAI(txt.trim()); b.dataset.raw = txt.trim(); reportable(b, p);
+      const sc = txt.match(/(\d+(?:\.\d)?)\s*(?:\/|out of)\s*10/); const h = store.get('ip.mocks', []);
+      h.push({ pos: p.id, at: Date.now(), n: asked.length, avg: sc ? +sc[1] / 2 : 0, ai: 1 }); store.set('ip.mocks', h.slice(-200));
+    } catch (e) { b.className = 'msg err'; b.textContent = 'Couldn’t write the feedback report — check your internet.'; }
+    const fa = t => fmt(isWork(p) ? personalize(t) : t);
+    box.insertAdjacentHTML('beforeend', `<div class="mans"><h3>Model answers</h3>${asked.map((i, k) => { const x = items[i]; return `<details class="mq"${k === 0 ? ' open' : ''}><summary><b>Q${i + 1}.</b> ${esc(x[1])}</summary><div class="mq-in"><h4>Model answer</h4>${fa(x[2])}${x[6] && x[6].f ? `<h4>Likely follow-up: ${esc(x[6].f[0])}</h4>${fa(x[6].f[1] || '')}` : ''}</div></details>`; }).join('')}</div>`);
+    tail();
+  }
+  function tail() {
+    box.insertAdjacentHTML('beforeend', `<div class="actions" style="margin:12px 0"><button class="btn pri" id="again">${I.mic} New interview</button><button class="btn ghost" id="setup">Back to setup</button></div>`);
+    $('#again', ctx.el).addEventListener('click', () => liveInterview(ctx, p, bank, cfg, back));
+    $('#setup', ctx.el).addEventListener('click', back);
+    scrollEnd();
+  }
+}
+
 function localInterview(ctx, p, bank, cfg, back) {
   const wrap = () => $('.wrap', ctx.el);
   const pool = bank.filter(x => x[5] !== 'common');
@@ -1522,8 +1640,14 @@ function vAI(ctx, id) {
         <div class="panel"><h3>Interview setup</h3>
           <div class="field"><label>Interviewer</label>${seg('persona', Object.entries(PERSONAS).map(([k, v]) => [k, v[0]]))}</div>
           <div class="field"><label>Length</label>${seg('len', [[4, 'Short'], [6, 'Standard'], [10, 'Full loop']])}</div>
-          ${!EAI ? `</div><div class="panel"><h3>Live voice AI interviewer</h3><p>Talk to an AI interviewer that listens, follows up and debriefs you — it runs on the phone itself, nothing to set up. Available in the Interview Edge Android app (iPhone app coming).</p><p class="muted">On this device: use <b>Interview me in Claude</b> below, or the <b>Mock interview</b> for spoken practice.</p></div><div class="panel"><h3>Interview in Claude</h3>` : ''}
-          ${EAI ? `<div class="field"><label>Interviewer voice</label>${voiceSeg()}</div></div><div id="laiP"><div class="panel"><h3>On-device AI interviewer</h3><p class="muted">Checking your phone…</p></div></div><div class="panel"><h3>Or interview in Claude</h3>` : ''}
+          ${EAI || gemOn() ? `<div class="field"><label>Interviewer voice</label>${voiceSeg()}</div>` : ''}
+        </div>
+        ${gemOn() ? `<div class="panel lai-go"><h3>Live AI interviewer</h3><p>A real-time interview by voice: it hears you, follows up, and replies in a natural voice in about a second — like a real call. Needs internet.</p>
+          <button class="btn pri wide" id="startG">${I.mic} Start live interview</button>
+          ${PAY_ON && !isPro() ? `<p class="muted" style="margin:8px 2px 0">Free preview: ${GEM.freeMinutes || 3} minutes per interview. Unlimited ${esc(PAY.price)}, one time.</p>` : ''}</div>` : ''}
+        ${EAI ? '<div id="laiP"><div class="panel"><h3>On-device AI interviewer</h3><p class="muted">Checking your phone…</p></div></div>' : ''}
+        ${!EAI && !gemOn() ? `<div class="panel"><h3>Live voice AI interviewer</h3><p>Talk to an AI interviewer that listens, follows up and debriefs you — it runs on the phone itself, nothing to set up. Available in the Interview Edge Android app (iPhone app coming).</p><p class="muted">On this device: use <b>Interview me in Claude</b> below, or the <b>Mock interview</b> for spoken practice.</p></div>` : ''}
+        <div class="panel"><h3>${EAI || gemOn() ? 'Or interview in Claude' : 'Interview in Claude'}</h3>
           <a class="btn pri wide" id="claude" href="#" target="_blank" rel="noopener" style="margin-top:12px;text-decoration:none">${I.bot} Interview me in Claude</a>
           <p class="muted" style="margin:8px 2px 0">Opens Claude with this interview ready to go — uses your Claude plan, no extra cost. If the message box is empty, just paste — the setup is already copied.</p>
         </div>
@@ -1533,7 +1657,10 @@ function vAI(ctx, id) {
           ${S.key ? `<button class="btn wide" id="start">${I.play} Start with my key</button>` : `<button class="btn wide" data-go="settings">${I.gear} Add API key in Settings</button>`}
           ${S.key && conv && !conv.sid ? `<button class="btn ghost wide" id="resume" style="margin-top:10px">Resume previous interview (${conv.msgs.length - 1} messages)</button>` : ''}
         </div>`}`;
-      if (EAI) { wireVoiceSeg(ctx.el); fillLocal(); }
+      if (EAI || gemOn()) wireVoiceSeg(ctx.el);
+      if (EAI) fillLocal();
+      const sg = $('#startG', ctx.el);
+      if (sg) sg.addEventListener('click', () => { if (!navigator.onLine) return toast('You’re offline — the live interviewer needs internet.'); gemReady().catch(() => {}); liveInterview(ctx, p, bank, Object.assign({}, cfg), intro); });
       $$('.seg', ctx.el).forEach(sg => sg.addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (!b) return; const k = sg.dataset.k; cfg[k] = isNaN(+b.dataset.v) ? b.dataset.v : +b.dataset.v; $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); store.set('ip.aicfg', cfg); }));
       const csw = $('#cs', ctx.el); if (csw) csw.addEventListener('change', e => { cfg.speak = e.target.checked; store.set('ip.aicfg', cfg); });
       const cl = $('#claude', ctx.el);
