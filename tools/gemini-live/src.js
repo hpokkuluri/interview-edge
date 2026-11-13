@@ -130,4 +130,38 @@ async function write(opts, prompt, system) {
   return r.response.text();
 }
 
-window.GeminiLive = { start, write };
+// One interviewer turn without the live socket: the candidate's recorded answer (audio) + the conversation so far
+// go to the text model, which understands accents from the audio itself; the reply streams back as text.
+// history: [{ role: 'user'|'model', text }]. Returns { text, heard } — heard = what the model transcribed.
+async function turn(opts, { system, history, audio, mime, note, onText }) {
+  setup(opts);
+  const m = getGenerativeModel(ai, { model: opts.textModel, systemInstruction: system, generationConfig: { temperature: 0.8, maxOutputTokens: 400 } });
+  const contents = (history || []).map(h => ({ role: h.role, parts: [{ text: h.text }] }));
+  const parts = [];
+  if (audio) parts.push({ inlineData: { mimeType: mime || 'audio/webm', data: audio } });
+  parts.push({ text: (note || '') + (audio ? '\n[The audio is the candidate speaking. First write exactly what they said on one line starting with "HEARD: ", then a line "SAY: " followed by your spoken reply as the interviewer.]' : '\n[Reply with a line starting "SAY: " followed by your spoken reply.]') });
+  contents.push({ role: 'user', parts });
+  const r = await m.generateContentStream({ contents });
+  let full = '';
+  for await (const c of r.stream) {
+    let t = ''; try { t = c.text(); } catch (e) {}
+    if (!t) continue; full += t;
+    const say = (full.split(/SAY:\s*/)[1] || '');
+    if (onText && say) onText(say);
+  }
+  const heard = ((full.match(/HEARD:\s*([\s\S]*?)(?:\n|SAY:)/) || [])[1] || '').trim();
+  const text = ((full.split(/SAY:\s*/)[1]) || full.replace(/HEARD:[^\n]*\n?/, '')).trim();
+  return { text, heard };
+}
+
+// Natural speech from Gemini's text-to-speech model. Returns base64 16-bit PCM at 24 kHz (or null if unavailable).
+async function speech(opts, text, voice) {
+  setup(opts);
+  const m = getGenerativeModel(ai, { model: opts.ttsModel, generationConfig: { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } });
+  const r = await m.generateContent(text);
+  const p = (((r.response.candidates || [])[0] || {}).content || {}).parts || [];
+  const a = p.find(x => x.inlineData && /audio/.test(x.inlineData.mimeType || ''));
+  return a ? { data: a.inlineData.data, mime: a.inlineData.mimeType } : null;
+}
+
+window.GeminiLive = { start, write, turn, speech };
