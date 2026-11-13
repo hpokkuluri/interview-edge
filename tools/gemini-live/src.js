@@ -61,7 +61,7 @@ async function start(opts) {
   });
   let session;
   try { session = await model.connect(); }
-  catch (e) { stream.getTracks().forEach(t => t.stop()); ctx.close(); throw e; }
+  catch (e) { console.warn('live connect failed', opts.model, e && e.message, e && e.customErrorData ? JSON.stringify(e.customErrorData) : ''); stream.getTracks().forEach(t => t.stop()); ctx.close(); throw e; }
 
   const url = URL.createObjectURL(new Blob([WORKLET], { type: 'application/javascript' }));
   await ctx.audioWorklet.addModule(url);
