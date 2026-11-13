@@ -26,7 +26,7 @@ async def main():
         print('state:', await pg.evaluate("(document.querySelector('.screen:last-child #lstate')||{}).textContent"))
         print('chat:', (await pg.evaluate("document.querySelector('.screen:last-child .chat').innerText"))[:500])
         await pg.screenshot(path='live-real.png')
-        await pg.evaluate("document.querySelector('.screen:last-child #end') && document.querySelector('.screen:last-child #end').click()"); await asyncio.sleep(30)
+        await pg.evaluate("document.querySelector('.screen:last-child #end') && document.querySelector('.screen:last-child #end').click()"); await asyncio.sleep(60)
         print('report:', (await pg.evaluate("(([...document.querySelectorAll('.screen:last-child .msg.ai')].pop())||{innerText:''}).innerText"))[:700])
         print('model answers shown:', await pg.evaluate("document.querySelectorAll('.screen:last-child .mq').length"))
         await pg.screenshot(path='live-report.png', full_page=True)

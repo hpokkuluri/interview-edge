@@ -1397,7 +1397,10 @@ async function report(ctx, p, items, lines, box, again, back) {
   const plan = items.map((x, i) => `Q${i + 1}. ${x[1]}\nA strong answer covers: ${ansText(x[2])}`).join('\n\n');
   let asked = items.map((x, i) => i);
   try {
-    let txt = await window.GeminiLive.write(gemOpts(),
+    // Report: the stronger model, falling back to the fast one if it's busy or slow.
+    const writeFast = (pr, sys) => Promise.race([window.GeminiLive.write(gemOpts(), pr, sys), new Promise((_, rej) => setTimeout(() => rej(new Error('slow')), 25000))])
+      .catch(() => window.GeminiLive.write(gemOpts(GEM.turnModel), pr, sys));
+    let txt = await writeFast(
       `Role: ${p.full} (${p.level}). Interview plan:\n\n${plan}\n\nTranscript (speech-to-text, may contain recognition errors — judge the content, not the wording or accent):\n${transcript}\n\n` +
       `Write the candidate's feedback. First line exactly: "Asked: " followed by the plan numbers actually covered, e.g. "Asked: 1, 2, 3". Then use these headings:\n## Overall\nScore: N/10 and one sentence why.\n## Strengths\n## Gaps\n## Question by question\nOne line each for the questions covered: what landed, what was missing.\n## Practice next\nThree specific things.`,
       'You are an expert interview coach. Be candid, specific and encouraging. Short sentences.');
