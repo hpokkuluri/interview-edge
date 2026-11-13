@@ -10,24 +10,17 @@ jobs:
   live:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        model: ['', 'gemini-2.5-flash-native-audio-preview-12-2025']
     steps:
       - uses: actions/checkout@v4
       - name: Spoken answer for the fake microphone
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng ffmpeg >/dev/null
           espeak-ng -v en-us -s 140 -w /tmp/a.wav "Hello. Thank you for having me. I am an Oracle financials consultant with fifteen years of experience. I led the general ledger and payables implementation for a pharma company, and I cut the month end close from eight days to five days by automating reconciliations."
-          ffmpeg -loglevel error -y -i /tmp/a.wav -af "apad=pad_dur=25" -ar 48000 -ac 1 /tmp/voice.wav
+          ffmpeg -loglevel error -y -i /tmp/a.wav -af "apad=pad_dur=40" -ar 48000 -ac 1 /tmp/voice.wav
       - run: pip install playwright && python -m playwright install --with-deps chromium >/dev/null
-      - name: Probe models (text, audio understanding, speech)
-        if: matrix.model == ''
-        run: python tools/gemini-live/probe.py
       - name: Run a live interview
-        env: { VOICE_WAV: /tmp/voice.wav, LIVE_MODEL: '${{ matrix.model }}' }
-        run: python tools/gemini-live/live-test.py || true
+        env: { VOICE_WAV: /tmp/voice.wav }
+        run: python tools/gemini-live/live-test.py
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: 'live-screens-${{ strategy.job-index }}', path: '*.png' }
+        with: { name: live-screens, path: '*.png' }

@@ -49,7 +49,10 @@ window.GEMINI = {
   },
   appCheck: { debugToken: '80e95536-e2c3-4996-9440-04cee805e782' },
   model: 'gemini-3.1-flash-live-preview',
-  textModel: 'gemini-3.8-flash',
+  live: false,                       // true = Live API real-time socket (blocked on Google's side for now: 'genai config not found')
+  turnModel: 'gemini-3.5-flash-lite', // hears the candidate's audio and replies (~2 s)
+  textModel: 'gemini-3.5-flash',      // writes the feedback report
+  ttsModel: 'gemini-3.8-flash-tts',   // interviewer's natural voice (~2 s)
   voices: { female: 'Aoede', male: 'Charon' },
   freeMinutes: 3,
   maxMinutes: 14

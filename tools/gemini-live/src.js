@@ -164,4 +164,70 @@ async function speech(opts, text, voice) {
   return a ? { data: a.inlineData.data, mime: a.inlineData.mimeType } : null;
 }
 
-window.GeminiLive = { start, write, turn, speech };
+// Microphone + speaker for the turn-by-turn interviewer. Records 16 kHz mono WAV, detects the end of an answer
+// (speech followed by a pause), and plays the interviewer's voice. Half-duplex: never records while speaking.
+async function audio(opts) {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  if (ctx.state === 'suspended') await ctx.resume();
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } }); }
+  catch (e) { ctx.close(); const err = new Error('mic'); err.code = 'mic'; throw err; }
+  const url = URL.createObjectURL(new Blob([WORKLET], { type: 'application/javascript' }));
+  await ctx.audioWorklet.addModule(url);
+  const src = ctx.createMediaStreamSource(stream);
+  const node = new AudioWorkletNode(ctx, 'ie-mic', { processorOptions: { t: IN_RATE } });
+  src.connect(node);
+  node.port.postMessage({ muted: true });
+  let rec = null, cur = null;
+
+  const wav = chunks => {
+    const n = chunks.reduce((a, c) => a + c.length, 0), buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    const w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+    w(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); w(8, 'WAVE'); w(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, IN_RATE, true); v.setUint32(28, IN_RATE * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n * 2, true);
+    let o = 44; for (const c of chunks) for (let i = 0; i < c.length; i++, o += 2) v.setInt16(o, c[i], true);
+    return b64(new Uint8Array(buf));
+  };
+
+  return {
+    /** Starts recording. Resolves with { audio: base64 WAV, secs } when stop() is called or, with auto, after a pause. */
+    listen({ auto = true, pauseMs = 2200, onLevel, onSpeech } = {}) {
+      if (rec) rec.finish();
+      return new Promise(resolve => {
+        const chunks = []; let spoke = 0, lastVoice = 0, noise = 300, t0 = Date.now(), done = false;
+        const finish = () => {
+          if (done) return; done = true; node.port.postMessage({ muted: true }); node.port.onmessage = null; rec = null;
+          const total = chunks.reduce((a, c) => a + c.length, 0);
+          resolve({ audio: spoke > 3 ? wav(chunks) : null, secs: total / IN_RATE });
+        };
+        rec = { finish };
+        node.port.onmessage = e => {
+          const c = e.data; chunks.push(c);
+          let sum = 0; for (let i = 0; i < c.length; i += 4) sum += c[i] * c[i];
+          const rms = Math.sqrt(sum / (c.length / 4)), now = Date.now();
+          if (now - t0 < 600) noise = Math.max(noise, rms * 1.2);          // learn the room's background level
+          const voice = rms > Math.max(900, noise * 2.2);
+          if (voice) { spoke++; lastVoice = now; if (spoke === 4 && onSpeech) onSpeech(); }
+          onLevel && onLevel(Math.min(1, rms / 6000));
+          if (auto && spoke > 6 && now - lastVoice > pauseMs) finish();
+          if (now - t0 > 180000) finish();                                  // 3-minute cap per answer
+        };
+        node.port.postMessage({ muted: false });
+      });
+    },
+    stopListening() { if (rec) rec.finish(); },
+    /** Plays base64 audio (WAV, or raw 16-bit PCM at 24 kHz). Resolves when finished. */
+    async play(a) {
+      if (cur) { try { cur.stop(0); } catch (e) {} }
+      const bytes = Uint8Array.from(atob(a.data), c => c.charCodeAt(0));
+      let ab;
+      if (/wav/i.test(a.mime) || (bytes[0] === 82 && bytes[1] === 73)) ab = await ctx.decodeAudioData(bytes.buffer.slice(0));
+      else { const rate = +((a.mime.match(/rate=(\d+)/) || [])[1] || OUT_RATE), pcm = new Int16Array(bytes.buffer, 0, bytes.length >> 1); ab = ctx.createBuffer(1, pcm.length, rate); const ch = ab.getChannelData(0); for (let i = 0; i < pcm.length; i++) ch[i] = pcm[i] / 32768; }
+      return new Promise(res => { const s = ctx.createBufferSource(); s.buffer = ab; s.connect(ctx.destination); s.onended = () => { if (cur === s) cur = null; res(); }; cur = s; s.start(); });
+    },
+    stopPlaying() { if (cur) { try { cur.stop(0); } catch (e) {} cur = null; } },
+    async close() { if (rec) rec.finish(); this.stopPlaying(); try { node.disconnect(); src.disconnect(); } catch (e) {} stream.getTracks().forEach(t => t.stop()); try { await ctx.close(); } catch (e) {} }
+  };
+}
+
+window.GeminiLive = { start, write, turn, speech, audio };
