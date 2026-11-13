@@ -82,7 +82,7 @@ padding to hit a number. Do roles one at a time, validating each with `node tool
 
 ## Repo
 
-`hpokkuluri/interview-edge` (GitHub Pages at https://hpokkuluri.github.io/interview-edge/).
+`hpokkuluri/interview-edge` (GitHub Pages at https://interview.arahasoft.com/ — custom domain via the CNAME file; the old github.io address redirects).
 Attach with push access and clone, work on `main`. Pushing triggers the Android APK rebuild.
 
 ## Top-up to 50
