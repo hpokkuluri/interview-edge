@@ -1,0 +1,26 @@
+# End-to-end test of the live Gemini interviewer against the real Firebase project:
+# headless Chrome, a fake microphone playing a spoken answer, check the interviewer talks back and writes a report.
+name: Live AI test
+on:
+  workflow_dispatch:
+  push:
+    branches: [edge-ai]
+    paths: ['config.js', 'vendor/gemini-live.js', 'tools/gemini-live/**', '.github/workflows/live-ai-test.yml']
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Spoken answer for the fake microphone
+        run: |
+          sudo apt-get install -y -qq espeak-ng >/dev/null
+          espeak-ng -v en-us -s 140 -w /tmp/a.wav "Hello. Thank you for having me. I am an Oracle financials consultant with fifteen years of experience. I led the general ledger and payables implementation for a pharma company, and I cut the month end close from eight days to five days by automating reconciliations."
+          ffmpeg -loglevel error -y -i /tmp/a.wav -af "apad=pad_dur=25" -ar 48000 -ac 1 /tmp/voice.wav
+      - run: pip install playwright==1.48.0 && python -m playwright install --with-deps chromium >/dev/null
+      - name: Run a live interview
+        env: { VOICE_WAV: /tmp/voice.wav }
+        run: python tools/gemini-live/live-test.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: live-screens, path: '*.png' }
