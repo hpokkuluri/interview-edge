@@ -49,7 +49,7 @@ window.GEMINI = {
   },
   appCheck: { debugToken: '80e95536-e2c3-4996-9440-04cee805e782' },
   model: 'gemini-3.1-flash-live-preview',
-  textModel: 'gemini-2.5-flash',
+  textModel: 'gemini-3.8-flash',
   voices: { female: 'Aoede', male: 'Charon' },
   freeMinutes: 3,
   maxMinutes: 14

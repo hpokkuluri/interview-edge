@@ -1269,7 +1269,7 @@ function gemReady() {
   if (window.GeminiLive) return Promise.resolve();
   return gemLoad = gemLoad || new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'vendor/gemini-live.js?v=' + (window.ASSET_V || '1'); s.onload = res; s.onerror = () => { gemLoad = null; rej(new Error('load')); }; document.head.appendChild(s); });
 }
-const gemOpts = () => ({ firebase: GEM.firebase, appCheck: GEM.appCheck, textModel: GEM.textModel || 'gemini-2.5-flash' });
+const gemOpts = () => ({ firebase: GEM.firebase, appCheck: GEM.appCheck, textModel: GEM.textModel || 'gemini-3.8-flash' });
 const pickPlan = (bank, n) => {
   const pool = bank.filter(x => x[5] !== 'common');
   const pick = shuffle(pool.filter(isTop)).concat(shuffle(pool.filter(x => !isTop(x))));
