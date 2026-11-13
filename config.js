@@ -39,7 +39,14 @@ window.LOCAL_AI = {
 //   Before a public launch switch to { siteKey: '<reCAPTCHA Enterprise key>' } (see claude/friday-plan.md).
 // freeMinutes: interview minutes before the $0.99 unlock is needed (PAYWALL.testPass still lets testers continue).
 window.GEMINI = {
-  firebase: null,
+  firebase: {
+    apiKey: 'AIzaSyBSIC4cFkCM-VO8dSOjSt0Bg7fjsijHe8k',
+    authDomain: 'interview-edge-fe2b9.firebaseapp.com',
+    projectId: 'interview-edge-fe2b9',
+    storageBucket: 'interview-edge-fe2b9.firebasestorage.app',
+    messagingSenderId: '828075476596',
+    appId: '1:828075476596:web:0e3c5b7520a8b5e770b321'
+  },
   appCheck: { debugToken: '80e95536-e2c3-4996-9440-04cee805e782' },
   model: 'gemini-3.1-flash-live-preview',
   textModel: 'gemini-2.5-flash',
