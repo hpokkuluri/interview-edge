@@ -17,7 +17,7 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng ffmpeg >/dev/null
           espeak-ng -v en-us -s 140 -w /tmp/a.wav "Hello. Thank you for having me. I am an Oracle financials consultant with fifteen years of experience. I led the general ledger and payables implementation for a pharma company, and I cut the month end close from eight days to five days by automating reconciliations."
           ffmpeg -loglevel error -y -i /tmp/a.wav -af "apad=pad_dur=25" -ar 48000 -ac 1 /tmp/voice.wav
-      - run: pip install playwright==1.48.0 && python -m playwright install --with-deps chromium >/dev/null
+      - run: pip install playwright && python -m playwright install --with-deps chromium >/dev/null
       - name: Run a live interview
         env: { VOICE_WAV: /tmp/voice.wav }
         run: python tools/gemini-live/live-test.py
