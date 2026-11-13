@@ -10,6 +10,10 @@ jobs:
   live:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        model: ['', 'gemini-2.5-flash-native-audio-preview-12-2025']
     steps:
       - uses: actions/checkout@v4
       - name: Spoken answer for the fake microphone
@@ -19,8 +23,8 @@ jobs:
           ffmpeg -loglevel error -y -i /tmp/a.wav -af "apad=pad_dur=25" -ar 48000 -ac 1 /tmp/voice.wav
       - run: pip install playwright && python -m playwright install --with-deps chromium >/dev/null
       - name: Run a live interview
-        env: { VOICE_WAV: /tmp/voice.wav }
+        env: { VOICE_WAV: /tmp/voice.wav, LIVE_MODEL: '${{ matrix.model }}' }
         run: python tools/gemini-live/live-test.py
       - uses: actions/upload-artifact@v4
         if: always()
-        with: { name: live-screens, path: '*.png' }
+        with: { name: 'live-screens-${{ strategy.job-index }}', path: '*.png' }
