@@ -20,6 +20,9 @@ async def main():
             print(i, r)
         r = await pg.evaluate("""async () => { const a = await gemVoice('Hello there.', 'male'); if (!a) return 'no audio'; const t0 = performance.now(); await playGemAudio(a); return 'played ' + Math.round(performance.now()-t0) + 'ms' }""")
         print('playGemAudio ->', r)
+        r = await pg.evaluate("""async () => { const P = Object.values(window.ROLES || {})[0]; const sys = liveSystem({full:'Oracle Financials Consultant', level:'Senior'}, {persona: Object.keys(PERSONAS)[0]}, [['q','Tell me about a time you shortened the month-end close.']], 'Maria');
+          const r = await GeminiLive.turn(gemOpts(GEM.turnModel), { system: sys, history: [{role:'user', text:'[The candidate has joined the call. Begin the interview now.]'}, {role:'model', text:'Hi, I am Maria. Tell me about a time you shortened the month-end close.'}], note: 'Sorry, can you repeat that?' }); return r.text }""")
+        print('REPEAT reply ->', repr(r))
         await b.close()
     srv.terminate()
 asyncio.run(main())

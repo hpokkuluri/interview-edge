@@ -52,7 +52,8 @@ window.GEMINI = {
   live: false,                       // true = Live API real-time socket (blocked on Google's side for now: 'genai config not found')
   turnModel: 'gemini-3.5-flash-lite', // hears the candidate's audio and replies (~2 s)
   textModel: 'gemini-3.5-flash',      // writes the feedback report
-  ttsModel: 'gemini-3.8-flash-tts',   // interviewer's natural voice (~2 s)
+  ttsModel: 'gemini-2.5-flash-preview-tts',   // interviewer's natural voice — the one with the bigger free allowance
+  ttsModel2: 'gemini-3.8-flash-tts',          // second voice model (its own free allowance)
   voices: { female: 'Aoede', male: 'Charon' },
   freeMinutes: 3,
   maxMinutes: 30     // longest single interview (Gemini free-tier friendly)

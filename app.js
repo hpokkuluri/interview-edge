@@ -1291,7 +1291,7 @@ How the interview goes:
 2. Then cover these questions in this order, one at a time, in your own natural words:
 ${items.map((x, i) => `   Q${i + 1}. ${x[1]}`).join('\n')}
 3. After each answer, react briefly like a person would (a few words, no praise or judgement), and when the answer is vague, generic or short, ask ONE probing follow-up about specifics, numbers, their own role or trade-offs. Then move on.
-4. If they ask you to repeat or clarify, do it simply. If they go silent, gently prompt them. If they ask about the role or company, give a short, plausible answer.
+4. If they ONLY ask you to repeat what you just said ("can you repeat that?", "sorry, come again?"), reply with exactly REPEAT and nothing else. If they ask you to clarify or rephrase, do it simply. If they go silent, gently prompt them. If they ask about the role or company, give a short, plausible answer.
 5. Never answer the questions for them, never coach, and never give feedback or scores during the interview.
 6. After the last question, ask if they have any questions for you, answer briefly, then thank them and close.
 The candidate may have a non-native or regional accent: be patient and never comment on it. If a message in square brackets arrives, it is a private instruction from the app — follow it, don't read it out.`;
@@ -1301,15 +1301,18 @@ The candidate may have a non-native or regional accent: be patient and never com
    goes to Gemini, the reply is spoken in a natural Gemini voice, and the mic opens again. Works on Android, iPhone, web. */
 /* Gemini natural voice. Tries the main speech model, then a second one (separate quota), with a short retry when
    Gemini is busy or rate-limited — so a quick "can you repeat that?" doesn't fall back to the phone's robotic voice. */
-const TTS_MODELS = () => [GEM.ttsModel || 'gemini-3.8-flash-tts', 'gemini-2.5-flash-preview-tts'];
+const TTS_MODELS = () => [GEM.ttsModel || 'gemini-2.5-flash-preview-tts', GEM.ttsModel2 || 'gemini-3.8-flash-tts'];
+const ttsCache = new Map();   // same line + voice → reuse the clip (voice test, preview, repeats)
 async function gemVoice(text, gender) {
   if (!gemOn() || !navigator.onLine) return null;
   await gemReady();
   const voice = (GEM.voices || {})[gender === 'male' ? 'male' : 'female'] || 'Aoede';
+  const key = voice + '|' + text; if (ttsCache.has(key)) return ttsCache.get(key);
+  const keep = a => { if (ttsCache.size > 30) ttsCache.delete(ttsCache.keys().next().value); ttsCache.set(key, a); return a; };
   for (let attempt = 0; attempt < 2; attempt++) {
     for (const m of TTS_MODELS()) {
       if ((ttsCool[m] || 0) > Date.now()) continue;   // quota used up: don't make the candidate wait for a sure failure
-      try { const a = await window.GeminiLive.speech(Object.assign(gemOpts(), { ttsModel: m }), text, voice); if (a) return a; }
+      try { const a = await window.GeminiLive.speech(Object.assign(gemOpts(), { ttsModel: m }), text, voice); if (a) return keep(a); }
       catch (e) { console.warn('gemini voice', m, e && e.message); if (/429|quota/i.test(String(e && e.message))) ttsCool[m] = Date.now() + 60000; }
     }
     if (TTS_MODELS().every(m => (ttsCool[m] || 0) > Date.now())) break;
@@ -1361,6 +1364,7 @@ function talkInterview(ctx, p, bank, cfg, back) {
   ctx.cleanup.push(() => { ended = true; clearInterval(timer); if (io) io.close(); });
 
   // Speak a reply: Gemini's natural voice; if that fails, the phone/browser voice.
+  let lastSaid = '';
   async function say(text) {
     if (!text || ended) return;
     setState('speaking');
@@ -1386,8 +1390,12 @@ function talkInterview(ctx, p, bank, cfg, back) {
       if (!r || !r.text) throw lastErr || new Error('no reply');
       if (audio && r.heard) { const me = bubble('me', r.heard); box.insertBefore(me, b); lines.push({ who: 'me', text: r.heard }); hist.push({ role: 'user', text: r.heard }); }
       else if (note) hist.push({ role: 'user', text: note });
+      if (/^\W*repeat\W*$/i.test(r.text) && lastSaid) {   // "can you repeat that?" → replay the same clip, no new voice request
+        b.className = 'msg ai'; b.textContent = lastSaid; hist.push({ role: 'model', text: lastSaid }); lines.push({ who: 'ai', text: lastSaid });
+        await say(lastSaid); return true;
+      }
       b.className = 'msg ai'; b.textContent = r.text; hist.push({ role: 'model', text: r.text }); lines.push({ who: 'ai', text: r.text });
-      await say(r.text);
+      lastSaid = r.text; await say(r.text);
       return true;
     } catch (e) {
       console.warn('turn', e); b.className = 'msg err';
