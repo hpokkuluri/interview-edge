@@ -55,5 +55,5 @@ window.GEMINI = {
   ttsModel: 'gemini-3.8-flash-tts',   // interviewer's natural voice (~2 s)
   voices: { female: 'Aoede', male: 'Charon' },
   freeMinutes: 3,
-  maxMinutes: 14
+  maxMinutes: 30     // longest single interview (Gemini free-tier friendly)
 };

@@ -210,7 +210,7 @@ async function audio(opts) {
           if (voice) { spoke++; lastVoice = now; if (spoke === 4 && onSpeech) onSpeech(); }
           onLevel && onLevel(Math.min(1, rms / 6000));
           if (auto && spoke > 6 && now - lastVoice > pauseMs) finish();
-          if (now - t0 > 180000) finish();                                  // 3-minute cap per answer
+          if (now - t0 > 300000) finish();                                  // 5-minute cap per answer
         };
         node.port.postMessage({ muted: false });
       });

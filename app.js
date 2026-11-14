@@ -1299,6 +1299,44 @@ The candidate may have a non-native or regional accent: be patient and never com
 
 /* Turn-by-turn voice interview with Gemini: the candidate's recorded answer (real audio, so accents are understood)
    goes to Gemini, the reply is spoken in a natural Gemini voice, and the mic opens again. Works on Android, iPhone, web. */
+/* Gemini natural voice. Tries the main speech model, then a second one (separate quota), with a short retry when
+   Gemini is busy or rate-limited — so a quick "can you repeat that?" doesn't fall back to the phone's robotic voice. */
+const TTS_MODELS = () => [GEM.ttsModel || 'gemini-3.8-flash-tts', 'gemini-2.5-flash-preview-tts'];
+async function gemVoice(text, gender) {
+  if (!gemOn() || !navigator.onLine) return null;
+  await gemReady();
+  const voice = (GEM.voices || {})[gender === 'male' ? 'male' : 'female'] || 'Aoede';
+  for (let attempt = 0; attempt < 2; attempt++) {
+    for (const m of TTS_MODELS()) {
+      try { const a = await window.GeminiLive.speech(Object.assign(gemOpts(), { ttsModel: m }), text, voice); if (a) return a; }
+      catch (e) { console.warn('gemini voice', m, e && e.message); }
+    }
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  return null;
+}
+// Plays Gemini audio outside an interview (voice test / preview): WAV as-is, raw 16-bit PCM wrapped in a WAV header.
+let gemPlayer = null;
+function playGemAudio(a) {
+  let bytes = Uint8Array.from(atob(a.data), c => c.charCodeAt(0));
+  if (!(bytes[0] === 82 && bytes[1] === 73)) {
+    const rate = +((a.mime.match(/rate=(\d+)/) || [])[1] || 24000), n = bytes.length, h = new DataView(new ArrayBuffer(44));
+    const w = (o, t) => { for (let i = 0; i < t.length; i++) h.setUint8(o + i, t.charCodeAt(i)); };
+    w(0, 'RIFF'); h.setUint32(4, 36 + n, true); w(8, 'WAVE'); w(12, 'fmt '); h.setUint32(16, 16, true); h.setUint16(20, 1, true); h.setUint16(22, 1, true);
+    h.setUint32(24, rate, true); h.setUint32(28, rate * 2, true); h.setUint16(32, 2, true); h.setUint16(34, 16, true); w(36, 'data'); h.setUint32(40, n, true);
+    const out = new Uint8Array(44 + n); out.set(new Uint8Array(h.buffer), 0); out.set(bytes, 44); bytes = out;
+  }
+  if (gemPlayer) { try { gemPlayer.pause(); } catch (e) {} }
+  gemPlayer = new Audio(URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' })));
+  return new Promise(res => { gemPlayer.onended = gemPlayer.onerror = res; gemPlayer.play().catch(res); });
+}
+// Voice sample for Settings / setup: Gemini's voice when online, otherwise the phone's.
+async function sampleVoice(text) {
+  const a = await gemVoice(text, S.voice).catch(() => null);
+  if (a) return playGemAudio(a);
+  return speak(text);
+}
+
 function talkInterview(ctx, p, bank, cfg, back) {
   const wrap = $('.wrap', ctx.el);
   const items = pickPlan(bank, cfg.len);
@@ -1308,7 +1346,7 @@ function talkInterview(ctx, p, bank, cfg, back) {
   const system = liveSystem(p, cfg, items, name) + '\nThis conversation is turn by turn: each of your replies is spoken aloud, then the candidate answers.';
   const hist = [], lines = [];
   let io = null, t0 = 0, timer = null, ended = false, busy = false, closing = false;
-  const limitMin = PAY_ON && !isPro() && !PAY.testPass ? (GEM.freeMinutes || 3) : (GEM.maxMinutes || 14);
+  const limitMin = PAY_ON && !isPro() && !PAY.testPass ? (GEM.freeMinutes || 3) : (GEM.maxMinutes || 30);
 
   wrap.innerHTML = `<div class="live-top"><div class="orb connecting" id="orb"><i></i></div><div><b>${esc(name)}</b><span>${esc(PERSONAS[cfg.persona][0])} · ${esc(p.title)}</span><span id="lstate">Connecting…</span></div><span class="live-t" id="lt">0:00</span></div>
     <div class="chat" id="chat"></div>
@@ -1323,15 +1361,26 @@ function talkInterview(ctx, p, bank, cfg, back) {
   async function say(text) {
     if (!text || ended) return;
     setState('speaking');
-    try { const a = await window.GeminiLive.speech(gemOpts(), text, voice); if (a && !ended) { await io.play(a); return; } } catch (e) { console.warn('tts', e); }
-    if (!ended) await speak(text);
+    const a = await gemVoice(text, gender);
+    if (a && !ended) { await io.play(a); return; }
+    if (!ended) await speak(text);   // last resort: the phone's own voice
   }
   async function interviewer(audio, note) {
     busy = true; doneB.disabled = true; setState('thinking');
     const b = bubble('ai typing', ''); b.innerHTML = '<i></i><i></i><i></i>';
     try {
-      const r = await window.GeminiLive.turn(gemOpts(GEM.turnModel), { system, history: hist, audio, mime: 'audio/wav', note,
-        onText: t => { if (b.classList.contains('typing')) b.className = 'msg ai'; b.textContent = t; scrollEnd(); } });
+      // Busy / rate-limited Gemini: retry the same answer on the turn model, then on the other model, so nothing is lost.
+      const models = [GEM.turnModel, GEM.textModel, GEM.turnModel].filter(Boolean);
+      let r, lastErr;
+      for (let k = 0; k < models.length && !ended; k++) {
+        try {
+          r = await window.GeminiLive.turn(gemOpts(models[k]), { system, history: hist, audio, mime: 'audio/wav', note,
+            onText: t => { if (b.classList.contains('typing')) b.className = 'msg ai'; b.textContent = t; scrollEnd(); } });
+          if (r && r.text) break;
+        } catch (e) { lastErr = e; console.warn('turn retry', models[k], e && e.message); }
+        if (k < models.length - 1) { b.className = 'msg ai typing'; b.innerHTML = '<i></i><i></i><i></i>'; await new Promise(res => setTimeout(res, 1500 * (k + 1))); }
+      }
+      if (!r || !r.text) throw lastErr || new Error('no reply');
       if (audio && r.heard) { const me = bubble('me', r.heard); box.insertBefore(me, b); lines.push({ who: 'me', text: r.heard }); hist.push({ role: 'user', text: r.heard }); }
       else if (note) hist.push({ role: 'user', text: note });
       b.className = 'msg ai'; b.textContent = r.text; hist.push({ role: 'model', text: r.text }); lines.push({ who: 'ai', text: r.text });
@@ -1339,7 +1388,7 @@ function talkInterview(ctx, p, bank, cfg, back) {
       return true;
     } catch (e) {
       console.warn('turn', e); b.className = 'msg err';
-      b.textContent = !navigator.onLine ? 'You’re offline — the interviewer needs internet.' : 'The interviewer didn’t respond (Gemini may be busy). Tap Done to try again.';
+      b.textContent = !navigator.onLine ? 'You’re offline — the interviewer needs internet.' : 'The interviewer didn’t respond (Gemini is busy). Keep going — answer again or tap End for feedback.';
       return false;
     } finally { busy = false; }
   }
@@ -1429,7 +1478,7 @@ function liveInterview(ctx, p, bank, cfg, back) {
   const name = NAMES[gender][Math.floor(Math.random() * 4)];
   const lines = [];               // final transcript: { who: 'ai'|'me', text }
   let ctl = null, t0 = 0, timer = null, ended = false, muted = false, live = { ai: null, me: null };
-  const limitMin = PAY_ON && !isPro() && !PAY.testPass ? (GEM.freeMinutes || 3) : (GEM.maxMinutes || 14);
+  const limitMin = PAY_ON && !isPro() && !PAY.testPass ? (GEM.freeMinutes || 3) : (GEM.maxMinutes || 30);
 
   wrap.innerHTML = `<div class="live-top"><div class="orb" id="orb"><i></i></div><div><b>${esc(name)}</b><span>${esc(PERSONAS[cfg.persona][0])} · ${esc(p.title)}</span><span id="lstate">Connecting…</span></div><span class="live-t" id="lt">0:00</span></div>
     <div class="chat" id="chat"></div>
@@ -1656,7 +1705,7 @@ function localPanel(d) {
 function voiceSeg() { return `<div class="seg" id="vsel">${[['female', 'Female'], ['male', 'Male']].map(([v, l]) => `<button data-voice="${v}" class="${(S.voice || 'female') === v ? 'on' : ''}">${l}</button>`).join('')}</div>`; }
 function wireVoiceSeg(el) {
   const sg = $('#vsel', el); if (!sg) return;
-  sg.addEventListener('click', e => { const b = e.target.closest('[data-voice]'); if (!b) return; S.voice = b.dataset.voice; saveS(); pickVoice(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); speak(S.voice === 'male' ? 'Hi, I’ll be your interviewer today.' : 'Hi, I’ll be your interviewer today.'); });
+  sg.addEventListener('click', e => { const b = e.target.closest('[data-voice]'); if (!b) return; S.voice = b.dataset.voice; saveS(); pickVoice(); $$('button', sg).forEach(x => x.classList.toggle('on', x === b)); sampleVoice(S.voice === 'male' ? 'Hi, I’ll be your interviewer today.' : 'Hi, I’ll be your interviewer today.'); });
 }
 
 // Own Anthropic API key inside the app: retired (the Android app runs the AI on the phone; elsewhere use the Claude link).
@@ -1776,7 +1825,7 @@ function vAI(ctx, id) {
         </div>
         ${gemOn() ? `<div class="panel lai-go"><h3>Live AI interviewer</h3><p>A spoken interview with Gemini: it hears your actual voice (accents included), follows up like a real interviewer and answers in a natural voice. Needs internet.</p>
           <button class="btn pri wide" id="startG">${I.mic} Start live interview</button>
-          ${PAY_ON && !isPro() ? `<p class="muted" style="margin:8px 2px 0">Free preview: ${GEM.freeMinutes || 3} minutes per interview. Unlimited ${esc(PAY.price)}, one time.</p>` : ''}</div>` : ''}
+          ${PAY_ON && !isPro() && !PAY.testPass ? `<p class="muted" style="margin:8px 2px 0">Free preview: ${GEM.freeMinutes || 3} minutes per interview. Unlimited ${esc(PAY.price)}, one time.</p>` : ''}</div>` : ''}
         ${EAI ? '<div id="laiP"><div class="panel"><h3>On-device AI interviewer</h3><p class="muted">Checking your phone…</p></div></div>' : ''}
         ${!EAI && !gemOn() ? `<div class="panel"><h3>Live voice AI interviewer</h3><p>Talk to an AI interviewer that listens, follows up and debriefs you — it runs on the phone itself, nothing to set up. Available in the Interview Edge Android app (iPhone app coming).</p><p class="muted">On this device: use <b>Interview me in Claude</b> below, or the <b>Mock interview</b> for spoken practice.</p></div>` : ''}
         <div class="panel"><h3>${EAI || gemOn() ? 'Or interview in Claude' : 'Interview in Claude'}</h3>
@@ -1957,7 +2006,7 @@ function vSettings(ctx) {
     ['ip.mockcfg', 'ip.aicfg'].forEach(k => { const c = store.get(k, null); if (c) { c.speak = S.speak; store.set(k, c); } });
     if (S.speak) speak('Read aloud is on.');
   });
-  $('#ttstest', ctx.el).addEventListener('click', () => { if (!TTS) { toast('This browser can’t read aloud.'); return; } speak('Tell me about a time you shortened the month-end close.'); toast('Playing — check your volume and silent switch'); });
+  $('#ttstest', ctx.el).addEventListener('click', () => { if (!TTS) { toast('This browser can’t read aloud.'); return; } sampleVoice('Tell me about a time you shortened the month-end close.'); toast('Playing — check your volume and silent switch'); });
   wireVoiceSeg(ctx.el);
   $('#acc', ctx.el).addEventListener('change', e => { S.accent = e.target.value; saveS(); toast('Accent saved — the mic will listen for English (' + ACCENTS.find(a => a[0] === S.accent)[1] + ')'); });
   $('#rsel', ctx.el).addEventListener('click', e => { const b = e.target.closest('[data-rate]'); if (!b) return; S.rate = +b.dataset.rate; saveS(); $$('button', $('#rsel', ctx.el)).forEach(x => x.classList.toggle('on', x === b)); speak('This is the speaking speed.'); });

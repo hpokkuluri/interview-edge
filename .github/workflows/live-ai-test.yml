@@ -21,6 +21,9 @@ jobs:
       - name: Run a live interview
         env: { VOICE_WAV: /tmp/voice.wav }
         run: python tools/gemini-live/live-test.py
+      - name: Voice burst (repeat requests, fallback voice model)
+        if: always()
+        run: python tools/gemini-live/tts-burst.py
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: live-screens, path: '*.png' }
