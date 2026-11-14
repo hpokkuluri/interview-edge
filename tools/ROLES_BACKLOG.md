@@ -92,23 +92,18 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] cs-pmo — Program Manager / PMO Lead (at 12, add ~38)
-- [ ] en-chem — Chemical / Process Engineer (at 12, add ~38)
 - [ ] en-env — Environmental Engineer (at 12, add ~38)
 - [ ] en-est — Construction Estimator (at 12, add ~38)
 - [ ] en-ind — Industrial Engineer (at 12, add ~38)
 - [ ] en-safety — Construction Safety / HSE Manager (at 12, add ~38)
 - [ ] en-super — Site Superintendent / Field Supervisor (at 12, add ~38)
 - [ ] hr-er — Employee Relations Manager (at 12, add ~38)
-- [ ] hr-gen — HR Generalist (at 12, add ~38)
 - [ ] hr-hris — HRIS / People Systems Analyst (at 12, add ~38)
 - [ ] hr-ld — Learning & Development Manager (at 12, add ~38)
 - [ ] hr-payroll — Payroll Manager (at 12, add ~38)
 - [ ] hr-rec — Recruiter / Technical Recruiter (at 12, add ~38)
-- [ ] lg-privacy — Privacy / Data Protection Officer (at 12, add ~38)
 - [ ] sm-content — Content & SEO Marketing Manager (at 12, add ~38)
 - [ ] sm-demandgen — Demand Generation Manager (at 12, add ~38)
-- [ ] sm-pmm — Product Marketing Manager (at 12, add ~38)
 - [ ] sm-revops — Sales Operations / RevOps (at 12, add ~38)
 - [ ] sm-sdr — Sales Development Rep (SDR / BDR) (at 12, add ~38)
 - [ ] ls-hoq — Head of Quality / VP Quality (at 13, add ~37)
@@ -142,6 +137,11 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] cs-pmo — Program Manager / PMO Lead — 2026-11-14
+- [x] en-chem — Chemical / Process Engineer — 2026-11-14
+- [x] hr-gen — HR Generalist — 2026-11-14
+- [x] sm-pmm — Product Marketing Manager — 2026-11-14
+- [x] lg-privacy — Privacy / Data Protection Officer — 2026-11-14
 - [x] hw-test — Hardware Test Engineer — 2026-11-10
 - [x] hw-si — Signal Integrity Engineer — 2026-11-10
 - [x] hw-power — Power Electronics Engineer — 2026-11-10
