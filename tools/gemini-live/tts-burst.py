@@ -13,7 +13,7 @@ async def main():
         await pg.evaluate("gemReady()"); await asyncio.sleep(2)
         for m in ['gemini-3.8-flash-tts', 'gemini-2.5-flash-preview-tts']:
             for i in range(6):
-                r = await pg.evaluate("""async m => { const t0 = performance.now(); try { const a = await GeminiLive.speech(Object.assign(gemOpts(), {ttsModel: m}), 'Sure, let me repeat that. Tell me about a time you shortened the month-end close.', 'Aoede'); return a ? 'OK ' + Math.round(performance.now()-t0) + 'ms ' + a.mime : 'NO AUDIO' } catch (e) { return 'ERR ' + (e.message||e).slice(0,240) } }""", m)
+                r = await pg.evaluate("""async m => { const t0 = performance.now(); try { const a = await GeminiLive.speech(Object.assign(gemOpts(), {ttsModel: m}), 'Sure, let me repeat that. Tell me about a time you shortened the month-end close.', 'Aoede'); return a ? 'OK ' + Math.round(performance.now()-t0) + 'ms ' + a.mime : 'NO AUDIO' } catch (e) { return 'ERR ' + (e.message||e).slice(-500) } }""", m)
                 print('TTS', m, i, '->', r)
         for i in range(4):
             r = await pg.evaluate("""async () => { const t0 = performance.now(); const a = await gemVoice('Tell me about a time you shortened the month-end close.', 'female'); return a ? 'gemVoice OK ' + Math.round(performance.now()-t0) + 'ms ' + a.mime : 'gemVoice NULL (robot fallback)' }""")

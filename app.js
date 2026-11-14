@@ -1308,13 +1308,16 @@ async function gemVoice(text, gender) {
   const voice = (GEM.voices || {})[gender === 'male' ? 'male' : 'female'] || 'Aoede';
   for (let attempt = 0; attempt < 2; attempt++) {
     for (const m of TTS_MODELS()) {
+      if ((ttsCool[m] || 0) > Date.now()) continue;   // quota used up: don't make the candidate wait for a sure failure
       try { const a = await window.GeminiLive.speech(Object.assign(gemOpts(), { ttsModel: m }), text, voice); if (a) return a; }
-      catch (e) { console.warn('gemini voice', m, e && e.message); }
+      catch (e) { console.warn('gemini voice', m, e && e.message); if (/429|quota/i.test(String(e && e.message))) ttsCool[m] = Date.now() + 60000; }
     }
-    await new Promise(r => setTimeout(r, 1500));
+    if (TTS_MODELS().every(m => (ttsCool[m] || 0) > Date.now())) break;
+    await new Promise(r => setTimeout(r, 1200));
   }
   return null;
 }
+const ttsCool = {};
 // Plays Gemini audio outside an interview (voice test / preview): WAV as-is, raw 16-bit PCM wrapped in a WAV header.
 let gemPlayer = null;
 function playGemAudio(a) {
@@ -2016,8 +2019,20 @@ function vSettings(ctx) {
     el.innerHTML = `<h3>On-device AI</h3><p>${block ? esc(block) : d.ready ? `Installed (${gb(LAI.bytes)}) — the AI interviewer runs on this phone, offline.` : `Not downloaded yet (${gb(LAI.bytes)}). Download it from any role → AI interviewer.`}</p>
       <p class="muted">Phone: ${esc(d ? d.model : '')} · ${d ? Math.round(d.totalMb / 1024) : '?'} GB memory · ${d ? gb(d.freeMb * 1048576) : '?'} free storage</p>
       ${(() => { const sp = store.get('ip.aiSpeed', null); return d && d.ready && sp ? `<p class="muted">Speed on this phone: ${sp.backend === 'GPU' ? 'graphics chip (fast mode)' : 'main processor'} · about ${Math.max(1, Math.round(sp.tps * .75))} words/sec · first words after ${(sp.firstMs / 1000).toFixed(1)} s</p>` : ''; })()}
-      ${d && d.ready && LV ? `<p class="muted">Voice: ${d.voiceReady ? 'natural (on-device)' : 'built-in phone voice — the natural voice downloads from any role → AI interviewer'}</p>` : ''}
+      ${d && LV ? (d.voiceReady ? '<p class="muted">Backup voice: natural (on this phone)</p>' : `<p class="muted">Backup voice: the phone’s built-in (robotic) voice. When the online voice is busy, a natural voice on the phone sounds far better — free, works offline.</p><div id="nvbox"><button class="btn wide" id="nvdl">Download the natural voice (${Math.round(LV.bytes / 1048576)} MB)</button></div>`) : ''}
       ${d && d.ready ? '<button class="btn ghost wide" id="laiDel" style="color:var(--red)">Remove the AI and voice (frees space)</button>' : ''}`;
+    const nv = $('#nvdl', ctx.el); if (nv) nv.addEventListener('click', async () => {
+      const bx = $('#nvbox', ctx.el); bx.innerHTML = '<div class="dl"><i style="width:0%"></i></div><p class="muted" id="nvt">Downloading the natural voice…</p>';
+      EAI.download({ url: LV.url, name: LV.name, bytes: 0, wifiOnly: false, title: 'Interview Edge voice', reserveBytes: 0 }).catch(e => ({ state: 'error', code: e.code }));
+      const iv = setInterval(async () => {
+        if (!document.body.contains(bx)) return clearInterval(iv);
+        const v = await EAI.downloadProgress({ name: LV.name, bytes: 0 }).catch(() => null); if (!v) return;
+        const pct = Math.min(100, Math.round(100 * (v.received || 0) / LV.bytes)); const bar = $('.dl i', bx); if (bar) bar.style.width = pct + '%';
+        if (v.state === 'done') { clearInterval(iv); bx.innerHTML = '<p>✓ Natural voice installed — it’s used whenever the online voice is busy.</p>'; speak('This is the natural voice.'); }
+        else if (v.state === 'error') { clearInterval(iv); bx.innerHTML = '<p class="muted">Download failed — check your connection, then reopen Settings to try again.</p>'; }
+        else $('#nvt', bx).textContent = v.state === 'extracting' ? 'Installing the voice…' : `Downloading the natural voice… ${pct}%`;
+      }, 1000);
+    });
     const del = $('#laiDel', ctx.el); if (del) del.addEventListener('click', async () => { if (!confirm(`Remove the on-device AI? You can download it again later (${gb(LAI.bytes)}).`)) return; await EAI.deleteModel({ name: LAI.name }).catch(() => {}); if (LV) await EAI.deleteModel({ name: LV.name }).catch(() => {}); lai.loaded = false; toast('AI model removed'); go('settings', { replace: true }); });
   });
   if (EAI || !OWN_KEY) { /* no own-API-key settings: the app has the on-device AI */ } else {
