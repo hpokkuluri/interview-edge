@@ -59,10 +59,12 @@ async function adminCheck(code) {
 const PASSED = new Set();   // questions a tester continued past, this session only
 const poolLocked = (id, i) => locked(id, i) && !PAY.testPass;   // mock interviews and flashcards
 const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
-// Counts are honest and consistent everywhere: main questions only (same basis as the field and role cards).
-// Follow-up questions are shown separately (totalFU), never added into the question count.
-const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0);
-const totalFU = () => window.FU_TOTAL || 0;
+// Question counts are the same everywhere: each question plus its likely follow-up question (each has its own answer).
+// qn(id) = one role's count; field and family cards add these up, and the headline total is the sum of the field cards,
+// so the numbers always match. (The shared Interview Essentials bank is counted inside each role, not separately.)
+const FU_C = window.FU_COUNTS || {};
+const qn = id => (COUNTS[id] || 0) + (FU_C[id] != null ? FU_C[id] : (COUNTS[id] || 0));
+const totalQ = () => Object.keys(COUNTS).filter(id => id !== 'common').reduce((a, id) => a + qn(id), 0);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
@@ -80,9 +82,9 @@ function toggleStar(id) { const o = PROG[id] || {}; if (o.star) delete o.star; e
 function posProgress(pos) {
   let k = 0, r = 0; const pre = pos + ':';
   for (const id in PROG) if (id.startsWith(pre)) { if (PROG[id].s === 'k') k++; else if (PROG[id].s === 'r') r++; }
-  const total = COUNTS[pos] || 0; return { k, r, total };
+  const total = COUNTS[pos] || 0; return { k, r, total, qn: qn(pos) };
 }
-function famProgress(f) { let k = 0, total = 0; f.positions.forEach(p => bankIds(p).forEach(id => { const x = posProgress(id); k += x.k; total += x.total; })); return { k, total }; }
+function famProgress(f) { let k = 0, total = 0, n = 0; f.positions.forEach(p => bankIds(p).forEach(id => { const x = posProgress(id); k += x.k; total += x.total; n += x.qn; })); return { k, total, qn: n }; }
 
 /* ---------------- loading question banks ---------------- */
 const loading = {}, BANKS = {};
@@ -650,7 +652,7 @@ function vLegal(ctx) {
 function upsellHTML() {
   return `<div class="lockcard"><div class="lc-blur" aria-hidden="true">${'<i></i>'.repeat(14)}</div>
     <div class="lc-over"><span class="lc-ic">${I.lock}</span><h3>Like it? Unlock everything.</h3>
-      <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions with model answers, plus ${totalFU().toLocaleString()} follow-up questions, across every role. One time, no subscription.</p>
+      <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions with model answers across every role. One time, no subscription.</p>
       <button class="btn gold wide" data-buy>Upgrade for just ${PAY.price}</button>
       <button class="lc-link" data-restore>Already bought it? Restore purchase</button>
       ${PAY.testPass ? '<button class="btn ghost wide lc-test" data-testpass>Test version — tap to continue</button>' : ''}</div></div>`;
@@ -689,7 +691,7 @@ function restorePro() {
 }
 
 /* ---------- Home: fields, essentials, search ---------- */
-function fieldProgress(fd) { let k = 0, total = 0, roles = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; roles += f.positions.length; }); return { k, total, roles }; }
+function fieldProgress(fd) { let k = 0, total = 0, roles = 0, n = 0; fd.families.forEach(id => { const f = famById(id); if (!f) return; const p = famProgress(f); k += p.k; total += p.total; n += p.qn; roles += f.positions.length; }); return { k, total, roles, qn: n }; }
 // --- Home field layouts (Gallery / Cube / Classic), chosen in Settings ---
 const fieldGlyphs = fd => fd.families.slice(0, 3).map(id => { const f = famById(id); return f ? (f.glyph || GLYPH[f.id] || f.short) : ''; }).filter(Boolean);
 function lcubeTop(mx, my, a, hh, col, txt) {
@@ -710,13 +712,13 @@ function cubeCluster(col, g) {
 }
 function fieldsSection() {
   const HL = S.homeLayout || 'gallery';
-  if (HL === 'gallery') return `<div class="fields-gal">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="gtile" data-go="field/${fd.id}" style="--g1:${shade(fd.color, .22)};--g2:${fd.color};--g3:${shade(fd.color, -.62)}"><span class="gt-glow"></span><span class="gt-cube">${cubeCluster(fd.color, g)}</span><span class="gt-meta"><b>${esc(fd.name)}</b><i>${p.roles} roles · ${p.total.toLocaleString()} Q</i></span></button>`; }).join('')}</div>`;
-  if (HL === 'cube') return `<div class="fields-cube">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="ccard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="cc-cube">${cubeCluster(fd.color, g)}</span><span class="cc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3);flex-shrink:0"')}</button>`; }).join('')}</div>`;
-  return `<div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span><span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.total.toLocaleString()} questions</span><span class="fc-fams">${fd.families.map(id => `<i>${esc(famById(id).name)}</i>`).join('')}</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>`;
+  if (HL === 'gallery') return `<div class="fields-gal">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="gtile" data-go="field/${fd.id}" style="--g1:${shade(fd.color, .22)};--g2:${fd.color};--g3:${shade(fd.color, -.62)}"><span class="gt-glow"></span><span class="gt-cube">${cubeCluster(fd.color, g)}</span><span class="gt-meta"><b>${esc(fd.name)}</b><i>${p.roles} roles · ${p.qn.toLocaleString()} Q</i></span></button>`; }).join('')}</div>`;
+  if (HL === 'cube') return `<div class="fields-cube">${FIELDS.map(fd => { const p = fieldProgress(fd), g = fieldGlyphs(fd); return `<button class="ccard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="cc-cube">${cubeCluster(fd.color, g)}</span><span class="cc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.qn.toLocaleString()} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3);flex-shrink:0"')}</button>`; }).join('')}</div>`;
+  return `<div class="fields">${FIELDS.map(fd => { const p = fieldProgress(fd); return `<button class="fieldcard" data-go="field/${fd.id}" style="${famVars(fd)}"><span class="fc-cubes">${fd.families.slice(0, 3).map(id => cubeSVG(famById(id))).join('')}</span><span class="fc-txt"><h3>${esc(fd.name)}</h3><span class="meta">${fd.families.length} areas · ${p.roles} roles · ${p.qn.toLocaleString()} questions</span><span class="fc-fams">${fd.families.map(id => `<i>${esc(famById(id).name)}</i>`).join('')}</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>`;
 }
 function vHome(ctx) {
   const render = () => {
-    const total = totalQ();   // main questions only — same basis as the field cards (follow-ups shown separately)
+    const total = totalQ();   // = sum of the field cards (questions + follow-up questions)
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
@@ -733,7 +735,8 @@ function vHome(ctx) {
         ${PAY_ON ? (isPro() ? '<div class="hm-plan on">' + I.check + '<span><b>Full access</b> · every question unlocked</span></div>' : `<div class="hm-plan">${I.lock}<span><b>Free preview</b> · ${PAY.free} questions per role</span><button class="btn gold" data-buy>Upgrade ${PAY.price}</button></div>`) : ''}
       </div>
       <div class="home-main"><div class="wrap">
-        <button class="hm-daily" data-go="search"><span class="hd-badge">DAILY</span><span class="hd-txt"><b>🚀 New roles added every day</b><span>Now ${roleCount} roles · ${total.toLocaleString()} questions + ${totalFU().toLocaleString()} follow-ups</span></span>${I.arrow.replace('<svg', '<svg width="18" height="18" style="color:var(--gold);flex-shrink:0"')}</button>
+        <div id="updBanner"></div>
+        <button class="hm-daily" data-go="search"><span class="hd-badge">DAILY</span><span class="hd-txt"><b>🚀 New roles added every day</b><span>Now ${roleCount} roles · ${total.toLocaleString()} questions — and growing</span></span>${I.arrow.replace('<svg', '<svg width="18" height="18" style="color:var(--gold);flex-shrink:0"')}</button>
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
         <div class="sec-h">Start from your resume</div>
         <button class="card esscard" data-go="resume" style="${famVars(RES_FAM)}"><div class="pos-row">${cubeSVG(RES_FAM)}<div style="flex:1;min-width:0"><h3>${esc(RES_FAM.name)}</h3><p>${RS && RS.target && POS[RS.target] ? 'Practicing for ' + esc(POS[RS.target].full) + ' — tap to open or change' : esc(RES_FAM.tag)}</p></div></div></button>
@@ -745,6 +748,7 @@ function vHome(ctx) {
 
         <p class="home-foot">Your progress stays on this device. © Arahasoft · <button class="lnk" data-go="legal">Terms &amp; Disclaimer</button></p>
       </div></div></div>`;
+    updateBanner(ctx.el);
   };
   render(); ctx.refresh = render;
 }
@@ -782,7 +786,7 @@ function vField(ctx, id) {
   const render = () => {
     ctx.el.innerHTML = `${bar(ctx, fd.name)}<div class="wrap">
       <div class="fam-head">${cubeSVG(fd)}<div><h2>${esc(fd.name)}</h2><p>${esc(fd.tag)}</p></div></div>
-      <div class="cubes">${fd.families.map(fid => { const f = famById(fid), p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<span class="cube-txt"><h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} ${f.id === 'oramod' ? 'modules' : 'roles'} · ${p.total} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
+      <div class="cubes">${fd.families.map(fid => { const f = famById(fid), p = famProgress(f); return `<button class="cube" data-go="fam/${f.id}" style="${famVars(f)}">${cubeSVG(f)}<span class="cube-txt"><h3>${esc(f.name)}</h3><span class="meta">${f.positions.length} ${f.id === 'oramod' ? 'modules' : 'roles'} · ${p.qn.toLocaleString()} questions</span><span class="bar-p"><i style="width:${p.total ? (p.k / p.total * 100).toFixed(1) : 0}%"></i></span></span></button>`; }).join('')}</div>
     </div>`;
   };
   render(); ctx.refresh = render;
@@ -1849,6 +1853,21 @@ function vAI(ctx, id) {
 /* ---------- In-app updates (Android) ----------
    "web" update: new questions/screens/sounds download (a few MB) and the app reloads — seconds, no reinstall.
    "app" update: the AI/voice engine changed, so the new app downloads and Android shows "Update this app?". */
+// Home-screen banner when a newer version exists (Android app). Checks at most every 3 hours, quietly.
+let updInfo = null, updChecked = 0;
+function updateBanner(el) {
+  const host = $('#updBanner', el); if (!host || !(EAI && EAI.checkUpdate)) return;
+  const show = i => {
+    if (!i || i.kind === 'none' || store.get('ip.updSkip', '') === i.latest) { host.innerHTML = ''; return; }
+    host.innerHTML = `<div class="upd-banner"><span>${I.play}<span><b>Update available</b><span>${i.kind === 'web' ? 'New questions and fixes — takes a few seconds' : 'New app version — Android will ask to update'}</span></span></span><button class="btn gold" id="updNow">Update</button><button class="upd-x" id="updX" aria-label="Later">×</button></div>`;
+    $('#updNow', el).addEventListener('click', () => { sessionStorage.setItem('ip.autoUpdate', '1'); go('settings'); });
+    $('#updX', el).addEventListener('click', () => { store.set('ip.updSkip', i.latest); host.innerHTML = ''; });
+  };
+  if (updInfo && Date.now() - updChecked < 3 * 3600e3) return show(updInfo);
+  if (!navigator.onLine) return;
+  EAI.checkUpdate().then(i => { updInfo = i; updChecked = Date.now(); show(i); }).catch(() => {});
+}
+
 function wireUpdates(el) {
   const btn = $('#updgo', el), txt = $('#updt', el), bar = $('#updbar', el);
   let info = null, sub = null, busy = false;
@@ -1856,6 +1875,11 @@ function wireUpdates(el) {
   const prog = on => { bar.hidden = !on; if (!on) bar.firstElementChild.style.width = '0%'; };
   const listen = async () => { if (sub) return; sub = await EAI.addListener('update', ev => { if (ev.total > 0) bar.firstElementChild.style.width = (ev.received / ev.total * 100).toFixed(0) + '%'; txt.textContent = `Downloading… ${(ev.received / 1048576).toFixed(0)}${ev.total > 0 ? ' of ' + (ev.total / 1048576).toFixed(0) : ''} MB`; }); };
   const done = () => { busy = false; btn.disabled = false; if (sub) { sub.remove(); sub = null; } };
+  if (sessionStorage.getItem('ip.autoUpdate')) {
+    sessionStorage.removeItem('ip.autoUpdate');
+    setTimeout(async () => { btn.click(); for (let i = 0; i < 40 && (busy || !info); i++) await new Promise(r => setTimeout(r, 250)); if (info && info.kind !== 'none') btn.click(); }, 300);
+    $('#upd', el).scrollIntoView({ block: 'center' });
+  }
   btn.addEventListener('click', async () => {
     if (busy) return; busy = true; btn.disabled = true;
     try {
