@@ -59,7 +59,10 @@ async function adminCheck(code) {
 const PASSED = new Set();   // questions a tester continued past, this session only
 const poolLocked = (id, i) => locked(id, i) && !PAY.testPass;   // mock interviews and flashcards
 const locked = (id, i) => PAY_ON && !isPro() && i >= PAY.free;
-const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0) + (window.FU_TOTAL || 0);
+// Counts are honest and consistent everywhere: main questions only (same basis as the field and role cards).
+// Follow-up questions are shown separately (totalFU), never added into the question count.
+const totalQ = () => Object.values(COUNTS).reduce((a, b) => a + b, 0);
+const totalFU = () => window.FU_TOTAL || 0;
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2200); }
 function famVars(f) { return `--c:${f.color};--tint:${f.tint}`; }
@@ -647,7 +650,7 @@ function vLegal(ctx) {
 function upsellHTML() {
   return `<div class="lockcard"><div class="lc-blur" aria-hidden="true">${'<i></i>'.repeat(14)}</div>
     <div class="lc-over"><span class="lc-ic">${I.lock}</span><h3>Like it? Unlock everything.</h3>
-      <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions, model answers and follow-ups across every role. One time, no subscription.</p>
+      <p>You’ve used the ${PAY.free} free questions for this role. Get all ${totalQ().toLocaleString()} questions with model answers, plus ${totalFU().toLocaleString()} follow-up questions, across every role. One time, no subscription.</p>
       <button class="btn gold wide" data-buy>Upgrade for just ${PAY.price}</button>
       <button class="lc-link" data-restore>Already bought it? Restore purchase</button>
       ${PAY.testPass ? '<button class="btn ghost wide lc-test" data-testpass>Test version — tap to continue</button>' : ''}</div></div>`;
@@ -713,7 +716,7 @@ function fieldsSection() {
 }
 function vHome(ctx) {
   const render = () => {
-    const total = totalQ();   // questions plus their follow-up questions — one source of truth (also used on welcome, search, paywall)
+    const total = totalQ();   // main questions only — same basis as the field cards (follow-ups shown separately)
     const known = Object.values(PROG).filter(p => p.s === 'k').length;
     const mocks = store.get('ip.mocks', []).length;
     const last = store.get('ip.last', null), lp = last && last !== 'resume' && POS[last];
@@ -730,7 +733,7 @@ function vHome(ctx) {
         ${PAY_ON ? (isPro() ? '<div class="hm-plan on">' + I.check + '<span><b>Full access</b> · every question unlocked</span></div>' : `<div class="hm-plan">${I.lock}<span><b>Free preview</b> · ${PAY.free} questions per role</span><button class="btn gold" data-buy>Upgrade ${PAY.price}</button></div>`) : ''}
       </div>
       <div class="home-main"><div class="wrap">
-        <button class="hm-daily" data-go="search"><span class="hd-badge">DAILY</span><span class="hd-txt"><b>🚀 6 new roles &amp; ~300 questions added every day</b><span>Now ${roleCount} roles · ${total.toLocaleString()} questions — and growing</span></span>${I.arrow.replace('<svg', '<svg width="18" height="18" style="color:var(--gold);flex-shrink:0"')}</button>
+        <button class="hm-daily" data-go="search"><span class="hd-badge">DAILY</span><span class="hd-txt"><b>🚀 New roles added every day</b><span>Now ${roleCount} roles · ${total.toLocaleString()} questions + ${totalFU().toLocaleString()} follow-ups</span></span>${I.arrow.replace('<svg', '<svg width="18" height="18" style="color:var(--gold);flex-shrink:0"')}</button>
         ${lp ? `<button class="continue" data-go="pos/${lp.id}" style="${famVars(lp.fam)}"><span class="dot" style="background:${lp.fam.color}">${I.play}</span><span style="flex:1;min-width:0"><b>Continue: ${esc(lp.full)}</b><span>${posProgress(lp.id).k} of ${posProgress(lp.id).total} known · ${esc(lp.fam.name)}</span></span>${I.arrow.replace('<svg', '<svg width="20" height="20" style="color:var(--text-3)"')}</button>` : ''}
         <div class="sec-h">Start from your resume</div>
         <button class="card esscard" data-go="resume" style="${famVars(RES_FAM)}"><div class="pos-row">${cubeSVG(RES_FAM)}<div style="flex:1;min-width:0"><h3>${esc(RES_FAM.name)}</h3><p>${RS && RS.target && POS[RS.target] ? 'Practicing for ' + esc(POS[RS.target].full) + ' — tap to open or change' : esc(RES_FAM.tag)}</p></div></div></button>
