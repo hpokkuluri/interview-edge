@@ -92,12 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] en-env — Environmental Engineer (at 12, add ~38)
-- [ ] en-est — Construction Estimator (at 12, add ~38)
-- [ ] en-ind — Industrial Engineer (at 12, add ~38)
-- [ ] en-safety — Construction Safety / HSE Manager (at 12, add ~38)
-- [ ] en-super — Site Superintendent / Field Supervisor (at 12, add ~38)
-- [ ] hr-er — Employee Relations Manager (at 12, add ~38)
 - [ ] hr-hris — HRIS / People Systems Analyst (at 12, add ~38)
 - [ ] hr-ld — Learning & Development Manager (at 12, add ~38)
 - [ ] hr-payroll — Payroll Manager (at 12, add ~38)
@@ -137,6 +131,12 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] en-env — Environmental Engineer — 2026-11-15
+- [x] en-est — Construction Estimator — 2026-11-15
+- [x] en-ind — Industrial Engineer — 2026-11-15
+- [x] en-safety — Construction Safety / HSE Manager — 2026-11-15
+- [x] en-super — Site Superintendent / Field Supervisor — 2026-11-15
+- [x] hr-er — Employee Relations Manager — 2026-11-15
 - [x] cs-pmo — Program Manager / PMO Lead — 2026-11-14
 - [x] en-chem — Chemical / Process Engineer — 2026-11-14
 - [x] hr-gen — HR Generalist — 2026-11-14
