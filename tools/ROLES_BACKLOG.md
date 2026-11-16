@@ -92,12 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] hr-hris — HRIS / People Systems Analyst (at 12, add ~38)
-- [ ] hr-ld — Learning & Development Manager (at 12, add ~38)
-- [ ] hr-payroll — Payroll Manager (at 12, add ~38)
-- [ ] hr-rec — Recruiter / Technical Recruiter (at 12, add ~38)
-- [ ] sm-content — Content & SEO Marketing Manager (at 12, add ~38)
-- [ ] sm-demandgen — Demand Generation Manager (at 12, add ~38)
 - [ ] sm-revops — Sales Operations / RevOps (at 12, add ~38)
 - [ ] sm-sdr — Sales Development Rep (SDR / BDR) (at 12, add ~38)
 - [ ] ls-hoq — Head of Quality / VP Quality (at 13, add ~37)
@@ -131,6 +125,12 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] hr-hris — HRIS / People Systems Analyst — 2026-11-16
+- [x] hr-ld — Learning & Development Manager — 2026-11-16
+- [x] hr-payroll — Payroll Manager — 2026-11-16
+- [x] hr-rec — Recruiter / Technical Recruiter — 2026-11-16
+- [x] sm-content — Content & SEO Marketing Manager — 2026-11-16
+- [x] sm-demandgen — Demand Generation Manager — 2026-11-16
 - [x] en-env — Environmental Engineer — 2026-11-15
 - [x] en-est — Construction Estimator — 2026-11-15
 - [x] en-ind — Industrial Engineer — 2026-11-15
