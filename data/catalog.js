@@ -27,6 +27,7 @@ window.CATALOG = [
         tracks: [
           { id: 'ora-staff-fin', label: 'Finance', blurb: 'Finance platform strategy, global design, controls, M&A, performance.' },
           { id: 'ora-staff-scm', label: 'SCM', blurb: 'Supply chain platform strategy, global templates, complex flows, scale.' } ] },
+      { id: 'ora-fin-principal', title: 'Oracle Cloud Finance Industry Principal', level: 'Principal', blurb: 'Consulting/SI role: Finance design (GL, AP, AR, FA, CM), EPM, configure-to-order and projects, CRPs, governance, margins and RFPs.' },
       { id: 'ora-hcm', title: 'Oracle HCM Cloud Lead', level: '5–10 yrs', blurb: 'Core HR, Payroll, Absence, Talent, security and HDL.' },
       { id: 'ora-assoc-dir', title: 'Associate Director, ERP', level: 'Assoc. Director', blurb: 'Leads a functional team and workstreams; delivery, people and stakeholders.' },
       { id: 'ora-dir', title: 'Director, Oracle ERP', level: 'Director', blurb: 'Runs ERP delivery and support; programs, governance, vendors and team growth.' },
