@@ -197,18 +197,16 @@ Finance & Accounting (field `fin`) — cube `finspec` "Finance Specialists" / `a
 (Both finance fresh-batch roles built — see Done.)
 
 Legal (field `biz`) — cube `legal` "Legal & Compliance":
-- [ ] lg-legalops — Legal Operations Manager (CLM, matter/spend management, metrics, vendor/outside counsel)
+- [x] lg-legalops — Legal Operations Manager (built earlier — already in catalog/src, confirmed 2026-11-17)
 
 Technology (field `tech`) — cubes `sec` / `data` / `swe` / existing tech families:
-- [ ] da-gov — Data Governance / Data Management Analyst (quality, lineage, catalog, stewardship, policy)
-- [ ] da-compvis — Computer Vision Engineer (CNNs, detection/segmentation, data pipelines, deployment, eval)
-- [ ] tc-gamedev — Game Developer / Gameplay Engineer (engines, game loop, physics, optimization, pipelines)
-- [ ] tc-release — Release / Build Engineer (CI/CD, build systems, versioning, artifacts, release trains)
+- [x] da-gov — Data Governance / Data Management Analyst (built earlier — already in catalog/src, confirmed 2026-11-17)
+- [x] da-compvis — Computer Vision Engineer (built earlier — already in catalog/src, confirmed 2026-11-17)
+- [x] tc-gamedev — Game Developer / Gameplay Engineer (built earlier — already in catalog/src, confirmed 2026-11-17)
+- [x] tc-release — Release / Build Engineer (built earlier — already in catalog/src, confirmed 2026-11-17)
 
 Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
-- [ ] sm-brand — Brand Manager (positioning, brand strategy, campaigns, P&L, agencies, metrics)
-- [ ] sm-mktops — Marketing Operations Manager (martech stack, attribution, lead routing, reporting, process)
-- [ ] sm-pricing — Pricing Analyst / Manager (pricing strategy, elasticity, margin, competitive, packaging)
+- [x] sm-brand — Brand Manager (built earlier — already in catalog/src, confirmed 2026-11-17)
 
 Business & Operations (field `biz`) — cube `consult` "Consulting & Operations":
 (COO built — see Done.)
@@ -216,10 +214,7 @@ Business & Operations (field `biz`) — cube `consult` "Consulting & Operations"
 ### Fresh batch (added 2026-11-11) — in-demand real titles, good salaries; run the catalog/src novelty check and skip any semantic duplicate before building
 
 Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & Allied Health":
-- [ ] hc-audiologist — Audiologist (hearing/balance testing, hearing aids, cochlear implants, pediatric/adult, counseling)
-- [ ] hc-podiatrist — Podiatrist (DPM) (diagnosis, foot/ankle surgery, diabetic foot, orthotics, wound care)
-- [ ] hc-midwife — Certified Nurse Midwife (prenatal care, labor/delivery, scope, risk, collaboration, patient-centered care)
-- [ ] hc-perfusion — Perfusionist (cardiopulmonary bypass, heart-lung machine, anticoagulation, crisis management, safety)
+(All four 2026-11-11 clinical roles built — see Done.)
 
 Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
 - [ ] en-structural — Structural Engineer (loads, analysis, codes, materials, seismic, drawings, PE ethics)
@@ -409,3 +404,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hc-dentist — Dentist (General) — 2026-11-11 (placed in `health-clin` cube)
 - [x] hc-optometrist — Optometrist — 2026-11-11 (placed in `health-clin` cube)
 - [x] hc-vet — Veterinarian — 2026-11-11 (placed in `health-clin` cube)
+- [x] sm-mktops — Marketing Operations Manager — 2026-11-17 (placed in `sm-spec` cube)
+- [x] sm-pricing — Pricing Analyst / Manager — 2026-11-17 (placed in `sm-spec` cube)
+- [x] hc-audiologist — Audiologist — 2026-11-17 (placed in `health-clin` cube)
+- [x] hc-podiatrist — Podiatrist (DPM) — 2026-11-17 (placed in `health-clin` cube)
+- [x] hc-midwife — Certified Nurse Midwife — 2026-11-17 (placed in `health-clin` cube)
+- [x] hc-perfusion — Perfusionist — 2026-11-17 (placed in `health-clin` cube)

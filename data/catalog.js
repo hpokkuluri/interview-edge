@@ -440,7 +440,11 @@ window.CATALOG = [
       { id: 'hc-genetic', title: 'Genetic Counselor', level: 'Mid → Senior', blurb: 'Risk assessment, pedigrees, test selection and interpretation, VUS, ethics, non-directive counseling.' },
       { id: 'hc-dentist', title: 'Dentist (General)', level: 'Entry → Senior', blurb: 'Diagnosis, restorations, treatment planning, radiographs, local anesthesia, ethics and informed consent.' },
       { id: 'hc-optometrist', title: 'Optometrist', level: 'Entry → Senior', blurb: 'Refraction, comprehensive eye exams, ocular disease, prescribing, co-management and referral.' },
-      { id: 'hc-vet', title: 'Veterinarian', level: 'Entry → Senior', blurb: 'Diagnosis, surgery and anesthesia, client communication, euthanasia ethics, practice and antibiotic stewardship.' }
+      { id: 'hc-vet', title: 'Veterinarian', level: 'Entry → Senior', blurb: 'Diagnosis, surgery and anesthesia, client communication, euthanasia ethics, practice and antibiotic stewardship.' },
+      { id: 'hc-audiologist', title: 'Audiologist', level: 'Mid → Senior', blurb: 'Audiogram interpretation, hearing loss types, hearing aids and real-ear verification, cochlear implants, balance, tinnitus.' },
+      { id: 'hc-podiatrist', title: 'Podiatrist (DPM)', level: 'Entry → Senior', blurb: 'Foot and ankle care, diabetic foot and limb salvage, biomechanics and orthotics, wound care, surgery.' },
+      { id: 'hc-midwife', title: 'Certified Nurse Midwife', level: 'Mid → Senior', blurb: 'Prenatal care, physiologic labor and birth, risk assessment and OB collaboration, emergencies, postpartum.' },
+      { id: 'hc-perfusion', title: 'Perfusionist', level: 'Mid → Senior', blurb: 'Heart-lung machine and cardiopulmonary bypass, anticoagulation, cardioplegia, crisis management, safety.' }
     ]
   },
   {
@@ -537,7 +541,9 @@ window.CATALOG = [
       { id: 'sm-pmm', title: 'Product Marketing Manager', level: 'Mid → Senior', blurb: 'Positioning, messaging, launches, personas, enablement, competitive intel.' },
       { id: 'sm-content', title: 'Content & SEO Marketing Manager', level: 'Mid → Senior', blurb: 'Content strategy, SEO, editorial, distribution, analytics, brand voice.' },
       { id: 'sm-demandgen', title: 'Demand Generation Manager', level: 'Mid → Senior', blurb: 'Campaigns, lead funnel, MQL/SQL, nurture, attribution, marketing ops.' },
-      { id: 'sm-brand', title: 'Brand Manager', level: 'Mid → Senior', blurb: 'Positioning, brand equity and health, strategy and planning, campaigns, pricing, agencies, consistency.' }
+      { id: 'sm-brand', title: 'Brand Manager', level: 'Mid → Senior', blurb: 'Positioning, brand equity and health, strategy and planning, campaigns, pricing, agencies, consistency.' },
+      { id: 'sm-mktops', title: 'Marketing Operations Manager', level: 'Mid → Senior', blurb: 'Martech stack, lead lifecycle and scoring, attribution, routing, reporting, sales alignment.' },
+      { id: 'sm-pricing', title: 'Pricing Analyst / Manager', level: 'Mid → Senior', blurb: 'Pricing strategy, elasticity, margin and the price waterfall, packaging, discounting, willingness-to-pay.' }
     ]
   },
   {
