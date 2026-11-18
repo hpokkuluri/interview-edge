@@ -217,15 +217,10 @@ Healthcare & Allied Health (field `health`) — cube `health-clin` "Clinical & A
 (All four 2026-11-11 clinical roles built — see Done.)
 
 Engineering & Construction (field `eng`) — cube `engcore` "Engineering & Construction":
-- [ ] en-structural — Structural Engineer (loads, analysis, codes, materials, seismic, drawings, PE ethics)
-- [ ] en-geotech — Geotechnical Engineer (soils, foundations, site investigation, slope stability, settlement)
-- [ ] en-fire — Fire Protection Engineer (sprinklers, egress, codes/NFPA, smoke control, fire modeling)
-- [ ] en-mep — MEP / Building Systems Engineer (HVAC, electrical, plumbing design, loads, energy codes, coordination)
+(All four 2026-11-11 engineering roles built — see Done.)
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled Trades":
-- [ ] tr-boilermaker — Boilermaker (fabrication, welding, pressure vessels, rigging, safety, codes)
-- [ ] tr-millwright — Millwright (machinery install/alignment, precision leveling, bearings, vibration, safety)
-- [ ] tr-crane — Crane Operator (load charts, rigging, signals, inspection, site safety, certification)
+- [ ] tr-millwright — Millwright (machinery install/alignment, precision leveling, bearings, vibration, safety) — NOTE: likely semantic duplicate of existing `tr-maintenance` "Industrial Maintenance Tech / Millwright"; verify before building
 
 Finance & Business (field `fin` / `biz`) — cubes `finspec` / `consult`:
 - [ ] biz-ma — Corporate Development / M&A Analyst (valuation, diligence, deal process, synergies, integration)
@@ -410,3 +405,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hc-podiatrist — Podiatrist (DPM) — 2026-11-17 (placed in `health-clin` cube)
 - [x] hc-midwife — Certified Nurse Midwife — 2026-11-17 (placed in `health-clin` cube)
 - [x] hc-perfusion — Perfusionist — 2026-11-17 (placed in `health-clin` cube)
+- [x] en-structural — Structural Engineer — 2026-11-18 (placed in `engcore` cube)
+- [x] en-geotech — Geotechnical Engineer — 2026-11-18 (placed in `engcore` cube)
+- [x] en-fire — Fire Protection Engineer — 2026-11-18 (placed in `engcore` cube)
+- [x] en-mep — MEP / Building Systems Engineer — 2026-11-18 (placed in `engcore` cube)
+- [x] tr-boilermaker — Boilermaker — 2026-11-18 (placed in `trades-core` cube)
+- [x] tr-crane — Crane Operator — 2026-11-18 (placed in `trades-core` cube)

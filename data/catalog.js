@@ -479,7 +479,11 @@ window.CATALOG = [
       { id: 'en-aero', title: 'Aerospace Engineer', level: 'Mid → Senior', blurb: 'Aerodynamics, lift, structures, factor of safety, propulsion, FEA/CFD, FAR 25.' },
       { id: 'en-biomed', title: 'Biomedical Engineer', level: 'Mid → Senior', blurb: 'Design controls (21 CFR 820.30), ISO 14971 risk, V&V, 510(k)/PMA, IEC 60601, ISO 10993.' },
       { id: 'en-petro', title: 'Petroleum Engineer', level: 'Mid → Senior', blurb: 'Reservoir drive, recovery stages, drilling and well control, production, decline curves, economics, HSE.' },
-      { id: 'en-robotics', title: 'Robotics Engineer', level: 'Mid → Senior', blurb: 'Kinematics, PID control, perception and sensor fusion, SLAM, motion planning, integration, safety.' }
+      { id: 'en-robotics', title: 'Robotics Engineer', level: 'Mid → Senior', blurb: 'Kinematics, PID control, perception and sensor fusion, SLAM, motion planning, integration, safety.' },
+      { id: 'en-structural', title: 'Structural Engineer', level: 'Mid → Senior', blurb: 'Load paths, ASCE 7 loads, steel (AISC) and concrete (ACI) design, lateral systems, seismic ductility, foundations, connections, PE ethics.' },
+      { id: 'en-geotech', title: 'Geotechnical Engineer', level: 'Mid → Senior', blurb: 'Soil mechanics, site investigation, bearing capacity, settlement, slope stability, retaining walls, liquefaction, foundations.' },
+      { id: 'en-fire', title: 'Fire Protection Engineer', level: 'Mid → Senior', blurb: 'NFPA 13 sprinklers, egress and NFPA 101, fire alarm, smoke control, hydraulics, fire modeling, performance-based design.' },
+      { id: 'en-mep', title: 'MEP / Building Systems Engineer', level: 'Mid → Senior', blurb: 'HVAC loads and systems, electrical distribution, plumbing design, energy codes (ASHRAE 90.1), ventilation, coordination, commissioning.' }
     ]
   },
   {
@@ -604,7 +608,9 @@ window.CATALOG = [
       { id: 'tr-wind', title: 'Wind Turbine Technician', level: 'Entry → Journeyman', blurb: 'Climbing & fall arrest, LOTO, bolt tensioning, hydraulics, SCADA faults, troubleshooting.' },
       { id: 'tr-solar', title: 'Solar PV Installer', level: 'Entry → Senior', blurb: 'Racking & flashing, string vs microinverters, NEC 690, rapid shutdown, grounding, fall protection.' },
       { id: 'tr-ironworker', title: 'Ironworker', level: 'Apprentice → Journeyman', blurb: 'Structural steel erection, rigging, connecting, bolt-up, field welding, heights, blueprints.' },
-      { id: 'tr-instrument', title: 'Instrumentation & Controls Technician', level: 'Entry → Senior', blurb: 'Calibration, 4-20mA/HART, PID loops, PLC/DCS, P&IDs, hazardous areas, SIS, troubleshooting.' }
+      { id: 'tr-instrument', title: 'Instrumentation & Controls Technician', level: 'Entry → Senior', blurb: 'Calibration, 4-20mA/HART, PID loops, PLC/DCS, P&IDs, hazardous areas, SIS, troubleshooting.' },
+      { id: 'tr-boilermaker', title: 'Boilermaker', level: 'Apprentice → Journeyman', blurb: 'Pressure vessels, ASME code welding, plate fabrication, boiler tube repair, rigging, confined space, outages.' },
+      { id: 'tr-crane', title: 'Crane Operator', level: 'Entry → Journeyman', blurb: 'Load charts, setup and outriggers, rigging, hand signals, power-line clearance, inspection, NCCCO certification.' }
     ]
   },
   {
