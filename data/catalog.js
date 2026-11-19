@@ -369,7 +369,8 @@ window.CATALOG = [
       { id: 'fs-ir', title: 'Investor Relations Manager / Director', level: 'Manager → Director', blurb: 'Earnings process, Reg FD, guidance, targeting, equity story, activism, proxy season.' },
       { id: 'fs-quant', title: 'Quantitative Analyst (Quant)', level: 'Mid → Senior', blurb: 'Pricing models, Black-Scholes, VaR, Monte Carlo, risk-neutral measure, Greeks, overfitting, coding.' },
       { id: 'fs-pe', title: 'Private Equity Associate', level: 'Mid → Senior', blurb: 'LBO modeling, IRR vs MOIC, due diligence, valuation, value creation, deal risk, portfolio monitoring.' },
-      { id: 'fs-fund', title: 'Fund Accountant', level: 'Mid → Senior', blurb: 'NAV calculation, capital calls and distributions, investor allocations, valuation, reconciliations, controls.' }
+      { id: 'fs-fund', title: 'Fund Accountant', level: 'Mid → Senior', blurb: 'NAV calculation, capital calls and distributions, investor allocations, valuation, reconciliations, controls.' },
+      { id: 'fin-reanalyst', title: 'Real Estate / Investment Analyst', level: 'Entry → Senior', blurb: 'Underwriting, cap rates, NOI, DCF pro forma, IRR/equity multiple, LTV/DSCR, market analysis, value-add.' }
     ]
   },
   {
@@ -521,7 +522,8 @@ window.CATALOG = [
       { id: 'cs-pmo', title: 'Program Manager / PMO Lead', level: 'Senior → Director', blurb: 'Cross-functional delivery, dependencies, risks, governance, stakeholders, RAID.' },
       { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' },
       { id: 'cs-cos', title: 'Chief of Staff', level: 'Senior', blurb: 'Priorities, operating cadence, influence without authority, advising leaders, execution, discretion.' },
-      { id: 'biz-coo', title: 'Chief Operating Officer (COO)', level: 'Executive', blurb: 'Strategy into execution, CEO partnership, scaling, operating cadence, metrics, turnarounds, risk.' }
+      { id: 'biz-coo', title: 'Chief Operating Officer (COO)', level: 'Executive', blurb: 'Strategy into execution, CEO partnership, scaling, operating cadence, metrics, turnarounds, risk.' },
+      { id: 'biz-esg', title: 'ESG / Sustainability Manager', level: 'Mid → Senior', blurb: 'Materiality, GRI/SASB/TCFD/CSRD, Scope 1/2/3 carbon, SBTi targets, assurance, ratings, greenwashing.' }
     ]
   },
   {
@@ -548,7 +550,9 @@ window.CATALOG = [
       { id: 'sm-demandgen', title: 'Demand Generation Manager', level: 'Mid → Senior', blurb: 'Campaigns, lead funnel, MQL/SQL, nurture, attribution, marketing ops.' },
       { id: 'sm-brand', title: 'Brand Manager', level: 'Mid → Senior', blurb: 'Positioning, brand equity and health, strategy and planning, campaigns, pricing, agencies, consistency.' },
       { id: 'sm-mktops', title: 'Marketing Operations Manager', level: 'Mid → Senior', blurb: 'Martech stack, lead lifecycle and scoring, attribution, routing, reporting, sales alignment.' },
-      { id: 'sm-pricing', title: 'Pricing Analyst / Manager', level: 'Mid → Senior', blurb: 'Pricing strategy, elasticity, margin and the price waterfall, packaging, discounting, willingness-to-pay.' }
+      { id: 'sm-pricing', title: 'Pricing Analyst / Manager', level: 'Mid → Senior', blurb: 'Pricing strategy, elasticity, margin and the price waterfall, packaging, discounting, willingness-to-pay.' },
+      { id: 'sm-growth', title: 'Growth Marketing Manager', level: 'Mid → Senior', blurb: 'Experimentation, AARRR funnel, CAC/LTV, activation, retention, channels, cohorts, north star metric.' },
+      { id: 'sm-ecommerce', title: 'E-commerce Manager', level: 'Mid → Senior', blurb: 'Conversion rate, merchandising, platform, promotions, AOV, cart abandonment, analytics, fulfillment.' }
     ]
   },
   {
@@ -648,7 +652,8 @@ window.CATALOG = [
       { id: 'hs-spa', title: 'Spa / Wellness Manager', level: 'Mid → Senior', blurb: 'Operations, services, staff, guest experience, retail, scheduling.' },
       { id: 'hs-frontoffice', title: 'Front Office / Guest Services Manager', level: 'Mid → Senior', blurb: 'Front desk, check-in, guest issues, upsell, staff, systems.' },
       { id: 'hs-chef', title: 'Executive Chef / Culinary Director', level: 'Mid → Senior', blurb: 'Menu engineering, food & prime cost, HACCP, brigade, labor, consistency.' },
-      { id: 'hs-casino', title: 'Casino / Gaming Operations Manager', level: 'Mid → Senior', blurb: 'Floor ops, drop/hold/win, Title 31 AML, surveillance, responsible gaming, internal controls.' }
+      { id: 'hs-casino', title: 'Casino / Gaming Operations Manager', level: 'Mid → Senior', blurb: 'Floor ops, drop/hold/win, Title 31 AML, surveillance, responsible gaming, internal controls.' },
+      { id: 'hs-merchandiser', title: 'Retail Buyer / Merchandiser', level: 'Mid → Senior', blurb: 'Assortment, open-to-buy, IMU and maintained margin, markdowns, vendors, sell-through, GMROI, allocation.' }
     ]
   },
   {
@@ -666,7 +671,8 @@ window.CATALOG = [
       { id: 'md-journalist', title: 'Journalist / Reporter', level: 'Entry → Senior', blurb: 'Reporting, sources, accuracy, ethics, deadlines, interviewing, writing.' },
       { id: 'md-podcast', title: 'Podcast / Audio Producer', level: 'Entry → Senior', blurb: 'Production, editing, sound, guests, storytelling, distribution, growth.' },
       { id: 'md-creativedir', title: 'Creative Director', level: 'Senior → Exec', blurb: 'Creative vision, brand system, critique, pitching, leading teams, cross-functional.' },
-      { id: 'md-uxr', title: 'UX Researcher', level: 'Entry → Senior', blurb: 'Methods, usability, synthesis, influence, metrics, bias, ethics.' }
+      { id: 'md-uxr', title: 'UX Researcher', level: 'Entry → Senior', blurb: 'Methods, usability, synthesis, influence, metrics, bias, ethics.' },
+      { id: 'md-motion', title: 'Motion Designer / Animator', level: 'Entry → Senior', blurb: 'Motion graphics, After Effects, animation principles, easing, storyboards, kinetic type, sound, delivery.' }
     ]
   },
   {

@@ -223,23 +223,61 @@ Skilled Trades & Field Services (field `trades`) — cube `trades-core` "Skilled
 - [ ] tr-millwright — Millwright (machinery install/alignment, precision leveling, bearings, vibration, safety) — NOTE: likely semantic duplicate of existing `tr-maintenance` "Industrial Maintenance Tech / Millwright"; verify before building
 
 Finance & Business (field `fin` / `biz`) — cubes `finspec` / `consult`:
-- [ ] biz-ma — Corporate Development / M&A Analyst (valuation, diligence, deal process, synergies, integration)
-- [ ] biz-esg — ESG / Sustainability Manager (reporting frameworks, materiality, carbon, stakeholders, assurance)
-- [ ] fin-reanalyst — Real Estate / Investment Analyst (underwriting, DCF/cap rates, market analysis, debt/equity, returns)
+- [x] biz-ma — Corporate Development / M&A Analyst — skipped: semantic duplicate of existing `fs-ib` "Corporate Development / Investment Analyst" (DCF/comps/LBO/accretion-dilution/diligence), confirmed 2026-11-19
+- [x] biz-esg — ESG / Sustainability Manager — 2026-11-19 (built — see Done)
+- [x] fin-reanalyst — Real Estate / Investment Analyst — 2026-11-19 (built — see Done)
 
 Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
-- [ ] sm-growth — Growth Marketing Manager (experimentation, funnel, CAC/LTV, channels, analytics)
-- [ ] sm-ecommerce — E-commerce Manager (conversion, merchandising, platform, promotions, analytics, fulfillment)
+- [x] sm-growth — Growth Marketing Manager — 2026-11-19 (built — see Done)
+- [x] sm-ecommerce — E-commerce Manager — 2026-11-19 (built — see Done)
 - [ ] sm-partner — Channel / Partnerships Manager (partner recruitment, enablement, co-sell, deal reg, GTM)
 
 Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
-- [ ] md-motion — Motion Designer / Animator (motion graphics, keyframing, storytelling, tools, delivery)
+- [x] md-motion — Motion Designer / Animator — 2026-11-19 (built — see Done)
 
 Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
 - [ ] gv-parole — Probation / Parole Officer (supervision, risk assessment, case management, de-escalation, ethics)
 
 Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
-- [ ] hs-merchandiser — Retail Buyer / Merchandiser (assortment, open-to-buy, margin, vendors, trends, planning)
+- [x] hs-merchandiser — Retail Buyer / Merchandiser — 2026-11-19 (built — see Done)
+
+### Fresh batch (added 2026-11-19) — in-demand real titles, good salaries; run the catalog/src novelty check and skip any semantic duplicate before building
+
+Technology & Product (field `tech`) — cubes `prod` / `swe`:
+- [ ] ai-pm — AI Product Manager (AI/ML product strategy, model selection, evals, data, roadmap, responsible AI) — verify vs `pd-pm`
+- [ ] tc-devrel — Developer Advocate / DevRel (docs, demos, community, feedback loop, content, DX) — likely novel
+- [ ] pd-growthpm — Growth Product Manager (activation, retention, experiments, funnel, PLG) — verify vs `pd-pm`/`sm-growth`
+- [ ] pd-datapm — Data Product Manager (data platforms, pipelines, governance, stakeholders, metrics) — verify vs `pd-pm`
+
+Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
+- [ ] hc-casemgr — RN Case Manager / Utilization Review Nurse (care coordination, discharge planning, medical necessity, payers)
+- [ ] hc-cno — Chief Nursing Officer (nursing strategy, staffing, quality, patient safety, budgets, leadership)
+- [ ] hc-infprev — Infection Preventionist (surveillance, HAI prevention, outbreak response, policy, reporting) — verify vs `hc-rn`
+- [ ] hc-cdi — Clinical Documentation Integrity Specialist (documentation, coding accuracy, queries, DRGs) — verify vs `hc-coder`
+
+Finance & Accounting / Banking (fields `fin` / `bank`) — cubes `audit`/`accops` / `bk-spec`:
+- [ ] fa-secrep — SEC Reporting / Technical Accounting Manager (10-K/10-Q, GAAP research, disclosures, close) — verify vs `fa-ctrl`
+- [ ] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst (underwriting, DSCR, LTV, property cash flows) — verify vs `bk-credit`/`fin-reanalyst`
+
+Sales & Marketing (field `sales`) — cube `sm-spec`:
+- [ ] sm-lifecycle — Lifecycle / Retention Marketing Manager (CRM, email/SMS, segmentation, automation, churn)
+- [ ] sm-abm — Account-Based Marketing (ABM) Manager (target accounts, orchestration, sales alignment, intent data)
+- [ ] sm-fieldmktg — Field & Events Marketing Manager (events, webinars, regional pipeline, sponsorships, ROI)
+- [ ] sm-csops — Customer Success Operations Manager (health scores, playbooks, tooling, renewals/churn analytics) — verify vs `sm-csm`/`sm-revops`
+
+HR & People (field `hr`) — cube `hr-ops`:
+- [ ] hr-peopleanalytics — People Analytics Manager (HR metrics, attrition modeling, surveys, dashboards, workforce planning)
+- [ ] hr-od — Organizational Development Consultant (change, culture, team effectiveness, assessments, facilitation)
+
+Legal (field `biz`) — cube `legal`:
+- [ ] lg-ediscovery — eDiscovery / Litigation Support Manager (EDRM, holds, collection, review, productions, ESI)
+
+Engineering & Construction (field `eng`) — cube `en-spec`:
+- [ ] en-water — Water / Wastewater Engineer (treatment, hydraulics, permits, Clean Water Act, design) — verify vs `en-env`
+- [ ] en-transport — Transportation / Traffic Engineer (roadway design, traffic studies, signals, MUTCD, safety)
+
+Business & Operations (field `biz`) — cube `consult`:
+- [ ] biz-bizops — Business Operations (BizOps) Manager (cross-functional ops, metrics, process, planning) — verify vs `cs-ops`
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
@@ -411,3 +449,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] en-mep — MEP / Building Systems Engineer — 2026-11-18 (placed in `engcore` cube)
 - [x] tr-boilermaker — Boilermaker — 2026-11-18 (placed in `trades-core` cube)
 - [x] tr-crane — Crane Operator — 2026-11-18 (placed in `trades-core` cube)
+- [x] biz-esg — ESG / Sustainability Manager — 2026-11-19 (placed in `consult` cube)
+- [x] fin-reanalyst — Real Estate / Investment Analyst — 2026-11-19 (placed in `finspec` cube)
+- [x] sm-growth — Growth Marketing Manager — 2026-11-19 (placed in `sm-spec` cube)
+- [x] sm-ecommerce — E-commerce Manager — 2026-11-19 (placed in `sm-spec` cube)
+- [x] md-motion — Motion Designer / Animator — 2026-11-19 (placed in `media-core` cube)
+- [x] hs-merchandiser — Retail Buyer / Merchandiser — 2026-11-19 (placed in `hosp-core` cube)
