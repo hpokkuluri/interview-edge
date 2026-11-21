@@ -245,12 +245,12 @@ Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitali
 
 Technology & Product (field `tech`) — cubes `prod` / `swe`:
 - [ ] ai-pm — AI Product Manager (AI/ML product strategy, model selection, evals, data, roadmap, responsible AI) — verify vs `pd-pm`
-- [ ] tc-devrel — Developer Advocate / DevRel (docs, demos, community, feedback loop, content, DX) — likely novel
+- [x] tc-devrel — Developer Advocate / DevRel — 2026-11-21 (built — see Done)
 - [ ] pd-growthpm — Growth Product Manager (activation, retention, experiments, funnel, PLG) — verify vs `pd-pm`/`sm-growth`
 - [ ] pd-datapm — Data Product Manager (data platforms, pipelines, governance, stakeholders, metrics) — verify vs `pd-pm`
 
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
-- [ ] hc-casemgr — RN Case Manager / Utilization Review Nurse (care coordination, discharge planning, medical necessity, payers)
+- [x] hc-casemgr — RN Case Manager / Utilization Review Nurse — 2026-11-21 (built — see Done)
 - [ ] hc-cno — Chief Nursing Officer (nursing strategy, staffing, quality, patient safety, budgets, leadership)
 - [ ] hc-infprev — Infection Preventionist (surveillance, HAI prevention, outbreak response, policy, reporting) — verify vs `hc-rn`
 - [ ] hc-cdi — Clinical Documentation Integrity Specialist (documentation, coding accuracy, queries, DRGs) — verify vs `hc-coder`
@@ -261,20 +261,20 @@ Finance & Accounting / Banking (fields `fin` / `bank`) — cubes `audit`/`accops
 
 Sales & Marketing (field `sales`) — cube `sm-spec`:
 - [ ] sm-lifecycle — Lifecycle / Retention Marketing Manager (CRM, email/SMS, segmentation, automation, churn)
-- [ ] sm-abm — Account-Based Marketing (ABM) Manager (target accounts, orchestration, sales alignment, intent data)
+- [x] sm-abm — Account-Based Marketing (ABM) Manager — 2026-11-21 (built — see Done)
 - [ ] sm-fieldmktg — Field & Events Marketing Manager (events, webinars, regional pipeline, sponsorships, ROI)
 - [ ] sm-csops — Customer Success Operations Manager (health scores, playbooks, tooling, renewals/churn analytics) — verify vs `sm-csm`/`sm-revops`
 
 HR & People (field `hr`) — cube `hr-ops`:
-- [ ] hr-peopleanalytics — People Analytics Manager (HR metrics, attrition modeling, surveys, dashboards, workforce planning)
+- [x] hr-peopleanalytics — People Analytics Manager — 2026-11-21 (built — see Done)
 - [ ] hr-od — Organizational Development Consultant (change, culture, team effectiveness, assessments, facilitation)
 
 Legal (field `biz`) — cube `legal`:
-- [ ] lg-ediscovery — eDiscovery / Litigation Support Manager (EDRM, holds, collection, review, productions, ESI)
+- [x] lg-ediscovery — eDiscovery / Litigation Support Manager — 2026-11-21 (built — see Done)
 
 Engineering & Construction (field `eng`) — cube `en-spec`:
 - [ ] en-water — Water / Wastewater Engineer (treatment, hydraulics, permits, Clean Water Act, design) — verify vs `en-env`
-- [ ] en-transport — Transportation / Traffic Engineer (roadway design, traffic studies, signals, MUTCD, safety)
+- [x] en-transport — Transportation / Traffic Engineer — 2026-11-21 (built — see Done)
 
 Business & Operations (field `biz`) — cube `consult`:
 - [ ] biz-bizops — Business Operations (BizOps) Manager (cross-functional ops, metrics, process, planning) — verify vs `cs-ops`
@@ -455,3 +455,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] sm-ecommerce — E-commerce Manager — 2026-11-19 (placed in `sm-spec` cube)
 - [x] md-motion — Motion Designer / Animator — 2026-11-19 (placed in `media-core` cube)
 - [x] hs-merchandiser — Retail Buyer / Merchandiser — 2026-11-19 (placed in `hosp-core` cube)
+- [x] tc-devrel — Developer Advocate / DevRel — 2026-11-21 (placed in `swe` cube)
+- [x] hc-casemgr — RN Case Manager / Utilization Review Nurse — 2026-11-21 (placed in `hcare` cube)
+- [x] sm-abm — Account-Based Marketing (ABM) Manager — 2026-11-21 (placed in `sm-spec` cube)
+- [x] hr-peopleanalytics — People Analytics Manager — 2026-11-21 (placed in `hr-ops` cube)
+- [x] lg-ediscovery — eDiscovery / Litigation Support Manager — 2026-11-21 (placed in `legal` cube)
+- [x] en-transport — Transportation / Traffic Engineer — 2026-11-21 (placed in `en-spec` cube)

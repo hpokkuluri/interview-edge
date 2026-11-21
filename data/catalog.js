@@ -271,7 +271,8 @@ window.CATALOG = [
       { id: 'swe-fs', title: 'Full-Stack Engineer', level: 'Mid → Senior', blurb: 'End-to-end features, API contracts, auth, payments, deployment, monitoring.' },
       { id: 'swe-mob', title: 'Mobile Engineer (iOS / Android)', level: 'Mid → Senior', blurb: 'SwiftUI, Jetpack Compose, React Native, offline, performance, releases.' },
       { id: 'swe-staff', title: 'Staff / Principal Engineer', level: 'Staff · Principal', blurb: 'Technical strategy, cross-team architecture, influence, reliability, mentoring.' },
-      { id: 'tc-gamedev', title: 'Game Developer / Gameplay Engineer', level: 'Mid → Senior', blurb: 'Game loop, delta time, frame budget, physics and collision, ECS, game feel, networking, optimization.' }
+      { id: 'tc-gamedev', title: 'Game Developer / Gameplay Engineer', level: 'Mid → Senior', blurb: 'Game loop, delta time, frame budget, physics and collision, ECS, game feel, networking, optimization.' },
+      { id: 'tc-devrel', title: 'Developer Advocate / DevRel', level: 'Mid → Senior', blurb: 'Developer experience, docs and demos, community, feedback loop to product, activation metrics, talks, authenticity.' }
     ]
   },
   {
@@ -414,7 +415,8 @@ window.CATALOG = [
       { id: 'hc-nm', title: 'Nurse Manager / Director of Nursing', level: 'Manager → Director', blurb: 'Staffing, HPPD, quality, HCAHPS, retention, just culture, Joint Commission.' },
       { id: 'hc-rcm', title: 'Revenue Cycle Manager', level: 'Manager', blurb: 'Denials, AR days, coding, prior auth, payers, compliance, collections.' },
       { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' },
-      { id: 'hc-claims', title: 'Medical Claims Examiner / Health Claims Analyst', level: 'Entry → Senior', blurb: 'Eligibility, benefits/coverage, CPT/ICD, EOBs, adjudication, denials & appeals, payer rules, compliance.' }
+      { id: 'hc-claims', title: 'Medical Claims Examiner / Health Claims Analyst', level: 'Entry → Senior', blurb: 'Eligibility, benefits/coverage, CPT/ICD, EOBs, adjudication, denials & appeals, payer rules, compliance.' },
+      { id: 'hc-casemgr', title: 'RN Case Manager / Utilization Review Nurse', level: 'Mid → Senior', blurb: 'Utilization review, InterQual/MCG, level of care, discharge planning, care coordination, payers, denials, documentation.' }
     ]
   },
   {
@@ -509,7 +511,8 @@ window.CATALOG = [
       { id: 'lg-litig', title: 'Litigation Attorney / Trial Lawyer', level: 'Entry → Senior', blurb: 'Case assessment, civil procedure, discovery, legal writing, advocacy, settlement, ethics.' },
       { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' },
       { id: 'lg-immig', title: 'Immigration Attorney', level: 'Entry → Senior', blurb: 'Visas and green cards, eligibility analysis, RFEs, removal defense, deadlines, candor, client counseling.' },
-      { id: 'lg-legalops', title: 'Legal Operations Manager', level: 'Mid → Senior', blurb: 'CLM, outside counsel and spend management, e-billing, intake, legal tech, metrics, process and stewardship.' }
+      { id: 'lg-legalops', title: 'Legal Operations Manager', level: 'Mid → Senior', blurb: 'CLM, outside counsel and spend management, e-billing, intake, legal tech, metrics, process and stewardship.' },
+      { id: 'lg-ediscovery', title: 'eDiscovery / Litigation Support Manager', level: 'Mid → Senior', blurb: 'EDRM, legal holds, preservation, collection, processing, TAR, privilege, productions, proportionality, defensibility.' }
     ]
   },
   {
@@ -535,7 +538,8 @@ window.CATALOG = [
       { id: 'hr-hris', title: 'HRIS / People Systems Analyst', level: 'Mid → Senior', blurb: 'Workday/SuccessFactors, data integrity, reporting, security, integrations.' },
       { id: 'hr-ld', title: 'Learning & Development Manager', level: 'Manager', blurb: 'Needs analysis, ADDIE, training, leadership programs, LMS, evaluation.' },
       { id: 'hr-er', title: 'Employee Relations Manager', level: 'Mid → Senior', blurb: 'Investigations, performance, accommodations, terminations, policy, risk.' },
-      { id: 'hr-payroll', title: 'Payroll Manager', level: 'Mid → Manager', blurb: 'Multi-state payroll, taxes, garnishments, audits, compliance, systems.' }
+      { id: 'hr-payroll', title: 'Payroll Manager', level: 'Mid → Manager', blurb: 'Multi-state payroll, taxes, garnishments, audits, compliance, systems.' },
+      { id: 'hr-peopleanalytics', title: 'People Analytics Manager', level: 'Mid → Senior', blurb: 'Workforce metrics, attrition modeling, engagement surveys, dashboards, data quality, ethics, workforce planning.' }
     ]
   },
   {
@@ -552,7 +556,8 @@ window.CATALOG = [
       { id: 'sm-mktops', title: 'Marketing Operations Manager', level: 'Mid → Senior', blurb: 'Martech stack, lead lifecycle and scoring, attribution, routing, reporting, sales alignment.' },
       { id: 'sm-pricing', title: 'Pricing Analyst / Manager', level: 'Mid → Senior', blurb: 'Pricing strategy, elasticity, margin and the price waterfall, packaging, discounting, willingness-to-pay.' },
       { id: 'sm-growth', title: 'Growth Marketing Manager', level: 'Mid → Senior', blurb: 'Experimentation, AARRR funnel, CAC/LTV, activation, retention, channels, cohorts, north star metric.' },
-      { id: 'sm-ecommerce', title: 'E-commerce Manager', level: 'Mid → Senior', blurb: 'Conversion rate, merchandising, platform, promotions, AOV, cart abandonment, analytics, fulfillment.' }
+      { id: 'sm-ecommerce', title: 'E-commerce Manager', level: 'Mid → Senior', blurb: 'Conversion rate, merchandising, platform, promotions, AOV, cart abandonment, analytics, fulfillment.' },
+      { id: 'sm-abm', title: 'Account-Based Marketing (ABM) Manager', level: 'Mid → Senior', blurb: 'Target account lists, ICP, intent data, tiering, sales alignment, multi-channel orchestration, account-level measurement.' }
     ]
   },
   {
@@ -564,7 +569,8 @@ window.CATALOG = [
       { id: 'en-env', title: 'Environmental Engineer', level: 'Mid → Senior', blurb: 'Permits, air/water/waste, EPA/Clean Air Act, remediation, sampling, reporting.' },
       { id: 'en-est', title: 'Construction Estimator', level: 'Mid → Senior', blurb: 'Takeoffs, bids, unit costs, quantities, subcontractors, contingency, margins.' },
       { id: 'en-super', title: 'Site Superintendent / Field Supervisor', level: 'Mid → Senior', blurb: 'Scheduling, crews, subs, safety, quality, inspections, daily logs, closeout.' },
-      { id: 'en-safety', title: 'Construction Safety / HSE Manager', level: 'Mid → Senior', blurb: 'OSHA, JHAs, incident investigation, training, audits, fall protection, culture.' }
+      { id: 'en-safety', title: 'Construction Safety / HSE Manager', level: 'Mid → Senior', blurb: 'OSHA, JHAs, incident investigation, training, audits, fall protection, culture.' },
+      { id: 'en-transport', title: 'Transportation / Traffic Engineer', level: 'Mid → Senior', blurb: 'Roadway geometry, MUTCD, signal warrants and timing, traffic studies, level of service, safety analysis, multimodal.' }
     ]
   },
   {
