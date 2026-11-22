@@ -92,10 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] sm-revops — Sales Operations / RevOps (at 12, add ~38)
-- [ ] sm-sdr — Sales Development Rep (SDR / BDR) (at 12, add ~38)
-- [ ] ls-hoq — Head of Quality / VP Quality (at 13, add ~37)
-- [ ] sec-pentest — Penetration Tester / Ethical Hacker (at 18, add ~32)
 - [ ] ls-msl — Medical Science Liaison (at 22, add ~28)
 - [ ] ls-qc — QC Lab Analyst (at 22, add ~28)
 - [ ] ls-sales — Pharma Sales Rep / Key Account Manager (at 22, add ~28)
@@ -125,6 +121,10 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] sm-revops — Sales Operations / RevOps — 2026-11-22
+- [x] sm-sdr — Sales Development Rep (SDR / BDR) — 2026-11-22
+- [x] ls-hoq — Head of Quality / VP Quality — 2026-11-22
+- [x] sec-pentest — Penetration Tester / Ethical Hacker — 2026-11-22
 - [x] hr-hris — HRIS / People Systems Analyst — 2026-11-16
 - [x] hr-ld — Learning & Development Manager — 2026-11-16
 - [x] hr-payroll — Payroll Manager — 2026-11-16
