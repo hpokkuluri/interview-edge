@@ -354,7 +354,8 @@ window.CATALOG = [
       { id: 'pd-pm', title: 'Product Manager / Product Owner', level: 'Mid → Senior', blurb: 'Discovery, prioritization (RICE), metrics, A/B tests, roadmap, launch.' },
       { id: 'pd-sm', title: 'Scrum Master / Agile Coach', level: 'Mid → Senior', blurb: 'Scrum events, coaching, flow metrics, retros, SAFe, transformation.' },
       { id: 'pd-tpm', title: 'Technical Program / Project Manager', level: 'Senior', blurb: 'Critical path, risks, dependencies, EVM, migrations, ERP programs.' },
-      { id: 'pd-pmo', title: 'PMO Director / Head of Delivery', level: 'Director', blurb: 'Portfolio prioritization, intake, capacity, governance, benefits.' }
+      { id: 'pd-pmo', title: 'PMO Director / Head of Delivery', level: 'Director', blurb: 'Portfolio prioritization, intake, capacity, governance, benefits.' },
+      { id: 'ai-pm', title: 'AI Product Manager', level: 'Mid → Senior', blurb: 'AI/ML product strategy, model selection, RAG vs fine-tune, evals, hallucinations, responsible AI, cost and latency.' }
     ]
   },
   {
@@ -416,7 +417,8 @@ window.CATALOG = [
       { id: 'hc-rcm', title: 'Revenue Cycle Manager', level: 'Manager', blurb: 'Denials, AR days, coding, prior auth, payers, compliance, collections.' },
       { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' },
       { id: 'hc-claims', title: 'Medical Claims Examiner / Health Claims Analyst', level: 'Entry → Senior', blurb: 'Eligibility, benefits/coverage, CPT/ICD, EOBs, adjudication, denials & appeals, payer rules, compliance.' },
-      { id: 'hc-casemgr', title: 'RN Case Manager / Utilization Review Nurse', level: 'Mid → Senior', blurb: 'Utilization review, InterQual/MCG, level of care, discharge planning, care coordination, payers, denials, documentation.' }
+      { id: 'hc-casemgr', title: 'RN Case Manager / Utilization Review Nurse', level: 'Mid → Senior', blurb: 'Utilization review, InterQual/MCG, level of care, discharge planning, care coordination, payers, denials, documentation.' },
+      { id: 'hc-cno', title: 'Chief Nursing Officer (CNO)', level: 'Executive', blurb: 'Nursing strategy, safe staffing, quality and patient safety, workforce and retention, budget, nurse leadership, just culture.' }
     ]
   },
   {
@@ -539,7 +541,8 @@ window.CATALOG = [
       { id: 'hr-ld', title: 'Learning & Development Manager', level: 'Manager', blurb: 'Needs analysis, ADDIE, training, leadership programs, LMS, evaluation.' },
       { id: 'hr-er', title: 'Employee Relations Manager', level: 'Mid → Senior', blurb: 'Investigations, performance, accommodations, terminations, policy, risk.' },
       { id: 'hr-payroll', title: 'Payroll Manager', level: 'Mid → Manager', blurb: 'Multi-state payroll, taxes, garnishments, audits, compliance, systems.' },
-      { id: 'hr-peopleanalytics', title: 'People Analytics Manager', level: 'Mid → Senior', blurb: 'Workforce metrics, attrition modeling, engagement surveys, dashboards, data quality, ethics, workforce planning.' }
+      { id: 'hr-peopleanalytics', title: 'People Analytics Manager', level: 'Mid → Senior', blurb: 'Workforce metrics, attrition modeling, engagement surveys, dashboards, data quality, ethics, workforce planning.' },
+      { id: 'hr-od', title: 'Organizational Development Consultant', level: 'Mid → Senior', blurb: 'Diagnosis, change management, culture, team effectiveness, facilitation, resistance, OD models, measuring impact.' }
     ]
   },
   {
@@ -557,7 +560,9 @@ window.CATALOG = [
       { id: 'sm-pricing', title: 'Pricing Analyst / Manager', level: 'Mid → Senior', blurb: 'Pricing strategy, elasticity, margin and the price waterfall, packaging, discounting, willingness-to-pay.' },
       { id: 'sm-growth', title: 'Growth Marketing Manager', level: 'Mid → Senior', blurb: 'Experimentation, AARRR funnel, CAC/LTV, activation, retention, channels, cohorts, north star metric.' },
       { id: 'sm-ecommerce', title: 'E-commerce Manager', level: 'Mid → Senior', blurb: 'Conversion rate, merchandising, platform, promotions, AOV, cart abandonment, analytics, fulfillment.' },
-      { id: 'sm-abm', title: 'Account-Based Marketing (ABM) Manager', level: 'Mid → Senior', blurb: 'Target account lists, ICP, intent data, tiering, sales alignment, multi-channel orchestration, account-level measurement.' }
+      { id: 'sm-abm', title: 'Account-Based Marketing (ABM) Manager', level: 'Mid → Senior', blurb: 'Target account lists, ICP, intent data, tiering, sales alignment, multi-channel orchestration, account-level measurement.' },
+      { id: 'sm-partner', title: 'Channel / Partnerships Manager', level: 'Mid → Senior', blurb: 'Partner recruitment, enablement, co-selling, deal registration, channel conflict, partner economics, mindshare.' },
+      { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' }
     ]
   },
   {
@@ -640,7 +645,8 @@ window.CATALOG = [
       { id: 'gv-epi', title: 'Epidemiologist', level: 'Mid → Senior', blurb: 'Surveillance, study design, outbreak investigation, biostatistics, bias, risk communication.' },
       { id: 'gv-fire', title: 'Firefighter / Fire Captain', level: 'Entry → Senior', blurb: 'Fire behavior, incident command, EMS, rescue, safety, prevention, leadership.' },
       { id: 'gv-revenue', title: 'Tax Examiner / Revenue Agent', level: 'Entry → Senior', blurb: 'Return examination, tax law, audits, integrity, documentation, fraud indicators.' },
-      { id: 'gv-evidence', title: 'Property & Evidence Technician', level: 'Entry → Senior', blurb: 'Chain of custody, intake, storage, disposal, IAPE standards, testimony, inventory audits.' }
+      { id: 'gv-evidence', title: 'Property & Evidence Technician', level: 'Entry → Senior', blurb: 'Chain of custody, intake, storage, disposal, IAPE standards, testimony, inventory audits.' },
+      { id: 'gv-parole', title: 'Probation / Parole Officer', level: 'Entry → Senior', blurb: 'Community supervision, risk-needs assessment, case management, violations and graduated sanctions, de-escalation, ethics, safety.' }
     ]
   },
   {

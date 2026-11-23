@@ -230,13 +230,13 @@ Finance & Business (field `fin` / `biz`) — cubes `finspec` / `consult`:
 Sales & Marketing (field `sales`) — cube `salesmkt` / `sm-spec`:
 - [x] sm-growth — Growth Marketing Manager — 2026-11-19 (built — see Done)
 - [x] sm-ecommerce — E-commerce Manager — 2026-11-19 (built — see Done)
-- [ ] sm-partner — Channel / Partnerships Manager (partner recruitment, enablement, co-sell, deal reg, GTM)
+- [x] sm-partner — Channel / Partnerships Manager — 2026-11-23 (built — see Done)
 
 Media, Creative & Communications (field `media`) — cube `media-core` "Creative & Comms":
 - [x] md-motion — Motion Designer / Animator — 2026-11-19 (built — see Done)
 
 Government & Public Sector (field `gov`) — cube `gov-core` "Public Sector":
-- [ ] gv-parole — Probation / Parole Officer (supervision, risk assessment, case management, de-escalation, ethics)
+- [x] gv-parole — Probation / Parole Officer — 2026-11-23 (built — see Done)
 
 Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitality & Retail":
 - [x] hs-merchandiser — Retail Buyer / Merchandiser — 2026-11-19 (built — see Done)
@@ -244,14 +244,14 @@ Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitali
 ### Fresh batch (added 2026-11-19) — in-demand real titles, good salaries; run the catalog/src novelty check and skip any semantic duplicate before building
 
 Technology & Product (field `tech`) — cubes `prod` / `swe`:
-- [ ] ai-pm — AI Product Manager (AI/ML product strategy, model selection, evals, data, roadmap, responsible AI) — verify vs `pd-pm`
+- [x] ai-pm — AI Product Manager — 2026-11-23 (built — distinct from `pd-pm`: AI/ML strategy, model selection, RAG/fine-tune, evals, responsible AI — see Done)
 - [x] tc-devrel — Developer Advocate / DevRel — 2026-11-21 (built — see Done)
 - [ ] pd-growthpm — Growth Product Manager (activation, retention, experiments, funnel, PLG) — verify vs `pd-pm`/`sm-growth`
 - [ ] pd-datapm — Data Product Manager (data platforms, pipelines, governance, stakeholders, metrics) — verify vs `pd-pm`
 
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
 - [x] hc-casemgr — RN Case Manager / Utilization Review Nurse — 2026-11-21 (built — see Done)
-- [ ] hc-cno — Chief Nursing Officer (nursing strategy, staffing, quality, patient safety, budgets, leadership)
+- [x] hc-cno — Chief Nursing Officer — 2026-11-23 (built — see Done)
 - [ ] hc-infprev — Infection Preventionist (surveillance, HAI prevention, outbreak response, policy, reporting) — verify vs `hc-rn`
 - [ ] hc-cdi — Clinical Documentation Integrity Specialist (documentation, coding accuracy, queries, DRGs) — verify vs `hc-coder`
 
@@ -260,14 +260,14 @@ Finance & Accounting / Banking (fields `fin` / `bank`) — cubes `audit`/`accops
 - [ ] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst (underwriting, DSCR, LTV, property cash flows) — verify vs `bk-credit`/`fin-reanalyst`
 
 Sales & Marketing (field `sales`) — cube `sm-spec`:
-- [ ] sm-lifecycle — Lifecycle / Retention Marketing Manager (CRM, email/SMS, segmentation, automation, churn)
+- [x] sm-lifecycle — Lifecycle / Retention Marketing Manager — 2026-11-23 (built — see Done)
 - [x] sm-abm — Account-Based Marketing (ABM) Manager — 2026-11-21 (built — see Done)
 - [ ] sm-fieldmktg — Field & Events Marketing Manager (events, webinars, regional pipeline, sponsorships, ROI)
 - [ ] sm-csops — Customer Success Operations Manager (health scores, playbooks, tooling, renewals/churn analytics) — verify vs `sm-csm`/`sm-revops`
 
 HR & People (field `hr`) — cube `hr-ops`:
 - [x] hr-peopleanalytics — People Analytics Manager — 2026-11-21 (built — see Done)
-- [ ] hr-od — Organizational Development Consultant (change, culture, team effectiveness, assessments, facilitation)
+- [x] hr-od — Organizational Development Consultant — 2026-11-23 (built — see Done)
 
 Legal (field `biz`) — cube `legal`:
 - [x] lg-ediscovery — eDiscovery / Litigation Support Manager — 2026-11-21 (built — see Done)
@@ -461,3 +461,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hr-peopleanalytics — People Analytics Manager — 2026-11-21 (placed in `hr-ops` cube)
 - [x] lg-ediscovery — eDiscovery / Litigation Support Manager — 2026-11-21 (placed in `legal` cube)
 - [x] en-transport — Transportation / Traffic Engineer — 2026-11-21 (placed in `en-spec` cube)
+- [x] sm-partner — Channel / Partnerships Manager — 2026-11-23 (placed in `sm-spec` cube)
+- [x] sm-lifecycle — Lifecycle / Retention Marketing Manager — 2026-11-23 (placed in `sm-spec` cube)
+- [x] ai-pm — AI Product Manager — 2026-11-23 (placed in `prod` cube)
+- [x] hc-cno — Chief Nursing Officer — 2026-11-23 (placed in `hcare` cube)
+- [x] gv-parole — Probation / Parole Officer — 2026-11-23 (placed in `gov-core` cube)
+- [x] hr-od — Organizational Development Consultant — 2026-11-23 (placed in `hr-ops` cube)
