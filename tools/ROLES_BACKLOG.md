@@ -92,12 +92,6 @@ questions by adding `src/<id>-N.js` files (don't duplicate existing question tex
 these before adding brand-new roles. The hw-* (Hardware Engineering, added 2026-11-04 at the owner's request) go first. (Module banks `ora-mod-*` aggregate questions from the Oracle
 role banks automatically and are handled separately — not listed here.)
 
-- [ ] ls-msl — Medical Science Liaison (at 22, add ~28)
-- [ ] ls-qc — QC Lab Analyst (at 22, add ~28)
-- [ ] ls-sales — Pharma Sales Rep / Key Account Manager (at 22, add ~28)
-- [ ] ls-sp — Statistical Programmer (SAS / R) (at 23, add ~27)
-- [ ] ls-val — Validation Engineer (Equipment, Process, Cleaning) (at 23, add ~27)
-- [ ] ls-bio — Biostatistician (at 24, add ~26)
 - [ ] ls-cpm — Clinical Project Manager / Clinical Ops Lead (at 24, add ~26)
 - [ ] ls-ctc — Clinical Trial Coordinator / Assistant (at 24, add ~26)
 - [ ] ls-cdm — Clinical Data Manager (at 25, add ~25)
@@ -121,6 +115,12 @@ role banks automatically and are handled separately — not listed here.)
 
 ## Topped up
 (Existing roles brought to 50+ get moved here by the daily task.)
+- [x] ls-msl — Medical Science Liaison — 2026-11-24
+- [x] ls-qc — QC Lab Analyst — 2026-11-24
+- [x] ls-sales — Pharma Sales Rep / Key Account Manager — 2026-11-24
+- [x] ls-sp — Statistical Programmer (SAS / R) — 2026-11-24
+- [x] ls-val — Validation Engineer (Equipment, Process, Cleaning) — 2026-11-24
+- [x] ls-bio — Biostatistician — 2026-11-24
 - [x] sm-revops — Sales Operations / RevOps — 2026-11-22
 - [x] sm-sdr — Sales Development Rep (SDR / BDR) — 2026-11-22
 - [x] ls-hoq — Head of Quality / VP Quality — 2026-11-22
