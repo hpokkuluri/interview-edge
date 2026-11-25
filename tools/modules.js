@@ -13,5 +13,6 @@ module.exports = {
   'ora-mod-cst':  ['Costing'],
   'ora-mod-pim':  ['Product Hub', 'Master Data'],
   'ora-mod-plan': ['Planning', 'Manufacturing', 'Quality', 'Outsourced Manufacturing', 'Maintenance'],
+  'ora-mod-ppm':  ['Projects'],
   'ora-mod-ai':   ['Redwood', 'AI Agent Studio', 'Fusion Platform', 'AI', 'Fusion Basics', 'Quarterly Updates']
 };
