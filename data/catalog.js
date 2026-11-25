@@ -52,7 +52,7 @@ window.CATALOG = [
       { id: 'ora-mod-cst', title: 'Cost Management', level: 'SCM', blurb: 'Cost orgs and books, standard/average cost, receipt and cost accounting.' },
       { id: 'ora-mod-pim', title: 'Product Hub / Product Management', level: 'SCM', blurb: 'Item classes, templates, NIRs, change orders, item data governance.' },
       { id: 'ora-mod-plan', title: 'Planning, Manufacturing & Quality', level: 'SCM', blurb: 'Supply/demand planning, work orders, costing of production, inspections.' },
-      { id: 'ora-mod-ppm', title: 'Projects Integration for Finance', level: 'Finance', blurb: 'Project Costing vs SCM costing, billing and revenue, construction and ETO, SLA, intercompany, allocations.' },
+      { id: 'ora-mod-ppm', title: 'Projects Integration for Finance', level: 'Finance', blurb: 'Project Costing vs SCM costing, billing and revenue, construction and ETO, SLA, intercompany, allocations, ERP-to-EPM integration.' },
       { id: 'ora-mod-ai', title: 'Redwood, AI Agent Studio & Platform', level: 'Platform', blurb: 'Redwood pages, Visual Builder Studio, AI agents, events and APIs.' }
     ]
   },
