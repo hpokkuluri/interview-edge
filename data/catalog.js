@@ -171,7 +171,8 @@ window.CATALOG = [
       { id: 'fa-acct', title: 'Staff / Senior Accountant (GL & Close)', level: 'Entry → Senior', blurb: 'Journals, accruals, reconciliations, month-end close, fixed assets.' },
       { id: 'fa-ap', title: 'Accounts Payable', level: 'Specialist → Manager', blurb: 'Invoice processing, 3-way match, vendor management, payments, 1099.' },
       { id: 'fa-ar', title: 'Accounts Receivable, Credit & Collections', level: 'Specialist → Manager', blurb: 'Billing, cash application, collections, credit, DSO, disputes.' },
-      { id: 'fa-ctrl', title: 'Accounting Manager / Controller', level: 'Manager → Controller', blurb: 'Close leadership, reporting, controls, audit, policies, team.' }
+      { id: 'fa-ctrl', title: 'Accounting Manager / Controller', level: 'Manager → Controller', blurb: 'Close leadership, reporting, controls, audit, policies, team.' },
+      { id: 'fa-secrep', title: 'SEC Reporting / Technical Accounting Manager', level: 'Manager → Senior', blurb: '10-K/10-Q filings, EDGAR, technical accounting memos (ASC), ASC 606/842/805, EPS, non-GAAP, SOX/ICFR, auditor coordination.' }
     ]
   },
   {
@@ -355,7 +356,9 @@ window.CATALOG = [
       { id: 'pd-sm', title: 'Scrum Master / Agile Coach', level: 'Mid → Senior', blurb: 'Scrum events, coaching, flow metrics, retros, SAFe, transformation.' },
       { id: 'pd-tpm', title: 'Technical Program / Project Manager', level: 'Senior', blurb: 'Critical path, risks, dependencies, EVM, migrations, ERP programs.' },
       { id: 'pd-pmo', title: 'PMO Director / Head of Delivery', level: 'Director', blurb: 'Portfolio prioritization, intake, capacity, governance, benefits.' },
-      { id: 'ai-pm', title: 'AI Product Manager', level: 'Mid → Senior', blurb: 'AI/ML product strategy, model selection, RAG vs fine-tune, evals, hallucinations, responsible AI, cost and latency.' }
+      { id: 'ai-pm', title: 'AI Product Manager', level: 'Mid → Senior', blurb: 'AI/ML product strategy, model selection, RAG vs fine-tune, evals, hallucinations, responsible AI, cost and latency.' },
+      { id: 'pd-growthpm', title: 'Growth Product Manager', level: 'Mid → Senior', blurb: 'AARRR funnel, activation and retention, experimentation, A/B test rigor, growth loops, PLG, north star metric, cohorts.' },
+      { id: 'pd-datapm', title: 'Data Product Manager', level: 'Mid → Senior', blurb: 'Data platforms and pipelines (ETL/ELT), data quality and SLAs, metrics governance, lineage, privacy, ML products, cost.' }
     ]
   },
   {
@@ -418,7 +421,8 @@ window.CATALOG = [
       { id: 'hc-epic', title: 'Epic Analyst / Clinical Informatics', level: 'Mid → Senior', blurb: 'Build, testing, upgrades, HL7/FHIR, CDS, alert fatigue, go-lives.' },
       { id: 'hc-claims', title: 'Medical Claims Examiner / Health Claims Analyst', level: 'Entry → Senior', blurb: 'Eligibility, benefits/coverage, CPT/ICD, EOBs, adjudication, denials & appeals, payer rules, compliance.' },
       { id: 'hc-casemgr', title: 'RN Case Manager / Utilization Review Nurse', level: 'Mid → Senior', blurb: 'Utilization review, InterQual/MCG, level of care, discharge planning, care coordination, payers, denials, documentation.' },
-      { id: 'hc-cno', title: 'Chief Nursing Officer (CNO)', level: 'Executive', blurb: 'Nursing strategy, safe staffing, quality and patient safety, workforce and retention, budget, nurse leadership, just culture.' }
+      { id: 'hc-cno', title: 'Chief Nursing Officer (CNO)', level: 'Executive', blurb: 'Nursing strategy, safe staffing, quality and patient safety, workforce and retention, budget, nurse leadership, just culture.' },
+      { id: 'hc-infprev', title: 'Infection Preventionist', level: 'Mid → Senior', blurb: 'HAI surveillance (CLABSI/CAUTI/SSI), bundles, hand hygiene, isolation precautions, outbreak response, NHSN/SIR, stewardship.' }
     ]
   },
   {
@@ -431,6 +435,7 @@ window.CATALOG = [
       { id: 'hc-medtech', title: 'Medical Lab Technologist', level: 'Entry → Senior', blurb: 'Testing, QC, CLIA, specimen handling, accuracy, result integrity.' },
       { id: 'hc-radtech', title: 'Radiologic Technologist', level: 'Entry → Senior', blurb: 'Imaging, positioning, radiation safety, ALARA, PACS, patient care.' },
       { id: 'hc-coder', title: 'Medical Coder / Biller', level: 'Entry → Senior', blurb: 'ICD-10, CPT, compliance, denials, documentation, accuracy.' },
+      { id: 'hc-cdi', title: 'Clinical Documentation Integrity Specialist', level: 'Mid → Senior', blurb: 'Concurrent record review, compliant provider queries, CC/MCC and DRGs, CMI/SOI/ROM, clinical validation, denials, compliance.' },
       { id: 'hc-practice-mgr', title: 'Medical Practice Manager', level: 'Mid → Senior', blurb: 'Operations, staff, billing, scheduling, compliance, patient experience.' },
       { id: 'hc-pa', title: 'Physician Assistant', level: 'Mid → Senior', blurb: 'Assessment, diagnosis, prescribing, scope, collaboration, patient care.' },
       { id: 'hc-ot', title: 'Occupational Therapist', level: 'Entry → Senior', blurb: 'Evaluation, treatment plans, ADLs, adaptation, outcomes, documentation.' },
@@ -562,7 +567,8 @@ window.CATALOG = [
       { id: 'sm-ecommerce', title: 'E-commerce Manager', level: 'Mid → Senior', blurb: 'Conversion rate, merchandising, platform, promotions, AOV, cart abandonment, analytics, fulfillment.' },
       { id: 'sm-abm', title: 'Account-Based Marketing (ABM) Manager', level: 'Mid → Senior', blurb: 'Target account lists, ICP, intent data, tiering, sales alignment, multi-channel orchestration, account-level measurement.' },
       { id: 'sm-partner', title: 'Channel / Partnerships Manager', level: 'Mid → Senior', blurb: 'Partner recruitment, enablement, co-selling, deal registration, channel conflict, partner economics, mindshare.' },
-      { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' }
+      { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' },
+      { id: 'sm-fieldmktg', title: 'Field & Events Marketing Manager', level: 'Mid → Senior', blurb: 'Trade shows, conferences, webinars, regional pipeline, sales alignment, lead follow-up, budget, event ROI and attribution.' }
     ]
   },
   {

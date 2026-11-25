@@ -246,23 +246,23 @@ Hospitality, Retail & Real Estate (field `hosp`) — cube `hosp-core` "Hospitali
 Technology & Product (field `tech`) — cubes `prod` / `swe`:
 - [x] ai-pm — AI Product Manager — 2026-11-23 (built — distinct from `pd-pm`: AI/ML strategy, model selection, RAG/fine-tune, evals, responsible AI — see Done)
 - [x] tc-devrel — Developer Advocate / DevRel — 2026-11-21 (built — see Done)
-- [ ] pd-growthpm — Growth Product Manager (activation, retention, experiments, funnel, PLG) — verify vs `pd-pm`/`sm-growth`
-- [ ] pd-datapm — Data Product Manager (data platforms, pipelines, governance, stakeholders, metrics) — verify vs `pd-pm`
+- [x] pd-growthpm — Growth Product Manager — 2026-11-25 (built — distinct from `pd-pm`/`sm-growth`: AARRR, activation/retention, experiment rigor, growth loops, PLG — see Done)
+- [x] pd-datapm — Data Product Manager — 2026-11-25 (built — distinct from `pd-pm`: data platforms, ETL/ELT, quality/SLAs, metrics governance, ML products — see Done)
 
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
 - [x] hc-casemgr — RN Case Manager / Utilization Review Nurse — 2026-11-21 (built — see Done)
 - [x] hc-cno — Chief Nursing Officer — 2026-11-23 (built — see Done)
-- [ ] hc-infprev — Infection Preventionist (surveillance, HAI prevention, outbreak response, policy, reporting) — verify vs `hc-rn`
-- [ ] hc-cdi — Clinical Documentation Integrity Specialist (documentation, coding accuracy, queries, DRGs) — verify vs `hc-coder`
+- [x] hc-infprev — Infection Preventionist — 2026-11-25 (built — distinct from `hc-rn`: HAI surveillance, bundles, isolation, outbreak response, NHSN/SIR — see Done)
+- [x] hc-cdi — Clinical Documentation Integrity Specialist — 2026-11-25 (built — distinct from `hc-coder`: concurrent review, compliant queries, CC/MCC/DRGs, clinical validation — see Done)
 
 Finance & Accounting / Banking (fields `fin` / `bank`) — cubes `audit`/`accops` / `bk-spec`:
-- [ ] fa-secrep — SEC Reporting / Technical Accounting Manager (10-K/10-Q, GAAP research, disclosures, close) — verify vs `fa-ctrl`
+- [x] fa-secrep — SEC Reporting / Technical Accounting Manager — 2026-11-25 (built — distinct from `fa-ctrl`: 10-K/10-Q/EDGAR, technical accounting memos, ASC 606/842/805, EPS, non-GAAP, SOX/ICFR — see Done)
 - [ ] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst (underwriting, DSCR, LTV, property cash flows) — verify vs `bk-credit`/`fin-reanalyst`
 
 Sales & Marketing (field `sales`) — cube `sm-spec`:
 - [x] sm-lifecycle — Lifecycle / Retention Marketing Manager — 2026-11-23 (built — see Done)
 - [x] sm-abm — Account-Based Marketing (ABM) Manager — 2026-11-21 (built — see Done)
-- [ ] sm-fieldmktg — Field & Events Marketing Manager (events, webinars, regional pipeline, sponsorships, ROI)
+- [x] sm-fieldmktg — Field & Events Marketing Manager — 2026-11-25 (built — events, webinars, regional pipeline, sales alignment, lead follow-up, event ROI — see Done)
 - [ ] sm-csops — Customer Success Operations Manager (health scores, playbooks, tooling, renewals/churn analytics) — verify vs `sm-csm`/`sm-revops`
 
 HR & People (field `hr`) — cube `hr-ops`:
@@ -278,6 +278,42 @@ Engineering & Construction (field `eng`) — cube `en-spec`:
 
 Business & Operations (field `biz`) — cube `consult`:
 - [ ] biz-bizops — Business Operations (BizOps) Manager (cross-functional ops, metrics, process, planning) — verify vs `cs-ops`
+
+### Fresh batch (added 2026-11-25) — in-demand real titles, good salaries across varied verticals; run the catalog/src novelty check and skip any semantic duplicate before building
+
+Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
+- [ ] hc-phleb — Phlebotomist (venipuncture, order of draw, specimen handling/labeling, patient care, safety)
+- [ ] hc-ma — Medical Assistant (rooming, vitals, injections, EHR, scheduling, clinical + administrative) — verify vs `hc-practice-mgr`
+- [ ] hc-spd — Sterile Processing Technician (decontamination, sterilization cycles, instrument trays, tracking, Spaulding) — verify vs `hc-surgtech`
+- [ ] hc-radther — Radiation Therapist (oncology, linear accelerator, treatment planning/delivery, patient care) — verify vs `hc-radtech`
+- [ ] hc-nucmed — Nuclear Medicine Technologist (radiopharmaceuticals, imaging protocols, radiation safety, QC)
+
+Technology & Product (field `tech`) — cubes `prod` / `swe` / `cloud` / `data`:
+- [ ] tc-solarch — Solutions Architect (pre-sales/delivery cloud architecture, requirements, design, trade-offs) — verify vs `cl-arch`/`inf-ea`/`sm-se`
+- [ ] tc-observ — Observability / Monitoring Engineer (metrics, logs, traces, SLOs, alerting, on-call) — verify vs `cl-sre`
+- [ ] da-mlops — MLOps Engineer (model deployment, feature stores, CI/CD for ML, drift monitoring) — verify vs `da-ml`/`cl-devops`
+
+Finance & Business (field `fin` / `biz`) — cubes `accops` / `consult`:
+- [ ] fa-grant — Grant / Fund Accountant (restricted funds, nonprofit/government, compliance, reporting) — verify vs `fs-fund`
+- [ ] biz-tprisk — Third-Party / Vendor Risk Manager (due diligence, contracts, continuity, monitoring)
+
+Sales & Marketing (field `sales`) — cube `sm-spec`:
+- [ ] sm-cro — Conversion Rate Optimization Specialist (A/B testing, landing pages, funnel analytics, UX) — verify vs `sm-growth`/`sm-ecommerce`
+- [ ] sm-community — Community Manager (engagement, moderation, advocacy, events, metrics)
+- [ ] sm-affiliate — Affiliate / Partner Marketing Manager (programs, networks, payouts, fraud) — verify vs `sm-partner`
+- [ ] sm-cx — Customer Experience (CX) Manager (journey mapping, VoC, NPS/CSAT, cross-functional)
+
+Legal (field `biz`) — cube `legal`:
+- [ ] lg-trademark — Trademark Attorney / Specialist (clearance, filings, enforcement, portfolio) — verify vs `lg-patent`
+- [ ] lg-employment — Labor & Employment Attorney (compliance, disputes, policies, litigation) — verify vs `lg-litig`
+
+Engineering & Construction (field `eng`) — cube `en-spec` / `engcore`:
+- [ ] en-packaging — Packaging Engineer (materials, protective/transit testing, cost, sustainability, line fit)
+- [ ] en-reliability — Reliability / Maintenance Engineer (RCM, FMEA, uptime, predictive maintenance) — verify vs `en-ind`
+
+Skilled Trades & Field Services (field `trades`) — cube `trades-core`:
+- [ ] tr-heavyequip — Heavy Equipment Operator (excavators, loaders, grading, GPS, safety) — verify vs `tr-crane`
+- [ ] tr-sheetmetal — Sheet Metal Worker (fabrication, HVAC duct, layout, installation, blueprints)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
@@ -467,3 +503,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hc-cno — Chief Nursing Officer — 2026-11-23 (placed in `hcare` cube)
 - [x] gv-parole — Probation / Parole Officer — 2026-11-23 (placed in `gov-core` cube)
 - [x] hr-od — Organizational Development Consultant — 2026-11-23 (placed in `hr-ops` cube)
+- [x] pd-growthpm — Growth Product Manager — 2026-11-25 (placed in `prod` cube)
+- [x] pd-datapm — Data Product Manager — 2026-11-25 (placed in `prod` cube)
+- [x] hc-infprev — Infection Preventionist — 2026-11-25 (placed in `hcare` cube)
+- [x] hc-cdi — Clinical Documentation Integrity Specialist — 2026-11-25 (placed in `health-clin` cube)
+- [x] fa-secrep — SEC Reporting / Technical Accounting Manager — 2026-11-25 (placed in `accops` cube)
+- [x] sm-fieldmktg — Field & Events Marketing Manager — 2026-11-25 (placed in `sm-spec` cube)
