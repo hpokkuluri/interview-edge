@@ -282,24 +282,24 @@ Business & Operations (field `biz`) — cube `consult`:
 ### Fresh batch (added 2026-11-25) — in-demand real titles, good salaries across varied verticals; run the catalog/src novelty check and skip any semantic duplicate before building
 
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
-- [ ] hc-phleb — Phlebotomist (venipuncture, order of draw, specimen handling/labeling, patient care, safety)
+- [x] hc-phleb — Phlebotomist — 2026-11-26 (built — see Done)
 - [ ] hc-ma — Medical Assistant (rooming, vitals, injections, EHR, scheduling, clinical + administrative) — verify vs `hc-practice-mgr`
 - [ ] hc-spd — Sterile Processing Technician (decontamination, sterilization cycles, instrument trays, tracking, Spaulding) — verify vs `hc-surgtech`
 - [ ] hc-radther — Radiation Therapist (oncology, linear accelerator, treatment planning/delivery, patient care) — verify vs `hc-radtech`
-- [ ] hc-nucmed — Nuclear Medicine Technologist (radiopharmaceuticals, imaging protocols, radiation safety, QC)
+- [x] hc-nucmed — Nuclear Medicine Technologist — 2026-11-26 (built — see Done)
 
 Technology & Product (field `tech`) — cubes `prod` / `swe` / `cloud` / `data`:
 - [ ] tc-solarch — Solutions Architect (pre-sales/delivery cloud architecture, requirements, design, trade-offs) — verify vs `cl-arch`/`inf-ea`/`sm-se`
 - [ ] tc-observ — Observability / Monitoring Engineer (metrics, logs, traces, SLOs, alerting, on-call) — verify vs `cl-sre`
-- [ ] da-mlops — MLOps Engineer (model deployment, feature stores, CI/CD for ML, drift monitoring) — verify vs `da-ml`/`cl-devops`
+- [x] da-mlops — MLOps Engineer — 2026-11-26 (built — distinct from `da-ml`: deployment/serving, feature stores, CI/CD for ML, registry, drift monitoring, reproducibility, cost — see Done)
 
 Finance & Business (field `fin` / `biz`) — cubes `accops` / `consult`:
 - [ ] fa-grant — Grant / Fund Accountant (restricted funds, nonprofit/government, compliance, reporting) — verify vs `fs-fund`
-- [ ] biz-tprisk — Third-Party / Vendor Risk Manager (due diligence, contracts, continuity, monitoring)
+- [x] biz-tprisk — Third-Party / Vendor Risk Manager — 2026-11-26 (built — see Done)
 
 Sales & Marketing (field `sales`) — cube `sm-spec`:
 - [ ] sm-cro — Conversion Rate Optimization Specialist (A/B testing, landing pages, funnel analytics, UX) — verify vs `sm-growth`/`sm-ecommerce`
-- [ ] sm-community — Community Manager (engagement, moderation, advocacy, events, metrics)
+- [x] sm-community — Community Manager — 2026-11-26 (built — see Done)
 - [ ] sm-affiliate — Affiliate / Partner Marketing Manager (programs, networks, payouts, fraud) — verify vs `sm-partner`
 - [ ] sm-cx — Customer Experience (CX) Manager (journey mapping, VoC, NPS/CSAT, cross-functional)
 
@@ -308,7 +308,7 @@ Legal (field `biz`) — cube `legal`:
 - [ ] lg-employment — Labor & Employment Attorney (compliance, disputes, policies, litigation) — verify vs `lg-litig`
 
 Engineering & Construction (field `eng`) — cube `en-spec` / `engcore`:
-- [ ] en-packaging — Packaging Engineer (materials, protective/transit testing, cost, sustainability, line fit)
+- [x] en-packaging — Packaging Engineer — 2026-11-26 (built — see Done)
 - [ ] en-reliability — Reliability / Maintenance Engineer (RCM, FMEA, uptime, predictive maintenance) — verify vs `en-ind`
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core`:
@@ -509,3 +509,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] hc-cdi — Clinical Documentation Integrity Specialist — 2026-11-25 (placed in `health-clin` cube)
 - [x] fa-secrep — SEC Reporting / Technical Accounting Manager — 2026-11-25 (placed in `accops` cube)
 - [x] sm-fieldmktg — Field & Events Marketing Manager — 2026-11-25 (placed in `sm-spec` cube)
+- [x] hc-phleb — Phlebotomist — 2026-11-26 (placed in `health-clin` cube)
+- [x] hc-nucmed — Nuclear Medicine Technologist — 2026-11-26 (placed in `health-clin` cube)
+- [x] da-mlops — MLOps Engineer — 2026-11-26 (placed in `data` cube)
+- [x] biz-tprisk — Third-Party / Vendor Risk Manager — 2026-11-26 (placed in `consult` cube)
+- [x] sm-community — Community Manager — 2026-11-26 (placed in `sm-spec` cube)
+- [x] en-packaging — Packaging Engineer — 2026-11-26 (placed in `en-spec` cube)

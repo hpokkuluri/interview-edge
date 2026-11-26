@@ -291,7 +291,8 @@ window.CATALOG = [
       { id: 'da-arch', title: 'Data Architect', level: 'Principal', blurb: 'Platform architecture, modeling, governance, MDM, security, cost.' },
       { id: 'da-head', title: 'Head of Data & AI / CDO', level: 'Director · VP · CDO', blurb: 'Data and AI strategy, value, operating model, responsible AI, culture.' },
       { id: 'da-gov', title: 'Data Governance / Data Management Analyst', level: 'Mid → Senior', blurb: 'Data quality, metadata and catalog, lineage, business glossary, stewardship, MDM, classification, privacy.' },
-      { id: 'da-compvis', title: 'Computer Vision Engineer', level: 'Mid → Senior', blurb: 'CNNs and transformers, detection and segmentation, IoU/mAP, data and augmentation, optimization, deployment.' }
+      { id: 'da-compvis', title: 'Computer Vision Engineer', level: 'Mid → Senior', blurb: 'CNNs and transformers, detection and segmentation, IoU/mAP, data and augmentation, optimization, deployment.' },
+      { id: 'da-mlops', title: 'MLOps Engineer', level: 'Mid → Senior', blurb: 'Model deployment and serving, CI/CD for ML, feature stores, model registry, drift monitoring, retraining, reproducibility, scaling and cost.' }
     ]
   },
   {
@@ -456,7 +457,9 @@ window.CATALOG = [
       { id: 'hc-audiologist', title: 'Audiologist', level: 'Mid → Senior', blurb: 'Audiogram interpretation, hearing loss types, hearing aids and real-ear verification, cochlear implants, balance, tinnitus.' },
       { id: 'hc-podiatrist', title: 'Podiatrist (DPM)', level: 'Entry → Senior', blurb: 'Foot and ankle care, diabetic foot and limb salvage, biomechanics and orthotics, wound care, surgery.' },
       { id: 'hc-midwife', title: 'Certified Nurse Midwife', level: 'Mid → Senior', blurb: 'Prenatal care, physiologic labor and birth, risk assessment and OB collaboration, emergencies, postpartum.' },
-      { id: 'hc-perfusion', title: 'Perfusionist', level: 'Mid → Senior', blurb: 'Heart-lung machine and cardiopulmonary bypass, anticoagulation, cardioplegia, crisis management, safety.' }
+      { id: 'hc-perfusion', title: 'Perfusionist', level: 'Mid → Senior', blurb: 'Heart-lung machine and cardiopulmonary bypass, anticoagulation, cardioplegia, crisis management, safety.' },
+      { id: 'hc-phleb', title: 'Phlebotomist', level: 'Entry → Mid', blurb: 'Venipuncture and capillary technique, order of draw and tubes, patient ID and labeling, hemolysis, safety, specimen handling.' },
+      { id: 'hc-nucmed', title: 'Nuclear Medicine Technologist', level: 'Entry → Senior', blurb: 'Radiopharmaceuticals, imaging protocols, SPECT/PET, radiation safety and ALARA, QC, dose calculation, patient care.' }
     ]
   },
   {
@@ -534,7 +537,8 @@ window.CATALOG = [
       { id: 'cs-change', title: 'Change Management Consultant', level: 'Mid → Senior', blurb: 'ADKAR, stakeholder analysis, adoption, communications, training, resistance.' },
       { id: 'cs-cos', title: 'Chief of Staff', level: 'Senior', blurb: 'Priorities, operating cadence, influence without authority, advising leaders, execution, discretion.' },
       { id: 'biz-coo', title: 'Chief Operating Officer (COO)', level: 'Executive', blurb: 'Strategy into execution, CEO partnership, scaling, operating cadence, metrics, turnarounds, risk.' },
-      { id: 'biz-esg', title: 'ESG / Sustainability Manager', level: 'Mid → Senior', blurb: 'Materiality, GRI/SASB/TCFD/CSRD, Scope 1/2/3 carbon, SBTi targets, assurance, ratings, greenwashing.' }
+      { id: 'biz-esg', title: 'ESG / Sustainability Manager', level: 'Mid → Senior', blurb: 'Materiality, GRI/SASB/TCFD/CSRD, Scope 1/2/3 carbon, SBTi targets, assurance, ratings, greenwashing.' },
+      { id: 'biz-tprisk', title: 'Third-Party / Vendor Risk Manager', level: 'Mid → Senior', blurb: 'Vendor due diligence, risk tiering, assessments and SOC 2, contracts and SLAs, continuous monitoring, concentration and fourth-party risk, incident response.' }
     ]
   },
   {
@@ -569,7 +573,8 @@ window.CATALOG = [
       { id: 'sm-abm', title: 'Account-Based Marketing (ABM) Manager', level: 'Mid → Senior', blurb: 'Target account lists, ICP, intent data, tiering, sales alignment, multi-channel orchestration, account-level measurement.' },
       { id: 'sm-partner', title: 'Channel / Partnerships Manager', level: 'Mid → Senior', blurb: 'Partner recruitment, enablement, co-selling, deal registration, channel conflict, partner economics, mindshare.' },
       { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' },
-      { id: 'sm-fieldmktg', title: 'Field & Events Marketing Manager', level: 'Mid → Senior', blurb: 'Trade shows, conferences, webinars, regional pipeline, sales alignment, lead follow-up, budget, event ROI and attribution.' }
+      { id: 'sm-fieldmktg', title: 'Field & Events Marketing Manager', level: 'Mid → Senior', blurb: 'Trade shows, conferences, webinars, regional pipeline, sales alignment, lead follow-up, budget, event ROI and attribution.' },
+      { id: 'sm-community', title: 'Community Manager', level: 'Entry → Senior', blurb: 'Community building and engagement, moderation and guidelines, platforms, advocacy and ambassadors, events, sentiment, metrics, product feedback loop.' }
     ]
   },
   {
@@ -582,7 +587,8 @@ window.CATALOG = [
       { id: 'en-est', title: 'Construction Estimator', level: 'Mid → Senior', blurb: 'Takeoffs, bids, unit costs, quantities, subcontractors, contingency, margins.' },
       { id: 'en-super', title: 'Site Superintendent / Field Supervisor', level: 'Mid → Senior', blurb: 'Scheduling, crews, subs, safety, quality, inspections, daily logs, closeout.' },
       { id: 'en-safety', title: 'Construction Safety / HSE Manager', level: 'Mid → Senior', blurb: 'OSHA, JHAs, incident investigation, training, audits, fall protection, culture.' },
-      { id: 'en-transport', title: 'Transportation / Traffic Engineer', level: 'Mid → Senior', blurb: 'Roadway geometry, MUTCD, signal warrants and timing, traffic studies, level of service, safety analysis, multimodal.' }
+      { id: 'en-transport', title: 'Transportation / Traffic Engineer', level: 'Mid → Senior', blurb: 'Roadway geometry, MUTCD, signal warrants and timing, traffic studies, level of service, safety analysis, multimodal.' },
+      { id: 'en-packaging', title: 'Packaging Engineer', level: 'Entry → Senior', blurb: 'Materials and protective design, transit testing (ISTA/ASTM), distribution packaging, sustainability, cost, line fit and machinability, specs and supplier qualification.' }
     ]
   },
   {
