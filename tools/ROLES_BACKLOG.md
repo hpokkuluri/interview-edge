@@ -283,9 +283,9 @@ Business & Operations (field `biz`) — cube `consult`:
 
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
 - [x] hc-phleb — Phlebotomist — 2026-11-26 (built — see Done)
-- [ ] hc-ma — Medical Assistant (rooming, vitals, injections, EHR, scheduling, clinical + administrative) — verify vs `hc-practice-mgr`
+- [x] hc-ma — Medical Assistant — 2026-11-27 (built — distinct from `hc-practice-mgr`: rooming, vitals, injections, EKG, CLIA-waived tests, phlebotomy, scope of practice — see Done)
 - [ ] hc-spd — Sterile Processing Technician (decontamination, sterilization cycles, instrument trays, tracking, Spaulding) — verify vs `hc-surgtech`
-- [ ] hc-radther — Radiation Therapist (oncology, linear accelerator, treatment planning/delivery, patient care) — verify vs `hc-radtech`
+- [x] hc-radther — Radiation Therapist — 2026-11-27 (built — distinct from `hc-radtech` diagnostic imaging: oncology linac delivery, IGRT, IMRT/VMAT, fractionation, ALARA — see Done)
 - [x] hc-nucmed — Nuclear Medicine Technologist — 2026-11-26 (built — see Done)
 
 Technology & Product (field `tech`) — cubes `prod` / `swe` / `cloud` / `data`:
@@ -301,18 +301,18 @@ Sales & Marketing (field `sales`) — cube `sm-spec`:
 - [ ] sm-cro — Conversion Rate Optimization Specialist (A/B testing, landing pages, funnel analytics, UX) — verify vs `sm-growth`/`sm-ecommerce`
 - [x] sm-community — Community Manager — 2026-11-26 (built — see Done)
 - [ ] sm-affiliate — Affiliate / Partner Marketing Manager (programs, networks, payouts, fraud) — verify vs `sm-partner`
-- [ ] sm-cx — Customer Experience (CX) Manager (journey mapping, VoC, NPS/CSAT, cross-functional)
+- [x] sm-cx — Customer Experience (CX) Manager — 2026-11-27 (built — journey mapping, VoC, NPS/CSAT/CES, cross-functional influence, omnichannel, CX ROI — see Done)
 
 Legal (field `biz`) — cube `legal`:
-- [ ] lg-trademark — Trademark Attorney / Specialist (clearance, filings, enforcement, portfolio) — verify vs `lg-patent`
-- [ ] lg-employment — Labor & Employment Attorney (compliance, disputes, policies, litigation) — verify vs `lg-litig`
+- [x] lg-trademark — Trademark Attorney / Specialist — 2026-11-27 (built — distinct from `lg-patent`: distinctiveness, clearance, prosecution, oppositions, enforcement, licensing, international — see Done)
+- [x] lg-employment — Labor & Employment Attorney — 2026-11-27 (built — distinct from `lg-litig`: at-will, discrimination, FLSA, FMLA/ADA, retaliation, NLRA, investigations, RIFs — see Done)
 
 Engineering & Construction (field `eng`) — cube `en-spec` / `engcore`:
 - [x] en-packaging — Packaging Engineer — 2026-11-26 (built — see Done)
 - [ ] en-reliability — Reliability / Maintenance Engineer (RCM, FMEA, uptime, predictive maintenance) — verify vs `en-ind`
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core`:
-- [ ] tr-heavyequip — Heavy Equipment Operator (excavators, loaders, grading, GPS, safety) — verify vs `tr-crane`
+- [x] tr-heavyequip — Heavy Equipment Operator — 2026-11-27 (built — distinct from `tr-crane`: excavators/loaders/dozers/graders, grade and GPS control, trenching/cave-in safety, utility strikes — see Done)
 - [ ] tr-sheetmetal — Sheet Metal Worker (fabrication, HVAC duct, layout, installation, blueprints)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
@@ -515,3 +515,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] biz-tprisk — Third-Party / Vendor Risk Manager — 2026-11-26 (placed in `consult` cube)
 - [x] sm-community — Community Manager — 2026-11-26 (placed in `sm-spec` cube)
 - [x] en-packaging — Packaging Engineer — 2026-11-26 (placed in `en-spec` cube)
+- [x] hc-ma — Medical Assistant — 2026-11-27 (placed in `health-clin` cube)
+- [x] hc-radther — Radiation Therapist — 2026-11-27 (placed in `health-clin` cube)
+- [x] lg-trademark — Trademark Attorney / Specialist — 2026-11-27 (placed in `legal` cube)
+- [x] lg-employment — Labor & Employment Attorney — 2026-11-27 (placed in `legal` cube)
+- [x] tr-heavyequip — Heavy Equipment Operator — 2026-11-27 (placed in `trades-core` cube)
+- [x] sm-cx — Customer Experience (CX) Manager — 2026-11-27 (placed in `sm-spec` cube)

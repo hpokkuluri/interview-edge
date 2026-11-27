@@ -459,7 +459,9 @@ window.CATALOG = [
       { id: 'hc-midwife', title: 'Certified Nurse Midwife', level: 'Mid → Senior', blurb: 'Prenatal care, physiologic labor and birth, risk assessment and OB collaboration, emergencies, postpartum.' },
       { id: 'hc-perfusion', title: 'Perfusionist', level: 'Mid → Senior', blurb: 'Heart-lung machine and cardiopulmonary bypass, anticoagulation, cardioplegia, crisis management, safety.' },
       { id: 'hc-phleb', title: 'Phlebotomist', level: 'Entry → Mid', blurb: 'Venipuncture and capillary technique, order of draw and tubes, patient ID and labeling, hemolysis, safety, specimen handling.' },
-      { id: 'hc-nucmed', title: 'Nuclear Medicine Technologist', level: 'Entry → Senior', blurb: 'Radiopharmaceuticals, imaging protocols, SPECT/PET, radiation safety and ALARA, QC, dose calculation, patient care.' }
+      { id: 'hc-nucmed', title: 'Nuclear Medicine Technologist', level: 'Entry → Senior', blurb: 'Radiopharmaceuticals, imaging protocols, SPECT/PET, radiation safety and ALARA, QC, dose calculation, patient care.' },
+      { id: 'hc-ma', title: 'Medical Assistant', level: 'Entry → Senior', blurb: 'Rooming, vitals, injections and EKGs, CLIA-waived tests, phlebotomy, EHR documentation, scheduling, scope of practice, infection control.' },
+      { id: 'hc-radther', title: 'Radiation Therapist', level: 'Entry → Senior', blurb: 'Linac treatment delivery, patient positioning and immobilization, IGRT, IMRT/VMAT, fractionation, ALARA and radiation safety, QA, side-effect monitoring.' }
     ]
   },
   {
@@ -523,7 +525,9 @@ window.CATALOG = [
       { id: 'lg-patent', title: 'Patent Attorney / Patent Agent', level: 'Entry → Senior', blurb: 'Patentability, claim drafting, office actions, prior art, freedom-to-operate, IPR, duty of candor.' },
       { id: 'lg-immig', title: 'Immigration Attorney', level: 'Entry → Senior', blurb: 'Visas and green cards, eligibility analysis, RFEs, removal defense, deadlines, candor, client counseling.' },
       { id: 'lg-legalops', title: 'Legal Operations Manager', level: 'Mid → Senior', blurb: 'CLM, outside counsel and spend management, e-billing, intake, legal tech, metrics, process and stewardship.' },
-      { id: 'lg-ediscovery', title: 'eDiscovery / Litigation Support Manager', level: 'Mid → Senior', blurb: 'EDRM, legal holds, preservation, collection, processing, TAR, privilege, productions, proportionality, defensibility.' }
+      { id: 'lg-ediscovery', title: 'eDiscovery / Litigation Support Manager', level: 'Mid → Senior', blurb: 'EDRM, legal holds, preservation, collection, processing, TAR, privilege, productions, proportionality, defensibility.' },
+      { id: 'lg-trademark', title: 'Trademark Attorney / Specialist', level: 'Mid → Senior', blurb: 'Clearance and searches, distinctiveness, likelihood of confusion, prosecution and office actions, oppositions, enforcement, licensing, international portfolios.' },
+      { id: 'lg-employment', title: 'Labor & Employment Attorney', level: 'Mid → Senior', blurb: 'At-will and wrongful termination, discrimination and harassment, FLSA wage-and-hour, FMLA/ADA leave, retaliation, NLRA, investigations, RIFs, restrictive covenants.' }
     ]
   },
   {
@@ -574,7 +578,8 @@ window.CATALOG = [
       { id: 'sm-partner', title: 'Channel / Partnerships Manager', level: 'Mid → Senior', blurb: 'Partner recruitment, enablement, co-selling, deal registration, channel conflict, partner economics, mindshare.' },
       { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' },
       { id: 'sm-fieldmktg', title: 'Field & Events Marketing Manager', level: 'Mid → Senior', blurb: 'Trade shows, conferences, webinars, regional pipeline, sales alignment, lead follow-up, budget, event ROI and attribution.' },
-      { id: 'sm-community', title: 'Community Manager', level: 'Entry → Senior', blurb: 'Community building and engagement, moderation and guidelines, platforms, advocacy and ambassadors, events, sentiment, metrics, product feedback loop.' }
+      { id: 'sm-community', title: 'Community Manager', level: 'Entry → Senior', blurb: 'Community building and engagement, moderation and guidelines, platforms, advocacy and ambassadors, events, sentiment, metrics, product feedback loop.' },
+      { id: 'sm-cx', title: 'Customer Experience (CX) Manager', level: 'Mid → Senior', blurb: 'Journey mapping, voice-of-the-customer, NPS/CSAT/CES, closing the loop, cross-functional influence, omnichannel, onboarding, CX ROI and customer-centric culture.' }
     ]
   },
   {
@@ -638,7 +643,8 @@ window.CATALOG = [
       { id: 'tr-ironworker', title: 'Ironworker', level: 'Apprentice → Journeyman', blurb: 'Structural steel erection, rigging, connecting, bolt-up, field welding, heights, blueprints.' },
       { id: 'tr-instrument', title: 'Instrumentation & Controls Technician', level: 'Entry → Senior', blurb: 'Calibration, 4-20mA/HART, PID loops, PLC/DCS, P&IDs, hazardous areas, SIS, troubleshooting.' },
       { id: 'tr-boilermaker', title: 'Boilermaker', level: 'Apprentice → Journeyman', blurb: 'Pressure vessels, ASME code welding, plate fabrication, boiler tube repair, rigging, confined space, outages.' },
-      { id: 'tr-crane', title: 'Crane Operator', level: 'Entry → Journeyman', blurb: 'Load charts, setup and outriggers, rigging, hand signals, power-line clearance, inspection, NCCCO certification.' }
+      { id: 'tr-crane', title: 'Crane Operator', level: 'Entry → Journeyman', blurb: 'Load charts, setup and outriggers, rigging, hand signals, power-line clearance, inspection, NCCCO certification.' },
+      { id: 'tr-heavyequip', title: 'Heavy Equipment Operator', level: 'Entry → Journeyman', blurb: 'Excavators, loaders, dozers and graders, grade and GPS machine control, trenching and cave-in safety, utility strikes, inspections, stability, loading.' }
     ]
   },
   {
