@@ -257,13 +257,13 @@ Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
 
 Finance & Accounting / Banking (fields `fin` / `bank`) — cubes `audit`/`accops` / `bk-spec`:
 - [x] fa-secrep — SEC Reporting / Technical Accounting Manager — 2026-11-25 (built — distinct from `fa-ctrl`: 10-K/10-Q/EDGAR, technical accounting memos, ASC 606/842/805, EPS, non-GAAP, SOX/ICFR — see Done)
-- [ ] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst (underwriting, DSCR, LTV, property cash flows) — verify vs `bk-credit`/`fin-reanalyst`
+- [x] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst — 2026-11-28 (built — distinct from `bk-credit`/`fin-reanalyst`: CRE income underwriting, NOI, cap rates, DSCR, LTV/LTC, debt yield, sponsor/recourse analysis, loan structure, refi and construction risk — see Done)
 
 Sales & Marketing (field `sales`) — cube `sm-spec`:
 - [x] sm-lifecycle — Lifecycle / Retention Marketing Manager — 2026-11-23 (built — see Done)
 - [x] sm-abm — Account-Based Marketing (ABM) Manager — 2026-11-21 (built — see Done)
 - [x] sm-fieldmktg — Field & Events Marketing Manager — 2026-11-25 (built — events, webinars, regional pipeline, sales alignment, lead follow-up, event ROI — see Done)
-- [ ] sm-csops — Customer Success Operations Manager (health scores, playbooks, tooling, renewals/churn analytics) — verify vs `sm-csm`/`sm-revops`
+- [x] sm-csops — Customer Success Operations Manager — 2026-11-28 (built — distinct from `sm-csm`/`sm-revops`: health scoring, playbooks, CS platform admin, renewal/churn forecasting, NRR/GRR, segmentation/coverage, data integration, CSM enablement — see Done)
 
 HR & People (field `hr`) — cube `hr-ops`:
 - [x] hr-peopleanalytics — People Analytics Manager — 2026-11-21 (built — see Done)
@@ -273,7 +273,7 @@ Legal (field `biz`) — cube `legal`:
 - [x] lg-ediscovery — eDiscovery / Litigation Support Manager — 2026-11-21 (built — see Done)
 
 Engineering & Construction (field `eng`) — cube `en-spec`:
-- [ ] en-water — Water / Wastewater Engineer (treatment, hydraulics, permits, Clean Water Act, design) — verify vs `en-env`
+- [x] en-water — Water / Wastewater Engineer — 2026-11-28 (built — distinct from `en-env`: drinking-water and wastewater treatment trains, activated sludge, nutrient removal, hydraulics/pumps, Clean Water Act/NPDES vs Safe Drinking Water Act, design flows, distribution/collection — see Done)
 - [x] en-transport — Transportation / Traffic Engineer — 2026-11-21 (built — see Done)
 
 Business & Operations (field `biz`) — cube `consult`:
@@ -284,13 +284,13 @@ Business & Operations (field `biz`) — cube `consult`:
 Healthcare & Allied Health (field `health`) — cubes `hcare` / `health-clin`:
 - [x] hc-phleb — Phlebotomist — 2026-11-26 (built — see Done)
 - [x] hc-ma — Medical Assistant — 2026-11-27 (built — distinct from `hc-practice-mgr`: rooming, vitals, injections, EKG, CLIA-waived tests, phlebotomy, scope of practice — see Done)
-- [ ] hc-spd — Sterile Processing Technician (decontamination, sterilization cycles, instrument trays, tracking, Spaulding) — verify vs `hc-surgtech`
+- [x] hc-spd — Sterile Processing Technician — 2026-11-28 (built — distinct from `hc-surgtech` in-OR role: decontamination, one-directional flow, sterilization methods/monitoring (BI/CI/Bowie-Dick), IFU, Spaulding, tray assembly, tracking/recall — see Done)
 - [x] hc-radther — Radiation Therapist — 2026-11-27 (built — distinct from `hc-radtech` diagnostic imaging: oncology linac delivery, IGRT, IMRT/VMAT, fractionation, ALARA — see Done)
 - [x] hc-nucmed — Nuclear Medicine Technologist — 2026-11-26 (built — see Done)
 
 Technology & Product (field `tech`) — cubes `prod` / `swe` / `cloud` / `data`:
 - [ ] tc-solarch — Solutions Architect (pre-sales/delivery cloud architecture, requirements, design, trade-offs) — verify vs `cl-arch`/`inf-ea`/`sm-se`
-- [ ] tc-observ — Observability / Monitoring Engineer (metrics, logs, traces, SLOs, alerting, on-call) — verify vs `cl-sre`
+- [x] tc-observ — Observability / Monitoring Engineer — 2026-11-28 (built — distinct from `cl-sre`: three pillars (metrics/logs/traces), monitoring vs observability, SLOs/error budgets, RED/USE/golden signals, OpenTelemetry, distributed tracing, cardinality/cost, alert fatigue — see Done)
 - [x] da-mlops — MLOps Engineer — 2026-11-26 (built — distinct from `da-ml`: deployment/serving, feature stores, CI/CD for ML, registry, drift monitoring, reproducibility, cost — see Done)
 
 Finance & Business (field `fin` / `biz`) — cubes `accops` / `consult`:
@@ -313,7 +313,7 @@ Engineering & Construction (field `eng`) — cube `en-spec` / `engcore`:
 
 Skilled Trades & Field Services (field `trades`) — cube `trades-core`:
 - [x] tr-heavyequip — Heavy Equipment Operator — 2026-11-27 (built — distinct from `tr-crane`: excavators/loaders/dozers/graders, grade and GPS control, trenching/cave-in safety, utility strikes — see Done)
-- [ ] tr-sheetmetal — Sheet Metal Worker (fabrication, HVAC duct, layout, installation, blueprints)
+- [x] tr-sheetmetal — Sheet Metal Worker — 2026-11-28 (built — fabrication and layout/pattern development, HVAC ductwork, SMACNA, seams/connections, materials and gauge, installation and sealing, blueprints, safety — see Done)
 
 ### From contacts (added 2026-11-06) — verified NOT in catalog; build first
 
@@ -521,3 +521,9 @@ New cubes to create as you go (put the cube's field in parentheses):
 - [x] lg-employment — Labor & Employment Attorney — 2026-11-27 (placed in `legal` cube)
 - [x] tr-heavyequip — Heavy Equipment Operator — 2026-11-27 (placed in `trades-core` cube)
 - [x] sm-cx — Customer Experience (CX) Manager — 2026-11-27 (placed in `sm-spec` cube)
+- [x] hc-spd — Sterile Processing Technician — 2026-11-28 (placed in `health-clin` cube)
+- [x] tr-sheetmetal — Sheet Metal Worker — 2026-11-28 (placed in `trades-core` cube)
+- [x] bk-cre — Commercial Real Estate Lender / CRE Credit Analyst — 2026-11-28 (placed in `bk-spec` cube)
+- [x] en-water — Water / Wastewater Engineer — 2026-11-28 (placed in `en-spec` cube)
+- [x] sm-csops — Customer Success Operations Manager — 2026-11-28 (placed in `sm-spec` cube)
+- [x] tc-observ — Observability / Monitoring Engineer — 2026-11-28 (placed in `cloud` cube)

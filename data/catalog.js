@@ -305,7 +305,8 @@ window.CATALOG = [
       { id: 'cl-plat', title: 'Platform Engineer', level: 'Mid → Senior', blurb: 'Internal developer platforms, golden paths, Backstage, multi-tenancy.' },
       { id: 'cl-k8s', title: 'Kubernetes Engineer', level: 'Mid → Senior', blurb: 'Architecture, networking, security, scaling, troubleshooting, upgrades.' },
       { id: 'cl-arch', title: 'Cloud Architect', level: 'Principal', blurb: 'Landing zones, security, resilience, migration, FinOps, governance.' },
-      { id: 'tc-release', title: 'Release / Build Engineer', level: 'Mid → Senior', blurb: 'CI/CD pipelines, build systems, versioning, artifacts, reproducible builds, deployment strategies, rollback.' }
+      { id: 'tc-release', title: 'Release / Build Engineer', level: 'Mid → Senior', blurb: 'CI/CD pipelines, build systems, versioning, artifacts, reproducible builds, deployment strategies, rollback.' },
+      { id: 'tc-observ', title: 'Observability / Monitoring Engineer', level: 'Mid → Senior', blurb: 'Metrics, logs and traces, SLOs and error budgets, alerting and alert fatigue, OpenTelemetry, distributed tracing, cardinality and cost, incident debugging.' }
     ]
   },
   {
@@ -461,7 +462,8 @@ window.CATALOG = [
       { id: 'hc-phleb', title: 'Phlebotomist', level: 'Entry → Mid', blurb: 'Venipuncture and capillary technique, order of draw and tubes, patient ID and labeling, hemolysis, safety, specimen handling.' },
       { id: 'hc-nucmed', title: 'Nuclear Medicine Technologist', level: 'Entry → Senior', blurb: 'Radiopharmaceuticals, imaging protocols, SPECT/PET, radiation safety and ALARA, QC, dose calculation, patient care.' },
       { id: 'hc-ma', title: 'Medical Assistant', level: 'Entry → Senior', blurb: 'Rooming, vitals, injections and EKGs, CLIA-waived tests, phlebotomy, EHR documentation, scheduling, scope of practice, infection control.' },
-      { id: 'hc-radther', title: 'Radiation Therapist', level: 'Entry → Senior', blurb: 'Linac treatment delivery, patient positioning and immobilization, IGRT, IMRT/VMAT, fractionation, ALARA and radiation safety, QA, side-effect monitoring.' }
+      { id: 'hc-radther', title: 'Radiation Therapist', level: 'Entry → Senior', blurb: 'Linac treatment delivery, patient positioning and immobilization, IGRT, IMRT/VMAT, fractionation, ALARA and radiation safety, QA, side-effect monitoring.' },
+      { id: 'hc-spd', title: 'Sterile Processing Technician', level: 'Entry → Mid', blurb: 'Decontamination, sterilization cycles, instrument inspection and tray assembly, IFU, Spaulding classification, monitoring (BI/CI/Bowie-Dick), tracking and recall.' }
     ]
   },
   {
@@ -579,7 +581,8 @@ window.CATALOG = [
       { id: 'sm-lifecycle', title: 'Lifecycle / Retention Marketing Manager', level: 'Mid → Senior', blurb: 'CRM, email/SMS, segmentation, lifecycle journeys, automation, churn and retention, LTV, deliverability.' },
       { id: 'sm-fieldmktg', title: 'Field & Events Marketing Manager', level: 'Mid → Senior', blurb: 'Trade shows, conferences, webinars, regional pipeline, sales alignment, lead follow-up, budget, event ROI and attribution.' },
       { id: 'sm-community', title: 'Community Manager', level: 'Entry → Senior', blurb: 'Community building and engagement, moderation and guidelines, platforms, advocacy and ambassadors, events, sentiment, metrics, product feedback loop.' },
-      { id: 'sm-cx', title: 'Customer Experience (CX) Manager', level: 'Mid → Senior', blurb: 'Journey mapping, voice-of-the-customer, NPS/CSAT/CES, closing the loop, cross-functional influence, omnichannel, onboarding, CX ROI and customer-centric culture.' }
+      { id: 'sm-cx', title: 'Customer Experience (CX) Manager', level: 'Mid → Senior', blurb: 'Journey mapping, voice-of-the-customer, NPS/CSAT/CES, closing the loop, cross-functional influence, omnichannel, onboarding, CX ROI and customer-centric culture.' },
+      { id: 'sm-csops', title: 'Customer Success Operations Manager', level: 'Mid → Senior', blurb: 'Health scores, playbooks, CS platform administration, renewal and churn analytics, NRR/GRR, segmentation and coverage, data integration, CSM enablement.' }
     ]
   },
   {
@@ -593,7 +596,8 @@ window.CATALOG = [
       { id: 'en-super', title: 'Site Superintendent / Field Supervisor', level: 'Mid → Senior', blurb: 'Scheduling, crews, subs, safety, quality, inspections, daily logs, closeout.' },
       { id: 'en-safety', title: 'Construction Safety / HSE Manager', level: 'Mid → Senior', blurb: 'OSHA, JHAs, incident investigation, training, audits, fall protection, culture.' },
       { id: 'en-transport', title: 'Transportation / Traffic Engineer', level: 'Mid → Senior', blurb: 'Roadway geometry, MUTCD, signal warrants and timing, traffic studies, level of service, safety analysis, multimodal.' },
-      { id: 'en-packaging', title: 'Packaging Engineer', level: 'Entry → Senior', blurb: 'Materials and protective design, transit testing (ISTA/ASTM), distribution packaging, sustainability, cost, line fit and machinability, specs and supplier qualification.' }
+      { id: 'en-packaging', title: 'Packaging Engineer', level: 'Entry → Senior', blurb: 'Materials and protective design, transit testing (ISTA/ASTM), distribution packaging, sustainability, cost, line fit and machinability, specs and supplier qualification.' },
+      { id: 'en-water', title: 'Water / Wastewater Engineer', level: 'Entry → Senior', blurb: 'Drinking water and wastewater treatment processes, hydraulics and pumping, Clean Water Act / NPDES, design flows, nutrient removal, distribution and collection systems.' }
     ]
   },
   {
@@ -607,7 +611,8 @@ window.CATALOG = [
       { id: 'bk-risk', title: 'Risk Manager (Enterprise / Financial)', level: 'Mid → Senior', blurb: 'Risk appetite, KRIs, market/credit/op risk, stress tests, controls, Basel.' },
       { id: 'bk-agent', title: 'Insurance Agent / Broker', level: 'Entry → Senior', blurb: 'Needs analysis, quoting, coverage, renewals, cross-sell, carriers, retention.' },
       { id: 'bk-advisor', title: 'Financial Advisor / Wealth Manager', level: 'Entry → Senior', blurb: 'Planning, fiduciary vs Reg BI, allocation, retirement, tax efficiency, fees.' },
-      { id: 'bk-ib', title: 'Investment Banking Analyst / Associate', level: 'Entry → Mid', blurb: 'Valuation (comps, DCF, LBO), M&A process, accretion/dilution, modeling, deal execution.' }
+      { id: 'bk-ib', title: 'Investment Banking Analyst / Associate', level: 'Entry → Mid', blurb: 'Valuation (comps, DCF, LBO), M&A process, accretion/dilution, modeling, deal execution.' },
+      { id: 'bk-cre', title: 'Commercial Real Estate Lender / CRE Credit Analyst', level: 'Mid → Senior', blurb: 'CRE underwriting, NOI and cap rates, DSCR, LTV/LTC, debt yield, sponsor analysis, loan structure, refinance and construction risk.' }
     ]
   },
   {
@@ -644,7 +649,8 @@ window.CATALOG = [
       { id: 'tr-instrument', title: 'Instrumentation & Controls Technician', level: 'Entry → Senior', blurb: 'Calibration, 4-20mA/HART, PID loops, PLC/DCS, P&IDs, hazardous areas, SIS, troubleshooting.' },
       { id: 'tr-boilermaker', title: 'Boilermaker', level: 'Apprentice → Journeyman', blurb: 'Pressure vessels, ASME code welding, plate fabrication, boiler tube repair, rigging, confined space, outages.' },
       { id: 'tr-crane', title: 'Crane Operator', level: 'Entry → Journeyman', blurb: 'Load charts, setup and outriggers, rigging, hand signals, power-line clearance, inspection, NCCCO certification.' },
-      { id: 'tr-heavyequip', title: 'Heavy Equipment Operator', level: 'Entry → Journeyman', blurb: 'Excavators, loaders, dozers and graders, grade and GPS machine control, trenching and cave-in safety, utility strikes, inspections, stability, loading.' }
+      { id: 'tr-heavyequip', title: 'Heavy Equipment Operator', level: 'Entry → Journeyman', blurb: 'Excavators, loaders, dozers and graders, grade and GPS machine control, trenching and cave-in safety, utility strikes, inspections, stability, loading.' },
+      { id: 'tr-sheetmetal', title: 'Sheet Metal Worker', level: 'Entry → Journeyman', blurb: 'Fabrication and layout, pattern development, HVAC ductwork, SMACNA, seams and connections, materials and gauge, installation and sealing, blueprints.' }
     ]
   },
   {
